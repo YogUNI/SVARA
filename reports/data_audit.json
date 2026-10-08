@@ -1,0 +1,234 @@
+{
+  "dataset_root": "C:\\Users\\Axioo Pongo\\SVARA\\data\\raw\\fluent_speech_commands_dataset",
+  "files_presence": {
+    "train_csv": true,
+    "valid_csv": true,
+    "test_csv": true,
+    "demographics_csv": true,
+    "license_pdf": true,
+    "readme_md": true
+  },
+  "raw_headers": {
+    "train": ",path,speakerId,transcription,action,object,location",
+    "valid": ",path,speakerId,transcription,action,object,location",
+    "test": ",path,speakerId,transcription,action,object,location",
+    "demographics": "speakerId,Self-reported fluency level ,First Language spoken,Current language used for work/school,gender,ageRange"
+  },
+  "counts": {
+    "train": 23132,
+    "valid": 3118,
+    "test": 3793,
+    "total": 30043,
+    "demographics": 101
+  },
+  "paper_comparison": {
+    "expected": {
+      "train": 23132,
+      "valid": 3118,
+      "test": 3793,
+      "total": 30043
+    },
+    "differences": {
+      "train": 0,
+      "valid": 0,
+      "test": 0,
+      "total": 0
+    },
+    "exact_match": true
+  },
+  "audio_files": {
+    "total_wavs_on_disk": 30043,
+    "missing_files_count": 0
+  },
+  "audio_sanity": {
+    "sampled_clips_count": 50,
+    "sample_rates_observed": [
+      16000
+    ],
+    "channels_observed": [
+      1
+    ],
+    "all_16k_mono": true,
+    "duration_min_s": 1.37,
+    "duration_mean_s": 2.17,
+    "duration_p95_s": 2.9,
+    "duration_p99_s": 3.85,
+    "duration_max_s": 4.52,
+    "clipped_clips_count": 0,
+    "mean_silence_ratio": 0.6
+  },
+  "labels": {
+    "actions_match_readme": true,
+    "objects_match_readme": true,
+    "locations_match_readme": true,
+    "observed_actions": [
+      "activate",
+      "bring",
+      "change language",
+      "deactivate",
+      "decrease",
+      "increase"
+    ],
+    "observed_objects": [
+      "Chinese",
+      "English",
+      "German",
+      "Korean",
+      "heat",
+      "juice",
+      "lamp",
+      "lights",
+      "music",
+      "newspaper",
+      "none",
+      "shoes",
+      "socks",
+      "volume"
+    ],
+    "observed_locations": [
+      "bedroom",
+      "kitchen",
+      "none",
+      "washroom"
+    ]
+  },
+  "unique_intents_count": 31,
+  "overlaps": {
+    "speakers": {
+      "train_unique": 77,
+      "valid_unique": 10,
+      "test_unique": 10,
+      "train_valid_overlap": 0,
+      "train_test_overlap": 0,
+      "valid_test_overlap": 0
+    },
+    "transcripts": {
+      "train_unique": 248,
+      "valid_unique": 248,
+      "test_unique": 248,
+      "train_valid_overlap": 248,
+      "train_test_overlap": 248,
+      "valid_test_overlap": 248,
+      "test_utterances_in_train_count": 3793,
+      "test_utterances_in_train_pct": 100.0
+    }
+  },
+  "demographics_join": {
+    "all_speakers_in_demographics": true,
+    "missing_speakers": []
+  },
+  "label_consistency": {
+    "conflicting_transcripts_count": 0,
+    "conflicts": {}
+  },
+  "speaker_folder_consistency": {
+    "mismatches_count": 0
+  },
+  "hash_duplicates_sampled": 0,
+  "imbalance_ratios": {
+    "action_max_to_min": 2.93,
+    "object_max_to_min": 21.26,
+    "location_max_to_min": 5.87
+  },
+  "phrasings_per_intent": {
+    "train": {
+      "activate|lamp|none": 4,
+      "activate|lights|bedroom": 6,
+      "activate|lights|kitchen": 8,
+      "activate|lights|none": 5,
+      "activate|lights|washroom": 10,
+      "activate|music|none": 7,
+      "bring|juice|none": 5,
+      "bring|newspaper|none": 6,
+      "bring|shoes|none": 6,
+      "bring|socks|none": 6,
+      "change language|Chinese|none": 5,
+      "change language|English|none": 4,
+      "change language|German|none": 4,
+      "change language|Korean|none": 4,
+      "change language|none|none": 11,
+      "deactivate|lamp|none": 4,
+      "deactivate|lights|bedroom": 6,
+      "deactivate|lights|kitchen": 6,
+      "deactivate|lights|none": 5,
+      "deactivate|lights|washroom": 5,
+      "deactivate|music|none": 7,
+      "decrease|heat|bedroom": 7,
+      "decrease|heat|kitchen": 7,
+      "decrease|heat|none": 11,
+      "decrease|heat|washroom": 14,
+      "decrease|volume|none": 22,
+      "increase|heat|bedroom": 7,
+      "increase|heat|kitchen": 7,
+      "increase|heat|none": 11,
+      "increase|heat|washroom": 14,
+      "increase|volume|none": 24
+    },
+    "valid": {
+      "activate|lamp|none": 4,
+      "activate|lights|bedroom": 6,
+      "activate|lights|kitchen": 8,
+      "activate|lights|none": 5,
+      "activate|lights|washroom": 10,
+      "activate|music|none": 7,
+      "bring|juice|none": 5,
+      "bring|newspaper|none": 6,
+      "bring|shoes|none": 6,
+      "bring|socks|none": 6,
+      "change language|Chinese|none": 5,
+      "change language|English|none": 4,
+      "change language|German|none": 4,
+      "change language|Korean|none": 4,
+      "change language|none|none": 11,
+      "deactivate|lamp|none": 4,
+      "deactivate|lights|bedroom": 6,
+      "deactivate|lights|kitchen": 6,
+      "deactivate|lights|none": 5,
+      "deactivate|lights|washroom": 5,
+      "deactivate|music|none": 7,
+      "decrease|heat|bedroom": 7,
+      "decrease|heat|kitchen": 7,
+      "decrease|heat|none": 11,
+      "decrease|heat|washroom": 14,
+      "decrease|volume|none": 22,
+      "increase|heat|bedroom": 7,
+      "increase|heat|kitchen": 7,
+      "increase|heat|none": 11,
+      "increase|heat|washroom": 14,
+      "increase|volume|none": 24
+    },
+    "test": {
+      "activate|lamp|none": 4,
+      "activate|lights|bedroom": 6,
+      "activate|lights|kitchen": 8,
+      "activate|lights|none": 5,
+      "activate|lights|washroom": 10,
+      "activate|music|none": 7,
+      "bring|juice|none": 5,
+      "bring|newspaper|none": 6,
+      "bring|shoes|none": 6,
+      "bring|socks|none": 6,
+      "change language|Chinese|none": 5,
+      "change language|English|none": 4,
+      "change language|German|none": 4,
+      "change language|Korean|none": 4,
+      "change language|none|none": 11,
+      "deactivate|lamp|none": 4,
+      "deactivate|lights|bedroom": 6,
+      "deactivate|lights|kitchen": 6,
+      "deactivate|lights|none": 5,
+      "deactivate|lights|washroom": 5,
+      "deactivate|music|none": 7,
+      "decrease|heat|bedroom": 7,
+      "decrease|heat|kitchen": 7,
+      "decrease|heat|none": 11,
+      "decrease|heat|washroom": 14,
+      "decrease|volume|none": 22,
+      "increase|heat|bedroom": 7,
+      "increase|heat|kitchen": 7,
+      "increase|heat|none": 11,
+      "increase|heat|washroom": 14,
+      "increase|volume|none": 24
+    }
+  }
+}

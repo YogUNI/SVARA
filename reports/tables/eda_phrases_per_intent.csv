@@ -1,0 +1,32 @@
+action,object,location,num_phrasings
+activate,lamp,none,4
+activate,lights,bedroom,6
+activate,lights,kitchen,8
+activate,lights,none,5
+activate,lights,washroom,10
+activate,music,none,7
+bring,juice,none,5
+bring,newspaper,none,6
+bring,shoes,none,6
+bring,socks,none,6
+change language,Chinese,none,5
+change language,English,none,4
+change language,German,none,4
+change language,Korean,none,4
+change language,none,none,11
+deactivate,lamp,none,4
+deactivate,lights,bedroom,6
+deactivate,lights,kitchen,6
+deactivate,lights,none,5
+deactivate,lights,washroom,5
+deactivate,music,none,7
+decrease,heat,bedroom,7
+decrease,heat,kitchen,7
+decrease,heat,none,11
+decrease,heat,washroom,14
+decrease,volume,none,22
+increase,heat,bedroom,7
+increase,heat,kitchen,7
+increase,heat,none,11
+increase,heat,washroom,14
+increase,volume,none,24

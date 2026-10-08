@@ -13,7 +13,7 @@ audio:
   sample_rate: 16000
   channels: 1
   # max_audio_seconds to be set from duration p99 in EDA (P1-06)
-  max_audio_seconds: null
+  max_audio_seconds: 5
 
 seed:
   default: 42

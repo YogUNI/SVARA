@@ -1,0 +1,3 @@
+Entitas,Persentase,Keterangan
+Speaker Overlap (Train vs Test),0.0,0 dari 10 speaker uji ada di data latih (Disjoint)
+Phrase Leakage (Test clips in Train),100.0,100% frasa kalimat uji sudah pernah didengar saat training!

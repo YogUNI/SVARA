@@ -1,0 +1,32 @@
+,count
+increase|volume|none,3010
+decrease|volume|none,2731
+increase|heat|washroom,1678
+decrease|heat|washroom,1625
+increase|heat|none,1381
+decrease|heat|none,1365
+change language|none|none,1273
+activate|lights|washroom,1228
+activate|lights|kitchen,1017
+activate|music|none,912
+increase|heat|bedroom,840
+increase|heat|kitchen,836
+decrease|heat|bedroom,831
+deactivate|music|none,825
+decrease|heat|kitchen,818
+deactivate|lights|bedroom,737
+deactivate|lights|kitchen,732
+activate|lights|bedroom,723
+bring|newspaper|none,693
+bring|shoes|none,685
+bring|socks|none,680
+activate|lights|none,647
+deactivate|lights|none,637
+deactivate|lights|washroom,596
+bring|juice|none,583
+change language|Chinese|none,576
+deactivate|lamp|none,534
+activate|lamp|none,520
+change language|English|none,446
+change language|Korean|none,443
+change language|German|none,441

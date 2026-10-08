@@ -1,0 +1,16 @@
+model:
+  conv_channels: 64
+  dropout: 0.2
+  n_mels: 64
+  rnn_hidden: 128
+  rnn_layers: 2
+  type: crnn
+  use_joint_head: false
+training:
+  batch_size: 32
+  early_stopping_patience: 3
+  epochs: 15
+  grad_clip_norm: 1.0
+  learning_rate: 0.001
+  seed: 42
+  weight_decay: 0.01

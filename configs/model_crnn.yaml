@@ -1,0 +1,20 @@
+# SVARA Model Config — CRNN Baseline (E1 / B1)
+# Reference: docs/02 §2, docs/02 §3
+
+model:
+  type: "crnn"
+  n_mels: 64
+  conv_channels: 64
+  rnn_hidden: 128
+  rnn_layers: 2
+  dropout: 0.2
+  use_joint_head: false
+
+training:
+  epochs: 15
+  batch_size: 32
+  learning_rate: 0.001
+  weight_decay: 0.01
+  grad_clip_norm: 1.0
+  early_stopping_patience: 3
+  seed: 42

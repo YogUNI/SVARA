@@ -188,6 +188,14 @@ run metadata with split-manifest hash and GPU name). Then create scripts/dev/cla
 comparisons and lists sentences that are not yet mapped in reports/CLAIMS_AUDIT.md. Do not auto-fill evidence; only report gaps.
 ```
 
+## Prompt 23 — Sync with the Transformer/HuggingFace tech spec (docs/12)
+```
+Read docs/12_TRANSFORMER_SLU_HF_TECH_SPEC.md completely, then compare it with docs/02, docs/03 and any code already written under src/svara/models and
+src/svara/data/audio.py. Do not change model code yet. Report: (1) differences between the spec and the current code or docs, (2) anything in docs/12 you believe
+is wrong for the installed transformers/torch versions (check with read-only commands, e.g. inspecting the installed package source or signatures), (3) a minimal
+change list to align everything. Wait for my approval before editing.
+```
+
 ---
 ## Handy follow-up prompts
 - "Show me the diff summary and which tests cover it. What is NOT covered?"

@@ -34,6 +34,7 @@ main paper Lugosch et al., 2019.
 | docs/08_ANTIGRAVITY_PROMPTS.md | ready-made prompts per phase |
 | docs/09_GITHUB_COLLABORATION.md | branches, PRs, ownership, what goes in git |
 | docs/10_DETAILED_TASKS.md | the full task list with IDs, owners, acceptance criteria |
+| docs/12_TRANSFORMER_SLU_HF_TECH_SPEC.md | implementing or explaining the Transformer SLU / wav2vec2 / HuggingFace part (read before models/) |
 | docs/11_DL_VERIFICATION_CHECKLIST.md | sanity checks, test-set discipline, tuning protocol; read before any training or reporting |
 
 ## Non-negotiable rules

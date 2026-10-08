@@ -1,5 +1,7 @@
 # 02 — Model and Experiments
 
+> Detailed technical spec, code sketch, gotchas and HuggingFace usage plan: **docs/12**. Extra optional experiments E11-E15 are defined there.
+
 ## 1. Main model: `Wav2VecSLU`
 ```
 waveform (16 kHz mono, normalized) 

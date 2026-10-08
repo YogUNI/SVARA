@@ -280,6 +280,11 @@ Yoga keeps a matching list for himself on the demo/QA side (how was QA done, wha
 | P10-24 | Independent re-run: Haikal runs `evaluate.py` on the final checkpoint and gets the same metrics | H | M | P9-06 | match within tolerance; logged |
 | P10-25 | Claims audit table `reports/CLAIMS_AUDIT.md` + regenerate assets from a clean checkout + hand-check 5 numbers | Y+H | L | P10-08 | every number/comparison in the report is traceable |
 | P10-26 | Verify the "known unverified assumptions" list (docs/11 §10); update docs where reality differs | Y | M | P3-07 | each item marked confirmed/changed in DECISIONS.md |
+| P3-17 | HF-native cross-check baseline: `Wav2Vec2ForSequenceClassification` with the 31-way joint head, same split and seed as M0 | Y | M | P3-07 | result next to M0; large unexplained gap triggers a bug hunt in our custom model |
+| P3-18 | Test preprocessing parity against `Wav2Vec2FeatureExtractor` normalization on sample clips (docs/12 §4.6) | Y | S | P2-05 | test green; tolerance documented |
+| P4-18 | *(optional)* E11 layer-weighted sum + E14 per-layer probes; plot learned layer weights | Y | M | P4-06 | figure + short interpretation, or cut decision |
+| P7-09 | *(optional)* HF Hub model card + upload of the final model (after checking FSC license terms) | Y | S | P7-06 | model page live, card uses numbers from `summary.json` only |
+| P10-27 | Draft Bab 2/4 text "Transformer SLU and wav2vec2" from docs/12 §8 (what is HF-based vs custom); Yoga verifies every technical claim | H | M | P10-04 | paragraph merged; consistent with the code |
 
 ## 19. Minimum viable path (if time is tight, this is the part that must be excellent)
 | Phase | Must (MVP) | Should | Could |
@@ -287,7 +292,7 @@ Yoga keeps a matching list for himself on the demo/QA side (how was QA done, wha
 | P0 | P0-01..P0-04, P0-07, P0-08, P0-10, P0-12 | P0-05, P0-06, P0-09, P0-11, P0-13..P0-15 | — |
 | P1 | P1-01..P1-06, P1-08, P1-13 | P1-09..P1-12, P1-14 | — |
 | P2 | P2-01, P2-02, P2-04..P2-10, P2-12 | P2-03 (cond.), P2-11, P2-13 | — |
-| P3 | P3-01..P3-09, P3-13..P3-16 | P3-10..P3-12 | — |
+| P3 | P3-01..P3-09, P3-13..P3-16, P3-18 | P3-10..P3-12, P3-17 | — |
 | P4 | P4-01, P4-02, P4-04..P4-06 (E1, E2, E3, E5, E6), P4-07 (E8), P4-11, P4-12, P4-16 | P4-08, P4-09, P4-13..P4-15 | P4-10, P4-17, E9 |
 | P5 | P5-01..P5-07, P5-09, P5-10 (≥ 10 speakers) | P5-08, P5-11, P5-12 | — |
 | P6 | P6-01, P6-03, P6-05, P6-06, P6-08 | P6-04, P6-07, P6-09, P6-10 | — |

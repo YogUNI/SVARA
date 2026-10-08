@@ -1,13 +1,18 @@
 """Resumable, config-driven training loop for SVARA models.
 
 Supports:
-- CRNN baseline & wav2vec2 models
-- Epoch checkpointing with RNG / optimizer state preservation
+- CRNN baseline & wav2vec2 models (P2-08, P3-01, P3-03)
+- Two learning rate parameter groups (encoder vs heads per docs/02 §3)
+- Linear warmup + linear decay learning rate scheduler
+- Mixed precision (fp16 autocast with GradScaler on CUDA)
+- Gradient accumulation and gradient clipping (max-norm 1.0)
+- Early stopping on validation exact-match accuracy
+- Epoch checkpointing with optimizer, scheduler, and RNG state preservation
 - CSV logging of metrics (docs/02 §8)
 - Sanity overfit-64 samples mode (docs/11 V-12)
 
-Task: P2-08, P2-09
-Reference: docs/02 §8, docs/11 V-12
+Tasks: P2-08, P2-09, P3-03
+Reference: docs/02 §3, docs/11 V-12..V-16, docs/12 §3
 """
 
 import argparse
@@ -16,7 +21,7 @@ import datetime
 import os
 import random
 import time
-from typing import Dict, Optional
+from typing import Dict, List, Optional, Tuple
 
 import numpy as np
 import torch
@@ -25,6 +30,7 @@ from torch.utils.data import DataLoader, Subset
 
 from svara.data.collate import FSCDataset, collate_fn_pad
 from svara.models.crnn_baseline import CRNNBaseline
+from svara.models.wav2vec_slu import Wav2VecSLU
 from svara.train.losses import MultiHeadSLULoss, compute_batch_accuracies
 
 
@@ -38,6 +44,7 @@ def set_seed(seed: int = 42):
 
 
 def create_model_from_config(cfg: dict, num_slots: dict) -> torch.nn.Module:
+    """Instantiate model according to config dict."""
     m_cfg = cfg["model"]
     m_type = m_cfg.get("type", "crnn")
 
@@ -53,24 +60,121 @@ def create_model_from_config(cfg: dict, num_slots: dict) -> torch.nn.Module:
             rnn_layers=m_cfg.get("rnn_layers", 2),
             dropout=m_cfg.get("dropout", 0.2),
         )
+    elif m_type in ("wav2vec2", "w2v2"):
+        return Wav2VecSLU(
+            pretrained_model_name_or_path=m_cfg.get("pretrained_model", "facebook/wav2vec2-base"),
+            n_action=num_slots["action"],
+            n_object=num_slots["object"],
+            n_location=num_slots["location"],
+            n_joint=31 if m_cfg.get("use_joint_head", False) else None,
+            keep_layers=m_cfg.get("keep_layers", None),
+            freeze_feature_encoder=m_cfg.get("freeze_feature_encoder", True),
+            freeze_encoder=m_cfg.get("freeze_encoder", False),
+            dropout=m_cfg.get("dropout", 0.1),
+            mask_time_prob=m_cfg.get("mask_time_prob", 0.05),
+            layerdrop=m_cfg.get("layerdrop", 0.0),
+            config_only=m_cfg.get("config_only", False),
+        )
     else:
         raise ValueError(f"Unsupported model type in train.py: {m_type}")
+
+
+def build_optimizer_and_scheduler(
+    model: torch.nn.Module,
+    t_cfg: dict,
+    total_steps: int,
+) -> Tuple[torch.optim.Optimizer, Optional[torch.optim.lr_scheduler.LambdaLR]]:
+    """Build AdamW optimizer with 2 LR groups (encoder vs heads) and warmup scheduler (P3-03)."""
+    head_lr = float(t_cfg.get("learning_rate", 1e-3))
+    encoder_lr = float(t_cfg.get("encoder_learning_rate", 3e-5))
+    weight_decay = float(t_cfg.get("weight_decay", 0.01))
+
+    if hasattr(model, "enc") and hasattr(model, "heads"):
+        # Separate parameters into encoder vs heads (no decay on bias/LayerNorm)
+        no_decay = ["bias", "LayerNorm.weight", "layer_norm.weight"]
+
+        enc_params_decay = []
+        enc_params_no_decay = []
+        head_params_decay = []
+        head_params_no_decay = []
+
+        for name, param in model.enc.named_parameters():
+            if not param.requires_grad:
+                continue
+            if any(nd in name for nd in no_decay):
+                enc_params_no_decay.append(param)
+            else:
+                enc_params_decay.append(param)
+
+        for name, param in model.heads.named_parameters():
+            if not param.requires_grad:
+                continue
+            if any(nd in name for nd in no_decay):
+                head_params_no_decay.append(param)
+            else:
+                head_params_decay.append(param)
+
+        if getattr(model, "joint", None) is not None:
+            for name, param in model.joint.named_parameters():
+                if not param.requires_grad:
+                    continue
+                if any(nd in name for nd in no_decay):
+                    head_params_no_decay.append(param)
+                else:
+                    head_params_decay.append(param)
+
+        param_groups = [
+            {"params": enc_params_decay, "lr": encoder_lr, "weight_decay": weight_decay},
+            {"params": enc_params_no_decay, "lr": encoder_lr, "weight_decay": 0.0},
+            {"params": head_params_decay, "lr": head_lr, "weight_decay": weight_decay},
+            {"params": head_params_no_decay, "lr": head_lr, "weight_decay": 0.0},
+        ]
+        # Filter out empty parameter groups
+        param_groups = [g for g in param_groups if len(g["params"]) > 0]
+        optimizer = torch.optim.AdamW(param_groups)
+    else:
+        # Default single group for baseline models
+        optimizer = torch.optim.AdamW(
+            [p for p in model.parameters() if p.requires_grad],
+            lr=head_lr,
+            weight_decay=weight_decay,
+        )
+
+    # Linear warmup + linear decay scheduler
+    warmup_ratio = float(t_cfg.get("warmup_ratio", 0.1))
+    warmup_steps = int(total_steps * warmup_ratio)
+
+    def lr_lambda(current_step: int):
+        if current_step < warmup_steps:
+            return float(current_step) / float(max(1, warmup_steps))
+        progress = float(current_step - warmup_steps) / float(max(1, total_steps - warmup_steps))
+        return max(0.0, 1.0 - progress)
+
+    scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, lr_lambda) if total_steps > 0 else None
+    return optimizer, scheduler
 
 
 def train_epoch(
     model: torch.nn.Module,
     loader: DataLoader,
     optimizer: torch.optim.Optimizer,
+    scheduler: Optional[torch.optim.lr_scheduler.LambdaLR],
     criterion: MultiHeadSLULoss,
     device: torch.device,
+    scaler: Optional[torch.amp.GradScaler],
     grad_clip: float = 1.0,
+    grad_accum_steps: int = 1,
 ) -> Dict[str, float]:
+    """Train single epoch with gradient accumulation, mixed precision, and clipping."""
     model.train()
     total_loss = 0.0
     total_exact = 0.0
     n_batches = len(loader)
+    use_amp = scaler is not None and device.type == "cuda"
 
-    for batch in loader:
+    optimizer.zero_grad()
+
+    for step_idx, batch in enumerate(loader):
         wav = batch["waveform"].to(device)
         lens = batch["lengths"].to(device)
         targets = {
@@ -80,19 +184,39 @@ def train_epoch(
             "intent_id": batch["intent_id"].to(device),
         }
 
-        optimizer.zero_grad()
-        logits = model(wav, lengths=lens)
-        loss, _ = criterion(logits, targets)
-        loss.backward()
+        if use_amp:
+            with torch.amp.autocast(device_type="cuda", dtype=torch.float16):
+                logits = model(wav, lengths=lens)
+                loss, _ = criterion(logits, targets)
+                scaled_loss = loss / grad_accum_steps
+            scaler.scale(scaled_loss).backward()
+        else:
+            logits = model(wav, lengths=lens)
+            loss, _ = criterion(logits, targets)
+            scaled_loss = loss / grad_accum_steps
+            scaled_loss.backward()
 
-        if grad_clip > 0:
-            torch.nn.utils.clip_grad_norm_(model.parameters(), grad_clip)
+        if (step_idx + 1) % grad_accum_steps == 0 or (step_idx + 1) == n_batches:
+            if use_amp:
+                if grad_clip > 0:
+                    scaler.unscale_(optimizer)
+                    torch.nn.utils.clip_grad_norm_(model.parameters(), grad_clip)
+                scaler.step(optimizer)
+                scaler.update()
+            else:
+                if grad_clip > 0:
+                    torch.nn.utils.clip_grad_norm_(model.parameters(), grad_clip)
+                optimizer.step()
 
-        optimizer.step()
+            if scheduler is not None:
+                scheduler.step()
 
-        accs = compute_batch_accuracies(logits, targets)
-        total_loss += loss.item()
-        total_exact += accs["acc_exact_match"]
+            optimizer.zero_grad()
+
+        with torch.no_grad():
+            accs = compute_batch_accuracies(logits, targets)
+            total_loss += loss.item()
+            total_exact += accs["acc_exact_match"]
 
     return {
         "train_loss": total_loss / max(1, n_batches),
@@ -106,6 +230,7 @@ def evaluate(
     criterion: MultiHeadSLULoss,
     device: torch.device,
 ) -> Dict[str, float]:
+    """Evaluate model on validation or test loader."""
     model.eval()
     total_loss = 0.0
     total_exact = 0.0
@@ -151,7 +276,8 @@ def run_training(
     overfit_64: bool = False,
     resume: bool = False,
     output_dir_override: Optional[str] = None,
-):
+) -> str:
+    """Execute complete config-driven training workflow."""
     with open(config_path, "r", encoding="utf-8") as f:
         cfg = yaml.safe_load(f)
 
@@ -190,10 +316,12 @@ def run_training(
     if overfit_64:
         print("[train.py] Running SANITY OVERFIT-64 MODE (docs/11 V-12)...")
         train_ds = Subset(train_ds, list(range(min(64, len(train_ds)))))
-        val_ds = train_ds  # evaluate on same 64 samples
+        val_ds = train_ds
 
     t_cfg = cfg["training"]
     batch_size = 16 if overfit_64 else t_cfg.get("batch_size", 32)
+    grad_accum_steps = 1 if overfit_64 else t_cfg.get("grad_accum_steps", 1)
+
     train_loader = DataLoader(
         train_ds, batch_size=batch_size, shuffle=True, collate_fn=collate_fn_pad
     )
@@ -201,13 +329,15 @@ def run_training(
         val_ds, batch_size=batch_size, shuffle=False, collate_fn=collate_fn_pad
     )
 
+    max_epochs = 30 if overfit_64 else t_cfg.get("epochs", 15)
+    total_steps = (len(train_loader) // grad_accum_steps) * max_epochs
+
     model = create_model_from_config(cfg, num_slots).to(device)
-    optimizer = torch.optim.AdamW(
-        model.parameters(),
-        lr=float(t_cfg.get("learning_rate", 1e-3)),
-        weight_decay=float(t_cfg.get("weight_decay", 0.01)),
-    )
+    optimizer, scheduler = build_optimizer_and_scheduler(model, t_cfg, total_steps)
     criterion = MultiHeadSLULoss(use_joint=cfg["model"].get("use_joint_head", False))
+
+    use_fp16 = t_cfg.get("fp16", False) and device.type == "cuda"
+    scaler = torch.amp.GradScaler("cuda") if use_fp16 else None
 
     log_file = os.path.join(run_dir, "train_log.csv")
     csv_header = [
@@ -224,6 +354,8 @@ def run_training(
 
     start_epoch = 1
     best_val_acc = 0.0
+    epochs_no_improve = 0
+    patience = t_cfg.get("early_stopping_patience", 0)
     last_ckpt = os.path.join(run_dir, "last.ckpt")
 
     if resume and os.path.exists(last_ckpt):
@@ -231,25 +363,29 @@ def run_training(
         ckpt = torch.load(last_ckpt, map_location=device)
         model.load_state_dict(ckpt["model"])
         optimizer.load_state_dict(ckpt["optimizer"])
+        if scheduler and "scheduler" in ckpt:
+            scheduler.load_state_dict(ckpt["scheduler"])
         start_epoch = ckpt["epoch"] + 1
         best_val_acc = ckpt.get("best_val_acc", 0.0)
+        epochs_no_improve = ckpt.get("epochs_no_improve", 0)
 
     if start_epoch == 1 and not os.path.exists(log_file):
         with open(log_file, "w", newline="", encoding="utf-8") as f:
             writer = csv.writer(f)
             writer.writerow(csv_header)
 
-    max_epochs = 30 if overfit_64 else t_cfg.get("epochs", 15)
-
     for epoch in range(start_epoch, max_epochs + 1):
         t0 = time.time()
         tr_metrics = train_epoch(
-            model,
-            train_loader,
-            optimizer,
-            criterion,
-            device,
+            model=model,
+            loader=train_loader,
+            optimizer=optimizer,
+            scheduler=scheduler,
+            criterion=criterion,
+            device=device,
+            scaler=scaler,
             grad_clip=t_cfg.get("grad_clip_norm", 1.0),
+            grad_accum_steps=grad_accum_steps,
         )
         val_metrics = evaluate(model, val_loader, criterion, device)
         dur = round(time.time() - t0, 2)
@@ -276,28 +412,38 @@ def run_training(
                 dur,
             ])
 
-        # Save last checkpoint
+        # Check early stopping / best validation checkpoint
+        if val_metrics["val_acc_exact"] > best_val_acc:
+            best_val_acc = val_metrics["val_acc_exact"]
+            epochs_no_improve = 0
+            torch.save(model.state_dict(), os.path.join(run_dir, "best.ckpt"))
+        else:
+            epochs_no_improve += 1
+
+        # Save last checkpoint for resume
         torch.save(
             {
                 "epoch": epoch,
                 "model": model.state_dict(),
                 "optimizer": optimizer.state_dict(),
+                "scheduler": scheduler.state_dict() if scheduler else None,
                 "best_val_acc": best_val_acc,
+                "epochs_no_improve": epochs_no_improve,
             },
             last_ckpt,
         )
-
-        # Save best checkpoint
-        if val_metrics["val_acc_exact"] > best_val_acc:
-            best_val_acc = val_metrics["val_acc_exact"]
-            torch.save(model.state_dict(), os.path.join(run_dir, "best.ckpt"))
 
         # In overfit sanity check, break early once reached near 100%
         if overfit_64 and tr_metrics["train_acc_exact"] >= 0.98:
             print("[train.py] Sanity Check PASSED: Model overfit 64 samples successfully!")
             break
 
-    print(f"[train.py] Training completed. Run directory: {run_dir}")
+        # Early stopping trigger
+        if patience > 0 and epochs_no_improve >= patience and not overfit_64:
+            print(f"[train.py] Early stopping triggered after {epoch} epochs (patience={patience}).")
+            break
+
+    print(f"[train.py] Training completed. Best Val Acc: {best_val_acc:.4f} | Run directory: {run_dir}")
     return run_dir
 
 

@@ -1,0 +1,25 @@
+# Configuration for M0: wav2vec2-base full fine-tune (P3-01..P3-07)
+# References: docs/02 §3, docs/12 §2-§4
+
+model:
+  type: wav2vec2
+  pretrained_model: facebook/wav2vec2-base
+  freeze_feature_encoder: true
+  freeze_encoder: false
+  keep_layers: null
+  dropout: 0.1
+  mask_time_prob: 0.05
+  layerdrop: 0.0
+  use_joint_head: false
+
+training:
+  epochs: 15
+  batch_size: 16
+  grad_accum_steps: 2          # Effective batch size = 32
+  learning_rate: 1.0e-3         # Head learning rate
+  encoder_learning_rate: 3.0e-5 # Encoder learning rate (two LR groups)
+  weight_decay: 0.01
+  warmup_ratio: 0.1            # 10% linear warmup
+  grad_clip_norm: 1.0
+  fp16: true                   # Autocast on CUDA
+  early_stopping_patience: 3   # Stop if val exact-match does not improve for 3 epochs

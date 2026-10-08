@@ -4,8 +4,8 @@ Task: P1-01
 Reference: docs/01 §1-§2, docs/03 §4, AGENTS.md rule 3
 """
 
-from dataclasses import dataclass
 import os
+from dataclasses import dataclass
 from typing import Dict, List, Optional, Set, Tuple
 
 import pandas as pd

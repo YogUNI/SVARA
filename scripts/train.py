@@ -30,6 +30,7 @@ from torch.utils.data import DataLoader, Subset
 
 from svara.data.collate import FSCDataset, collate_fn_pad
 from svara.models.crnn_baseline import CRNNBaseline
+from svara.models.hf_baseline import HFWav2Vec2ClassificationBaseline
 from svara.models.wav2vec_slu import Wav2VecSLU
 from svara.train.losses import MultiHeadSLULoss, compute_batch_accuracies
 
@@ -73,6 +74,13 @@ def create_model_from_config(cfg: dict, num_slots: dict) -> torch.nn.Module:
             dropout=m_cfg.get("dropout", 0.1),
             mask_time_prob=m_cfg.get("mask_time_prob", 0.05),
             layerdrop=m_cfg.get("layerdrop", 0.0),
+            config_only=m_cfg.get("config_only", False),
+        )
+    elif m_type in ("hf_baseline", "hf_sequence_classification"):
+        return HFWav2Vec2ClassificationBaseline(
+            pretrained_model_name_or_path=m_cfg.get("pretrained_model", "facebook/wav2vec2-base"),
+            num_labels=31,
+            freeze_feature_encoder=m_cfg.get("freeze_feature_encoder", True),
             config_only=m_cfg.get("config_only", False),
         )
     else:

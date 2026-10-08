@@ -29,6 +29,7 @@ from svara.eval.metrics import (
     compute_metrics,
 )
 from svara.models.crnn_baseline import CRNNBaseline
+from svara.models.hf_baseline import HFWav2Vec2ClassificationBaseline
 from svara.models.wav2vec_slu import Wav2VecSLU
 
 
@@ -72,6 +73,13 @@ def load_model_from_run(run_dir: str, device: torch.device) -> Tuple[torch.nn.Mo
             keep_layers=m_cfg.get("keep_layers", None),
             freeze_feature_encoder=m_cfg.get("freeze_feature_encoder", True),
             freeze_encoder=m_cfg.get("freeze_encoder", False),
+            config_only=m_cfg.get("config_only", False),
+        )
+    elif m_type in ("hf_baseline", "hf_sequence_classification"):
+        model = HFWav2Vec2ClassificationBaseline(
+            pretrained_model_name_or_path=m_cfg.get("pretrained_model", "facebook/wav2vec2-base"),
+            num_labels=31,
+            freeze_feature_encoder=m_cfg.get("freeze_feature_encoder", True),
             config_only=m_cfg.get("config_only", False),
         )
     else:

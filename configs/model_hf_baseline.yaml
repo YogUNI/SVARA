@@ -1,0 +1,20 @@
+# Configuration for native HuggingFace SequenceClassification baseline (P3-17)
+# References: docs/12 §5, docs/10 P3-17
+
+model:
+  type: hf_baseline
+  pretrained_model: facebook/wav2vec2-base
+  freeze_feature_encoder: true
+  use_joint_head: true
+
+training:
+  epochs: 15
+  batch_size: 16
+  grad_accum_steps: 2          # Effective batch size = 32
+  learning_rate: 1.0e-3         # Head learning rate
+  encoder_learning_rate: 3.0e-5 # Encoder learning rate
+  weight_decay: 0.01
+  warmup_ratio: 0.1            # 10% linear warmup
+  grad_clip_norm: 1.0
+  fp16: true
+  early_stopping_patience: 3

@@ -1,0 +1,15 @@
+# Replace the usernames with the real GitHub handles (task P0-01 / P0-03).
+# Primary owners get review requests automatically; the other person still reviews everything (docs/09).
+/src/                      @YOGA_GITHUB
+/scripts/                  @YOGA_GITHUB
+/configs/                  @YOGA_GITHUB
+/tests/                    @YOGA_GITHUB
+/web/                      @YOGA_GITHUB
+/Dockerfile                @YOGA_GITHUB
+/requirements*.txt         @YOGA_GITHUB
+/reports/runs/             @YOGA_GITHUB
+/reports/metrics/          @YOGA_GITHUB
+/docs/notes/               @HAIKAL_GITHUB
+/reports/notes/            @HAIKAL_GITHUB
+/docs/report/              @HAIKAL_GITHUB @YOGA_GITHUB
+/docs/references.md        @HAIKAL_GITHUB

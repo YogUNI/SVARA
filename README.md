@@ -1,23 +1,12 @@
-# SVARA — Smart Voice Assistant for Residential Automation
+# SVARA (Smart Voice Assistant for Residential Automation)
 
-End-to-end spoken language understanding for smart-home commands. A fine-tuned wav2vec 2.0 model maps a short spoken
-English command to `(action, object, location)` and drives a simulated home through a web demo.
-University project, Deep Learning course (Universitas Mercu Buana). Team: Yoga, Haikal.
+End-to-end Spoken Language Understanding (SLU) for smart home control.
+University Deep Learning final project (Universitas Mercu Buana).
 
-> Status: **under construction.** This README is replaced by the final version in task P10-21. Do not copy numbers into it
-> unless they come from `reports/metrics/summary.json`.
+> **Status:** Under construction (Phase P0: Setup & Scaffolding).
 
-## Start here
-- Agents and contributors: read [`AGENTS.md`](AGENTS.md), then the docs in [`docs/`](docs/) in order (00 → 10).
-- Task list with IDs: [`docs/10_DETAILED_TASKS.md`](docs/10_DETAILED_TASKS.md). Collaboration rules: [`docs/09_GITHUB_COLLABORATION.md`](docs/09_GITHUB_COLLABORATION.md).
+## Project Overview
+SVARA maps spoken audio commands directly to structured slot intents (`action`, `object`, `location`) using a fine-tuned wav2vec 2.0 architecture, driving a simulated residential environment.
 
-## Data
-Not included in this repository. Fluent Speech Commands is distributed under its own license (PDF in the dataset folder).
-Place it under `data/raw/fluent_speech_commands_dataset/` (see `docs/03`).
-
-## Quick start (filled in as the code lands)
-```
-pip install -r requirements.txt
-python scripts/00_check_data.py --root data/raw/fluent_speech_commands_dataset
-# training, evaluation, export and demo commands: see AGENTS.md "Commands"
-```
+## Documentation
+See [docs/00_PROJECT_BRIEF.md](docs/00_PROJECT_BRIEF.md) for full project specifications and guidelines.

@@ -1,0 +1,46 @@
+# Git ignore rules for SVARA
+# AGENTS.md rule 2: Never commit data, raw audio, own recordings, or model checkpoints.
+
+# Data
+data/
+*.wav
+*.mp3
+*.flac
+*.ogg
+
+# Model checkpoints and weights
+*.ckpt
+*.pt
+*.bin
+*.safetensors
+models/*.onnx
+reports/runs/**/*.ckpt
+reports/runs/**/*.pt
+
+# Node / Frontend
+node_modules/
+web/dist/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Python
+.venv/
+env/
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.ruff_cache/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

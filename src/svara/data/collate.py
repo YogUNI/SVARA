@@ -100,4 +100,7 @@ def collate_fn_pad(batch: List[Dict[str, Any]]) -> Dict[str, torch.Tensor]:
         "object_id": torch.stack([item["object_id"] for item in batch]),
         "location_id": torch.stack([item["location_id"] for item in batch]),
         "intent_id": torch.stack([item["intent_id"] for item in batch]),
+        "path": [item.get("path", "") for item in batch],
+        "speakerId": [item.get("speakerId", "") for item in batch],
+        "transcript": [item.get("transcript", "") for item in batch],
     }

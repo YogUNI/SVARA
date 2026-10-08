@@ -460,6 +460,7 @@ if __name__ == "__main__":
     parser.add_argument("--config", default="configs/model_crnn.yaml")
     parser.add_argument("--split", default="A")
     parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--output-dir", default=None, help="Explicit output directory for run")
     parser.add_argument("--overfit-64", action="store_true", help="Sanity check mode overfit 64 samples (V-12)")
     parser.add_argument("--resume", action="store_true", help="Resume from last checkpoint")
     args = parser.parse_args()
@@ -470,4 +471,5 @@ if __name__ == "__main__":
         seed=args.seed,
         overfit_64=args.overfit_64,
         resume=args.resume,
+        output_dir_override=args.output_dir,
     )

@@ -1,0 +1,25 @@
+# Experiment E7: M0 without SpecAugment time masking
+# Reference: docs/02 §5 (RQ5: Augmentation contribution)
+
+model:
+  type: wav2vec2
+  pretrained_model: facebook/wav2vec2-base
+  freeze_feature_encoder: true
+  freeze_encoder: false
+  keep_layers: null
+  dropout: 0.1
+  mask_time_prob: 0.0          # No SpecAugment time masking
+  layerdrop: 0.0
+  use_joint_head: false
+
+training:
+  epochs: 15
+  batch_size: 16
+  grad_accum_steps: 2
+  learning_rate: 1.0e-3
+  encoder_learning_rate: 3.0e-5
+  weight_decay: 0.01
+  warmup_ratio: 0.1
+  grad_clip_norm: 1.0
+  fp16: true
+  early_stopping_patience: 3

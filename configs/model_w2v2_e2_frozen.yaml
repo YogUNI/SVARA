@@ -1,0 +1,25 @@
+# Experiment E2: wav2vec2-base with frozen encoder (linear probe / heads only)
+# Reference: docs/02 §5 (RQ2: pretraining feature representation)
+
+model:
+  type: wav2vec2
+  pretrained_model: facebook/wav2vec2-base
+  freeze_feature_encoder: true
+  freeze_encoder: true         # Frozen Transformer encoder (heads only trainable)
+  keep_layers: null
+  dropout: 0.1
+  mask_time_prob: 0.05
+  layerdrop: 0.0
+  use_joint_head: false
+
+training:
+  epochs: 15
+  batch_size: 16
+  grad_accum_steps: 2
+  learning_rate: 1.0e-3
+  encoder_learning_rate: 0.0   # No updates to encoder
+  weight_decay: 0.01
+  warmup_ratio: 0.1
+  grad_clip_norm: 1.0
+  fp16: true
+  early_stopping_patience: 3

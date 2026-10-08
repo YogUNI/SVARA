@@ -1,0 +1,28 @@
+# SVARA — Split Protocols Configuration
+# Reference: docs/01 §4, docs/10 §6 (P2-01, P2-02, P2-03)
+
+splits:
+  A:
+    type: "original"
+    description: "Benchmark split asli FSC yang sebanding dengan literatur (memiliki phrase leakage)"
+    
+  B:
+    type: "unseen_utterance"
+    description: "Split frasa tidak terlihat (honesty generalization protocol)"
+    holdout_fractions:
+      test: 0.20
+      valid: 0.10
+    min_train_phrasings_per_intent: 2
+    draws:
+      B1: 42
+      B2: 43
+      B3: 44
+
+  C:
+    type: "speaker_grouped_stratified"
+    description: "Split berbasis speaker disjoint dengan stratifikasi demografi"
+    target_fractions:
+      train: 0.70
+      valid: 0.15
+      test: 0.15
+    seed: 42

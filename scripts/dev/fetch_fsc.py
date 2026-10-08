@@ -14,7 +14,6 @@ import shutil
 import subprocess
 import sys
 
-
 DEFAULT_REPO_URL = "https://github.com/GrindstoneLZX/FluentSpeechCommandsDataset.git"
 DEFAULT_DEST = "data/raw/fluent_speech_commands_dataset"
 
@@ -35,7 +34,7 @@ def fetch_fsc(repo_url: str = DEFAULT_REPO_URL, dest: str = DEFAULT_DEST) -> Non
         else:
             shutil.rmtree(dest_path)
 
-    print(f"[fetch_fsc] Memulai shallow clone: git clone --depth 1 {repo_url} \"{dest_path}\"")
+    print(f'[fetch_fsc] Memulai shallow clone: git clone --depth 1 {repo_url} "{dest_path}"')
     # Jalankan git clone dengan output langsung terlihat
     process = subprocess.Popen(
         ["git", "clone", "--depth", "1", "--progress", repo_url, dest_path],
@@ -57,10 +56,16 @@ def fetch_fsc(repo_url: str = DEFAULT_REPO_URL, dest: str = DEFAULT_DEST) -> Non
         sys.exit(return_code)
 
     # Ambil commit hash dan tanggal commit
-    commit_res = subprocess.run(["git", "-C", dest_path, "rev-parse", "HEAD"], capture_output=True, text=True)
+    commit_res = subprocess.run(
+        ["git", "-C", dest_path, "rev-parse", "HEAD"], capture_output=True, text=True
+    )
     commit_hash = commit_res.stdout.strip()
 
-    date_res = subprocess.run(["git", "-C", dest_path, "log", "-1", "--format=%cd", "--date=iso"], capture_output=True, text=True)
+    date_res = subprocess.run(
+        ["git", "-C", dest_path, "log", "-1", "--format=%cd", "--date=iso"],
+        capture_output=True,
+        text=True,
+    )
     commit_date = date_res.stdout.strip()
 
     # Catat provenance ke <dest>/../SOURCE.md

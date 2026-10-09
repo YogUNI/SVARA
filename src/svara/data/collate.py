@@ -39,12 +39,14 @@ class FSCDataset(Dataset):
         if os.path.exists(intent_map_path):
             with open(intent_map_path, "r", encoding="utf-8") as f:
                 imap = json.load(f)
-            self.actions = list(imap["slot_vocab"]["action"].keys())
-            self.objects = list(imap["slot_vocab"]["object"].keys())
-            self.locations = list(imap["slot_vocab"]["location"].keys())
-            self.action_to_id = imap["slot_vocab"]["action"]
-            self.object_to_id = imap["slot_vocab"]["object"]
-            self.location_to_id = imap["slot_vocab"]["location"]
+            sv = imap["slot_vocab"]
+            self.actions = sv["action"] if isinstance(sv["action"], list) else list(sv["action"].keys())
+            self.objects = sv["object"] if isinstance(sv["object"], list) else list(sv["object"].keys())
+            self.locations = sv["location"] if isinstance(sv["location"], list) else list(sv["location"].keys())
+
+            self.action_to_id = {act: i for i, act in enumerate(self.actions)} if isinstance(sv["action"], list) else sv["action"]
+            self.object_to_id = {obj: i for i, obj in enumerate(self.objects)} if isinstance(sv["object"], list) else sv["object"]
+            self.location_to_id = {loc: i for i, loc in enumerate(self.locations)} if isinstance(sv["location"], list) else sv["location"]
         else:
             self.actions = sorted(self.df["action"].dropna().unique().tolist())
             self.objects = sorted(self.df["object"].dropna().unique().tolist())

@@ -175,14 +175,16 @@ def train_epoch(
 ) -> Dict[str, float]:
     """Train single epoch with gradient accumulation, mixed precision, and clipping."""
     model.train()
+    n_batches = len(loader)
     total_loss = 0.0
     total_exact = 0.0
-    n_batches = len(loader)
     use_amp = scaler is not None and device.type == "cuda"
-
     optimizer.zero_grad()
 
-    for step_idx, batch in enumerate(loader):
+    from tqdm import tqdm
+
+    pbar = tqdm(loader, desc="Training", leave=False)
+    for step_idx, batch in enumerate(pbar):
         wav = batch["waveform"].to(device)
         lens = batch["lengths"].to(device)
         targets = {
@@ -225,6 +227,11 @@ def train_epoch(
             accs = compute_batch_accuracies(logits, targets)
             total_loss += loss.item()
             total_exact += accs["acc_exact_match"]
+
+        if (step_idx + 1) % 10 == 0:
+            avg_loss = total_loss / (step_idx + 1)
+            avg_exact = total_exact / (step_idx + 1)
+            pbar.set_postfix({"loss": f"{avg_loss:.4f}", "acc": f"{avg_exact:.3f}"})
 
     return {
         "train_loss": total_loss / max(1, n_batches),

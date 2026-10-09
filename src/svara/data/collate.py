@@ -4,6 +4,7 @@ Task: P2-06
 Reference: docs/02 §1 (wav2vec gotchas: no attention_mask, zero padding, length computation)
 """
 
+import json
 import os
 from typing import Any, Dict, List, Optional
 

@@ -33,14 +33,24 @@ class FSCDataset(Dataset):
         self.is_training = is_training
 
         # Precompute vocabulary sets and mappings for slot labels
-        # Standard slots mapping based on sorted observed labels
-        self.actions = sorted(self.df["action"].dropna().unique().tolist())
-        self.objects = sorted(self.df["object"].dropna().unique().tolist())
-        self.locations = sorted(self.df["location"].dropna().unique().tolist())
-
-        self.action_to_id = {act: i for i, act in enumerate(self.actions)}
-        self.object_to_id = {obj: i for i, obj in enumerate(self.objects)}
-        self.location_to_id = {loc: i for i, loc in enumerate(self.locations)}
+        # Use global intent_map.json if present to ensure train and val share identical IDs
+        intent_map_path = "configs/intent_map.json"
+        if os.path.exists(intent_map_path):
+            with open(intent_map_path, "r", encoding="utf-8") as f:
+                imap = json.load(f)
+            self.actions = list(imap["slot_vocab"]["action"].keys())
+            self.objects = list(imap["slot_vocab"]["object"].keys())
+            self.locations = list(imap["slot_vocab"]["location"].keys())
+            self.action_to_id = imap["slot_vocab"]["action"]
+            self.object_to_id = imap["slot_vocab"]["object"]
+            self.location_to_id = imap["slot_vocab"]["location"]
+        else:
+            self.actions = sorted(self.df["action"].dropna().unique().tolist())
+            self.objects = sorted(self.df["object"].dropna().unique().tolist())
+            self.locations = sorted(self.df["location"].dropna().unique().tolist())
+            self.action_to_id = {act: i for i, act in enumerate(self.actions)}
+            self.object_to_id = {obj: i for i, obj in enumerate(self.objects)}
+            self.location_to_id = {loc: i for i, loc in enumerate(self.locations)}
 
     def __len__(self) -> int:
         return len(self.df)

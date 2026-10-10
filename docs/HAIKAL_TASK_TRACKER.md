@@ -32,6 +32,11 @@ Dokumen ini memantau progres tugas **Haikal** dalam proyek tugas akhir SVARA.
 - [ ] Kumpulkan rekaman suara dari 12 responden:
   - [ ] Kondisi Tenang (`quiet` / kamar hening)
   - [ ] Kondisi Bising (`noisy` / TV / kipas angin / suara luar)
+- [x] Kembangkan Korpus 465 Frasa Bahasa Indonesia untuk 31 FSC Intent (`data/corpus/indonesian_smart_home_corpus_31_intents.csv`)
+- [x] Sintesis 930 Audio WAV 16 kHz Mono (`data/synthetic_indonesian/wavs_16k/`)
+- [x] Pembuatan Split Bilingual (Train 651, Valid 124, Test 155 tak terlihat)
+- [x] Fine-Tuning Bilingual Wav2Vec 2.0 SLU di GPU RTX 4060 (`reports/runs/bilingual_indonesian_w2v2/`)
+- [x] Export Engine Bilingual INT8 ONNX 90.87 MB (`models/svara_bilingual_int8.onnx`)
 - [ ] Kumpulkan 10–15 klip suara kebisingan murni rumah tangga (10–15 detik)
 - [ ] Buat file `data/own_recordings/metadata.csv` (ID anonim responden, gender, kondisi)
 

@@ -9,11 +9,17 @@ Share one function in src/svara/data/audio.py."
 """
 
 import os
-from typing import Optional, Tuple, Union
+from typing import Any, Optional, Tuple, Union
 
 import numpy as np
 import soundfile as sf
-import torch
+
+try:
+    import torch
+    HAS_TORCH = True
+except ImportError:
+    torch = None
+    HAS_TORCH = False
 
 TARGET_SAMPLE_RATE = 16000
 DEFAULT_MAX_AUDIO_SECONDS = 5.0
@@ -31,7 +37,7 @@ def normalize_waveform(waveform: np.ndarray, eps: float = 1e-7) -> np.ndarray:
 
 
 def preprocess_audio(
-    audio_input: Union[str, bytes, np.ndarray, torch.Tensor],
+    audio_input: Any,
     sample_rate: Optional[int] = None,
     target_sample_rate: int = TARGET_SAMPLE_RATE,
     max_audio_seconds: Optional[float] = DEFAULT_MAX_AUDIO_SECONDS,
@@ -64,7 +70,7 @@ def preprocess_audio(
         import io
 
         data, sr = sf.read(io.BytesIO(audio_input), dtype="float32")
-    elif isinstance(audio_input, torch.Tensor):
+    elif HAS_TORCH and isinstance(audio_input, torch.Tensor):
         data = audio_input.detach().cpu().numpy().astype(np.float32)
         sr = sample_rate or target_sample_rate
     elif isinstance(audio_input, np.ndarray):

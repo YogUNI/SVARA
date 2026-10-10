@@ -36,6 +36,7 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
   const radarRef = useRef<RadarMiniMapHandle>(null);
   const [isLocked, setIsLocked] = useState(false);
   const [currentRoom, setCurrentRoom] = useState('🌿 Taman Rumah (Front Garden)');
+  const currentRoomRef = useRef(currentRoom);
   
   // Three.js references
   const controlsRef = useRef<PointerLockControls | null>(null);
@@ -45,6 +46,10 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
   const isRecordingRef = useRef(isRecording);
   const onVoiceTriggerStartRef = useRef(onVoiceTriggerStart);
   const onVoiceTriggerEndRef = useRef(onVoiceTriggerEnd);
+
+  useEffect(() => {
+    currentRoomRef.current = currentRoom;
+  }, [currentRoom]);
 
   useEffect(() => {
     isRecordingRef.current = isRecording;
@@ -586,8 +591,10 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
     const animate = () => {
       animId = requestAnimationFrame(animate);
       const time = performance.now();
-      const delta = (time - prevTime) / 1000;
+      const rawDelta = (time - prevTime) / 1000;
       prevTime = time;
+      // Clamp delta to prevent huge velocity/headbob jumps during frame drops
+      const delta = Math.min(rawDelta, 0.05);
 
       if (controls.isLocked) {
         // Friction damping
@@ -609,17 +616,14 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
         controls.moveRight(-velocity.x * delta);
         controls.moveForward(-velocity.z * delta);
 
-        // Collision Bounds (Allowed area: House [-14..14, -11..12] + Front Garden [-22..22, 12..31])
+        // Seamless Continuous Collision Bounds (House [-13..13, -11..12] & Garden [-21..21, 12..31])
         const pos = camera.position;
-        if (pos.z > 12.0) {
-          // In the garden area
-          pos.x = Math.max(-21.0, Math.min(21.0, pos.x));
-          pos.z = Math.max(12.0, Math.min(31.0, pos.z));
-        } else {
-          // Inside the house
-          // Doorway transition threshold (Z around 12, X must be within entrance [-2.0..2.0] if near Z=12)
+        pos.x = Math.max(-21.0, Math.min(21.0, pos.x));
+        pos.z = Math.max(-11.0, Math.min(31.0, pos.z));
+
+        // If inside house (Z <= 12), constrain X to house walls [-13..13]
+        if (pos.z <= 12.0) {
           pos.x = Math.max(-13.0, Math.min(13.0, pos.x));
-          pos.z = Math.max(-11.0, Math.min(12.5, pos.z));
         }
 
         // Sinusoidal Head Bobbing (Real Human Walking Rhythm) & Footstep Triggers
@@ -639,7 +643,7 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
           pos.y = THREE.MathUtils.lerp(pos.y, 1.65, 0.1);
         }
 
-        // Room Location Tracker based on player coordinates (only update state when room changes)
+        // Room Location Tracker (Only triggers React state update when room genuinely changes!)
         let newRoom = 'Lorong & Ruang Tamu (Hall / Living)';
         if (pos.z > 12.5) {
           newRoom = '🌿 Taman Rumah (Front Garden)';
@@ -650,7 +654,9 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
         } else if (pos.x < 0 && pos.z > 0) {
           newRoom = 'Kamar Mandi (Washroom)';
         }
-        if (newRoom !== currentRoom) {
+
+        if (newRoom !== currentRoomRef.current) {
+          currentRoomRef.current = newRoom;
           setCurrentRoom(newRoom);
         }
 

@@ -10,7 +10,7 @@ Dokumen ini memantau progres tugas **Haikal** dalam proyek tugas akhir SVARA.
 |---|---|---|---|
 | 1 | **Git & Branching Workflow** | ✅ **Selesai** | Branch `data/haikal-indonesia-corpus` aktif & terisolasi dari `main`. |
 | 2 | **Riset Korpus NLP Bahasa Indonesia (31 Intent)** | ✅ **Selesai** | 465 variasi tutur komprehensif (15 variasi/intent) tersusun di Markdown & CSV + analisis linguistik mendalam untuk Deep Learning/SLU. |
-| 3 | **Dataset Suara Sintetis Bahasa Indonesia (930 Audio WAV)** | ✅ **Selesai** | 930 file audio (16 kHz mono WAV, Ardi & Gadis) ter-generate dari korpus 31 intent lengkap dengan `metadata.csv`. |
+| 3 | **Dataset Suara Sintetis Bahasa Indonesia (930 Audio WAV)** | ✅ **Selesai** | 930 file audio (16 kHz mono WAV, Ardi & Gadis) + `metadata.csv` sudah ter-generate & **sukses ter-push ke GitHub** di branch `data/haikal-indonesia-corpus`. |
 | 4 | **Dataset Rekaman Suara Aksen Lokal (Phase P5 Own Set)** | ⏳ **Belum Mulai** | Perekaman 12 responden (31 kalimat FSC, kondisi Tenang & Bising). |
 | 5 | **Perekaman Klip Suara Bising Rumah Tangga (Noise Clips)** | ⏳ **Belum Mulai** | 10–15 klip suara lingkungan rumah (10–15 detik) untuk uji ketahanan. |
 | 6 | **Penulisan Laporan Tugas Akhir (Bab 1, 2, dan 3)** | ⏳ **Belum Mulai** | Penulisan akademik Bahasa Indonesia standar IEEE. |

@@ -13,7 +13,8 @@
 *.pt
 *.bin
 *.safetensors
-models/*.onnx
+models/svara.onnx
+!models/svara_int8.onnx
 reports/runs/**/*.ckpt
 reports/runs/**/*.pt
 

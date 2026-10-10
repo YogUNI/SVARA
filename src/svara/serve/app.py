@@ -60,6 +60,13 @@ def startup_event():
     global engine
     onnx_path = os.getenv("SVARA_ONNX_PATH", "models/svara.onnx")
     meta_path = os.getenv("SVARA_META_PATH", "models/svara.meta.json")
+
+    # Automatic fallback to svara_int8.onnx if svara.onnx is not present
+    if not os.path.exists(onnx_path) and os.path.exists("models/svara_int8.onnx"):
+        onnx_path = "models/svara_int8.onnx"
+        if os.path.exists("models/svara_int8.meta.json"):
+            meta_path = "models/svara_int8.meta.json"
+
     engine = SLUInferenceEngine(onnx_path=onnx_path, meta_path=meta_path)
 
 

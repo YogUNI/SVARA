@@ -17,7 +17,9 @@ data/*
 *.bin
 *.safetensors
 models/svara.onnx
+models/svara_bilingual.onnx
 !models/svara_int8.onnx
+!models/svara_bilingual_int8.onnx
 reports/runs/**/*.ckpt
 reports/runs/**/*.pt
 

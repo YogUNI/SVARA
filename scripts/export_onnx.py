@@ -55,7 +55,10 @@ def load_model_from_run(run_dir: str):
         raise FileNotFoundError(f"Checkpoint not found at: {ckpt_path}")
 
     ckpt = torch.load(ckpt_path, map_location="cpu")
-    state_dict = ckpt["model"] if isinstance(ckpt, dict) and "model" in ckpt else ckpt
+    if isinstance(ckpt, dict):
+        state_dict = ckpt.get("model", ckpt.get("model_state_dict", ckpt))
+    else:
+        state_dict = ckpt
     model.load_state_dict(state_dict)
     model.eval()
     return model, cfg, imap

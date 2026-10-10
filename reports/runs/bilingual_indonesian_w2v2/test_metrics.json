@@ -1,0 +1,7 @@
+{
+  "test_exact_match": 0.6709677419354839,
+  "test_action_acc": 0.8451612903225807,
+  "test_object_acc": 0.8580645161290322,
+  "test_location_acc": 0.9096774193548387,
+  "total_samples": 155
+}

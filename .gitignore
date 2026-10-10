@@ -1,8 +1,10 @@
 # Git ignore rules for SVARA
 # AGENTS.md rule 2: Never commit data, raw audio, own recordings, or model checkpoints.
 
-# Data (hanya direktori data/ di root repositori)
-/data/
+# Data (hanya audio/raw di data/ yang diignore, izinkan korpus teks data/corpus/)
+data/*
+!data/corpus/
+!data/corpus/*.csv
 *.wav
 *.mp3
 *.flac

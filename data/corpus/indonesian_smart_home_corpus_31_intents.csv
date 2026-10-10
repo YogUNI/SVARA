@@ -1,0 +1,466 @@
+intent_id,action,object,location,english_sample,indonesian_phrase
+0,activate,lamp,none,Turn on the lamp,Nyalakan lampu meja.
+0,activate,lamp,none,Turn on the lamp,Hidupin lampunya dong.
+0,activate,lamp,none,Turn on the lamp,Nyalain lampu meja ya.
+0,activate,lamp,none,Turn on the lamp,Lampu meja tolong nyalain.
+0,activate,lamp,none,Turn on the lamp,Tolong hidupkan lampu belajar.
+0,activate,lamp,none,Turn on the lamp,Lampunya nyala dong.
+0,activate,lamp,none,Turn on the lamp,"Gelap nih, nyalain lampu."
+0,activate,lamp,none,Turn on the lamp,Idupin lampu dong tolong.
+0,activate,lamp,none,Turn on the lamp,Nyala dong lampunya.
+0,activate,lamp,none,Turn on the lamp,Tolong nyalain lampu sekarang.
+0,activate,lamp,none,Turn on the lamp,Lampu nyala.
+0,activate,lamp,none,Turn on the lamp,Lampu meja hidupin.
+0,activate,lamp,none,Turn on the lamp,Coba tolong nyalain lampu.
+0,activate,lamp,none,Turn on the lamp,"Svara, nyalain lampu dong."
+0,activate,lamp,none,Turn on the lamp,"Gelap banget, tolong nyalain lampu meja."
+1,activate,lights,bedroom,Turn on the lights in the bedroom,Nyalakan lampu di kamar tidur.
+1,activate,lights,bedroom,Turn on the lights in the bedroom,Nyalain lampu kamar dong.
+1,activate,lights,bedroom,Turn on the lights in the bedroom,Hidupin lampu kamar tidur ya.
+1,activate,lights,bedroom,Turn on the lights in the bedroom,Lampu kamar nyalain dong.
+1,activate,lights,bedroom,Turn on the lights in the bedroom,Tolong idupin lampu kamar tidur.
+1,activate,lights,bedroom,Turn on the lights in the bedroom,Kamar tidur gelap nih tolong nyalain lampunya.
+1,activate,lights,bedroom,Turn on the lights in the bedroom,Di kamar tolong nyalain lampu.
+1,activate,lights,bedroom,Turn on the lights in the bedroom,Nyalain dong lampu di kamar.
+1,activate,lights,bedroom,Turn on the lights in the bedroom,Lampu kamar tidur tolong diidupin.
+1,activate,lights,bedroom,Turn on the lights in the bedroom,Tolong nyalain lampu kamar dong.
+1,activate,lights,bedroom,Turn on the lights in the bedroom,Lampu kamar nyala.
+1,activate,lights,bedroom,Turn on the lights in the bedroom,"Kamar tidur, lampu hidupin."
+1,activate,lights,bedroom,Turn on the lights in the bedroom,Svara tolong nyalain lampu kamar tidur.
+1,activate,lights,bedroom,Turn on the lights in the bedroom,"Mau masuk kamar nih, tolong nyalain lampunya."
+1,activate,lights,bedroom,Turn on the lights in the bedroom,Hidupkan lampu kamar sekarang.
+2,activate,lights,kitchen,Turn on the kitchen lights,Nyalakan lampu dapur.
+2,activate,lights,kitchen,Turn on the kitchen lights,Hidupin lampu dapur dong.
+2,activate,lights,kitchen,Turn on the kitchen lights,Nyalain lampu dapur ya.
+2,activate,lights,kitchen,Turn on the kitchen lights,Lampu dapur tolong nyalain.
+2,activate,lights,kitchen,Turn on the kitchen lights,Dapur gelap nih idupin lampunya.
+2,activate,lights,kitchen,Turn on the kitchen lights,Tolong nyalain lampu di dapur ya.
+2,activate,lights,kitchen,Turn on the kitchen lights,Di dapur lampunya tolong diidupin.
+2,activate,lights,kitchen,Turn on the kitchen lights,Lampu dapur tolong dihidupkan.
+2,activate,lights,kitchen,Turn on the kitchen lights,Nyalain dong lampu dapurnya.
+2,activate,lights,kitchen,Turn on the kitchen lights,Tolong dong nyalain lampu dapur.
+2,activate,lights,kitchen,Turn on the kitchen lights,Lampu dapur nyala.
+2,activate,lights,kitchen,Turn on the kitchen lights,"Dapur, lampu hidupin."
+2,activate,lights,kitchen,Turn on the kitchen lights,Mau ke dapur nih tolong nyalain lampunya.
+2,activate,lights,kitchen,Turn on the kitchen lights,"Svara, tolong nyalain lampu dapur."
+2,activate,lights,kitchen,Turn on the kitchen lights,Idupin lampu dapur sekarang dong.
+3,activate,lights,none,Turn the lights on,Nyalakan semua lampu.
+3,activate,lights,none,Turn the lights on,Idupin semua lampunya dong.
+3,activate,lights,none,Turn the lights on,Tolong nyalain lampunya ya.
+3,activate,lights,none,Turn the lights on,Hidupkan lampu ruangan.
+3,activate,lights,none,Turn the lights on,"Gelap amat, nyalain lampu dong."
+3,activate,lights,none,Turn the lights on,Lampu tolong diidupin ya.
+3,activate,lights,none,Turn the lights on,Nyalain lampu sekarang dong.
+3,activate,lights,none,Turn the lights on,"Terangin ruangan, tolong nyalain lampu."
+3,activate,lights,none,Turn the lights on,Hidupin lampunya ya tolong.
+3,activate,lights,none,Turn the lights on,Tolong hidupkan semua lampu.
+3,activate,lights,none,Turn the lights on,Lampu nyala.
+3,activate,lights,none,Turn the lights on,Semua lampu hidupin.
+3,activate,lights,none,Turn the lights on,Gelap nih terangin dong lampunya.
+3,activate,lights,none,Turn the lights on,"Svara, tolong nyalain semua lampu."
+3,activate,lights,none,Turn the lights on,Aktifkan pencahayaan ruangan dong.
+4,activate,lights,washroom,Turn on the washroom lights,Nyalakan lampu kamar mandi.
+4,activate,lights,washroom,Turn on the washroom lights,Idupin lampu toilet dong.
+4,activate,lights,washroom,Turn on the washroom lights,Nyalain lampu WC ya.
+4,activate,lights,washroom,Turn on the washroom lights,Lampu kamar mandi tolong diidupin.
+4,activate,lights,washroom,Turn on the washroom lights,Tolong nyalain lampu di kamar mandi.
+4,activate,lights,washroom,Turn on the washroom lights,"Toilet gelap nih, tolong nyalain lampunya."
+4,activate,lights,washroom,Turn on the washroom lights,Lampu WC tolong nyalain dong.
+4,activate,lights,washroom,Turn on the washroom lights,Di kamar mandi tolong idupin lampu.
+4,activate,lights,washroom,Turn on the washroom lights,Nyalain dong lampu toiletnya.
+4,activate,lights,washroom,Turn on the washroom lights,Hidupkan lampu kamar mandi tolong.
+4,activate,lights,washroom,Turn on the washroom lights,Lampu toilet nyala.
+4,activate,lights,washroom,Turn on the washroom lights,"Kamar mandi, lampu hidupin."
+4,activate,lights,washroom,Turn on the washroom lights,Mau buang air nih tolong nyalain lampu WC.
+4,activate,lights,washroom,Turn on the washroom lights,"Svara, tolong nyalain lampu kamar mandi."
+4,activate,lights,washroom,Turn on the washroom lights,WC gelap banget tolong idupin lampunya.
+5,activate,music,none,Resume,Putar lagi lagunya.
+5,activate,music,none,Resume,Lanjutin musiknya dong.
+5,activate,music,none,Resume,Play lagi lagunya ya.
+5,activate,music,none,Resume,Nyalain lagi musik yang tadi.
+5,activate,music,none,Resume,Lanjutkan lagunya tolong.
+5,activate,music,none,Resume,Tolong putar lagi lagunya dong.
+5,activate,music,none,Resume,Musiknya diplay lagi ya.
+5,activate,music,none,Resume,Lanjut mainin musik dong.
+5,activate,music,none,Resume,Putar musik lagi.
+5,activate,music,none,Resume,Tolong lanjutkan pemutaran musik.
+5,activate,music,none,Resume,Musik lanjut.
+5,activate,music,none,Resume,Lagu play lagi.
+5,activate,music,none,Resume,"Svara, lanjutin musik yang tadi dong."
+5,activate,music,none,Resume,Lanjutin putar lagu dong sepi nih.
+5,activate,music,none,Resume,Playback musik tolong dilanjutkan.
+6,bring,juice,none,Bring some juice,Bawakan saya jus.
+6,bring,juice,none,Bring some juice,Ambilin jus dong.
+6,bring,juice,none,Bring some juice,Tolong ambilin jus buah ya.
+6,bring,juice,none,Bring some juice,Minta jus jeruknya dong satu.
+6,bring,juice,none,Bring some juice,"Haus nih, bawain jus dong."
+6,bring,juice,none,Bring some juice,Tolong ambilkan jus dingin.
+6,bring,juice,none,Bring some juice,Bawain jus ke sini ya tolong.
+6,bring,juice,none,Bring some juice,Bisa tolong ambilin jus gak.
+6,bring,juice,none,Bring some juice,Ambilin segelas jus dong.
+6,bring,juice,none,Bring some juice,Tolong bawakan jus buah ke sini.
+6,bring,juice,none,Bring some juice,Minta jus dong.
+6,bring,juice,none,Bring some juice,Ambilin jus dingin ya.
+6,bring,juice,none,Bring some juice,Haus banget nih tolong ambilin jus.
+6,bring,juice,none,Bring some juice,"Svara, tolong bawain jus ke meja."
+6,bring,juice,none,Bring some juice,Tolong pesankan atau ambilkan jus.
+7,bring,newspaper,none,Get me the newspaper,Ambilkan koran untuk saya.
+7,bring,newspaper,none,Get me the newspaper,Ambilin koran dong.
+7,bring,newspaper,none,Get me the newspaper,Bawain koran hari ini ya.
+7,bring,newspaper,none,Get me the newspaper,Tolong ambilin koran di depan.
+7,bring,newspaper,none,Get me the newspaper,Ambilkan koran pagi tolong.
+7,bring,newspaper,none,Get me the newspaper,Bawain koran ke sini dong.
+7,bring,newspaper,none,Get me the newspaper,Koran tolong ambilin ya.
+7,bring,newspaper,none,Get me the newspaper,Minta tolong ambilin koran pagi ini.
+7,bring,newspaper,none,Get me the newspaper,Bisa bawain koran gak tolong.
+7,bring,newspaper,none,Get me the newspaper,Ambil koran dong tolong.
+7,bring,newspaper,none,Get me the newspaper,Ambilin koran ya.
+7,bring,newspaper,none,Get me the newspaper,Koran tolong bawa ke sini.
+7,bring,newspaper,none,Get me the newspaper,Mau baca berita nih tolong ambilin koran.
+7,bring,newspaper,none,Get me the newspaper,"Svara, tolong ambilin koran di depan meja."
+7,bring,newspaper,none,Get me the newspaper,Tolong ambilkan koran cetak hari ini.
+8,bring,shoes,none,Bring me my shoes,Ambilin sepatu gua dong.
+8,bring,shoes,none,Bring me my shoes,Bawain sepatu saya ya.
+8,bring,shoes,none,Bring me my shoes,Tolong ambilin sepatu kerja.
+8,bring,shoes,none,Bring me my shoes,Sepatu tolong bawain ke sini.
+8,bring,shoes,none,Bring me my shoes,"Mau keluar nih, ambilin sepatu dong."
+8,bring,shoes,none,Bring me my shoes,Tolong ambilkan sepatu saya di rak.
+8,bring,shoes,none,Bring me my shoes,Bawain sepatu dong tolong.
+8,bring,shoes,none,Bring me my shoes,Ambilin sepatu ya tolong.
+8,bring,shoes,none,Bring me my shoes,Bisa tolong bawain sepatu gak.
+8,bring,shoes,none,Bring me my shoes,Tolong bawakan sepatu saya ke sini.
+8,bring,shoes,none,Bring me my shoes,Ambilin sepatu kerja dong.
+8,bring,shoes,none,Bring me my shoes,Sepatu tolong ambilin ya.
+8,bring,shoes,none,Bring me my shoes,Buru-buru nih tolong bawain sepatu.
+8,bring,shoes,none,Bring me my shoes,"Svara, tolong ambilin sepatu saya di rak depan."
+8,bring,shoes,none,Bring me my shoes,Ambilkan sepatu kets saya tolong.
+9,bring,socks,none,Bring socks,Ambilin kaos kaki dong.
+9,bring,socks,none,Bring socks,Bawain kaus kaki ya.
+9,bring,socks,none,Bring socks,Tolong ambilin kaos kaki bersih.
+9,bring,socks,none,Bring socks,Kaos kaki tolong bawain ke sini.
+9,bring,socks,none,Bring socks,Ambilkan kaus kaki dong tolong.
+9,bring,socks,none,Bring socks,Tolong cariin dan ambilin kaos kaki.
+9,bring,socks,none,Bring socks,Kaos kakinya tolong bawain ya.
+9,bring,socks,none,Bring socks,Bisa tolong ambilin kaos kaki gak.
+9,bring,socks,none,Bring socks,Ambilin kaus kaki dong tolong.
+9,bring,socks,none,Bring socks,Tolong bawakan kaus kaki yang bersih.
+9,bring,socks,none,Bring socks,Ambilin kaos kaki ya.
+9,bring,socks,none,Bring socks,Kaos kaki tolong ambilkan.
+9,bring,socks,none,Bring socks,Kaki dingin nih tolong bawain kaos kaki.
+9,bring,socks,none,Bring socks,"Svara, tolong bawain kaos kaki sepasang."
+9,bring,socks,none,Bring socks,Tolong ambilin kaus kaki di lemari.
+10,change language,Chinese,none,Set language to Chinese,Ganti ke bahasa Mandarin dong.
+10,change language,Chinese,none,Set language to Chinese,Ubah bahasa jadi Bahasa Mandarin.
+10,change language,Chinese,none,Set language to Chinese,Switch bahasanya ke Mandarin ya.
+10,change language,Chinese,none,Set language to Chinese,Atur bahasa ke Bahasa Cina.
+10,change language,Chinese,none,Set language to Chinese,Tolong ganti bahasanya ke Chinese.
+10,change language,Chinese,none,Set language to Chinese,Pake bahasa Mandarin aja dong.
+10,change language,Chinese,none,Set language to Chinese,Ubah setelan bahasa jadi Mandarin.
+10,change language,Chinese,none,Set language to Chinese,Tolong ubah ke bahasa Mandarin ya.
+10,change language,Chinese,none,Set language to Chinese,Ganti bahasa sistem ke Mandarin.
+10,change language,Chinese,none,Set language to Chinese,Tolong switch language ke Mandarin.
+10,change language,Chinese,none,Set language to Chinese,Bahasa ganti Mandarin.
+10,change language,Chinese,none,Set language to Chinese,Pindah ke bahasa Mandarin ya.
+10,change language,Chinese,none,Set language to Chinese,Setel sistem pake bahasa Mandarin dong.
+10,change language,Chinese,none,Set language to Chinese,"Svara, tolong ganti bahasa ke Mandarin."
+10,change language,Chinese,none,Set language to Chinese,Atur bahasa antarmuka ke Mandarin.
+11,change language,English,none,Set my phone's language to English,Ganti bahasanya ke Bahasa Inggris dong.
+11,change language,English,none,Set my phone's language to English,Ubah bahasa sistem jadi Bahasa Inggris.
+11,change language,English,none,Set my phone's language to English,Switch bahasanya ke English ya.
+11,change language,English,none,Set my phone's language to English,Ganti ke bahasa Inggris dong tolong.
+11,change language,English,none,Set my phone's language to English,Tolong atur bahasa jadi Bahasa Inggris.
+11,change language,English,none,Set my phone's language to English,Pake bahasa Inggris aja dong.
+11,change language,English,none,Set my phone's language to English,Ubah setelan ke Bahasa Inggris ya.
+11,change language,English,none,Set my phone's language to English,Tolong ganti ke English dong.
+11,change language,English,none,Set my phone's language to English,Atur settingan bahasa jadi Inggris.
+11,change language,English,none,Set my phone's language to English,Tolong switch bahasanya ke Bahasa Inggris.
+11,change language,English,none,Set my phone's language to English,Bahasa ganti Inggris.
+11,change language,English,none,Set my phone's language to English,Pindah ke bahasa Inggris dong.
+11,change language,English,none,Set my phone's language to English,Setel bahasa ke English ya.
+11,change language,English,none,Set my phone's language to English,"Svara, tolong ganti bahasa ke Bahasa Inggris."
+11,change language,English,none,Set my phone's language to English,Ubah pengaturan bahasa perangkat ke Inggris.
+12,change language,German,none,I need to practice my German. Switch the language,Ganti bahasanya ke Bahasa Jerman dong.
+12,change language,German,none,I need to practice my German. Switch the language,Ubah bahasa jadi Bahasa Jerman ya.
+12,change language,German,none,I need to practice my German. Switch the language,Switch bahasanya ke Jerman dong.
+12,change language,German,none,I need to practice my German. Switch the language,Tolong ganti ke bahasa German.
+12,change language,German,none,I need to practice my German. Switch the language,Atur bahasa sistem ke Bahasa Jerman.
+12,change language,German,none,I need to practice my German. Switch the language,Pake bahasa Jerman dong sekarang.
+12,change language,German,none,I need to practice my German. Switch the language,"Mau belajar nih, tolong ganti bahasa ke Jerman."
+12,change language,German,none,I need to practice my German. Switch the language,Ubah setelan bahasa ke Bahasa Jerman.
+12,change language,German,none,I need to practice my German. Switch the language,Tolong switch ke bahasa Jerman ya.
+12,change language,German,none,I need to practice my German. Switch the language,Ganti bahasa ke Bahasa Jerman tolong.
+12,change language,German,none,I need to practice my German. Switch the language,Bahasa ganti Jerman.
+12,change language,German,none,I need to practice my German. Switch the language,Pindah ke bahasa Jerman ya.
+12,change language,German,none,I need to practice my German. Switch the language,Setel sistem pake bahasa Jerman dong.
+12,change language,German,none,I need to practice my German. Switch the language,"Svara, tolong ganti bahasa ke Jerman."
+12,change language,German,none,I need to practice my German. Switch the language,Atur bahasa asisten jadi Bahasa Jerman.
+13,change language,Korean,none,Set language to Korean,Ganti ke bahasa Korea dong.
+13,change language,Korean,none,Set language to Korean,Ubah bahasa jadi Bahasa Korea ya.
+13,change language,Korean,none,Set language to Korean,Switch bahasanya ke Korean dong.
+13,change language,Korean,none,Set language to Korean,Tolong atur bahasa ke Bahasa Korea.
+13,change language,Korean,none,Set language to Korean,Ganti bahasanya jadi bahasa Korea.
+13,change language,Korean,none,Set language to Korean,Pake bahasa Korea aja dong.
+13,change language,Korean,none,Set language to Korean,Ubah setelan bahasa sistem ke Bahasa Korea.
+13,change language,Korean,none,Set language to Korean,Tolong ganti bahasa ke Korea ya.
+13,change language,Korean,none,Set language to Korean,Switch bahasa ke Korea dong tolong.
+13,change language,Korean,none,Set language to Korean,Atur settingan bahasa ke Bahasa Korea.
+13,change language,Korean,none,Set language to Korean,Bahasa ganti Korea.
+13,change language,Korean,none,Set language to Korean,Pindah ke bahasa Korea dong.
+13,change language,Korean,none,Set language to Korean,Setel bahasa ke Korean ya.
+13,change language,Korean,none,Set language to Korean,"Svara, tolong ganti bahasa ke Korea."
+13,change language,Korean,none,Set language to Korean,Atur bahasa sistem jadi Bahasa Korea.
+14,change language,none,none,Change language,Ganti bahasa dong.
+14,change language,none,none,Change language,Ubah pengaturan bahasa.
+14,change language,none,none,Change language,Tolong switch bahasanya ya.
+14,change language,none,none,Change language,Buka menu ganti bahasa dong.
+14,change language,none,none,Change language,Ganti bahasanya dong tolong.
+14,change language,none,none,Change language,Pindah bahasa ya.
+14,change language,none,none,Change language,Ubah pilihan bahasa sistem.
+14,change language,none,none,Change language,Tolong ganti pilihan bahasanya.
+14,change language,none,none,Change language,Switch language dong.
+14,change language,none,none,Change language,Ganti bahasa asisten sekarang.
+14,change language,none,none,Change language,Mau ganti bahasa dong.
+14,change language,none,none,Change language,Menu ganti bahasa tolong.
+14,change language,none,none,Change language,Pilihan bahasa tolong dibuka.
+14,change language,none,none,Change language,"Svara, tolong buka pengaturan ganti bahasa."
+14,change language,none,none,Change language,Ubah setelan bahasa sekarang.
+15,deactivate,lamp,none,Turn off the lamp,Matiin lampu.
+15,deactivate,lamp,none,Turn off the lamp,Padamin lampunya dong.
+15,deactivate,lamp,none,Turn off the lamp,Matiin lampu meja ya.
+15,deactivate,lamp,none,Turn off the lamp,Lampu tolong dimatiin.
+15,deactivate,lamp,none,Turn off the lamp,"Silau nih, tolong matiin lampu."
+15,deactivate,lamp,none,Turn off the lamp,Matiin dong lampu belajarnya.
+15,deactivate,lamp,none,Turn off the lamp,Tolong padamkan lampu meja.
+15,deactivate,lamp,none,Turn off the lamp,Lampunya tolong dimatiin ya.
+15,deactivate,lamp,none,Turn off the lamp,Matiin lampunya sekarang dong.
+15,deactivate,lamp,none,Turn off the lamp,Padamkan lampu meja tolong.
+15,deactivate,lamp,none,Turn off the lamp,Lampu mati.
+15,deactivate,lamp,none,Turn off the lamp,Lampu meja padamkan.
+15,deactivate,lamp,none,Turn off the lamp,Mau tidur tolong matiin lampu meja.
+15,deactivate,lamp,none,Turn off the lamp,"Svara, tolong matiin lampu meja."
+15,deactivate,lamp,none,Turn off the lamp,Matikan pencahayaan lampu belajar.
+16,deactivate,lights,bedroom,Turn the bedroom lights off,Matiin lampu kamar.
+16,deactivate,lights,bedroom,Turn the bedroom lights off,Padamin lampu kamar tidur dong.
+16,deactivate,lights,bedroom,Turn the bedroom lights off,Lampu kamar tolong dimatiin ya.
+16,deactivate,lights,bedroom,Turn the bedroom lights off,"Mau tidur nih, matiin lampu kamar dong."
+16,deactivate,lights,bedroom,Turn the bedroom lights off,Tolong matiin lampu di kamar tidur.
+16,deactivate,lights,bedroom,Turn the bedroom lights off,Di kamar tolong matiin lampunya.
+16,deactivate,lights,bedroom,Turn the bedroom lights off,Lampu kamar tidur tolong dipadamin.
+16,deactivate,lights,bedroom,Turn the bedroom lights off,Matiin dong lampu kamar.
+16,deactivate,lights,bedroom,Turn the bedroom lights off,Tolong padamkan lampu kamar tidur.
+16,deactivate,lights,bedroom,Turn the bedroom lights off,Lampu kamar matiin sekarang ya.
+16,deactivate,lights,bedroom,Turn the bedroom lights off,Lampu kamar mati.
+16,deactivate,lights,bedroom,Turn the bedroom lights off,"Kamar tidur, lampu matiin."
+16,deactivate,lights,bedroom,Turn the bedroom lights off,"Silau banget mau istirahat, tolong matiin lampu kamar."
+16,deactivate,lights,bedroom,Turn the bedroom lights off,"Svara, tolong matiin lampu di kamar tidur."
+16,deactivate,lights,bedroom,Turn the bedroom lights off,Padamkan penerangan kamar tidur tolong.
+17,deactivate,lights,kitchen,Turn the lights off in the kitchen,Matiin lampu dapur.
+17,deactivate,lights,kitchen,Turn the lights off in the kitchen,Padamin lampu dapur dong.
+17,deactivate,lights,kitchen,Turn the lights off in the kitchen,Lampu dapur tolong dimatiin ya.
+17,deactivate,lights,kitchen,Turn the lights off in the kitchen,"Selesai masak nih, tolong matiin lampu dapur."
+17,deactivate,lights,kitchen,Turn the lights off in the kitchen,Di dapur tolong matiin lampunya.
+17,deactivate,lights,kitchen,Turn the lights off in the kitchen,Lampu di dapur tolong dipadamkan.
+17,deactivate,lights,kitchen,Turn the lights off in the kitchen,Matiin dong lampu dapurnya.
+17,deactivate,lights,kitchen,Turn the lights off in the kitchen,Tolong matiin lampu dapur ya.
+17,deactivate,lights,kitchen,Turn the lights off in the kitchen,Tolong padamkan lampu dapur.
+17,deactivate,lights,kitchen,Turn the lights off in the kitchen,Lampu dapur matiin sekarang tolong.
+17,deactivate,lights,kitchen,Turn the lights off in the kitchen,Lampu dapur mati.
+17,deactivate,lights,kitchen,Turn the lights off in the kitchen,"Dapur, lampu padamkan."
+17,deactivate,lights,kitchen,Turn the lights off in the kitchen,Dapur udah kosong tolong matiin lampunya.
+17,deactivate,lights,kitchen,Turn the lights off in the kitchen,"Svara, tolong matiin lampu dapur."
+17,deactivate,lights,kitchen,Turn the lights off in the kitchen,Matikan semua penerangan di dapur.
+18,deactivate,lights,none,Switch off the lights,Matiin semua lampu.
+18,deactivate,lights,none,Switch off the lights,Padamin lampunya dong.
+18,deactivate,lights,none,Switch off the lights,Lampu tolong dimatiin semuanya ya.
+18,deactivate,lights,none,Switch off the lights,"Silau banget, matiin lampu dong."
+18,deactivate,lights,none,Switch off the lights,Tolong matikan semua lampu ruangan.
+18,deactivate,lights,none,Switch off the lights,Matiin dong lampunya.
+18,deactivate,lights,none,Switch off the lights,Tolong padamkan seluruh lampu.
+18,deactivate,lights,none,Switch off the lights,Lampunya dimatiin ya tolong.
+18,deactivate,lights,none,Switch off the lights,Padamin lampu sekarang dong.
+18,deactivate,lights,none,Switch off the lights,Matikan lampu semuanya tolong.
+18,deactivate,lights,none,Switch off the lights,Lampu mati semua.
+18,deactivate,lights,none,Switch off the lights,Padamkan seluruh lampu.
+18,deactivate,lights,none,Switch off the lights,Mau tidur tolong matiin semua lampu ruangan.
+18,deactivate,lights,none,Switch off the lights,"Svara, tolong matiin semua lampu."
+18,deactivate,lights,none,Switch off the lights,Gelapkan ruangan tolong matiin lampu.
+19,deactivate,lights,washroom,Switch off the washroom lights,Matiin lampu kamar mandi.
+19,deactivate,lights,washroom,Switch off the washroom lights,Padamin lampu toilet dong.
+19,deactivate,lights,washroom,Switch off the washroom lights,Matiin lampu WC ya.
+19,deactivate,lights,washroom,Switch off the washroom lights,Lampu kamar mandi tolong dimatiin.
+19,deactivate,lights,washroom,Switch off the washroom lights,"Udah selesai nih, tolong matiin lampu toilet."
+19,deactivate,lights,washroom,Switch off the washroom lights,Di kamar mandi tolong matiin lampunya.
+19,deactivate,lights,washroom,Switch off the washroom lights,Lampu WC tolong dipadamin dong.
+19,deactivate,lights,washroom,Switch off the washroom lights,Matiin dong lampu kamar mandi.
+19,deactivate,lights,washroom,Switch off the washroom lights,Tolong padamkan lampu toilet ya.
+19,deactivate,lights,washroom,Switch off the washroom lights,Matikan lampu kamar mandi sekarang.
+19,deactivate,lights,washroom,Switch off the washroom lights,Lampu toilet mati.
+19,deactivate,lights,washroom,Switch off the washroom lights,"Kamar mandi, lampu matiin."
+19,deactivate,lights,washroom,Switch off the washroom lights,Toilet kosong tolong matiin lampunya ya.
+19,deactivate,lights,washroom,Switch off the washroom lights,"Svara, tolong matiin lampu kamar mandi."
+19,deactivate,lights,washroom,Switch off the washroom lights,Padamkan lampu di toilet tolong.
+20,deactivate,music,none,Turn off the music,Matiin musiknya.
+20,deactivate,music,none,Turn off the music,Stop lagunya dong.
+20,deactivate,music,none,Turn off the music,Matiin lagunya ya berisik.
+20,deactivate,music,none,Turn off the music,Hentikan pemutaran musik tolong.
+20,deactivate,music,none,Turn off the music,Musiknya tolong dimatiin dong.
+20,deactivate,music,none,Turn off the music,Berhenti mainin musik ya.
+20,deactivate,music,none,Turn off the music,Pause lagunya dong tolong.
+20,deactivate,music,none,Turn off the music,Matiin dong musiknya pusing nih.
+20,deactivate,music,none,Turn off the music,Tolong hentikan musiknya sekarang.
+20,deactivate,music,none,Turn off the music,Matikan lagu yang lagi muter tolong.
+20,deactivate,music,none,Turn off the music,Musik stop.
+20,deactivate,music,none,Turn off the music,Lagu mati.
+20,deactivate,music,none,Turn off the music,Ada telepon nih tolong matiin musiknya.
+20,deactivate,music,none,Turn off the music,"Svara, tolong matiin lagunya berisik."
+20,deactivate,music,none,Turn off the music,Hentikan lagu sekarang juga.
+21,decrease,heat,bedroom,Turn down the bedroom heat,Dinginin kamar tidur dong.
+21,decrease,heat,bedroom,Turn down the bedroom heat,Turunin suhu kamar.
+21,decrease,heat,bedroom,Turn down the bedroom heat,Kamar tidur panas nih kecilkan pemanasnya.
+21,decrease,heat,bedroom,Turn down the bedroom heat,Kurangi suhu di kamar tidur ya.
+21,decrease,heat,bedroom,Turn down the bedroom heat,Turunin temperatur kamar dong.
+21,decrease,heat,bedroom,Turn down the bedroom heat,Kamar gerah nih tolong dinginin.
+21,decrease,heat,bedroom,Turn down the bedroom heat,Tolong turunin suhu kamar tidur ya.
+21,decrease,heat,bedroom,Turn down the bedroom heat,Kecilkan pemanas kamar tidur dong.
+21,decrease,heat,bedroom,Turn down the bedroom heat,Di kamar terlalu panas tolong turunin suhunya.
+21,decrease,heat,bedroom,Turn down the bedroom heat,Turunkan pemanas di kamar tidur.
+21,decrease,heat,bedroom,Turn down the bedroom heat,Kamar tidur ademin dong.
+21,decrease,heat,bedroom,Turn down the bedroom heat,Turunin AC kamar tidur ya.
+21,decrease,heat,bedroom,Turn down the bedroom heat,Kamar tidur gerah banget tolong dinginin.
+21,decrease,heat,bedroom,Turn down the bedroom heat,"Svara, tolong turunin suhu kamar tidur."
+21,decrease,heat,bedroom,Turn down the bedroom heat,Bikin kamar tidur lebih dingin dong.
+22,decrease,heat,kitchen,Turn the kitchen temperature down,Dinginin dapur dong.
+22,decrease,heat,kitchen,Turn the kitchen temperature down,Turunin suhu di dapur.
+22,decrease,heat,kitchen,Turn the kitchen temperature down,Dapur panas banget tolong turunin suhunya.
+22,decrease,heat,kitchen,Turn the kitchen temperature down,Kurangi pemanas dapur ya.
+22,decrease,heat,kitchen,Turn the kitchen temperature down,Turunin temperatur dapur dong.
+22,decrease,heat,kitchen,Turn the kitchen temperature down,Area dapur gerah nih kecilkan suhunya.
+22,decrease,heat,kitchen,Turn the kitchen temperature down,Tolong turunin suhu di dapur ya.
+22,decrease,heat,kitchen,Turn the kitchen temperature down,Kecilkan pemanas di dapur dong.
+22,decrease,heat,kitchen,Turn the kitchen temperature down,Di dapur panas tolong dinginin dikit.
+22,decrease,heat,kitchen,Turn the kitchen temperature down,Turunkan suhu pemanas dapur.
+22,decrease,heat,kitchen,Turn the kitchen temperature down,Dapur ademin dong panas nih.
+22,decrease,heat,kitchen,Turn the kitchen temperature down,Turunin suhu dapur ya gerah.
+22,decrease,heat,kitchen,Turn the kitchen temperature down,Habis masak panas tolong dinginin dapur.
+22,decrease,heat,kitchen,Turn the kitchen temperature down,"Svara, tolong turunin suhu di dapur."
+22,decrease,heat,kitchen,Turn the kitchen temperature down,Dinginkan ruangan dapur tolong.
+23,decrease,heat,none,Turn down the temperature,Turunin suhunya dong.
+23,decrease,heat,none,Turn down the temperature,Dinginin ruangan ya.
+23,decrease,heat,none,Turn down the temperature,Panas banget nih turunin suhunya.
+23,decrease,heat,none,Turn down the temperature,Kurangi suhu pemanas dong.
+23,decrease,heat,none,Turn down the temperature,Kecilkan suhunya ya.
+23,decrease,heat,none,Turn down the temperature,Turunin temperaturnya tolong.
+23,decrease,heat,none,Turn down the temperature,Gerah nih tolong dinginin dikit.
+23,decrease,heat,none,Turn down the temperature,Tolong turunkan suhunya dong.
+23,decrease,heat,none,Turn down the temperature,Kecilkan temperatur ruangan ya.
+23,decrease,heat,none,Turn down the temperature,Turunkan suhunya sekarang.
+23,decrease,heat,none,Turn down the temperature,Suhu turunin.
+23,decrease,heat,none,Turn down the temperature,Ademin ruangannya dong gerah.
+23,decrease,heat,none,Turn down the temperature,Turunin derajat suhunya ya tolong.
+23,decrease,heat,none,Turn down the temperature,"Svara, tolong turunin suhunya panas nih."
+23,decrease,heat,none,Turn down the temperature,Bikin lebih dingin dong ruangannya.
+24,decrease,heat,washroom,Turn the temperature down in the washroom,Dinginin kamar mandi dong.
+24,decrease,heat,washroom,Turn the temperature down in the washroom,Turunin suhu di kamar mandi ya.
+24,decrease,heat,washroom,Turn the temperature down in the washroom,Toilet panas nih tolong turunin suhunya.
+24,decrease,heat,washroom,Turn the temperature down in the washroom,Kurangi pemanas di kamar mandi dong.
+24,decrease,heat,washroom,Turn the temperature down in the washroom,Turunin temperatur kamar mandi ya.
+24,decrease,heat,washroom,Turn the temperature down in the washroom,Toilet terlalu panas kecilkan pemanasnya.
+24,decrease,heat,washroom,Turn the temperature down in the washroom,Tolong turunin suhu kamar mandi dong.
+24,decrease,heat,washroom,Turn the temperature down in the washroom,Kecilkan pemanas toilet ya.
+24,decrease,heat,washroom,Turn the temperature down in the washroom,Di kamar mandi gerah tolong dinginin.
+24,decrease,heat,washroom,Turn the temperature down in the washroom,Turunkan suhu pemanas kamar mandi.
+24,decrease,heat,washroom,Turn the temperature down in the washroom,Kamar mandi ademin dong.
+24,decrease,heat,washroom,Turn the temperature down in the washroom,Toilet pengap nih turunin suhunya.
+24,decrease,heat,washroom,Turn the temperature down in the washroom,Dinginkan area kamar mandi tolong.
+24,decrease,heat,washroom,Turn the temperature down in the washroom,"Svara, tolong turunin suhu di kamar mandi."
+24,decrease,heat,washroom,Turn the temperature down in the washroom,Kurangi panas di toilet dong.
+25,decrease,volume,none,Turn the volume down,Kecilin volumenya dong.
+25,decrease,volume,none,Turn the volume down,Turunin suaranya ya berisik.
+25,decrease,volume,none,Turn the volume down,Pelanin suaranya dong.
+25,decrease,volume,none,Turn the volume down,Kecilin volume dikit ya.
+25,decrease,volume,none,Turn the volume down,Kencengan suaranya tolong pelanin.
+25,decrease,volume,none,Turn the volume down,Turunin volume dong tolong.
+25,decrease,volume,none,Turn the volume down,Berisik nih kecilin suaranya.
+25,decrease,volume,none,Turn the volume down,Tolong kurangi volume suara ya.
+25,decrease,volume,none,Turn the volume down,Kecilin dikit volumenya dong.
+25,decrease,volume,none,Turn the volume down,Turunkan volume suaranya sekarang.
+25,decrease,volume,none,Turn the volume down,Volume turun.
+25,decrease,volume,none,Turn the volume down,Suara pelanin.
+25,decrease,volume,none,Turn the volume down,Berisik amat tolong pelanin lagunya.
+25,decrease,volume,none,Turn the volume down,"Svara, tolong kecilin volumenya."
+25,decrease,volume,none,Turn the volume down,Kecilkan suara speaker dong.
+26,increase,heat,bedroom,Turn up the temperature in the bedroom,Naikin suhu kamar tidur dong.
+26,increase,heat,bedroom,Turn up the temperature in the bedroom,Hangatin kamar ya dingin nih.
+26,increase,heat,bedroom,Turn up the temperature in the bedroom,Tambah suhu kamar tidur dong.
+26,increase,heat,bedroom,Turn up the temperature in the bedroom,Di kamar kedinginan tolong naikin suhunya.
+26,increase,heat,bedroom,Turn up the temperature in the bedroom,Naikin temperatur kamar tidur ya.
+26,increase,heat,bedroom,Turn up the temperature in the bedroom,Tolong hangatkan kamar tidur dong.
+26,increase,heat,bedroom,Turn up the temperature in the bedroom,Naikin pemanas kamar tidur ya.
+26,increase,heat,bedroom,Turn up the temperature in the bedroom,Kamar dingin banget tolong tambahin panasnya.
+26,increase,heat,bedroom,Turn up the temperature in the bedroom,Tolong naikkan suhu kamar tidur.
+26,increase,heat,bedroom,Turn up the temperature in the bedroom,Naikkan pemanas di kamar tidur sekarang.
+26,increase,heat,bedroom,Turn up the temperature in the bedroom,Kamar tidur angetin dong kedinginan.
+26,increase,heat,bedroom,Turn up the temperature in the bedroom,Naikin suhu AC kamar tidur ya.
+26,increase,heat,bedroom,Turn up the temperature in the bedroom,Terlalu dingin nih tolong naikin temperatur kamar.
+26,increase,heat,bedroom,Turn up the temperature in the bedroom,"Svara, tolong naikin suhu kamar tidur."
+26,increase,heat,bedroom,Turn up the temperature in the bedroom,Bikin kamar tidur lebih hangat tolong.
+27,increase,heat,kitchen,Turn the kitchen temperature up,Naikin suhu dapur dong.
+27,increase,heat,kitchen,Turn the kitchen temperature up,Hangatin area dapur ya dingin.
+27,increase,heat,kitchen,Turn the kitchen temperature up,Tambah suhu di dapur dong tolong.
+27,increase,heat,kitchen,Turn the kitchen temperature up,Dapur dingin nih tolong naikin suhunya.
+27,increase,heat,kitchen,Turn the kitchen temperature up,Naikin temperatur dapur ya.
+27,increase,heat,kitchen,Turn the kitchen temperature up,Tolong hangatkan ruangan dapur dong.
+27,increase,heat,kitchen,Turn the kitchen temperature up,Tambah pemanas dapur ya tolong.
+27,increase,heat,kitchen,Turn the kitchen temperature up,Di dapur dingin tolong naikin temperaturnya.
+27,increase,heat,kitchen,Turn the kitchen temperature up,Tolong naikkan suhu di dapur ya.
+27,increase,heat,kitchen,Turn the kitchen temperature up,Naikkan pemanas dapur sekarang.
+27,increase,heat,kitchen,Turn the kitchen temperature up,Dapur tolong diangetin dong.
+27,increase,heat,kitchen,Turn the kitchen temperature up,Naikkan temperatur di dapur ya.
+27,increase,heat,kitchen,Turn the kitchen temperature up,Area dapur terlalu dingin tolong hangatkan.
+27,increase,heat,kitchen,Turn the kitchen temperature up,"Svara, tolong naikin suhu dapur."
+27,increase,heat,kitchen,Turn the kitchen temperature up,Tambah panas pemanas dapur tolong.
+28,increase,heat,none,Turn up the temperature,Naikin suhunya dong dingin.
+28,increase,heat,none,Turn up the temperature,Hangatin ruangan ya.
+28,increase,heat,none,Turn up the temperature,Tambah suhunya dong tolong.
+28,increase,heat,none,Turn up the temperature,Kedinginan nih tolong naikin suhunya.
+28,increase,heat,none,Turn up the temperature,Naikin temperaturnya dong dikit.
+28,increase,heat,none,Turn up the temperature,Tolong hangatkan suhunya ya.
+28,increase,heat,none,Turn up the temperature,Tambahkan pemanas ruangan dong.
+28,increase,heat,none,Turn up the temperature,Dingin banget nih naikin suhunya tolong.
+28,increase,heat,none,Turn up the temperature,Tolong naikkan temperatur sekarang ya.
+28,increase,heat,none,Turn up the temperature,Naikkan suhunya dong tolong.
+28,increase,heat,none,Turn up the temperature,Suhu naikin.
+28,increase,heat,none,Turn up the temperature,Angetin ruangannya dong beku nih.
+28,increase,heat,none,Turn up the temperature,Naikin derajat suhunya ya tolong.
+28,increase,heat,none,Turn up the temperature,"Svara, tolong naikin suhunya kedinginan."
+28,increase,heat,none,Turn up the temperature,Bikin ruangan lebih hangat tolong.
+29,increase,heat,washroom,Turn up the washroom temperature,Naikin suhu kamar mandi dong.
+29,increase,heat,washroom,Turn up the washroom temperature,Hangatin toilet ya airnya dingin.
+29,increase,heat,washroom,Turn up the washroom temperature,Tambah suhu di kamar mandi dong tolong.
+29,increase,heat,washroom,Turn up the washroom temperature,Kamar mandi dingin nih tolong naikin suhunya.
+29,increase,heat,washroom,Turn up the washroom temperature,Naikin temperatur kamar mandi ya.
+29,increase,heat,washroom,Turn up the washroom temperature,Tolong hangatkan kamar mandi dong.
+29,increase,heat,washroom,Turn up the washroom temperature,Tambah pemanas di toilet ya tolong.
+29,increase,heat,washroom,Turn up the washroom temperature,Di kamar mandi dingin tolong naikin suhunya.
+29,increase,heat,washroom,Turn up the washroom temperature,Tolong naikkan suhu kamar mandi ya.
+29,increase,heat,washroom,Turn up the washroom temperature,Naikkan pemanas di toilet sekarang.
+29,increase,heat,washroom,Turn up the washroom temperature,Kamar mandi angetin dong.
+29,increase,heat,washroom,Turn up the washroom temperature,Naikin suhu toilet ya airnya kayak es.
+29,increase,heat,washroom,Turn up the washroom temperature,Hangatkan area kamar mandi tolong.
+29,increase,heat,washroom,Turn up the washroom temperature,"Svara, tolong naikin suhu kamar mandi."
+29,increase,heat,washroom,Turn up the washroom temperature,Bikin kamar mandi lebih hangat dong.
+30,increase,volume,none,Volume up,Gedein suaranya dong.
+30,increase,volume,none,Volume up,Naikin volumenya ya gak denger.
+30,increase,volume,none,Volume up,Kencengin suaranya dong.
+30,increase,volume,none,Volume up,Keraskan suaranya tolong.
+30,increase,volume,none,Volume up,Kurang kenceng nih naikin volumenya.
+30,increase,volume,none,Volume up,Tambah volumenya dikit dong.
+30,increase,volume,none,Volume up,Gedein volumenya tolong ya.
+30,increase,volume,none,Volume up,Naikin suara dong pelan banget.
+30,increase,volume,none,Volume up,Kencengin suaranya dikit ya.
+30,increase,volume,none,Volume up,Besarkan volume suara sekarang.
+30,increase,volume,none,Volume up,Volume naik.
+30,increase,volume,none,Volume up,Suara gedein.
+30,increase,volume,none,Volume up,Gak kedengeran tolong kencengin suaranya.
+30,increase,volume,none,Volume up,"Svara, tolong naikin volumenya dong."
+30,increase,volume,none,Volume up,Kuatkan volume suara speaker ya.

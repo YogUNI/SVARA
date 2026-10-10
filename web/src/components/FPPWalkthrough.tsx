@@ -10,6 +10,7 @@ import {
   createSkyboxTexture,
 } from './fpp/ProceduralTextures';
 import { createFPPArms } from './fpp/FPPArmsRig';
+import { soundSystem } from './fpp/SoundSystem';
 
 interface FPPWalkthroughProps {
   devices: DeviceState;
@@ -373,7 +374,10 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
         case 'KeyD': moveStateRef.current.right = true; break;
         case 'ShiftLeft': moveStateRef.current.sprint = true; break;
         case 'Space':
-          if (!e.repeat) onVoiceTriggerStart();
+          if (!e.repeat) {
+            soundSystem.playPTTChirp(true);
+            onVoiceTriggerStart();
+          }
           break;
       }
     };
@@ -386,6 +390,7 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
         case 'KeyD': moveStateRef.current.right = false; break;
         case 'ShiftLeft': moveStateRef.current.sprint = false; break;
         case 'Space':
+          soundSystem.playPTTChirp(false);
           onVoiceTriggerEnd();
           break;
       }
@@ -400,6 +405,7 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
     const velocity = new THREE.Vector3();
     const direction = new THREE.Vector3();
     let walkCycle = 0;
+    let lastStepPhase = 0;
 
     const animate = () => {
       animId = requestAnimationFrame(animate);
@@ -432,11 +438,19 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
         pos.x = Math.max(-13.0, Math.min(13.0, pos.x));
         pos.z = Math.max(-11.0, Math.min(11.0, pos.z));
 
-        // Sinusoidal Head Bobbing (Real Human Walking Rhythm)
+        // Sinusoidal Head Bobbing (Real Human Walking Rhythm) & Footstep Triggers
         const moveSpeed = Math.sqrt(velocity.x * velocity.x + velocity.z * velocity.z);
         if (moveSpeed > 0.05) {
           walkCycle += delta * (moveStateRef.current.sprint ? 14 : 9);
           pos.y = 1.65 + Math.sin(walkCycle) * 0.05;
+
+          // Footstep audio triggered at lowest dip of head bob (step contact)
+          const currentStepPhase = Math.floor(walkCycle / Math.PI);
+          if (currentStepPhase > lastStepPhase) {
+            lastStepPhase = currentStepPhase;
+            const surface = (pos.x < 0 && pos.z > 0) ? 'tile' : (pos.x > 0 && pos.z < 0 ? 'carpet' : 'wood');
+            soundSystem.playFootstep(surface);
+          }
         } else {
           pos.y = THREE.MathUtils.lerp(pos.y, 1.65, 0.1);
         }
@@ -519,6 +533,14 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
         mat.emissiveIntensity = 0.0;
       }
     };
+
+    // Play tactile switch click audio when light toggles
+    soundSystem.playSwitchClick(
+      devices.kitchen_lights || devices.bedroom_lights || devices.washroom_lights || devices.bedroom_lamp
+    );
+
+    // Sync Ambient Lounge Music
+    soundSystem.setAmbientMusic(devices.hall_music);
 
     updateHeaterGlow('kitchen', devices.kitchen_heat);
     updateHeaterGlow('bedroom', devices.bedroom_heat);

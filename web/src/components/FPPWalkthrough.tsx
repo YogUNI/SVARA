@@ -11,6 +11,7 @@ import {
 } from './fpp/ProceduralTextures';
 import { createFPPArms } from './fpp/FPPArmsRig';
 import { soundSystem } from './fpp/SoundSystem';
+import { RadarMiniMap } from './fpp/RadarMiniMap';
 
 interface FPPWalkthroughProps {
   devices: DeviceState;
@@ -32,6 +33,7 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const [isLocked, setIsLocked] = useState(false);
   const [currentRoom, setCurrentRoom] = useState('Lorong (Living / Hall)');
+  const [playerCoord, setPlayerCoord] = useState({ x: 0, z: 4, rotY: 0 });
   
   // Three.js references
   const controlsRef = useRef<PointerLockControls | null>(null);
@@ -466,6 +468,13 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
           setCurrentRoom('Lorong & Ruang Tamu (Hall / Living)');
         }
 
+        // Sync Player Coordinates with In-Game Radar MiniMap
+        setPlayerCoord({
+          x: pos.x,
+          z: pos.z,
+          rotY: camera.rotation.y,
+        });
+
         // Animate FPP Arms & Smartwatch Rig
         armsRig.update(
           delta,
@@ -610,11 +619,20 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
         </div>
       </div>
 
+      {/* Radar Mini-Map (Top Right) */}
+      <RadarMiniMap
+        playerX={playerCoord.x}
+        playerZ={playerCoord.z}
+        playerRotationY={playerCoord.rotY}
+        currentRoom={currentRoom}
+        devices={devices}
+      />
+
       {/* Voice Status Indicator (When Spacebar pressed) */}
       {isRecording && (
         <div style={{
           position: 'absolute',
-          top: 14,
+          top: 176,
           right: 16,
           background: '#C4492F',
           color: '#FFF',
@@ -632,7 +650,7 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
       {isProcessing && (
         <div style={{
           position: 'absolute',
-          top: 14,
+          top: 176,
           right: 16,
           background: '#2F6B5E',
           color: '#FFF',
@@ -642,6 +660,32 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
           fontWeight: 700,
         }}>
           ⚡ Model AI Sedang Memproses...
+        </div>
+      )}
+
+      {/* Subtitle Message Bar / AI Response Feedback */}
+      {lastCommandMessage && (
+        <div style={{
+          position: 'absolute',
+          bottom: 24,
+          left: '50%',
+          transform: 'translateX(-50%)',
+          background: 'rgba(14, 25, 29, 0.88)',
+          color: '#3EE08F',
+          border: '1px solid #2F6B5E',
+          padding: '8px 24px',
+          borderRadius: '999px',
+          fontSize: '0.92rem',
+          fontWeight: 700,
+          backdropFilter: 'blur(8px)',
+          boxShadow: '0 4px 20px rgba(0,0,0,0.5)',
+          pointerEvents: 'none',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 8,
+        }}>
+          <span>🤖 SVARA:</span>
+          <span style={{ color: '#F6F8F4' }}>"{lastCommandMessage}"</span>
         </div>
       )}
 

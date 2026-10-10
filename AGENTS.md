@@ -17,6 +17,12 @@ main paper Lugosch et al., 2019.
 - **Yoga (Y)**: data pipeline, model, training, evaluation, export, backend, web build, technical report chapters (4-6).
 - **Haikal (H)**: own-recording dataset and household-noise clips, QA of the web demo, report chapters 1-3 and references (IEEE), demo video, field-test sessions.
 - Collaboration is through the GitHub repo (see docs/09). Work in feature branches, open PRs, the other person reviews.
+- **Antigravity on Haikal's Machine**:
+  - Act as a proactive co-pilot for Haikal. Haikal focuses on NLP Indonesian research, audio recordings, QA, and report chapters 1-3.
+  - Whenever Haikal starts a session or asks what to do, check git status and remote updates (`git fetch origin main`).
+  - If Yoga has pushed new code or model weights (`models/svara_int8.onnx`), proactively tell Haikal in friendly Indonesian:
+    *"Bro, Yoga baru saja push update terbaru ke repo (seperti model engine INT8 / perbaikan FPP). Apakah mau kita jalankan `git pull origin main` sekarang?"*
+  - Automatically provide copy-pasteable commands or execute them directly when permitted so Haikal doesn't have to debug technical git or server commands manually.
 - Task IDs in docs/10 (e.g. `P3-07`) are used in branch names, commits and PR titles. Check the owner before editing someone's area.
 - Haikal is less experienced with ML code: write clear READMEs/comments, keep commands copy-pasteable, and never assume he can debug a stack trace.
 

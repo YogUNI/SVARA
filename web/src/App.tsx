@@ -123,6 +123,8 @@ export default function App() {
   const mediaStreamRef = useRef<MediaStream | null>(null);
   const audioChunksRef = useRef<Float32Array[]>([]);
   const processorRef = useRef<ScriptProcessorNode | null>(null);
+  const isRecordingRef = useRef(false);
+  const shouldStopRef = useRef(false);
 
   // Check health on mount
   useEffect(() => {
@@ -232,8 +234,23 @@ export default function App() {
   };
 
   const startRecording = async () => {
+    // Avoid double start
+    if (isRecordingRef.current) return;
+    shouldStopRef.current = false;
+    isRecordingRef.current = true;
+    setIsRecording(true);
+
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+
+      // If user released spacebar while mic permission dialog was resolving
+      if (shouldStopRef.current) {
+        stream.getTracks().forEach(t => t.stop());
+        isRecordingRef.current = false;
+        setIsRecording(false);
+        return;
+      }
+
       mediaStreamRef.current = stream;
       audioChunksRef.current = [];
 
@@ -252,14 +269,17 @@ export default function App() {
 
       source.connect(processor);
       processor.connect(audioCtx.destination);
-      setIsRecording(true);
     } catch (err) {
+      isRecordingRef.current = false;
+      setIsRecording(false);
       alert("Microphone permission diperlukan atau gunakan tombol Unggah Audio!");
     }
   };
 
   const stopRecording = () => {
-    if (!isRecording) return;
+    shouldStopRef.current = true;
+    if (!isRecordingRef.current) return;
+    isRecordingRef.current = false;
     setIsRecording(false);
 
     if (processorRef.current) {
@@ -268,7 +288,11 @@ export default function App() {
     }
     if (audioCtxRef.current) {
       const sr = audioCtxRef.current.sampleRate;
-      audioCtxRef.current.close();
+      try {
+        audioCtxRef.current.close();
+      } catch {
+        // ignore already closed
+      }
       audioCtxRef.current = null;
 
       // Concatenate Float32Arrays

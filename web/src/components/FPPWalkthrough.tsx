@@ -41,10 +41,17 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
   const heaterMeshRef = useRef<{ [key: string]: THREE.Mesh }>({});
   const moveStateRef = useRef({ forward: false, backward: false, left: false, right: false, sprint: false });
   const isRecordingRef = useRef(isRecording);
+  const onVoiceTriggerStartRef = useRef(onVoiceTriggerStart);
+  const onVoiceTriggerEndRef = useRef(onVoiceTriggerEnd);
 
   useEffect(() => {
     isRecordingRef.current = isRecording;
   }, [isRecording]);
+
+  useEffect(() => {
+    onVoiceTriggerStartRef.current = onVoiceTriggerStart;
+    onVoiceTriggerEndRef.current = onVoiceTriggerEnd;
+  }, [onVoiceTriggerStart, onVoiceTriggerEnd]);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -376,9 +383,10 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
         case 'KeyD': moveStateRef.current.right = true; break;
         case 'ShiftLeft': moveStateRef.current.sprint = true; break;
         case 'Space':
+          e.preventDefault();
           if (!e.repeat) {
             soundSystem.playPTTChirp(true);
-            onVoiceTriggerStart();
+            onVoiceTriggerStartRef.current();
           }
           break;
       }
@@ -392,14 +400,28 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
         case 'KeyD': moveStateRef.current.right = false; break;
         case 'ShiftLeft': moveStateRef.current.sprint = false; break;
         case 'Space':
+          e.preventDefault();
           soundSystem.playPTTChirp(false);
-          onVoiceTriggerEnd();
+          onVoiceTriggerEndRef.current();
           break;
+      }
+    };
+
+    const onWindowBlur = () => {
+      moveStateRef.current.forward = false;
+      moveStateRef.current.backward = false;
+      moveStateRef.current.left = false;
+      moveStateRef.current.right = false;
+      moveStateRef.current.sprint = false;
+      if (isRecordingRef.current) {
+        soundSystem.playPTTChirp(false);
+        onVoiceTriggerEndRef.current();
       }
     };
 
     window.addEventListener('keydown', onKeyDown);
     window.addEventListener('keyup', onKeyUp);
+    window.addEventListener('blur', onWindowBlur);
 
     // 9. Animation Loop (60 FPS Physics & Head Bobbing)
     let animId: number;
@@ -503,6 +525,7 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
       cancelAnimationFrame(animId);
       window.removeEventListener('keydown', onKeyDown);
       window.removeEventListener('keyup', onKeyUp);
+      window.removeEventListener('blur', onWindowBlur);
       if (container.contains(renderer.domElement)) {
         container.removeChild(renderer.domElement);
       }

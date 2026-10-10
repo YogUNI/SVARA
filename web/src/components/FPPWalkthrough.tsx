@@ -9,6 +9,7 @@ import {
   createFabricRugTexture,
   createSkyboxTexture,
 } from './fpp/ProceduralTextures';
+import { createFPPArms } from './fpp/FPPArmsRig';
 
 interface FPPWalkthroughProps {
   devices: DeviceState;
@@ -36,6 +37,11 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
   const lightsMapRef = useRef<{ [key: string]: { pointLight: THREE.PointLight; mesh: THREE.Mesh } }>({});
   const heaterMeshRef = useRef<{ [key: string]: THREE.Mesh }>({});
   const moveStateRef = useRef({ forward: false, backward: false, left: false, right: false, sprint: false });
+  const isRecordingRef = useRef(isRecording);
+
+  useEffect(() => {
+    isRecordingRef.current = isRecording;
+  }, [isRecording]);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -50,6 +56,11 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
 
     const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 100);
     camera.position.set(0, 1.65, 4); // Eye level 1.65 meters
+
+    // 2. Attach FPP Arms & Smartwatch to Camera
+    const armsRig = createFPPArms();
+    camera.add(armsRig.armsGroup);
+    scene.add(camera);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(width, height);
@@ -440,6 +451,17 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
         } else {
           setCurrentRoom('Lorong & Ruang Tamu (Hall / Living)');
         }
+
+        // Animate FPP Arms & Smartwatch Rig
+        armsRig.update(
+          delta,
+          moveSpeed > 0.05,
+          moveStateRef.current.sprint,
+          isRecordingRef.current
+        );
+      } else {
+        // Idle breathing and wristwatch animation when pointer lock is not engaged
+        armsRig.update(delta, false, false, isRecordingRef.current);
       }
 
       // Speaker vibration animation if music playing

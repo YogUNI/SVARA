@@ -1,23 +1,29 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useImperativeHandle, forwardRef, useRef, useEffect } from 'react';
 import { DeviceState } from '../FloorPlan';
 
+export interface RadarMiniMapHandle {
+  update: (playerX: number, playerZ: number, playerYaw: number) => void;
+}
+
 interface RadarMiniMapProps {
-  playerX: number; // Three.js X (-14 to 14)
-  playerZ: number; // Three.js Z (-12 to 12)
-  playerRotationY: number; // Camera yaw rotation angle in radians
-  currentRoom: string;
+  initialX: number;
+  initialZ: number;
   devices: DeviceState;
 }
 
-export const RadarMiniMap: React.FC<RadarMiniMapProps> = ({
-  playerX,
-  playerZ,
-  playerRotationY,
+export const RadarMiniMap = forwardRef<RadarMiniMapHandle, RadarMiniMapProps>(({
+  initialX,
+  initialZ,
   devices,
-}) => {
+}, ref) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const stateRef = useRef({
+    x: initialX,
+    z: initialZ,
+    yaw: 0,
+  });
 
-  useEffect(() => {
+  const drawRadar = (playerX: number, playerZ: number, playerYaw: number) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -36,20 +42,20 @@ export const RadarMiniMap: React.FC<RadarMiniMapProps> = ({
     ctx.clip();
 
     // Radar Dark Glass Background
-    ctx.fillStyle = 'rgba(10, 18, 22, 0.90)';
+    ctx.fillStyle = 'rgba(10, 18, 22, 0.92)';
     ctx.fillRect(0, 0, size, size);
 
     // 2. Map coordinates transformation
-    // World bounds: X [-14, 14] (width 28), Z [-12, 12] (height 24)
-    const mapScale = 4.6; // pixels per meter
+    // World bounds: House X [-14, 14], Z [-12, 12] + Front Garden Z [12, 31]
+    const mapScale = 4.4; // pixels per meter
     const toMapX = (wx: number) => center + (wx - playerX) * mapScale;
     const toMapY = (wz: number) => center + (wz - playerZ) * mapScale;
 
     // Draw Interior Floor Plan Boundaries relative to player
-    ctx.strokeStyle = 'rgba(47, 107, 94, 0.45)';
-    ctx.lineWidth = 1.5;
+    ctx.strokeStyle = 'rgba(47, 107, 94, 0.55)';
+    ctx.lineWidth = 1.6;
 
-    // Outer Perimeter
+    // Outer Perimeter House Walls
     const left = toMapX(-14);
     const top = toMapY(-12);
     const width = 28 * mapScale;
@@ -72,9 +78,9 @@ export const RadarMiniMap: React.FC<RadarMiniMapProps> = ({
     ctx.stroke();
 
     // Front Garden Lawn Outline & Walkway
-    ctx.strokeStyle = 'rgba(62, 224, 143, 0.4)';
+    ctx.strokeStyle = 'rgba(62, 224, 143, 0.5)';
     ctx.strokeRect(toMapX(-21), toMapY(12), 42 * mapScale, 19 * mapScale);
-    ctx.fillStyle = 'rgba(78, 161, 142, 0.18)';
+    ctx.fillStyle = 'rgba(78, 161, 142, 0.22)';
     ctx.fillRect(toMapX(-1.5), toMapY(12), 3 * mapScale, 14 * mapScale);
 
     // 3. Smart Device Icons / Dots
@@ -108,13 +114,13 @@ export const RadarMiniMap: React.FC<RadarMiniMapProps> = ({
     ctx.stroke();
 
     // 5. Player Dot & Directional Cone (PUBG Mobile Style)
-    // Cone of Vision
+    // Three.js PointerLockControls yaw angle points along negative Z when yaw=0 (North)
     ctx.save();
     ctx.translate(center, center);
-    ctx.rotate(playerRotationY);
+    ctx.rotate(-playerYaw); // Exact 1:1 camera yaw sync
 
     const coneGradient = ctx.createRadialGradient(0, 0, 0, 0, 0, 36);
-    coneGradient.addColorStop(0, 'rgba(62, 224, 143, 0.55)');
+    coneGradient.addColorStop(0, 'rgba(62, 224, 143, 0.65)');
     coneGradient.addColorStop(1, 'rgba(62, 224, 143, 0.0)');
 
     ctx.beginPath();
@@ -126,7 +132,7 @@ export const RadarMiniMap: React.FC<RadarMiniMapProps> = ({
 
     // Player Direction Arrow
     ctx.beginPath();
-    ctx.moveTo(0, -9);
+    ctx.moveTo(0, -10);
     ctx.lineTo(6, 6);
     ctx.lineTo(0, 3);
     ctx.lineTo(-6, 6);
@@ -148,7 +154,20 @@ export const RadarMiniMap: React.FC<RadarMiniMapProps> = ({
     ctx.fillStyle = '#3EE08F';
     ctx.font = 'bold 9px monospace';
     ctx.fillText('N', center - 3, 12);
-  }, [playerX, playerZ, playerRotationY, devices]);
+  };
+
+  useImperativeHandle(ref, () => ({
+    update: (x: number, z: number, yaw: number) => {
+      stateRef.current.x = x;
+      stateRef.current.z = z;
+      stateRef.current.yaw = yaw;
+      drawRadar(x, z, yaw);
+    },
+  }));
+
+  useEffect(() => {
+    drawRadar(stateRef.current.x, stateRef.current.z, stateRef.current.yaw);
+  }, [devices]);
 
   return (
     <div style={{
@@ -181,8 +200,10 @@ export const RadarMiniMap: React.FC<RadarMiniMapProps> = ({
         fontFamily: 'monospace',
         letterSpacing: '0.04em',
       }}>
-        RADAR GPS: ACTIVE
+        RADAR GPS: 60FPS SYNC
       </div>
     </div>
   );
-};
+});
+
+RadarMiniMap.displayName = 'RadarMiniMap';

@@ -13,7 +13,7 @@ import {
 } from './fpp/ProceduralTextures';
 import { createFPPArms } from './fpp/FPPArmsRig';
 import { soundSystem } from './fpp/SoundSystem';
-import { RadarMiniMap } from './fpp/RadarMiniMap';
+import { RadarMiniMap, RadarMiniMapHandle } from './fpp/RadarMiniMap';
 
 interface FPPWalkthroughProps {
   devices: DeviceState;
@@ -33,9 +33,9 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
   lastCommandMessage,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const radarRef = useRef<RadarMiniMapHandle>(null);
   const [isLocked, setIsLocked] = useState(false);
   const [currentRoom, setCurrentRoom] = useState('🌿 Taman Rumah (Front Garden)');
-  const [playerCoord, setPlayerCoord] = useState({ x: 0, z: 23, rotY: 0 });
   
   // Three.js references
   const controlsRef = useRef<PointerLockControls | null>(null);
@@ -639,25 +639,25 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
           pos.y = THREE.MathUtils.lerp(pos.y, 1.65, 0.1);
         }
 
-        // Room Location Tracker based on player coordinates
+        // Room Location Tracker based on player coordinates (only update state when room changes)
+        let newRoom = 'Lorong & Ruang Tamu (Hall / Living)';
         if (pos.z > 12.5) {
-          setCurrentRoom('🌿 Taman Rumah (Front Garden)');
+          newRoom = '🌿 Taman Rumah (Front Garden)';
         } else if (pos.x < 0 && pos.z < 0) {
-          setCurrentRoom('Dapur (Kitchen)');
+          newRoom = 'Dapur (Kitchen)';
         } else if (pos.x > 0 && pos.z < 0) {
-          setCurrentRoom('Kamar Tidur (Bedroom)');
+          newRoom = 'Kamar Tidur (Bedroom)';
         } else if (pos.x < 0 && pos.z > 0) {
-          setCurrentRoom('Kamar Mandi (Washroom)');
-        } else {
-          setCurrentRoom('Lorong & Ruang Tamu (Hall / Living)');
+          newRoom = 'Kamar Mandi (Washroom)';
+        }
+        if (newRoom !== currentRoom) {
+          setCurrentRoom(newRoom);
         }
 
-        // Sync Player Coordinates with In-Game Radar MiniMap
-        setPlayerCoord({
-          x: pos.x,
-          z: pos.z,
-          rotY: camera.rotation.y,
-        });
+        // Direct 60 FPS Real-time Radar GPS Sync without React state overhead
+        if (radarRef.current) {
+          radarRef.current.update(pos.x, pos.z, camera.rotation.y);
+        }
 
         // Animate FPP Arms & Smartwatch Rig
         armsRig.update(
@@ -804,12 +804,11 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
         </div>
       </div>
 
-      {/* Radar Mini-Map (Top Right) */}
+      {/* Radar Mini-Map (Top Right, Direct Canvas 60 FPS Sync) */}
       <RadarMiniMap
-        playerX={playerCoord.x}
-        playerZ={playerCoord.z}
-        playerRotationY={playerCoord.rotY}
-        currentRoom={currentRoom}
+        ref={radarRef}
+        initialX={0}
+        initialZ={23}
         devices={devices}
       />
 

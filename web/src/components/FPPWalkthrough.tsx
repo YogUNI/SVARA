@@ -2,6 +2,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { PointerLockControls } from 'three/examples/jsm/controls/PointerLockControls.js';
 import { DeviceState } from './FloorPlan';
+import {
+  createWoodFloorTexture,
+  createMarbleTexture,
+  createWallPlasterTexture,
+  createFabricRugTexture,
+  createSkyboxTexture,
+} from './fpp/ProceduralTextures';
 
 interface FPPWalkthroughProps {
   devices: DeviceState;
@@ -58,123 +65,243 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
     controls.addEventListener('unlock', () => setIsLocked(false));
 
     // 3. Ambient & Directional Lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.22);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.35);
     scene.add(ambientLight);
 
-    // 4. House Architecture (Rooms, Floor, Ceiling, Walls)
+    // 4. Generate Procedural PBR Textures
+    const woodFloorTex = createWoodFloorTexture();
+    const marbleTex = createMarbleTexture();
+    const wallPlasterTex = createWallPlasterTexture();
+    const rugTex = createFabricRugTexture();
+    const skyTex = createSkyboxTexture();
+
+    // Floor with Authentic Wood Plank Texture & Specular Glaze
     const floorGeo = new THREE.PlaneGeometry(28, 24);
     const floorMat = new THREE.MeshStandardMaterial({
-      color: 0x2A3733,
-      roughness: 0.5,
-      metalness: 0.1,
+      map: woodFloorTex,
+      roughness: 0.35,
+      metalness: 0.08,
     });
     const floor = new THREE.Mesh(floorGeo, floorMat);
     floor.rotation.x = -Math.PI / 2;
     floor.receiveShadow = true;
     scene.add(floor);
 
-    // Ceiling
+    // Ceiling with Smooth Slate
     const ceilingGeo = new THREE.PlaneGeometry(28, 24);
-    const ceilingMat = new THREE.MeshStandardMaterial({ color: 0x162227, roughness: 0.9 });
+    const ceilingMat = new THREE.MeshStandardMaterial({ color: 0x1A252A, roughness: 0.85 });
     const ceiling = new THREE.Mesh(ceilingGeo, ceilingMat);
     ceiling.position.y = 3.6;
     ceiling.rotation.x = Math.PI / 2;
     scene.add(ceiling);
 
-    // Outer & Partition Walls
-    const wallMat = new THREE.MeshStandardMaterial({ color: 0x1B2C33, roughness: 0.7 });
-    const createWall = (w: number, h: number, d: number, x: number, y: number, z: number) => {
+    // Outer & Partition Walls with Textured Plaster & Wooden Baseboards
+    const wallMat = new THREE.MeshStandardMaterial({
+      map: wallPlasterTex,
+      roughness: 0.75,
+      metalness: 0.02,
+    });
+    const baseboardMat = new THREE.MeshStandardMaterial({ color: 0x12171A, roughness: 0.4 });
+
+    const createWallWithBaseboard = (w: number, h: number, d: number, x: number, y: number, z: number) => {
       const mesh = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), wallMat);
       mesh.position.set(x, y, z);
       mesh.castShadow = true;
       mesh.receiveShadow = true;
       scene.add(mesh);
+
+      // Add baseboard trimming along the bottom
+      const bbHeight = 0.18;
+      const bb = new THREE.Mesh(
+        new THREE.BoxGeometry(w > d ? w : 0.54, bbHeight, d > w ? d : 0.54),
+        baseboardMat
+      );
+      bb.position.set(x, bbHeight / 2, z);
+      scene.add(bb);
     };
 
     // Outer perimeter walls (height 3.6m)
-    createWall(28, 3.6, 0.5, 0, 1.8, -12); // North
-    createWall(28, 3.6, 0.5, 0, 1.8, 12);  // South
-    createWall(0.5, 3.6, 24, -14, 1.8, 0); // West
-    createWall(0.5, 3.6, 24, 14, 1.8, 0);  // East
+    createWallWithBaseboard(28, 3.6, 0.5, 0, 1.8, -12); // North
+    createWallWithBaseboard(28, 3.6, 0.5, 0, 1.8, 12);  // South
+    createWallWithBaseboard(0.5, 3.6, 24, -14, 1.8, 0); // West
+    createWallWithBaseboard(0.5, 3.6, 24, 14, 1.8, 0);  // East
 
     // Partition walls with doorways
-    // Center divider (X = 0) with door opening at center
-    createWall(0.5, 3.6, 8, 0, 1.8, -8);  // North segment
-    createWall(0.5, 3.6, 8, 0, 1.8, 8);   // South segment
-    // Horizontal divider (Z = 0) with doorway
-    createWall(8, 3.6, 0.5, -10, 1.8, 0); // West segment
-    createWall(8, 3.6, 0.5, 10, 1.8, 0);  // East segment
+    createWallWithBaseboard(0.5, 3.6, 8, 0, 1.8, -8);  // North center divider
+    createWallWithBaseboard(0.5, 3.6, 8, 0, 1.8, 8);   // South center divider
+    createWallWithBaseboard(8, 3.6, 0.5, -10, 1.8, 0); // West horizontal divider
+    createWallWithBaseboard(8, 3.6, 0.5, 10, 1.8, 0);  // East horizontal divider
 
-    // 5. Furniture & Objects per Zone
+    // Windows with Glass & Outdoor Night Sky View (East Wall Window)
+    const windowFrame = new THREE.Mesh(
+      new THREE.BoxGeometry(6, 2.2, 0.2),
+      new THREE.MeshStandardMaterial({ color: 0x0E1417, roughness: 0.3 })
+    );
+    windowFrame.position.set(7, 2.0, -11.9);
+    scene.add(windowFrame);
+
+    const outdoorBackdrop = new THREE.Mesh(
+      new THREE.PlaneGeometry(8, 4),
+      new THREE.MeshBasicMaterial({ map: skyTex })
+    );
+    outdoorBackdrop.position.set(7, 2.0, -12.1);
+    scene.add(outdoorBackdrop);
+
+    // 5. Furniture & Objects per Zone with High-End Materials
     // === ZONE 1: DAPUR / KITCHEN (X: -7, Z: -6) ===
-    const kitchenIsland = new THREE.Mesh(
-      new THREE.BoxGeometry(5, 1.1, 2.5),
-      new THREE.MeshStandardMaterial({ color: 0x6E7F80, roughness: 0.2 })
+    // Island with Glossy Veined Black Marble Countertop
+    const islandBase = new THREE.Mesh(
+      new THREE.BoxGeometry(5.2, 1.0, 2.6),
+      new THREE.MeshStandardMaterial({ color: 0x1A2226, roughness: 0.5 })
     );
-    kitchenIsland.position.set(-7, 0.55, -6);
-    kitchenIsland.castShadow = true;
-    kitchenIsland.receiveShadow = true;
-    scene.add(kitchenIsland);
+    islandBase.position.set(-7, 0.5, -6);
+    islandBase.castShadow = true;
+    islandBase.receiveShadow = true;
+    scene.add(islandBase);
 
-    // Refrigerator
-    const fridge = new THREE.Mesh(
-      new THREE.BoxGeometry(2, 2.8, 2),
-      new THREE.MeshStandardMaterial({ color: 0xA9B8B2, metalness: 0.4 })
+    const marbleTop = new THREE.Mesh(
+      new THREE.BoxGeometry(5.4, 0.14, 2.8),
+      new THREE.MeshStandardMaterial({
+        map: marbleTex,
+        roughness: 0.15,
+        metalness: 0.2,
+      })
     );
-    fridge.position.set(-12, 1.4, -10);
+    marbleTop.position.set(-7, 1.07, -6);
+    marbleTop.castShadow = true;
+    marbleTop.receiveShadow = true;
+    scene.add(marbleTop);
+
+    // Modern Induction Cooktop (Glass with glowing red rings)
+    const stoveTop = new THREE.Mesh(
+      new THREE.BoxGeometry(2.0, 0.02, 1.2),
+      new THREE.MeshStandardMaterial({ color: 0x050505, roughness: 0.05, metalness: 0.8 })
+    );
+    stoveTop.position.set(-8.0, 1.15, -6);
+    scene.add(stoveTop);
+
+    // Refrigerator Stainless Steel
+    const fridge = new THREE.Mesh(
+      new THREE.BoxGeometry(2.2, 2.9, 2.0),
+      new THREE.MeshStandardMaterial({ color: 0x8A969E, metalness: 0.75, roughness: 0.25 })
+    );
+    fridge.position.set(-12, 1.45, -10);
     fridge.castShadow = true;
     scene.add(fridge);
 
     // === ZONE 2: KAMAR TIDUR / BEDROOM (X: 7, Z: -6) ===
-    const bed = new THREE.Mesh(
-      new THREE.BoxGeometry(4.5, 0.8, 6),
-      new THREE.MeshStandardMaterial({ color: 0x2F6B5E, roughness: 0.8 })
+    // Bedroom Rug with Woven Fabric Texture
+    const bedRug = new THREE.Mesh(
+      new THREE.PlaneGeometry(6.5, 7.5),
+      new THREE.MeshStandardMaterial({ map: rugTex, roughness: 0.9 })
     );
-    bed.position.set(8, 0.4, -7);
-    bed.castShadow = true;
-    scene.add(bed);
+    bedRug.rotation.x = -Math.PI / 2;
+    bedRug.position.set(7.5, 0.02, -7.0);
+    bedRug.receiveShadow = true;
+    scene.add(bedRug);
 
-    // Nightstand & Lamp
+    // Bed Frame & Mattress
+    const bedFrame = new THREE.Mesh(
+      new THREE.BoxGeometry(4.8, 0.5, 6.2),
+      new THREE.MeshStandardMaterial({ color: 0x2A1C14, roughness: 0.6 })
+    );
+    bedFrame.position.set(7.5, 0.25, -7.0);
+    bedFrame.castShadow = true;
+    scene.add(bedFrame);
+
+    const mattress = new THREE.Mesh(
+      new THREE.BoxGeometry(4.4, 0.55, 5.8),
+      new THREE.MeshStandardMaterial({ color: 0xE8EDE9, roughness: 0.85 })
+    );
+    mattress.position.set(7.5, 0.7, -7.0);
+    mattress.castShadow = true;
+    scene.add(mattress);
+
+    // Pillows
+    const pillowGeo = new THREE.BoxGeometry(1.6, 0.25, 1.0);
+    const pillowMat = new THREE.MeshStandardMaterial({ color: 0x2F6B5E, roughness: 0.7 });
+    const pillow1 = new THREE.Mesh(pillowGeo, pillowMat);
+    pillow1.position.set(6.2, 1.05, -9.2);
+    const pillow2 = new THREE.Mesh(pillowGeo, pillowMat);
+    pillow2.position.set(8.8, 1.05, -9.2);
+    scene.add(pillow1);
+    scene.add(pillow2);
+
+    // Nightstand & Bedside Lamp
     const nightstand = new THREE.Mesh(
       new THREE.BoxGeometry(1.2, 0.9, 1.2),
-      new THREE.MeshStandardMaterial({ color: 0x483C32 })
+      new THREE.MeshStandardMaterial({ color: 0x2A1C14, roughness: 0.5 })
     );
-    nightstand.position.set(4.5, 0.45, -9);
+    nightstand.position.set(4.3, 0.45, -9.2);
     nightstand.castShadow = true;
     scene.add(nightstand);
 
-    // Bedside Table Lamp
     const deskLamp = new THREE.Mesh(
-      new THREE.CylinderGeometry(0.2, 0.4, 0.6),
-      new THREE.MeshStandardMaterial({ color: 0xE8ECE6 })
+      new THREE.CylinderGeometry(0.2, 0.45, 0.65),
+      new THREE.MeshStandardMaterial({ color: 0xF2EAD8, roughness: 0.3 })
     );
-    deskLamp.position.set(4.5, 1.2, -9);
+    deskLamp.position.set(4.3, 1.25, -9.2);
     scene.add(deskLamp);
 
     // === ZONE 3: KAMAR MANDI / WASHROOM (X: -7, Z: 6) ===
     const bathTub = new THREE.Mesh(
-      new THREE.BoxGeometry(3.5, 0.9, 5),
-      new THREE.MeshStandardMaterial({ color: 0xE8ECE6, roughness: 0.1 })
+      new THREE.BoxGeometry(3.6, 1.0, 5.2),
+      new THREE.MeshStandardMaterial({ color: 0xEAEFEF, roughness: 0.1, metalness: 0.05 })
     );
-    bathTub.position.set(-8, 0.45, 7);
+    bathTub.position.set(-8, 0.5, 7);
     bathTub.castShadow = true;
     scene.add(bathTub);
 
-    // === ZONE 4: LORONG / HALL & LIVING ROOM (X: 7, Z: 6) ===
-    const sofa = new THREE.Mesh(
-      new THREE.BoxGeometry(6.5, 1.1, 2.8),
-      new THREE.MeshStandardMaterial({ color: 0x3D5A50, roughness: 0.7 })
+    // Bathroom Mirror Vanity
+    const vanityMirror = new THREE.Mesh(
+      new THREE.BoxGeometry(3.0, 1.8, 0.08),
+      new THREE.MeshStandardMaterial({ color: 0xC0D6DF, metalness: 0.95, roughness: 0.05 })
     );
-    sofa.position.set(7, 0.55, 7);
+    vanityMirror.position.set(-8, 2.2, 11.9);
+    scene.add(vanityMirror);
+
+    // === ZONE 4: LORONG & RUANG KELUARGA (X: 7, Z: 6) ===
+    // Living Room Woven Geometric Rug
+    const livingRug = new THREE.Mesh(
+      new THREE.PlaneGeometry(8.5, 6.5),
+      new THREE.MeshStandardMaterial({ map: rugTex, roughness: 0.9 })
+    );
+    livingRug.rotation.x = -Math.PI / 2;
+    livingRug.position.set(7.0, 0.02, 6.5);
+    livingRug.receiveShadow = true;
+    scene.add(livingRug);
+
+    // Modern Emerald Sectional Sofa
+    const sofa = new THREE.Mesh(
+      new THREE.BoxGeometry(6.8, 1.2, 2.8),
+      new THREE.MeshStandardMaterial({ color: 0x1C4A40, roughness: 0.75 })
+    );
+    sofa.position.set(7, 0.6, 7.5);
     sofa.castShadow = true;
     scene.add(sofa);
 
-    // Smart Speaker
-    const speaker = new THREE.Mesh(
-      new THREE.CylinderGeometry(0.35, 0.35, 0.8, 24),
-      new THREE.MeshStandardMaterial({ color: 0x111111, metalness: 0.8, roughness: 0.3 })
+    // Coffee Table with Glass Top
+    const tableBase = new THREE.Mesh(
+      new THREE.BoxGeometry(3.6, 0.45, 1.8),
+      new THREE.MeshStandardMaterial({ color: 0x151B1E })
     );
-    speaker.position.set(2.5, 0.9, 3);
+    tableBase.position.set(7, 0.25, 4.5);
+    scene.add(tableBase);
+
+    // Flat Wall Smart TV 65-Inch
+    const tvScreen = new THREE.Mesh(
+      new THREE.BoxGeometry(4.8, 2.5, 0.1),
+      new THREE.MeshStandardMaterial({ color: 0x080A0C, roughness: 0.1, metalness: 0.9 })
+    );
+    tvScreen.position.set(7, 2.2, 11.88);
+    scene.add(tvScreen);
+
+    // Smart Speaker Tower
+    const speaker = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.38, 0.38, 1.1, 24),
+      new THREE.MeshStandardMaterial({ color: 0x111618, metalness: 0.85, roughness: 0.25 })
+    );
+    speaker.position.set(2.5, 0.55, 3.2);
     speaker.castShadow = true;
     scene.add(speaker);
 

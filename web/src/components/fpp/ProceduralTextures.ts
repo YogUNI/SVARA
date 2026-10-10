@@ -207,3 +207,85 @@ export function createSkyboxTexture(): THREE.CanvasTexture {
 
   return new THREE.CanvasTexture(canvas);
 }
+
+// 6. Lush Cartoon Stylized Grass Texture
+export function createCartoonGrassTexture(): THREE.CanvasTexture {
+  const canvas = document.createElement('canvas');
+  canvas.width = 512;
+  canvas.height = 512;
+  const ctx = canvas.getContext('2d')!;
+
+  // Fresh vibrant cartoon green base
+  ctx.fillStyle = '#489A3E';
+  ctx.fillRect(0, 0, 512, 512);
+
+  // Stylized grass blades patches
+  const bladeColors = ['#5CB84D', '#6BCB58', '#388031', '#78D663'];
+  for (let i = 0; i < 400; i++) {
+    const gx = Math.random() * 512;
+    const gy = Math.random() * 512;
+    const color = bladeColors[Math.floor(Math.random() * bladeColors.length)];
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.moveTo(gx, gy);
+    ctx.lineTo(gx + 4 + Math.random() * 4, gy - 8 - Math.random() * 8);
+    ctx.lineTo(gx + 8, gy);
+    ctx.closePath();
+    ctx.fill();
+  }
+
+  // Cute tiny cartoon wildflowers (yellow, white, pink)
+  const flowerColors = ['#FFD152', '#FFFFFF', '#FF85A1'];
+  for (let f = 0; f < 35; f++) {
+    const fx = Math.random() * 512;
+    const fy = Math.random() * 512;
+    ctx.fillStyle = flowerColors[Math.floor(Math.random() * flowerColors.length)];
+    ctx.beginPath();
+    ctx.arc(fx, fy, 3.5, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#FFAA00';
+    ctx.beginPath();
+    ctx.arc(fx, fy, 1.2, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.RepeatWrapping;
+  texture.repeat.set(6, 6);
+  return texture;
+}
+
+// 7. Stylized Stone Pavers / Garden Walkway Texture
+export function createStonePathTexture(): THREE.CanvasTexture {
+  const canvas = document.createElement('canvas');
+  canvas.width = 512;
+  canvas.height = 512;
+  const ctx = canvas.getContext('2d')!;
+
+  ctx.fillStyle = '#3F4E46'; // Dirt/moss mortar base
+  ctx.fillRect(0, 0, 512, 512);
+
+  // Rounded cartoon stepping stones
+  const stoneColors = ['#8A9A90', '#A3B4AA', '#76877D', '#B5C4BB'];
+  for (let y = 16; y < 512; y += 64) {
+    for (let x = 16; x < 512; x += 64) {
+      const sx = x + (Math.random() - 0.5) * 12;
+      const sy = y + (Math.random() - 0.5) * 12;
+      const color = stoneColors[Math.floor(Math.random() * stoneColors.length)];
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.roundRect(sx, sy, 52, 52, [14, 14, 14, 14]);
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(0, 0, 0, 0.25)';
+      ctx.lineWidth = 3;
+      ctx.stroke();
+    }
+  }
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.RepeatWrapping;
+  texture.repeat.set(2, 6);
+  return texture;
+}

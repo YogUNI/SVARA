@@ -8,6 +8,8 @@ import {
   createWallPlasterTexture,
   createFabricRugTexture,
   createSkyboxTexture,
+  createCartoonGrassTexture,
+  createStonePathTexture,
 } from './fpp/ProceduralTextures';
 import { createFPPArms } from './fpp/FPPArmsRig';
 import { soundSystem } from './fpp/SoundSystem';
@@ -32,8 +34,8 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isLocked, setIsLocked] = useState(false);
-  const [currentRoom, setCurrentRoom] = useState('Lorong (Living / Hall)');
-  const [playerCoord, setPlayerCoord] = useState({ x: 0, z: 4, rotY: 0 });
+  const [currentRoom, setCurrentRoom] = useState('🌿 Taman Rumah (Front Garden)');
+  const [playerCoord, setPlayerCoord] = useState({ x: 0, z: 23, rotY: 0 });
   
   // Three.js references
   const controlsRef = useRef<PointerLockControls | null>(null);
@@ -61,11 +63,12 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
 
     // 1. Scene, Camera (Perspective Human Eye 75 FOV), Renderer
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x0E191D); // Deep modern dark room atmosphere
-    scene.fog = new THREE.FogExp2(0x0E191D, 0.035);
+    scene.background = new THREE.Color(0x78B7E3); // Bright sunny cartoon sky blue
+    scene.fog = new THREE.FogExp2(0x78B7E3, 0.012);
 
     const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 100);
-    camera.position.set(0, 1.65, 4); // Eye level 1.65 meters
+    camera.position.set(0, 1.65, 23); // Spawn di Taman Rumah Depan (Z=23) menghadap pintu masuk rumah!
+    camera.lookAt(0, 1.65, 10);
 
     // 2. Attach FPP Arms & Smartwatch to Camera
     const armsRig = createFPPArms();
@@ -85,16 +88,25 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
     controls.addEventListener('lock', () => setIsLocked(true));
     controls.addEventListener('unlock', () => setIsLocked(false));
 
-    // 3. Ambient & Directional Lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.35);
+    // 3. Warm Sun Directional Lighting & Ambient Glow
+    const ambientLight = new THREE.AmbientLight(0xfff5e6, 0.65); // Warm sun ambient
     scene.add(ambientLight);
 
-    // 4. Generate Procedural PBR Textures
+    const sunLight = new THREE.DirectionalLight(0xfffaed, 1.2);
+    sunLight.position.set(15, 25, 20);
+    sunLight.castShadow = true;
+    sunLight.shadow.mapSize.width = 2048;
+    sunLight.shadow.mapSize.height = 2048;
+    scene.add(sunLight);
+
+    // 4. Generate Procedural Textures (Interior PBR & Cartoon Garden)
     const woodFloorTex = createWoodFloorTexture();
     const marbleTex = createMarbleTexture();
     const wallPlasterTex = createWallPlasterTexture();
     const rugTex = createFabricRugTexture();
     const skyTex = createSkyboxTexture();
+    const grassTex = createCartoonGrassTexture();
+    const stonePathTex = createStonePathTexture();
 
     // Floor with Authentic Wood Plank Texture & Specular Glaze
     const floorGeo = new THREE.PlaneGeometry(28, 24);
@@ -143,9 +155,149 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
 
     // Outer perimeter walls (height 3.6m)
     createWallWithBaseboard(28, 3.6, 0.5, 0, 1.8, -12); // North
-    createWallWithBaseboard(28, 3.6, 0.5, 0, 1.8, 12);  // South
     createWallWithBaseboard(0.5, 3.6, 24, -14, 1.8, 0); // West
     createWallWithBaseboard(0.5, 3.6, 24, 14, 1.8, 0);  // East
+
+    // South wall with Front Entrance Doorway (Left & Right segments leaving 3.2m open entrance at center)
+    createWallWithBaseboard(12.4, 3.6, 0.5, -7.8, 1.8, 12); // South-west wall
+    createWallWithBaseboard(12.4, 3.6, 0.5, 7.8, 1.8, 12);  // South-east wall
+    // Doorway lintel beam above door
+    const doorLintel = new THREE.Mesh(new THREE.BoxGeometry(3.4, 0.8, 0.5), wallMat);
+    doorLintel.position.set(0, 3.2, 12);
+    scene.add(doorLintel);
+
+    // Front Door Porch Canopy & Welcome Mat
+    const porchCanopy = new THREE.Mesh(
+      new THREE.BoxGeometry(4.2, 0.25, 2.5),
+      new THREE.MeshStandardMaterial({ color: 0x24353D, roughness: 0.4 })
+    );
+    porchCanopy.position.set(0, 3.3, 13.2);
+    scene.add(porchCanopy);
+
+    // Porch Light Lamp with warm golden glow
+    const porchLight = new THREE.PointLight(0xF2B33D, 2.5, 12);
+    porchLight.position.set(0, 3.0, 13.0);
+    scene.add(porchLight);
+
+    // Welcome mat
+    const matMesh = new THREE.Mesh(
+      new THREE.PlaneGeometry(2.4, 1.2),
+      new THREE.MeshStandardMaterial({ color: 0x8C3A27, roughness: 0.9 })
+    );
+    matMesh.rotation.x = -Math.PI / 2;
+    matMesh.position.set(0, 0.02, 12.8);
+    scene.add(matMesh);
+
+    // ==========================================
+    // 5. CARTOON FRONT GARDEN (TAMAN RUMAH DEPAN)
+    // ==========================================
+    // Grand Garden Grass Ground
+    const gardenGrassGeo = new THREE.PlaneGeometry(48, 24);
+    const gardenGrassMat = new THREE.MeshStandardMaterial({
+      map: grassTex,
+      roughness: 0.8,
+      metalness: 0.0,
+    });
+    const gardenGrass = new THREE.Mesh(gardenGrassGeo, gardenGrassMat);
+    gardenGrass.rotation.x = -Math.PI / 2;
+    gardenGrass.position.set(0, -0.01, 23.5); // Spans from Z=11.5 to Z=35.5
+    gardenGrass.receiveShadow = true;
+    scene.add(gardenGrass);
+
+    // Stone Walkway Path from garden to front door
+    const stonePathGeo = new THREE.PlaneGeometry(3.0, 14);
+    const stonePathMat = new THREE.MeshStandardMaterial({
+      map: stonePathTex,
+      roughness: 0.7,
+      metalness: 0.05,
+    });
+    const stonePath = new THREE.Mesh(stonePathGeo, stonePathMat);
+    stonePath.rotation.x = -Math.PI / 2;
+    stonePath.position.set(0, 0.015, 19);
+    stonePath.receiveShadow = true;
+    scene.add(stonePath);
+
+    // Cartoon Tree Generator (Puffy cartoon foliage + stylized trunk)
+    const createCartoonTree = (tx: number, tz: number, scale = 1.0) => {
+      const treeGroup = new THREE.Group();
+      
+      // Tree trunk
+      const trunkMat = new THREE.MeshStandardMaterial({ color: 0x6E472A, roughness: 0.85 });
+      const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.3 * scale, 0.45 * scale, 2.8 * scale, 10), trunkMat);
+      trunk.position.y = (1.4 * scale);
+      trunk.castShadow = true;
+      treeGroup.add(trunk);
+
+      // Puffy cartoon foliage spheres
+      const leafMat = new THREE.MeshStandardMaterial({
+        color: 0x3CA64E,
+        roughness: 0.65,
+        flatShading: true,
+      });
+
+      const crown1 = new THREE.Mesh(new THREE.DodecahedronGeometry(1.6 * scale, 1), leafMat);
+      crown1.position.y = 3.2 * scale;
+      crown1.castShadow = true;
+      treeGroup.add(crown1);
+
+      const crown2 = new THREE.Mesh(new THREE.DodecahedronGeometry(1.2 * scale, 1), leafMat);
+      crown2.position.set(-0.6 * scale, 2.6 * scale, 0.4 * scale);
+      crown2.castShadow = true;
+      treeGroup.add(crown2);
+
+      const crown3 = new THREE.Mesh(new THREE.DodecahedronGeometry(1.3 * scale, 1), leafMat);
+      crown3.position.set(0.6 * scale, 2.7 * scale, -0.3 * scale);
+      crown3.castShadow = true;
+      treeGroup.add(crown3);
+
+      treeGroup.position.set(tx, 0, tz);
+      scene.add(treeGroup);
+    };
+
+    // Plant lush cartoon trees along front garden border
+    createCartoonTree(-8, 20, 1.2);
+    createCartoonTree(-14, 24, 1.4);
+    createCartoonTree(-6, 28, 1.0);
+    createCartoonTree(8, 20, 1.1);
+    createCartoonTree(14, 25, 1.3);
+    createCartoonTree(6, 29, 0.95);
+
+    // Cute Cartoon Garden Fences (Picket Fence along garden boundary)
+    const fenceMat = new THREE.MeshStandardMaterial({ color: 0xFFFFFF, roughness: 0.5 });
+    const createFencePaling = (fx: number, fz: number) => {
+      const paling = new THREE.Mesh(new THREE.BoxGeometry(0.14, 1.1, 0.06), fenceMat);
+      paling.position.set(fx, 0.55, fz);
+      paling.castShadow = true;
+      scene.add(paling);
+    };
+
+    // Front garden boundary fence with gate gap
+    for (let x = -20; x <= -2.5; x += 0.9) {
+      createFencePaling(x, 32);
+    }
+    for (let x = 2.5; x <= 20; x += 0.9) {
+      createFencePaling(x, 32);
+    }
+    // Horizontal fence beams
+    const fenceBeam1 = new THREE.Mesh(new THREE.BoxGeometry(18, 0.08, 0.06), fenceMat);
+    fenceBeam1.position.set(-11.5, 0.7, 32);
+    scene.add(fenceBeam1);
+    const fenceBeam2 = new THREE.Mesh(new THREE.BoxGeometry(18, 0.08, 0.06), fenceMat);
+    fenceBeam2.position.set(11.5, 0.7, 32);
+    scene.add(fenceBeam2);
+
+    // Garden Wooden Bench
+    const benchGroup = new THREE.Group();
+    const benchWoodMat = new THREE.MeshStandardMaterial({ color: 0x94542B, roughness: 0.6 });
+    const benchSeat = new THREE.Mesh(new THREE.BoxGeometry(2.4, 0.1, 0.7), benchWoodMat);
+    benchSeat.position.set(0, 0.5, 0);
+    benchGroup.add(benchSeat);
+    const benchBack = new THREE.Mesh(new THREE.BoxGeometry(2.4, 0.6, 0.08), benchWoodMat);
+    benchBack.position.set(0, 0.85, -0.32);
+    benchGroup.add(benchBack);
+    benchGroup.position.set(5.5, 0, 18);
+    benchGroup.rotation.y = -Math.PI / 4;
+    scene.add(benchGroup);
 
     // Partition walls with doorways
     createWallWithBaseboard(0.5, 3.6, 8, 0, 1.8, -8);  // North center divider
@@ -446,7 +598,7 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
         direction.x = Number(moveStateRef.current.right) - Number(moveStateRef.current.left);
         direction.normalize();
 
-        const speed = moveStateRef.current.sprint ? 14.0 : 7.5;
+        const speed = moveStateRef.current.sprint ? 38.0 : 22.0;
         if (moveStateRef.current.forward || moveStateRef.current.backward) {
           velocity.z -= direction.z * speed * delta;
         }
@@ -457,22 +609,30 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
         controls.moveRight(-velocity.x * delta);
         controls.moveForward(-velocity.z * delta);
 
-        // Collision Bounds (Stay inside home boundary)
+        // Collision Bounds (Allowed area: House [-14..14, -11..12] + Front Garden [-22..22, 12..31])
         const pos = camera.position;
-        pos.x = Math.max(-13.0, Math.min(13.0, pos.x));
-        pos.z = Math.max(-11.0, Math.min(11.0, pos.z));
+        if (pos.z > 12.0) {
+          // In the garden area
+          pos.x = Math.max(-21.0, Math.min(21.0, pos.x));
+          pos.z = Math.max(12.0, Math.min(31.0, pos.z));
+        } else {
+          // Inside the house
+          // Doorway transition threshold (Z around 12, X must be within entrance [-2.0..2.0] if near Z=12)
+          pos.x = Math.max(-13.0, Math.min(13.0, pos.x));
+          pos.z = Math.max(-11.0, Math.min(12.5, pos.z));
+        }
 
         // Sinusoidal Head Bobbing (Real Human Walking Rhythm) & Footstep Triggers
         const moveSpeed = Math.sqrt(velocity.x * velocity.x + velocity.z * velocity.z);
         if (moveSpeed > 0.05) {
-          walkCycle += delta * (moveStateRef.current.sprint ? 14 : 9);
+          walkCycle += delta * (moveStateRef.current.sprint ? 16 : 11);
           pos.y = 1.65 + Math.sin(walkCycle) * 0.05;
 
           // Footstep audio triggered at lowest dip of head bob (step contact)
           const currentStepPhase = Math.floor(walkCycle / Math.PI);
           if (currentStepPhase > lastStepPhase) {
             lastStepPhase = currentStepPhase;
-            const surface = (pos.x < 0 && pos.z > 0) ? 'tile' : (pos.x > 0 && pos.z < 0 ? 'carpet' : 'wood');
+            const surface = (pos.z > 12.0) ? 'carpet' : (pos.x < 0 && pos.z > 0 ? 'tile' : (pos.x > 0 && pos.z < 0 ? 'carpet' : 'wood'));
             soundSystem.playFootstep(surface);
           }
         } else {
@@ -480,7 +640,9 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
         }
 
         // Room Location Tracker based on player coordinates
-        if (pos.x < 0 && pos.z < 0) {
+        if (pos.z > 12.5) {
+          setCurrentRoom('🌿 Taman Rumah (Front Garden)');
+        } else if (pos.x < 0 && pos.z < 0) {
           setCurrentRoom('Dapur (Kitchen)');
         } else if (pos.x > 0 && pos.z < 0) {
           setCurrentRoom('Kamar Tidur (Bedroom)');

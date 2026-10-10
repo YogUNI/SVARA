@@ -71,6 +71,12 @@ export const RadarMiniMap: React.FC<RadarMiniMapProps> = ({
     ctx.lineTo(toMapX(14), toMapY(0));
     ctx.stroke();
 
+    // Front Garden Lawn Outline & Walkway
+    ctx.strokeStyle = 'rgba(62, 224, 143, 0.4)';
+    ctx.strokeRect(toMapX(-21), toMapY(12), 42 * mapScale, 19 * mapScale);
+    ctx.fillStyle = 'rgba(78, 161, 142, 0.18)';
+    ctx.fillRect(toMapX(-1.5), toMapY(12), 3 * mapScale, 14 * mapScale);
+
     // 3. Smart Device Icons / Dots
     const drawDeviceDot = (wx: number, wz: number, isOn: boolean, label: string) => {
       const mx = toMapX(wx);

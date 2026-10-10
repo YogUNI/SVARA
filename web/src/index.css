@@ -1,0 +1,325 @@
+/* SVARA Design System Tokens per docs/06 §3 & antislop-ui rules */
+:root {
+  --plaster: #E8ECE6;
+  --ink: #16303A;
+  --pine: #2F6B5E;
+  --pine-hover: #26574C;
+  --lamp: #F2B33D;
+  --lamp-glow: rgba(242, 179, 61, 0.28);
+  --brick: #C4492F;
+  --brick-subtle: rgba(196, 73, 47, 0.12);
+  --mist: #A9B8B2;
+  --mist-light: #D5DDD9;
+  --paper: #F6F8F4;
+  --white: #FFFFFF;
+
+  --font-sans: 'Familjen Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: 'Newsreader', Georgia, serif;
+
+  --radius-sm: 4px;
+  --radius-lg: 16px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--plaster);
+  color: var(--ink);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* App container */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Navigation */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid var(--mist);
+  background-color: var(--plaster);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.brand-badge {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--pine);
+  color: var(--paper);
+  font-weight: 500;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ink);
+  cursor: pointer;
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-sm);
+  transition: all 150ms ease;
+}
+
+.nav-btn:hover {
+  background-color: var(--mist-light);
+}
+
+.nav-btn.active {
+  background-color: var(--ink);
+  color: var(--paper);
+}
+
+.status-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--mist);
+  background-color: var(--paper);
+  font-weight: 500;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.status-dot.ready { background-color: var(--pine); }
+.status-dot.error { background-color: var(--brick); }
+
+/* Main layout */
+.main-content {
+  flex: 1;
+  max-width: 1380px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Floor plan & control grid */
+.stage-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 1.75rem;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .stage-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Panel Containers */
+.panel {
+  background-color: var(--paper);
+  border: 1px solid var(--mist);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: 0 4px 16px rgba(22, 48, 58, 0.04);
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--mist-light);
+}
+
+.panel-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* Floor plan specific */
+.floorplan-wrapper {
+  position: relative;
+  width: 100%;
+  background: var(--paper);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid var(--ink);
+}
+
+/* Push to Talk Bar */
+.control-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background-color: var(--paper);
+  border: 1px solid var(--mist);
+  border-radius: var(--radius-lg);
+}
+
+.mic-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background-color: var(--pine);
+  color: var(--white);
+  border: none;
+  font-family: var(--font-sans);
+  font-size: 1.15rem;
+  font-weight: 600;
+  padding: 1rem 2.5rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 160ms cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 12px rgba(47, 107, 94, 0.2);
+  user-select: none;
+}
+
+.mic-btn:hover {
+  background-color: var(--pine-hover);
+  transform: translateY(-1px);
+}
+
+.mic-btn.recording {
+  background-color: var(--brick);
+  animation: pulse 1.2s infinite;
+  box-shadow: 0 4px 18px rgba(196, 73, 47, 0.35);
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+.suggested-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.phrase-chip {
+  font-size: 0.85rem;
+  color: var(--ink);
+  background-color: var(--mist-light);
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 120ms ease;
+}
+
+.phrase-chip:hover {
+  background-color: var(--mist);
+}
+
+/* Slot predictions */
+.slot-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 0;
+  border-bottom: 1px dashed var(--mist-light);
+}
+
+.slot-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--mist);
+  width: 90px;
+}
+
+.slot-val {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink);
+  flex: 1;
+}
+
+.slot-bar-wrap {
+  width: 140px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.slot-bar-bg {
+  flex: 1;
+  height: 8px;
+  background-color: var(--mist-light);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.slot-bar-fill {
+  height: 100%;
+  background-color: var(--pine);
+  border-radius: 4px;
+}
+
+.slot-pct {
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  width: 45px;
+  text-align: right;
+}
+
+/* Event log table */
+.event-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--mist-light);
+}
+
+.badge-accepted {
+  color: var(--pine);
+  font-weight: 600;
+}
+.badge-rejected {
+  color: var(--brick);
+  font-weight: 600;
+}

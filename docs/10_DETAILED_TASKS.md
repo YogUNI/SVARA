@@ -189,6 +189,17 @@ Privacy gate: nothing from this phase except `metadata.csv` is ever committed (d
 | P8-22 | QA pass 2: regression on fixed bugs | H | M | P8-21 | confirmed in issues |
 | P8-23 | Measure end-to-end latency in the browser (stop → result) separately from model latency | H | M | P8-18 | table in notes; included in Bab 7 |
 
+## 12b. Phase P8.5 — FPP 3D Walkthrough (Game-Style Interactive Smart Home)
+| ID | Task | Owner | Effort | Depends | Done when |
+|---|---|---|---|---|---|
+| P8.5-01 | Kinematic First-Person Controller: PointerLockControls (360° mouse look), WASD movement with velocity damping, and sinusoidal head bobbing | Y | M | P8-07 | smooth 60 FPS walking in browser |
+| P8.5-02 | Collision detection & Room Boundaries: AABB bounding box collision preventing wall penetration | Y | S | P8.5-01 | player cannot walk through walls |
+| P8.5-03 | Realistic PBR 4-Zone Smart House Interior: textured floor, walls, doors, kitchen counters, bed, bath, and sofa | Y | L | P8.5-02 | detailed aesthetic 3D house scene |
+| P8.5-04 | Dynamic Point & Spot Lighting: ceiling lights, bedside lamp, thermal heater glow, and audio reactive speaker pulses | Y | M | P8.5-03 | lights cast real shadows & react to state |
+| P8.5-05 | First-Person Presence (Arms & Smartwatch): 3D arms model with interactive smartwatch HUD and walkie-talkie raise animation | Y | M | P8.5-03 | arms visible in viewport, raises on Spacebar |
+| P8.5-06 | Spacebar Push-to-Talk Speech Hook & In-Game HUD: center reticle crosshair, room location tag, floating command subtitle, and mini-map | Y | M | P8.5-01 | user holds Space to talk & observes instant device reaction |
+| P8.5-07 | Multi-Camera View Toggle (V key): seamless switching between FPP, Isometric 3D, and 2D Blueprint modes | Y | S | P8.5-06 | toggle switches camera instantly without state loss |
+
 ## 13. Phase P9 — Field test (W6–W7)
 | ID | Task | Owner | Effort | Depends | Done when |
 |---|---|---|---|---|---|

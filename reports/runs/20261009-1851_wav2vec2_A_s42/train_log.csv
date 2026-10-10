@@ -1,0 +1,2 @@
+epoch,train_loss,train_acc_exact,val_loss,val_acc_exact,val_acc_action,val_acc_object,val_acc_location,epoch_time_s
+1,2.91950,0.3196,0.46525,0.8918,0.9506,0.9458,0.9752,764.99

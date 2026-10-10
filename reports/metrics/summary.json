@@ -1,6 +1,67 @@
 {
-  "generated_at": "2026-10-08T19:23:53.865031",
-  "total_runs": 0,
-  "runs": {},
+  "generated_at": "2026-10-10T15:51:47.301142",
+  "total_runs": 4,
+  "runs": {
+    "20261009-1851_wav2vec2_A_s42": {
+      "A_test": {
+        "exact_match_acc": 0.9533350909570261,
+        "action_acc": 0.9876087529659899,
+        "object_acc": 0.9670445557606117,
+        "location_acc": 0.997627208014764,
+        "num_samples": 3793,
+        "exact_match_ci95": [
+          0.9464803585552333,
+          0.9596625362509886
+        ],
+        "split": "A",
+        "set": "test"
+      }
+    },
+    "20261009-1953_wav2vec2_A_s42": {
+      "A_test": {
+        "exact_match_acc": 0.9960453466912734,
+        "action_acc": 0.997627208014764,
+        "object_acc": 0.9989454257843395,
+        "location_acc": 0.9989454257843395,
+        "num_samples": 3793,
+        "exact_match_ci95": [
+          0.9939361982599525,
+          0.9978908515686792
+        ],
+        "split": "A",
+        "set": "test"
+      }
+    },
+    "20261010-0128_wav2vec2_B1_s42": {
+      "B1_test": {
+        "exact_match_acc": 0.9587301587301588,
+        "action_acc": 0.9883597883597883,
+        "object_acc": 0.9684303350970017,
+        "location_acc": 0.9961199294532628,
+        "num_samples": 5670,
+        "exact_match_ci95": [
+          0.9532583774250442,
+          0.9638447971781305
+        ],
+        "split": "B1",
+        "set": "test"
+      }
+    },
+    "20261010-0836_wav2vec2_B1_s42": {
+      "B1_test": {
+        "exact_match_acc": 0.008289241622574956,
+        "action_acc": 0.15361552028218695,
+        "object_acc": 0.16419753086419753,
+        "location_acc": 0.4038800705467372,
+        "num_samples": 5670,
+        "exact_match_ci95": [
+          0.006168430335097006,
+          0.010758377425044091
+        ],
+        "split": "B1",
+        "set": "test"
+      }
+    }
+  },
   "ablations": {}
 }

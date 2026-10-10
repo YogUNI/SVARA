@@ -21,6 +21,7 @@ start early and run in parallel; the web app starts only when a decent exported 
 | P6 | Robustness, fairness, reject | 1 w | Y (H supplies own set + noise clips) | P3, P5 |
 | P7 | Export, quantize, benchmark | 0.5 w | Y | P3 |
 | P8 | Backend + web demo | 1.5 w | Y builds, **H does QA** | P7 |
+| P8.5 | FPP 3D Walkthrough (Game Mode) | 0.5 w | Y (PBR, Controller, Voice HUD) | P8 |
 | P9 | Field test & polish | 0.5 w | **H leads sessions**, Y fixes | P8 |
 | P10 | Report, video, repo release | 1.5 w (starts at P4) | split by chapter (docs/10), H video | all |
 Suggested total: about 6–8 weeks of part-time work. P10 overlaps with P4–P9: write chapters as results land.
@@ -72,6 +73,12 @@ Done when: `models/svara.onnx` (+ meta JSON with label maps, normalization, thre
 Tasks per docs/05 and docs/06: FastAPI app; device state machine; frontend (Live view, Lab view, About view);
 browser recording -> 16 kHz WAV; Docker image; deployment to a free host.
 Done when: demo works from a phone and a laptop browser; end-to-end latency measured; Lab page reads `summary.json`.
+
+## P8.5 — FPP 3D Walkthrough (Game-Style Interactive Smart Home)
+Tasks per docs/13: Kinematic first-person controller (WASD + Mouse 360° PointerLock); eye-level perspective (1.65m);
+dynamic head bobbing; collision detection; realistic PBR interior rooms (kitchen, bedroom, washroom, living room);
+real point & spot lights; hands presence with smartwatch; Spacebar push-to-talk voice hook; in-game HUD & mini-map.
+Done when: user can walk smoothly inside the 3D house at 60 FPS, talk via Spacebar, and observe devices reacting in first-person POV.
 
 ## P9 — Field test & polish
 Tasks: run the live demo with new people in a real room (log outcomes); fix UX issues; record the demo video script;

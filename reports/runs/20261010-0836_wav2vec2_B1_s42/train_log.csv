@@ -1,0 +1,1 @@
+epoch,train_loss,train_acc_exact,val_loss,val_acc_exact,val_acc_action,val_acc_object,val_acc_location,epoch_time_s

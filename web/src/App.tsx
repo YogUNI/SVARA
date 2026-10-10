@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Mic, Upload, RotateCcw, Box, Map } from 'lucide-react';
+import { Mic, Upload, RotateCcw, Box, Map, Gamepad2 } from 'lucide-react';
 import { FloorPlan, DeviceState } from './components/FloorPlan';
 import { Home3DView } from './components/Home3DView';
+import { FPPWalkthrough } from './components/FPPWalkthrough';
 
 interface PredictionResult {
   accepted: boolean;
@@ -109,7 +110,7 @@ function writeString(view: DataView, offset: number, string: string) {
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<'home' | 'lab' | 'about'>('home');
-  const [viewMode, setViewMode] = useState<'3d' | '2d'>('3d');
+  const [viewMode, setViewMode] = useState<'fpp' | '3d' | '2d'>('fpp');
   const [devices, setDevices] = useState<DeviceState>(INITIAL_DEVICES);
   const [activeLocation, setActiveLocation] = useState<string | null>(null);
   const [isRecording, setIsRecording] = useState(false);
@@ -343,9 +344,27 @@ export default function App() {
               <div className="panel-header">
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                   <h2 className="panel-title">
-                    {viewMode === '3d' ? 'Simulasi 3D Rumah Cerdas' : 'Denah Rumah 2D (Floor Plan)'}
+                    {viewMode === 'fpp'
+                      ? '🎮 Simulasi POV Orang Pertama (FPP Game Mode)'
+                      : viewMode === '3d'
+                      ? 'Simulasi 3D Rumah Cerdas (Isometric)'
+                      : 'Denah Rumah 2D (Floor Plan)'}
                   </h2>
                   <div style={{ display: 'flex', background: 'var(--mist-light)', borderRadius: '6px', padding: '2px' }}>
+                    <button
+                      className="nav-btn"
+                      style={{
+                        padding: '3px 10px',
+                        fontSize: '0.8rem',
+                        backgroundColor: viewMode === 'fpp' ? 'var(--brick)' : 'transparent',
+                        color: viewMode === 'fpp' ? '#FFF' : 'var(--ink)',
+                        fontWeight: viewMode === 'fpp' ? 700 : 500,
+                      }}
+                      onClick={() => setViewMode('fpp')}
+                    >
+                      <Gamepad2 size={13} style={{ display: 'inline', marginRight: 4 }} />
+                      Mode FPP (Game)
+                    </button>
                     <button
                       className="nav-btn"
                       style={{
@@ -357,7 +376,7 @@ export default function App() {
                       onClick={() => setViewMode('3d')}
                     >
                       <Box size={13} style={{ display: 'inline', marginRight: 4 }} />
-                      Mode 3D
+                      3D Isometrik
                     </button>
                     <button
                       className="nav-btn"
@@ -370,7 +389,7 @@ export default function App() {
                       onClick={() => setViewMode('2d')}
                     >
                       <Map size={13} style={{ display: 'inline', marginRight: 4 }} />
-                      Mode 2D
+                      2D Blueprint
                     </button>
                   </div>
                 </div>
@@ -385,7 +404,16 @@ export default function App() {
                 </button>
               </div>
 
-              {viewMode === '3d' ? (
+              {viewMode === 'fpp' ? (
+                <FPPWalkthrough
+                  devices={devices}
+                  onVoiceTriggerStart={startRecording}
+                  onVoiceTriggerEnd={stopRecording}
+                  isRecording={isRecording}
+                  isProcessing={isProcessing}
+                  lastCommandMessage={lastResult?.effect.message}
+                />
+              ) : viewMode === '3d' ? (
                 <Home3DView
                   devices={devices}
                   activeLocation={activeLocation}

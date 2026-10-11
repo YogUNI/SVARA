@@ -130,11 +130,11 @@ def quantize_int8(input_onnx_path: str, output_quant_path: str):
     from onnxruntime.quantization import QuantType, quantize_dynamic
 
     print(f"[export_onnx] Applying dynamic INT8 quantization -> {output_quant_path}...")
+    model_proto = onnx.load(input_onnx_path)
     quantize_dynamic(
-        model_input=input_onnx_path,
+        model_input=model_proto,
         model_output=output_quant_path,
         weight_type=QuantType.QInt8,
-        extra_options={"DisableShapeInference": True},
     )
     s_orig = os.path.getsize(input_onnx_path) / (1024 * 1024)
     s_q = os.path.getsize(output_quant_path) / (1024 * 1024)

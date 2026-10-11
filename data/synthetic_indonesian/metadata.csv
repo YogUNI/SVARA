@@ -929,3 +929,1243 @@ wavs_16k/id_intent30_463_tts_ardi.wav,tts_ardi,male,"Svara, tolong naikin volume
 wavs_16k/id_intent30_463_tts_gadis.wav,tts_gadis,female,"Svara, tolong naikin volumenya dong.",increase,volume,none,30
 wavs_16k/id_intent30_464_tts_ardi.wav,tts_ardi,male,Kuatkan volume suara speaker ya.,increase,volume,none,30
 wavs_16k/id_intent30_464_tts_gadis.wav,tts_gadis,female,Kuatkan volume suara speaker ya.,increase,volume,none,30
+wavs_16k/id_intent00_465_tts_ardi.wav,tts_ardi,male,Nyalain lampu tidur dong.,activate,lamp,none,0
+wavs_16k/id_intent00_465_tts_gadis.wav,tts_gadis,female,Nyalain lampu tidur dong.,activate,lamp,none,0
+wavs_16k/id_intent00_466_tts_ardi.wav,tts_ardi,male,Lampu kecil tolong idupin.,activate,lamp,none,0
+wavs_16k/id_intent00_466_tts_gadis.wav,tts_gadis,female,Lampu kecil tolong idupin.,activate,lamp,none,0
+wavs_16k/id_intent00_467_tts_ardi.wav,tts_ardi,male,Idupin lampu meja samping ya.,activate,lamp,none,0
+wavs_16k/id_intent00_467_tts_gadis.wav,tts_gadis,female,Idupin lampu meja samping ya.,activate,lamp,none,0
+wavs_16k/id_intent00_468_tts_ardi.wav,tts_ardi,male,Lampu sudut nyalain dong.,activate,lamp,none,0
+wavs_16k/id_intent00_468_tts_gadis.wav,tts_gadis,female,Lampu sudut nyalain dong.,activate,lamp,none,0
+wavs_16k/id_intent00_469_tts_ardi.wav,tts_ardi,male,Nyalain dong lampu duduknya.,activate,lamp,none,0
+wavs_16k/id_intent00_469_tts_gadis.wav,tts_gadis,female,Nyalain dong lampu duduknya.,activate,lamp,none,0
+wavs_16k/id_intent00_470_tts_ardi.wav,tts_ardi,male,Tolong nyalain lampu tidur ya.,activate,lamp,none,0
+wavs_16k/id_intent00_470_tts_gadis.wav,tts_gadis,female,Tolong nyalain lampu tidur ya.,activate,lamp,none,0
+wavs_16k/id_intent00_471_tts_ardi.wav,tts_ardi,male,Hidupin lampu meja dong tolong.,activate,lamp,none,0
+wavs_16k/id_intent00_471_tts_gadis.wav,tts_gadis,female,Hidupin lampu meja dong tolong.,activate,lamp,none,0
+wavs_16k/id_intent00_472_tts_ardi.wav,tts_ardi,male,Nyalain lampu baca dong.,activate,lamp,none,0
+wavs_16k/id_intent00_472_tts_gadis.wav,tts_gadis,female,Nyalain lampu baca dong.,activate,lamp,none,0
+wavs_16k/id_intent00_473_tts_ardi.wav,tts_ardi,male,Lampu baca tolong diidupin ya.,activate,lamp,none,0
+wavs_16k/id_intent00_473_tts_gadis.wav,tts_gadis,female,Lampu baca tolong diidupin ya.,activate,lamp,none,0
+wavs_16k/id_intent00_474_tts_ardi.wav,tts_ardi,male,Idupin lampu nakas dong.,activate,lamp,none,0
+wavs_16k/id_intent00_474_tts_gadis.wav,tts_gadis,female,Idupin lampu nakas dong.,activate,lamp,none,0
+wavs_16k/id_intent00_475_tts_ardi.wav,tts_ardi,male,Nyalain lampu pojok kamar.,activate,lamp,none,0
+wavs_16k/id_intent00_475_tts_gadis.wav,tts_gadis,female,Nyalain lampu pojok kamar.,activate,lamp,none,0
+wavs_16k/id_intent00_476_tts_ardi.wav,tts_ardi,male,Lampu tidur hidupin dong.,activate,lamp,none,0
+wavs_16k/id_intent00_476_tts_gadis.wav,tts_gadis,female,Lampu tidur hidupin dong.,activate,lamp,none,0
+wavs_16k/id_intent00_477_tts_ardi.wav,tts_ardi,male,Tolong idupin lampu samping tempat tidur.,activate,lamp,none,0
+wavs_16k/id_intent00_477_tts_gadis.wav,tts_gadis,female,Tolong idupin lampu samping tempat tidur.,activate,lamp,none,0
+wavs_16k/id_intent00_478_tts_ardi.wav,tts_ardi,male,Nyalain lampu stand dong tolong.,activate,lamp,none,0
+wavs_16k/id_intent00_478_tts_gadis.wav,tts_gadis,female,Nyalain lampu stand dong tolong.,activate,lamp,none,0
+wavs_16k/id_intent00_479_tts_ardi.wav,tts_ardi,male,Lampu hias tolong dinyalain ya.,activate,lamp,none,0
+wavs_16k/id_intent00_479_tts_gadis.wav,tts_gadis,female,Lampu hias tolong dinyalain ya.,activate,lamp,none,0
+wavs_16k/id_intent00_480_tts_ardi.wav,tts_ardi,male,Lampu tidur nyala dong.,activate,lamp,none,0
+wavs_16k/id_intent00_480_tts_gadis.wav,tts_gadis,female,Lampu tidur nyala dong.,activate,lamp,none,0
+wavs_16k/id_intent00_481_tts_ardi.wav,tts_ardi,male,Bisa tolong nyalain lampu belajar gak.,activate,lamp,none,0
+wavs_16k/id_intent00_481_tts_gadis.wav,tts_gadis,female,Bisa tolong nyalain lampu belajar gak.,activate,lamp,none,0
+wavs_16k/id_intent00_482_tts_ardi.wav,tts_ardi,male,Tolong nyalain lampu meja belajar.,activate,lamp,none,0
+wavs_16k/id_intent00_482_tts_gadis.wav,tts_gadis,female,Tolong nyalain lampu meja belajar.,activate,lamp,none,0
+wavs_16k/id_intent00_483_tts_ardi.wav,tts_ardi,male,Idupin lampu bacanya dong.,activate,lamp,none,0
+wavs_16k/id_intent00_483_tts_gadis.wav,tts_gadis,female,Idupin lampu bacanya dong.,activate,lamp,none,0
+wavs_16k/id_intent00_484_tts_ardi.wav,tts_ardi,male,Nyalain lampu meja sudut ya.,activate,lamp,none,0
+wavs_16k/id_intent00_484_tts_gadis.wav,tts_gadis,female,Nyalain lampu meja sudut ya.,activate,lamp,none,0
+wavs_16k/id_intent01_485_tts_ardi.wav,tts_ardi,male,Nyalain lampu kamar dong tolong.,activate,lights,bedroom,1
+wavs_16k/id_intent01_485_tts_gadis.wav,tts_gadis,female,Nyalain lampu kamar dong tolong.,activate,lights,bedroom,1
+wavs_16k/id_intent01_486_tts_ardi.wav,tts_ardi,male,"Kamar tidur gelap banget, tolong nyalain lampunya.",activate,lights,bedroom,1
+wavs_16k/id_intent01_486_tts_gadis.wav,tts_gadis,female,"Kamar tidur gelap banget, tolong nyalain lampunya.",activate,lights,bedroom,1
+wavs_16k/id_intent01_487_tts_ardi.wav,tts_ardi,male,Lampu kamar tidur idupin dong ya.,activate,lights,bedroom,1
+wavs_16k/id_intent01_487_tts_gadis.wav,tts_gadis,female,Lampu kamar tidur idupin dong ya.,activate,lights,bedroom,1
+wavs_16k/id_intent01_488_tts_ardi.wav,tts_ardi,male,Idupin lampu kamar gue dong.,activate,lights,bedroom,1
+wavs_16k/id_intent01_488_tts_gadis.wav,tts_gadis,female,Idupin lampu kamar gue dong.,activate,lights,bedroom,1
+wavs_16k/id_intent01_489_tts_ardi.wav,tts_ardi,male,Nyalain lampu di kamar tidur ya.,activate,lights,bedroom,1
+wavs_16k/id_intent01_489_tts_gadis.wav,tts_gadis,female,Nyalain lampu di kamar tidur ya.,activate,lights,bedroom,1
+wavs_16k/id_intent01_490_tts_ardi.wav,tts_ardi,male,"Kamar gelap nih, tolong idupin lampunya.",activate,lights,bedroom,1
+wavs_16k/id_intent01_490_tts_gadis.wav,tts_gadis,female,"Kamar gelap nih, tolong idupin lampunya.",activate,lights,bedroom,1
+wavs_16k/id_intent01_491_tts_ardi.wav,tts_ardi,male,Lampu kamar tolong dinyalakan ya.,activate,lights,bedroom,1
+wavs_16k/id_intent01_491_tts_gadis.wav,tts_gadis,female,Lampu kamar tolong dinyalakan ya.,activate,lights,bedroom,1
+wavs_16k/id_intent01_492_tts_ardi.wav,tts_ardi,male,Di kamar tolong idupin lampu dong.,activate,lights,bedroom,1
+wavs_16k/id_intent01_492_tts_gadis.wav,tts_gadis,female,Di kamar tolong idupin lampu dong.,activate,lights,bedroom,1
+wavs_16k/id_intent01_493_tts_ardi.wav,tts_ardi,male,Nyalain lampu kamar utama dong.,activate,lights,bedroom,1
+wavs_16k/id_intent01_493_tts_gadis.wav,tts_gadis,female,Nyalain lampu kamar utama dong.,activate,lights,bedroom,1
+wavs_16k/id_intent01_494_tts_ardi.wav,tts_ardi,male,Lampu kamar tidur tolong hidupin.,activate,lights,bedroom,1
+wavs_16k/id_intent01_494_tts_gadis.wav,tts_gadis,female,Lampu kamar tidur tolong hidupin.,activate,lights,bedroom,1
+wavs_16k/id_intent01_495_tts_ardi.wav,tts_ardi,male,Tolong terangin kamar tidur dong.,activate,lights,bedroom,1
+wavs_16k/id_intent01_495_tts_gadis.wav,tts_gadis,female,Tolong terangin kamar tidur dong.,activate,lights,bedroom,1
+wavs_16k/id_intent01_496_tts_ardi.wav,tts_ardi,male,Kamar tidur tolong lampunya diidupin.,activate,lights,bedroom,1
+wavs_16k/id_intent01_496_tts_gadis.wav,tts_gadis,female,Kamar tidur tolong lampunya diidupin.,activate,lights,bedroom,1
+wavs_16k/id_intent01_497_tts_ardi.wav,tts_ardi,male,Nyalain dong lampu kamar tidur ya.,activate,lights,bedroom,1
+wavs_16k/id_intent01_497_tts_gadis.wav,tts_gadis,female,Nyalain dong lampu kamar tidur ya.,activate,lights,bedroom,1
+wavs_16k/id_intent01_498_tts_ardi.wav,tts_ardi,male,Idupin lampu kamar tidur sekarang ya.,activate,lights,bedroom,1
+wavs_16k/id_intent01_498_tts_gadis.wav,tts_gadis,female,Idupin lampu kamar tidur sekarang ya.,activate,lights,bedroom,1
+wavs_16k/id_intent01_499_tts_ardi.wav,tts_ardi,male,Tolong nyalakan lampu di dalam kamar.,activate,lights,bedroom,1
+wavs_16k/id_intent01_499_tts_gadis.wav,tts_gadis,female,Tolong nyalakan lampu di dalam kamar.,activate,lights,bedroom,1
+wavs_16k/id_intent01_500_tts_ardi.wav,tts_ardi,male,Lampu kamar tolong dinyalain cepetan.,activate,lights,bedroom,1
+wavs_16k/id_intent01_500_tts_gadis.wav,tts_gadis,female,Lampu kamar tolong dinyalain cepetan.,activate,lights,bedroom,1
+wavs_16k/id_intent01_501_tts_ardi.wav,tts_ardi,male,Bisa tolong idupin lampu kamar tidur gak.,activate,lights,bedroom,1
+wavs_16k/id_intent01_501_tts_gadis.wav,tts_gadis,female,Bisa tolong idupin lampu kamar tidur gak.,activate,lights,bedroom,1
+wavs_16k/id_intent01_502_tts_ardi.wav,tts_ardi,male,Lampu kamar tidur tolong dinyalakan sekarang.,activate,lights,bedroom,1
+wavs_16k/id_intent01_502_tts_gadis.wav,tts_gadis,female,Lampu kamar tidur tolong dinyalakan sekarang.,activate,lights,bedroom,1
+wavs_16k/id_intent01_503_tts_ardi.wav,tts_ardi,male,Kamar gelap tolong nyalain lampunya dong.,activate,lights,bedroom,1
+wavs_16k/id_intent01_503_tts_gadis.wav,tts_gadis,female,Kamar gelap tolong nyalain lampunya dong.,activate,lights,bedroom,1
+wavs_16k/id_intent01_504_tts_ardi.wav,tts_ardi,male,Tolong idupin lampu di kamar tidur.,activate,lights,bedroom,1
+wavs_16k/id_intent01_504_tts_gadis.wav,tts_gadis,female,Tolong idupin lampu di kamar tidur.,activate,lights,bedroom,1
+wavs_16k/id_intent02_505_tts_ardi.wav,tts_ardi,male,Nyalain lampu dapur dong tolong.,activate,lights,kitchen,2
+wavs_16k/id_intent02_505_tts_gadis.wav,tts_gadis,female,Nyalain lampu dapur dong tolong.,activate,lights,kitchen,2
+wavs_16k/id_intent02_506_tts_ardi.wav,tts_ardi,male,"Dapur gelap banget nih, tolong idupin lampunya.",activate,lights,kitchen,2
+wavs_16k/id_intent02_506_tts_gadis.wav,tts_gadis,female,"Dapur gelap banget nih, tolong idupin lampunya.",activate,lights,kitchen,2
+wavs_16k/id_intent02_507_tts_ardi.wav,tts_ardi,male,Lampu dapur tolong diidupin ya.,activate,lights,kitchen,2
+wavs_16k/id_intent02_507_tts_gadis.wav,tts_gadis,female,Lampu dapur tolong diidupin ya.,activate,lights,kitchen,2
+wavs_16k/id_intent02_508_tts_ardi.wav,tts_ardi,male,"Mau masak nih, nyalain lampu dapur dong.",activate,lights,kitchen,2
+wavs_16k/id_intent02_508_tts_gadis.wav,tts_gadis,female,"Mau masak nih, nyalain lampu dapur dong.",activate,lights,kitchen,2
+wavs_16k/id_intent02_509_tts_ardi.wav,tts_ardi,male,Tolong idupin lampu di dapur ya.,activate,lights,kitchen,2
+wavs_16k/id_intent02_509_tts_gadis.wav,tts_gadis,female,Tolong idupin lampu di dapur ya.,activate,lights,kitchen,2
+wavs_16k/id_intent02_510_tts_ardi.wav,tts_ardi,male,Lampu dapur tolong dinyalain dong.,activate,lights,kitchen,2
+wavs_16k/id_intent02_510_tts_gadis.wav,tts_gadis,female,Lampu dapur tolong dinyalain dong.,activate,lights,kitchen,2
+wavs_16k/id_intent02_511_tts_ardi.wav,tts_ardi,male,Di dapur tolong nyalain lampunya ya.,activate,lights,kitchen,2
+wavs_16k/id_intent02_511_tts_gadis.wav,tts_gadis,female,Di dapur tolong nyalain lampunya ya.,activate,lights,kitchen,2
+wavs_16k/id_intent02_512_tts_ardi.wav,tts_ardi,male,Idupin dong lampu dapurnya tolong.,activate,lights,kitchen,2
+wavs_16k/id_intent02_512_tts_gadis.wav,tts_gadis,female,Idupin dong lampu dapurnya tolong.,activate,lights,kitchen,2
+wavs_16k/id_intent02_513_tts_ardi.wav,tts_ardi,male,Nyalain lampu dapur sekarang dong.,activate,lights,kitchen,2
+wavs_16k/id_intent02_513_tts_gadis.wav,tts_gadis,female,Nyalain lampu dapur sekarang dong.,activate,lights,kitchen,2
+wavs_16k/id_intent02_514_tts_ardi.wav,tts_ardi,male,Tolong terangin dapur ya lampunya nyalain.,activate,lights,kitchen,2
+wavs_16k/id_intent02_514_tts_gadis.wav,tts_gadis,female,Tolong terangin dapur ya lampunya nyalain.,activate,lights,kitchen,2
+wavs_16k/id_intent02_515_tts_ardi.wav,tts_ardi,male,Lampu dapur hidupin dong tolong.,activate,lights,kitchen,2
+wavs_16k/id_intent02_515_tts_gadis.wav,tts_gadis,female,Lampu dapur hidupin dong tolong.,activate,lights,kitchen,2
+wavs_16k/id_intent02_516_tts_ardi.wav,tts_ardi,male,Dapur tolong nyalain lampunya ya.,activate,lights,kitchen,2
+wavs_16k/id_intent02_516_tts_gadis.wav,tts_gadis,female,Dapur tolong nyalain lampunya ya.,activate,lights,kitchen,2
+wavs_16k/id_intent02_517_tts_ardi.wav,tts_ardi,male,Bisa tolong idupin lampu dapur gak.,activate,lights,kitchen,2
+wavs_16k/id_intent02_517_tts_gadis.wav,tts_gadis,female,Bisa tolong idupin lampu dapur gak.,activate,lights,kitchen,2
+wavs_16k/id_intent02_518_tts_ardi.wav,tts_ardi,male,Lampu di dapur tolong dinyalain ya.,activate,lights,kitchen,2
+wavs_16k/id_intent02_518_tts_gadis.wav,tts_gadis,female,Lampu di dapur tolong dinyalain ya.,activate,lights,kitchen,2
+wavs_16k/id_intent02_519_tts_ardi.wav,tts_ardi,male,Nyalain lampu area dapur dong.,activate,lights,kitchen,2
+wavs_16k/id_intent02_519_tts_gadis.wav,tts_gadis,female,Nyalain lampu area dapur dong.,activate,lights,kitchen,2
+wavs_16k/id_intent02_520_tts_ardi.wav,tts_ardi,male,Dapur gelap nih tolong hidupkan lampunya.,activate,lights,kitchen,2
+wavs_16k/id_intent02_520_tts_gadis.wav,tts_gadis,female,Dapur gelap nih tolong hidupkan lampunya.,activate,lights,kitchen,2
+wavs_16k/id_intent02_521_tts_ardi.wav,tts_ardi,male,Tolong nyalakan lampu dapur sekarang.,activate,lights,kitchen,2
+wavs_16k/id_intent02_521_tts_gadis.wav,tts_gadis,female,Tolong nyalakan lampu dapur sekarang.,activate,lights,kitchen,2
+wavs_16k/id_intent02_522_tts_ardi.wav,tts_ardi,male,Lampu dapur tolong dihidupkan ya.,activate,lights,kitchen,2
+wavs_16k/id_intent02_522_tts_gadis.wav,tts_gadis,female,Lampu dapur tolong dihidupkan ya.,activate,lights,kitchen,2
+wavs_16k/id_intent02_523_tts_ardi.wav,tts_ardi,male,Idupin lampu dapur cepat dong.,activate,lights,kitchen,2
+wavs_16k/id_intent02_523_tts_gadis.wav,tts_gadis,female,Idupin lampu dapur cepat dong.,activate,lights,kitchen,2
+wavs_16k/id_intent02_524_tts_ardi.wav,tts_ardi,male,Nyalain dong lampu dapur tolong.,activate,lights,kitchen,2
+wavs_16k/id_intent02_524_tts_gadis.wav,tts_gadis,female,Nyalain dong lampu dapur tolong.,activate,lights,kitchen,2
+wavs_16k/id_intent03_525_tts_ardi.wav,tts_ardi,male,Nyalain semua lampu rumah dong.,activate,lights,none,3
+wavs_16k/id_intent03_525_tts_gadis.wav,tts_gadis,female,Nyalain semua lampu rumah dong.,activate,lights,none,3
+wavs_16k/id_intent03_526_tts_ardi.wav,tts_ardi,male,Semua lampu tolong diidupin ya.,activate,lights,none,3
+wavs_16k/id_intent03_526_tts_gadis.wav,tts_gadis,female,Semua lampu tolong diidupin ya.,activate,lights,none,3
+wavs_16k/id_intent03_527_tts_ardi.wav,tts_ardi,male,"Gelap banget nih rumah, tolong nyalain lampu.",activate,lights,none,3
+wavs_16k/id_intent03_527_tts_gadis.wav,tts_gadis,female,"Gelap banget nih rumah, tolong nyalain lampu.",activate,lights,none,3
+wavs_16k/id_intent03_528_tts_ardi.wav,tts_ardi,male,"Terangin ruangan dong, nyalain lampu.",activate,lights,none,3
+wavs_16k/id_intent03_528_tts_gadis.wav,tts_gadis,female,"Terangin ruangan dong, nyalain lampu.",activate,lights,none,3
+wavs_16k/id_intent03_529_tts_ardi.wav,tts_ardi,male,Lampu rumah tolong diidupin semua.,activate,lights,none,3
+wavs_16k/id_intent03_529_tts_gadis.wav,tts_gadis,female,Lampu rumah tolong diidupin semua.,activate,lights,none,3
+wavs_16k/id_intent03_530_tts_ardi.wav,tts_ardi,male,Nyalain dong semua lampunya tolong.,activate,lights,none,3
+wavs_16k/id_intent03_530_tts_gadis.wav,tts_gadis,female,Nyalain dong semua lampunya tolong.,activate,lights,none,3
+wavs_16k/id_intent03_531_tts_ardi.wav,tts_ardi,male,Tolong idupin lampu seluruh ruangan.,activate,lights,none,3
+wavs_16k/id_intent03_531_tts_gadis.wav,tts_gadis,female,Tolong idupin lampu seluruh ruangan.,activate,lights,none,3
+wavs_16k/id_intent03_532_tts_ardi.wav,tts_ardi,male,Nyalain lampu tengah dong tolong.,activate,lights,none,3
+wavs_16k/id_intent03_532_tts_gadis.wav,tts_gadis,female,Nyalain lampu tengah dong tolong.,activate,lights,none,3
+wavs_16k/id_intent03_533_tts_ardi.wav,tts_ardi,male,Lampu ruang tengah tolong diidupin ya.,activate,lights,none,3
+wavs_16k/id_intent03_533_tts_gadis.wav,tts_gadis,female,Lampu ruang tengah tolong diidupin ya.,activate,lights,none,3
+wavs_16k/id_intent03_534_tts_ardi.wav,tts_ardi,male,Semua lampu tolong dinyalakan sekarang.,activate,lights,none,3
+wavs_16k/id_intent03_534_tts_gadis.wav,tts_gadis,female,Semua lampu tolong dinyalakan sekarang.,activate,lights,none,3
+wavs_16k/id_intent03_535_tts_ardi.wav,tts_ardi,male,Rumah gelap nih tolong nyalain lampunya.,activate,lights,none,3
+wavs_16k/id_intent03_535_tts_gadis.wav,tts_gadis,female,Rumah gelap nih tolong nyalain lampunya.,activate,lights,none,3
+wavs_16k/id_intent03_536_tts_ardi.wav,tts_ardi,male,Nyalain lampu utama dong.,activate,lights,none,3
+wavs_16k/id_intent03_536_tts_gadis.wav,tts_gadis,female,Nyalain lampu utama dong.,activate,lights,none,3
+wavs_16k/id_intent03_537_tts_ardi.wav,tts_ardi,male,Lampu utama tolong diidupin ya.,activate,lights,none,3
+wavs_16k/id_intent03_537_tts_gadis.wav,tts_gadis,female,Lampu utama tolong diidupin ya.,activate,lights,none,3
+wavs_16k/id_intent03_538_tts_ardi.wav,tts_ardi,male,Tolong hidupkan semua lampu di rumah.,activate,lights,none,3
+wavs_16k/id_intent03_538_tts_gadis.wav,tts_gadis,female,Tolong hidupkan semua lampu di rumah.,activate,lights,none,3
+wavs_16k/id_intent03_539_tts_ardi.wav,tts_ardi,male,Idupin semua lampu ruangan dong.,activate,lights,none,3
+wavs_16k/id_intent03_539_tts_gadis.wav,tts_gadis,female,Idupin semua lampu ruangan dong.,activate,lights,none,3
+wavs_16k/id_intent03_540_tts_ardi.wav,tts_ardi,male,Terangin rumah dong tolong nyalain lampu.,activate,lights,none,3
+wavs_16k/id_intent03_540_tts_gadis.wav,tts_gadis,female,Terangin rumah dong tolong nyalain lampu.,activate,lights,none,3
+wavs_16k/id_intent03_541_tts_ardi.wav,tts_ardi,male,Nyalain lampu dong semuanya ya.,activate,lights,none,3
+wavs_16k/id_intent03_541_tts_gadis.wav,tts_gadis,female,Nyalain lampu dong semuanya ya.,activate,lights,none,3
+wavs_16k/id_intent03_542_tts_ardi.wav,tts_ardi,male,Lampu rumah tolong dinyalain sekarang.,activate,lights,none,3
+wavs_16k/id_intent03_542_tts_gadis.wav,tts_gadis,female,Lampu rumah tolong dinyalain sekarang.,activate,lights,none,3
+wavs_16k/id_intent03_543_tts_ardi.wav,tts_ardi,male,Bisa tolong nyalain semua lampu gak.,activate,lights,none,3
+wavs_16k/id_intent03_543_tts_gadis.wav,tts_gadis,female,Bisa tolong nyalain semua lampu gak.,activate,lights,none,3
+wavs_16k/id_intent03_544_tts_ardi.wav,tts_ardi,male,Tolong idupin semua lampu dong.,activate,lights,none,3
+wavs_16k/id_intent03_544_tts_gadis.wav,tts_gadis,female,Tolong idupin semua lampu dong.,activate,lights,none,3
+wavs_16k/id_intent04_545_tts_ardi.wav,tts_ardi,male,Nyalain lampu kamar mandi dong tolong.,activate,lights,washroom,4
+wavs_16k/id_intent04_545_tts_gadis.wav,tts_gadis,female,Nyalain lampu kamar mandi dong tolong.,activate,lights,washroom,4
+wavs_16k/id_intent04_546_tts_ardi.wav,tts_ardi,male,Idupin lampu WC dong tolong.,activate,lights,washroom,4
+wavs_16k/id_intent04_546_tts_gadis.wav,tts_gadis,female,Idupin lampu WC dong tolong.,activate,lights,washroom,4
+wavs_16k/id_intent04_547_tts_ardi.wav,tts_ardi,male,Nyalain lampu toilet dong ya.,activate,lights,washroom,4
+wavs_16k/id_intent04_547_tts_gadis.wav,tts_gadis,female,Nyalain lampu toilet dong ya.,activate,lights,washroom,4
+wavs_16k/id_intent04_548_tts_ardi.wav,tts_ardi,male,Kamar mandi gelap nih tolong idupin lampunya.,activate,lights,washroom,4
+wavs_16k/id_intent04_548_tts_gadis.wav,tts_gadis,female,Kamar mandi gelap nih tolong idupin lampunya.,activate,lights,washroom,4
+wavs_16k/id_intent04_549_tts_ardi.wav,tts_ardi,male,Lampu kamar mandi tolong dinyalain ya.,activate,lights,washroom,4
+wavs_16k/id_intent04_549_tts_gadis.wav,tts_gadis,female,Lampu kamar mandi tolong dinyalain ya.,activate,lights,washroom,4
+wavs_16k/id_intent04_550_tts_ardi.wav,tts_ardi,male,"Mau mandi nih, tolong nyalain lampu kamar mandi.",activate,lights,washroom,4
+wavs_16k/id_intent04_550_tts_gadis.wav,tts_gadis,female,"Mau mandi nih, tolong nyalain lampu kamar mandi.",activate,lights,washroom,4
+wavs_16k/id_intent04_551_tts_ardi.wav,tts_ardi,male,Lampu toilet tolong diidupin dong.,activate,lights,washroom,4
+wavs_16k/id_intent04_551_tts_gadis.wav,tts_gadis,female,Lampu toilet tolong diidupin dong.,activate,lights,washroom,4
+wavs_16k/id_intent04_552_tts_ardi.wav,tts_ardi,male,Nyalain dong lampu di kamar mandi.,activate,lights,washroom,4
+wavs_16k/id_intent04_552_tts_gadis.wav,tts_gadis,female,Nyalain dong lampu di kamar mandi.,activate,lights,washroom,4
+wavs_16k/id_intent04_553_tts_ardi.wav,tts_ardi,male,Tolong idupin lampu WC sekarang.,activate,lights,washroom,4
+wavs_16k/id_intent04_553_tts_gadis.wav,tts_gadis,female,Tolong idupin lampu WC sekarang.,activate,lights,washroom,4
+wavs_16k/id_intent04_554_tts_ardi.wav,tts_ardi,male,Lampu kamar mandi hidupin dong.,activate,lights,washroom,4
+wavs_16k/id_intent04_554_tts_gadis.wav,tts_gadis,female,Lampu kamar mandi hidupin dong.,activate,lights,washroom,4
+wavs_16k/id_intent04_555_tts_ardi.wav,tts_ardi,male,Di kamar mandi tolong nyalain lampunya.,activate,lights,washroom,4
+wavs_16k/id_intent04_555_tts_gadis.wav,tts_gadis,female,Di kamar mandi tolong nyalain lampunya.,activate,lights,washroom,4
+wavs_16k/id_intent04_556_tts_ardi.wav,tts_ardi,male,Toilet gelap tolong idupin lampunya ya.,activate,lights,washroom,4
+wavs_16k/id_intent04_556_tts_gadis.wav,tts_gadis,female,Toilet gelap tolong idupin lampunya ya.,activate,lights,washroom,4
+wavs_16k/id_intent04_557_tts_ardi.wav,tts_ardi,male,Nyalain lampu kamar mandi cepat dong.,activate,lights,washroom,4
+wavs_16k/id_intent04_557_tts_gadis.wav,tts_gadis,female,Nyalain lampu kamar mandi cepat dong.,activate,lights,washroom,4
+wavs_16k/id_intent04_558_tts_ardi.wav,tts_ardi,male,Lampu WC tolong dinyalain sekarang.,activate,lights,washroom,4
+wavs_16k/id_intent04_558_tts_gadis.wav,tts_gadis,female,Lampu WC tolong dinyalain sekarang.,activate,lights,washroom,4
+wavs_16k/id_intent04_559_tts_ardi.wav,tts_ardi,male,Bisa tolong idupin lampu kamar mandi gak.,activate,lights,washroom,4
+wavs_16k/id_intent04_559_tts_gadis.wav,tts_gadis,female,Bisa tolong idupin lampu kamar mandi gak.,activate,lights,washroom,4
+wavs_16k/id_intent04_560_tts_ardi.wav,tts_ardi,male,Tolong nyalakan lampu toilet ya.,activate,lights,washroom,4
+wavs_16k/id_intent04_560_tts_gadis.wav,tts_gadis,female,Tolong nyalakan lampu toilet ya.,activate,lights,washroom,4
+wavs_16k/id_intent04_561_tts_ardi.wav,tts_ardi,male,Lampu kamar mandi tolong dihidupkan dong.,activate,lights,washroom,4
+wavs_16k/id_intent04_561_tts_gadis.wav,tts_gadis,female,Lampu kamar mandi tolong dihidupkan dong.,activate,lights,washroom,4
+wavs_16k/id_intent04_562_tts_ardi.wav,tts_ardi,male,Nyalain lampu kamar mandi ya tolong.,activate,lights,washroom,4
+wavs_16k/id_intent04_562_tts_gadis.wav,tts_gadis,female,Nyalain lampu kamar mandi ya tolong.,activate,lights,washroom,4
+wavs_16k/id_intent04_563_tts_ardi.wav,tts_ardi,male,Toilet tolong nyalain lampunya dong.,activate,lights,washroom,4
+wavs_16k/id_intent04_563_tts_gadis.wav,tts_gadis,female,Toilet tolong nyalain lampunya dong.,activate,lights,washroom,4
+wavs_16k/id_intent04_564_tts_ardi.wav,tts_ardi,male,Kamar mandi tolong diidupin lampunya ya.,activate,lights,washroom,4
+wavs_16k/id_intent04_564_tts_gadis.wav,tts_gadis,female,Kamar mandi tolong diidupin lampunya ya.,activate,lights,washroom,4
+wavs_16k/id_intent05_565_tts_ardi.wav,tts_ardi,male,Setel lagu dong tolong.,activate,music,none,5
+wavs_16k/id_intent05_565_tts_gadis.wav,tts_gadis,female,Setel lagu dong tolong.,activate,music,none,5
+wavs_16k/id_intent05_566_tts_ardi.wav,tts_ardi,male,Puterin musik dong sepi nih.,activate,music,none,5
+wavs_16k/id_intent05_566_tts_gadis.wav,tts_gadis,female,Puterin musik dong sepi nih.,activate,music,none,5
+wavs_16k/id_intent05_567_tts_ardi.wav,tts_ardi,male,Nyalain musiknya dong tolong.,activate,music,none,5
+wavs_16k/id_intent05_567_tts_gadis.wav,tts_gadis,female,Nyalain musiknya dong tolong.,activate,music,none,5
+wavs_16k/id_intent05_568_tts_ardi.wav,tts_ardi,male,Play lagunya dong ya.,activate,music,none,5
+wavs_16k/id_intent05_568_tts_gadis.wav,tts_gadis,female,Play lagunya dong ya.,activate,music,none,5
+wavs_16k/id_intent05_569_tts_ardi.wav,tts_ardi,male,Lanjutin musik yang tadi tolong.,activate,music,none,5
+wavs_16k/id_intent05_569_tts_gadis.wav,tts_gadis,female,Lanjutin musik yang tadi tolong.,activate,music,none,5
+wavs_16k/id_intent05_570_tts_ardi.wav,tts_ardi,male,Puter lagu santai dong.,activate,music,none,5
+wavs_16k/id_intent05_570_tts_gadis.wav,tts_gadis,female,Puter lagu santai dong.,activate,music,none,5
+wavs_16k/id_intent05_571_tts_ardi.wav,tts_ardi,male,Nyalain lagu dong tolong ya.,activate,music,none,5
+wavs_16k/id_intent05_571_tts_gadis.wav,tts_gadis,female,Nyalain lagu dong tolong ya.,activate,music,none,5
+wavs_16k/id_intent05_572_tts_ardi.wav,tts_ardi,male,Play musik dong sekarang.,activate,music,none,5
+wavs_16k/id_intent05_572_tts_gadis.wav,tts_gadis,female,Play musik dong sekarang.,activate,music,none,5
+wavs_16k/id_intent05_573_tts_ardi.wav,tts_ardi,male,Bisa tolong setel lagu gak.,activate,music,none,5
+wavs_16k/id_intent05_573_tts_gadis.wav,tts_gadis,female,Bisa tolong setel lagu gak.,activate,music,none,5
+wavs_16k/id_intent05_574_tts_ardi.wav,tts_ardi,male,Puterin lagu favorit dong.,activate,music,none,5
+wavs_16k/id_intent05_574_tts_gadis.wav,tts_gadis,female,Puterin lagu favorit dong.,activate,music,none,5
+wavs_16k/id_intent05_575_tts_ardi.wav,tts_ardi,male,Musiknya tolong dihidupkan ya.,activate,music,none,5
+wavs_16k/id_intent05_575_tts_gadis.wav,tts_gadis,female,Musiknya tolong dihidupkan ya.,activate,music,none,5
+wavs_16k/id_intent05_576_tts_ardi.wav,tts_ardi,male,Lanjutin playlist lagunya dong.,activate,music,none,5
+wavs_16k/id_intent05_576_tts_gadis.wav,tts_gadis,female,Lanjutin playlist lagunya dong.,activate,music,none,5
+wavs_16k/id_intent05_577_tts_ardi.wav,tts_ardi,male,Setel musik dong biar rame.,activate,music,none,5
+wavs_16k/id_intent05_577_tts_gadis.wav,tts_gadis,female,Setel musik dong biar rame.,activate,music,none,5
+wavs_16k/id_intent05_578_tts_ardi.wav,tts_ardi,male,Nyalain musik di speaker dong.,activate,music,none,5
+wavs_16k/id_intent05_578_tts_gadis.wav,tts_gadis,female,Nyalain musik di speaker dong.,activate,music,none,5
+wavs_16k/id_intent05_579_tts_ardi.wav,tts_ardi,male,Puter lagu dong tolong ya.,activate,music,none,5
+wavs_16k/id_intent05_579_tts_gadis.wav,tts_gadis,female,Puter lagu dong tolong ya.,activate,music,none,5
+wavs_16k/id_intent05_580_tts_ardi.wav,tts_ardi,male,Play musik lagi dong.,activate,music,none,5
+wavs_16k/id_intent05_580_tts_gadis.wav,tts_gadis,female,Play musik lagi dong.,activate,music,none,5
+wavs_16k/id_intent05_581_tts_ardi.wav,tts_ardi,male,Tolong putar lagu sekarang dong.,activate,music,none,5
+wavs_16k/id_intent05_581_tts_gadis.wav,tts_gadis,female,Tolong putar lagu sekarang dong.,activate,music,none,5
+wavs_16k/id_intent05_582_tts_ardi.wav,tts_ardi,male,Setel musik santai tolong ya.,activate,music,none,5
+wavs_16k/id_intent05_582_tts_gadis.wav,tts_gadis,female,Setel musik santai tolong ya.,activate,music,none,5
+wavs_16k/id_intent05_583_tts_ardi.wav,tts_ardi,male,Hidupkan musiknya dong tolong.,activate,music,none,5
+wavs_16k/id_intent05_583_tts_gadis.wav,tts_gadis,female,Hidupkan musiknya dong tolong.,activate,music,none,5
+wavs_16k/id_intent05_584_tts_ardi.wav,tts_ardi,male,Puterin musik lagi dong ya.,activate,music,none,5
+wavs_16k/id_intent05_584_tts_gadis.wav,tts_gadis,female,Puterin musik lagi dong ya.,activate,music,none,5
+wavs_16k/id_intent06_585_tts_ardi.wav,tts_ardi,male,Ambilin jus jeruk dong tolong.,bring,juice,none,6
+wavs_16k/id_intent06_585_tts_gadis.wav,tts_gadis,female,Ambilin jus jeruk dong tolong.,bring,juice,none,6
+wavs_16k/id_intent06_586_tts_ardi.wav,tts_ardi,male,Bawain jus buah dingin ya.,bring,juice,none,6
+wavs_16k/id_intent06_586_tts_gadis.wav,tts_gadis,female,Bawain jus buah dingin ya.,bring,juice,none,6
+wavs_16k/id_intent06_587_tts_ardi.wav,tts_ardi,male,Minta tolong bawain jus dong.,bring,juice,none,6
+wavs_16k/id_intent06_587_tts_gadis.wav,tts_gadis,female,Minta tolong bawain jus dong.,bring,juice,none,6
+wavs_16k/id_intent06_588_tts_ardi.wav,tts_ardi,male,Ambilkan saya segelas jus ya.,bring,juice,none,6
+wavs_16k/id_intent06_588_tts_gadis.wav,tts_gadis,female,Ambilkan saya segelas jus ya.,bring,juice,none,6
+wavs_16k/id_intent06_589_tts_ardi.wav,tts_ardi,male,Haus nih tolong ambilin jus dingin.,bring,juice,none,6
+wavs_16k/id_intent06_589_tts_gadis.wav,tts_gadis,female,Haus nih tolong ambilin jus dingin.,bring,juice,none,6
+wavs_16k/id_intent06_590_tts_ardi.wav,tts_ardi,male,Bawain jus segar ke sini dong.,bring,juice,none,6
+wavs_16k/id_intent06_590_tts_gadis.wav,tts_gadis,female,Bawain jus segar ke sini dong.,bring,juice,none,6
+wavs_16k/id_intent06_591_tts_ardi.wav,tts_ardi,male,Tolong ambilkan jus mangga dong.,bring,juice,none,6
+wavs_16k/id_intent06_591_tts_gadis.wav,tts_gadis,female,Tolong ambilkan jus mangga dong.,bring,juice,none,6
+wavs_16k/id_intent06_592_tts_ardi.wav,tts_ardi,male,Minta jus buah dong tolong.,bring,juice,none,6
+wavs_16k/id_intent06_592_tts_gadis.wav,tts_gadis,female,Minta jus buah dong tolong.,bring,juice,none,6
+wavs_16k/id_intent06_593_tts_ardi.wav,tts_ardi,male,Bisa tolong bawain jus gak.,bring,juice,none,6
+wavs_16k/id_intent06_593_tts_gadis.wav,tts_gadis,female,Bisa tolong bawain jus gak.,bring,juice,none,6
+wavs_16k/id_intent06_594_tts_ardi.wav,tts_ardi,male,Ambilin jus dari kulkas dong.,bring,juice,none,6
+wavs_16k/id_intent06_594_tts_gadis.wav,tts_gadis,female,Ambilin jus dari kulkas dong.,bring,juice,none,6
+wavs_16k/id_intent06_595_tts_ardi.wav,tts_ardi,male,Bawain segelas jus ya tolong.,bring,juice,none,6
+wavs_16k/id_intent06_595_tts_gadis.wav,tts_gadis,female,Bawain segelas jus ya tolong.,bring,juice,none,6
+wavs_16k/id_intent06_596_tts_ardi.wav,tts_ardi,male,Tolong bawain jus dingin ke sini.,bring,juice,none,6
+wavs_16k/id_intent06_596_tts_gadis.wav,tts_gadis,female,Tolong bawain jus dingin ke sini.,bring,juice,none,6
+wavs_16k/id_intent06_597_tts_ardi.wav,tts_ardi,male,Ambilin jus dong haus banget nih.,bring,juice,none,6
+wavs_16k/id_intent06_597_tts_gadis.wav,tts_gadis,female,Ambilin jus dong haus banget nih.,bring,juice,none,6
+wavs_16k/id_intent06_598_tts_ardi.wav,tts_ardi,male,Minta tolong ambilin jus ya.,bring,juice,none,6
+wavs_16k/id_intent06_598_tts_gadis.wav,tts_gadis,female,Minta tolong ambilin jus ya.,bring,juice,none,6
+wavs_16k/id_intent06_599_tts_ardi.wav,tts_ardi,male,Bawakan jus buah ke meja dong.,bring,juice,none,6
+wavs_16k/id_intent06_599_tts_gadis.wav,tts_gadis,female,Bawakan jus buah ke meja dong.,bring,juice,none,6
+wavs_16k/id_intent06_600_tts_ardi.wav,tts_ardi,male,Tolong ambilin jus jeruk ya.,bring,juice,none,6
+wavs_16k/id_intent06_600_tts_gadis.wav,tts_gadis,female,Tolong ambilin jus jeruk ya.,bring,juice,none,6
+wavs_16k/id_intent06_601_tts_ardi.wav,tts_ardi,male,Bawain jus apel dong tolong.,bring,juice,none,6
+wavs_16k/id_intent06_601_tts_gadis.wav,tts_gadis,female,Bawain jus apel dong tolong.,bring,juice,none,6
+wavs_16k/id_intent06_602_tts_ardi.wav,tts_ardi,male,Ambilkan segelas jus buah tolong.,bring,juice,none,6
+wavs_16k/id_intent06_602_tts_gadis.wav,tts_gadis,female,Ambilkan segelas jus buah tolong.,bring,juice,none,6
+wavs_16k/id_intent06_603_tts_ardi.wav,tts_ardi,male,Bisa minta tolong bawain jus gak.,bring,juice,none,6
+wavs_16k/id_intent06_603_tts_gadis.wav,tts_gadis,female,Bisa minta tolong bawain jus gak.,bring,juice,none,6
+wavs_16k/id_intent06_604_tts_ardi.wav,tts_ardi,male,Tolong bawain jus dari dapur ya.,bring,juice,none,6
+wavs_16k/id_intent06_604_tts_gadis.wav,tts_gadis,female,Tolong bawain jus dari dapur ya.,bring,juice,none,6
+wavs_16k/id_intent07_605_tts_ardi.wav,tts_ardi,male,Ambilin koran hari ini dong tolong.,bring,newspaper,none,7
+wavs_16k/id_intent07_605_tts_gadis.wav,tts_gadis,female,Ambilin koran hari ini dong tolong.,bring,newspaper,none,7
+wavs_16k/id_intent07_606_tts_ardi.wav,tts_ardi,male,Bawain koran pagi ke sini ya.,bring,newspaper,none,7
+wavs_16k/id_intent07_606_tts_gadis.wav,tts_gadis,female,Bawain koran pagi ke sini ya.,bring,newspaper,none,7
+wavs_16k/id_intent07_607_tts_ardi.wav,tts_ardi,male,Tolong ambilkan surat kabar dong.,bring,newspaper,none,7
+wavs_16k/id_intent07_607_tts_gadis.wav,tts_gadis,female,Tolong ambilkan surat kabar dong.,bring,newspaper,none,7
+wavs_16k/id_intent07_608_tts_ardi.wav,tts_ardi,male,Koran hari ini tolong dibawain ya.,bring,newspaper,none,7
+wavs_16k/id_intent07_608_tts_gadis.wav,tts_gadis,female,Koran hari ini tolong dibawain ya.,bring,newspaper,none,7
+wavs_16k/id_intent07_609_tts_ardi.wav,tts_ardi,male,Bawakan saya koran pagi tolong.,bring,newspaper,none,7
+wavs_16k/id_intent07_609_tts_gadis.wav,tts_gadis,female,Bawakan saya koran pagi tolong.,bring,newspaper,none,7
+wavs_16k/id_intent07_610_tts_ardi.wav,tts_ardi,male,Ambilkan koran di depan dong.,bring,newspaper,none,7
+wavs_16k/id_intent07_610_tts_gadis.wav,tts_gadis,female,Ambilkan koran di depan dong.,bring,newspaper,none,7
+wavs_16k/id_intent07_611_tts_ardi.wav,tts_ardi,male,Tolong bawain koran ke meja ya.,bring,newspaper,none,7
+wavs_16k/id_intent07_611_tts_gadis.wav,tts_gadis,female,Tolong bawain koran ke meja ya.,bring,newspaper,none,7
+wavs_16k/id_intent07_612_tts_ardi.wav,tts_ardi,male,Bisa tolong ambilin koran gak.,bring,newspaper,none,7
+wavs_16k/id_intent07_612_tts_gadis.wav,tts_gadis,female,Bisa tolong ambilin koran gak.,bring,newspaper,none,7
+wavs_16k/id_intent07_613_tts_ardi.wav,tts_ardi,male,Ambilin koran kompas dong tolong.,bring,newspaper,none,7
+wavs_16k/id_intent07_613_tts_gadis.wav,tts_gadis,female,Ambilin koran kompas dong tolong.,bring,newspaper,none,7
+wavs_16k/id_intent07_614_tts_ardi.wav,tts_ardi,male,Bawain koran terbaru ke sini ya.,bring,newspaper,none,7
+wavs_16k/id_intent07_614_tts_gadis.wav,tts_gadis,female,Bawain koran terbaru ke sini ya.,bring,newspaper,none,7
+wavs_16k/id_intent07_615_tts_ardi.wav,tts_ardi,male,Tolong ambilkan koran pagi ini.,bring,newspaper,none,7
+wavs_16k/id_intent07_615_tts_gadis.wav,tts_gadis,female,Tolong ambilkan koran pagi ini.,bring,newspaper,none,7
+wavs_16k/id_intent07_616_tts_ardi.wav,tts_ardi,male,Koran tolong dibawakan ke ruang tamu.,bring,newspaper,none,7
+wavs_16k/id_intent07_616_tts_gadis.wav,tts_gadis,female,Koran tolong dibawakan ke ruang tamu.,bring,newspaper,none,7
+wavs_16k/id_intent07_617_tts_ardi.wav,tts_ardi,male,Ambilin surat kabar dong tolong.,bring,newspaper,none,7
+wavs_16k/id_intent07_617_tts_gadis.wav,tts_gadis,female,Ambilin surat kabar dong tolong.,bring,newspaper,none,7
+wavs_16k/id_intent07_618_tts_ardi.wav,tts_ardi,male,Bawain koran pagi dong ya.,bring,newspaper,none,7
+wavs_16k/id_intent07_618_tts_gadis.wav,tts_gadis,female,Bawain koran pagi dong ya.,bring,newspaper,none,7
+wavs_16k/id_intent07_619_tts_ardi.wav,tts_ardi,male,Tolong bawakan koran hari ini ya.,bring,newspaper,none,7
+wavs_16k/id_intent07_619_tts_gadis.wav,tts_gadis,female,Tolong bawakan koran hari ini ya.,bring,newspaper,none,7
+wavs_16k/id_intent07_620_tts_ardi.wav,tts_ardi,male,Koran di teras tolong ambilin dong.,bring,newspaper,none,7
+wavs_16k/id_intent07_620_tts_gadis.wav,tts_gadis,female,Koran di teras tolong ambilin dong.,bring,newspaper,none,7
+wavs_16k/id_intent07_621_tts_ardi.wav,tts_ardi,male,Bisa ambilkan koran pagi gak tolong.,bring,newspaper,none,7
+wavs_16k/id_intent07_621_tts_gadis.wav,tts_gadis,female,Bisa ambilkan koran pagi gak tolong.,bring,newspaper,none,7
+wavs_16k/id_intent07_622_tts_ardi.wav,tts_ardi,male,Tolong bawain koran dari depan.,bring,newspaper,none,7
+wavs_16k/id_intent07_622_tts_gadis.wav,tts_gadis,female,Tolong bawain koran dari depan.,bring,newspaper,none,7
+wavs_16k/id_intent07_623_tts_ardi.wav,tts_ardi,male,Ambilin koran dong mau baca berita.,bring,newspaper,none,7
+wavs_16k/id_intent07_623_tts_gadis.wav,tts_gadis,female,Ambilin koran dong mau baca berita.,bring,newspaper,none,7
+wavs_16k/id_intent07_624_tts_ardi.wav,tts_ardi,male,Bawakan koran terbaru ke meja tolong.,bring,newspaper,none,7
+wavs_16k/id_intent07_624_tts_gadis.wav,tts_gadis,female,Bawakan koran terbaru ke meja tolong.,bring,newspaper,none,7
+wavs_16k/id_intent08_625_tts_ardi.wav,tts_ardi,male,Ambilin sepatu saya dong tolong.,bring,shoes,none,8
+wavs_16k/id_intent08_625_tts_gadis.wav,tts_gadis,female,Ambilin sepatu saya dong tolong.,bring,shoes,none,8
+wavs_16k/id_intent08_626_tts_ardi.wav,tts_ardi,male,Bawain sepatu kerja ke sini ya.,bring,shoes,none,8
+wavs_16k/id_intent08_626_tts_gadis.wav,tts_gadis,female,Bawain sepatu kerja ke sini ya.,bring,shoes,none,8
+wavs_16k/id_intent08_627_tts_ardi.wav,tts_ardi,male,Tolong ambilkan sepatu sneakers dong.,bring,shoes,none,8
+wavs_16k/id_intent08_627_tts_gadis.wav,tts_gadis,female,Tolong ambilkan sepatu sneakers dong.,bring,shoes,none,8
+wavs_16k/id_intent08_628_tts_ardi.wav,tts_ardi,male,Sepatu di rak tolong dibawain ya.,bring,shoes,none,8
+wavs_16k/id_intent08_628_tts_gadis.wav,tts_gadis,female,Sepatu di rak tolong dibawain ya.,bring,shoes,none,8
+wavs_16k/id_intent08_629_tts_ardi.wav,tts_ardi,male,Bawakan sepatu olahraga saya tolong.,bring,shoes,none,8
+wavs_16k/id_intent08_629_tts_gadis.wav,tts_gadis,female,Bawakan sepatu olahraga saya tolong.,bring,shoes,none,8
+wavs_16k/id_intent08_630_tts_ardi.wav,tts_ardi,male,Ambilkan sepatu lari dong tolong.,bring,shoes,none,8
+wavs_16k/id_intent08_630_tts_gadis.wav,tts_gadis,female,Ambilkan sepatu lari dong tolong.,bring,shoes,none,8
+wavs_16k/id_intent08_631_tts_ardi.wav,tts_ardi,male,Tolong bawain sepatu saya ke teras ya.,bring,shoes,none,8
+wavs_16k/id_intent08_631_tts_gadis.wav,tts_gadis,female,Tolong bawain sepatu saya ke teras ya.,bring,shoes,none,8
+wavs_16k/id_intent08_632_tts_ardi.wav,tts_ardi,male,Bisa tolong ambilin sepatu saya gak.,bring,shoes,none,8
+wavs_16k/id_intent08_632_tts_gadis.wav,tts_gadis,female,Bisa tolong ambilin sepatu saya gak.,bring,shoes,none,8
+wavs_16k/id_intent08_633_tts_ardi.wav,tts_ardi,male,Sepatu hitam tolong dibawakan dong.,bring,shoes,none,8
+wavs_16k/id_intent08_633_tts_gadis.wav,tts_gadis,female,Sepatu hitam tolong dibawakan dong.,bring,shoes,none,8
+wavs_16k/id_intent08_634_tts_ardi.wav,tts_ardi,male,Ambilin sepatu dong mau berangkat nih.,bring,shoes,none,8
+wavs_16k/id_intent08_634_tts_gadis.wav,tts_gadis,female,Ambilin sepatu dong mau berangkat nih.,bring,shoes,none,8
+wavs_16k/id_intent08_635_tts_ardi.wav,tts_ardi,male,Tolong ambilkan sepatu kerja saya.,bring,shoes,none,8
+wavs_16k/id_intent08_635_tts_gadis.wav,tts_gadis,female,Tolong ambilkan sepatu kerja saya.,bring,shoes,none,8
+wavs_16k/id_intent08_636_tts_ardi.wav,tts_ardi,male,Bawain sepatu lari ke sini ya tolong.,bring,shoes,none,8
+wavs_16k/id_intent08_636_tts_gadis.wav,tts_gadis,female,Bawain sepatu lari ke sini ya tolong.,bring,shoes,none,8
+wavs_16k/id_intent08_637_tts_ardi.wav,tts_ardi,male,Sepatu tolong diambilin dong.,bring,shoes,none,8
+wavs_16k/id_intent08_637_tts_gadis.wav,tts_gadis,female,Sepatu tolong diambilin dong.,bring,shoes,none,8
+wavs_16k/id_intent08_638_tts_ardi.wav,tts_ardi,male,Bawakan sepatu saya ke depan pintu tolong.,bring,shoes,none,8
+wavs_16k/id_intent08_638_tts_gadis.wav,tts_gadis,female,Bawakan sepatu saya ke depan pintu tolong.,bring,shoes,none,8
+wavs_16k/id_intent08_639_tts_ardi.wav,tts_ardi,male,Tolong bawain sepatu sneakers ke sini.,bring,shoes,none,8
+wavs_16k/id_intent08_639_tts_gadis.wav,tts_gadis,female,Tolong bawain sepatu sneakers ke sini.,bring,shoes,none,8
+wavs_16k/id_intent08_640_tts_ardi.wav,tts_ardi,male,Ambilkan sepatu saya dari rak sepatu ya.,bring,shoes,none,8
+wavs_16k/id_intent08_640_tts_gadis.wav,tts_gadis,female,Ambilkan sepatu saya dari rak sepatu ya.,bring,shoes,none,8
+wavs_16k/id_intent08_641_tts_ardi.wav,tts_ardi,male,Bisa bawain sepatu olahraga gak tolong.,bring,shoes,none,8
+wavs_16k/id_intent08_641_tts_gadis.wav,tts_gadis,female,Bisa bawain sepatu olahraga gak tolong.,bring,shoes,none,8
+wavs_16k/id_intent08_642_tts_ardi.wav,tts_ardi,male,Sepatu saya tolong diambilkan ya.,bring,shoes,none,8
+wavs_16k/id_intent08_642_tts_gadis.wav,tts_gadis,female,Sepatu saya tolong diambilkan ya.,bring,shoes,none,8
+wavs_16k/id_intent08_643_tts_ardi.wav,tts_ardi,male,Ambilin sepatu kantor dong tolong.,bring,shoes,none,8
+wavs_16k/id_intent08_643_tts_gadis.wav,tts_gadis,female,Ambilin sepatu kantor dong tolong.,bring,shoes,none,8
+wavs_16k/id_intent08_644_tts_ardi.wav,tts_ardi,male,Bawain sepatu saya ke sini cepat dong.,bring,shoes,none,8
+wavs_16k/id_intent08_644_tts_gadis.wav,tts_gadis,female,Bawain sepatu saya ke sini cepat dong.,bring,shoes,none,8
+wavs_16k/id_intent09_645_tts_ardi.wav,tts_ardi,male,Ambilin kaos kaki bersih dong tolong.,bring,socks,none,9
+wavs_16k/id_intent09_645_tts_gadis.wav,tts_gadis,female,Ambilin kaos kaki bersih dong tolong.,bring,socks,none,9
+wavs_16k/id_intent09_646_tts_ardi.wav,tts_ardi,male,Bawain kaos kaki saya ke sini ya.,bring,socks,none,9
+wavs_16k/id_intent09_646_tts_gadis.wav,tts_gadis,female,Bawain kaos kaki saya ke sini ya.,bring,socks,none,9
+wavs_16k/id_intent09_647_tts_ardi.wav,tts_ardi,male,Tolong ambilkan sepasang kaos kaki dong.,bring,socks,none,9
+wavs_16k/id_intent09_647_tts_gadis.wav,tts_gadis,female,Tolong ambilkan sepasang kaos kaki dong.,bring,socks,none,9
+wavs_16k/id_intent09_648_tts_ardi.wav,tts_ardi,male,Kaos kaki di laci tolong dibawain ya.,bring,socks,none,9
+wavs_16k/id_intent09_648_tts_gadis.wav,tts_gadis,female,Kaos kaki di laci tolong dibawain ya.,bring,socks,none,9
+wavs_16k/id_intent09_649_tts_ardi.wav,tts_ardi,male,Bawakan kaos kaki hitam saya tolong.,bring,socks,none,9
+wavs_16k/id_intent09_649_tts_gadis.wav,tts_gadis,female,Bawakan kaos kaki hitam saya tolong.,bring,socks,none,9
+wavs_16k/id_intent09_650_tts_ardi.wav,tts_ardi,male,Ambilkan kaos kaki kantor dong tolong.,bring,socks,none,9
+wavs_16k/id_intent09_650_tts_gadis.wav,tts_gadis,female,Ambilkan kaos kaki kantor dong tolong.,bring,socks,none,9
+wavs_16k/id_intent09_651_tts_ardi.wav,tts_ardi,male,Tolong bawain kaos kaki saya ya.,bring,socks,none,9
+wavs_16k/id_intent09_651_tts_gadis.wav,tts_gadis,female,Tolong bawain kaos kaki saya ya.,bring,socks,none,9
+wavs_16k/id_intent09_652_tts_ardi.wav,tts_ardi,male,Bisa tolong ambilin kaos kaki gak.,bring,socks,none,9
+wavs_16k/id_intent09_652_tts_gadis.wav,tts_gadis,female,Bisa tolong ambilin kaos kaki gak.,bring,socks,none,9
+wavs_16k/id_intent09_653_tts_ardi.wav,tts_ardi,male,Kaos kaki putih tolong dibawakan dong.,bring,socks,none,9
+wavs_16k/id_intent09_653_tts_gadis.wav,tts_gadis,female,Kaos kaki putih tolong dibawakan dong.,bring,socks,none,9
+wavs_16k/id_intent09_654_tts_ardi.wav,tts_ardi,male,Ambilin kaos kaki dong mau pakai sepatu nih.,bring,socks,none,9
+wavs_16k/id_intent09_654_tts_gadis.wav,tts_gadis,female,Ambilin kaos kaki dong mau pakai sepatu nih.,bring,socks,none,9
+wavs_16k/id_intent09_655_tts_ardi.wav,tts_ardi,male,Tolong ambilkan kaos kaki saya di lemari.,bring,socks,none,9
+wavs_16k/id_intent09_655_tts_gadis.wav,tts_gadis,female,Tolong ambilkan kaos kaki saya di lemari.,bring,socks,none,9
+wavs_16k/id_intent09_656_tts_ardi.wav,tts_ardi,male,Bawain kaos kaki bersih ke sini ya tolong.,bring,socks,none,9
+wavs_16k/id_intent09_656_tts_gadis.wav,tts_gadis,female,Bawain kaos kaki bersih ke sini ya tolong.,bring,socks,none,9
+wavs_16k/id_intent09_657_tts_ardi.wav,tts_ardi,male,Kaos kaki tolong diambilin dong.,bring,socks,none,9
+wavs_16k/id_intent09_657_tts_gadis.wav,tts_gadis,female,Kaos kaki tolong diambilin dong.,bring,socks,none,9
+wavs_16k/id_intent09_658_tts_ardi.wav,tts_ardi,male,Bawakan kaos kaki ke tempat tidur tolong.,bring,socks,none,9
+wavs_16k/id_intent09_658_tts_gadis.wav,tts_gadis,female,Bawakan kaos kaki ke tempat tidur tolong.,bring,socks,none,9
+wavs_16k/id_intent09_659_tts_ardi.wav,tts_ardi,male,Tolong bawain kaos kaki kerja ke sini ya.,bring,socks,none,9
+wavs_16k/id_intent09_659_tts_gadis.wav,tts_gadis,female,Tolong bawain kaos kaki kerja ke sini ya.,bring,socks,none,9
+wavs_16k/id_intent09_660_tts_ardi.wav,tts_ardi,male,Ambilkan kaos kaki saya dari laci ya.,bring,socks,none,9
+wavs_16k/id_intent09_660_tts_gadis.wav,tts_gadis,female,Ambilkan kaos kaki saya dari laci ya.,bring,socks,none,9
+wavs_16k/id_intent09_661_tts_ardi.wav,tts_ardi,male,Bisa tolong bawain kaos kaki hitam gak.,bring,socks,none,9
+wavs_16k/id_intent09_661_tts_gadis.wav,tts_gadis,female,Bisa tolong bawain kaos kaki hitam gak.,bring,socks,none,9
+wavs_16k/id_intent09_662_tts_ardi.wav,tts_ardi,male,Kaos kaki saya tolong diambilkan ya.,bring,socks,none,9
+wavs_16k/id_intent09_662_tts_gadis.wav,tts_gadis,female,Kaos kaki saya tolong diambilkan ya.,bring,socks,none,9
+wavs_16k/id_intent09_663_tts_ardi.wav,tts_ardi,male,Ambilin kaos kaki olahraga dong tolong.,bring,socks,none,9
+wavs_16k/id_intent09_663_tts_gadis.wav,tts_gadis,female,Ambilin kaos kaki olahraga dong tolong.,bring,socks,none,9
+wavs_16k/id_intent09_664_tts_ardi.wav,tts_ardi,male,Bawain kaos kaki saya dong cepetan.,bring,socks,none,9
+wavs_16k/id_intent09_664_tts_gadis.wav,tts_gadis,female,Bawain kaos kaki saya dong cepetan.,bring,socks,none,9
+wavs_16k/id_intent10_665_tts_ardi.wav,tts_ardi,male,Ganti bahasanya ke bahasa Mandarin dong.,change language,Chinese,none,10
+wavs_16k/id_intent10_665_tts_gadis.wav,tts_gadis,female,Ganti bahasanya ke bahasa Mandarin dong.,change language,Chinese,none,10
+wavs_16k/id_intent10_666_tts_ardi.wav,tts_ardi,male,Ubah bahasa sistem jadi bahasa Cina ya.,change language,Chinese,none,10
+wavs_16k/id_intent10_666_tts_gadis.wav,tts_gadis,female,Ubah bahasa sistem jadi bahasa Cina ya.,change language,Chinese,none,10
+wavs_16k/id_intent10_667_tts_ardi.wav,tts_ardi,male,Pake bahasa Mandarin dong tolong.,change language,Chinese,none,10
+wavs_16k/id_intent10_667_tts_gadis.wav,tts_gadis,female,Pake bahasa Mandarin dong tolong.,change language,Chinese,none,10
+wavs_16k/id_intent10_668_tts_ardi.wav,tts_ardi,male,Switch bahasanya ke Mandarin ya.,change language,Chinese,none,10
+wavs_16k/id_intent10_668_tts_gadis.wav,tts_gadis,female,Switch bahasanya ke Mandarin ya.,change language,Chinese,none,10
+wavs_16k/id_intent10_669_tts_ardi.wav,tts_ardi,male,Tolong ubah ke bahasa Tionghoa dong.,change language,Chinese,none,10
+wavs_16k/id_intent10_669_tts_gadis.wav,tts_gadis,female,Tolong ubah ke bahasa Tionghoa dong.,change language,Chinese,none,10
+wavs_16k/id_intent10_670_tts_ardi.wav,tts_ardi,male,Ganti bahasa ke bahasa Cina sekarang.,change language,Chinese,none,10
+wavs_16k/id_intent10_670_tts_gadis.wav,tts_gadis,female,Ganti bahasa ke bahasa Cina sekarang.,change language,Chinese,none,10
+wavs_16k/id_intent10_671_tts_ardi.wav,tts_ardi,male,Setel sistemnya pake bahasa Mandarin ya.,change language,Chinese,none,10
+wavs_16k/id_intent10_671_tts_gadis.wav,tts_gadis,female,Setel sistemnya pake bahasa Mandarin ya.,change language,Chinese,none,10
+wavs_16k/id_intent10_672_tts_ardi.wav,tts_ardi,male,Tolong ganti bahasanya jadi Mandarin dong.,change language,Chinese,none,10
+wavs_16k/id_intent10_672_tts_gadis.wav,tts_gadis,female,Tolong ganti bahasanya jadi Mandarin dong.,change language,Chinese,none,10
+wavs_16k/id_intent10_673_tts_ardi.wav,tts_ardi,male,Pake bahasa Cina dong sistemnya.,change language,Chinese,none,10
+wavs_16k/id_intent10_673_tts_gadis.wav,tts_gadis,female,Pake bahasa Cina dong sistemnya.,change language,Chinese,none,10
+wavs_16k/id_intent10_674_tts_ardi.wav,tts_ardi,male,Ubah bahasa ke Mandarin tolong ya.,change language,Chinese,none,10
+wavs_16k/id_intent10_674_tts_gadis.wav,tts_gadis,female,Ubah bahasa ke Mandarin tolong ya.,change language,Chinese,none,10
+wavs_16k/id_intent10_675_tts_ardi.wav,tts_ardi,male,Switch ke bahasa Mandarin dong.,change language,Chinese,none,10
+wavs_16k/id_intent10_675_tts_gadis.wav,tts_gadis,female,Switch ke bahasa Mandarin dong.,change language,Chinese,none,10
+wavs_16k/id_intent10_676_tts_ardi.wav,tts_ardi,male,Bisa tolong ganti ke bahasa Cina gak.,change language,Chinese,none,10
+wavs_16k/id_intent10_676_tts_gadis.wav,tts_gadis,female,Bisa tolong ganti ke bahasa Cina gak.,change language,Chinese,none,10
+wavs_16k/id_intent10_677_tts_ardi.wav,tts_ardi,male,Ganti pilihan bahasa ke Mandarin ya.,change language,Chinese,none,10
+wavs_16k/id_intent10_677_tts_gadis.wav,tts_gadis,female,Ganti pilihan bahasa ke Mandarin ya.,change language,Chinese,none,10
+wavs_16k/id_intent10_678_tts_ardi.wav,tts_ardi,male,Tolong ubah pengaturan bahasa jadi Mandarin.,change language,Chinese,none,10
+wavs_16k/id_intent10_678_tts_gadis.wav,tts_gadis,female,Tolong ubah pengaturan bahasa jadi Mandarin.,change language,Chinese,none,10
+wavs_16k/id_intent10_679_tts_ardi.wav,tts_ardi,male,Setel bahasa sistem ke bahasa Cina tolong.,change language,Chinese,none,10
+wavs_16k/id_intent10_679_tts_gadis.wav,tts_gadis,female,Setel bahasa sistem ke bahasa Cina tolong.,change language,Chinese,none,10
+wavs_16k/id_intent10_680_tts_ardi.wav,tts_ardi,male,Pindah ke bahasa Mandarin dong ya.,change language,Chinese,none,10
+wavs_16k/id_intent10_680_tts_gadis.wav,tts_gadis,female,Pindah ke bahasa Mandarin dong ya.,change language,Chinese,none,10
+wavs_16k/id_intent10_681_tts_ardi.wav,tts_ardi,male,Ganti bahasa sistem ke Mandarin sekarang.,change language,Chinese,none,10
+wavs_16k/id_intent10_681_tts_gadis.wav,tts_gadis,female,Ganti bahasa sistem ke Mandarin sekarang.,change language,Chinese,none,10
+wavs_16k/id_intent10_682_tts_ardi.wav,tts_ardi,male,Ubah bahasa tampilan ke bahasa Cina dong.,change language,Chinese,none,10
+wavs_16k/id_intent10_682_tts_gadis.wav,tts_gadis,female,Ubah bahasa tampilan ke bahasa Cina dong.,change language,Chinese,none,10
+wavs_16k/id_intent10_683_tts_ardi.wav,tts_ardi,male,Tolong ganti ke bahasa Mandarin ya.,change language,Chinese,none,10
+wavs_16k/id_intent10_683_tts_gadis.wav,tts_gadis,female,Tolong ganti ke bahasa Mandarin ya.,change language,Chinese,none,10
+wavs_16k/id_intent10_684_tts_ardi.wav,tts_ardi,male,Setel bahasanya jadi Mandarin dong tolong.,change language,Chinese,none,10
+wavs_16k/id_intent10_684_tts_gadis.wav,tts_gadis,female,Setel bahasanya jadi Mandarin dong tolong.,change language,Chinese,none,10
+wavs_16k/id_intent11_685_tts_ardi.wav,tts_ardi,male,Ganti bahasanya ke bahasa Inggris dong.,change language,English,none,11
+wavs_16k/id_intent11_685_tts_gadis.wav,tts_gadis,female,Ganti bahasanya ke bahasa Inggris dong.,change language,English,none,11
+wavs_16k/id_intent11_686_tts_ardi.wav,tts_ardi,male,Ubah bahasa sistem jadi bahasa Inggris ya.,change language,English,none,11
+wavs_16k/id_intent11_686_tts_gadis.wav,tts_gadis,female,Ubah bahasa sistem jadi bahasa Inggris ya.,change language,English,none,11
+wavs_16k/id_intent11_687_tts_ardi.wav,tts_ardi,male,Pake bahasa Inggris dong tolong.,change language,English,none,11
+wavs_16k/id_intent11_687_tts_gadis.wav,tts_gadis,female,Pake bahasa Inggris dong tolong.,change language,English,none,11
+wavs_16k/id_intent11_688_tts_ardi.wav,tts_ardi,male,Switch bahasanya ke bahasa Inggris ya.,change language,English,none,11
+wavs_16k/id_intent11_688_tts_gadis.wav,tts_gadis,female,Switch bahasanya ke bahasa Inggris ya.,change language,English,none,11
+wavs_16k/id_intent11_689_tts_ardi.wav,tts_ardi,male,Tolong ubah ke bahasa English dong.,change language,English,none,11
+wavs_16k/id_intent11_689_tts_gadis.wav,tts_gadis,female,Tolong ubah ke bahasa English dong.,change language,English,none,11
+wavs_16k/id_intent11_690_tts_ardi.wav,tts_ardi,male,Ganti bahasa ke English sekarang ya.,change language,English,none,11
+wavs_16k/id_intent11_690_tts_gadis.wav,tts_gadis,female,Ganti bahasa ke English sekarang ya.,change language,English,none,11
+wavs_16k/id_intent11_691_tts_ardi.wav,tts_ardi,male,Setel sistemnya pake bahasa Inggris tolong.,change language,English,none,11
+wavs_16k/id_intent11_691_tts_gadis.wav,tts_gadis,female,Setel sistemnya pake bahasa Inggris tolong.,change language,English,none,11
+wavs_16k/id_intent11_692_tts_ardi.wav,tts_ardi,male,Tolong ganti bahasanya jadi English dong.,change language,English,none,11
+wavs_16k/id_intent11_692_tts_gadis.wav,tts_gadis,female,Tolong ganti bahasanya jadi English dong.,change language,English,none,11
+wavs_16k/id_intent11_693_tts_ardi.wav,tts_ardi,male,Pake bahasa Inggris dong sistemnya ya.,change language,English,none,11
+wavs_16k/id_intent11_693_tts_gadis.wav,tts_gadis,female,Pake bahasa Inggris dong sistemnya ya.,change language,English,none,11
+wavs_16k/id_intent11_694_tts_ardi.wav,tts_ardi,male,Ubah bahasa ke English tolong ya.,change language,English,none,11
+wavs_16k/id_intent11_694_tts_gadis.wav,tts_gadis,female,Ubah bahasa ke English tolong ya.,change language,English,none,11
+wavs_16k/id_intent11_695_tts_ardi.wav,tts_ardi,male,Switch ke bahasa Inggris dong tolong.,change language,English,none,11
+wavs_16k/id_intent11_695_tts_gadis.wav,tts_gadis,female,Switch ke bahasa Inggris dong tolong.,change language,English,none,11
+wavs_16k/id_intent11_696_tts_ardi.wav,tts_ardi,male,Bisa tolong ganti ke bahasa Inggris gak.,change language,English,none,11
+wavs_16k/id_intent11_696_tts_gadis.wav,tts_gadis,female,Bisa tolong ganti ke bahasa Inggris gak.,change language,English,none,11
+wavs_16k/id_intent11_697_tts_ardi.wav,tts_ardi,male,Ganti pilihan bahasa ke English ya.,change language,English,none,11
+wavs_16k/id_intent11_697_tts_gadis.wav,tts_gadis,female,Ganti pilihan bahasa ke English ya.,change language,English,none,11
+wavs_16k/id_intent11_698_tts_ardi.wav,tts_ardi,male,Tolong ubah pengaturan bahasa jadi bahasa Inggris.,change language,English,none,11
+wavs_16k/id_intent11_698_tts_gadis.wav,tts_gadis,female,Tolong ubah pengaturan bahasa jadi bahasa Inggris.,change language,English,none,11
+wavs_16k/id_intent11_699_tts_ardi.wav,tts_ardi,male,Setel bahasa sistem ke bahasa Inggris tolong.,change language,English,none,11
+wavs_16k/id_intent11_699_tts_gadis.wav,tts_gadis,female,Setel bahasa sistem ke bahasa Inggris tolong.,change language,English,none,11
+wavs_16k/id_intent11_700_tts_ardi.wav,tts_ardi,male,Pindah ke bahasa Inggris dong ya.,change language,English,none,11
+wavs_16k/id_intent11_700_tts_gadis.wav,tts_gadis,female,Pindah ke bahasa Inggris dong ya.,change language,English,none,11
+wavs_16k/id_intent11_701_tts_ardi.wav,tts_ardi,male,Ganti bahasa sistem ke English sekarang.,change language,English,none,11
+wavs_16k/id_intent11_701_tts_gadis.wav,tts_gadis,female,Ganti bahasa sistem ke English sekarang.,change language,English,none,11
+wavs_16k/id_intent11_702_tts_ardi.wav,tts_ardi,male,Ubah bahasa tampilan ke bahasa Inggris dong.,change language,English,none,11
+wavs_16k/id_intent11_702_tts_gadis.wav,tts_gadis,female,Ubah bahasa tampilan ke bahasa Inggris dong.,change language,English,none,11
+wavs_16k/id_intent11_703_tts_ardi.wav,tts_ardi,male,Tolong ganti ke bahasa Inggris ya.,change language,English,none,11
+wavs_16k/id_intent11_703_tts_gadis.wav,tts_gadis,female,Tolong ganti ke bahasa Inggris ya.,change language,English,none,11
+wavs_16k/id_intent11_704_tts_ardi.wav,tts_ardi,male,Setel bahasanya jadi English dong tolong.,change language,English,none,11
+wavs_16k/id_intent11_704_tts_gadis.wav,tts_gadis,female,Setel bahasanya jadi English dong tolong.,change language,English,none,11
+wavs_16k/id_intent12_705_tts_ardi.wav,tts_ardi,male,Ganti bahasanya ke bahasa Jerman dong.,change language,German,none,12
+wavs_16k/id_intent12_705_tts_gadis.wav,tts_gadis,female,Ganti bahasanya ke bahasa Jerman dong.,change language,German,none,12
+wavs_16k/id_intent12_706_tts_ardi.wav,tts_ardi,male,Ubah bahasa sistem jadi bahasa Jerman ya.,change language,German,none,12
+wavs_16k/id_intent12_706_tts_gadis.wav,tts_gadis,female,Ubah bahasa sistem jadi bahasa Jerman ya.,change language,German,none,12
+wavs_16k/id_intent12_707_tts_ardi.wav,tts_ardi,male,Pake bahasa Jerman dong tolong.,change language,German,none,12
+wavs_16k/id_intent12_707_tts_gadis.wav,tts_gadis,female,Pake bahasa Jerman dong tolong.,change language,German,none,12
+wavs_16k/id_intent12_708_tts_ardi.wav,tts_ardi,male,Switch bahasanya ke bahasa Jerman ya.,change language,German,none,12
+wavs_16k/id_intent12_708_tts_gadis.wav,tts_gadis,female,Switch bahasanya ke bahasa Jerman ya.,change language,German,none,12
+wavs_16k/id_intent12_709_tts_ardi.wav,tts_ardi,male,Tolong ubah ke bahasa Jerman dong.,change language,German,none,12
+wavs_16k/id_intent12_709_tts_gadis.wav,tts_gadis,female,Tolong ubah ke bahasa Jerman dong.,change language,German,none,12
+wavs_16k/id_intent12_710_tts_ardi.wav,tts_ardi,male,Ganti bahasa ke German sekarang ya.,change language,German,none,12
+wavs_16k/id_intent12_710_tts_gadis.wav,tts_gadis,female,Ganti bahasa ke German sekarang ya.,change language,German,none,12
+wavs_16k/id_intent12_711_tts_ardi.wav,tts_ardi,male,Setel sistemnya pake bahasa Jerman tolong.,change language,German,none,12
+wavs_16k/id_intent12_711_tts_gadis.wav,tts_gadis,female,Setel sistemnya pake bahasa Jerman tolong.,change language,German,none,12
+wavs_16k/id_intent12_712_tts_ardi.wav,tts_ardi,male,Tolong ganti bahasanya jadi Jerman dong.,change language,German,none,12
+wavs_16k/id_intent12_712_tts_gadis.wav,tts_gadis,female,Tolong ganti bahasanya jadi Jerman dong.,change language,German,none,12
+wavs_16k/id_intent12_713_tts_ardi.wav,tts_ardi,male,Pake bahasa Jerman dong sistemnya ya.,change language,German,none,12
+wavs_16k/id_intent12_713_tts_gadis.wav,tts_gadis,female,Pake bahasa Jerman dong sistemnya ya.,change language,German,none,12
+wavs_16k/id_intent12_714_tts_ardi.wav,tts_ardi,male,Ubah bahasa ke German tolong ya.,change language,German,none,12
+wavs_16k/id_intent12_714_tts_gadis.wav,tts_gadis,female,Ubah bahasa ke German tolong ya.,change language,German,none,12
+wavs_16k/id_intent12_715_tts_ardi.wav,tts_ardi,male,Switch ke bahasa Jerman dong tolong.,change language,German,none,12
+wavs_16k/id_intent12_715_tts_gadis.wav,tts_gadis,female,Switch ke bahasa Jerman dong tolong.,change language,German,none,12
+wavs_16k/id_intent12_716_tts_ardi.wav,tts_ardi,male,Bisa tolong ganti ke bahasa Jerman gak.,change language,German,none,12
+wavs_16k/id_intent12_716_tts_gadis.wav,tts_gadis,female,Bisa tolong ganti ke bahasa Jerman gak.,change language,German,none,12
+wavs_16k/id_intent12_717_tts_ardi.wav,tts_ardi,male,Ganti pilihan bahasa ke bahasa Jerman ya.,change language,German,none,12
+wavs_16k/id_intent12_717_tts_gadis.wav,tts_gadis,female,Ganti pilihan bahasa ke bahasa Jerman ya.,change language,German,none,12
+wavs_16k/id_intent12_718_tts_ardi.wav,tts_ardi,male,Tolong ubah pengaturan bahasa jadi bahasa Jerman.,change language,German,none,12
+wavs_16k/id_intent12_718_tts_gadis.wav,tts_gadis,female,Tolong ubah pengaturan bahasa jadi bahasa Jerman.,change language,German,none,12
+wavs_16k/id_intent12_719_tts_ardi.wav,tts_ardi,male,Setel bahasa sistem ke bahasa Jerman tolong.,change language,German,none,12
+wavs_16k/id_intent12_719_tts_gadis.wav,tts_gadis,female,Setel bahasa sistem ke bahasa Jerman tolong.,change language,German,none,12
+wavs_16k/id_intent12_720_tts_ardi.wav,tts_ardi,male,Pindah ke bahasa Jerman dong ya.,change language,German,none,12
+wavs_16k/id_intent12_720_tts_gadis.wav,tts_gadis,female,Pindah ke bahasa Jerman dong ya.,change language,German,none,12
+wavs_16k/id_intent12_721_tts_ardi.wav,tts_ardi,male,Ganti bahasa sistem ke German sekarang.,change language,German,none,12
+wavs_16k/id_intent12_721_tts_gadis.wav,tts_gadis,female,Ganti bahasa sistem ke German sekarang.,change language,German,none,12
+wavs_16k/id_intent12_722_tts_ardi.wav,tts_ardi,male,Ubah bahasa tampilan ke bahasa Jerman dong.,change language,German,none,12
+wavs_16k/id_intent12_722_tts_gadis.wav,tts_gadis,female,Ubah bahasa tampilan ke bahasa Jerman dong.,change language,German,none,12
+wavs_16k/id_intent12_723_tts_ardi.wav,tts_ardi,male,Tolong ganti ke bahasa Jerman ya.,change language,German,none,12
+wavs_16k/id_intent12_723_tts_gadis.wav,tts_gadis,female,Tolong ganti ke bahasa Jerman ya.,change language,German,none,12
+wavs_16k/id_intent12_724_tts_ardi.wav,tts_ardi,male,Setel bahasanya jadi Jerman dong tolong.,change language,German,none,12
+wavs_16k/id_intent12_724_tts_gadis.wav,tts_gadis,female,Setel bahasanya jadi Jerman dong tolong.,change language,German,none,12
+wavs_16k/id_intent13_725_tts_ardi.wav,tts_ardi,male,Ganti bahasanya ke bahasa Korea dong.,change language,Korean,none,13
+wavs_16k/id_intent13_725_tts_gadis.wav,tts_gadis,female,Ganti bahasanya ke bahasa Korea dong.,change language,Korean,none,13
+wavs_16k/id_intent13_726_tts_ardi.wav,tts_ardi,male,Ubah bahasa sistem jadi bahasa Korea ya.,change language,Korean,none,13
+wavs_16k/id_intent13_726_tts_gadis.wav,tts_gadis,female,Ubah bahasa sistem jadi bahasa Korea ya.,change language,Korean,none,13
+wavs_16k/id_intent13_727_tts_ardi.wav,tts_ardi,male,Pake bahasa Korea dong tolong.,change language,Korean,none,13
+wavs_16k/id_intent13_727_tts_gadis.wav,tts_gadis,female,Pake bahasa Korea dong tolong.,change language,Korean,none,13
+wavs_16k/id_intent13_728_tts_ardi.wav,tts_ardi,male,Switch bahasanya ke bahasa Korea ya.,change language,Korean,none,13
+wavs_16k/id_intent13_728_tts_gadis.wav,tts_gadis,female,Switch bahasanya ke bahasa Korea ya.,change language,Korean,none,13
+wavs_16k/id_intent13_729_tts_ardi.wav,tts_ardi,male,Tolong ubah ke bahasa Korean dong.,change language,Korean,none,13
+wavs_16k/id_intent13_729_tts_gadis.wav,tts_gadis,female,Tolong ubah ke bahasa Korean dong.,change language,Korean,none,13
+wavs_16k/id_intent13_730_tts_ardi.wav,tts_ardi,male,Ganti bahasa ke Korea sekarang ya.,change language,Korean,none,13
+wavs_16k/id_intent13_730_tts_gadis.wav,tts_gadis,female,Ganti bahasa ke Korea sekarang ya.,change language,Korean,none,13
+wavs_16k/id_intent13_731_tts_ardi.wav,tts_ardi,male,Setel sistemnya pake bahasa Korea tolong.,change language,Korean,none,13
+wavs_16k/id_intent13_731_tts_gadis.wav,tts_gadis,female,Setel sistemnya pake bahasa Korea tolong.,change language,Korean,none,13
+wavs_16k/id_intent13_732_tts_ardi.wav,tts_ardi,male,Tolong ganti bahasanya jadi Korea dong.,change language,Korean,none,13
+wavs_16k/id_intent13_732_tts_gadis.wav,tts_gadis,female,Tolong ganti bahasanya jadi Korea dong.,change language,Korean,none,13
+wavs_16k/id_intent13_733_tts_ardi.wav,tts_ardi,male,Pake bahasa Korea dong sistemnya ya.,change language,Korean,none,13
+wavs_16k/id_intent13_733_tts_gadis.wav,tts_gadis,female,Pake bahasa Korea dong sistemnya ya.,change language,Korean,none,13
+wavs_16k/id_intent13_734_tts_ardi.wav,tts_ardi,male,Ubah bahasa ke Korean tolong ya.,change language,Korean,none,13
+wavs_16k/id_intent13_734_tts_gadis.wav,tts_gadis,female,Ubah bahasa ke Korean tolong ya.,change language,Korean,none,13
+wavs_16k/id_intent13_735_tts_ardi.wav,tts_ardi,male,Switch ke bahasa Korea dong tolong.,change language,Korean,none,13
+wavs_16k/id_intent13_735_tts_gadis.wav,tts_gadis,female,Switch ke bahasa Korea dong tolong.,change language,Korean,none,13
+wavs_16k/id_intent13_736_tts_ardi.wav,tts_ardi,male,Bisa tolong ganti ke bahasa Korea gak.,change language,Korean,none,13
+wavs_16k/id_intent13_736_tts_gadis.wav,tts_gadis,female,Bisa tolong ganti ke bahasa Korea gak.,change language,Korean,none,13
+wavs_16k/id_intent13_737_tts_ardi.wav,tts_ardi,male,Ganti pilihan bahasa ke bahasa Korea ya.,change language,Korean,none,13
+wavs_16k/id_intent13_737_tts_gadis.wav,tts_gadis,female,Ganti pilihan bahasa ke bahasa Korea ya.,change language,Korean,none,13
+wavs_16k/id_intent13_738_tts_ardi.wav,tts_ardi,male,Tolong ubah pengaturan bahasa jadi bahasa Korea.,change language,Korean,none,13
+wavs_16k/id_intent13_738_tts_gadis.wav,tts_gadis,female,Tolong ubah pengaturan bahasa jadi bahasa Korea.,change language,Korean,none,13
+wavs_16k/id_intent13_739_tts_ardi.wav,tts_ardi,male,Setel bahasa sistem ke bahasa Korea tolong.,change language,Korean,none,13
+wavs_16k/id_intent13_739_tts_gadis.wav,tts_gadis,female,Setel bahasa sistem ke bahasa Korea tolong.,change language,Korean,none,13
+wavs_16k/id_intent13_740_tts_ardi.wav,tts_ardi,male,Pindah ke bahasa Korea dong ya.,change language,Korean,none,13
+wavs_16k/id_intent13_740_tts_gadis.wav,tts_gadis,female,Pindah ke bahasa Korea dong ya.,change language,Korean,none,13
+wavs_16k/id_intent13_741_tts_ardi.wav,tts_ardi,male,Ganti bahasa sistem ke Korean sekarang.,change language,Korean,none,13
+wavs_16k/id_intent13_741_tts_gadis.wav,tts_gadis,female,Ganti bahasa sistem ke Korean sekarang.,change language,Korean,none,13
+wavs_16k/id_intent13_742_tts_ardi.wav,tts_ardi,male,Ubah bahasa tampilan ke bahasa Korea dong.,change language,Korean,none,13
+wavs_16k/id_intent13_742_tts_gadis.wav,tts_gadis,female,Ubah bahasa tampilan ke bahasa Korea dong.,change language,Korean,none,13
+wavs_16k/id_intent13_743_tts_ardi.wav,tts_ardi,male,Tolong ganti ke bahasa Korea ya.,change language,Korean,none,13
+wavs_16k/id_intent13_743_tts_gadis.wav,tts_gadis,female,Tolong ganti ke bahasa Korea ya.,change language,Korean,none,13
+wavs_16k/id_intent13_744_tts_ardi.wav,tts_ardi,male,Setel bahasanya jadi Korea dong tolong.,change language,Korean,none,13
+wavs_16k/id_intent13_744_tts_gadis.wav,tts_gadis,female,Setel bahasanya jadi Korea dong tolong.,change language,Korean,none,13
+wavs_16k/id_intent14_745_tts_ardi.wav,tts_ardi,male,Ganti bahasanya dong tolong.,change language,none,none,14
+wavs_16k/id_intent14_745_tts_gadis.wav,tts_gadis,female,Ganti bahasanya dong tolong.,change language,none,none,14
+wavs_16k/id_intent14_746_tts_ardi.wav,tts_ardi,male,Ubah bahasa sistemnya ya.,change language,none,none,14
+wavs_16k/id_intent14_746_tts_gadis.wav,tts_gadis,female,Ubah bahasa sistemnya ya.,change language,none,none,14
+wavs_16k/id_intent14_747_tts_ardi.wav,tts_ardi,male,Switch bahasanya dong tolong.,change language,none,none,14
+wavs_16k/id_intent14_747_tts_gadis.wav,tts_gadis,female,Switch bahasanya dong tolong.,change language,none,none,14
+wavs_16k/id_intent14_748_tts_ardi.wav,tts_ardi,male,Ganti setelan bahasa ke default ya.,change language,none,none,14
+wavs_16k/id_intent14_748_tts_gadis.wav,tts_gadis,female,Ganti setelan bahasa ke default ya.,change language,none,none,14
+wavs_16k/id_intent14_749_tts_ardi.wav,tts_ardi,male,Tolong ubah bahasa perangkat dong.,change language,none,none,14
+wavs_16k/id_intent14_749_tts_gadis.wav,tts_gadis,female,Tolong ubah bahasa perangkat dong.,change language,none,none,14
+wavs_16k/id_intent14_750_tts_ardi.wav,tts_ardi,male,Ganti pilihan bahasanya dong ya.,change language,none,none,14
+wavs_16k/id_intent14_750_tts_gadis.wav,tts_gadis,female,Ganti pilihan bahasanya dong ya.,change language,none,none,14
+wavs_16k/id_intent14_751_tts_ardi.wav,tts_ardi,male,Ubah bahasa sistem sekarang tolong.,change language,none,none,14
+wavs_16k/id_intent14_751_tts_gadis.wav,tts_gadis,female,Ubah bahasa sistem sekarang tolong.,change language,none,none,14
+wavs_16k/id_intent14_752_tts_ardi.wav,tts_ardi,male,Tolong ganti bahasa aplikasinya dong.,change language,none,none,14
+wavs_16k/id_intent14_752_tts_gadis.wav,tts_gadis,female,Tolong ganti bahasa aplikasinya dong.,change language,none,none,14
+wavs_16k/id_intent14_753_tts_ardi.wav,tts_ardi,male,Pindah bahasa dong tolong ya.,change language,none,none,14
+wavs_16k/id_intent14_753_tts_gadis.wav,tts_gadis,female,Pindah bahasa dong tolong ya.,change language,none,none,14
+wavs_16k/id_intent14_754_tts_ardi.wav,tts_ardi,male,Bisa tolong ganti bahasanya gak.,change language,none,none,14
+wavs_16k/id_intent14_754_tts_gadis.wav,tts_gadis,female,Bisa tolong ganti bahasanya gak.,change language,none,none,14
+wavs_16k/id_intent14_755_tts_ardi.wav,tts_ardi,male,Ganti pengaturan bahasa sistem dong.,change language,none,none,14
+wavs_16k/id_intent14_755_tts_gadis.wav,tts_gadis,female,Ganti pengaturan bahasa sistem dong.,change language,none,none,14
+wavs_16k/id_intent14_756_tts_ardi.wav,tts_ardi,male,Ubah opsi bahasa ke default tolong.,change language,none,none,14
+wavs_16k/id_intent14_756_tts_gadis.wav,tts_gadis,female,Ubah opsi bahasa ke default tolong.,change language,none,none,14
+wavs_16k/id_intent14_757_tts_ardi.wav,tts_ardi,male,Tolong switch pilihan bahasa ya.,change language,none,none,14
+wavs_16k/id_intent14_757_tts_gadis.wav,tts_gadis,female,Tolong switch pilihan bahasa ya.,change language,none,none,14
+wavs_16k/id_intent14_758_tts_ardi.wav,tts_ardi,male,Ganti bahasanya sekarang dong tolong.,change language,none,none,14
+wavs_16k/id_intent14_758_tts_gadis.wav,tts_gadis,female,Ganti bahasanya sekarang dong tolong.,change language,none,none,14
+wavs_16k/id_intent14_759_tts_ardi.wav,tts_ardi,male,Ubah bahasa tampilan aplikasi ya.,change language,none,none,14
+wavs_16k/id_intent14_759_tts_gadis.wav,tts_gadis,female,Ubah bahasa tampilan aplikasi ya.,change language,none,none,14
+wavs_16k/id_intent14_760_tts_ardi.wav,tts_ardi,male,Pilih bahasa lain dong tolong.,change language,none,none,14
+wavs_16k/id_intent14_760_tts_gadis.wav,tts_gadis,female,Pilih bahasa lain dong tolong.,change language,none,none,14
+wavs_16k/id_intent14_761_tts_ardi.wav,tts_ardi,male,Tolong ganti setelan bahasanya ya.,change language,none,none,14
+wavs_16k/id_intent14_761_tts_gadis.wav,tts_gadis,female,Tolong ganti setelan bahasanya ya.,change language,none,none,14
+wavs_16k/id_intent14_762_tts_ardi.wav,tts_ardi,male,Bisa ubah bahasa sistemnya gak tolong.,change language,none,none,14
+wavs_16k/id_intent14_762_tts_gadis.wav,tts_gadis,female,Bisa ubah bahasa sistemnya gak tolong.,change language,none,none,14
+wavs_16k/id_intent14_763_tts_ardi.wav,tts_ardi,male,Ganti bahasa perangkat ini dong ya.,change language,none,none,14
+wavs_16k/id_intent14_763_tts_gadis.wav,tts_gadis,female,Ganti bahasa perangkat ini dong ya.,change language,none,none,14
+wavs_16k/id_intent14_764_tts_ardi.wav,tts_ardi,male,Ubah ke bahasa standar tolong.,change language,none,none,14
+wavs_16k/id_intent14_764_tts_gadis.wav,tts_gadis,female,Ubah ke bahasa standar tolong.,change language,none,none,14
+wavs_16k/id_intent15_765_tts_ardi.wav,tts_ardi,male,Matiin lampu tidur dong tolong.,deactivate,lamp,none,15
+wavs_16k/id_intent15_765_tts_gadis.wav,tts_gadis,female,Matiin lampu tidur dong tolong.,deactivate,lamp,none,15
+wavs_16k/id_intent15_766_tts_ardi.wav,tts_ardi,male,Padamin lampu mejanya ya.,deactivate,lamp,none,15
+wavs_16k/id_intent15_766_tts_gadis.wav,tts_gadis,female,Padamin lampu mejanya ya.,deactivate,lamp,none,15
+wavs_16k/id_intent15_767_tts_ardi.wav,tts_ardi,male,Lampu kecil tolong matiin.,deactivate,lamp,none,15
+wavs_16k/id_intent15_767_tts_gadis.wav,tts_gadis,female,Lampu kecil tolong matiin.,deactivate,lamp,none,15
+wavs_16k/id_intent15_768_tts_ardi.wav,tts_ardi,male,Matikan lampu meja samping dong.,deactivate,lamp,none,15
+wavs_16k/id_intent15_768_tts_gadis.wav,tts_gadis,female,Matikan lampu meja samping dong.,deactivate,lamp,none,15
+wavs_16k/id_intent15_769_tts_ardi.wav,tts_ardi,male,Lampu sudut matiin dong tolong.,deactivate,lamp,none,15
+wavs_16k/id_intent15_769_tts_gadis.wav,tts_gadis,female,Lampu sudut matiin dong tolong.,deactivate,lamp,none,15
+wavs_16k/id_intent15_770_tts_ardi.wav,tts_ardi,male,Tolong matiin lampu baca ya.,deactivate,lamp,none,15
+wavs_16k/id_intent15_770_tts_gadis.wav,tts_gadis,female,Tolong matiin lampu baca ya.,deactivate,lamp,none,15
+wavs_16k/id_intent15_771_tts_ardi.wav,tts_ardi,male,Lampu meja tolong dimatikan dong.,deactivate,lamp,none,15
+wavs_16k/id_intent15_771_tts_gadis.wav,tts_gadis,female,Lampu meja tolong dimatikan dong.,deactivate,lamp,none,15
+wavs_16k/id_intent15_772_tts_ardi.wav,tts_ardi,male,Padamkan lampu tidur sekarang tolong.,deactivate,lamp,none,15
+wavs_16k/id_intent15_772_tts_gadis.wav,tts_gadis,female,Padamkan lampu tidur sekarang tolong.,deactivate,lamp,none,15
+wavs_16k/id_intent15_773_tts_ardi.wav,tts_ardi,male,Matiin dong lampu duduknya ya.,deactivate,lamp,none,15
+wavs_16k/id_intent15_773_tts_gadis.wav,tts_gadis,female,Matiin dong lampu duduknya ya.,deactivate,lamp,none,15
+wavs_16k/id_intent15_774_tts_ardi.wav,tts_ardi,male,Lampu nakas tolong dimatiin ya.,deactivate,lamp,none,15
+wavs_16k/id_intent15_774_tts_gadis.wav,tts_gadis,female,Lampu nakas tolong dimatiin ya.,deactivate,lamp,none,15
+wavs_16k/id_intent15_775_tts_ardi.wav,tts_ardi,male,Matiin lampu pojok kamar dong.,deactivate,lamp,none,15
+wavs_16k/id_intent15_775_tts_gadis.wav,tts_gadis,female,Matiin lampu pojok kamar dong.,deactivate,lamp,none,15
+wavs_16k/id_intent15_776_tts_ardi.wav,tts_ardi,male,Tolong padamin lampu meja belajar.,deactivate,lamp,none,15
+wavs_16k/id_intent15_776_tts_gadis.wav,tts_gadis,female,Tolong padamin lampu meja belajar.,deactivate,lamp,none,15
+wavs_16k/id_intent15_777_tts_ardi.wav,tts_ardi,male,Lampu tidur tolong dipadamkan ya.,deactivate,lamp,none,15
+wavs_16k/id_intent15_777_tts_gadis.wav,tts_gadis,female,Lampu tidur tolong dipadamkan ya.,deactivate,lamp,none,15
+wavs_16k/id_intent15_778_tts_ardi.wav,tts_ardi,male,Matikan lampu samping tempat tidur tolong.,deactivate,lamp,none,15
+wavs_16k/id_intent15_778_tts_gadis.wav,tts_gadis,female,Matikan lampu samping tempat tidur tolong.,deactivate,lamp,none,15
+wavs_16k/id_intent15_779_tts_ardi.wav,tts_ardi,male,Matiin lampu baca dong tolong.,deactivate,lamp,none,15
+wavs_16k/id_intent15_779_tts_gadis.wav,tts_gadis,female,Matiin lampu baca dong tolong.,deactivate,lamp,none,15
+wavs_16k/id_intent15_780_tts_ardi.wav,tts_ardi,male,Lampu hias tolong dimatikan ya.,deactivate,lamp,none,15
+wavs_16k/id_intent15_780_tts_gadis.wav,tts_gadis,female,Lampu hias tolong dimatikan ya.,deactivate,lamp,none,15
+wavs_16k/id_intent15_781_tts_ardi.wav,tts_ardi,male,Tolong matiin lampu meja sekarang.,deactivate,lamp,none,15
+wavs_16k/id_intent15_781_tts_gadis.wav,tts_gadis,female,Tolong matiin lampu meja sekarang.,deactivate,lamp,none,15
+wavs_16k/id_intent15_782_tts_ardi.wav,tts_ardi,male,Padamin lampu tidur dong tolong.,deactivate,lamp,none,15
+wavs_16k/id_intent15_782_tts_gadis.wav,tts_gadis,female,Padamin lampu tidur dong tolong.,deactivate,lamp,none,15
+wavs_16k/id_intent15_783_tts_ardi.wav,tts_ardi,male,Lampu meja padam dong ya.,deactivate,lamp,none,15
+wavs_16k/id_intent15_783_tts_gadis.wav,tts_gadis,female,Lampu meja padam dong ya.,deactivate,lamp,none,15
+wavs_16k/id_intent15_784_tts_ardi.wav,tts_ardi,male,Matiin lampu meja belajar dong.,deactivate,lamp,none,15
+wavs_16k/id_intent15_784_tts_gadis.wav,tts_gadis,female,Matiin lampu meja belajar dong.,deactivate,lamp,none,15
+wavs_16k/id_intent16_785_tts_ardi.wav,tts_ardi,male,Matiin lampu kamar dong tolong.,deactivate,lights,bedroom,16
+wavs_16k/id_intent16_785_tts_gadis.wav,tts_gadis,female,Matiin lampu kamar dong tolong.,deactivate,lights,bedroom,16
+wavs_16k/id_intent16_786_tts_ardi.wav,tts_ardi,male,Lampu kamar tidur tolong dimatiin ya.,deactivate,lights,bedroom,16
+wavs_16k/id_intent16_786_tts_gadis.wav,tts_gadis,female,Lampu kamar tidur tolong dimatiin ya.,deactivate,lights,bedroom,16
+wavs_16k/id_intent16_787_tts_ardi.wav,tts_ardi,male,Padamin lampu di kamar tidur dong.,deactivate,lights,bedroom,16
+wavs_16k/id_intent16_787_tts_gadis.wav,tts_gadis,female,Padamin lampu di kamar tidur dong.,deactivate,lights,bedroom,16
+wavs_16k/id_intent16_788_tts_ardi.wav,tts_ardi,male,"Mau tidur nih, matiin lampu kamar ya.",deactivate,lights,bedroom,16
+wavs_16k/id_intent16_788_tts_gadis.wav,tts_gadis,female,"Mau tidur nih, matiin lampu kamar ya.",deactivate,lights,bedroom,16
+wavs_16k/id_intent16_789_tts_ardi.wav,tts_ardi,male,Lampu kamar tolong dimatikan dong tolong.,deactivate,lights,bedroom,16
+wavs_16k/id_intent16_789_tts_gadis.wav,tts_gadis,female,Lampu kamar tolong dimatikan dong tolong.,deactivate,lights,bedroom,16
+wavs_16k/id_intent16_790_tts_ardi.wav,tts_ardi,male,Matikan lampu kamar tidur sekarang ya.,deactivate,lights,bedroom,16
+wavs_16k/id_intent16_790_tts_gadis.wav,tts_gadis,female,Matikan lampu kamar tidur sekarang ya.,deactivate,lights,bedroom,16
+wavs_16k/id_intent16_791_tts_ardi.wav,tts_ardi,male,Di kamar tolong matiin lampunya dong.,deactivate,lights,bedroom,16
+wavs_16k/id_intent16_791_tts_gadis.wav,tts_gadis,female,Di kamar tolong matiin lampunya dong.,deactivate,lights,bedroom,16
+wavs_16k/id_intent16_792_tts_ardi.wav,tts_ardi,male,Padamkan lampu kamar tidur ya tolong.,deactivate,lights,bedroom,16
+wavs_16k/id_intent16_792_tts_gadis.wav,tts_gadis,female,Padamkan lampu kamar tidur ya tolong.,deactivate,lights,bedroom,16
+wavs_16k/id_intent16_793_tts_ardi.wav,tts_ardi,male,Lampu kamar tidur tolong dipadamin dong.,deactivate,lights,bedroom,16
+wavs_16k/id_intent16_793_tts_gadis.wav,tts_gadis,female,Lampu kamar tidur tolong dipadamin dong.,deactivate,lights,bedroom,16
+wavs_16k/id_intent16_794_tts_ardi.wav,tts_ardi,male,Matiin dong lampu kamar tidurnya ya.,deactivate,lights,bedroom,16
+wavs_16k/id_intent16_794_tts_gadis.wav,tts_gadis,female,Matiin dong lampu kamar tidurnya ya.,deactivate,lights,bedroom,16
+wavs_16k/id_intent16_795_tts_ardi.wav,tts_ardi,male,Tolong matiin lampu kamar utama dong.,deactivate,lights,bedroom,16
+wavs_16k/id_intent16_795_tts_gadis.wav,tts_gadis,female,Tolong matiin lampu kamar utama dong.,deactivate,lights,bedroom,16
+wavs_16k/id_intent16_796_tts_ardi.wav,tts_ardi,male,Kamar tidur tolong lampunya dimatiin ya.,deactivate,lights,bedroom,16
+wavs_16k/id_intent16_796_tts_gadis.wav,tts_gadis,female,Kamar tidur tolong lampunya dimatiin ya.,deactivate,lights,bedroom,16
+wavs_16k/id_intent16_797_tts_ardi.wav,tts_ardi,male,Matiin lampu kamar tidur cepat dong.,deactivate,lights,bedroom,16
+wavs_16k/id_intent16_797_tts_gadis.wav,tts_gadis,female,Matiin lampu kamar tidur cepat dong.,deactivate,lights,bedroom,16
+wavs_16k/id_intent16_798_tts_ardi.wav,tts_ardi,male,Lampu di kamar tidur tolong dimatikan.,deactivate,lights,bedroom,16
+wavs_16k/id_intent16_798_tts_gadis.wav,tts_gadis,female,Lampu di kamar tidur tolong dimatikan.,deactivate,lights,bedroom,16
+wavs_16k/id_intent16_799_tts_ardi.wav,tts_ardi,male,Bisa tolong matiin lampu kamar gak.,deactivate,lights,bedroom,16
+wavs_16k/id_intent16_799_tts_gadis.wav,tts_gadis,female,Bisa tolong matiin lampu kamar gak.,deactivate,lights,bedroom,16
+wavs_16k/id_intent16_800_tts_ardi.wav,tts_ardi,male,Tolong padamkan lampu kamar tidur ya.,deactivate,lights,bedroom,16
+wavs_16k/id_intent16_800_tts_gadis.wav,tts_gadis,female,Tolong padamkan lampu kamar tidur ya.,deactivate,lights,bedroom,16
+wavs_16k/id_intent16_801_tts_ardi.wav,tts_ardi,male,Lampu kamar tolong dimatiin sekarang ya.,deactivate,lights,bedroom,16
+wavs_16k/id_intent16_801_tts_gadis.wav,tts_gadis,female,Lampu kamar tolong dimatiin sekarang ya.,deactivate,lights,bedroom,16
+wavs_16k/id_intent16_802_tts_ardi.wav,tts_ardi,male,Kamar tidur tolong dimatikan lampunya dong.,deactivate,lights,bedroom,16
+wavs_16k/id_intent16_802_tts_gadis.wav,tts_gadis,female,Kamar tidur tolong dimatikan lampunya dong.,deactivate,lights,bedroom,16
+wavs_16k/id_intent16_803_tts_ardi.wav,tts_ardi,male,Matiin lampu kamar tidur dong tolong ya.,deactivate,lights,bedroom,16
+wavs_16k/id_intent16_803_tts_gadis.wav,tts_gadis,female,Matiin lampu kamar tidur dong tolong ya.,deactivate,lights,bedroom,16
+wavs_16k/id_intent16_804_tts_ardi.wav,tts_ardi,male,Padamin lampu kamar sekarang dong.,deactivate,lights,bedroom,16
+wavs_16k/id_intent16_804_tts_gadis.wav,tts_gadis,female,Padamin lampu kamar sekarang dong.,deactivate,lights,bedroom,16
+wavs_16k/id_intent17_805_tts_ardi.wav,tts_ardi,male,Matiin lampu dapur dong tolong.,deactivate,lights,kitchen,17
+wavs_16k/id_intent17_805_tts_gadis.wav,tts_gadis,female,Matiin lampu dapur dong tolong.,deactivate,lights,kitchen,17
+wavs_16k/id_intent17_806_tts_ardi.wav,tts_ardi,male,Lampu dapur tolong dimatiin ya.,deactivate,lights,kitchen,17
+wavs_16k/id_intent17_806_tts_gadis.wav,tts_gadis,female,Lampu dapur tolong dimatiin ya.,deactivate,lights,kitchen,17
+wavs_16k/id_intent17_807_tts_ardi.wav,tts_ardi,male,Padamin lampu di dapur dong.,deactivate,lights,kitchen,17
+wavs_16k/id_intent17_807_tts_gadis.wav,tts_gadis,female,Padamin lampu di dapur dong.,deactivate,lights,kitchen,17
+wavs_16k/id_intent17_808_tts_ardi.wav,tts_ardi,male,"Selesai masak nih, tolong matiin lampu dapur.",deactivate,lights,kitchen,17
+wavs_16k/id_intent17_808_tts_gadis.wav,tts_gadis,female,"Selesai masak nih, tolong matiin lampu dapur.",deactivate,lights,kitchen,17
+wavs_16k/id_intent17_809_tts_ardi.wav,tts_ardi,male,Lampu dapur tolong dimatikan dong tolong.,deactivate,lights,kitchen,17
+wavs_16k/id_intent17_809_tts_gadis.wav,tts_gadis,female,Lampu dapur tolong dimatikan dong tolong.,deactivate,lights,kitchen,17
+wavs_16k/id_intent17_810_tts_ardi.wav,tts_ardi,male,Matikan lampu dapur sekarang ya.,deactivate,lights,kitchen,17
+wavs_16k/id_intent17_810_tts_gadis.wav,tts_gadis,female,Matikan lampu dapur sekarang ya.,deactivate,lights,kitchen,17
+wavs_16k/id_intent17_811_tts_ardi.wav,tts_ardi,male,Di dapur tolong matiin lampunya dong.,deactivate,lights,kitchen,17
+wavs_16k/id_intent17_811_tts_gadis.wav,tts_gadis,female,Di dapur tolong matiin lampunya dong.,deactivate,lights,kitchen,17
+wavs_16k/id_intent17_812_tts_ardi.wav,tts_ardi,male,Padamkan lampu dapur ya tolong.,deactivate,lights,kitchen,17
+wavs_16k/id_intent17_812_tts_gadis.wav,tts_gadis,female,Padamkan lampu dapur ya tolong.,deactivate,lights,kitchen,17
+wavs_16k/id_intent17_813_tts_ardi.wav,tts_ardi,male,Lampu dapur tolong dipadamin dong.,deactivate,lights,kitchen,17
+wavs_16k/id_intent17_813_tts_gadis.wav,tts_gadis,female,Lampu dapur tolong dipadamin dong.,deactivate,lights,kitchen,17
+wavs_16k/id_intent17_814_tts_ardi.wav,tts_ardi,male,Matiin dong lampu dapurnya ya.,deactivate,lights,kitchen,17
+wavs_16k/id_intent17_814_tts_gadis.wav,tts_gadis,female,Matiin dong lampu dapurnya ya.,deactivate,lights,kitchen,17
+wavs_16k/id_intent17_815_tts_ardi.wav,tts_ardi,male,Tolong matiin lampu area dapur dong.,deactivate,lights,kitchen,17
+wavs_16k/id_intent17_815_tts_gadis.wav,tts_gadis,female,Tolong matiin lampu area dapur dong.,deactivate,lights,kitchen,17
+wavs_16k/id_intent17_816_tts_ardi.wav,tts_ardi,male,Dapur tolong lampunya dimatiin ya.,deactivate,lights,kitchen,17
+wavs_16k/id_intent17_816_tts_gadis.wav,tts_gadis,female,Dapur tolong lampunya dimatiin ya.,deactivate,lights,kitchen,17
+wavs_16k/id_intent17_817_tts_ardi.wav,tts_ardi,male,Matiin lampu dapur cepat dong tolong.,deactivate,lights,kitchen,17
+wavs_16k/id_intent17_817_tts_gadis.wav,tts_gadis,female,Matiin lampu dapur cepat dong tolong.,deactivate,lights,kitchen,17
+wavs_16k/id_intent17_818_tts_ardi.wav,tts_ardi,male,Lampu di dapur tolong dimatikan ya.,deactivate,lights,kitchen,17
+wavs_16k/id_intent17_818_tts_gadis.wav,tts_gadis,female,Lampu di dapur tolong dimatikan ya.,deactivate,lights,kitchen,17
+wavs_16k/id_intent17_819_tts_ardi.wav,tts_ardi,male,Bisa tolong matiin lampu dapur gak.,deactivate,lights,kitchen,17
+wavs_16k/id_intent17_819_tts_gadis.wav,tts_gadis,female,Bisa tolong matiin lampu dapur gak.,deactivate,lights,kitchen,17
+wavs_16k/id_intent17_820_tts_ardi.wav,tts_ardi,male,Tolong padamkan lampu dapur ya.,deactivate,lights,kitchen,17
+wavs_16k/id_intent17_820_tts_gadis.wav,tts_gadis,female,Tolong padamkan lampu dapur ya.,deactivate,lights,kitchen,17
+wavs_16k/id_intent17_821_tts_ardi.wav,tts_ardi,male,Lampu dapur tolong dimatiin sekarang ya.,deactivate,lights,kitchen,17
+wavs_16k/id_intent17_821_tts_gadis.wav,tts_gadis,female,Lampu dapur tolong dimatiin sekarang ya.,deactivate,lights,kitchen,17
+wavs_16k/id_intent17_822_tts_ardi.wav,tts_ardi,male,Dapur tolong dimatikan lampunya dong.,deactivate,lights,kitchen,17
+wavs_16k/id_intent17_822_tts_gadis.wav,tts_gadis,female,Dapur tolong dimatikan lampunya dong.,deactivate,lights,kitchen,17
+wavs_16k/id_intent17_823_tts_ardi.wav,tts_ardi,male,Matiin lampu dapur dong tolong ya.,deactivate,lights,kitchen,17
+wavs_16k/id_intent17_823_tts_gadis.wav,tts_gadis,female,Matiin lampu dapur dong tolong ya.,deactivate,lights,kitchen,17
+wavs_16k/id_intent17_824_tts_ardi.wav,tts_ardi,male,Padamin lampu dapur sekarang dong.,deactivate,lights,kitchen,17
+wavs_16k/id_intent17_824_tts_gadis.wav,tts_gadis,female,Padamin lampu dapur sekarang dong.,deactivate,lights,kitchen,17
+wavs_16k/id_intent18_825_tts_ardi.wav,tts_ardi,male,Matiin semua lampu rumah dong tolong.,deactivate,lights,none,18
+wavs_16k/id_intent18_825_tts_gadis.wav,tts_gadis,female,Matiin semua lampu rumah dong tolong.,deactivate,lights,none,18
+wavs_16k/id_intent18_826_tts_ardi.wav,tts_ardi,male,Semua lampu tolong dimatiin ya.,deactivate,lights,none,18
+wavs_16k/id_intent18_826_tts_gadis.wav,tts_gadis,female,Semua lampu tolong dimatiin ya.,deactivate,lights,none,18
+wavs_16k/id_intent18_827_tts_ardi.wav,tts_ardi,male,Padamin semua lampu dong mau tidur nih.,deactivate,lights,none,18
+wavs_16k/id_intent18_827_tts_gadis.wav,tts_gadis,female,Padamin semua lampu dong mau tidur nih.,deactivate,lights,none,18
+wavs_16k/id_intent18_828_tts_ardi.wav,tts_ardi,male,Lampu rumah tolong dimatikan semua ya.,deactivate,lights,none,18
+wavs_16k/id_intent18_828_tts_gadis.wav,tts_gadis,female,Lampu rumah tolong dimatikan semua ya.,deactivate,lights,none,18
+wavs_16k/id_intent18_829_tts_ardi.wav,tts_ardi,male,Matikan semua lampu ruangan tolong.,deactivate,lights,none,18
+wavs_16k/id_intent18_829_tts_gadis.wav,tts_gadis,female,Matikan semua lampu ruangan tolong.,deactivate,lights,none,18
+wavs_16k/id_intent18_830_tts_ardi.wav,tts_ardi,male,Matiin dong semua lampunya tolong.,deactivate,lights,none,18
+wavs_16k/id_intent18_830_tts_gadis.wav,tts_gadis,female,Matiin dong semua lampunya tolong.,deactivate,lights,none,18
+wavs_16k/id_intent18_831_tts_ardi.wav,tts_ardi,male,Tolong padamin lampu seluruh rumah ya.,deactivate,lights,none,18
+wavs_16k/id_intent18_831_tts_gadis.wav,tts_gadis,female,Tolong padamin lampu seluruh rumah ya.,deactivate,lights,none,18
+wavs_16k/id_intent18_832_tts_ardi.wav,tts_ardi,male,Lampu ruang tengah tolong dimatiin dong.,deactivate,lights,none,18
+wavs_16k/id_intent18_832_tts_gadis.wav,tts_gadis,female,Lampu ruang tengah tolong dimatiin dong.,deactivate,lights,none,18
+wavs_16k/id_intent18_833_tts_ardi.wav,tts_ardi,male,Matiin lampu utama dong tolong.,deactivate,lights,none,18
+wavs_16k/id_intent18_833_tts_gadis.wav,tts_gadis,female,Matiin lampu utama dong tolong.,deactivate,lights,none,18
+wavs_16k/id_intent18_834_tts_ardi.wav,tts_ardi,male,Lampu utama tolong dimatikan ya.,deactivate,lights,none,18
+wavs_16k/id_intent18_834_tts_gadis.wav,tts_gadis,female,Lampu utama tolong dimatikan ya.,deactivate,lights,none,18
+wavs_16k/id_intent18_835_tts_ardi.wav,tts_ardi,male,Tolong matikan semua lampu di rumah.,deactivate,lights,none,18
+wavs_16k/id_intent18_835_tts_gadis.wav,tts_gadis,female,Tolong matikan semua lampu di rumah.,deactivate,lights,none,18
+wavs_16k/id_intent18_836_tts_ardi.wav,tts_ardi,male,Semua lampu tolong dipadamkan sekarang.,deactivate,lights,none,18
+wavs_16k/id_intent18_836_tts_gadis.wav,tts_gadis,female,Semua lampu tolong dipadamkan sekarang.,deactivate,lights,none,18
+wavs_16k/id_intent18_837_tts_ardi.wav,tts_ardi,male,Matiin semua lampu ruangan dong tolong.,deactivate,lights,none,18
+wavs_16k/id_intent18_837_tts_gadis.wav,tts_gadis,female,Matiin semua lampu ruangan dong tolong.,deactivate,lights,none,18
+wavs_16k/id_intent18_838_tts_ardi.wav,tts_ardi,male,Lampu rumah tolong dipadamin ya.,deactivate,lights,none,18
+wavs_16k/id_intent18_838_tts_gadis.wav,tts_gadis,female,Lampu rumah tolong dipadamin ya.,deactivate,lights,none,18
+wavs_16k/id_intent18_839_tts_ardi.wav,tts_ardi,male,Bisa tolong matiin semua lampu gak.,deactivate,lights,none,18
+wavs_16k/id_intent18_839_tts_gadis.wav,tts_gadis,female,Bisa tolong matiin semua lampu gak.,deactivate,lights,none,18
+wavs_16k/id_intent18_840_tts_ardi.wav,tts_ardi,male,Tolong matiin lampu dong semuanya ya.,deactivate,lights,none,18
+wavs_16k/id_intent18_840_tts_gadis.wav,tts_gadis,female,Tolong matiin lampu dong semuanya ya.,deactivate,lights,none,18
+wavs_16k/id_intent18_841_tts_ardi.wav,tts_ardi,male,Lampu seluruh ruangan tolong dimatikan.,deactivate,lights,none,18
+wavs_16k/id_intent18_841_tts_gadis.wav,tts_gadis,female,Lampu seluruh ruangan tolong dimatikan.,deactivate,lights,none,18
+wavs_16k/id_intent18_842_tts_ardi.wav,tts_ardi,male,Padamkan seluruh lampu rumah dong tolong.,deactivate,lights,none,18
+wavs_16k/id_intent18_842_tts_gadis.wav,tts_gadis,female,Padamkan seluruh lampu rumah dong tolong.,deactivate,lights,none,18
+wavs_16k/id_intent18_843_tts_ardi.wav,tts_ardi,male,Matiin semua lampu dong tolong ya.,deactivate,lights,none,18
+wavs_16k/id_intent18_843_tts_gadis.wav,tts_gadis,female,Matiin semua lampu dong tolong ya.,deactivate,lights,none,18
+wavs_16k/id_intent18_844_tts_ardi.wav,tts_ardi,male,Semua lampu padamkan sekarang dong.,deactivate,lights,none,18
+wavs_16k/id_intent18_844_tts_gadis.wav,tts_gadis,female,Semua lampu padamkan sekarang dong.,deactivate,lights,none,18
+wavs_16k/id_intent19_845_tts_ardi.wav,tts_ardi,male,Matiin lampu kamar mandi dong tolong.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_845_tts_gadis.wav,tts_gadis,female,Matiin lampu kamar mandi dong tolong.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_846_tts_ardi.wav,tts_ardi,male,Matiin lampu WC dong tolong ya.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_846_tts_gadis.wav,tts_gadis,female,Matiin lampu WC dong tolong ya.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_847_tts_ardi.wav,tts_ardi,male,Matiin lampu toilet dong ya.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_847_tts_gadis.wav,tts_gadis,female,Matiin lampu toilet dong ya.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_848_tts_ardi.wav,tts_ardi,male,Lampu kamar mandi tolong dimatiin ya.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_848_tts_gadis.wav,tts_gadis,female,Lampu kamar mandi tolong dimatiin ya.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_849_tts_ardi.wav,tts_ardi,male,Padamin lampu toilet dong tolong.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_849_tts_gadis.wav,tts_gadis,female,Padamin lampu toilet dong tolong.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_850_tts_ardi.wav,tts_ardi,male,Lampu WC tolong dimatikan dong.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_850_tts_gadis.wav,tts_gadis,female,Lampu WC tolong dimatikan dong.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_851_tts_ardi.wav,tts_ardi,male,Matikan lampu kamar mandi sekarang ya.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_851_tts_gadis.wav,tts_gadis,female,Matikan lampu kamar mandi sekarang ya.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_852_tts_ardi.wav,tts_ardi,male,Di kamar mandi tolong matiin lampunya dong.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_852_tts_gadis.wav,tts_gadis,female,Di kamar mandi tolong matiin lampunya dong.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_853_tts_ardi.wav,tts_ardi,male,Padamkan lampu toilet ya tolong.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_853_tts_gadis.wav,tts_gadis,female,Padamkan lampu toilet ya tolong.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_854_tts_ardi.wav,tts_ardi,male,Lampu kamar mandi tolong dipadamin dong.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_854_tts_gadis.wav,tts_gadis,female,Lampu kamar mandi tolong dipadamin dong.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_855_tts_ardi.wav,tts_ardi,male,Matiin dong lampu toiletnya ya tolong.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_855_tts_gadis.wav,tts_gadis,female,Matiin dong lampu toiletnya ya tolong.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_856_tts_ardi.wav,tts_ardi,male,Tolong matiin lampu di kamar mandi dong.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_856_tts_gadis.wav,tts_gadis,female,Tolong matiin lampu di kamar mandi dong.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_857_tts_ardi.wav,tts_ardi,male,Toilet tolong lampunya dimatiin ya.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_857_tts_gadis.wav,tts_gadis,female,Toilet tolong lampunya dimatiin ya.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_858_tts_ardi.wav,tts_ardi,male,Matiin lampu WC cepat dong tolong.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_858_tts_gadis.wav,tts_gadis,female,Matiin lampu WC cepat dong tolong.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_859_tts_ardi.wav,tts_ardi,male,Lampu di kamar mandi tolong dimatikan ya.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_859_tts_gadis.wav,tts_gadis,female,Lampu di kamar mandi tolong dimatikan ya.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_860_tts_ardi.wav,tts_ardi,male,Bisa tolong matiin lampu toilet gak.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_860_tts_gadis.wav,tts_gadis,female,Bisa tolong matiin lampu toilet gak.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_861_tts_ardi.wav,tts_ardi,male,Tolong padamkan lampu kamar mandi ya.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_861_tts_gadis.wav,tts_gadis,female,Tolong padamkan lampu kamar mandi ya.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_862_tts_ardi.wav,tts_ardi,male,Lampu WC tolong dipadamkan dong.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_862_tts_gadis.wav,tts_gadis,female,Lampu WC tolong dipadamkan dong.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_863_tts_ardi.wav,tts_ardi,male,Kamar mandi tolong dimatikan lampunya ya.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_863_tts_gadis.wav,tts_gadis,female,Kamar mandi tolong dimatikan lampunya ya.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_864_tts_ardi.wav,tts_ardi,male,Matiin lampu kamar mandi dong tolong ya.,deactivate,lights,washroom,19
+wavs_16k/id_intent19_864_tts_gadis.wav,tts_gadis,female,Matiin lampu kamar mandi dong tolong ya.,deactivate,lights,washroom,19
+wavs_16k/id_intent20_865_tts_ardi.wav,tts_ardi,male,Matiin musiknya dong tolong.,deactivate,music,none,20
+wavs_16k/id_intent20_865_tts_gadis.wav,tts_gadis,female,Matiin musiknya dong tolong.,deactivate,music,none,20
+wavs_16k/id_intent20_866_tts_ardi.wav,tts_ardi,male,Stop lagunya dong ya.,deactivate,music,none,20
+wavs_16k/id_intent20_866_tts_gadis.wav,tts_gadis,female,Stop lagunya dong ya.,deactivate,music,none,20
+wavs_16k/id_intent20_867_tts_ardi.wav,tts_ardi,male,Hentikan pemutaran musik tolong.,deactivate,music,none,20
+wavs_16k/id_intent20_867_tts_gadis.wav,tts_gadis,female,Hentikan pemutaran musik tolong.,deactivate,music,none,20
+wavs_16k/id_intent20_868_tts_ardi.wav,tts_ardi,male,Pause lagunya dong tolong.,deactivate,music,none,20
+wavs_16k/id_intent20_868_tts_gadis.wav,tts_gadis,female,Pause lagunya dong tolong.,deactivate,music,none,20
+wavs_16k/id_intent20_869_tts_ardi.wav,tts_ardi,male,Matiin lagunya dong berisik nih.,deactivate,music,none,20
+wavs_16k/id_intent20_869_tts_gadis.wav,tts_gadis,female,Matiin lagunya dong berisik nih.,deactivate,music,none,20
+wavs_16k/id_intent20_870_tts_ardi.wav,tts_ardi,male,Tolong matikan musik sekarang ya.,deactivate,music,none,20
+wavs_16k/id_intent20_870_tts_gadis.wav,tts_gadis,female,Tolong matikan musik sekarang ya.,deactivate,music,none,20
+wavs_16k/id_intent20_871_tts_ardi.wav,tts_ardi,male,Musiknya tolong dimatiin dong.,deactivate,music,none,20
+wavs_16k/id_intent20_871_tts_gadis.wav,tts_gadis,female,Musiknya tolong dimatiin dong.,deactivate,music,none,20
+wavs_16k/id_intent20_872_tts_ardi.wav,tts_ardi,male,Stop musiknya dong tolong ya.,deactivate,music,none,20
+wavs_16k/id_intent20_872_tts_gadis.wav,tts_gadis,female,Stop musiknya dong tolong ya.,deactivate,music,none,20
+wavs_16k/id_intent20_873_tts_ardi.wav,tts_ardi,male,Matikan pemutaran lagu tolong.,deactivate,music,none,20
+wavs_16k/id_intent20_873_tts_gadis.wav,tts_gadis,female,Matikan pemutaran lagu tolong.,deactivate,music,none,20
+wavs_16k/id_intent20_874_tts_ardi.wav,tts_ardi,male,Matiin musik di speaker dong.,deactivate,music,none,20
+wavs_16k/id_intent20_874_tts_gadis.wav,tts_gadis,female,Matiin musik di speaker dong.,deactivate,music,none,20
+wavs_16k/id_intent20_875_tts_ardi.wav,tts_ardi,male,Tolong hentikan lagunya ya.,deactivate,music,none,20
+wavs_16k/id_intent20_875_tts_gadis.wav,tts_gadis,female,Tolong hentikan lagunya ya.,deactivate,music,none,20
+wavs_16k/id_intent20_876_tts_ardi.wav,tts_ardi,male,Pause musik dong mau ngobrol nih.,deactivate,music,none,20
+wavs_16k/id_intent20_876_tts_gadis.wav,tts_gadis,female,Pause musik dong mau ngobrol nih.,deactivate,music,none,20
+wavs_16k/id_intent20_877_tts_ardi.wav,tts_ardi,male,Bisa tolong matiin musiknya gak.,deactivate,music,none,20
+wavs_16k/id_intent20_877_tts_gadis.wav,tts_gadis,female,Bisa tolong matiin musiknya gak.,deactivate,music,none,20
+wavs_16k/id_intent20_878_tts_ardi.wav,tts_ardi,male,Musiknya tolong di-stop ya.,deactivate,music,none,20
+wavs_16k/id_intent20_878_tts_gadis.wav,tts_gadis,female,Musiknya tolong di-stop ya.,deactivate,music,none,20
+wavs_16k/id_intent20_879_tts_ardi.wav,tts_ardi,male,Matikan suara musik dong tolong.,deactivate,music,none,20
+wavs_16k/id_intent20_879_tts_gadis.wav,tts_gadis,female,Matikan suara musik dong tolong.,deactivate,music,none,20
+wavs_16k/id_intent20_880_tts_ardi.wav,tts_ardi,male,Tolong jeda pemutaran musik ya.,deactivate,music,none,20
+wavs_16k/id_intent20_880_tts_gadis.wav,tts_gadis,female,Tolong jeda pemutaran musik ya.,deactivate,music,none,20
+wavs_16k/id_intent20_881_tts_ardi.wav,tts_ardi,male,Matiin lagu sekarang dong tolong.,deactivate,music,none,20
+wavs_16k/id_intent20_881_tts_gadis.wav,tts_gadis,female,Matiin lagu sekarang dong tolong.,deactivate,music,none,20
+wavs_16k/id_intent20_882_tts_ardi.wav,tts_ardi,male,Stop lagu yang lagi muter ya.,deactivate,music,none,20
+wavs_16k/id_intent20_882_tts_gadis.wav,tts_gadis,female,Stop lagu yang lagi muter ya.,deactivate,music,none,20
+wavs_16k/id_intent20_883_tts_ardi.wav,tts_ardi,male,Musiknya tolong dimatikan sekarang.,deactivate,music,none,20
+wavs_16k/id_intent20_883_tts_gadis.wav,tts_gadis,female,Musiknya tolong dimatikan sekarang.,deactivate,music,none,20
+wavs_16k/id_intent20_884_tts_ardi.wav,tts_ardi,male,Matikan lagunya dong tolong ya.,deactivate,music,none,20
+wavs_16k/id_intent20_884_tts_gadis.wav,tts_gadis,female,Matikan lagunya dong tolong ya.,deactivate,music,none,20
+wavs_16k/id_intent21_885_tts_ardi.wav,tts_ardi,male,"Kamar tidur kepanasan nih, kecilin suhunya dong.",decrease,heat,bedroom,21
+wavs_16k/id_intent21_885_tts_gadis.wav,tts_gadis,female,"Kamar tidur kepanasan nih, kecilin suhunya dong.",decrease,heat,bedroom,21
+wavs_16k/id_intent21_886_tts_ardi.wav,tts_ardi,male,Turunin pemanas di kamar tidur ya tolong.,decrease,heat,bedroom,21
+wavs_16k/id_intent21_886_tts_gadis.wav,tts_gadis,female,Turunin pemanas di kamar tidur ya tolong.,decrease,heat,bedroom,21
+wavs_16k/id_intent21_887_tts_ardi.wav,tts_ardi,male,Kecilin pemanas ruangan di kamar dong.,decrease,heat,bedroom,21
+wavs_16k/id_intent21_887_tts_gadis.wav,tts_gadis,female,Kecilin pemanas ruangan di kamar dong.,decrease,heat,bedroom,21
+wavs_16k/id_intent21_888_tts_ardi.wav,tts_ardi,male,Suhu kamar tidur tolong diturunkan ya.,decrease,heat,bedroom,21
+wavs_16k/id_intent21_888_tts_gadis.wav,tts_gadis,female,Suhu kamar tidur tolong diturunkan ya.,decrease,heat,bedroom,21
+wavs_16k/id_intent21_889_tts_ardi.wav,tts_ardi,male,Kecilkan suhu di kamar tidur tolong.,decrease,heat,bedroom,21
+wavs_16k/id_intent21_889_tts_gadis.wav,tts_gadis,female,Kecilkan suhu di kamar tidur tolong.,decrease,heat,bedroom,21
+wavs_16k/id_intent21_890_tts_ardi.wav,tts_ardi,male,Di kamar tidur tolong kecilin suhunya dong.,decrease,heat,bedroom,21
+wavs_16k/id_intent21_890_tts_gadis.wav,tts_gadis,female,Di kamar tidur tolong kecilin suhunya dong.,decrease,heat,bedroom,21
+wavs_16k/id_intent21_891_tts_ardi.wav,tts_ardi,male,Pemanas kamar tidur tolong diturunin ya.,decrease,heat,bedroom,21
+wavs_16k/id_intent21_891_tts_gadis.wav,tts_gadis,female,Pemanas kamar tidur tolong diturunin ya.,decrease,heat,bedroom,21
+wavs_16k/id_intent21_892_tts_ardi.wav,tts_ardi,male,Turunkan pemanas kamar tidur dong tolong.,decrease,heat,bedroom,21
+wavs_16k/id_intent21_892_tts_gadis.wav,tts_gadis,female,Turunkan pemanas kamar tidur dong tolong.,decrease,heat,bedroom,21
+wavs_16k/id_intent21_893_tts_ardi.wav,tts_ardi,male,Kamar gerah nih tolong kecilin pemanasnya.,decrease,heat,bedroom,21
+wavs_16k/id_intent21_893_tts_gadis.wav,tts_gadis,female,Kamar gerah nih tolong kecilin pemanasnya.,decrease,heat,bedroom,21
+wavs_16k/id_intent21_894_tts_ardi.wav,tts_ardi,male,Kecilin temperatur kamar tidur dong ya.,decrease,heat,bedroom,21
+wavs_16k/id_intent21_894_tts_gadis.wav,tts_gadis,female,Kecilin temperatur kamar tidur dong ya.,decrease,heat,bedroom,21
+wavs_16k/id_intent21_895_tts_ardi.wav,tts_ardi,male,Suhu di kamar tolong dikecilkan ya tolong.,decrease,heat,bedroom,21
+wavs_16k/id_intent21_895_tts_gadis.wav,tts_gadis,female,Suhu di kamar tolong dikecilkan ya tolong.,decrease,heat,bedroom,21
+wavs_16k/id_intent21_896_tts_ardi.wav,tts_ardi,male,Tolong turunkan suhu kamar tidur sekarang.,decrease,heat,bedroom,21
+wavs_16k/id_intent21_896_tts_gadis.wav,tts_gadis,female,Tolong turunkan suhu kamar tidur sekarang.,decrease,heat,bedroom,21
+wavs_16k/id_intent21_897_tts_ardi.wav,tts_ardi,male,Kecilkan pemanas kamar dong tolong.,decrease,heat,bedroom,21
+wavs_16k/id_intent21_897_tts_gadis.wav,tts_gadis,female,Kecilkan pemanas kamar dong tolong.,decrease,heat,bedroom,21
+wavs_16k/id_intent21_898_tts_ardi.wav,tts_ardi,male,Bisa tolong turunin suhu kamar tidur gak.,decrease,heat,bedroom,21
+wavs_16k/id_intent21_898_tts_gadis.wav,tts_gadis,female,Bisa tolong turunin suhu kamar tidur gak.,decrease,heat,bedroom,21
+wavs_16k/id_intent21_899_tts_ardi.wav,tts_ardi,male,Pemanas ruangan kamar tidur tolong dikecilkan.,decrease,heat,bedroom,21
+wavs_16k/id_intent21_899_tts_gadis.wav,tts_gadis,female,Pemanas ruangan kamar tidur tolong dikecilkan.,decrease,heat,bedroom,21
+wavs_16k/id_intent21_900_tts_ardi.wav,tts_ardi,male,Kamar tidur panas tolong turunin suhunya ya.,decrease,heat,bedroom,21
+wavs_16k/id_intent21_900_tts_gadis.wav,tts_gadis,female,Kamar tidur panas tolong turunin suhunya ya.,decrease,heat,bedroom,21
+wavs_16k/id_intent21_901_tts_ardi.wav,tts_ardi,male,Tolong kecilkan suhu kamar tidur dong.,decrease,heat,bedroom,21
+wavs_16k/id_intent21_901_tts_gadis.wav,tts_gadis,female,Tolong kecilkan suhu kamar tidur dong.,decrease,heat,bedroom,21
+wavs_16k/id_intent21_902_tts_ardi.wav,tts_ardi,male,Turunin pemanas kamar tidur dong tolong ya.,decrease,heat,bedroom,21
+wavs_16k/id_intent21_902_tts_gadis.wav,tts_gadis,female,Turunin pemanas kamar tidur dong tolong ya.,decrease,heat,bedroom,21
+wavs_16k/id_intent21_903_tts_ardi.wav,tts_ardi,male,Kecilin suhu kamar tidur cepat dong.,decrease,heat,bedroom,21
+wavs_16k/id_intent21_903_tts_gadis.wav,tts_gadis,female,Kecilin suhu kamar tidur cepat dong.,decrease,heat,bedroom,21
+wavs_16k/id_intent21_904_tts_ardi.wav,tts_ardi,male,Pemanas di kamar tolong diturunkan ya.,decrease,heat,bedroom,21
+wavs_16k/id_intent21_904_tts_gadis.wav,tts_gadis,female,Pemanas di kamar tolong diturunkan ya.,decrease,heat,bedroom,21
+wavs_16k/id_intent22_905_tts_ardi.wav,tts_ardi,male,"Dapur panas banget, kecilin pemanasnya dong.",decrease,heat,kitchen,22
+wavs_16k/id_intent22_905_tts_gadis.wav,tts_gadis,female,"Dapur panas banget, kecilin pemanasnya dong.",decrease,heat,kitchen,22
+wavs_16k/id_intent22_906_tts_ardi.wav,tts_ardi,male,Turunin suhu di dapur ya tolong.,decrease,heat,kitchen,22
+wavs_16k/id_intent22_906_tts_gadis.wav,tts_gadis,female,Turunin suhu di dapur ya tolong.,decrease,heat,kitchen,22
+wavs_16k/id_intent22_907_tts_ardi.wav,tts_ardi,male,Kecilin pemanas ruangan di dapur dong.,decrease,heat,kitchen,22
+wavs_16k/id_intent22_907_tts_gadis.wav,tts_gadis,female,Kecilin pemanas ruangan di dapur dong.,decrease,heat,kitchen,22
+wavs_16k/id_intent22_908_tts_ardi.wav,tts_ardi,male,Suhu dapur tolong diturunkan ya tolong.,decrease,heat,kitchen,22
+wavs_16k/id_intent22_908_tts_gadis.wav,tts_gadis,female,Suhu dapur tolong diturunkan ya tolong.,decrease,heat,kitchen,22
+wavs_16k/id_intent22_909_tts_ardi.wav,tts_ardi,male,Kecilkan suhu di dapur tolong ya.,decrease,heat,kitchen,22
+wavs_16k/id_intent22_909_tts_gadis.wav,tts_gadis,female,Kecilkan suhu di dapur tolong ya.,decrease,heat,kitchen,22
+wavs_16k/id_intent22_910_tts_ardi.wav,tts_ardi,male,Di dapur tolong kecilin suhunya dong.,decrease,heat,kitchen,22
+wavs_16k/id_intent22_910_tts_gadis.wav,tts_gadis,female,Di dapur tolong kecilin suhunya dong.,decrease,heat,kitchen,22
+wavs_16k/id_intent22_911_tts_ardi.wav,tts_ardi,male,Pemanas dapur tolong diturunin ya.,decrease,heat,kitchen,22
+wavs_16k/id_intent22_911_tts_gadis.wav,tts_gadis,female,Pemanas dapur tolong diturunin ya.,decrease,heat,kitchen,22
+wavs_16k/id_intent22_912_tts_ardi.wav,tts_ardi,male,Turunkan pemanas dapur dong tolong.,decrease,heat,kitchen,22
+wavs_16k/id_intent22_912_tts_gadis.wav,tts_gadis,female,Turunkan pemanas dapur dong tolong.,decrease,heat,kitchen,22
+wavs_16k/id_intent22_913_tts_ardi.wav,tts_ardi,male,Dapur gerah nih tolong kecilin suhunya.,decrease,heat,kitchen,22
+wavs_16k/id_intent22_913_tts_gadis.wav,tts_gadis,female,Dapur gerah nih tolong kecilin suhunya.,decrease,heat,kitchen,22
+wavs_16k/id_intent22_914_tts_ardi.wav,tts_ardi,male,Kecilin temperatur dapur dong ya.,decrease,heat,kitchen,22
+wavs_16k/id_intent22_914_tts_gadis.wav,tts_gadis,female,Kecilin temperatur dapur dong ya.,decrease,heat,kitchen,22
+wavs_16k/id_intent22_915_tts_ardi.wav,tts_ardi,male,Suhu di dapur tolong dikecilkan ya tolong.,decrease,heat,kitchen,22
+wavs_16k/id_intent22_915_tts_gadis.wav,tts_gadis,female,Suhu di dapur tolong dikecilkan ya tolong.,decrease,heat,kitchen,22
+wavs_16k/id_intent22_916_tts_ardi.wav,tts_ardi,male,Tolong turunkan suhu dapur sekarang.,decrease,heat,kitchen,22
+wavs_16k/id_intent22_916_tts_gadis.wav,tts_gadis,female,Tolong turunkan suhu dapur sekarang.,decrease,heat,kitchen,22
+wavs_16k/id_intent22_917_tts_ardi.wav,tts_ardi,male,Kecilkan pemanas dapur dong tolong.,decrease,heat,kitchen,22
+wavs_16k/id_intent22_917_tts_gadis.wav,tts_gadis,female,Kecilkan pemanas dapur dong tolong.,decrease,heat,kitchen,22
+wavs_16k/id_intent22_918_tts_ardi.wav,tts_ardi,male,Bisa tolong turunin suhu dapur gak.,decrease,heat,kitchen,22
+wavs_16k/id_intent22_918_tts_gadis.wav,tts_gadis,female,Bisa tolong turunin suhu dapur gak.,decrease,heat,kitchen,22
+wavs_16k/id_intent22_919_tts_ardi.wav,tts_ardi,male,Pemanas ruangan dapur tolong dikecilkan.,decrease,heat,kitchen,22
+wavs_16k/id_intent22_919_tts_gadis.wav,tts_gadis,female,Pemanas ruangan dapur tolong dikecilkan.,decrease,heat,kitchen,22
+wavs_16k/id_intent22_920_tts_ardi.wav,tts_ardi,male,Dapur panas tolong turunin pemanasnya ya.,decrease,heat,kitchen,22
+wavs_16k/id_intent22_920_tts_gadis.wav,tts_gadis,female,Dapur panas tolong turunin pemanasnya ya.,decrease,heat,kitchen,22
+wavs_16k/id_intent22_921_tts_ardi.wav,tts_ardi,male,Tolong kecilkan suhu dapur dong.,decrease,heat,kitchen,22
+wavs_16k/id_intent22_921_tts_gadis.wav,tts_gadis,female,Tolong kecilkan suhu dapur dong.,decrease,heat,kitchen,22
+wavs_16k/id_intent22_922_tts_ardi.wav,tts_ardi,male,Turunin pemanas dapur dong tolong ya.,decrease,heat,kitchen,22
+wavs_16k/id_intent22_922_tts_gadis.wav,tts_gadis,female,Turunin pemanas dapur dong tolong ya.,decrease,heat,kitchen,22
+wavs_16k/id_intent22_923_tts_ardi.wav,tts_ardi,male,Kecilin suhu dapur cepat dong tolong.,decrease,heat,kitchen,22
+wavs_16k/id_intent22_923_tts_gadis.wav,tts_gadis,female,Kecilin suhu dapur cepat dong tolong.,decrease,heat,kitchen,22
+wavs_16k/id_intent22_924_tts_ardi.wav,tts_ardi,male,Pemanas di dapur tolong diturunkan ya.,decrease,heat,kitchen,22
+wavs_16k/id_intent22_924_tts_gadis.wav,tts_gadis,female,Pemanas di dapur tolong diturunkan ya.,decrease,heat,kitchen,22
+wavs_16k/id_intent23_925_tts_ardi.wav,tts_ardi,male,Kecilin pemanas rumah dong tolong.,decrease,heat,none,23
+wavs_16k/id_intent23_925_tts_gadis.wav,tts_gadis,female,Kecilin pemanas rumah dong tolong.,decrease,heat,none,23
+wavs_16k/id_intent23_926_tts_ardi.wav,tts_ardi,male,Turunin suhu ruangan dong gerah nih.,decrease,heat,none,23
+wavs_16k/id_intent23_926_tts_gadis.wav,tts_gadis,female,Turunin suhu ruangan dong gerah nih.,decrease,heat,none,23
+wavs_16k/id_intent23_927_tts_ardi.wav,tts_ardi,male,Kecilkan pemanas dong tolong ya.,decrease,heat,none,23
+wavs_16k/id_intent23_927_tts_gadis.wav,tts_gadis,female,Kecilkan pemanas dong tolong ya.,decrease,heat,none,23
+wavs_16k/id_intent23_928_tts_ardi.wav,tts_ardi,male,Suhu ruangan tolong diturunkan ya.,decrease,heat,none,23
+wavs_16k/id_intent23_928_tts_gadis.wav,tts_gadis,female,Suhu ruangan tolong diturunkan ya.,decrease,heat,none,23
+wavs_16k/id_intent23_929_tts_ardi.wav,tts_ardi,male,Panas banget nih tolong kecilin suhunya.,decrease,heat,none,23
+wavs_16k/id_intent23_929_tts_gadis.wav,tts_gadis,female,Panas banget nih tolong kecilin suhunya.,decrease,heat,none,23
+wavs_16k/id_intent23_930_tts_ardi.wav,tts_ardi,male,Turunkan temperatur ruangan dong tolong.,decrease,heat,none,23
+wavs_16k/id_intent23_930_tts_gadis.wav,tts_gadis,female,Turunkan temperatur ruangan dong tolong.,decrease,heat,none,23
+wavs_16k/id_intent23_931_tts_ardi.wav,tts_ardi,male,Pemanas tolong dikecilkan ya tolong.,decrease,heat,none,23
+wavs_16k/id_intent23_931_tts_gadis.wav,tts_gadis,female,Pemanas tolong dikecilkan ya tolong.,decrease,heat,none,23
+wavs_16k/id_intent23_932_tts_ardi.wav,tts_ardi,male,Kecilin suhu rumah dong tolong ya.,decrease,heat,none,23
+wavs_16k/id_intent23_932_tts_gadis.wav,tts_gadis,female,Kecilin suhu rumah dong tolong ya.,decrease,heat,none,23
+wavs_16k/id_intent23_933_tts_ardi.wav,tts_ardi,male,Rumah gerah nih tolong turunin pemanasnya.,decrease,heat,none,23
+wavs_16k/id_intent23_933_tts_gadis.wav,tts_gadis,female,Rumah gerah nih tolong turunin pemanasnya.,decrease,heat,none,23
+wavs_16k/id_intent23_934_tts_ardi.wav,tts_ardi,male,Kecilkan suhu rumah sekarang dong.,decrease,heat,none,23
+wavs_16k/id_intent23_934_tts_gadis.wav,tts_gadis,female,Kecilkan suhu rumah sekarang dong.,decrease,heat,none,23
+wavs_16k/id_intent23_935_tts_ardi.wav,tts_ardi,male,Tolong turunkan pemanas ruangan ya.,decrease,heat,none,23
+wavs_16k/id_intent23_935_tts_gadis.wav,tts_gadis,female,Tolong turunkan pemanas ruangan ya.,decrease,heat,none,23
+wavs_16k/id_intent23_936_tts_ardi.wav,tts_ardi,male,Bisa tolong kecilin suhunya gak tolong.,decrease,heat,none,23
+wavs_16k/id_intent23_936_tts_gadis.wav,tts_gadis,female,Bisa tolong kecilin suhunya gak tolong.,decrease,heat,none,23
+wavs_16k/id_intent23_937_tts_ardi.wav,tts_ardi,male,Pemanas ruangan tolong diturunin dong.,decrease,heat,none,23
+wavs_16k/id_intent23_937_tts_gadis.wav,tts_gadis,female,Pemanas ruangan tolong diturunin dong.,decrease,heat,none,23
+wavs_16k/id_intent23_938_tts_ardi.wav,tts_ardi,male,Turunin suhu ruangan cepat dong ya.,decrease,heat,none,23
+wavs_16k/id_intent23_938_tts_gadis.wav,tts_gadis,female,Turunin suhu ruangan cepat dong ya.,decrease,heat,none,23
+wavs_16k/id_intent23_939_tts_ardi.wav,tts_ardi,male,Kecilin temperatur rumah dong tolong.,decrease,heat,none,23
+wavs_16k/id_intent23_939_tts_gadis.wav,tts_gadis,female,Kecilin temperatur rumah dong tolong.,decrease,heat,none,23
+wavs_16k/id_intent23_940_tts_ardi.wav,tts_ardi,male,Suhu tolong diturunkan dong panas nih.,decrease,heat,none,23
+wavs_16k/id_intent23_940_tts_gadis.wav,tts_gadis,female,Suhu tolong diturunkan dong panas nih.,decrease,heat,none,23
+wavs_16k/id_intent23_941_tts_ardi.wav,tts_ardi,male,Tolong kecilkan pemanas sekarang ya.,decrease,heat,none,23
+wavs_16k/id_intent23_941_tts_gadis.wav,tts_gadis,female,Tolong kecilkan pemanas sekarang ya.,decrease,heat,none,23
+wavs_16k/id_intent23_942_tts_ardi.wav,tts_ardi,male,Turunkan suhu ruangan dong tolong ya.,decrease,heat,none,23
+wavs_16k/id_intent23_942_tts_gadis.wav,tts_gadis,female,Turunkan suhu ruangan dong tolong ya.,decrease,heat,none,23
+wavs_16k/id_intent23_943_tts_ardi.wav,tts_ardi,male,Kecilin pemanas dong gerah banget.,decrease,heat,none,23
+wavs_16k/id_intent23_943_tts_gadis.wav,tts_gadis,female,Kecilin pemanas dong gerah banget.,decrease,heat,none,23
+wavs_16k/id_intent23_944_tts_ardi.wav,tts_ardi,male,Pemanas rumah tolong dikecilkan ya.,decrease,heat,none,23
+wavs_16k/id_intent23_944_tts_gadis.wav,tts_gadis,female,Pemanas rumah tolong dikecilkan ya.,decrease,heat,none,23
+wavs_16k/id_intent24_945_tts_ardi.wav,tts_ardi,male,"Kamar mandi kepanasan nih, kecilin suhunya dong.",decrease,heat,washroom,24
+wavs_16k/id_intent24_945_tts_gadis.wav,tts_gadis,female,"Kamar mandi kepanasan nih, kecilin suhunya dong.",decrease,heat,washroom,24
+wavs_16k/id_intent24_946_tts_ardi.wav,tts_ardi,male,Turunin pemanas di kamar mandi ya tolong.,decrease,heat,washroom,24
+wavs_16k/id_intent24_946_tts_gadis.wav,tts_gadis,female,Turunin pemanas di kamar mandi ya tolong.,decrease,heat,washroom,24
+wavs_16k/id_intent24_947_tts_ardi.wav,tts_ardi,male,Kecilin pemanas ruangan di toilet dong.,decrease,heat,washroom,24
+wavs_16k/id_intent24_947_tts_gadis.wav,tts_gadis,female,Kecilin pemanas ruangan di toilet dong.,decrease,heat,washroom,24
+wavs_16k/id_intent24_948_tts_ardi.wav,tts_ardi,male,Suhu kamar mandi tolong diturunkan ya.,decrease,heat,washroom,24
+wavs_16k/id_intent24_948_tts_gadis.wav,tts_gadis,female,Suhu kamar mandi tolong diturunkan ya.,decrease,heat,washroom,24
+wavs_16k/id_intent24_949_tts_ardi.wav,tts_ardi,male,Kecilkan suhu di kamar mandi tolong.,decrease,heat,washroom,24
+wavs_16k/id_intent24_949_tts_gadis.wav,tts_gadis,female,Kecilkan suhu di kamar mandi tolong.,decrease,heat,washroom,24
+wavs_16k/id_intent24_950_tts_ardi.wav,tts_ardi,male,Di kamar mandi tolong kecilin suhunya dong.,decrease,heat,washroom,24
+wavs_16k/id_intent24_950_tts_gadis.wav,tts_gadis,female,Di kamar mandi tolong kecilin suhunya dong.,decrease,heat,washroom,24
+wavs_16k/id_intent24_951_tts_ardi.wav,tts_ardi,male,Pemanas toilet tolong diturunin ya tolong.,decrease,heat,washroom,24
+wavs_16k/id_intent24_951_tts_gadis.wav,tts_gadis,female,Pemanas toilet tolong diturunin ya tolong.,decrease,heat,washroom,24
+wavs_16k/id_intent24_952_tts_ardi.wav,tts_ardi,male,Turunkan pemanas kamar mandi dong tolong.,decrease,heat,washroom,24
+wavs_16k/id_intent24_952_tts_gadis.wav,tts_gadis,female,Turunkan pemanas kamar mandi dong tolong.,decrease,heat,washroom,24
+wavs_16k/id_intent24_953_tts_ardi.wav,tts_ardi,male,Toilet gerah nih tolong kecilin pemanasnya.,decrease,heat,washroom,24
+wavs_16k/id_intent24_953_tts_gadis.wav,tts_gadis,female,Toilet gerah nih tolong kecilin pemanasnya.,decrease,heat,washroom,24
+wavs_16k/id_intent24_954_tts_ardi.wav,tts_ardi,male,Kecilin temperatur kamar mandi dong ya.,decrease,heat,washroom,24
+wavs_16k/id_intent24_954_tts_gadis.wav,tts_gadis,female,Kecilin temperatur kamar mandi dong ya.,decrease,heat,washroom,24
+wavs_16k/id_intent24_955_tts_ardi.wav,tts_ardi,male,Suhu di toilet tolong dikecilkan ya tolong.,decrease,heat,washroom,24
+wavs_16k/id_intent24_955_tts_gadis.wav,tts_gadis,female,Suhu di toilet tolong dikecilkan ya tolong.,decrease,heat,washroom,24
+wavs_16k/id_intent24_956_tts_ardi.wav,tts_ardi,male,Tolong turunkan suhu kamar mandi sekarang.,decrease,heat,washroom,24
+wavs_16k/id_intent24_956_tts_gadis.wav,tts_gadis,female,Tolong turunkan suhu kamar mandi sekarang.,decrease,heat,washroom,24
+wavs_16k/id_intent24_957_tts_ardi.wav,tts_ardi,male,Kecilkan pemanas toilet dong tolong.,decrease,heat,washroom,24
+wavs_16k/id_intent24_957_tts_gadis.wav,tts_gadis,female,Kecilkan pemanas toilet dong tolong.,decrease,heat,washroom,24
+wavs_16k/id_intent24_958_tts_ardi.wav,tts_ardi,male,Bisa tolong turunin suhu kamar mandi gak.,decrease,heat,washroom,24
+wavs_16k/id_intent24_958_tts_gadis.wav,tts_gadis,female,Bisa tolong turunin suhu kamar mandi gak.,decrease,heat,washroom,24
+wavs_16k/id_intent24_959_tts_ardi.wav,tts_ardi,male,Pemanas ruangan toilet tolong dikecilkan.,decrease,heat,washroom,24
+wavs_16k/id_intent24_959_tts_gadis.wav,tts_gadis,female,Pemanas ruangan toilet tolong dikecilkan.,decrease,heat,washroom,24
+wavs_16k/id_intent24_960_tts_ardi.wav,tts_ardi,male,Kamar mandi panas tolong turunin suhunya ya.,decrease,heat,washroom,24
+wavs_16k/id_intent24_960_tts_gadis.wav,tts_gadis,female,Kamar mandi panas tolong turunin suhunya ya.,decrease,heat,washroom,24
+wavs_16k/id_intent24_961_tts_ardi.wav,tts_ardi,male,Tolong kecilkan suhu toilet dong ya.,decrease,heat,washroom,24
+wavs_16k/id_intent24_961_tts_gadis.wav,tts_gadis,female,Tolong kecilkan suhu toilet dong ya.,decrease,heat,washroom,24
+wavs_16k/id_intent24_962_tts_ardi.wav,tts_ardi,male,Turunin pemanas kamar mandi dong tolong ya.,decrease,heat,washroom,24
+wavs_16k/id_intent24_962_tts_gadis.wav,tts_gadis,female,Turunin pemanas kamar mandi dong tolong ya.,decrease,heat,washroom,24
+wavs_16k/id_intent24_963_tts_ardi.wav,tts_ardi,male,Kecilin suhu kamar mandi cepat dong.,decrease,heat,washroom,24
+wavs_16k/id_intent24_963_tts_gadis.wav,tts_gadis,female,Kecilin suhu kamar mandi cepat dong.,decrease,heat,washroom,24
+wavs_16k/id_intent24_964_tts_ardi.wav,tts_ardi,male,Pemanas di kamar mandi tolong diturunkan ya.,decrease,heat,washroom,24
+wavs_16k/id_intent24_964_tts_gadis.wav,tts_gadis,female,Pemanas di kamar mandi tolong diturunkan ya.,decrease,heat,washroom,24
+wavs_16k/id_intent25_965_tts_ardi.wav,tts_ardi,male,Kecilin volumenya dong tolong.,decrease,volume,none,25
+wavs_16k/id_intent25_965_tts_gadis.wav,tts_gadis,female,Kecilin volumenya dong tolong.,decrease,volume,none,25
+wavs_16k/id_intent25_966_tts_ardi.wav,tts_ardi,male,Pelanin suaranya dong berisik nih.,decrease,volume,none,25
+wavs_16k/id_intent25_966_tts_gadis.wav,tts_gadis,female,Pelanin suaranya dong berisik nih.,decrease,volume,none,25
+wavs_16k/id_intent25_967_tts_ardi.wav,tts_ardi,male,Turunin volume speaker ya tolong.,decrease,volume,none,25
+wavs_16k/id_intent25_967_tts_gadis.wav,tts_gadis,female,Turunin volume speaker ya tolong.,decrease,volume,none,25
+wavs_16k/id_intent25_968_tts_ardi.wav,tts_ardi,male,Kecilkan volume lagunya dong ya.,decrease,volume,none,25
+wavs_16k/id_intent25_968_tts_gadis.wav,tts_gadis,female,Kecilkan volume lagunya dong ya.,decrease,volume,none,25
+wavs_16k/id_intent25_969_tts_ardi.wav,tts_ardi,male,Volume tolong dikecilkan ya tolong.,decrease,volume,none,25
+wavs_16k/id_intent25_969_tts_gadis.wav,tts_gadis,female,Volume tolong dikecilkan ya tolong.,decrease,volume,none,25
+wavs_16k/id_intent25_970_tts_ardi.wav,tts_ardi,male,Suara musiknya tolong dipelankan dong.,decrease,volume,none,25
+wavs_16k/id_intent25_970_tts_gadis.wav,tts_gadis,female,Suara musiknya tolong dipelankan dong.,decrease,volume,none,25
+wavs_16k/id_intent25_971_tts_ardi.wav,tts_ardi,male,Turunkan volume suara dong tolong.,decrease,volume,none,25
+wavs_16k/id_intent25_971_tts_gadis.wav,tts_gadis,female,Turunkan volume suara dong tolong.,decrease,volume,none,25
+wavs_16k/id_intent25_972_tts_ardi.wav,tts_ardi,male,Kecilin suara speaker dong berisik banget.,decrease,volume,none,25
+wavs_16k/id_intent25_972_tts_gadis.wav,tts_gadis,female,Kecilin suara speaker dong berisik banget.,decrease,volume,none,25
+wavs_16k/id_intent25_973_tts_ardi.wav,tts_ardi,male,Volume tolong diturunkan ya tolong.,decrease,volume,none,25
+wavs_16k/id_intent25_973_tts_gadis.wav,tts_gadis,female,Volume tolong diturunkan ya tolong.,decrease,volume,none,25
+wavs_16k/id_intent25_974_tts_ardi.wav,tts_ardi,male,Pelankan suara musiknya dong ya.,decrease,volume,none,25
+wavs_16k/id_intent25_974_tts_gadis.wav,tts_gadis,female,Pelankan suara musiknya dong ya.,decrease,volume,none,25
+wavs_16k/id_intent25_975_tts_ardi.wav,tts_ardi,male,Tolong kecilkan volume speaker sekarang.,decrease,volume,none,25
+wavs_16k/id_intent25_975_tts_gadis.wav,tts_gadis,female,Tolong kecilkan volume speaker sekarang.,decrease,volume,none,25
+wavs_16k/id_intent25_976_tts_ardi.wav,tts_ardi,male,Bisa tolong kecilin volumenya gak.,decrease,volume,none,25
+wavs_16k/id_intent25_976_tts_gadis.wav,tts_gadis,female,Bisa tolong kecilin volumenya gak.,decrease,volume,none,25
+wavs_16k/id_intent25_977_tts_ardi.wav,tts_ardi,male,Volume lagunya tolong dipelankan ya.,decrease,volume,none,25
+wavs_16k/id_intent25_977_tts_gadis.wav,tts_gadis,female,Volume lagunya tolong dipelankan ya.,decrease,volume,none,25
+wavs_16k/id_intent25_978_tts_ardi.wav,tts_ardi,male,Turunin volumenya dong tolong ya.,decrease,volume,none,25
+wavs_16k/id_intent25_978_tts_gadis.wav,tts_gadis,female,Turunin volumenya dong tolong ya.,decrease,volume,none,25
+wavs_16k/id_intent25_979_tts_ardi.wav,tts_ardi,male,Kecilin volume dong mau telepon nih.,decrease,volume,none,25
+wavs_16k/id_intent25_979_tts_gadis.wav,tts_gadis,female,Kecilin volume dong mau telepon nih.,decrease,volume,none,25
+wavs_16k/id_intent25_980_tts_ardi.wav,tts_ardi,male,Suaranya kekencengan tolong kecilin volumenya.,decrease,volume,none,25
+wavs_16k/id_intent25_980_tts_gadis.wav,tts_gadis,female,Suaranya kekencengan tolong kecilin volumenya.,decrease,volume,none,25
+wavs_16k/id_intent25_981_tts_ardi.wav,tts_ardi,male,Tolong pelankan volume musik sekarang ya.,decrease,volume,none,25
+wavs_16k/id_intent25_981_tts_gadis.wav,tts_gadis,female,Tolong pelankan volume musik sekarang ya.,decrease,volume,none,25
+wavs_16k/id_intent25_982_tts_ardi.wav,tts_ardi,male,Kecilkan suara lagu dong tolong.,decrease,volume,none,25
+wavs_16k/id_intent25_982_tts_gadis.wav,tts_gadis,female,Kecilkan suara lagu dong tolong.,decrease,volume,none,25
+wavs_16k/id_intent25_983_tts_ardi.wav,tts_ardi,male,Volume speaker tolong diturunkan ya.,decrease,volume,none,25
+wavs_16k/id_intent25_983_tts_gadis.wav,tts_gadis,female,Volume speaker tolong diturunkan ya.,decrease,volume,none,25
+wavs_16k/id_intent25_984_tts_ardi.wav,tts_ardi,male,Pelanin suaranya dong tolong ya.,decrease,volume,none,25
+wavs_16k/id_intent25_984_tts_gadis.wav,tts_gadis,female,Pelanin suaranya dong tolong ya.,decrease,volume,none,25
+wavs_16k/id_intent26_985_tts_ardi.wav,tts_ardi,male,"Kamar tidur dingin banget, naikin suhunya dong.",increase,heat,bedroom,26
+wavs_16k/id_intent26_985_tts_gadis.wav,tts_gadis,female,"Kamar tidur dingin banget, naikin suhunya dong.",increase,heat,bedroom,26
+wavs_16k/id_intent26_986_tts_ardi.wav,tts_ardi,male,Tolong naikin pemanas di kamar tidur ya.,increase,heat,bedroom,26
+wavs_16k/id_intent26_986_tts_gadis.wav,tts_gadis,female,Tolong naikin pemanas di kamar tidur ya.,increase,heat,bedroom,26
+wavs_16k/id_intent26_987_tts_ardi.wav,tts_ardi,male,Gedein pemanas ruangan di kamar dong.,increase,heat,bedroom,26
+wavs_16k/id_intent26_987_tts_gadis.wav,tts_gadis,female,Gedein pemanas ruangan di kamar dong.,increase,heat,bedroom,26
+wavs_16k/id_intent26_988_tts_ardi.wav,tts_ardi,male,Suhu kamar tidur tolong dinaikkan ya tolong.,increase,heat,bedroom,26
+wavs_16k/id_intent26_988_tts_gadis.wav,tts_gadis,female,Suhu kamar tidur tolong dinaikkan ya tolong.,increase,heat,bedroom,26
+wavs_16k/id_intent26_989_tts_ardi.wav,tts_ardi,male,Tingkatkan suhu di kamar tidur tolong.,increase,heat,bedroom,26
+wavs_16k/id_intent26_989_tts_gadis.wav,tts_gadis,female,Tingkatkan suhu di kamar tidur tolong.,increase,heat,bedroom,26
+wavs_16k/id_intent26_990_tts_ardi.wav,tts_ardi,male,Di kamar tidur tolong naikin suhunya dong.,increase,heat,bedroom,26
+wavs_16k/id_intent26_990_tts_gadis.wav,tts_gadis,female,Di kamar tidur tolong naikin suhunya dong.,increase,heat,bedroom,26
+wavs_16k/id_intent26_991_tts_ardi.wav,tts_ardi,male,Pemanas kamar tidur tolong dinaikkan ya.,increase,heat,bedroom,26
+wavs_16k/id_intent26_991_tts_gadis.wav,tts_gadis,female,Pemanas kamar tidur tolong dinaikkan ya.,increase,heat,bedroom,26
+wavs_16k/id_intent26_992_tts_ardi.wav,tts_ardi,male,Naikkan pemanas kamar tidur dong tolong.,increase,heat,bedroom,26
+wavs_16k/id_intent26_992_tts_gadis.wav,tts_gadis,female,Naikkan pemanas kamar tidur dong tolong.,increase,heat,bedroom,26
+wavs_16k/id_intent26_993_tts_ardi.wav,tts_ardi,male,Kamar kedinginan nih tolong gedein pemanasnya.,increase,heat,bedroom,26
+wavs_16k/id_intent26_993_tts_gadis.wav,tts_gadis,female,Kamar kedinginan nih tolong gedein pemanasnya.,increase,heat,bedroom,26
+wavs_16k/id_intent26_994_tts_ardi.wav,tts_ardi,male,Naikin temperatur kamar tidur dong ya.,increase,heat,bedroom,26
+wavs_16k/id_intent26_994_tts_gadis.wav,tts_gadis,female,Naikin temperatur kamar tidur dong ya.,increase,heat,bedroom,26
+wavs_16k/id_intent26_995_tts_ardi.wav,tts_ardi,male,Suhu di kamar tolong ditingkatkan ya tolong.,increase,heat,bedroom,26
+wavs_16k/id_intent26_995_tts_gadis.wav,tts_gadis,female,Suhu di kamar tolong ditingkatkan ya tolong.,increase,heat,bedroom,26
+wavs_16k/id_intent26_996_tts_ardi.wav,tts_ardi,male,Tolong naikkan suhu kamar tidur sekarang.,increase,heat,bedroom,26
+wavs_16k/id_intent26_996_tts_gadis.wav,tts_gadis,female,Tolong naikkan suhu kamar tidur sekarang.,increase,heat,bedroom,26
+wavs_16k/id_intent26_997_tts_ardi.wav,tts_ardi,male,Gedein pemanas kamar tidur dong tolong.,increase,heat,bedroom,26
+wavs_16k/id_intent26_997_tts_gadis.wav,tts_gadis,female,Gedein pemanas kamar tidur dong tolong.,increase,heat,bedroom,26
+wavs_16k/id_intent26_998_tts_ardi.wav,tts_ardi,male,Bisa tolong naikin suhu kamar tidur gak.,increase,heat,bedroom,26
+wavs_16k/id_intent26_998_tts_gadis.wav,tts_gadis,female,Bisa tolong naikin suhu kamar tidur gak.,increase,heat,bedroom,26
+wavs_16k/id_intent26_999_tts_ardi.wav,tts_ardi,male,Pemanas ruangan kamar tidur tolong dinaikkan.,increase,heat,bedroom,26
+wavs_16k/id_intent26_999_tts_gadis.wav,tts_gadis,female,Pemanas ruangan kamar tidur tolong dinaikkan.,increase,heat,bedroom,26
+wavs_16k/id_intent26_1000_tts_ardi.wav,tts_ardi,male,Kamar tidur dingin tolong naikin suhunya ya.,increase,heat,bedroom,26
+wavs_16k/id_intent26_1000_tts_gadis.wav,tts_gadis,female,Kamar tidur dingin tolong naikin suhunya ya.,increase,heat,bedroom,26
+wavs_16k/id_intent26_1001_tts_ardi.wav,tts_ardi,male,Tolong besarkan suhu kamar tidur dong.,increase,heat,bedroom,26
+wavs_16k/id_intent26_1001_tts_gadis.wav,tts_gadis,female,Tolong besarkan suhu kamar tidur dong.,increase,heat,bedroom,26
+wavs_16k/id_intent26_1002_tts_ardi.wav,tts_ardi,male,Naikin pemanas kamar tidur dong tolong ya.,increase,heat,bedroom,26
+wavs_16k/id_intent26_1002_tts_gadis.wav,tts_gadis,female,Naikin pemanas kamar tidur dong tolong ya.,increase,heat,bedroom,26
+wavs_16k/id_intent26_1003_tts_ardi.wav,tts_ardi,male,Gedein suhu kamar tidur cepat dong.,increase,heat,bedroom,26
+wavs_16k/id_intent26_1003_tts_gadis.wav,tts_gadis,female,Gedein suhu kamar tidur cepat dong.,increase,heat,bedroom,26
+wavs_16k/id_intent26_1004_tts_ardi.wav,tts_ardi,male,Pemanas di kamar tolong ditingkatkan ya.,increase,heat,bedroom,26
+wavs_16k/id_intent26_1004_tts_gadis.wav,tts_gadis,female,Pemanas di kamar tolong ditingkatkan ya.,increase,heat,bedroom,26
+wavs_16k/id_intent27_1005_tts_ardi.wav,tts_ardi,male,"Dapur dingin banget, naikin pemanasnya dong.",increase,heat,kitchen,27
+wavs_16k/id_intent27_1005_tts_gadis.wav,tts_gadis,female,"Dapur dingin banget, naikin pemanasnya dong.",increase,heat,kitchen,27
+wavs_16k/id_intent27_1006_tts_ardi.wav,tts_ardi,male,Tolong naikin suhu di dapur ya tolong.,increase,heat,kitchen,27
+wavs_16k/id_intent27_1006_tts_gadis.wav,tts_gadis,female,Tolong naikin suhu di dapur ya tolong.,increase,heat,kitchen,27
+wavs_16k/id_intent27_1007_tts_ardi.wav,tts_ardi,male,Gedein pemanas ruangan di dapur dong.,increase,heat,kitchen,27
+wavs_16k/id_intent27_1007_tts_gadis.wav,tts_gadis,female,Gedein pemanas ruangan di dapur dong.,increase,heat,kitchen,27
+wavs_16k/id_intent27_1008_tts_ardi.wav,tts_ardi,male,Suhu dapur tolong dinaikkan ya tolong.,increase,heat,kitchen,27
+wavs_16k/id_intent27_1008_tts_gadis.wav,tts_gadis,female,Suhu dapur tolong dinaikkan ya tolong.,increase,heat,kitchen,27
+wavs_16k/id_intent27_1009_tts_ardi.wav,tts_ardi,male,Tingkatkan suhu di dapur tolong ya.,increase,heat,kitchen,27
+wavs_16k/id_intent27_1009_tts_gadis.wav,tts_gadis,female,Tingkatkan suhu di dapur tolong ya.,increase,heat,kitchen,27
+wavs_16k/id_intent27_1010_tts_ardi.wav,tts_ardi,male,Di dapur tolong naikin suhunya dong.,increase,heat,kitchen,27
+wavs_16k/id_intent27_1010_tts_gadis.wav,tts_gadis,female,Di dapur tolong naikin suhunya dong.,increase,heat,kitchen,27
+wavs_16k/id_intent27_1011_tts_ardi.wav,tts_ardi,male,Pemanas dapur tolong dinaikkan ya tolong.,increase,heat,kitchen,27
+wavs_16k/id_intent27_1011_tts_gadis.wav,tts_gadis,female,Pemanas dapur tolong dinaikkan ya tolong.,increase,heat,kitchen,27
+wavs_16k/id_intent27_1012_tts_ardi.wav,tts_ardi,male,Naikkan pemanas dapur dong tolong ya.,increase,heat,kitchen,27
+wavs_16k/id_intent27_1012_tts_gadis.wav,tts_gadis,female,Naikkan pemanas dapur dong tolong ya.,increase,heat,kitchen,27
+wavs_16k/id_intent27_1013_tts_ardi.wav,tts_ardi,male,Dapur kedinginan nih tolong gedein suhunya.,increase,heat,kitchen,27
+wavs_16k/id_intent27_1013_tts_gadis.wav,tts_gadis,female,Dapur kedinginan nih tolong gedein suhunya.,increase,heat,kitchen,27
+wavs_16k/id_intent27_1014_tts_ardi.wav,tts_ardi,male,Naikin temperatur dapur dong ya tolong.,increase,heat,kitchen,27
+wavs_16k/id_intent27_1014_tts_gadis.wav,tts_gadis,female,Naikin temperatur dapur dong ya tolong.,increase,heat,kitchen,27
+wavs_16k/id_intent27_1015_tts_ardi.wav,tts_ardi,male,Suhu di dapur tolong ditingkatkan ya tolong.,increase,heat,kitchen,27
+wavs_16k/id_intent27_1015_tts_gadis.wav,tts_gadis,female,Suhu di dapur tolong ditingkatkan ya tolong.,increase,heat,kitchen,27
+wavs_16k/id_intent27_1016_tts_ardi.wav,tts_ardi,male,Tolong naikkan suhu dapur sekarang ya.,increase,heat,kitchen,27
+wavs_16k/id_intent27_1016_tts_gadis.wav,tts_gadis,female,Tolong naikkan suhu dapur sekarang ya.,increase,heat,kitchen,27
+wavs_16k/id_intent27_1017_tts_ardi.wav,tts_ardi,male,Gedein pemanas dapur dong tolong ya.,increase,heat,kitchen,27
+wavs_16k/id_intent27_1017_tts_gadis.wav,tts_gadis,female,Gedein pemanas dapur dong tolong ya.,increase,heat,kitchen,27
+wavs_16k/id_intent27_1018_tts_ardi.wav,tts_ardi,male,Bisa tolong naikin suhu dapur gak.,increase,heat,kitchen,27
+wavs_16k/id_intent27_1018_tts_gadis.wav,tts_gadis,female,Bisa tolong naikin suhu dapur gak.,increase,heat,kitchen,27
+wavs_16k/id_intent27_1019_tts_ardi.wav,tts_ardi,male,Pemanas ruangan dapur tolong dinaikkan.,increase,heat,kitchen,27
+wavs_16k/id_intent27_1019_tts_gadis.wav,tts_gadis,female,Pemanas ruangan dapur tolong dinaikkan.,increase,heat,kitchen,27
+wavs_16k/id_intent27_1020_tts_ardi.wav,tts_ardi,male,Dapur dingin tolong naikin pemanasnya ya.,increase,heat,kitchen,27
+wavs_16k/id_intent27_1020_tts_gadis.wav,tts_gadis,female,Dapur dingin tolong naikin pemanasnya ya.,increase,heat,kitchen,27
+wavs_16k/id_intent27_1021_tts_ardi.wav,tts_ardi,male,Tolong besarkan suhu dapur dong ya.,increase,heat,kitchen,27
+wavs_16k/id_intent27_1021_tts_gadis.wav,tts_gadis,female,Tolong besarkan suhu dapur dong ya.,increase,heat,kitchen,27
+wavs_16k/id_intent27_1022_tts_ardi.wav,tts_ardi,male,Naikin pemanas dapur dong tolong ya.,increase,heat,kitchen,27
+wavs_16k/id_intent27_1022_tts_gadis.wav,tts_gadis,female,Naikin pemanas dapur dong tolong ya.,increase,heat,kitchen,27
+wavs_16k/id_intent27_1023_tts_ardi.wav,tts_ardi,male,Gedein suhu dapur cepat dong tolong.,increase,heat,kitchen,27
+wavs_16k/id_intent27_1023_tts_gadis.wav,tts_gadis,female,Gedein suhu dapur cepat dong tolong.,increase,heat,kitchen,27
+wavs_16k/id_intent27_1024_tts_ardi.wav,tts_ardi,male,Pemanas di dapur tolong ditingkatkan ya.,increase,heat,kitchen,27
+wavs_16k/id_intent27_1024_tts_gadis.wav,tts_gadis,female,Pemanas di dapur tolong ditingkatkan ya.,increase,heat,kitchen,27
+wavs_16k/id_intent28_1025_tts_ardi.wav,tts_ardi,male,Naikin pemanas rumah dong tolong.,increase,heat,none,28
+wavs_16k/id_intent28_1025_tts_gadis.wav,tts_gadis,female,Naikin pemanas rumah dong tolong.,increase,heat,none,28
+wavs_16k/id_intent28_1026_tts_ardi.wav,tts_ardi,male,Dingin banget nih tolong naikin suhunya.,increase,heat,none,28
+wavs_16k/id_intent28_1026_tts_gadis.wav,tts_gadis,female,Dingin banget nih tolong naikin suhunya.,increase,heat,none,28
+wavs_16k/id_intent28_1027_tts_ardi.wav,tts_ardi,male,Gedein pemanas ruangan dong kedinginan nih.,increase,heat,none,28
+wavs_16k/id_intent28_1027_tts_gadis.wav,tts_gadis,female,Gedein pemanas ruangan dong kedinginan nih.,increase,heat,none,28
+wavs_16k/id_intent28_1028_tts_ardi.wav,tts_ardi,male,Suhu ruangan tolong dinaikkan ya tolong.,increase,heat,none,28
+wavs_16k/id_intent28_1028_tts_gadis.wav,tts_gadis,female,Suhu ruangan tolong dinaikkan ya tolong.,increase,heat,none,28
+wavs_16k/id_intent28_1029_tts_ardi.wav,tts_ardi,male,Tingkatkan pemanas dong tolong ya.,increase,heat,none,28
+wavs_16k/id_intent28_1029_tts_gadis.wav,tts_gadis,female,Tingkatkan pemanas dong tolong ya.,increase,heat,none,28
+wavs_16k/id_intent28_1030_tts_ardi.wav,tts_ardi,male,Naikkan temperatur ruangan dong tolong.,increase,heat,none,28
+wavs_16k/id_intent28_1030_tts_gadis.wav,tts_gadis,female,Naikkan temperatur ruangan dong tolong.,increase,heat,none,28
+wavs_16k/id_intent28_1031_tts_ardi.wav,tts_ardi,male,Pemanas tolong dinaikkan ya tolong.,increase,heat,none,28
+wavs_16k/id_intent28_1031_tts_gadis.wav,tts_gadis,female,Pemanas tolong dinaikkan ya tolong.,increase,heat,none,28
+wavs_16k/id_intent28_1032_tts_ardi.wav,tts_ardi,male,Gedein suhu rumah dong tolong ya.,increase,heat,none,28
+wavs_16k/id_intent28_1032_tts_gadis.wav,tts_gadis,female,Gedein suhu rumah dong tolong ya.,increase,heat,none,28
+wavs_16k/id_intent28_1033_tts_ardi.wav,tts_ardi,male,Rumah dingin nih tolong naikin pemanasnya.,increase,heat,none,28
+wavs_16k/id_intent28_1033_tts_gadis.wav,tts_gadis,female,Rumah dingin nih tolong naikin pemanasnya.,increase,heat,none,28
+wavs_16k/id_intent28_1034_tts_ardi.wav,tts_ardi,male,Besarkan suhu rumah sekarang dong tolong.,increase,heat,none,28
+wavs_16k/id_intent28_1034_tts_gadis.wav,tts_gadis,female,Besarkan suhu rumah sekarang dong tolong.,increase,heat,none,28
+wavs_16k/id_intent28_1035_tts_ardi.wav,tts_ardi,male,Tolong naikkan pemanas ruangan ya tolong.,increase,heat,none,28
+wavs_16k/id_intent28_1035_tts_gadis.wav,tts_gadis,female,Tolong naikkan pemanas ruangan ya tolong.,increase,heat,none,28
+wavs_16k/id_intent28_1036_tts_ardi.wav,tts_ardi,male,Bisa tolong naikin suhunya gak tolong.,increase,heat,none,28
+wavs_16k/id_intent28_1036_tts_gadis.wav,tts_gadis,female,Bisa tolong naikin suhunya gak tolong.,increase,heat,none,28
+wavs_16k/id_intent28_1037_tts_ardi.wav,tts_ardi,male,Pemanas ruangan tolong digedein dong.,increase,heat,none,28
+wavs_16k/id_intent28_1037_tts_gadis.wav,tts_gadis,female,Pemanas ruangan tolong digedein dong.,increase,heat,none,28
+wavs_16k/id_intent28_1038_tts_ardi.wav,tts_ardi,male,Naikin suhu ruangan cepat dong ya.,increase,heat,none,28
+wavs_16k/id_intent28_1038_tts_gadis.wav,tts_gadis,female,Naikin suhu ruangan cepat dong ya.,increase,heat,none,28
+wavs_16k/id_intent28_1039_tts_ardi.wav,tts_ardi,male,Gedein temperatur rumah dong tolong ya.,increase,heat,none,28
+wavs_16k/id_intent28_1039_tts_gadis.wav,tts_gadis,female,Gedein temperatur rumah dong tolong ya.,increase,heat,none,28
+wavs_16k/id_intent28_1040_tts_ardi.wav,tts_ardi,male,Suhu tolong dinaikkan dong dingin nih.,increase,heat,none,28
+wavs_16k/id_intent28_1040_tts_gadis.wav,tts_gadis,female,Suhu tolong dinaikkan dong dingin nih.,increase,heat,none,28
+wavs_16k/id_intent28_1041_tts_ardi.wav,tts_ardi,male,Tolong besarkan pemanas sekarang ya tolong.,increase,heat,none,28
+wavs_16k/id_intent28_1041_tts_gadis.wav,tts_gadis,female,Tolong besarkan pemanas sekarang ya tolong.,increase,heat,none,28
+wavs_16k/id_intent28_1042_tts_ardi.wav,tts_ardi,male,Naikkan suhu ruangan dong tolong ya.,increase,heat,none,28
+wavs_16k/id_intent28_1042_tts_gadis.wav,tts_gadis,female,Naikkan suhu ruangan dong tolong ya.,increase,heat,none,28
+wavs_16k/id_intent28_1043_tts_ardi.wav,tts_ardi,male,Gedein pemanas dong dingin banget nih.,increase,heat,none,28
+wavs_16k/id_intent28_1043_tts_gadis.wav,tts_gadis,female,Gedein pemanas dong dingin banget nih.,increase,heat,none,28
+wavs_16k/id_intent28_1044_tts_ardi.wav,tts_ardi,male,Pemanas rumah tolong ditingkatkan ya.,increase,heat,none,28
+wavs_16k/id_intent28_1044_tts_gadis.wav,tts_gadis,female,Pemanas rumah tolong ditingkatkan ya.,increase,heat,none,28
+wavs_16k/id_intent29_1045_tts_ardi.wav,tts_ardi,male,"Kamar mandi dingin banget, naikin suhunya dong.",increase,heat,washroom,29
+wavs_16k/id_intent29_1045_tts_gadis.wav,tts_gadis,female,"Kamar mandi dingin banget, naikin suhunya dong.",increase,heat,washroom,29
+wavs_16k/id_intent29_1046_tts_ardi.wav,tts_ardi,male,Tolong naikin pemanas di kamar mandi ya.,increase,heat,washroom,29
+wavs_16k/id_intent29_1046_tts_gadis.wav,tts_gadis,female,Tolong naikin pemanas di kamar mandi ya.,increase,heat,washroom,29
+wavs_16k/id_intent29_1047_tts_ardi.wav,tts_ardi,male,Gedein pemanas ruangan di toilet dong.,increase,heat,washroom,29
+wavs_16k/id_intent29_1047_tts_gadis.wav,tts_gadis,female,Gedein pemanas ruangan di toilet dong.,increase,heat,washroom,29
+wavs_16k/id_intent29_1048_tts_ardi.wav,tts_ardi,male,Suhu kamar mandi tolong dinaikkan ya tolong.,increase,heat,washroom,29
+wavs_16k/id_intent29_1048_tts_gadis.wav,tts_gadis,female,Suhu kamar mandi tolong dinaikkan ya tolong.,increase,heat,washroom,29
+wavs_16k/id_intent29_1049_tts_ardi.wav,tts_ardi,male,Tingkatkan suhu di kamar mandi tolong.,increase,heat,washroom,29
+wavs_16k/id_intent29_1049_tts_gadis.wav,tts_gadis,female,Tingkatkan suhu di kamar mandi tolong.,increase,heat,washroom,29
+wavs_16k/id_intent29_1050_tts_ardi.wav,tts_ardi,male,Di kamar mandi tolong naikin suhunya dong.,increase,heat,washroom,29
+wavs_16k/id_intent29_1050_tts_gadis.wav,tts_gadis,female,Di kamar mandi tolong naikin suhunya dong.,increase,heat,washroom,29
+wavs_16k/id_intent29_1051_tts_ardi.wav,tts_ardi,male,Pemanas toilet tolong dinaikkan ya tolong.,increase,heat,washroom,29
+wavs_16k/id_intent29_1051_tts_gadis.wav,tts_gadis,female,Pemanas toilet tolong dinaikkan ya tolong.,increase,heat,washroom,29
+wavs_16k/id_intent29_1052_tts_ardi.wav,tts_ardi,male,Naikkan pemanas kamar mandi dong tolong.,increase,heat,washroom,29
+wavs_16k/id_intent29_1052_tts_gadis.wav,tts_gadis,female,Naikkan pemanas kamar mandi dong tolong.,increase,heat,washroom,29
+wavs_16k/id_intent29_1053_tts_ardi.wav,tts_ardi,male,Toilet kedinginan nih tolong gedein pemanasnya.,increase,heat,washroom,29
+wavs_16k/id_intent29_1053_tts_gadis.wav,tts_gadis,female,Toilet kedinginan nih tolong gedein pemanasnya.,increase,heat,washroom,29
+wavs_16k/id_intent29_1054_tts_ardi.wav,tts_ardi,male,Naikin temperatur kamar mandi dong ya.,increase,heat,washroom,29
+wavs_16k/id_intent29_1054_tts_gadis.wav,tts_gadis,female,Naikin temperatur kamar mandi dong ya.,increase,heat,washroom,29
+wavs_16k/id_intent29_1055_tts_ardi.wav,tts_ardi,male,Suhu di toilet tolong ditingkatkan ya tolong.,increase,heat,washroom,29
+wavs_16k/id_intent29_1055_tts_gadis.wav,tts_gadis,female,Suhu di toilet tolong ditingkatkan ya tolong.,increase,heat,washroom,29
+wavs_16k/id_intent29_1056_tts_ardi.wav,tts_ardi,male,Tolong naikkan suhu kamar mandi sekarang.,increase,heat,washroom,29
+wavs_16k/id_intent29_1056_tts_gadis.wav,tts_gadis,female,Tolong naikkan suhu kamar mandi sekarang.,increase,heat,washroom,29
+wavs_16k/id_intent29_1057_tts_ardi.wav,tts_ardi,male,Gedein pemanas toilet dong tolong ya.,increase,heat,washroom,29
+wavs_16k/id_intent29_1057_tts_gadis.wav,tts_gadis,female,Gedein pemanas toilet dong tolong ya.,increase,heat,washroom,29
+wavs_16k/id_intent29_1058_tts_ardi.wav,tts_ardi,male,Bisa tolong naikin suhu kamar mandi gak.,increase,heat,washroom,29
+wavs_16k/id_intent29_1058_tts_gadis.wav,tts_gadis,female,Bisa tolong naikin suhu kamar mandi gak.,increase,heat,washroom,29
+wavs_16k/id_intent29_1059_tts_ardi.wav,tts_ardi,male,Pemanas ruangan toilet tolong dinaikkan.,increase,heat,washroom,29
+wavs_16k/id_intent29_1059_tts_gadis.wav,tts_gadis,female,Pemanas ruangan toilet tolong dinaikkan.,increase,heat,washroom,29
+wavs_16k/id_intent29_1060_tts_ardi.wav,tts_ardi,male,Kamar mandi dingin tolong naikin suhunya ya.,increase,heat,washroom,29
+wavs_16k/id_intent29_1060_tts_gadis.wav,tts_gadis,female,Kamar mandi dingin tolong naikin suhunya ya.,increase,heat,washroom,29
+wavs_16k/id_intent29_1061_tts_ardi.wav,tts_ardi,male,Tolong besarkan suhu toilet dong ya.,increase,heat,washroom,29
+wavs_16k/id_intent29_1061_tts_gadis.wav,tts_gadis,female,Tolong besarkan suhu toilet dong ya.,increase,heat,washroom,29
+wavs_16k/id_intent29_1062_tts_ardi.wav,tts_ardi,male,Naikin pemanas kamar mandi dong tolong ya.,increase,heat,washroom,29
+wavs_16k/id_intent29_1062_tts_gadis.wav,tts_gadis,female,Naikin pemanas kamar mandi dong tolong ya.,increase,heat,washroom,29
+wavs_16k/id_intent29_1063_tts_ardi.wav,tts_ardi,male,Gedein suhu kamar mandi cepat dong.,increase,heat,washroom,29
+wavs_16k/id_intent29_1063_tts_gadis.wav,tts_gadis,female,Gedein suhu kamar mandi cepat dong.,increase,heat,washroom,29
+wavs_16k/id_intent29_1064_tts_ardi.wav,tts_ardi,male,Pemanas di kamar mandi tolong ditingkatkan ya.,increase,heat,washroom,29
+wavs_16k/id_intent29_1064_tts_gadis.wav,tts_gadis,female,Pemanas di kamar mandi tolong ditingkatkan ya.,increase,heat,washroom,29
+wavs_16k/id_intent30_1065_tts_ardi.wav,tts_ardi,male,Gedein volumenya dong tolong.,increase,volume,none,30
+wavs_16k/id_intent30_1065_tts_gadis.wav,tts_gadis,female,Gedein volumenya dong tolong.,increase,volume,none,30
+wavs_16k/id_intent30_1066_tts_ardi.wav,tts_ardi,male,Kencengin suaranya dong kurang kedengeran.,increase,volume,none,30
+wavs_16k/id_intent30_1066_tts_gadis.wav,tts_gadis,female,Kencengin suaranya dong kurang kedengeran.,increase,volume,none,30
+wavs_16k/id_intent30_1067_tts_ardi.wav,tts_ardi,male,Naikin volume speaker ya tolong.,increase,volume,none,30
+wavs_16k/id_intent30_1067_tts_gadis.wav,tts_gadis,female,Naikin volume speaker ya tolong.,increase,volume,none,30
+wavs_16k/id_intent30_1068_tts_ardi.wav,tts_ardi,male,Besarkan volume lagunya dong ya.,increase,volume,none,30
+wavs_16k/id_intent30_1068_tts_gadis.wav,tts_gadis,female,Besarkan volume lagunya dong ya.,increase,volume,none,30
+wavs_16k/id_intent30_1069_tts_ardi.wav,tts_ardi,male,Volume tolong dibesarkan ya tolong.,increase,volume,none,30
+wavs_16k/id_intent30_1069_tts_gadis.wav,tts_gadis,female,Volume tolong dibesarkan ya tolong.,increase,volume,none,30
+wavs_16k/id_intent30_1070_tts_ardi.wav,tts_ardi,male,Suara musiknya tolong dikencangkan dong.,increase,volume,none,30
+wavs_16k/id_intent30_1070_tts_gadis.wav,tts_gadis,female,Suara musiknya tolong dikencangkan dong.,increase,volume,none,30
+wavs_16k/id_intent30_1071_tts_ardi.wav,tts_ardi,male,Naikkan volume suara dong tolong.,increase,volume,none,30
+wavs_16k/id_intent30_1071_tts_gadis.wav,tts_gadis,female,Naikkan volume suara dong tolong.,increase,volume,none,30
+wavs_16k/id_intent30_1072_tts_ardi.wav,tts_ardi,male,Gedein suara speaker dong gak kedengeran nih.,increase,volume,none,30
+wavs_16k/id_intent30_1072_tts_gadis.wav,tts_gadis,female,Gedein suara speaker dong gak kedengeran nih.,increase,volume,none,30
+wavs_16k/id_intent30_1073_tts_ardi.wav,tts_ardi,male,Volume tolong dinaikkan ya tolong.,increase,volume,none,30
+wavs_16k/id_intent30_1073_tts_gadis.wav,tts_gadis,female,Volume tolong dinaikkan ya tolong.,increase,volume,none,30
+wavs_16k/id_intent30_1074_tts_ardi.wav,tts_ardi,male,Kencangkan suara musiknya dong ya.,increase,volume,none,30
+wavs_16k/id_intent30_1074_tts_gadis.wav,tts_gadis,female,Kencangkan suara musiknya dong ya.,increase,volume,none,30
+wavs_16k/id_intent30_1075_tts_ardi.wav,tts_ardi,male,Tolong besarkan volume speaker sekarang.,increase,volume,none,30
+wavs_16k/id_intent30_1075_tts_gadis.wav,tts_gadis,female,Tolong besarkan volume speaker sekarang.,increase,volume,none,30
+wavs_16k/id_intent30_1076_tts_ardi.wav,tts_ardi,male,Bisa tolong gedein volumenya gak.,increase,volume,none,30
+wavs_16k/id_intent30_1076_tts_gadis.wav,tts_gadis,female,Bisa tolong gedein volumenya gak.,increase,volume,none,30
+wavs_16k/id_intent30_1077_tts_ardi.wav,tts_ardi,male,Volume lagunya tolong dikencengin ya.,increase,volume,none,30
+wavs_16k/id_intent30_1077_tts_gadis.wav,tts_gadis,female,Volume lagunya tolong dikencengin ya.,increase,volume,none,30
+wavs_16k/id_intent30_1078_tts_ardi.wav,tts_ardi,male,Naikin volumenya dong tolong ya.,increase,volume,none,30
+wavs_16k/id_intent30_1078_tts_gadis.wav,tts_gadis,female,Naikin volumenya dong tolong ya.,increase,volume,none,30
+wavs_16k/id_intent30_1079_tts_ardi.wav,tts_ardi,male,Gedein volume dong lagunya enak nih.,increase,volume,none,30
+wavs_16k/id_intent30_1079_tts_gadis.wav,tts_gadis,female,Gedein volume dong lagunya enak nih.,increase,volume,none,30
+wavs_16k/id_intent30_1080_tts_ardi.wav,tts_ardi,male,Suaranya kekecilan tolong gedein volumenya.,increase,volume,none,30
+wavs_16k/id_intent30_1080_tts_gadis.wav,tts_gadis,female,Suaranya kekecilan tolong gedein volumenya.,increase,volume,none,30
+wavs_16k/id_intent30_1081_tts_ardi.wav,tts_ardi,male,Tolong kencangkan volume musik sekarang ya.,increase,volume,none,30
+wavs_16k/id_intent30_1081_tts_gadis.wav,tts_gadis,female,Tolong kencangkan volume musik sekarang ya.,increase,volume,none,30
+wavs_16k/id_intent30_1082_tts_ardi.wav,tts_ardi,male,Besarkan suara lagu dong tolong.,increase,volume,none,30
+wavs_16k/id_intent30_1082_tts_gadis.wav,tts_gadis,female,Besarkan suara lagu dong tolong.,increase,volume,none,30
+wavs_16k/id_intent30_1083_tts_ardi.wav,tts_ardi,male,Volume speaker tolong dinaikkan ya.,increase,volume,none,30
+wavs_16k/id_intent30_1083_tts_gadis.wav,tts_gadis,female,Volume speaker tolong dinaikkan ya.,increase,volume,none,30
+wavs_16k/id_intent30_1084_tts_ardi.wav,tts_ardi,male,Kencengin suaranya dong tolong ya.,increase,volume,none,30
+wavs_16k/id_intent30_1084_tts_gadis.wav,tts_gadis,female,Kencengin suaranya dong tolong ya.,increase,volume,none,30

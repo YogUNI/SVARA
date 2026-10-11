@@ -10,9 +10,11 @@ data/*
 !data/bilingual_dataset/
 !data/bilingual_dataset/splits/
 !data/bilingual_dataset/splits/*.csv
+*.wav
 *.mp3
 *.flac
 *.ogg
+*-inferred.onnx
 
 # Model checkpoints and weights
 *.ckpt

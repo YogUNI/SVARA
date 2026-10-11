@@ -84,7 +84,7 @@ cells = [
             "print(f\"Action classes   ({len(slot_vocab['action'])}):\", slot_vocab['action'])\n",
             "print(f\"Object classes   ({len(slot_vocab['object'])}):\", slot_vocab['object'])\n",
             "print(f\"Location classes ({len(slot_vocab['location'])}):\", slot_vocab['location'])\n",
-            "print(f\"Total unique intents: {len(intent_map['intents'])}\")\n",
+            "print(f\"Total unique intents: {len(intent_map['intent_map'])}\")\n",
             "\n",
             "# 2. Load Split DataFrames\n",
             "df_train = pd.read_csv('data/synthetic_indonesian/splits/train.csv')\n",

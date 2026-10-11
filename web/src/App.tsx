@@ -331,7 +331,33 @@ export default function App() {
       }
 
       if (merged.length > 3200) {
-        const wavBlob = encodeWAV(merged, sr);
+        // Voice Activity Detection / Silence Trimming:
+        // Find first and last sample above threshold to avoid sending dead silence
+        let startIdx = 0;
+        let endIdx = merged.length - 1;
+        const silenceThreshold = 0.015;
+
+        for (let i = 0; i < merged.length; i++) {
+          if (Math.abs(merged[i]) > silenceThreshold) {
+            startIdx = Math.max(0, i - Math.floor(sr * 0.15)); // 150ms buffer
+            break;
+          }
+        }
+        for (let i = merged.length - 1; i >= 0; i--) {
+          if (Math.abs(merged[i]) > silenceThreshold) {
+            endIdx = Math.min(merged.length - 1, i + Math.floor(sr * 0.2)); // 200ms buffer
+            break;
+          }
+        }
+
+        // Cap maximum duration to 3.5s (more than enough for any command) to guarantee <500ms inference
+        const maxSamples = Math.floor(sr * 3.5);
+        if (endIdx - startIdx > maxSamples) {
+          endIdx = startIdx + maxSamples;
+        }
+
+        const trimmed = (endIdx > startIdx + 3200) ? merged.subarray(startIdx, endIdx) : merged;
+        const wavBlob = encodeWAV(trimmed, sr);
         sendAudioBlob(wavBlob);
       }
     }

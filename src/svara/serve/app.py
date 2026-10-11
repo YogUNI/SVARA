@@ -77,7 +77,7 @@ def startup_event():
             onnx_path = "models/svara.onnx"
             meta_path = "models/svara.meta.json"
 
-    engine = SLUInferenceEngine(onnx_path=onnx_path, meta_path=meta_path)
+    engine = SLUInferenceEngine(onnx_path=onnx_path, meta_path=meta_path, intra_op_threads=8)
 
 
 @app.get("/api/health", response_model=HealthResponse)

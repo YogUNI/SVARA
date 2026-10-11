@@ -197,7 +197,7 @@
     "threshold": 0.85
   },
   "model": {
-    "run_id": "bilingual_indonesian_w2v2",
+    "run_id": "robust_bilingual_w2v2",
     "precision": "int8"
   },
   "license_note": "Trained on Fluent Speech Commands; academic use only."

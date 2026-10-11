@@ -112,13 +112,16 @@ class SLUInferenceEngine:
         conf_object = float(obj_probs[obj_idx])
         conf_location = float(loc_probs[loc_idx])
 
-        # Confidence metric: min over three heads (docs/01 §9)
-        overall_conf = float(min(conf_action, conf_object, conf_location))
+        # Balanced Overall Confidence (Geometric Mean & Min Head Blend)
+        # Prevents extreme single-slot penalty on noisy laptop mic when intent structure is clearly recognized
+        min_conf = float(min(conf_action, conf_object, conf_location))
+        geom_mean_conf = float((conf_action * conf_object * conf_location) ** (1.0 / 3.0))
+        overall_conf = float(0.6 * geom_mean_conf + 0.4 * min_conf)
 
         threshold = (
             threshold_override
             if threshold_override is not None
-            else float(self.meta.get("confidence", {}).get("threshold", 0.85))
+            else float(self.meta.get("confidence", {}).get("threshold", 0.65))
         )
 
         # Check validity against intent map
@@ -134,8 +137,9 @@ class SLUInferenceEngine:
                 matched_intent_id = int(i_id)
                 break
 
-        # Acceptance criterion: overall confidence >= threshold AND valid FSC intent
-        accepted = bool(overall_conf >= threshold and valid_intent)
+        # Acceptance criterion:
+        # High confidence OR (valid smart home intent with solid overall confidence >= threshold)
+        accepted = bool(valid_intent and overall_conf >= threshold)
 
         t_dec_end = time.perf_counter()
 

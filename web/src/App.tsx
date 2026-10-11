@@ -259,7 +259,14 @@ export default function App() {
     setIsRecording(true);
 
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const stream = await navigator.mediaDevices.getUserMedia({
+        audio: {
+          channelCount: 1,
+          echoCancellation: false,
+          noiseSuppression: false,
+          autoGainControl: true,
+        },
+      });
 
       // If user released spacebar while mic permission dialog was resolving
       if (shouldStopRef.current) {

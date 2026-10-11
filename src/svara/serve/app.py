@@ -128,6 +128,14 @@ async def predict_command(audio: UploadFile = File(...)):
     if len(audio_bytes) < 100:
         raise HTTPException(status_code=422, detail="AUDIO_TOO_SHORT: Audio data empty or corrupted.")
 
+    # Save debug recording for live mic inspection
+    try:
+        os.makedirs("reports/debug", exist_ok=True)
+        with open("reports/debug/last_live_mic.wav", "wb") as f_dbg:
+            f_dbg.write(audio_bytes)
+    except Exception:
+        pass
+
     try:
         pred_res = engine.predict_audio(audio_bytes)
     except Exception as e:

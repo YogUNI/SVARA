@@ -1,67 +1,1215 @@
-# Korpus Komprehensif Perintah Smart Home Bahasa Indonesia (SVARA — 31 Intent)
-## Riset Gaya Bahasa Alami, Kolokial Sehari-hari, Slang, & Deep Learning SLU
+# Korpus Perintah Suara Smart Home Bahasa Indonesia (SVARA)
 
-Dokumen ini memuat dataset riset Natural Language Processing (NLP) dan Spoken Language Understanding (SLU) untuk asisten rumah pintar penutur Bahasa Indonesia. 
-Masing-masing dari **31 Intent FSC** memiliki **15 variasi ujaran riil**, mencakup:
-1. *Baku / Standar*
-2. *Kolokial Santai (Afiksasi -in)*
-3. *Topikalisasi (Objek atau Ruangan di Depan)*
-4. *Perintah Super Ringkas (Keyword / Zero-Verb)*
-5. *Konteks Situasional / Keluhan (Gerah, Gelap, Berisik, Dingin, Haus)*
-6. *Partikel Pragmatik & Panggilan (Dong, Deh, Nih, Ya, Tolong, Coba, Svara)*
+Total Intents: 31 | Frasa per Intent: 35 | **Total Frasa: 1085 frasa**
 
-Disusun oleh: **Haikal (Tim SVARA)**
+Mencakup variasi formal, semi-formal, dan **slang/sehari-hari super luwes** (nyalain, matiin, idupin, gedein, kecilin, WC, toilet, dll).
 
----
+## Intent 0: `activate` + `lamp` + `none`
+- Contoh Bahasa Inggris: *Turn on the lamp*
+- Variasi Bahasa Indonesia:
+  - Nyalakan lampu meja.
+  - Hidupin lampunya dong.
+  - Nyalain lampu meja ya.
+  - Lampu meja tolong nyalain.
+  - Tolong hidupkan lampu belajar.
+  - Lampunya nyala dong.
+  - Gelap nih, nyalain lampu.
+  - Idupin lampu dong tolong.
+  - Nyala dong lampunya.
+  - Tolong nyalain lampu sekarang.
+  - Lampu nyala.
+  - Lampu meja hidupin.
+  - Coba tolong nyalain lampu.
+  - Svara, nyalain lampu dong.
+  - Gelap banget, tolong nyalain lampu meja.
+  - Nyalain lampu tidur dong.
+  - Lampu kecil tolong idupin.
+  - Idupin lampu meja samping ya.
+  - Lampu sudut nyalain dong.
+  - Nyalain dong lampu duduknya.
+  - Tolong nyalain lampu tidur ya.
+  - Hidupin lampu meja dong tolong.
+  - Nyalain lampu baca dong.
+  - Lampu baca tolong diidupin ya.
+  - Idupin lampu nakas dong.
+  - Nyalain lampu pojok kamar.
+  - Lampu tidur hidupin dong.
+  - Tolong idupin lampu samping tempat tidur.
+  - Nyalain lampu stand dong tolong.
+  - Lampu hias tolong dinyalain ya.
+  - Lampu tidur nyala dong.
+  - Bisa tolong nyalain lampu belajar gak.
+  - Tolong nyalain lampu meja belajar.
+  - Idupin lampu bacanya dong.
+  - Nyalain lampu meja sudut ya.
 
-## 📑 Tabel Korpus Lengkap (31 Intent x 15 Variasi = 465 Kalimat)
+## Intent 1: `activate` + `lights` + `bedroom`
+- Contoh Bahasa Inggris: *Turn on the lights in the bedroom*
+- Variasi Bahasa Indonesia:
+  - Nyalakan lampu di kamar tidur.
+  - Nyalain lampu kamar dong.
+  - Hidupin lampu kamar tidur ya.
+  - Lampu kamar nyalain dong.
+  - Tolong idupin lampu kamar tidur.
+  - Kamar tidur gelap nih tolong nyalain lampunya.
+  - Di kamar tolong nyalain lampu.
+  - Nyalain dong lampu di kamar.
+  - Lampu kamar tidur tolong diidupin.
+  - Tolong nyalain lampu kamar dong.
+  - Lampu kamar nyala.
+  - Kamar tidur, lampu hidupin.
+  - Svara tolong nyalain lampu kamar tidur.
+  - Mau masuk kamar nih, tolong nyalain lampunya.
+  - Hidupkan lampu kamar sekarang.
+  - Nyalain lampu kamar dong tolong.
+  - Kamar tidur gelap banget, tolong nyalain lampunya.
+  - Lampu kamar tidur idupin dong ya.
+  - Idupin lampu kamar gue dong.
+  - Nyalain lampu di kamar tidur ya.
+  - Kamar gelap nih, tolong idupin lampunya.
+  - Lampu kamar tolong dinyalakan ya.
+  - Di kamar tolong idupin lampu dong.
+  - Nyalain lampu kamar utama dong.
+  - Lampu kamar tidur tolong hidupin.
+  - Tolong terangin kamar tidur dong.
+  - Kamar tidur tolong lampunya diidupin.
+  - Nyalain dong lampu kamar tidur ya.
+  - Idupin lampu kamar tidur sekarang ya.
+  - Tolong nyalakan lampu di dalam kamar.
+  - Lampu kamar tolong dinyalain cepetan.
+  - Bisa tolong idupin lampu kamar tidur gak.
+  - Lampu kamar tidur tolong dinyalakan sekarang.
+  - Kamar gelap tolong nyalain lampunya dong.
+  - Tolong idupin lampu di kamar tidur.
 
-| Intent ID | Action | Object | Location | Intent Asli (FSC) | 15 Variasi Tutur Alami Bahasa Indonesia |
-|---|---|---|---|---|---|
-| **00** | `activate` | `lamp` | `none` | "Turn on the lamp" | 1. Nyalakan lampu meja.<br>2. Hidupin lampunya dong.<br>3. Nyalain lampu meja ya.<br>4. Lampu meja tolong nyalain.<br>5. Tolong hidupkan lampu belajar.<br>6. Lampunya nyala dong.<br>7. Gelap nih, nyalain lampu.<br>8. Idupin lampu dong tolong.<br>9. Nyala dong lampunya.<br>10. Tolong nyalain lampu sekarang.<br>11. Lampu nyala.<br>12. Lampu meja hidupin.<br>13. Coba tolong nyalain lampu.<br>14. Svara, nyalain lampu dong.<br>15. Gelap banget, tolong nyalain lampu meja. |
-| **01** | `activate` | `lights` | `bedroom` | "Turn on the lights in the bedroom" | 1. Nyalakan lampu di kamar tidur.<br>2. Nyalain lampu kamar dong.<br>3. Hidupin lampu kamar tidur ya.<br>4. Lampu kamar nyalain dong.<br>5. Tolong idupin lampu kamar tidur.<br>6. Kamar tidur gelap nih tolong nyalain lampunya.<br>7. Di kamar tolong nyalain lampu.<br>8. Nyalain dong lampu di kamar.<br>9. Lampu kamar tidur tolong diidupin.<br>10. Tolong nyalain lampu kamar dong.<br>11. Lampu kamar nyala.<br>12. Kamar tidur, lampu hidupin.<br>13. Svara tolong nyalain lampu kamar tidur.<br>14. Mau masuk kamar nih, tolong nyalain lampunya.<br>15. Hidupkan lampu kamar sekarang. |
-| **02** | `activate` | `lights` | `kitchen` | "Turn on the kitchen lights" | 1. Nyalakan lampu dapur.<br>2. Hidupin lampu dapur dong.<br>3. Nyalain lampu dapur ya.<br>4. Lampu dapur tolong nyalain.<br>5. Dapur gelap nih idupin lampunya.<br>6. Tolong nyalain lampu di dapur ya.<br>7. Di dapur lampunya tolong diidupin.<br>8. Lampu dapur tolong dihidupkan.<br>9. Nyalain dong lampu dapurnya.<br>10. Tolong dong nyalain lampu dapur.<br>11. Lampu dapur nyala.<br>12. Dapur, lampu hidupin.<br>13. Mau ke dapur nih tolong nyalain lampunya.<br>14. Svara, tolong nyalain lampu dapur.<br>15. Idupin lampu dapur sekarang dong. |
-| **03** | `activate` | `lights` | `none` | "Turn the lights on" | 1. Nyalakan semua lampu.<br>2. Idupin semua lampunya dong.<br>3. Tolong nyalain lampunya ya.<br>4. Hidupkan lampu ruangan.<br>5. Gelap amat, nyalain lampu dong.<br>6. Lampu tolong diidupin ya.<br>7. Nyalain lampu sekarang dong.<br>8. Terangin ruangan, tolong nyalain lampu.<br>9. Hidupin lampunya ya tolong.<br>10. Tolong hidupkan semua lampu.<br>11. Lampu nyala.<br>12. Semua lampu hidupin.<br>13. Gelap nih terangin dong lampunya.<br>14. Svara, tolong nyalain semua lampu.<br>15. Aktifkan pencahayaan ruangan dong. |
-| **04** | `activate` | `lights` | `washroom` | "Turn on the washroom lights" | 1. Nyalakan lampu kamar mandi.<br>2. Idupin lampu toilet dong.<br>3. Nyalain lampu WC ya.<br>4. Lampu kamar mandi tolong diidupin.<br>5. Tolong nyalain lampu di kamar mandi.<br>6. Toilet gelap nih, tolong nyalain lampunya.<br>7. Lampu WC tolong nyalain dong.<br>8. Di kamar mandi tolong idupin lampu.<br>9. Nyalain dong lampu toiletnya.<br>10. Hidupkan lampu kamar mandi tolong.<br>11. Lampu toilet nyala.<br>12. Kamar mandi, lampu hidupin.<br>13. Mau buang air nih tolong nyalain lampu WC.<br>14. Svara, tolong nyalain lampu kamar mandi.<br>15. WC gelap banget tolong idupin lampunya. |
-| **05** | `activate` | `music` | `none` | "Resume" | 1. Putar lagi lagunya.<br>2. Lanjutin musiknya dong.<br>3. Play lagi lagunya ya.<br>4. Nyalain lagi musik yang tadi.<br>5. Lanjutkan lagunya tolong.<br>6. Tolong putar lagi lagunya dong.<br>7. Musiknya diplay lagi ya.<br>8. Lanjut mainin musik dong.<br>9. Putar musik lagi.<br>10. Tolong lanjutkan pemutaran musik.<br>11. Musik lanjut.<br>12. Lagu play lagi.<br>13. Svara, lanjutin musik yang tadi dong.<br>14. Lanjutin putar lagu dong sepi nih.<br>15. Playback musik tolong dilanjutkan. |
-| **06** | `bring` | `juice` | `none` | "Bring some juice" | 1. Bawakan saya jus.<br>2. Ambilin jus dong.<br>3. Tolong ambilin jus buah ya.<br>4. Minta jus jeruknya dong satu.<br>5. Haus nih, bawain jus dong.<br>6. Tolong ambilkan jus dingin.<br>7. Bawain jus ke sini ya tolong.<br>8. Bisa tolong ambilin jus gak.<br>9. Ambilin segelas jus dong.<br>10. Tolong bawakan jus buah ke sini.<br>11. Minta jus dong.<br>12. Ambilin jus dingin ya.<br>13. Haus banget nih tolong ambilin jus.<br>14. Svara, tolong bawain jus ke meja.<br>15. Tolong pesankan atau ambilkan jus. |
-| **07** | `bring` | `newspaper` | `none` | "Get me the newspaper" | 1. Ambilkan koran untuk saya.<br>2. Ambilin koran dong.<br>3. Bawain koran hari ini ya.<br>4. Tolong ambilin koran di depan.<br>5. Ambilkan koran pagi tolong.<br>6. Bawain koran ke sini dong.<br>7. Koran tolong ambilin ya.<br>8. Minta tolong ambilin koran pagi ini.<br>9. Bisa bawain koran gak tolong.<br>10. Ambil koran dong tolong.<br>11. Ambilin koran ya.<br>12. Koran tolong bawa ke sini.<br>13. Mau baca berita nih tolong ambilin koran.<br>14. Svara, tolong ambilin koran di depan meja.<br>15. Tolong ambilkan koran cetak hari ini. |
-| **08** | `bring` | `shoes` | `none` | "Bring me my shoes" | 1. Ambilin sepatu gua dong.<br>2. Bawain sepatu saya ya.<br>3. Tolong ambilin sepatu kerja.<br>4. Sepatu tolong bawain ke sini.<br>5. Mau keluar nih, ambilin sepatu dong.<br>6. Tolong ambilkan sepatu saya di rak.<br>7. Bawain sepatu dong tolong.<br>8. Ambilin sepatu ya tolong.<br>9. Bisa tolong bawain sepatu gak.<br>10. Tolong bawakan sepatu saya ke sini.<br>11. Ambilin sepatu kerja dong.<br>12. Sepatu tolong ambilin ya.<br>13. Buru-buru nih tolong bawain sepatu.<br>14. Svara, tolong ambilin sepatu saya di rak depan.<br>15. Ambilkan sepatu kets saya tolong. |
-| **09** | `bring` | `socks` | `none` | "Bring socks" | 1. Ambilin kaos kaki dong.<br>2. Bawain kaus kaki ya.<br>3. Tolong ambilin kaos kaki bersih.<br>4. Kaos kaki tolong bawain ke sini.<br>5. Ambilkan kaus kaki dong tolong.<br>6. Tolong cariin dan ambilin kaos kaki.<br>7. Kaos kakinya tolong bawain ya.<br>8. Bisa tolong ambilin kaos kaki gak.<br>9. Ambilin kaus kaki dong tolong.<br>10. Tolong bawakan kaus kaki yang bersih.<br>11. Ambilin kaos kaki ya.<br>12. Kaos kaki tolong ambilkan.<br>13. Kaki dingin nih tolong bawain kaos kaki.<br>14. Svara, tolong bawain kaos kaki sepasang.<br>15. Tolong ambilin kaus kaki di lemari. |
-| **10** | `change language` | `Chinese` | `none` | "Set language to Chinese" | 1. Ganti ke bahasa Mandarin dong.<br>2. Ubah bahasa jadi Bahasa Mandarin.<br>3. Switch bahasanya ke Mandarin ya.<br>4. Atur bahasa ke Bahasa Cina.<br>5. Tolong ganti bahasanya ke Chinese.<br>6. Pake bahasa Mandarin aja dong.<br>7. Ubah setelan bahasa jadi Mandarin.<br>8. Tolong ubah ke bahasa Mandarin ya.<br>9. Ganti bahasa sistem ke Mandarin.<br>10. Tolong switch language ke Mandarin.<br>11. Bahasa ganti Mandarin.<br>12. Pindah ke bahasa Mandarin ya.<br>13. Setel sistem pake bahasa Mandarin dong.<br>14. Svara, tolong ganti bahasa ke Mandarin.<br>15. Atur bahasa antarmuka ke Mandarin. |
-| **11** | `change language` | `English` | `none` | "Set my phone's language to English" | 1. Ganti bahasanya ke Bahasa Inggris dong.<br>2. Ubah bahasa sistem jadi Bahasa Inggris.<br>3. Switch bahasanya ke English ya.<br>4. Ganti ke bahasa Inggris dong tolong.<br>5. Tolong atur bahasa jadi Bahasa Inggris.<br>6. Pake bahasa Inggris aja dong.<br>7. Ubah setelan ke Bahasa Inggris ya.<br>8. Tolong ganti ke English dong.<br>9. Atur settingan bahasa jadi Inggris.<br>10. Tolong switch bahasanya ke Bahasa Inggris.<br>11. Bahasa ganti Inggris.<br>12. Pindah ke bahasa Inggris dong.<br>13. Setel bahasa ke English ya.<br>14. Svara, tolong ganti bahasa ke Bahasa Inggris.<br>15. Ubah pengaturan bahasa perangkat ke Inggris. |
-| **12** | `change language` | `German` | `none` | "I need to practice my German. Switch the language" | 1. Ganti bahasanya ke Bahasa Jerman dong.<br>2. Ubah bahasa jadi Bahasa Jerman ya.<br>3. Switch bahasanya ke Jerman dong.<br>4. Tolong ganti ke bahasa German.<br>5. Atur bahasa sistem ke Bahasa Jerman.<br>6. Pake bahasa Jerman dong sekarang.<br>7. Mau belajar nih, tolong ganti bahasa ke Jerman.<br>8. Ubah setelan bahasa ke Bahasa Jerman.<br>9. Tolong switch ke bahasa Jerman ya.<br>10. Ganti bahasa ke Bahasa Jerman tolong.<br>11. Bahasa ganti Jerman.<br>12. Pindah ke bahasa Jerman ya.<br>13. Setel sistem pake bahasa Jerman dong.<br>14. Svara, tolong ganti bahasa ke Jerman.<br>15. Atur bahasa asisten jadi Bahasa Jerman. |
-| **13** | `change language` | `Korean` | `none` | "Set language to Korean" | 1. Ganti ke bahasa Korea dong.<br>2. Ubah bahasa jadi Bahasa Korea ya.<br>3. Switch bahasanya ke Korean dong.<br>4. Tolong atur bahasa ke Bahasa Korea.<br>5. Ganti bahasanya jadi bahasa Korea.<br>6. Pake bahasa Korea aja dong.<br>7. Ubah setelan bahasa sistem ke Bahasa Korea.<br>8. Tolong ganti bahasa ke Korea ya.<br>9. Switch bahasa ke Korea dong tolong.<br>10. Atur settingan bahasa ke Bahasa Korea.<br>11. Bahasa ganti Korea.<br>12. Pindah ke bahasa Korea dong.<br>13. Setel bahasa ke Korean ya.<br>14. Svara, tolong ganti bahasa ke Korea.<br>15. Atur bahasa sistem jadi Bahasa Korea. |
-| **14** | `change language` | `none` | `none` | "Change language" | 1. Ganti bahasa dong.<br>2. Ubah pengaturan bahasa.<br>3. Tolong switch bahasanya ya.<br>4. Buka menu ganti bahasa dong.<br>5. Ganti bahasanya dong tolong.<br>6. Pindah bahasa ya.<br>7. Ubah pilihan bahasa sistem.<br>8. Tolong ganti pilihan bahasanya.<br>9. Switch language dong.<br>10. Ganti bahasa asisten sekarang.<br>11. Mau ganti bahasa dong.<br>12. Menu ganti bahasa tolong.<br>13. Pilihan bahasa tolong dibuka.<br>14. Svara, tolong buka pengaturan ganti bahasa.<br>15. Ubah setelan bahasa sekarang. |
-| **15** | `deactivate` | `lamp` | `none` | "Turn off the lamp" | 1. Matiin lampu.<br>2. Padamin lampunya dong.<br>3. Matiin lampu meja ya.<br>4. Lampu tolong dimatiin.<br>5. Silau nih, tolong matiin lampu.<br>6. Matiin dong lampu belajarnya.<br>7. Tolong padamkan lampu meja.<br>8. Lampunya tolong dimatiin ya.<br>9. Matiin lampunya sekarang dong.<br>10. Padamkan lampu meja tolong.<br>11. Lampu mati.<br>12. Lampu meja padamkan.<br>13. Mau tidur tolong matiin lampu meja.<br>14. Svara, tolong matiin lampu meja.<br>15. Matikan pencahayaan lampu belajar. |
-| **16** | `deactivate` | `lights` | `bedroom` | "Turn the bedroom lights off" | 1. Matiin lampu kamar.<br>2. Padamin lampu kamar tidur dong.<br>3. Lampu kamar tolong dimatiin ya.<br>4. Mau tidur nih, matiin lampu kamar dong.<br>5. Tolong matiin lampu di kamar tidur.<br>6. Di kamar tolong matiin lampunya.<br>7. Lampu kamar tidur tolong dipadamin.<br>8. Matiin dong lampu kamar.<br>9. Tolong padamkan lampu kamar tidur.<br>10. Lampu kamar matiin sekarang ya.<br>11. Lampu kamar mati.<br>12. Kamar tidur, lampu matiin.<br>13. Silau banget mau istirahat, tolong matiin lampu kamar.<br>14. Svara, tolong matiin lampu di kamar tidur.<br>15. Padamkan penerangan kamar tidur tolong. |
-| **17** | `deactivate` | `lights` | `kitchen` | "Turn the lights off in the kitchen" | 1. Matiin lampu dapur.<br>2. Padamin lampu dapur dong.<br>3. Lampu dapur tolong dimatiin ya.<br>4. Selesai masak nih, tolong matiin lampu dapur.<br>5. Di dapur tolong matiin lampunya.<br>6. Lampu di dapur tolong dipadamkan.<br>7. Matiin dong lampu dapurnya.<br>8. Tolong matiin lampu dapur ya.<br>9. Tolong padamkan lampu dapur.<br>10. Lampu dapur matiin sekarang tolong.<br>11. Lampu dapur mati.<br>12. Dapur, lampu padamkan.<br>13. Dapur udah kosong tolong matiin lampunya.<br>14. Svara, tolong matiin lampu dapur.<br>15. Matikan semua penerangan di dapur. |
-| **18** | `deactivate` | `lights` | `none` | "Switch off the lights" | 1. Matiin semua lampu.<br>2. Padamin lampunya dong.<br>3. Lampu tolong dimatiin semuanya ya.<br>4. Silau banget, matiin lampu dong.<br>5. Tolong matikan semua lampu ruangan.<br>6. Matiin dong lampunya.<br>7. Tolong padamkan seluruh lampu.<br>8. Lampunya dimatiin ya tolong.<br>9. Padamin lampu sekarang dong.<br>10. Matikan lampu semuanya tolong.<br>11. Lampu mati semua.<br>12. Padamkan seluruh lampu.<br>13. Mau tidur tolong matiin semua lampu ruangan.<br>14. Svara, tolong matiin semua lampu.<br>15. Gelapkan ruangan tolong matiin lampu. |
-| **19** | `deactivate` | `lights` | `washroom` | "Switch off the washroom lights" | 1. Matiin lampu kamar mandi.<br>2. Padamin lampu toilet dong.<br>3. Matiin lampu WC ya.<br>4. Lampu kamar mandi tolong dimatiin.<br>5. Udah selesai nih, tolong matiin lampu toilet.<br>6. Di kamar mandi tolong matiin lampunya.<br>7. Lampu WC tolong dipadamin dong.<br>8. Matiin dong lampu kamar mandi.<br>9. Tolong padamkan lampu toilet ya.<br>10. Matikan lampu kamar mandi sekarang.<br>11. Lampu toilet mati.<br>12. Kamar mandi, lampu matiin.<br>13. Toilet kosong tolong matiin lampunya ya.<br>14. Svara, tolong matiin lampu kamar mandi.<br>15. Padamkan lampu di toilet tolong. |
-| **20** | `deactivate` | `music` | `none` | "Turn off the music" | 1. Matiin musiknya.<br>2. Stop lagunya dong.<br>3. Matiin lagunya ya berisik.<br>4. Hentikan pemutaran musik tolong.<br>5. Musiknya tolong dimatiin dong.<br>6. Berhenti mainin musik ya.<br>7. Pause lagunya dong tolong.<br>8. Matiin dong musiknya pusing nih.<br>9. Tolong hentikan musiknya sekarang.<br>10. Matikan lagu yang lagi muter tolong.<br>11. Musik stop.<br>12. Lagu mati.<br>13. Ada telepon nih tolong matiin musiknya.<br>14. Svara, tolong matiin lagunya berisik.<br>15. Hentikan lagu sekarang juga. |
-| **21** | `decrease` | `heat` | `bedroom` | "Turn down the bedroom heat" | 1. Dinginin kamar tidur dong.<br>2. Turunin suhu kamar.<br>3. Kamar tidur panas nih kecilkan pemanasnya.<br>4. Kurangi suhu di kamar tidur ya.<br>5. Turunin temperatur kamar dong.<br>6. Kamar gerah nih tolong dinginin.<br>7. Tolong turunin suhu kamar tidur ya.<br>8. Kecilkan pemanas kamar tidur dong.<br>9. Di kamar terlalu panas tolong turunin suhunya.<br>10. Turunkan pemanas di kamar tidur.<br>11. Kamar tidur ademin dong.<br>12. Turunin AC kamar tidur ya.<br>13. Kamar tidur gerah banget tolong dinginin.<br>14. Svara, tolong turunin suhu kamar tidur.<br>15. Bikin kamar tidur lebih dingin dong. |
-| **22** | `decrease` | `heat` | `kitchen` | "Turn the kitchen temperature down" | 1. Dinginin dapur dong.<br>2. Turunin suhu di dapur.<br>3. Dapur panas banget tolong turunin suhunya.<br>4. Kurangi pemanas dapur ya.<br>5. Turunin temperatur dapur dong.<br>6. Area dapur gerah nih kecilkan suhunya.<br>7. Tolong turunin suhu di dapur ya.<br>8. Kecilkan pemanas di dapur dong.<br>9. Di dapur panas tolong dinginin dikit.<br>10. Turunkan suhu pemanas dapur.<br>11. Dapur ademin dong panas nih.<br>12. Turunin suhu dapur ya gerah.<br>13. Habis masak panas tolong dinginin dapur.<br>14. Svara, tolong turunin suhu di dapur.<br>15. Dinginkan ruangan dapur tolong. |
-| **23** | `decrease` | `heat` | `none` | "Turn down the temperature" | 1. Turunin suhunya dong.<br>2. Dinginin ruangan ya.<br>3. Panas banget nih turunin suhunya.<br>4. Kurangi suhu pemanas dong.<br>5. Kecilkan suhunya ya.<br>6. Turunin temperaturnya tolong.<br>7. Gerah nih tolong dinginin dikit.<br>8. Tolong turunkan suhunya dong.<br>9. Kecilkan temperatur ruangan ya.<br>10. Turunkan suhunya sekarang.<br>11. Suhu turunin.<br>12. Ademin ruangannya dong gerah.<br>13. Turunin derajat suhunya ya tolong.<br>14. Svara, tolong turunin suhunya panas nih.<br>15. Bikin lebih dingin dong ruangannya. |
-| **24** | `decrease` | `heat` | `washroom` | "Turn the temperature down in the washroom" | 1. Dinginin kamar mandi dong.<br>2. Turunin suhu di kamar mandi ya.<br>3. Toilet panas nih tolong turunin suhunya.<br>4. Kurangi pemanas di kamar mandi dong.<br>5. Turunin temperatur kamar mandi ya.<br>6. Toilet terlalu panas kecilkan pemanasnya.<br>7. Tolong turunin suhu kamar mandi dong.<br>8. Kecilkan pemanas toilet ya.<br>9. Di kamar mandi gerah tolong dinginin.<br>10. Turunkan suhu pemanas kamar mandi.<br>11. Kamar mandi ademin dong.<br>12. Toilet pengap nih turunin suhunya.<br>13. Dinginkan area kamar mandi tolong.<br>14. Svara, tolong turunin suhu di kamar mandi.<br>15. Kurangi panas di toilet dong. |
-| **25** | `decrease` | `volume` | `none` | "Turn the volume down" | 1. Kecilin volumenya dong.<br>2. Turunin suaranya ya berisik.<br>3. Pelanin suaranya dong.<br>4. Kecilin volume dikit ya.<br>5. Kencengan suaranya tolong pelanin.<br>6. Turunin volume dong tolong.<br>7. Berisik nih kecilin suaranya.<br>8. Tolong kurangi volume suara ya.<br>9. Kecilin dikit volumenya dong.<br>10. Turunkan volume suaranya sekarang.<br>11. Volume turun.<br>12. Suara pelanin.<br>13. Berisik amat tolong pelanin lagunya.<br>14. Svara, tolong kecilin volumenya.<br>15. Kecilkan suara speaker dong. |
-| **26** | `increase` | `heat` | `bedroom` | "Turn up the temperature in the bedroom" | 1. Naikin suhu kamar tidur dong.<br>2. Hangatin kamar ya dingin nih.<br>3. Tambah suhu kamar tidur dong.<br>4. Di kamar kedinginan tolong naikin suhunya.<br>5. Naikin temperatur kamar tidur ya.<br>6. Tolong hangatkan kamar tidur dong.<br>7. Naikin pemanas kamar tidur ya.<br>8. Kamar dingin banget tolong tambahin panasnya.<br>9. Tolong naikkan suhu kamar tidur.<br>10. Naikkan pemanas di kamar tidur sekarang.<br>11. Kamar tidur angetin dong kedinginan.<br>12. Naikin suhu AC kamar tidur ya.<br>13. Terlalu dingin nih tolong naikin temperatur kamar.<br>14. Svara, tolong naikin suhu kamar tidur.<br>15. Bikin kamar tidur lebih hangat tolong. |
-| **27** | `increase` | `heat` | `kitchen` | "Turn the kitchen temperature up" | 1. Naikin suhu dapur dong.<br>2. Hangatin area dapur ya dingin.<br>3. Tambah suhu di dapur dong tolong.<br>4. Dapur dingin nih tolong naikin suhunya.<br>5. Naikin temperatur dapur ya.<br>6. Tolong hangatkan ruangan dapur dong.<br>7. Tambah pemanas dapur ya tolong.<br>8. Di dapur dingin tolong naikin temperaturnya.<br>9. Tolong naikkan suhu di dapur ya.<br>10. Naikkan pemanas dapur sekarang.<br>11. Dapur tolong diangetin dong.<br>12. Naikkan temperatur di dapur ya.<br>13. Area dapur terlalu dingin tolong hangatkan.<br>14. Svara, tolong naikin suhu dapur.<br>15. Tambah panas pemanas dapur tolong. |
-| **28** | `increase` | `heat` | `none` | "Turn up the temperature" | 1. Naikin suhunya dong dingin.<br>2. Hangatin ruangan ya.<br>3. Tambah suhunya dong tolong.<br>4. Kedinginan nih tolong naikin suhunya.<br>5. Naikin temperaturnya dong dikit.<br>6. Tolong hangatkan suhunya ya.<br>7. Tambahkan pemanas ruangan dong.<br>8. Dingin banget nih naikin suhunya tolong.<br>9. Tolong naikkan temperatur sekarang ya.<br>10. Naikkan suhunya dong tolong.<br>11. Suhu naikin.<br>12. Angetin ruangannya dong beku nih.<br>13. Naikin derajat suhunya ya tolong.<br>14. Svara, tolong naikin suhunya kedinginan.<br>15. Bikin ruangan lebih hangat tolong. |
-| **29** | `increase` | `heat` | `washroom` | "Turn up the washroom temperature" | 1. Naikin suhu kamar mandi dong.<br>2. Hangatin toilet ya airnya dingin.<br>3. Tambah suhu di kamar mandi dong tolong.<br>4. Kamar mandi dingin nih tolong naikin suhunya.<br>5. Naikin temperatur kamar mandi ya.<br>6. Tolong hangatkan kamar mandi dong.<br>7. Tambah pemanas di toilet ya tolong.<br>8. Di kamar mandi dingin tolong naikin suhunya.<br>9. Tolong naikkan suhu kamar mandi ya.<br>10. Naikkan pemanas di toilet sekarang.<br>11. Kamar mandi angetin dong.<br>12. Naikin suhu toilet ya airnya kayak es.<br>13. Hangatkan area kamar mandi tolong.<br>14. Svara, tolong naikin suhu kamar mandi.<br>15. Bikin kamar mandi lebih hangat dong. |
-| **30** | `increase` | `volume` | `none` | "Volume up" | 1. Gedein suaranya dong.<br>2. Naikin volumenya ya gak denger.<br>3. Kencengin suaranya dong.<br>4. Keraskan suaranya tolong.<br>5. Kurang kenceng nih naikin volumenya.<br>6. Tambah volumenya dikit dong.<br>7. Gedein volumenya tolong ya.<br>8. Naikin suara dong pelan banget.<br>9. Kencengin suaranya dikit ya.<br>10. Besarkan volume suara sekarang.<br>11. Volume naik.<br>12. Suara gedein.<br>13. Gak kedengeran tolong kencengin suaranya.<br>14. Svara, tolong naikin volumenya dong.<br>15. Kuatkan volume suara speaker ya. |
+## Intent 2: `activate` + `lights` + `kitchen`
+- Contoh Bahasa Inggris: *Turn on the kitchen lights*
+- Variasi Bahasa Indonesia:
+  - Nyalakan lampu dapur.
+  - Hidupin lampu dapur dong.
+  - Nyalain lampu dapur ya.
+  - Lampu dapur tolong nyalain.
+  - Dapur gelap nih idupin lampunya.
+  - Tolong nyalain lampu di dapur ya.
+  - Di dapur lampunya tolong diidupin.
+  - Lampu dapur tolong dihidupkan.
+  - Nyalain dong lampu dapurnya.
+  - Tolong dong nyalain lampu dapur.
+  - Lampu dapur nyala.
+  - Dapur, lampu hidupin.
+  - Mau ke dapur nih tolong nyalain lampunya.
+  - Svara, tolong nyalain lampu dapur.
+  - Idupin lampu dapur sekarang dong.
+  - Nyalain lampu dapur dong tolong.
+  - Dapur gelap banget nih, tolong idupin lampunya.
+  - Lampu dapur tolong diidupin ya.
+  - Mau masak nih, nyalain lampu dapur dong.
+  - Tolong idupin lampu di dapur ya.
+  - Lampu dapur tolong dinyalain dong.
+  - Di dapur tolong nyalain lampunya ya.
+  - Idupin dong lampu dapurnya tolong.
+  - Nyalain lampu dapur sekarang dong.
+  - Tolong terangin dapur ya lampunya nyalain.
+  - Lampu dapur hidupin dong tolong.
+  - Dapur tolong nyalain lampunya ya.
+  - Bisa tolong idupin lampu dapur gak.
+  - Lampu di dapur tolong dinyalain ya.
+  - Nyalain lampu area dapur dong.
+  - Dapur gelap nih tolong hidupkan lampunya.
+  - Tolong nyalakan lampu dapur sekarang.
+  - Lampu dapur tolong dihidupkan ya.
+  - Idupin lampu dapur cepat dong.
+  - Nyalain dong lampu dapur tolong.
 
----
+## Intent 3: `activate` + `lights` + `none`
+- Contoh Bahasa Inggris: *Turn the lights on*
+- Variasi Bahasa Indonesia:
+  - Nyalakan semua lampu.
+  - Idupin semua lampunya dong.
+  - Tolong nyalain lampunya ya.
+  - Hidupkan lampu ruangan.
+  - Gelap amat, nyalain lampu dong.
+  - Lampu tolong diidupin ya.
+  - Nyalain lampu sekarang dong.
+  - Terangin ruangan, tolong nyalain lampu.
+  - Hidupin lampunya ya tolong.
+  - Tolong hidupkan semua lampu.
+  - Lampu nyala.
+  - Semua lampu hidupin.
+  - Gelap nih terangin dong lampunya.
+  - Svara, tolong nyalain semua lampu.
+  - Aktifkan pencahayaan ruangan dong.
+  - Nyalain semua lampu rumah dong.
+  - Semua lampu tolong diidupin ya.
+  - Gelap banget nih rumah, tolong nyalain lampu.
+  - Terangin ruangan dong, nyalain lampu.
+  - Lampu rumah tolong diidupin semua.
+  - Nyalain dong semua lampunya tolong.
+  - Tolong idupin lampu seluruh ruangan.
+  - Nyalain lampu tengah dong tolong.
+  - Lampu ruang tengah tolong diidupin ya.
+  - Semua lampu tolong dinyalakan sekarang.
+  - Rumah gelap nih tolong nyalain lampunya.
+  - Nyalain lampu utama dong.
+  - Lampu utama tolong diidupin ya.
+  - Tolong hidupkan semua lampu di rumah.
+  - Idupin semua lampu ruangan dong.
+  - Terangin rumah dong tolong nyalain lampu.
+  - Nyalain lampu dong semuanya ya.
+  - Lampu rumah tolong dinyalain sekarang.
+  - Bisa tolong nyalain semua lampu gak.
+  - Tolong idupin semua lampu dong.
 
-## 🔍 Analisis Sintaksis & Implikasi Deteksi Akustik (SLU)
+## Intent 4: `activate` + `lights` + `washroom`
+- Contoh Bahasa Inggris: *Turn on the washroom lights*
+- Variasi Bahasa Indonesia:
+  - Nyalakan lampu kamar mandi.
+  - Idupin lampu toilet dong.
+  - Nyalain lampu WC ya.
+  - Lampu kamar mandi tolong diidupin.
+  - Tolong nyalain lampu di kamar mandi.
+  - Toilet gelap nih, tolong nyalain lampunya.
+  - Lampu WC tolong nyalain dong.
+  - Di kamar mandi tolong idupin lampu.
+  - Nyalain dong lampu toiletnya.
+  - Hidupkan lampu kamar mandi tolong.
+  - Lampu toilet nyala.
+  - Kamar mandi, lampu hidupin.
+  - Mau buang air nih tolong nyalain lampu WC.
+  - Svara, tolong nyalain lampu kamar mandi.
+  - WC gelap banget tolong idupin lampunya.
+  - Nyalain lampu kamar mandi dong tolong.
+  - Idupin lampu WC dong tolong.
+  - Nyalain lampu toilet dong ya.
+  - Kamar mandi gelap nih tolong idupin lampunya.
+  - Lampu kamar mandi tolong dinyalain ya.
+  - Mau mandi nih, tolong nyalain lampu kamar mandi.
+  - Lampu toilet tolong diidupin dong.
+  - Nyalain dong lampu di kamar mandi.
+  - Tolong idupin lampu WC sekarang.
+  - Lampu kamar mandi hidupin dong.
+  - Di kamar mandi tolong nyalain lampunya.
+  - Toilet gelap tolong idupin lampunya ya.
+  - Nyalain lampu kamar mandi cepat dong.
+  - Lampu WC tolong dinyalain sekarang.
+  - Bisa tolong idupin lampu kamar mandi gak.
+  - Tolong nyalakan lampu toilet ya.
+  - Lampu kamar mandi tolong dihidupkan dong.
+  - Nyalain lampu kamar mandi ya tolong.
+  - Toilet tolong nyalain lampunya dong.
+  - Kamar mandi tolong diidupin lampunya ya.
 
-1. **Topikalisasi & Fleksibilitas Struktur (Non-SPOK)**:
-   - Pola SPOK Baku: *"Nyalakan lampu di kamar tidur"*
-   - Pola Topikalisasi (Fokus Lokasi/Objek): *"Di kamar tidur lampunya nyalain dong"*
-   - Pola Komando Ringkas (*Bare/Keyword*): *"Lampu kamar nyala"*
-2. **Karakteristik Afiksasi & Fonetik Lokal**:
-   - Sufiks baku *-kan* bergeser menjadi *-in* (*nyalain*, *matiin*, *dinginin*, *angetin*, *gedein*). Ini sangat penting karena transisi fonem pada akhiran *-in* memiliki spektrum formant yang berbeda dari *-kan*.
-3. **Konteks Iklim Tropis pada Slot `heat`**:
-   - Di Indonesia, `decrease heat` bermakna mendinginkan/menurunkan suhu ruangan (*"ademin"*, *"dinginin"*, *"turunin suhu AC"*).
-   - Sebaliknya `increase heat` bermakna menghangatkan (*"angetin"*, *"naikin suhu"*).
-4. **Noise Partikel Kata Pengisi (*Fillers*)**:
-   - Partikel *dong*, *nih*, *deh*, *ya*, serta panggilan *Svara* merupakan komponen akustik nyata yang harus mampu dilewati oleh pooling layer arsitektur Transformer SLU agar slot intent tetap terprediksi dengan presisi.
+## Intent 5: `activate` + `music` + `none`
+- Contoh Bahasa Inggris: *Resume*
+- Variasi Bahasa Indonesia:
+  - Putar lagi lagunya.
+  - Lanjutin musiknya dong.
+  - Play lagi lagunya ya.
+  - Nyalain lagi musik yang tadi.
+  - Lanjutkan lagunya tolong.
+  - Tolong putar lagi lagunya dong.
+  - Musiknya diplay lagi ya.
+  - Lanjut mainin musik dong.
+  - Putar musik lagi.
+  - Tolong lanjutkan pemutaran musik.
+  - Musik lanjut.
+  - Lagu play lagi.
+  - Svara, lanjutin musik yang tadi dong.
+  - Lanjutin putar lagu dong sepi nih.
+  - Playback musik tolong dilanjutkan.
+  - Setel lagu dong tolong.
+  - Puterin musik dong sepi nih.
+  - Nyalain musiknya dong tolong.
+  - Play lagunya dong ya.
+  - Lanjutin musik yang tadi tolong.
+  - Puter lagu santai dong.
+  - Nyalain lagu dong tolong ya.
+  - Play musik dong sekarang.
+  - Bisa tolong setel lagu gak.
+  - Puterin lagu favorit dong.
+  - Musiknya tolong dihidupkan ya.
+  - Lanjutin playlist lagunya dong.
+  - Setel musik dong biar rame.
+  - Nyalain musik di speaker dong.
+  - Puter lagu dong tolong ya.
+  - Play musik lagi dong.
+  - Tolong putar lagu sekarang dong.
+  - Setel musik santai tolong ya.
+  - Hidupkan musiknya dong tolong.
+  - Puterin musik lagi dong ya.
+
+## Intent 6: `bring` + `juice` + `none`
+- Contoh Bahasa Inggris: *Bring some juice*
+- Variasi Bahasa Indonesia:
+  - Bawakan saya jus.
+  - Ambilin jus dong.
+  - Tolong ambilin jus buah ya.
+  - Minta jus jeruknya dong satu.
+  - Haus nih, bawain jus dong.
+  - Tolong ambilkan jus dingin.
+  - Bawain jus ke sini ya tolong.
+  - Bisa tolong ambilin jus gak.
+  - Ambilin segelas jus dong.
+  - Tolong bawakan jus buah ke sini.
+  - Minta jus dong.
+  - Ambilin jus dingin ya.
+  - Haus banget nih tolong ambilin jus.
+  - Svara, tolong bawain jus ke meja.
+  - Tolong pesankan atau ambilkan jus.
+  - Ambilin jus jeruk dong tolong.
+  - Bawain jus buah dingin ya.
+  - Minta tolong bawain jus dong.
+  - Ambilkan saya segelas jus ya.
+  - Haus nih tolong ambilin jus dingin.
+  - Bawain jus segar ke sini dong.
+  - Tolong ambilkan jus mangga dong.
+  - Minta jus buah dong tolong.
+  - Bisa tolong bawain jus gak.
+  - Ambilin jus dari kulkas dong.
+  - Bawain segelas jus ya tolong.
+  - Tolong bawain jus dingin ke sini.
+  - Ambilin jus dong haus banget nih.
+  - Minta tolong ambilin jus ya.
+  - Bawakan jus buah ke meja dong.
+  - Tolong ambilin jus jeruk ya.
+  - Bawain jus apel dong tolong.
+  - Ambilkan segelas jus buah tolong.
+  - Bisa minta tolong bawain jus gak.
+  - Tolong bawain jus dari dapur ya.
+
+## Intent 7: `bring` + `newspaper` + `none`
+- Contoh Bahasa Inggris: *Get me the newspaper*
+- Variasi Bahasa Indonesia:
+  - Ambilkan koran untuk saya.
+  - Ambilin koran dong.
+  - Bawain koran hari ini ya.
+  - Tolong ambilin koran di depan.
+  - Ambilkan koran pagi tolong.
+  - Bawain koran ke sini dong.
+  - Koran tolong ambilin ya.
+  - Minta tolong ambilin koran pagi ini.
+  - Bisa bawain koran gak tolong.
+  - Ambil koran dong tolong.
+  - Ambilin koran ya.
+  - Koran tolong bawa ke sini.
+  - Mau baca berita nih tolong ambilin koran.
+  - Svara, tolong ambilin koran di depan meja.
+  - Tolong ambilkan koran cetak hari ini.
+  - Ambilin koran hari ini dong tolong.
+  - Bawain koran pagi ke sini ya.
+  - Tolong ambilkan surat kabar dong.
+  - Koran hari ini tolong dibawain ya.
+  - Bawakan saya koran pagi tolong.
+  - Ambilkan koran di depan dong.
+  - Tolong bawain koran ke meja ya.
+  - Bisa tolong ambilin koran gak.
+  - Ambilin koran kompas dong tolong.
+  - Bawain koran terbaru ke sini ya.
+  - Tolong ambilkan koran pagi ini.
+  - Koran tolong dibawakan ke ruang tamu.
+  - Ambilin surat kabar dong tolong.
+  - Bawain koran pagi dong ya.
+  - Tolong bawakan koran hari ini ya.
+  - Koran di teras tolong ambilin dong.
+  - Bisa ambilkan koran pagi gak tolong.
+  - Tolong bawain koran dari depan.
+  - Ambilin koran dong mau baca berita.
+  - Bawakan koran terbaru ke meja tolong.
+
+## Intent 8: `bring` + `shoes` + `none`
+- Contoh Bahasa Inggris: *Bring me my shoes*
+- Variasi Bahasa Indonesia:
+  - Ambilin sepatu gua dong.
+  - Bawain sepatu saya ya.
+  - Tolong ambilin sepatu kerja.
+  - Sepatu tolong bawain ke sini.
+  - Mau keluar nih, ambilin sepatu dong.
+  - Tolong ambilkan sepatu saya di rak.
+  - Bawain sepatu dong tolong.
+  - Ambilin sepatu ya tolong.
+  - Bisa tolong bawain sepatu gak.
+  - Tolong bawakan sepatu saya ke sini.
+  - Ambilin sepatu kerja dong.
+  - Sepatu tolong ambilin ya.
+  - Buru-buru nih tolong bawain sepatu.
+  - Svara, tolong ambilin sepatu saya di rak depan.
+  - Ambilkan sepatu kets saya tolong.
+  - Ambilin sepatu saya dong tolong.
+  - Bawain sepatu kerja ke sini ya.
+  - Tolong ambilkan sepatu sneakers dong.
+  - Sepatu di rak tolong dibawain ya.
+  - Bawakan sepatu olahraga saya tolong.
+  - Ambilkan sepatu lari dong tolong.
+  - Tolong bawain sepatu saya ke teras ya.
+  - Bisa tolong ambilin sepatu saya gak.
+  - Sepatu hitam tolong dibawakan dong.
+  - Ambilin sepatu dong mau berangkat nih.
+  - Tolong ambilkan sepatu kerja saya.
+  - Bawain sepatu lari ke sini ya tolong.
+  - Sepatu tolong diambilin dong.
+  - Bawakan sepatu saya ke depan pintu tolong.
+  - Tolong bawain sepatu sneakers ke sini.
+  - Ambilkan sepatu saya dari rak sepatu ya.
+  - Bisa bawain sepatu olahraga gak tolong.
+  - Sepatu saya tolong diambilkan ya.
+  - Ambilin sepatu kantor dong tolong.
+  - Bawain sepatu saya ke sini cepat dong.
+
+## Intent 9: `bring` + `socks` + `none`
+- Contoh Bahasa Inggris: *Bring socks*
+- Variasi Bahasa Indonesia:
+  - Ambilin kaos kaki dong.
+  - Bawain kaus kaki ya.
+  - Tolong ambilin kaos kaki bersih.
+  - Kaos kaki tolong bawain ke sini.
+  - Ambilkan kaus kaki dong tolong.
+  - Tolong cariin dan ambilin kaos kaki.
+  - Kaos kakinya tolong bawain ya.
+  - Bisa tolong ambilin kaos kaki gak.
+  - Ambilin kaus kaki dong tolong.
+  - Tolong bawakan kaus kaki yang bersih.
+  - Ambilin kaos kaki ya.
+  - Kaos kaki tolong ambilkan.
+  - Kaki dingin nih tolong bawain kaos kaki.
+  - Svara, tolong bawain kaos kaki sepasang.
+  - Tolong ambilin kaus kaki di lemari.
+  - Ambilin kaos kaki bersih dong tolong.
+  - Bawain kaos kaki saya ke sini ya.
+  - Tolong ambilkan sepasang kaos kaki dong.
+  - Kaos kaki di laci tolong dibawain ya.
+  - Bawakan kaos kaki hitam saya tolong.
+  - Ambilkan kaos kaki kantor dong tolong.
+  - Tolong bawain kaos kaki saya ya.
+  - Bisa tolong ambilin kaos kaki gak.
+  - Kaos kaki putih tolong dibawakan dong.
+  - Ambilin kaos kaki dong mau pakai sepatu nih.
+  - Tolong ambilkan kaos kaki saya di lemari.
+  - Bawain kaos kaki bersih ke sini ya tolong.
+  - Kaos kaki tolong diambilin dong.
+  - Bawakan kaos kaki ke tempat tidur tolong.
+  - Tolong bawain kaos kaki kerja ke sini ya.
+  - Ambilkan kaos kaki saya dari laci ya.
+  - Bisa tolong bawain kaos kaki hitam gak.
+  - Kaos kaki saya tolong diambilkan ya.
+  - Ambilin kaos kaki olahraga dong tolong.
+  - Bawain kaos kaki saya dong cepetan.
+
+## Intent 10: `change language` + `Chinese` + `none`
+- Contoh Bahasa Inggris: *Set language to Chinese*
+- Variasi Bahasa Indonesia:
+  - Ganti ke bahasa Mandarin dong.
+  - Ubah bahasa jadi Bahasa Mandarin.
+  - Switch bahasanya ke Mandarin ya.
+  - Atur bahasa ke Bahasa Cina.
+  - Tolong ganti bahasanya ke Chinese.
+  - Pake bahasa Mandarin aja dong.
+  - Ubah setelan bahasa jadi Mandarin.
+  - Tolong ubah ke bahasa Mandarin ya.
+  - Ganti bahasa sistem ke Mandarin.
+  - Tolong switch language ke Mandarin.
+  - Bahasa ganti Mandarin.
+  - Pindah ke bahasa Mandarin ya.
+  - Setel sistem pake bahasa Mandarin dong.
+  - Svara, tolong ganti bahasa ke Mandarin.
+  - Atur bahasa antarmuka ke Mandarin.
+  - Ganti bahasanya ke bahasa Mandarin dong.
+  - Ubah bahasa sistem jadi bahasa Cina ya.
+  - Pake bahasa Mandarin dong tolong.
+  - Switch bahasanya ke Mandarin ya.
+  - Tolong ubah ke bahasa Tionghoa dong.
+  - Ganti bahasa ke bahasa Cina sekarang.
+  - Setel sistemnya pake bahasa Mandarin ya.
+  - Tolong ganti bahasanya jadi Mandarin dong.
+  - Pake bahasa Cina dong sistemnya.
+  - Ubah bahasa ke Mandarin tolong ya.
+  - Switch ke bahasa Mandarin dong.
+  - Bisa tolong ganti ke bahasa Cina gak.
+  - Ganti pilihan bahasa ke Mandarin ya.
+  - Tolong ubah pengaturan bahasa jadi Mandarin.
+  - Setel bahasa sistem ke bahasa Cina tolong.
+  - Pindah ke bahasa Mandarin dong ya.
+  - Ganti bahasa sistem ke Mandarin sekarang.
+  - Ubah bahasa tampilan ke bahasa Cina dong.
+  - Tolong ganti ke bahasa Mandarin ya.
+  - Setel bahasanya jadi Mandarin dong tolong.
+
+## Intent 11: `change language` + `English` + `none`
+- Contoh Bahasa Inggris: *Set my phone's language to English*
+- Variasi Bahasa Indonesia:
+  - Ganti bahasanya ke Bahasa Inggris dong.
+  - Ubah bahasa sistem jadi Bahasa Inggris.
+  - Switch bahasanya ke English ya.
+  - Ganti ke bahasa Inggris dong tolong.
+  - Tolong atur bahasa jadi Bahasa Inggris.
+  - Pake bahasa Inggris aja dong.
+  - Ubah setelan ke Bahasa Inggris ya.
+  - Tolong ganti ke English dong.
+  - Atur settingan bahasa jadi Inggris.
+  - Tolong switch bahasanya ke Bahasa Inggris.
+  - Bahasa ganti Inggris.
+  - Pindah ke bahasa Inggris dong.
+  - Setel bahasa ke English ya.
+  - Svara, tolong ganti bahasa ke Bahasa Inggris.
+  - Ubah pengaturan bahasa perangkat ke Inggris.
+  - Ganti bahasanya ke bahasa Inggris dong.
+  - Ubah bahasa sistem jadi bahasa Inggris ya.
+  - Pake bahasa Inggris dong tolong.
+  - Switch bahasanya ke bahasa Inggris ya.
+  - Tolong ubah ke bahasa English dong.
+  - Ganti bahasa ke English sekarang ya.
+  - Setel sistemnya pake bahasa Inggris tolong.
+  - Tolong ganti bahasanya jadi English dong.
+  - Pake bahasa Inggris dong sistemnya ya.
+  - Ubah bahasa ke English tolong ya.
+  - Switch ke bahasa Inggris dong tolong.
+  - Bisa tolong ganti ke bahasa Inggris gak.
+  - Ganti pilihan bahasa ke English ya.
+  - Tolong ubah pengaturan bahasa jadi bahasa Inggris.
+  - Setel bahasa sistem ke bahasa Inggris tolong.
+  - Pindah ke bahasa Inggris dong ya.
+  - Ganti bahasa sistem ke English sekarang.
+  - Ubah bahasa tampilan ke bahasa Inggris dong.
+  - Tolong ganti ke bahasa Inggris ya.
+  - Setel bahasanya jadi English dong tolong.
+
+## Intent 12: `change language` + `German` + `none`
+- Contoh Bahasa Inggris: *I need to practice my German. Switch the language*
+- Variasi Bahasa Indonesia:
+  - Ganti bahasanya ke Bahasa Jerman dong.
+  - Ubah bahasa jadi Bahasa Jerman ya.
+  - Switch bahasanya ke Jerman dong.
+  - Tolong ganti ke bahasa German.
+  - Atur bahasa sistem ke Bahasa Jerman.
+  - Pake bahasa Jerman dong sekarang.
+  - Mau belajar nih, tolong ganti bahasa ke Jerman.
+  - Ubah setelan bahasa ke Bahasa Jerman.
+  - Tolong switch ke bahasa Jerman ya.
+  - Ganti bahasa ke Bahasa Jerman tolong.
+  - Bahasa ganti Jerman.
+  - Pindah ke bahasa Jerman ya.
+  - Setel sistem pake bahasa Jerman dong.
+  - Svara, tolong ganti bahasa ke Jerman.
+  - Atur bahasa asisten jadi Bahasa Jerman.
+  - Ganti bahasanya ke bahasa Jerman dong.
+  - Ubah bahasa sistem jadi bahasa Jerman ya.
+  - Pake bahasa Jerman dong tolong.
+  - Switch bahasanya ke bahasa Jerman ya.
+  - Tolong ubah ke bahasa Jerman dong.
+  - Ganti bahasa ke German sekarang ya.
+  - Setel sistemnya pake bahasa Jerman tolong.
+  - Tolong ganti bahasanya jadi Jerman dong.
+  - Pake bahasa Jerman dong sistemnya ya.
+  - Ubah bahasa ke German tolong ya.
+  - Switch ke bahasa Jerman dong tolong.
+  - Bisa tolong ganti ke bahasa Jerman gak.
+  - Ganti pilihan bahasa ke bahasa Jerman ya.
+  - Tolong ubah pengaturan bahasa jadi bahasa Jerman.
+  - Setel bahasa sistem ke bahasa Jerman tolong.
+  - Pindah ke bahasa Jerman dong ya.
+  - Ganti bahasa sistem ke German sekarang.
+  - Ubah bahasa tampilan ke bahasa Jerman dong.
+  - Tolong ganti ke bahasa Jerman ya.
+  - Setel bahasanya jadi Jerman dong tolong.
+
+## Intent 13: `change language` + `Korean` + `none`
+- Contoh Bahasa Inggris: *Set language to Korean*
+- Variasi Bahasa Indonesia:
+  - Ganti ke bahasa Korea dong.
+  - Ubah bahasa jadi Bahasa Korea ya.
+  - Switch bahasanya ke Korean dong.
+  - Tolong atur bahasa ke Bahasa Korea.
+  - Ganti bahasanya jadi bahasa Korea.
+  - Pake bahasa Korea aja dong.
+  - Ubah setelan bahasa sistem ke Bahasa Korea.
+  - Tolong ganti bahasa ke Korea ya.
+  - Switch bahasa ke Korea dong tolong.
+  - Atur settingan bahasa ke Bahasa Korea.
+  - Bahasa ganti Korea.
+  - Pindah ke bahasa Korea dong.
+  - Setel bahasa ke Korean ya.
+  - Svara, tolong ganti bahasa ke Korea.
+  - Atur bahasa sistem jadi Bahasa Korea.
+  - Ganti bahasanya ke bahasa Korea dong.
+  - Ubah bahasa sistem jadi bahasa Korea ya.
+  - Pake bahasa Korea dong tolong.
+  - Switch bahasanya ke bahasa Korea ya.
+  - Tolong ubah ke bahasa Korean dong.
+  - Ganti bahasa ke Korea sekarang ya.
+  - Setel sistemnya pake bahasa Korea tolong.
+  - Tolong ganti bahasanya jadi Korea dong.
+  - Pake bahasa Korea dong sistemnya ya.
+  - Ubah bahasa ke Korean tolong ya.
+  - Switch ke bahasa Korea dong tolong.
+  - Bisa tolong ganti ke bahasa Korea gak.
+  - Ganti pilihan bahasa ke bahasa Korea ya.
+  - Tolong ubah pengaturan bahasa jadi bahasa Korea.
+  - Setel bahasa sistem ke bahasa Korea tolong.
+  - Pindah ke bahasa Korea dong ya.
+  - Ganti bahasa sistem ke Korean sekarang.
+  - Ubah bahasa tampilan ke bahasa Korea dong.
+  - Tolong ganti ke bahasa Korea ya.
+  - Setel bahasanya jadi Korea dong tolong.
+
+## Intent 14: `change language` + `none` + `none`
+- Contoh Bahasa Inggris: *Change language*
+- Variasi Bahasa Indonesia:
+  - Ganti bahasa dong.
+  - Ubah pengaturan bahasa.
+  - Tolong switch bahasanya ya.
+  - Buka menu ganti bahasa dong.
+  - Ganti bahasanya dong tolong.
+  - Pindah bahasa ya.
+  - Ubah pilihan bahasa sistem.
+  - Tolong ganti pilihan bahasanya.
+  - Switch language dong.
+  - Ganti bahasa asisten sekarang.
+  - Mau ganti bahasa dong.
+  - Menu ganti bahasa tolong.
+  - Pilihan bahasa tolong dibuka.
+  - Svara, tolong buka pengaturan ganti bahasa.
+  - Ubah setelan bahasa sekarang.
+  - Ganti bahasanya dong tolong.
+  - Ubah bahasa sistemnya ya.
+  - Switch bahasanya dong tolong.
+  - Ganti setelan bahasa ke default ya.
+  - Tolong ubah bahasa perangkat dong.
+  - Ganti pilihan bahasanya dong ya.
+  - Ubah bahasa sistem sekarang tolong.
+  - Tolong ganti bahasa aplikasinya dong.
+  - Pindah bahasa dong tolong ya.
+  - Bisa tolong ganti bahasanya gak.
+  - Ganti pengaturan bahasa sistem dong.
+  - Ubah opsi bahasa ke default tolong.
+  - Tolong switch pilihan bahasa ya.
+  - Ganti bahasanya sekarang dong tolong.
+  - Ubah bahasa tampilan aplikasi ya.
+  - Pilih bahasa lain dong tolong.
+  - Tolong ganti setelan bahasanya ya.
+  - Bisa ubah bahasa sistemnya gak tolong.
+  - Ganti bahasa perangkat ini dong ya.
+  - Ubah ke bahasa standar tolong.
+
+## Intent 15: `deactivate` + `lamp` + `none`
+- Contoh Bahasa Inggris: *Turn off the lamp*
+- Variasi Bahasa Indonesia:
+  - Matiin lampu.
+  - Padamin lampunya dong.
+  - Matiin lampu meja ya.
+  - Lampu tolong dimatiin.
+  - Silau nih, tolong matiin lampu.
+  - Matiin dong lampu belajarnya.
+  - Tolong padamkan lampu meja.
+  - Lampunya tolong dimatiin ya.
+  - Matiin lampunya sekarang dong.
+  - Padamkan lampu meja tolong.
+  - Lampu mati.
+  - Lampu meja padamkan.
+  - Mau tidur tolong matiin lampu meja.
+  - Svara, tolong matiin lampu meja.
+  - Matikan pencahayaan lampu belajar.
+  - Matiin lampu tidur dong tolong.
+  - Padamin lampu mejanya ya.
+  - Lampu kecil tolong matiin.
+  - Matikan lampu meja samping dong.
+  - Lampu sudut matiin dong tolong.
+  - Tolong matiin lampu baca ya.
+  - Lampu meja tolong dimatikan dong.
+  - Padamkan lampu tidur sekarang tolong.
+  - Matiin dong lampu duduknya ya.
+  - Lampu nakas tolong dimatiin ya.
+  - Matiin lampu pojok kamar dong.
+  - Tolong padamin lampu meja belajar.
+  - Lampu tidur tolong dipadamkan ya.
+  - Matikan lampu samping tempat tidur tolong.
+  - Matiin lampu baca dong tolong.
+  - Lampu hias tolong dimatikan ya.
+  - Tolong matiin lampu meja sekarang.
+  - Padamin lampu tidur dong tolong.
+  - Lampu meja padam dong ya.
+  - Matiin lampu meja belajar dong.
+
+## Intent 16: `deactivate` + `lights` + `bedroom`
+- Contoh Bahasa Inggris: *Turn the bedroom lights off*
+- Variasi Bahasa Indonesia:
+  - Matiin lampu kamar.
+  - Padamin lampu kamar tidur dong.
+  - Lampu kamar tolong dimatiin ya.
+  - Mau tidur nih, matiin lampu kamar dong.
+  - Tolong matiin lampu di kamar tidur.
+  - Di kamar tolong matiin lampunya.
+  - Lampu kamar tidur tolong dipadamin.
+  - Matiin dong lampu kamar.
+  - Tolong padamkan lampu kamar tidur.
+  - Lampu kamar matiin sekarang ya.
+  - Lampu kamar mati.
+  - Kamar tidur, lampu matiin.
+  - Silau banget mau istirahat, tolong matiin lampu kamar.
+  - Svara, tolong matiin lampu di kamar tidur.
+  - Padamkan penerangan kamar tidur tolong.
+  - Matiin lampu kamar dong tolong.
+  - Lampu kamar tidur tolong dimatiin ya.
+  - Padamin lampu di kamar tidur dong.
+  - Mau tidur nih, matiin lampu kamar ya.
+  - Lampu kamar tolong dimatikan dong tolong.
+  - Matikan lampu kamar tidur sekarang ya.
+  - Di kamar tolong matiin lampunya dong.
+  - Padamkan lampu kamar tidur ya tolong.
+  - Lampu kamar tidur tolong dipadamin dong.
+  - Matiin dong lampu kamar tidurnya ya.
+  - Tolong matiin lampu kamar utama dong.
+  - Kamar tidur tolong lampunya dimatiin ya.
+  - Matiin lampu kamar tidur cepat dong.
+  - Lampu di kamar tidur tolong dimatikan.
+  - Bisa tolong matiin lampu kamar gak.
+  - Tolong padamkan lampu kamar tidur ya.
+  - Lampu kamar tolong dimatiin sekarang ya.
+  - Kamar tidur tolong dimatikan lampunya dong.
+  - Matiin lampu kamar tidur dong tolong ya.
+  - Padamin lampu kamar sekarang dong.
+
+## Intent 17: `deactivate` + `lights` + `kitchen`
+- Contoh Bahasa Inggris: *Turn the lights off in the kitchen*
+- Variasi Bahasa Indonesia:
+  - Matiin lampu dapur.
+  - Padamin lampu dapur dong.
+  - Lampu dapur tolong dimatiin ya.
+  - Selesai masak nih, tolong matiin lampu dapur.
+  - Di dapur tolong matiin lampunya.
+  - Lampu di dapur tolong dipadamkan.
+  - Matiin dong lampu dapurnya.
+  - Tolong matiin lampu dapur ya.
+  - Tolong padamkan lampu dapur.
+  - Lampu dapur matiin sekarang tolong.
+  - Lampu dapur mati.
+  - Dapur, lampu padamkan.
+  - Dapur udah kosong tolong matiin lampunya.
+  - Svara, tolong matiin lampu dapur.
+  - Matikan semua penerangan di dapur.
+  - Matiin lampu dapur dong tolong.
+  - Lampu dapur tolong dimatiin ya.
+  - Padamin lampu di dapur dong.
+  - Selesai masak nih, tolong matiin lampu dapur.
+  - Lampu dapur tolong dimatikan dong tolong.
+  - Matikan lampu dapur sekarang ya.
+  - Di dapur tolong matiin lampunya dong.
+  - Padamkan lampu dapur ya tolong.
+  - Lampu dapur tolong dipadamin dong.
+  - Matiin dong lampu dapurnya ya.
+  - Tolong matiin lampu area dapur dong.
+  - Dapur tolong lampunya dimatiin ya.
+  - Matiin lampu dapur cepat dong tolong.
+  - Lampu di dapur tolong dimatikan ya.
+  - Bisa tolong matiin lampu dapur gak.
+  - Tolong padamkan lampu dapur ya.
+  - Lampu dapur tolong dimatiin sekarang ya.
+  - Dapur tolong dimatikan lampunya dong.
+  - Matiin lampu dapur dong tolong ya.
+  - Padamin lampu dapur sekarang dong.
+
+## Intent 18: `deactivate` + `lights` + `none`
+- Contoh Bahasa Inggris: *Switch off the lights*
+- Variasi Bahasa Indonesia:
+  - Matiin semua lampu.
+  - Padamin lampunya dong.
+  - Lampu tolong dimatiin semuanya ya.
+  - Silau banget, matiin lampu dong.
+  - Tolong matikan semua lampu ruangan.
+  - Matiin dong lampunya.
+  - Tolong padamkan seluruh lampu.
+  - Lampunya dimatiin ya tolong.
+  - Padamin lampu sekarang dong.
+  - Matikan lampu semuanya tolong.
+  - Lampu mati semua.
+  - Padamkan seluruh lampu.
+  - Mau tidur tolong matiin semua lampu ruangan.
+  - Svara, tolong matiin semua lampu.
+  - Gelapkan ruangan tolong matiin lampu.
+  - Matiin semua lampu rumah dong tolong.
+  - Semua lampu tolong dimatiin ya.
+  - Padamin semua lampu dong mau tidur nih.
+  - Lampu rumah tolong dimatikan semua ya.
+  - Matikan semua lampu ruangan tolong.
+  - Matiin dong semua lampunya tolong.
+  - Tolong padamin lampu seluruh rumah ya.
+  - Lampu ruang tengah tolong dimatiin dong.
+  - Matiin lampu utama dong tolong.
+  - Lampu utama tolong dimatikan ya.
+  - Tolong matikan semua lampu di rumah.
+  - Semua lampu tolong dipadamkan sekarang.
+  - Matiin semua lampu ruangan dong tolong.
+  - Lampu rumah tolong dipadamin ya.
+  - Bisa tolong matiin semua lampu gak.
+  - Tolong matiin lampu dong semuanya ya.
+  - Lampu seluruh ruangan tolong dimatikan.
+  - Padamkan seluruh lampu rumah dong tolong.
+  - Matiin semua lampu dong tolong ya.
+  - Semua lampu padamkan sekarang dong.
+
+## Intent 19: `deactivate` + `lights` + `washroom`
+- Contoh Bahasa Inggris: *Switch off the washroom lights*
+- Variasi Bahasa Indonesia:
+  - Matiin lampu kamar mandi.
+  - Padamin lampu toilet dong.
+  - Matiin lampu WC ya.
+  - Lampu kamar mandi tolong dimatiin.
+  - Udah selesai nih, tolong matiin lampu toilet.
+  - Di kamar mandi tolong matiin lampunya.
+  - Lampu WC tolong dipadamin dong.
+  - Matiin dong lampu kamar mandi.
+  - Tolong padamkan lampu toilet ya.
+  - Matikan lampu kamar mandi sekarang.
+  - Lampu toilet mati.
+  - Kamar mandi, lampu matiin.
+  - Toilet kosong tolong matiin lampunya ya.
+  - Svara, tolong matiin lampu kamar mandi.
+  - Padamkan lampu di toilet tolong.
+  - Matiin lampu kamar mandi dong tolong.
+  - Matiin lampu WC dong tolong ya.
+  - Matiin lampu toilet dong ya.
+  - Lampu kamar mandi tolong dimatiin ya.
+  - Padamin lampu toilet dong tolong.
+  - Lampu WC tolong dimatikan dong.
+  - Matikan lampu kamar mandi sekarang ya.
+  - Di kamar mandi tolong matiin lampunya dong.
+  - Padamkan lampu toilet ya tolong.
+  - Lampu kamar mandi tolong dipadamin dong.
+  - Matiin dong lampu toiletnya ya tolong.
+  - Tolong matiin lampu di kamar mandi dong.
+  - Toilet tolong lampunya dimatiin ya.
+  - Matiin lampu WC cepat dong tolong.
+  - Lampu di kamar mandi tolong dimatikan ya.
+  - Bisa tolong matiin lampu toilet gak.
+  - Tolong padamkan lampu kamar mandi ya.
+  - Lampu WC tolong dipadamkan dong.
+  - Kamar mandi tolong dimatikan lampunya ya.
+  - Matiin lampu kamar mandi dong tolong ya.
+
+## Intent 20: `deactivate` + `music` + `none`
+- Contoh Bahasa Inggris: *Turn off the music*
+- Variasi Bahasa Indonesia:
+  - Matiin musiknya.
+  - Stop lagunya dong.
+  - Matiin lagunya ya berisik.
+  - Hentikan pemutaran musik tolong.
+  - Musiknya tolong dimatiin dong.
+  - Berhenti mainin musik ya.
+  - Pause lagunya dong tolong.
+  - Matiin dong musiknya pusing nih.
+  - Tolong hentikan musiknya sekarang.
+  - Matikan lagu yang lagi muter tolong.
+  - Musik stop.
+  - Lagu mati.
+  - Ada telepon nih tolong matiin musiknya.
+  - Svara, tolong matiin lagunya berisik.
+  - Hentikan lagu sekarang juga.
+  - Matiin musiknya dong tolong.
+  - Stop lagunya dong ya.
+  - Hentikan pemutaran musik tolong.
+  - Pause lagunya dong tolong.
+  - Matiin lagunya dong berisik nih.
+  - Tolong matikan musik sekarang ya.
+  - Musiknya tolong dimatiin dong.
+  - Stop musiknya dong tolong ya.
+  - Matikan pemutaran lagu tolong.
+  - Matiin musik di speaker dong.
+  - Tolong hentikan lagunya ya.
+  - Pause musik dong mau ngobrol nih.
+  - Bisa tolong matiin musiknya gak.
+  - Musiknya tolong di-stop ya.
+  - Matikan suara musik dong tolong.
+  - Tolong jeda pemutaran musik ya.
+  - Matiin lagu sekarang dong tolong.
+  - Stop lagu yang lagi muter ya.
+  - Musiknya tolong dimatikan sekarang.
+  - Matikan lagunya dong tolong ya.
+
+## Intent 21: `decrease` + `heat` + `bedroom`
+- Contoh Bahasa Inggris: *Turn down the bedroom heat*
+- Variasi Bahasa Indonesia:
+  - Dinginin kamar tidur dong.
+  - Turunin suhu kamar.
+  - Kamar tidur panas nih kecilkan pemanasnya.
+  - Kurangi suhu di kamar tidur ya.
+  - Turunin temperatur kamar dong.
+  - Kamar gerah nih tolong dinginin.
+  - Tolong turunin suhu kamar tidur ya.
+  - Kecilkan pemanas kamar tidur dong.
+  - Di kamar terlalu panas tolong turunin suhunya.
+  - Turunkan pemanas di kamar tidur.
+  - Kamar tidur ademin dong.
+  - Turunin AC kamar tidur ya.
+  - Kamar tidur gerah banget tolong dinginin.
+  - Svara, tolong turunin suhu kamar tidur.
+  - Bikin kamar tidur lebih dingin dong.
+  - Kamar tidur kepanasan nih, kecilin suhunya dong.
+  - Turunin pemanas di kamar tidur ya tolong.
+  - Kecilin pemanas ruangan di kamar dong.
+  - Suhu kamar tidur tolong diturunkan ya.
+  - Kecilkan suhu di kamar tidur tolong.
+  - Di kamar tidur tolong kecilin suhunya dong.
+  - Pemanas kamar tidur tolong diturunin ya.
+  - Turunkan pemanas kamar tidur dong tolong.
+  - Kamar gerah nih tolong kecilin pemanasnya.
+  - Kecilin temperatur kamar tidur dong ya.
+  - Suhu di kamar tolong dikecilkan ya tolong.
+  - Tolong turunkan suhu kamar tidur sekarang.
+  - Kecilkan pemanas kamar dong tolong.
+  - Bisa tolong turunin suhu kamar tidur gak.
+  - Pemanas ruangan kamar tidur tolong dikecilkan.
+  - Kamar tidur panas tolong turunin suhunya ya.
+  - Tolong kecilkan suhu kamar tidur dong.
+  - Turunin pemanas kamar tidur dong tolong ya.
+  - Kecilin suhu kamar tidur cepat dong.
+  - Pemanas di kamar tolong diturunkan ya.
+
+## Intent 22: `decrease` + `heat` + `kitchen`
+- Contoh Bahasa Inggris: *Turn the kitchen temperature down*
+- Variasi Bahasa Indonesia:
+  - Dinginin dapur dong.
+  - Turunin suhu di dapur.
+  - Dapur panas banget tolong turunin suhunya.
+  - Kurangi pemanas dapur ya.
+  - Turunin temperatur dapur dong.
+  - Area dapur gerah nih kecilkan suhunya.
+  - Tolong turunin suhu di dapur ya.
+  - Kecilkan pemanas di dapur dong.
+  - Di dapur panas tolong dinginin dikit.
+  - Turunkan suhu pemanas dapur.
+  - Dapur ademin dong panas nih.
+  - Turunin suhu dapur ya gerah.
+  - Habis masak panas tolong dinginin dapur.
+  - Svara, tolong turunin suhu di dapur.
+  - Dinginkan ruangan dapur tolong.
+  - Dapur panas banget, kecilin pemanasnya dong.
+  - Turunin suhu di dapur ya tolong.
+  - Kecilin pemanas ruangan di dapur dong.
+  - Suhu dapur tolong diturunkan ya tolong.
+  - Kecilkan suhu di dapur tolong ya.
+  - Di dapur tolong kecilin suhunya dong.
+  - Pemanas dapur tolong diturunin ya.
+  - Turunkan pemanas dapur dong tolong.
+  - Dapur gerah nih tolong kecilin suhunya.
+  - Kecilin temperatur dapur dong ya.
+  - Suhu di dapur tolong dikecilkan ya tolong.
+  - Tolong turunkan suhu dapur sekarang.
+  - Kecilkan pemanas dapur dong tolong.
+  - Bisa tolong turunin suhu dapur gak.
+  - Pemanas ruangan dapur tolong dikecilkan.
+  - Dapur panas tolong turunin pemanasnya ya.
+  - Tolong kecilkan suhu dapur dong.
+  - Turunin pemanas dapur dong tolong ya.
+  - Kecilin suhu dapur cepat dong tolong.
+  - Pemanas di dapur tolong diturunkan ya.
+
+## Intent 23: `decrease` + `heat` + `none`
+- Contoh Bahasa Inggris: *Turn down the temperature*
+- Variasi Bahasa Indonesia:
+  - Turunin suhunya dong.
+  - Dinginin ruangan ya.
+  - Panas banget nih turunin suhunya.
+  - Kurangi suhu pemanas dong.
+  - Kecilkan suhunya ya.
+  - Turunin temperaturnya tolong.
+  - Gerah nih tolong dinginin dikit.
+  - Tolong turunkan suhunya dong.
+  - Kecilkan temperatur ruangan ya.
+  - Turunkan suhunya sekarang.
+  - Suhu turunin.
+  - Ademin ruangannya dong gerah.
+  - Turunin derajat suhunya ya tolong.
+  - Svara, tolong turunin suhunya panas nih.
+  - Bikin lebih dingin dong ruangannya.
+  - Kecilin pemanas rumah dong tolong.
+  - Turunin suhu ruangan dong gerah nih.
+  - Kecilkan pemanas dong tolong ya.
+  - Suhu ruangan tolong diturunkan ya.
+  - Panas banget nih tolong kecilin suhunya.
+  - Turunkan temperatur ruangan dong tolong.
+  - Pemanas tolong dikecilkan ya tolong.
+  - Kecilin suhu rumah dong tolong ya.
+  - Rumah gerah nih tolong turunin pemanasnya.
+  - Kecilkan suhu rumah sekarang dong.
+  - Tolong turunkan pemanas ruangan ya.
+  - Bisa tolong kecilin suhunya gak tolong.
+  - Pemanas ruangan tolong diturunin dong.
+  - Turunin suhu ruangan cepat dong ya.
+  - Kecilin temperatur rumah dong tolong.
+  - Suhu tolong diturunkan dong panas nih.
+  - Tolong kecilkan pemanas sekarang ya.
+  - Turunkan suhu ruangan dong tolong ya.
+  - Kecilin pemanas dong gerah banget.
+  - Pemanas rumah tolong dikecilkan ya.
+
+## Intent 24: `decrease` + `heat` + `washroom`
+- Contoh Bahasa Inggris: *Turn the temperature down in the washroom*
+- Variasi Bahasa Indonesia:
+  - Dinginin kamar mandi dong.
+  - Turunin suhu di kamar mandi ya.
+  - Toilet panas nih tolong turunin suhunya.
+  - Kurangi pemanas di kamar mandi dong.
+  - Turunin temperatur kamar mandi ya.
+  - Toilet terlalu panas kecilkan pemanasnya.
+  - Tolong turunin suhu kamar mandi dong.
+  - Kecilkan pemanas toilet ya.
+  - Di kamar mandi gerah tolong dinginin.
+  - Turunkan suhu pemanas kamar mandi.
+  - Kamar mandi ademin dong.
+  - Toilet pengap nih turunin suhunya.
+  - Dinginkan area kamar mandi tolong.
+  - Svara, tolong turunin suhu di kamar mandi.
+  - Kurangi panas di toilet dong.
+  - Kamar mandi kepanasan nih, kecilin suhunya dong.
+  - Turunin pemanas di kamar mandi ya tolong.
+  - Kecilin pemanas ruangan di toilet dong.
+  - Suhu kamar mandi tolong diturunkan ya.
+  - Kecilkan suhu di kamar mandi tolong.
+  - Di kamar mandi tolong kecilin suhunya dong.
+  - Pemanas toilet tolong diturunin ya tolong.
+  - Turunkan pemanas kamar mandi dong tolong.
+  - Toilet gerah nih tolong kecilin pemanasnya.
+  - Kecilin temperatur kamar mandi dong ya.
+  - Suhu di toilet tolong dikecilkan ya tolong.
+  - Tolong turunkan suhu kamar mandi sekarang.
+  - Kecilkan pemanas toilet dong tolong.
+  - Bisa tolong turunin suhu kamar mandi gak.
+  - Pemanas ruangan toilet tolong dikecilkan.
+  - Kamar mandi panas tolong turunin suhunya ya.
+  - Tolong kecilkan suhu toilet dong ya.
+  - Turunin pemanas kamar mandi dong tolong ya.
+  - Kecilin suhu kamar mandi cepat dong.
+  - Pemanas di kamar mandi tolong diturunkan ya.
+
+## Intent 25: `decrease` + `volume` + `none`
+- Contoh Bahasa Inggris: *Turn the volume down*
+- Variasi Bahasa Indonesia:
+  - Kecilin volumenya dong.
+  - Turunin suaranya ya berisik.
+  - Pelanin suaranya dong.
+  - Kecilin volume dikit ya.
+  - Kencengan suaranya tolong pelanin.
+  - Turunin volume dong tolong.
+  - Berisik nih kecilin suaranya.
+  - Tolong kurangi volume suara ya.
+  - Kecilin dikit volumenya dong.
+  - Turunkan volume suaranya sekarang.
+  - Volume turun.
+  - Suara pelanin.
+  - Berisik amat tolong pelanin lagunya.
+  - Svara, tolong kecilin volumenya.
+  - Kecilkan suara speaker dong.
+  - Kecilin volumenya dong tolong.
+  - Pelanin suaranya dong berisik nih.
+  - Turunin volume speaker ya tolong.
+  - Kecilkan volume lagunya dong ya.
+  - Volume tolong dikecilkan ya tolong.
+  - Suara musiknya tolong dipelankan dong.
+  - Turunkan volume suara dong tolong.
+  - Kecilin suara speaker dong berisik banget.
+  - Volume tolong diturunkan ya tolong.
+  - Pelankan suara musiknya dong ya.
+  - Tolong kecilkan volume speaker sekarang.
+  - Bisa tolong kecilin volumenya gak.
+  - Volume lagunya tolong dipelankan ya.
+  - Turunin volumenya dong tolong ya.
+  - Kecilin volume dong mau telepon nih.
+  - Suaranya kekencengan tolong kecilin volumenya.
+  - Tolong pelankan volume musik sekarang ya.
+  - Kecilkan suara lagu dong tolong.
+  - Volume speaker tolong diturunkan ya.
+  - Pelanin suaranya dong tolong ya.
+
+## Intent 26: `increase` + `heat` + `bedroom`
+- Contoh Bahasa Inggris: *Turn up the temperature in the bedroom*
+- Variasi Bahasa Indonesia:
+  - Naikin suhu kamar tidur dong.
+  - Hangatin kamar ya dingin nih.
+  - Tambah suhu kamar tidur dong.
+  - Di kamar kedinginan tolong naikin suhunya.
+  - Naikin temperatur kamar tidur ya.
+  - Tolong hangatkan kamar tidur dong.
+  - Naikin pemanas kamar tidur ya.
+  - Kamar dingin banget tolong tambahin panasnya.
+  - Tolong naikkan suhu kamar tidur.
+  - Naikkan pemanas di kamar tidur sekarang.
+  - Kamar tidur angetin dong kedinginan.
+  - Naikin suhu AC kamar tidur ya.
+  - Terlalu dingin nih tolong naikin temperatur kamar.
+  - Svara, tolong naikin suhu kamar tidur.
+  - Bikin kamar tidur lebih hangat tolong.
+  - Kamar tidur dingin banget, naikin suhunya dong.
+  - Tolong naikin pemanas di kamar tidur ya.
+  - Gedein pemanas ruangan di kamar dong.
+  - Suhu kamar tidur tolong dinaikkan ya tolong.
+  - Tingkatkan suhu di kamar tidur tolong.
+  - Di kamar tidur tolong naikin suhunya dong.
+  - Pemanas kamar tidur tolong dinaikkan ya.
+  - Naikkan pemanas kamar tidur dong tolong.
+  - Kamar kedinginan nih tolong gedein pemanasnya.
+  - Naikin temperatur kamar tidur dong ya.
+  - Suhu di kamar tolong ditingkatkan ya tolong.
+  - Tolong naikkan suhu kamar tidur sekarang.
+  - Gedein pemanas kamar tidur dong tolong.
+  - Bisa tolong naikin suhu kamar tidur gak.
+  - Pemanas ruangan kamar tidur tolong dinaikkan.
+  - Kamar tidur dingin tolong naikin suhunya ya.
+  - Tolong besarkan suhu kamar tidur dong.
+  - Naikin pemanas kamar tidur dong tolong ya.
+  - Gedein suhu kamar tidur cepat dong.
+  - Pemanas di kamar tolong ditingkatkan ya.
+
+## Intent 27: `increase` + `heat` + `kitchen`
+- Contoh Bahasa Inggris: *Turn the kitchen temperature up*
+- Variasi Bahasa Indonesia:
+  - Naikin suhu dapur dong.
+  - Hangatin area dapur ya dingin.
+  - Tambah suhu di dapur dong tolong.
+  - Dapur dingin nih tolong naikin suhunya.
+  - Naikin temperatur dapur ya.
+  - Tolong hangatkan ruangan dapur dong.
+  - Tambah pemanas dapur ya tolong.
+  - Di dapur dingin tolong naikin temperaturnya.
+  - Tolong naikkan suhu di dapur ya.
+  - Naikkan pemanas dapur sekarang.
+  - Dapur tolong diangetin dong.
+  - Naikkan temperatur di dapur ya.
+  - Area dapur terlalu dingin tolong hangatkan.
+  - Svara, tolong naikin suhu dapur.
+  - Tambah panas pemanas dapur tolong.
+  - Dapur dingin banget, naikin pemanasnya dong.
+  - Tolong naikin suhu di dapur ya tolong.
+  - Gedein pemanas ruangan di dapur dong.
+  - Suhu dapur tolong dinaikkan ya tolong.
+  - Tingkatkan suhu di dapur tolong ya.
+  - Di dapur tolong naikin suhunya dong.
+  - Pemanas dapur tolong dinaikkan ya tolong.
+  - Naikkan pemanas dapur dong tolong ya.
+  - Dapur kedinginan nih tolong gedein suhunya.
+  - Naikin temperatur dapur dong ya tolong.
+  - Suhu di dapur tolong ditingkatkan ya tolong.
+  - Tolong naikkan suhu dapur sekarang ya.
+  - Gedein pemanas dapur dong tolong ya.
+  - Bisa tolong naikin suhu dapur gak.
+  - Pemanas ruangan dapur tolong dinaikkan.
+  - Dapur dingin tolong naikin pemanasnya ya.
+  - Tolong besarkan suhu dapur dong ya.
+  - Naikin pemanas dapur dong tolong ya.
+  - Gedein suhu dapur cepat dong tolong.
+  - Pemanas di dapur tolong ditingkatkan ya.
+
+## Intent 28: `increase` + `heat` + `none`
+- Contoh Bahasa Inggris: *Turn up the temperature*
+- Variasi Bahasa Indonesia:
+  - Naikin suhunya dong dingin.
+  - Hangatin ruangan ya.
+  - Tambah suhunya dong tolong.
+  - Kedinginan nih tolong naikin suhunya.
+  - Naikin temperaturnya dong dikit.
+  - Tolong hangatkan suhunya ya.
+  - Tambahkan pemanas ruangan dong.
+  - Dingin banget nih naikin suhunya tolong.
+  - Tolong naikkan temperatur sekarang ya.
+  - Naikkan suhunya dong tolong.
+  - Suhu naikin.
+  - Angetin ruangannya dong beku nih.
+  - Naikin derajat suhunya ya tolong.
+  - Svara, tolong naikin suhunya kedinginan.
+  - Bikin ruangan lebih hangat tolong.
+  - Naikin pemanas rumah dong tolong.
+  - Dingin banget nih tolong naikin suhunya.
+  - Gedein pemanas ruangan dong kedinginan nih.
+  - Suhu ruangan tolong dinaikkan ya tolong.
+  - Tingkatkan pemanas dong tolong ya.
+  - Naikkan temperatur ruangan dong tolong.
+  - Pemanas tolong dinaikkan ya tolong.
+  - Gedein suhu rumah dong tolong ya.
+  - Rumah dingin nih tolong naikin pemanasnya.
+  - Besarkan suhu rumah sekarang dong tolong.
+  - Tolong naikkan pemanas ruangan ya tolong.
+  - Bisa tolong naikin suhunya gak tolong.
+  - Pemanas ruangan tolong digedein dong.
+  - Naikin suhu ruangan cepat dong ya.
+  - Gedein temperatur rumah dong tolong ya.
+  - Suhu tolong dinaikkan dong dingin nih.
+  - Tolong besarkan pemanas sekarang ya tolong.
+  - Naikkan suhu ruangan dong tolong ya.
+  - Gedein pemanas dong dingin banget nih.
+  - Pemanas rumah tolong ditingkatkan ya.
+
+## Intent 29: `increase` + `heat` + `washroom`
+- Contoh Bahasa Inggris: *Turn up the washroom temperature*
+- Variasi Bahasa Indonesia:
+  - Naikin suhu kamar mandi dong.
+  - Hangatin toilet ya airnya dingin.
+  - Tambah suhu di kamar mandi dong tolong.
+  - Kamar mandi dingin nih tolong naikin suhunya.
+  - Naikin temperatur kamar mandi ya.
+  - Tolong hangatkan kamar mandi dong.
+  - Tambah pemanas di toilet ya tolong.
+  - Di kamar mandi dingin tolong naikin suhunya.
+  - Tolong naikkan suhu kamar mandi ya.
+  - Naikkan pemanas di toilet sekarang.
+  - Kamar mandi angetin dong.
+  - Naikin suhu toilet ya airnya kayak es.
+  - Hangatkan area kamar mandi tolong.
+  - Svara, tolong naikin suhu kamar mandi.
+  - Bikin kamar mandi lebih hangat dong.
+  - Kamar mandi dingin banget, naikin suhunya dong.
+  - Tolong naikin pemanas di kamar mandi ya.
+  - Gedein pemanas ruangan di toilet dong.
+  - Suhu kamar mandi tolong dinaikkan ya tolong.
+  - Tingkatkan suhu di kamar mandi tolong.
+  - Di kamar mandi tolong naikin suhunya dong.
+  - Pemanas toilet tolong dinaikkan ya tolong.
+  - Naikkan pemanas kamar mandi dong tolong.
+  - Toilet kedinginan nih tolong gedein pemanasnya.
+  - Naikin temperatur kamar mandi dong ya.
+  - Suhu di toilet tolong ditingkatkan ya tolong.
+  - Tolong naikkan suhu kamar mandi sekarang.
+  - Gedein pemanas toilet dong tolong ya.
+  - Bisa tolong naikin suhu kamar mandi gak.
+  - Pemanas ruangan toilet tolong dinaikkan.
+  - Kamar mandi dingin tolong naikin suhunya ya.
+  - Tolong besarkan suhu toilet dong ya.
+  - Naikin pemanas kamar mandi dong tolong ya.
+  - Gedein suhu kamar mandi cepat dong.
+  - Pemanas di kamar mandi tolong ditingkatkan ya.
+
+## Intent 30: `increase` + `volume` + `none`
+- Contoh Bahasa Inggris: *Volume up*
+- Variasi Bahasa Indonesia:
+  - Gedein suaranya dong.
+  - Naikin volumenya ya gak denger.
+  - Kencengin suaranya dong.
+  - Keraskan suaranya tolong.
+  - Kurang kenceng nih naikin volumenya.
+  - Tambah volumenya dikit dong.
+  - Gedein volumenya tolong ya.
+  - Naikin suara dong pelan banget.
+  - Kencengin suaranya dikit ya.
+  - Besarkan volume suara sekarang.
+  - Volume naik.
+  - Suara gedein.
+  - Gak kedengeran tolong kencengin suaranya.
+  - Svara, tolong naikin volumenya dong.
+  - Kuatkan volume suara speaker ya.
+  - Gedein volumenya dong tolong.
+  - Kencengin suaranya dong kurang kedengeran.
+  - Naikin volume speaker ya tolong.
+  - Besarkan volume lagunya dong ya.
+  - Volume tolong dibesarkan ya tolong.
+  - Suara musiknya tolong dikencangkan dong.
+  - Naikkan volume suara dong tolong.
+  - Gedein suara speaker dong gak kedengeran nih.
+  - Volume tolong dinaikkan ya tolong.
+  - Kencangkan suara musiknya dong ya.
+  - Tolong besarkan volume speaker sekarang.
+  - Bisa tolong gedein volumenya gak.
+  - Volume lagunya tolong dikencengin ya.
+  - Naikin volumenya dong tolong ya.
+  - Gedein volume dong lagunya enak nih.
+  - Suaranya kekecilan tolong gedein volumenya.
+  - Tolong kencangkan volume musik sekarang ya.
+  - Besarkan suara lagu dong tolong.
+  - Volume speaker tolong dinaikkan ya.
+  - Kencengin suaranya dong tolong ya.
+

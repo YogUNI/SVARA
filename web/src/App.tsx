@@ -52,12 +52,12 @@ const INITIAL_DEVICES: DeviceState = {
 };
 
 const SAMPLE_COMMANDS = [
-  "turn on the lights in the kitchen",
-  "switch off the lights in the washroom",
-  "turn up the heat in the bedroom",
-  "resume the music",
-  "turn up the volume",
-  "turn off the lamp",
+  "Nyalakan lampu di dapur",
+  "Tolong matikan lampu kamar mandi",
+  "Nyalakan musiknya dong",
+  "Gedein volumenya tolong ya",
+  "Matikan lampu tidur",
+  "Turn on the lights in the kitchen",
 ];
 
 // Helper to encode AudioBuffer to real 16kHz Mono WAV

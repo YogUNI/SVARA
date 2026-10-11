@@ -58,14 +58,24 @@ simulated_home_state = get_initial_home_state()
 @app.on_event("startup")
 def startup_event():
     global engine
-    onnx_path = os.getenv("SVARA_ONNX_PATH", "models/svara.onnx")
-    meta_path = os.getenv("SVARA_META_PATH", "models/svara.meta.json")
+    onnx_path = os.getenv("SVARA_ONNX_PATH", "")
+    meta_path = os.getenv("SVARA_META_PATH", "")
 
-    # Automatic fallback to svara_int8.onnx if svara.onnx is not present
-    if not os.path.exists(onnx_path) and os.path.exists("models/svara_int8.onnx"):
-        onnx_path = "models/svara_int8.onnx"
-        if os.path.exists("models/svara_int8.meta.json"):
+    # Priority selection:
+    # 1. Custom ENV if specified
+    # 2. Bilingual INT8 model (Mature Indonesian + English SLU)
+    # 3. Base INT8 model
+    # 4. FP32 model
+    if not onnx_path or not os.path.exists(onnx_path):
+        if os.path.exists("models/svara_bilingual_int8.onnx"):
+            onnx_path = "models/svara_bilingual_int8.onnx"
+            meta_path = "models/svara_bilingual_int8.meta.json"
+        elif os.path.exists("models/svara_int8.onnx"):
+            onnx_path = "models/svara_int8.onnx"
             meta_path = "models/svara_int8.meta.json"
+        elif os.path.exists("models/svara.onnx"):
+            onnx_path = "models/svara.onnx"
+            meta_path = "models/svara.meta.json"
 
     engine = SLUInferenceEngine(onnx_path=onnx_path, meta_path=meta_path)
 

@@ -60,15 +60,33 @@ const SAMPLE_COMMANDS = [
   "Turn on the lights in the kitchen",
 ];
 
-// Helper to encode AudioBuffer to real 16kHz Mono WAV
-function encodeWAV(samples: Float32Array, sampleRate: number): Blob {
-  const buffer = new ArrayBuffer(44 + samples.length * 2);
+// Helper: Resample any input sample rate (e.g. 48kHz / 44.1kHz) to exact 16kHz
+function resampleTo16k(audioBuffer: Float32Array, origSampleRate: number): Float32Array {
+  if (origSampleRate === 16000) return audioBuffer;
+  const ratio = 16000 / origSampleRate;
+  const newLength = Math.round(audioBuffer.length * ratio);
+  const result = new Float32Array(newLength);
+  for (let i = 0; i < newLength; i++) {
+    const origIndex = i / ratio;
+    const indexFloor = Math.floor(origIndex);
+    const indexCeil = Math.min(audioBuffer.length - 1, indexFloor + 1);
+    const weight = origIndex - indexFloor;
+    result[i] = (1 - weight) * audioBuffer[indexFloor] + weight * audioBuffer[indexCeil];
+  }
+  return result;
+}
+
+// Helper to encode Float32Array into clean 16kHz Mono 16-bit PCM WAV
+function encodeWAV(samples: Float32Array, inputSampleRate: number): Blob {
+  const targetSamples = resampleTo16k(samples, inputSampleRate);
+  const targetRate = 16000;
+  const buffer = new ArrayBuffer(44 + targetSamples.length * 2);
   const view = new DataView(buffer);
 
   /* RIFF identifier */
   writeString(view, 0, 'RIFF');
   /* file length */
-  view.setUint32(4, 36 + samples.length * 2, true);
+  view.setUint32(4, 36 + targetSamples.length * 2, true);
   /* RIFF type */
   writeString(view, 8, 'WAVE');
   /* format chunk identifier */
@@ -80,9 +98,9 @@ function encodeWAV(samples: Float32Array, sampleRate: number): Blob {
   /* channel count (mono) */
   view.setUint16(22, 1, true);
   /* sample rate */
-  view.setUint32(24, sampleRate, true);
+  view.setUint32(24, targetRate, true);
   /* byte rate (sample rate * block align) */
-  view.setUint32(28, sampleRate * 2, true);
+  view.setUint32(28, targetRate * 2, true);
   /* block align (channel count * bytes per sample) */
   view.setUint16(32, 2, true);
   /* bits per sample */
@@ -90,12 +108,12 @@ function encodeWAV(samples: Float32Array, sampleRate: number): Blob {
   /* data chunk identifier */
   writeString(view, 36, 'data');
   /* data chunk length */
-  view.setUint32(40, samples.length * 2, true);
+  view.setUint32(40, targetSamples.length * 2, true);
 
   // float to 16-bit PCM
   let offset = 44;
-  for (let i = 0; i < samples.length; i++, offset += 2) {
-    const s = Math.max(-1, Math.min(1, samples[i]));
+  for (let i = 0; i < targetSamples.length; i++, offset += 2) {
+    const s = Math.max(-1, Math.min(1, targetSamples[i]));
     view.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7FFF, true);
   }
 
@@ -255,7 +273,7 @@ export default function App() {
       audioChunksRef.current = [];
 
       const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
-      const audioCtx = new AudioCtx({ sampleRate: 16000 });
+      const audioCtx = new AudioCtx();
       audioCtxRef.current = audioCtx;
 
       const source = audioCtx.createMediaStreamSource(stream);

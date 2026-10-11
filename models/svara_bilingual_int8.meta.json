@@ -194,7 +194,7 @@
   },
   "confidence": {
     "method": "min_head_softmax",
-    "threshold": 0.85
+    "threshold": 0.65
   },
   "model": {
     "run_id": "bilingual_indonesian_w2v2",

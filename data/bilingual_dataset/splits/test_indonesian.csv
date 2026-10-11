@@ -1,0 +1,156 @@
+audio_full_path,transcript,action,object,location,intent_id,dataset_source,speakerId
+data\synthetic_indonesian\wavs_16k\id_intent16_245_tts_ardi.wav,Di kamar tolong matiin lampunya.,deactivate,lights,bedroom,16,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent28_427_tts_ardi.wav,Dingin banget nih naikin suhunya tolong.,increase,heat,none,28,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent06_095_tts_ardi.wav,Tolong ambilkan jus dingin.,bring,juice,none,6,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent05_078_tts_ardi.wav,Nyalain lagi musik yang tadi.,activate,music,none,5,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent23_354_tts_gadis.wav,Turunkan suhunya sekarang.,decrease,heat,none,23,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent12_183_tts_gadis.wav,Tolong ganti ke bahasa German.,change language,German,none,12,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent18_279_tts_gadis.wav,Matikan lampu semuanya tolong.,deactivate,lights,none,18,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent29_442_tts_ardi.wav,Di kamar mandi dingin tolong naikin suhunya.,increase,heat,washroom,29,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent30_459_tts_gadis.wav,Besarkan volume suara sekarang.,increase,volume,none,30,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent13_204_tts_gadis.wav,Atur settingan bahasa ke Bahasa Korea.,change language,Korean,none,13,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent08_127_tts_ardi.wav,Ambilin sepatu ya tolong.,bring,shoes,none,8,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent27_414_tts_gadis.wav,Naikkan pemanas dapur sekarang.,increase,heat,kitchen,27,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent15_234_tts_gadis.wav,Padamkan lampu meja tolong.,deactivate,lamp,none,15,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent15_228_tts_gadis.wav,Lampu tolong dimatiin.,deactivate,lamp,none,15,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent03_048_tts_gadis.wav,Hidupkan lampu ruangan.,activate,lights,none,3,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent03_048_tts_ardi.wav,Hidupkan lampu ruangan.,activate,lights,none,3,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent06_093_tts_gadis.wav,Minta jus jeruknya dong satu.,bring,juice,none,6,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent18_273_tts_gadis.wav,"Silau banget, matiin lampu dong.",deactivate,lights,none,18,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent23_352_tts_ardi.wav,Tolong turunkan suhunya dong.,decrease,heat,none,23,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent27_412_tts_ardi.wav,Di dapur dingin tolong naikin temperaturnya.,increase,heat,kitchen,27,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent03_054_tts_gadis.wav,Tolong hidupkan semua lampu.,activate,lights,none,3,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent02_037_tts_ardi.wav,Lampu dapur tolong dihidupkan.,activate,lights,kitchen,2,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent01_018_tts_ardi.wav,Lampu kamar nyalain dong.,activate,lights,bedroom,1,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent04_063_tts_ardi.wav,Lampu kamar mandi tolong diidupin.,activate,lights,washroom,4,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent13_198_tts_ardi.wav,Tolong atur bahasa ke Bahasa Korea.,change language,Korean,none,13,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent26_395_tts_ardi.wav,Tolong hangatkan kamar tidur dong.,increase,heat,bedroom,26,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent19_288_tts_gadis.wav,Lampu kamar mandi tolong dimatiin.,deactivate,lights,washroom,19,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent09_138_tts_gadis.wav,Kaos kaki tolong bawain ke sini.,bring,socks,none,9,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent17_260_tts_ardi.wav,Lampu di dapur tolong dipadamkan.,deactivate,lights,kitchen,17,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent16_243_tts_ardi.wav,"Mau tidur nih, matiin lampu kamar dong.",deactivate,lights,bedroom,16,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent25_380_tts_ardi.wav,Turunin volume dong tolong.,decrease,volume,none,25,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent19_290_tts_ardi.wav,Di kamar mandi tolong matiin lampunya.,deactivate,lights,washroom,19,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent24_367_tts_ardi.wav,Kecilkan pemanas toilet ya.,decrease,heat,washroom,24,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent16_247_tts_ardi.wav,Matiin dong lampu kamar.,deactivate,lights,bedroom,16,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent21_318_tts_ardi.wav,Kurangi suhu di kamar tidur ya.,decrease,heat,bedroom,21,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent13_198_tts_gadis.wav,Tolong atur bahasa ke Bahasa Korea.,change language,Korean,none,13,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent10_155_tts_ardi.wav,Pake bahasa Mandarin aja dong.,change language,Chinese,none,10,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent05_080_tts_ardi.wav,Tolong putar lagi lagunya dong.,activate,music,none,5,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent26_399_tts_gadis.wav,Naikkan pemanas di kamar tidur sekarang.,increase,heat,bedroom,26,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent15_230_tts_ardi.wav,Matiin dong lampu belajarnya.,deactivate,lamp,none,15,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent11_170_tts_ardi.wav,Pake bahasa Inggris aja dong.,change language,English,none,11,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent07_110_tts_ardi.wav,Bawain koran ke sini dong.,bring,newspaper,none,7,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent24_363_tts_ardi.wav,Kurangi pemanas di kamar mandi dong.,decrease,heat,washroom,24,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent04_067_tts_ardi.wav,Di kamar mandi tolong idupin lampu.,activate,lights,washroom,4,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent11_168_tts_gadis.wav,Ganti ke bahasa Inggris dong tolong.,change language,English,none,11,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent17_258_tts_gadis.wav,"Selesai masak nih, tolong matiin lampu dapur.",deactivate,lights,kitchen,17,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent02_035_tts_ardi.wav,Tolong nyalain lampu di dapur ya.,activate,lights,kitchen,2,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent28_425_tts_ardi.wav,Tolong hangatkan suhunya ya.,increase,heat,none,28,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent13_200_tts_ardi.wav,Pake bahasa Korea aja dong.,change language,Korean,none,13,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent23_348_tts_ardi.wav,Kurangi suhu pemanas dong.,decrease,heat,none,23,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent05_082_tts_ardi.wav,Lanjut mainin musik dong.,activate,music,none,5,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent15_228_tts_ardi.wav,Lampu tolong dimatiin.,deactivate,lamp,none,15,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent28_423_tts_ardi.wav,Kedinginan nih tolong naikin suhunya.,increase,heat,none,28,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent08_125_tts_ardi.wav,Tolong ambilkan sepatu saya di rak.,bring,shoes,none,8,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent00_003_tts_ardi.wav,Lampu meja tolong nyalain.,activate,lamp,none,0,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent06_097_tts_ardi.wav,Bisa tolong ambilin jus gak.,bring,juice,none,6,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent26_393_tts_ardi.wav,Di kamar kedinginan tolong naikin suhunya.,increase,heat,bedroom,26,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent28_429_tts_gadis.wav,Naikkan suhunya dong tolong.,increase,heat,none,28,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent13_202_tts_ardi.wav,Tolong ganti bahasa ke Korea ya.,change language,Korean,none,13,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent03_050_tts_ardi.wav,Lampu tolong diidupin ya.,activate,lights,none,3,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent24_369_tts_gadis.wav,Turunkan suhu pemanas kamar mandi.,decrease,heat,washroom,24,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent02_033_tts_gadis.wav,Lampu dapur tolong nyalain.,activate,lights,kitchen,2,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent22_339_tts_gadis.wav,Turunkan suhu pemanas dapur.,decrease,heat,kitchen,22,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent29_440_tts_ardi.wav,Tolong hangatkan kamar mandi dong.,increase,heat,washroom,29,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent20_305_tts_ardi.wav,Berhenti mainin musik ya.,deactivate,music,none,20,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent00_003_tts_gadis.wav,Lampu meja tolong nyalain.,activate,lamp,none,0,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent22_333_tts_gadis.wav,Kurangi pemanas dapur ya.,decrease,heat,kitchen,22,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent12_183_tts_ardi.wav,Tolong ganti ke bahasa German.,change language,German,none,12,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent08_123_tts_ardi.wav,Sepatu tolong bawain ke sini.,bring,shoes,none,8,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent19_292_tts_ardi.wav,Matiin dong lampu kamar mandi.,deactivate,lights,washroom,19,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent05_084_tts_gadis.wav,Tolong lanjutkan pemutaran musik.,activate,music,none,5,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent08_123_tts_gadis.wav,Sepatu tolong bawain ke sini.,bring,shoes,none,8,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent20_303_tts_ardi.wav,Hentikan pemutaran musik tolong.,deactivate,music,none,20,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent05_078_tts_gadis.wav,Nyalain lagi musik yang tadi.,activate,music,none,5,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent04_069_tts_gadis.wav,Hidupkan lampu kamar mandi tolong.,activate,lights,washroom,4,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent21_324_tts_gadis.wav,Turunkan pemanas di kamar tidur.,decrease,heat,bedroom,21,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent07_108_tts_ardi.wav,Tolong ambilin koran di depan.,bring,newspaper,none,7,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent30_455_tts_ardi.wav,Tambah volumenya dikit dong.,increase,volume,none,30,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent19_294_tts_gadis.wav,Matikan lampu kamar mandi sekarang.,deactivate,lights,washroom,19,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent30_453_tts_gadis.wav,Keraskan suaranya tolong.,increase,volume,none,30,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent27_410_tts_ardi.wav,Tolong hangatkan ruangan dapur dong.,increase,heat,kitchen,27,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent09_142_tts_ardi.wav,Bisa tolong ambilin kaos kaki gak.,bring,socks,none,9,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent22_335_tts_ardi.wav,Area dapur gerah nih kecilkan suhunya.,decrease,heat,kitchen,22,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent12_185_tts_ardi.wav,Pake bahasa Jerman dong sekarang.,change language,German,none,12,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent14_219_tts_gadis.wav,Ganti bahasa asisten sekarang.,change language,none,none,14,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent06_099_tts_gadis.wav,Tolong bawakan jus buah ke sini.,bring,juice,none,6,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent29_444_tts_gadis.wav,Naikkan pemanas di toilet sekarang.,increase,heat,washroom,29,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent25_378_tts_gadis.wav,Kecilin volume dikit ya.,decrease,volume,none,25,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent12_187_tts_ardi.wav,Ubah setelan bahasa ke Bahasa Jerman.,change language,German,none,12,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent21_318_tts_gadis.wav,Kurangi suhu di kamar tidur ya.,decrease,heat,bedroom,21,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent18_273_tts_ardi.wav,"Silau banget, matiin lampu dong.",deactivate,lights,none,18,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent10_159_tts_gadis.wav,Tolong switch language ke Mandarin.,change language,Chinese,none,10,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent01_018_tts_gadis.wav,Lampu kamar nyalain dong.,activate,lights,bedroom,1,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent25_382_tts_ardi.wav,Tolong kurangi volume suara ya.,decrease,volume,none,25,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent22_333_tts_ardi.wav,Kurangi pemanas dapur ya.,decrease,heat,kitchen,22,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent09_138_tts_ardi.wav,Kaos kaki tolong bawain ke sini.,bring,socks,none,9,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent07_108_tts_gadis.wav,Tolong ambilin koran di depan.,bring,newspaper,none,7,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent16_243_tts_gadis.wav,"Mau tidur nih, matiin lampu kamar dong.",deactivate,lights,bedroom,16,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent15_232_tts_ardi.wav,Lampunya tolong dimatiin ya.,deactivate,lamp,none,15,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent06_093_tts_ardi.wav,Minta jus jeruknya dong satu.,bring,juice,none,6,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent09_140_tts_ardi.wav,Tolong cariin dan ambilin kaos kaki.,bring,socks,none,9,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent01_022_tts_ardi.wav,Nyalain dong lampu di kamar.,activate,lights,bedroom,1,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent08_129_tts_gadis.wav,Tolong bawakan sepatu saya ke sini.,bring,shoes,none,8,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent14_213_tts_gadis.wav,Buka menu ganti bahasa dong.,change language,none,none,14,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent22_337_tts_ardi.wav,Kecilkan pemanas di dapur dong.,decrease,heat,kitchen,22,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent18_275_tts_ardi.wav,Matiin dong lampunya.,deactivate,lights,none,18,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent16_249_tts_gadis.wav,Lampu kamar matiin sekarang ya.,deactivate,lights,bedroom,16,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent27_408_tts_ardi.wav,Dapur dingin nih tolong naikin suhunya.,increase,heat,kitchen,27,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent28_423_tts_gadis.wav,Kedinginan nih tolong naikin suhunya.,increase,heat,none,28,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent17_258_tts_ardi.wav,"Selesai masak nih, tolong matiin lampu dapur.",deactivate,lights,kitchen,17,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent01_024_tts_gadis.wav,Tolong nyalain lampu kamar dong.,activate,lights,bedroom,1,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent02_039_tts_gadis.wav,Tolong dong nyalain lampu dapur.,activate,lights,kitchen,2,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent11_168_tts_ardi.wav,Ganti ke bahasa Inggris dong tolong.,change language,English,none,11,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent26_397_tts_ardi.wav,Kamar dingin banget tolong tambahin panasnya.,increase,heat,bedroom,26,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent00_009_tts_gadis.wav,Tolong nyalain lampu sekarang.,activate,lamp,none,0,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent03_052_tts_ardi.wav,"Terangin ruangan, tolong nyalain lampu.",activate,lights,none,3,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent07_114_tts_gadis.wav,Ambil koran dong tolong.,bring,newspaper,none,7,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent14_217_tts_ardi.wav,Tolong ganti pilihan bahasanya.,change language,none,none,14,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent27_408_tts_gadis.wav,Dapur dingin nih tolong naikin suhunya.,increase,heat,kitchen,27,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent01_020_tts_ardi.wav,Kamar tidur gelap nih tolong nyalain lampunya.,activate,lights,bedroom,1,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent25_384_tts_gadis.wav,Turunkan volume suaranya sekarang.,decrease,volume,none,25,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent20_303_tts_gadis.wav,Hentikan pemutaran musik tolong.,deactivate,music,none,20,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent00_007_tts_ardi.wav,Idupin lampu dong tolong.,activate,lamp,none,0,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent24_363_tts_gadis.wav,Kurangi pemanas di kamar mandi dong.,decrease,heat,washroom,24,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent12_189_tts_gadis.wav,Ganti bahasa ke Bahasa Jerman tolong.,change language,German,none,12,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent23_348_tts_gadis.wav,Kurangi suhu pemanas dong.,decrease,heat,none,23,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent10_153_tts_ardi.wav,Atur bahasa ke Bahasa Cina.,change language,Chinese,none,10,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent21_322_tts_ardi.wav,Kecilkan pemanas kamar tidur dong.,decrease,heat,bedroom,21,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent10_153_tts_gadis.wav,Atur bahasa ke Bahasa Cina.,change language,Chinese,none,10,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent30_457_tts_ardi.wav,Naikin suara dong pelan banget.,increase,volume,none,30,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent11_174_tts_gadis.wav,Tolong switch bahasanya ke Bahasa Inggris.,change language,English,none,11,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent09_144_tts_gadis.wav,Tolong bawakan kaus kaki yang bersih.,bring,socks,none,9,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent17_264_tts_gadis.wav,Lampu dapur matiin sekarang tolong.,deactivate,lights,kitchen,17,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent04_065_tts_ardi.wav,"Toilet gelap nih, tolong nyalain lampunya.",activate,lights,washroom,4,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent11_172_tts_ardi.wav,Tolong ganti ke English dong.,change language,English,none,11,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent29_438_tts_ardi.wav,Kamar mandi dingin nih tolong naikin suhunya.,increase,heat,washroom,29,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent25_378_tts_ardi.wav,Kecilin volume dikit ya.,decrease,volume,none,25,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent07_112_tts_ardi.wav,Minta tolong ambilin koran pagi ini.,bring,newspaper,none,7,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent29_438_tts_gadis.wav,Kamar mandi dingin nih tolong naikin suhunya.,increase,heat,washroom,29,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent00_005_tts_ardi.wav,Lampunya nyala dong.,activate,lamp,none,0,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent10_157_tts_ardi.wav,Tolong ubah ke bahasa Mandarin ya.,change language,Chinese,none,10,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent26_393_tts_gadis.wav,Di kamar kedinginan tolong naikin suhunya.,increase,heat,bedroom,26,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent20_309_tts_gadis.wav,Matikan lagu yang lagi muter tolong.,deactivate,music,none,20,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent19_288_tts_ardi.wav,Lampu kamar mandi tolong dimatiin.,deactivate,lights,washroom,19,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent23_350_tts_ardi.wav,Turunin temperaturnya tolong.,decrease,heat,none,23,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent17_262_tts_ardi.wav,Tolong matiin lampu dapur ya.,deactivate,lights,kitchen,17,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent14_213_tts_ardi.wav,Buka menu ganti bahasa dong.,change language,none,none,14,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent24_365_tts_ardi.wav,Toilet terlalu panas kecilkan pemanasnya.,decrease,heat,washroom,24,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent30_453_tts_ardi.wav,Keraskan suaranya tolong.,increase,volume,none,30,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent04_063_tts_gadis.wav,Lampu kamar mandi tolong diidupin.,activate,lights,washroom,4,indonesian,tts_gadis
+data\synthetic_indonesian\wavs_16k\id_intent14_215_tts_ardi.wav,Pindah bahasa ya.,change language,none,none,14,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent21_320_tts_ardi.wav,Kamar gerah nih tolong dinginin.,decrease,heat,bedroom,21,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent02_033_tts_ardi.wav,Lampu dapur tolong nyalain.,activate,lights,kitchen,2,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent18_277_tts_ardi.wav,Lampunya dimatiin ya tolong.,deactivate,lights,none,18,indonesian,tts_ardi
+data\synthetic_indonesian\wavs_16k\id_intent20_307_tts_ardi.wav,Matiin dong musiknya pusing nih.,deactivate,music,none,20,indonesian,tts_ardi

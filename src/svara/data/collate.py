@@ -60,8 +60,12 @@ class FSCDataset(Dataset):
 
     def __getitem__(self, idx: int) -> Dict[str, Any]:
         row = self.df.iloc[idx]
-        rel_path = str(row["path"])
-        abs_path = os.path.normpath(os.path.join(self.dataset_root, rel_path))
+        if "audio_full_path" in row and pd.notna(row["audio_full_path"]):
+            abs_path = os.path.normpath(str(row["audio_full_path"]))
+            rel_path = str(row["audio_full_path"])
+        else:
+            rel_path = str(row["path"])
+            abs_path = os.path.normpath(os.path.join(self.dataset_root, rel_path))
 
         # Shared unified audio preprocessing
         waveform, original_len, sr = preprocess_audio(

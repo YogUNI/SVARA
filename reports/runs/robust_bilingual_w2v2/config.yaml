@@ -1,0 +1,12 @@
+model:
+  dropout: 0.1
+  pretrained_model: facebook/wav2vec2-base
+  type: wav2vec2
+training:
+  augmentations:
+  - gain_scaling
+  - speed_perturbation
+  - noise_injection
+  batch_size: 16
+  dataset: bilingual_balanced_robust
+  epochs: 8

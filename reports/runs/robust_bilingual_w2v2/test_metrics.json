@@ -1,0 +1,16 @@
+{
+  "indonesian": {
+    "exact_match": 0.9225806451612903,
+    "action_acc": 0.9741935483870968,
+    "object_acc": 0.9483870967741935,
+    "location_acc": 0.9935483870967742,
+    "total_samples": 155
+  },
+  "english": {
+    "exact_match": 0.9960453466912734,
+    "action_acc": 0.9978908515686792,
+    "object_acc": 0.9984181386765094,
+    "location_acc": 0.9989454257843395,
+    "total_samples": 3793
+  }
+}

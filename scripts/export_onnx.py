@@ -59,7 +59,7 @@ def load_model_from_run(run_dir: str):
         state_dict = ckpt.get("model", ckpt.get("model_state_dict", ckpt))
     else:
         state_dict = ckpt
-    model.load_state_dict(state_dict)
+    model.load_state_dict(state_dict, strict=False)
     model.eval()
     return model, cfg, imap
 

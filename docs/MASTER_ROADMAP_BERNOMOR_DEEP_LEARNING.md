@@ -15,7 +15,7 @@ Dokumen ini adalah panduan kontrol proyek resmi untuk pematangan sistem Deep Lea
 ├── FASE 1: AUDIT & STANDARISASI PEMROSESAN SINYAL AUDIO (SIGNAL HYGIENE)
 │   ├── [x] Sub-step 1.1: Implementasi Butterworth Bandpass Filter (80 Hz - 7.500 Hz) di `src/svara/data/audio.py` [SELESAI - Commit e29ae88]
 │   ├── [x] Sub-step 1.2: Implementasi Adaptive RMS Energy Normalization (-20 dBFS) [SELESAI - Commit 0f55ec2]
-│   ├── [x] Sub-step 1.3: Implementasi Dual-Threshold Energy VAD & Silence Trimming (150ms buffer) [SELESAI]
+│   ├── [x] Sub-step 1.3: Implementasi Dual-Threshold Energy VAD & Silence Trimming (150ms buffer) [SELESAI - Commit 258a15b]
 │   └── [ ] Sub-step 1.4: Unit Test & Verifikasi Paritas Sinyal Preprocessing (`tests/test_audio.py`)
 │
 ├── FASE 2: REKAYASA KORPUS NLP BAHASA INDONESIA SEHARI-HARI (TARGET 4.000 - 5.000 FRASA)
@@ -72,7 +72,7 @@ Dokumen ini adalah panduan kontrol proyek resmi untuk pematangan sistem Deep Lea
 ### FASE 1: AUDIT & STANDARISASI PEMROSESAN SINYAL AUDIO (SIGNAL HYGIENE)
 * **Sub-step 1.1** [SELESAI - Commit `e29ae88`]: Pasang filter Butterworth Bandpass Ordo 2 ($80\text{ Hz} - 7.500\text{ Hz}$) di `src/svara/data/audio.py` untuk mengeliminasi rumble listrik laptop tanpa memotong frekuensi vokal.
 * **Sub-step 1.2** [SELESAI - Commit `0f55ec2`]: Pasang Adaptive RMS Energy Normalization ke target $-20\text{ dBFS}$ agar ucapan berbisik maupun kencang memiliki energi numerik seragam.
-* **Sub-step 1.3** [SELESAI]: Pasang Dual-Threshold Energy VAD dengan 150ms pre/post padding buffer agar konsonan awal/akhir tidak terpotong.
+* **Sub-step 1.3** [SELESAI - Commit `258a15b`]: Pasang Dual-Threshold Energy VAD dengan 150ms pre/post padding buffer agar konsonan awal/akhir tidak terpotong.
 * **Sub-step 1.4**: Jalankan unit test `pytest tests/test_audio.py` untuk memastikan fungsi audio preprocessing lolos 100%.
 
 ### FASE 2: REKAYASA KORPUS NLP BAHASA INDONESIA (TARGET 4.000 - 5.000 FRASA)

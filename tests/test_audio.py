@@ -1,7 +1,7 @@
 """Unit tests for shared audio preprocessing and dataset collation.
 
-Task: P2-05, P2-06
-Reference: AGENTS.md rule 7, docs/02 §10
+Task: P2-05, P2-06, Sub-step 1.1
+Reference: AGENTS.md rule 7, docs/02 §10, docs/MASTER_ROADMAP_BERNOMOR_DEEP_LEARNING.md
 """
 
 import numpy as np
@@ -11,6 +11,7 @@ import torch
 
 from svara.data.audio import (
     TARGET_SAMPLE_RATE,
+    apply_butterworth_bandpass,
     normalize_waveform,
     preprocess_audio,
 )
@@ -20,7 +21,7 @@ from svara.data.collate import collate_fn_pad
 @pytest.fixture
 def synthetic_wav_file(tmp_path):
     wav_p = tmp_path / "test_tone.wav"
-    # Generate 1.0s sine wave at 16000 Hz
+    # Generate 1.0s sine wave at 16000 Hz (440 Hz standard vocal tone)
     t = np.linspace(0, 1.0, 16000, endpoint=False)
     sine = 0.5 * np.sin(2 * np.pi * 440 * t)
     sf.write(str(wav_p), sine, 16000)
@@ -32,6 +33,29 @@ def test_normalize_waveform():
     norm = normalize_waveform(data)
     assert np.isclose(np.mean(norm), 0.0, atol=1e-6)
     assert np.isclose(np.std(norm), 1.0, atol=1e-5)
+
+
+def test_butterworth_bandpass_attenuation():
+    """Verify that Butterworth Bandpass filter attenuates <80Hz rumble and >7500Hz hiss."""
+    sr = 16000
+    t = np.linspace(0, 1.0, sr, endpoint=False)
+    
+    # Low frequency rumble (30 Hz) + High frequency electrical noise (7800 Hz) + Voice Tone (500 Hz)
+    rumble_30hz = 1.0 * np.sin(2 * np.pi * 30 * t)
+    vocal_500hz = 1.0 * np.sin(2 * np.pi * 500 * t)
+    hiss_7800hz = 1.0 * np.sin(2 * np.pi * 7800 * t)
+    composite = (rumble_30hz + vocal_500hz + hiss_7800hz).astype(np.float32)
+    
+    filtered = apply_butterworth_bandpass(composite, sr=sr, lowcut=80.0, highcut=7500.0)
+    
+    # Pass-band tone (500 Hz) should be preserved (power > 0.4)
+    # Re-extract 500 Hz power via correlation
+    corr_500 = np.mean(filtered * np.sin(2 * np.pi * 500 * t)) * 2
+    assert corr_500 > 0.9  # 500 Hz tone passes through cleanly
+    
+    # 30 Hz rumble should be heavily attenuated
+    corr_30 = np.mean(filtered * np.sin(2 * np.pi * 30 * t)) * 2
+    assert abs(corr_30) < 0.2  # significant attenuation of <80Hz mechanical rumble
 
 
 def test_preprocess_audio_parity_file_and_array(synthetic_wav_file):

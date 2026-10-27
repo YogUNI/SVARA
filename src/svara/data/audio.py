@@ -1,7 +1,7 @@
 """Unified audio preprocessing module for training, evaluation, and inference.
 
-Task: P2-05
-Reference: AGENTS.md rule 7, docs/01 §1, docs/02 §1, docs/05 §1
+Task: P2-05, Sub-step 1.1
+Reference: AGENTS.md rule 7, docs/01 §1, docs/02 §1, docs/05 §1, docs/MASTER_ROADMAP_BERNOMOR_DEEP_LEARNING.md
 
 RULE 7 (AGENTS.md):
 "Keep train/serve preprocessing identical. Same normalization, sample rate (16 kHz mono), max length.
@@ -12,6 +12,7 @@ import os
 from typing import Any, Optional, Tuple, Union
 
 import numpy as np
+from scipy import signal
 import soundfile as sf
 
 try:
@@ -24,6 +25,42 @@ except ImportError:
 TARGET_SAMPLE_RATE = 16000
 DEFAULT_MAX_AUDIO_SECONDS = 5.0
 DEFAULT_MAX_SAMPLES = int(DEFAULT_MAX_AUDIO_SECONDS * TARGET_SAMPLE_RATE)  # 80,000 samples
+
+# Vocal Formant Range Butterworth Bandpass Filter (80 Hz - 7500 Hz)
+# Eliminates hardware low-frequency body rumble and high-frequency electrical hiss
+BANDPASS_LOW_CUT = 80.0
+BANDPASS_HIGH_CUT = 7500.0
+
+
+def apply_butterworth_bandpass(
+    waveform: np.ndarray,
+    sr: int = TARGET_SAMPLE_RATE,
+    lowcut: float = BANDPASS_LOW_CUT,
+    highcut: float = BANDPASS_HIGH_CUT,
+    order: int = 2,
+) -> np.ndarray:
+    """Applies zero-phase 2nd order Butterworth bandpass filter to isolate human vocal range.
+
+    Args:
+        waveform: 1D float32 numpy array.
+        sr: Sampling rate (16000 Hz).
+        lowcut: Lower cutoff frequency (default 80.0 Hz).
+        highcut: Upper cutoff frequency (default 7500.0 Hz).
+        order: Filter order (default 2).
+
+    Returns:
+        Filtered 1D float32 waveform with mechanical rumble and extreme high hiss attenuated.
+    """
+    if len(waveform) <= 3 * (2 * order + 1):
+        # Audio too short for filter pad
+        return waveform
+
+    nyq = 0.5 * sr
+    low = max(0.001, lowcut / nyq)
+    high = min(0.999, highcut / nyq)
+    b, a = signal.butter(order, [low, high], btype="bandpass")
+    filtered = signal.filtfilt(b, a, waveform)
+    return filtered.astype(np.float32)
 
 
 def normalize_waveform(waveform: np.ndarray, eps: float = 1e-7) -> np.ndarray:
@@ -42,6 +79,7 @@ def preprocess_audio(
     target_sample_rate: int = TARGET_SAMPLE_RATE,
     max_audio_seconds: Optional[float] = DEFAULT_MAX_AUDIO_SECONDS,
     normalize: bool = True,
+    apply_bandpass: bool = True,
     pad: bool = False,
     is_training: bool = False,
 ) -> Tuple[np.ndarray, int, int]:
@@ -53,6 +91,7 @@ def preprocess_audio(
         target_sample_rate: Target sampling rate (always 16000 Hz).
         max_audio_seconds: Maximum allowed duration. If None, no crop/padding.
         normalize: Whether to apply per-utterance zero-mean unit-variance.
+        apply_bandpass: Whether to apply 80Hz-7.5kHz Butterworth bandpass filter.
         pad: If True, pads short audio with zeros to max_audio_seconds * target_sample_rate.
         is_training: If True and cropping is required, perform random crop. Else deterministic crop from start.
 
@@ -85,7 +124,6 @@ def preprocess_audio(
 
     # 3. Resample if necessary
     if sr != target_sample_rate:
-        # Simple high-quality linear/scipy resampling without heavy torchaudio dependence
         num_target_samples = int(round(len(data) * float(target_sample_rate) / sr))
         data = np.interp(
             np.linspace(0.0, 1.0, num_target_samples, endpoint=False),
@@ -94,13 +132,17 @@ def preprocess_audio(
         ).astype(np.float32)
         sr = target_sample_rate
 
-    # 4. Normalization (per-utterance zero-mean unit-variance)
+    # 4. Butterworth Bandpass Filter (Vocal Formant Range: 80 Hz - 7500 Hz)
+    if apply_bandpass:
+        data = apply_butterworth_bandpass(data, sr=target_sample_rate)
+
+    # 5. Normalization (per-utterance zero-mean unit-variance)
     if normalize:
         data = normalize_waveform(data)
 
     original_length = len(data)
 
-    # 5. Crop / Pad to max_samples
+    # 6. Crop / Pad to max_samples
     if max_audio_seconds is not None:
         max_samples = int(round(max_audio_seconds * target_sample_rate))
         if len(data) > max_samples:

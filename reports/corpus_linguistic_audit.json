@@ -1,0 +1,167 @@
+{
+  "metadata": {
+    "corpus_path": "data/corpus/indonesian_smart_home_corpus_4k.csv",
+    "intent_map_path": "configs/intent_map.json",
+    "total_rows": 4495,
+    "expected_intents": 31
+  },
+  "deduplication": {
+    "total_phrases": 4495,
+    "unique_raw_phrases": 4495,
+    "unique_normalized_phrases": 4495,
+    "exact_duplicates": 0,
+    "duplicate_rate_pct": 0.0,
+    "cross_intent_collisions": 0,
+    "collision_rate_pct": 0.0,
+    "status": "PASS"
+  },
+  "stratification": {
+    "num_intents_found": 31,
+    "expected_intents": 31,
+    "min_phrases_per_intent": 145,
+    "max_phrases_per_intent": 145,
+    "mean_phrases_per_intent": 145.0,
+    "std_dev_phrases": 0.0,
+    "variance_phrases": 0.0,
+    "shannon_entropy_bits": 4.954196,
+    "max_possible_entropy_bits": 4.954196,
+    "normalized_entropy_ratio": 1.0,
+    "status": "PASS"
+  },
+  "slot_alignment": {
+    "missing_values_by_column": {},
+    "slot_alignment_errors": [],
+    "actions_present": [
+      "activate",
+      "bring",
+      "change language",
+      "deactivate",
+      "decrease",
+      "increase"
+    ],
+    "objects_present": [
+      "Chinese",
+      "English",
+      "German",
+      "Korean",
+      "heat",
+      "juice",
+      "lamp",
+      "lights",
+      "music",
+      "newspaper",
+      "none",
+      "shoes",
+      "socks",
+      "volume"
+    ],
+    "locations_present": [
+      "bedroom",
+      "kitchen",
+      "none",
+      "washroom"
+    ],
+    "status": "PASS"
+  },
+  "length_distribution": {
+    "word_stats": {
+      "min": 2,
+      "max": 12,
+      "mean": 6.49,
+      "median": 6.0,
+      "std": 1.31,
+      "percentiles": {
+        "p25": 6.0,
+        "p50": 6.0,
+        "p75": 7.0,
+        "p90": 8.0,
+        "p95": 9.0,
+        "p99": 10.0
+      }
+    },
+    "char_stats": {
+      "min": 11,
+      "max": 70,
+      "mean": 37.85,
+      "median": 38.0,
+      "std": 7.42
+    },
+    "length_bins": {
+      "2-3 kata": 29,
+      "4-5 kata": 967,
+      "6-7 kata": 2551,
+      "8-9 kata": 895,
+      "10+ kata": 53
+    },
+    "trivial_phrases": 0,
+    "status": "PASS"
+  },
+  "linguistic_richness": {
+    "total_tokens": 29169,
+    "vocabulary_size": 317,
+    "type_token_ratio": 0.0109,
+    "colloquial_verbs_frequency": {
+      "nyalain": 40,
+      "matiin": 60,
+      "idupin": 45,
+      "naikin": 29,
+      "turunin": 34,
+      "bawain": 85,
+      "ambilin": 69,
+      "puter": 28,
+      "setel": 123,
+      "ademin": 38
+    },
+    "particles_and_vocatives_frequency": {
+      "dong": 777,
+      "deh": 417,
+      "lah": 390,
+      "sih": 110,
+      "tolong": 1011,
+      "atuh": 319,
+      "bro": 469,
+      "cuy": 126,
+      "lur": 780,
+      "gan": 125,
+      "ya": 1085
+    },
+    "situational_complaints_frequency": {
+      "gerah": 4,
+      "gelap": 3,
+      "berisik": 3,
+      "silau": 12,
+      "haus": 2,
+      "dingin": 60,
+      "panas": 97
+    },
+    "status": "PASS"
+  },
+  "domains": {
+    "Climate (Pengatur Suhu & AC)": {
+      "num_intents": 8,
+      "num_phrases": 1160,
+      "pct_of_corpus": 25.81
+    },
+    "Lighting (Pencahayaan)": {
+      "num_intents": 10,
+      "num_phrases": 1450,
+      "pct_of_corpus": 32.26
+    },
+    "Media & Audio (Hiburan & Volume)": {
+      "num_intents": 4,
+      "num_phrases": 580,
+      "pct_of_corpus": 12.9
+    },
+    "Robot Butler (Pengantaran Barang)": {
+      "num_intents": 4,
+      "num_phrases": 580,
+      "pct_of_corpus": 12.9
+    },
+    "System Language (Pengaturan Bahasa)": {
+      "num_intents": 5,
+      "num_phrases": 725,
+      "pct_of_corpus": 16.13
+    }
+  },
+  "overall_status": "PASSED (100% CLEAN)"
+}

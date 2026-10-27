@@ -228,8 +228,8 @@ OPENER_PARTICLES = [
 
 CLOSING_PARTICLES = [
     "", "dong", "deh", "lah", "sih", "ya", "kan", "plis", "buruan", "cepetan",
-    "ya bro", "ya cuy", "ya gan", "ya bang", "ya kak", "dong tolong", "sekarang",
-    "nih", "tuh", "atuh", "dong atuh", "deh ya", "ya tolong", "ya svara", "sekarang ya"
+    "ya bro", "ya cuy", "ya gan", "ya bang", "ya kak", "ya lur", "dong tolong", "sekarang",
+    "nih", "tuh", "atuh", "dong atuh", "deh ya", "ya tolong", "ya svara", "sekarang ya", "lur"
 ]
 
 INTENSITY_ADVERBS = [
@@ -341,33 +341,33 @@ def generate_candidates_for_intent(
     # -------------------------------------------------------------
     # Pola 1: Standar Formal [Pembuka] + Aksi + Objek + Lokasi + [Partikel]
     # -------------------------------------------------------------
-    for opener in OPENER_PARTICLES[:10]:
+    for opener in OPENER_PARTICLES:
         for verb in base_verbs:
-            for o in objects[:8]:
-                for loc in locations[:6]:
-                    for part in CLOSING_PARTICLES[:8]:
+            for o in objects[:6]:
+                for loc in locations[:5]:
+                    for part in CLOSING_PARTICLES[:10]:
                         phrase = f"{opener} {verb} {o} {loc} {part}"
                         candidates.add(clean_sentence(phrase))
 
     # -------------------------------------------------------------
     # Pola 2: Santai dengan Partikel [Pembuka] + Aksi + Partikel + Objek + Lokasi
     # -------------------------------------------------------------
-    for opener in OPENER_PARTICLES[:8]:
+    for opener in OPENER_PARTICLES:
         for verb in colloquial_verbs:
-            for part in ["dong", "deh", "lah", "ya", "kan", "cepetan", "atuh", "nih", "ya bro", ""]:
-                for o in objects[:8]:
-                    for loc in locations[:6]:
+            for part in ["dong", "deh", "lah", "ya", "kan", "cepetan", "atuh", "nih", "ya bro", "lur", "ya lur", ""]:
+                for o in objects[:6]:
+                    for loc in locations[:4]:
                         phrase = f"{opener} {verb} {part} {o} {loc}"
                         candidates.add(clean_sentence(phrase))
 
     # -------------------------------------------------------------
     # Pola 3: Objek di Depan (Objek + Lokasi + [Tolong] + Aksi Pasif/Aktif + [Partikel])
     # -------------------------------------------------------------
-    for o in objects[:8]:
-        for loc in locations[:6]:
-            for req in ["tolong", "bisa tolong", "coba", "plis", "minta tolong", ""]:
+    for o in objects[:6]:
+        for loc in locations[:4]:
+            for req in ["tolong", "bisa tolong", "coba", "plis", "minta tolong", "lur", "bro", ""]:
                 for p_verb in passive_verbs + colloquial_verbs[:4]:
-                    for part in ["ya", "dong", "deh", "lah", "atuh", "ya bro", ""]:
+                    for part in ["ya", "dong", "deh", "lah", "atuh", "ya bro", "lur", "ya lur", ""]:
                         phrase = f"{o} {loc} {req} {p_verb} {part}"
                         candidates.add(clean_sentence(phrase))
 
@@ -375,11 +375,11 @@ def generate_candidates_for_intent(
     # Pola 4: Lokasi di Depan (Lokasi + Objek + [Tolong] + Aksi + [Partikel])
     # -------------------------------------------------------------
     if location != "none":
-        for loc in locations[:6]:
-            for o in objects[:8]:
-                for opener in ["tolong", "coba", "eh", "bisa tolong", ""]:
-                    for verb in all_verbs[:8]:
-                        for part in ["dong", "ya", "deh", "atuh", "ya bro", ""]:
+        for loc in locations[:4]:
+            for o in objects[:6]:
+                for opener in ["tolong", "coba", "eh", "bisa tolong", "lur", "bro", ""]:
+                    for verb in all_verbs[:6]:
+                        for part in ["dong", "ya", "deh", "atuh", "ya bro", "lur", ""]:
                             phrase = f"{loc} {o} {opener} {verb} {part}"
                             candidates.add(clean_sentence(phrase))
 

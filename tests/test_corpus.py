@@ -115,3 +115,45 @@ def test_corpus_zero_empty_or_trivial_phrases(corpus_df):
         words = phrase.split()
         assert len(words) >= 2, f"Phrase at row {idx} too short: '{phrase}'"
         assert len(phrase) >= 5, f"Phrase at row {idx} too short: '{phrase}'"
+
+
+def test_corpus_zero_duplicates_and_collisions(corpus_df):
+    """Verify zero duplicate phrases and zero cross-intent semantic collisions."""
+    assert corpus_df["indonesian_phrase"].nunique() == len(corpus_df)
+    assert (corpus_df.groupby("indonesian_phrase")["intent_id"].nunique() > 1).sum() == 0
+
+
+def test_corpus_shannon_entropy_uniformity(corpus_df):
+    """Verify that class distribution has maximum theoretical Shannon entropy (H_norm = 1.000000)."""
+    import math
+    import numpy as np
+    counts = corpus_df.groupby("intent_id").size()
+    probs = counts / len(corpus_df)
+    shannon_entropy = -float(np.sum(probs * np.log2(probs)))
+    max_entropy = math.log2(len(counts))
+    normalized_entropy = shannon_entropy / max_entropy
+    assert round(normalized_entropy, 5) == 1.00000
+
+
+def test_corpus_slot_alignment_with_intent_map(corpus_df):
+    """Verify that every row's action, object, and location strictly match configs/intent_map.json."""
+    import json
+    with open("configs/intent_map.json", "r", encoding="utf-8") as f:
+        intent_map = json.load(f)["intent_map"]
+
+    for _, row in corpus_df.iterrows():
+        meta = intent_map[str(row["intent_id"])]
+        assert row["action"] == meta["action"]
+        assert row["object"] == meta["object"]
+        assert row["location"] == meta["location"]
+
+
+def test_corpus_audit_reports_exist():
+    """Verify that official linguistic audit reports (JSON and MD) exist and pass."""
+    import json
+    assert os.path.exists("reports/corpus_linguistic_audit.json")
+    assert os.path.exists("reports/corpus_linguistic_audit.md")
+    with open("reports/corpus_linguistic_audit.json", "r", encoding="utf-8") as f:
+        data = json.load(f)
+    assert data["overall_status"] == "PASSED (100% CLEAN)"
+

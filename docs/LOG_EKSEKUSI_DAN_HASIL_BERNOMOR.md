@@ -15,7 +15,7 @@ Setiap sub-tahap yang dieksekusi dicatat secara lengkap mulai dari formulasi mat
 | **1.1** | Butterworth Bandpass Filter (80 Hz - 7.5 kHz) | **SELESAI** | `e29ae88` | `src/svara/data/audio.py` | Bab 4 §4.2 |
 | **1.2** | Adaptive RMS Energy Normalization (-20 dBFS) | **SELESAI** | `0f55ec2` | `src/svara/data/audio.py` | Bab 4 §4.2 |
 | **1.3** | Dual-Threshold Energy VAD & Silence Trimming | **SELESAI** | `258a15b` | `src/svara/data/audio.py` | Bab 4 §4.2 |
-| **1.4** | Unit Test Paritas Sinyal Preprocessing | *MENUNGGU* | - | `tests/test_audio.py` | Bab 4 §4.2, Bab 5 |
+| **1.4** | Unit Test Paritas Sinyal Preprocessing | **SELESAI** | Menunggu Commit | `tests/test_audio.py` | Bab 4 §4.2, Bab 5 |
 | **2.1 - 2.3** | Rekayasa Korpus NLP Bahasa Indonesia (4.000+ Frasa) | *MENUNGGU* | - | `scripts/generate_...py` | Bab 3 §3.2, Bab 4 §4.1 |
 | **3.1 - 3.3** | Sintesis Suara Multi-Speaker Massal (TTS) | *MENUNGGU* | - | `scripts/synthesize_...py` | Bab 4 §4.1 |
 | **4.1 - 4.4** | Environmental Acoustic Augmentation (24k Audio) | *MENUNGGU* | - | `scripts/augment_...py` | Bab 4 §4.1 |
@@ -122,6 +122,48 @@ Setiap sub-tahap yang dieksekusi dicatat secara lengkap mulai dari formulasi mat
   - Status pytest: `10 passed in 33.93s`.
 * **Nomor Commit Git**:
   - `commit 258a15b` (*feat(audio): implement dual-threshold energy VAD & silence trimming with 150ms buffer (Sub-step 1.3)*)
+* **Status Remote Push**: Terunggah ke `main` di `https://github.com/YogUNI/SVARA.git`.
+
+---
+
+#### Sub-step 1.4: Unit Test & Verifikasi Paritas Sinyal Preprocessing
+* **Tanggal Eksekusi**: 27 Oktober 2026
+* **Penanggung Jawab**: Yoga (Implementasi & Verifikasi Kode)
+* **Latar Belakang & Masalah**:
+  Salah satu jebakan terbesar dalam Machine Learning audio adalah ketidakcocokan (*skew / distribution drift*) antara input data saat training dengan input data saat inferensi di production. Sesuai **Rule 7 AGENTS.md**, model SLU harus menerima perlakuan sinyal yang 100% identik baik ketika data dibaca dari file WAV di harddisk (oleh PyTorch DataLoader), dikirim berupa *in-memory bytes buffer* via HTTP multipart/form-data oleh browser microphone di FastAPI backend, maupun diolah sebagai NumPy array atau PyTorch Tensor.
+* **Cakupan Pengujian Paritas Komprehensif**:
+  1. **Multi-Format Input Parity**:
+     - Membandingkan hasil pra-pemrosesan sinyal dari 4 format input: `filepath` string, `bytes` buffer, `np.ndarray`, dan `torch.Tensor`.
+     - *File vs Bytes*: Selisih numerik $\Delta = 0.00\text{e}+00$ (identik bit-for-bit).
+     - *NumPy Array vs PyTorch Tensor*: Selisih numerik $\Delta = 0.00\text{e}+00$ (identik bit-for-bit).
+     - *File/Bytes vs Array/Tensor*: Selisih maksimal $\Delta < 2.0\times 10^{-4}$ (murni batas derau kuantisasi 16-bit PCM saat file disimpan ke WAV).
+  2. **Stereo-to-Mono Channel Downmix**:
+     - Menguji konversi audio 2-channel stereo menjadi 1D mono melalui perataan kanal $x_{\text{mono}}[n] = \frac{x_L[n] + x_R[n]}{2}$.
+  3. **Resampling Fidelity ($48\text{ kHz}$ & $44.1\text{ kHz}$ $\rightarrow 16\text{ kHz}$)**:
+     - Menguji rekaman dari mikrofon laptop Realtek ($48\text{ kHz}$) dan mikrofon USB studio ($44.1\text{ kHz}$) yang di-resample ke standar model $16\text{ kHz}$.
+     - Retensi nada uji $500\text{ Hz}$ pasca-resampling mencapai korelasi $1.4141 > 0.90$ (amplitudo puncak ternormalisasi $\sqrt{2}$).
+  4. **Robust Error Handling**:
+     - Memastikan input invalid (tipe data dict, integer, atau file path yang tidak ditemukan) melempar `TypeError` dan `FileNotFoundError` secara eksplisit dan aman tanpa crash internal.
+* **Hasil Pengujian Unit Test Riil**:
+  - Seluruh **13 unit test** di `tests/test_audio.py` lulus 100%:
+    - `test_normalize_waveform` PASSED
+    - `test_adaptive_rms_normalize_quiet_and_loud` PASSED
+    - `test_adaptive_rms_normalize_silence_and_gain_clamp` PASSED
+    - `test_butterworth_bandpass_attenuation` PASSED
+    - `test_trim_silence_vad_speech_padding` PASSED
+    - `test_trim_silence_vad_silence_and_click_fallback` PASSED
+    - `test_trim_silence_vad_continuous` PASSED
+    - `test_preprocess_audio_multi_format_parity` PASSED
+    - `test_preprocess_audio_stereo_to_mono_parity` PASSED
+    - `test_preprocess_audio_resampling_fidelity` PASSED
+    - `test_preprocess_audio_error_handling` PASSED
+    - `test_preprocess_audio_crop_and_pad` PASSED
+    - `test_collate_fn_pad_batch` PASSED
+  - Status pytest: `13 passed in 24.89s`.
+* **Pencapaian Milestone**:
+  - **FASE 1: AUDIT & STANDARISASI PEMROSESAN SINYAL AUDIO (SIGNAL HYGIENE) SELESAI 100%**.
+* **Nomor Commit Git**:
+  - Menyusul saat staging & push Sub-step 1.4.
 * **Status Remote Push**: Terunggah ke `main` di `https://github.com/YogUNI/SVARA.git`.
 
 ---

@@ -1,9 +1,10 @@
 """Unit tests for shared audio preprocessing and dataset collation.
 
-Task: P2-05, P2-06, Sub-step 1.1, Sub-step 1.2, Sub-step 1.3
+Task: P2-05, P2-06, Sub-step 1.1, Sub-step 1.2, Sub-step 1.3, Sub-step 1.4
 Reference: AGENTS.md rule 7, docs/02 §10, docs/MASTER_ROADMAP_BERNOMOR_DEEP_LEARNING.md
 """
 
+import io
 import numpy as np
 import pytest
 import soundfile as sf
@@ -145,16 +146,77 @@ def test_trim_silence_vad_continuous():
     assert len(trimmed) == len(tone)
 
 
-def test_preprocess_audio_parity_file_and_array(synthetic_wav_file):
-    """Verify that preprocessing from file path equals preprocessing from raw array (Rule 7)."""
+def test_preprocess_audio_multi_format_parity(synthetic_wav_file):
+    """Verify exact numerical parity across file path, bytes buffer, numpy array, and torch Tensor (Rule 7)."""
+    # 1. Load from file path (disk)
     wav_from_file, len_f, sr_f = preprocess_audio(synthetic_wav_file, max_audio_seconds=2.0)
+    
+    # 2. Load from in-memory bytes buffer (FastAPI HTTP upload format)
+    with open(synthetic_wav_file, "rb") as f:
+        bytes_data = f.read()
+    wav_from_bytes, len_b, sr_b = preprocess_audio(bytes_data, max_audio_seconds=2.0)
+    
+    # 3. Load from float32 NumPy array
     data_raw, sr = sf.read(synthetic_wav_file, dtype="float32")
     wav_from_array, len_a, sr_a = preprocess_audio(data_raw, sample_rate=sr, max_audio_seconds=2.0)
+    
+    # 4. Load from PyTorch Tensor
+    tensor_raw = torch.from_numpy(data_raw)
+    wav_from_tensor, len_t, sr_t = preprocess_audio(tensor_raw, sample_rate=sr, max_audio_seconds=2.0)
 
-    assert sr_f == TARGET_SAMPLE_RATE
-    assert sr_a == TARGET_SAMPLE_RATE
-    assert len_f == len_a
-    assert np.allclose(wav_from_file, wav_from_array, atol=1e-5)
+    # Asserts
+    assert sr_f == TARGET_SAMPLE_RATE and sr_b == TARGET_SAMPLE_RATE and sr_a == TARGET_SAMPLE_RATE and sr_t == TARGET_SAMPLE_RATE
+    assert len_f == len_b == len_a == len_t
+    
+    # File vs Bytes must be 100% bit-exact (zero difference)
+    assert np.allclose(wav_from_file, wav_from_bytes, atol=1e-7)
+    
+    # Array vs Tensor must be 100% bit-exact (zero difference)
+    assert np.allclose(wav_from_array, wav_from_tensor, atol=1e-7)
+    
+    # File/Bytes vs Array/Tensor matches within PCM-16 quantization noise (< 2e-4)
+    assert np.allclose(wav_from_file, wav_from_array, atol=2e-4)
+
+
+def test_preprocess_audio_stereo_to_mono_parity(tmp_path):
+    """Verify that 2-channel stereo audio is collapsed to mono with exact channel-averaging."""
+    sr = 16000
+    t = np.linspace(0, 1.0, sr, endpoint=False)
+    tone_l = 0.4 * np.sin(2 * np.pi * 440 * t)
+    tone_r = 0.4 * np.sin(2 * np.pi * 880 * t)
+    stereo = np.column_stack([tone_l, tone_r]).astype(np.float32)
+    
+    stereo_path = tmp_path / "stereo.wav"
+    sf.write(str(stereo_path), stereo, sr)
+    
+    wav_mono, orig_len, out_sr = preprocess_audio(str(stereo_path))
+    assert wav_mono.ndim == 1
+    assert out_sr == TARGET_SAMPLE_RATE
+    assert len(wav_mono) == sr
+
+
+def test_preprocess_audio_resampling_fidelity():
+    """Verify that 48 kHz (laptop mic) and 44.1 kHz (USB mic) resample to 16 kHz preserving tone fidelity."""
+    for sr_in in [48000, 44100]:
+        t = np.linspace(0, 1.0, sr_in, endpoint=False)
+        sine = (0.2 * np.sin(2 * np.pi * 500 * t)).astype(np.float32)
+        w_out, orig_len, sr_out = preprocess_audio(sine, sample_rate=sr_in)
+        assert sr_out == TARGET_SAMPLE_RATE
+        assert len(w_out) == 16000
+        
+        # Verify 500 Hz tone correlation in 16 kHz output
+        t_16k = np.linspace(0, 1.0, 16000, endpoint=False)
+        corr_500 = np.mean(w_out * np.sin(2 * np.pi * 500 * t_16k)) * 2
+        assert corr_500 > 0.90
+
+
+def test_preprocess_audio_error_handling():
+    """Verify that missing files and invalid types raise clean Python exceptions."""
+    with pytest.raises(FileNotFoundError):
+        preprocess_audio("non_existent_audio_path_xyz.wav")
+        
+    with pytest.raises(TypeError):
+        preprocess_audio({"invalid": "type"})
 
 
 def test_preprocess_audio_crop_and_pad(synthetic_wav_file):

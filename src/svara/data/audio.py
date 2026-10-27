@@ -1,6 +1,6 @@
 """Unified audio preprocessing module for training, evaluation, and inference.
 
-Task: P2-05, Sub-step 1.1, Sub-step 1.2, Sub-step 1.3
+Task: P2-05, Sub-step 1.1, Sub-step 1.2, Sub-step 1.3, Sub-step 1.4
 Reference: AGENTS.md rule 7, docs/01 §1, docs/02 §1, docs/05 §1, docs/MASTER_ROADMAP_BERNOMOR_DEEP_LEARNING.md
 
 RULE 7 (AGENTS.md):

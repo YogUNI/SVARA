@@ -131,12 +131,25 @@ class MassiveTTSAsyncEngine:
         self.lock: Optional[asyncio.Lock] = None
         self.manifest_records: List[Dict[str, Any]] = []
 
+    def _save_manifest(self):
+        """Flushes current in-memory manifest records to CSV atomically."""
+        fieldnames = [
+            "path", "speakerId", "gender", "voice_name", "transcript",
+            "action", "object", "location", "domain", "intent_id", "duration"
+        ]
+        tmp_path = self.metadata_csv_path + ".tmp"
+        with open(tmp_path, "w", newline="", encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(self.manifest_records)
+        os.replace(tmp_path, self.metadata_csv_path)
+
     async def synthesize_single(
         self,
         phrase: str,
         voice_id: str,
         dest_wav_path: str,
-        max_retries: int = 4,
+        max_retries: int = 5,
     ) -> Tuple[bool, float]:
         """Synthesizes one phrase to a 16kHz mono WAV file with exponential backoff retry."""
         # 1. Check existing valid WAV file (resumability)
@@ -168,6 +181,11 @@ class MassiveTTSAsyncEngine:
 
                 # Verify written file
                 if not verify_wav_file(dest_wav_path):
+                    if os.path.exists(dest_wav_path):
+                        try:
+                            os.remove(dest_wav_path)
+                        except OSError:
+                            pass
                     raise IOError("Written WAV failed post-write verification.")
 
                 return True, duration
@@ -175,7 +193,12 @@ class MassiveTTSAsyncEngine:
             except Exception as e:
                 backoff_delay = 1.0 * (2 ** attempt) + random.uniform(0.1, 0.5)
                 if attempt == max_retries - 1:
-                    print(f"\n[!] ERROR ({voice_id}): '{phrase[:30]}...' -> {e}")
+                    print(f"\n[!] ERROR ({voice_id}): '{phrase[:30]}...' -> {e}", flush=True)
+                    if os.path.exists(dest_wav_path):
+                        try:
+                            os.remove(dest_wav_path)
+                        except OSError:
+                            pass
                     return False, 0.0
                 await asyncio.sleep(backoff_delay)
 
@@ -235,15 +258,17 @@ class MassiveTTSAsyncEngine:
                     else:
                         self.failed_count += 1
 
-                    total_processed = self.completed_count + self.failed_count
+                    total_processed = self.completed_count + self.failed_count + self.skipped_count
                     if total_processed % 50 == 0 or total_processed == total_items:
                         pct = (total_processed / total_items) * 100
                         print(
                             f"\r[*] Progress: {total_processed:,}/{total_items:,} ({pct:5.1f}%) | "
-                            f"Success: {self.completed_count:,} | Failed: {self.failed_count}",
-                            end="",
+                            f"Downloaded: {self.completed_count:,} | Skipped: {self.skipped_count:,} | Failed: {self.failed_count}",
+                            end="\n" if (total_processed % 250 == 0 or total_processed == total_items) else "",
                             flush=True,
                         )
+                    if total_processed % 200 == 0 or total_processed == total_items:
+                        self._save_manifest()
             except Exception as e:
                 print(f"\n[Worker {worker_id} Error]: {e}", flush=True)
                 async with self.lock:
@@ -256,7 +281,7 @@ class MassiveTTSAsyncEngine:
         limit: Optional[int] = None,
         dry_run: bool = False,
     ) -> Dict[str, Any]:
-        """Runs the multi-worker synthesis pipeline."""
+        """Runs the multi-worker synthesis pipeline with resume support."""
         if not os.path.exists(self.corpus_csv_path):
             raise FileNotFoundError(f"Corpus CSV not found at: {self.corpus_csv_path}")
 
@@ -283,45 +308,64 @@ class MassiveTTSAsyncEngine:
         print(f"Mode Eksekusi                  : {'DRY RUN (Simulasi)' if dry_run else 'LIVE TTS DOWNLOAD'}", flush=True)
         print("=" * 75 + "\n", flush=True)
 
+        # 1. Resume from existing manifest if present
+        completed_paths = set()
+        if os.path.exists(self.metadata_csv_path) and not dry_run:
+            try:
+                with open(self.metadata_csv_path, "r", encoding="utf-8") as f_prev:
+                    reader = csv.DictReader(f_prev)
+                    for r_prev in reader:
+                        abs_p = os.path.join(self.output_dir, r_prev["path"])
+                        if verify_wav_file(abs_p):
+                            r_prev["duration"] = float(r_prev["duration"])
+                            r_prev["intent_id"] = int(r_prev["intent_id"])
+                            self.manifest_records.append(r_prev)
+                            completed_paths.add(r_prev["path"])
+                if completed_paths:
+                    self.skipped_count = len(completed_paths)
+                    print(f"[*] Resuming from existing manifest: found {len(completed_paths):,} existing audio files.", flush=True)
+            except Exception as e:
+                print(f"[!] Warning reading existing manifest: {e}", flush=True)
+
         self.lock = asyncio.Lock()
         start_time = time.time()
         queue: asyncio.Queue = asyncio.Queue()
 
-        # Enqueue all jobs
-        task_idx = 0
-        for row in rows:
+        # Enqueue jobs that are not yet completed
+        for phrase_idx, row in enumerate(rows):
             for v_info in self.voices:
-                queue.put_nowait((task_idx, total_audio_targets, row, v_info))
-                task_idx += 1
+                spk_id = v_info["speaker_id"]
+                intent_id = int(row["intent_id"])
+                filename = f"id_intent{intent_id:02d}_{phrase_idx:04d}_{spk_id}.wav"
+                rel_path = os.path.join("wavs_16k", filename).replace("\\", "/")
+                dest_wav_path = os.path.join(self.wav_dir, filename)
 
-        # Spawn workers (adjust to not exceed total items)
-        actual_concurrency = min(self.concurrency, max(1, total_audio_targets))
-        workers = []
-        for w_id in range(actual_concurrency):
-            w = asyncio.create_task(
-                self._worker(w_id, queue, total_audio_targets, dry_run=dry_run)
-            )
-            workers.append(w)
+                if rel_path in completed_paths and verify_wav_file(dest_wav_path):
+                    pass
+                else:
+                    queue.put_nowait((phrase_idx, total_audio_targets, row, v_info))
 
-        # Wait until queue is completely processed
-        await queue.join()
+        pending_items = queue.qsize()
+        print(f"[*] Pending items to download  : {pending_items:,} items (Skipped: {self.skipped_count:,})", flush=True)
 
-        # Stop workers
-        for _ in workers:
-            queue.put_nowait(None)
-        await asyncio.gather(*workers)
+        if pending_items > 0:
+            actual_concurrency = min(self.concurrency, pending_items)
+            workers = []
+            for w_id in range(actual_concurrency):
+                w = asyncio.create_task(
+                    self._worker(w_id, queue, total_audio_targets, dry_run=dry_run)
+                )
+                workers.append(w)
 
+            await queue.join()
+
+            for _ in workers:
+                queue.put_nowait(None)
+            await asyncio.gather(*workers)
+
+        # Final manifest write
+        self._save_manifest()
         elapsed = time.time() - start_time
-
-        # Save metadata manifest
-        fieldnames = [
-            "path", "speakerId", "gender", "voice_name", "transcript",
-            "action", "object", "location", "domain", "intent_id", "duration"
-        ]
-        with open(self.metadata_csv_path, "w", newline="", encoding="utf-8") as f:
-            writer = csv.DictWriter(f, fieldnames=fieldnames)
-            writer.writeheader()
-            writer.writerows(self.manifest_records)
 
         durations = [r["duration"] for r in self.manifest_records]
         total_duration_hours = sum(durations) / 3600.0 if durations else 0.0

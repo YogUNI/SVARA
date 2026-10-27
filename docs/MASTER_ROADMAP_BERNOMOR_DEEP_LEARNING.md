@@ -82,7 +82,7 @@ Dokumen ini adalah panduan kontrol proyek resmi untuk pematangan sistem Deep Lea
 
 ### FASE 3: SINTESIS SUARA MULTI-SPEAKER MASSAL (NEURAL TTS 8.000 - 10.000 AUDIO)
 * **Sub-step 3.1** [SELESAI - Commit `077af48`]: Buat script `scripts/synthesize_massive_indonesian.py` dengan arsitektur async paralel (`asyncio.Semaphore(15)`), auto-retry exponential backoff, auto-resume, dan polyphase sinc resampling 16 kHz 16-bit Mono WAV.
-* **Sub-step 3.2**: Generate 4.200 frasa $\times$ 2 suara (`id-ID-ArdiNeural` Pria & `id-ID-GadisNeural` Wanita) $\rightarrow 8.400$ audio klip.
+* **Sub-step 3.2** [SELESAI - Commit `b3c65fd`]: Generate 4.495 frasa $\times$ 2 suara (`id-ID-ArdiNeural` Pria & `id-ID-GadisNeural` Wanita) $\rightarrow 8.990$ audio klip bersih (16 kHz 16-bit Mono WAV, total 8,31 jam audio, 0 gagal, manifest `metadata.csv`).
 * **Sub-step 3.3**: Verifikasi seluruh audio tersimpan dalam format 16 kHz 16-bit Mono WAV di `data/synthetic_indonesian_massive/wavs_16k/`.
 
 ### FASE 4: ENVIRONMENTAL ACOUSTIC AUGMENTATION (24.000 AUDIO ROBUST)

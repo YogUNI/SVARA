@@ -346,4 +346,47 @@ Setiap sub-tahap yang dieksekusi dicatat secara lengkap mulai dari formulasi mat
 * **Status Remote Push**: Terunggah ke `main` di `https://github.com/YogUNI/SVARA.git`.
 
 ---
+
+#### Sub-step 3.2: Eksekusi Batch Sintesis Suara Multi-Speaker (8.990 Audio Klip Bersih)
+* **Tanggal Eksekusi**: 27 Oktober 2026
+* **Penanggung Jawab**: Yoga (Eksekusi Batch Paralel & Verifikasi Distribusi Audio)
+* **Latar Belakang & Masalah**:
+  Dengan tersedianya korpus berimbang 4.495 kalimat pada Sub-step 2.2 dan engine sintesis asinkronus multi-worker pada Sub-step 3.1, langkah selanjutnya adalah mengeksekusi konversi seluruh korpus teks menjadi audio klip ucapan manusia nyata berkualitas tinggi. Diperlukan dua profil pembicara alami (suara pria dan wanita) untuk merepresentasikan keragaman gender, fonetik, dan pitch fundamental ($F_0$) penutur bahasa Indonesia.
+* **Parameter Eksekusi Batch & Throughput**:
+  - Konkurensi Worker: 15 parallel async workers (`--concurrency 15`).
+  - Total Target Unduhan: $4.495\text{ frasa} \times 2\text{ speaker} = 8.990\text{ file audio WAV}$.
+  - Durasi Eksekusi Riil: $1.258,60\text{ detik}$ ($20,98\text{ menit}$).
+  - Kecepatan Rata-rata (*Throughput*): $\approx 7,14\text{ audio/detik}$ ($428,5\text{ audio/menit}$).
+  - Rasio Keberhasilan (*Success Rate*): $8.990 / 8.990$ ($100,0\%$).
+  - Tingkat Kegagalan (*Failure Rate*): $0$ file ($0,0\%$).
+* **Distribusi & Karakteristik Data Audio yang Dihasilkan**:
+  1. **Sebaran Pembicara (Speaker & Gender)**:
+     - `spk_ardi` (Pria, `id-ID-ArdiNeural`): Tepat $4.495$ file WAV ($50,0\%$).
+     - `spk_gadis` (Wanita, `id-ID-GadisNeural`): Tepat $4.495$ file WAV ($50,0\%$).
+     - Rasio Gender: Seimbang sempurna $1:1$ ($\sigma = 0,00$).
+  2. **Sebaran Intent (31 Intent Classes)**:
+     - Setiap intent memiliki tepat $145\text{ frasa} \times 2\text{ suara} = 290\text{ file audio WAV}$.
+     - Minimum file per intent: $290$, Maksimum: $290$ ($\sigma = 0,00$, zero class imbalance).
+  3. **Statistik Durasi Audio**:
+     - Total Durasi Riil: $8,31\text{ jam}$ ($29.918,4\text{ detik}$).
+     - Rata-rata Durasi per Klip ($\mu$): $3,33\text{ detik}$.
+     - Standar Deviasi Durasi ($\sigma$): $0,53\text{ detik}$.
+     - Rentang Durasi: Minimum $1,92\text{ detik}$, Maksimum $5,78\text{ detik}$.
+     - Persentil Durasi: 25% = $2,93\text{s}$, 50% (Median) = $3,26\text{s}$, 75% = $3,70\text{s}$.
+  4. **Standar Sinyal Akustik (Signal Hygiene)**:
+     - Seluruh $8.990$ file tersimpan dalam format standar: $16.000\text{ Hz}$, $1$ channel (Mono), 16-bit Signed PCM (`PCM_16`).
+     - Normalisasi peak headroom terjaga pada $\le 0,95$ (headroom $-0,5\text{ dBFS}$ mencegah clipping).
+     - Sampling integritas numerik 50 file membuktikan: $0$ NaN, $0$ Inf, $0$ file rusak/kosong.
+* **Artefak File yang Dihasilkan**:
+  - `data/synthetic_indonesian_massive/wavs_16k/`: Berisi tepat $8.990$ file WAV (tersaring aman oleh `.gitignore`, tidak masuk commit git publik).
+  - `data/synthetic_indonesian_massive/metadata.csv`: Berisi $8.990$ baris data manifest dengan 11 kolom lengkap (`path, speakerId, gender, voice_name, transcript, action, object, location, domain, intent_id, duration`).
+* **Hasil Pengujian Test Suite Repositori**:
+  - Seluruh **78 unit test** di direktori `tests/` lulus $100\%$ tanpa ada error (`78 passed, 7 warnings in 50.19s`).
+* **Pencapaian Milestone**:
+  - Sub-step 3.2 selesai sempurna dengan $8.990$ klip audio bersih tanpa kegagalan ($0$ fail).
+* **Nomor Commit Git**:
+  - `commit b3c65fd` (*feat(dataset): synthesize 8,990 clean Indonesian voice clips across 2 speakers (Sub-step 3.2)*)
+* **Status Remote Push**: Terunggah ke `main` di `https://github.com/YogUNI/SVARA.git`.
+
+---
 *(Logbook ini akan diperbarui secara otomatis setiap kali sub-step berikutnya selesai dieksekusi)*

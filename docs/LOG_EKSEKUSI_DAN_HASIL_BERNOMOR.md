@@ -14,7 +14,7 @@ Setiap sub-tahap yang dieksekusi dicatat secara lengkap mulai dari formulasi mat
 | :---: | :--- | :---: | :---: | :--- | :---: |
 | **1.1** | Butterworth Bandpass Filter (80 Hz - 7.5 kHz) | **SELESAI** | `e29ae88` | `src/svara/data/audio.py` | Bab 4 §4.2 |
 | **1.2** | Adaptive RMS Energy Normalization (-20 dBFS) | **SELESAI** | `0f55ec2` | `src/svara/data/audio.py` | Bab 4 §4.2 |
-| **1.3** | Dual-Threshold Energy VAD & Silence Trimming | *MENUNGGU* | - | `src/svara/data/audio.py` | Bab 4 §4.2 |
+| **1.3** | Dual-Threshold Energy VAD & Silence Trimming | **SELESAI** | Menunggu Commit | `src/svara/data/audio.py` | Bab 4 §4.2 |
 | **1.4** | Unit Test Paritas Sinyal Preprocessing | *MENUNGGU* | - | `tests/test_audio.py` | Bab 4 §4.2, Bab 5 |
 | **2.1 - 2.3** | Rekayasa Korpus NLP Bahasa Indonesia (4.000+ Frasa) | *MENUNGGU* | - | `scripts/generate_...py` | Bab 3 §3.2, Bab 4 §4.1 |
 | **3.1 - 3.3** | Sintesis Suara Multi-Speaker Massal (TTS) | *MENUNGGU* | - | `scripts/synthesize_...py` | Bab 4 §4.1 |
@@ -84,6 +84,44 @@ Setiap sub-tahap yang dieksekusi dicatat secara lengkap mulai dari formulasi mat
   - Status pytest: `7 passed in 36.88s`.
 * **Nomor Commit Git**:
   - `commit 0f55ec2` (*feat(audio): implement adaptive RMS energy normalization to -20 dBFS (Sub-step 1.2)*)
+* **Status Remote Push**: Terunggah ke `main` di `https://github.com/YogUNI/SVARA.git`.
+
+---
+
+#### Sub-step 1.3: Implementasi Dual-Threshold Energy VAD & Silence Trimming (Buffer 150ms)
+* **Tanggal Eksekusi**: 27 Oktober 2026
+* **Penanggung Jawab**: Yoga (Implementasi & Verifikasi Kode)
+* **Latar Belakang & Masalah**:
+  Rekaman mikrofon mentah (baik dari dataset maupun web UI browser) sering menyisakan hening 0.5s - 1.5s di awal sebelum pengguna berbicara dan di akhir setelah perintah selesai. Hening panjang ini membuang siklus komputasi inferensi (latensi lambat), mengaburkan representasi *self-attention* transformer, dan menurunkan probabilitas softmax pada pooling akhir. Namun, algoritma pemangkas hening konvensional dengan *single hard threshold* sangat berbahaya karena memotong letupan konsonan tak bersuara (*unvoiced plosives*) di awal kata seperti *"k"* (*"kamar"*, *"kunci"*), *"t"* (*"tolong"*, *"tutup"*), dan *"p"* (*"puter"*), atau ekor kata (*"hidup"*, *"musik"*).
+* **Formulasi Matematika & Algoritma**:
+  - Menggunakan komputasi energi per-frame bervektor (*vectorized short-term energy*):
+    - Frame duration $K = 20\text{ ms} = 320\text{ samples}$ pada $16\text{ kHz}$.
+    - Hop duration $H = 10\text{ ms} = 160\text{ samples}$.
+    - Energi frame ke-$m$:
+      $$\text{RMS}_m = \sqrt{\frac{1}{K}\sum_{k=0}^{K-1} x[m \cdot H + k]^2}, \quad E_m = 20 \log_{10}(\text{RMS}_m + 10^{-12}) \text{ dBFS}$$
+  - **Mekanisme Dual-Threshold (Histeresis)**:
+    - $\theta_{\text{start}} = -32.0\text{ dBFS}$: Threshold onset ucapan aktif (mencegah desis latar memicu false positive).
+    - $\theta_{\text{stop}} = -42.0\text{ dBFS}$: Threshold pelacakan fonem lembut (menjaga fonem frikatif/plosif bernada rendah tidak terpotong sebelum/sesudah puncak vokal).
+  - **Acoustic Safety Buffer ($150\text{ ms}$)**:
+    - Margin perlindungan akustik: $150\text{ ms} = 2.400\text{ sampel}$ pada $16\text{ kHz}$.
+    - Batas awal pemotongan: $S_{\text{start}} = \max(0, m_{\text{first}} \cdot H - 2400)$
+    - Batas akhir pemotongan: $S_{\text{end}} = \min(N, m_{\text{last}} \cdot H + K + 2400)$
+  - **Anti-Click / Transient Noise Filter**:
+    - Jika durasi aktif unpadded ucapan $< 200\text{ ms}$ ($3.200\text{ sampel}$), sinyal dianggap derau klik/ketukan mouse dan sistem secara aman mempertahankan sinyal asli tanpa pemotongan parsial.
+* **File yang Dimodifikasi**:
+  - `src/svara/data/audio.py` (Konstanta `DEFAULT_VAD_START_DBFS`, `DEFAULT_VAD_STOP_DBFS`, `DEFAULT_VAD_PAD_MS`, `DEFAULT_VAD_MIN_SPEECH_MS`, fungsi `trim_silence_vad`, dan integrasi parameter `apply_vad_trim=True` di `preprocess_audio`).
+  - `tests/test_audio.py` (Test `test_trim_silence_vad_speech_padding`, `test_trim_silence_vad_silence_and_click_fallback`, `test_trim_silence_vad_continuous`).
+* **Hasil Pengujian Unit Test Riil**:
+  - **Uji Pemangkasan Hening 3.0s (1.0s hening + 1.0s nada + 1.0s hening)**:
+    - Titik potong onset: Terpangkas tepat di sampel $13.440$ ($0.840\text{s}$, menyisakan buffer aman $160\text{ ms}$ sebelum nada).
+    - Titik potong offset: Terpangkas tepat di sampel $34.560$ ($2.160\text{s}$, menyisakan buffer aman $160\text{ ms}$ setelah nada).
+    - Total durasi terpangkas efisien dari $3.00\text{s}$ menjadi $1.32\text{s}$ (menghemat komputasi inferensi hingga $> 55\%$).
+  - **Uji Hening Total & Desis**: Sinyal nol mutlak tetap aman dan utuh tanpa runtime error atau array kosong.
+  - **Uji Klik Transien (10 ms click)**: Ditolak dari pemotongan dan kembali ke durasi aman.
+  - **Uji Sinyal Kontinu**: 100% sampel dipertahankan tanpa satu pun sampel terbuang.
+  - Status pytest: `10 passed in 33.93s`.
+* **Nomor Commit Git**:
+  - Menyusul saat staging & push Sub-step 1.3.
 * **Status Remote Push**: Terunggah ke `main` di `https://github.com/YogUNI/SVARA.git`.
 
 ---

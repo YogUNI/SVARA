@@ -1,6 +1,6 @@
 """Unified audio preprocessing module for training, evaluation, and inference.
 
-Task: P2-05, Sub-step 1.1, Sub-step 1.2
+Task: P2-05, Sub-step 1.1, Sub-step 1.2, Sub-step 1.3
 Reference: AGENTS.md rule 7, docs/01 §1, docs/02 §1, docs/05 §1, docs/MASTER_ROADMAP_BERNOMOR_DEEP_LEARNING.md
 
 RULE 7 (AGENTS.md):
@@ -115,6 +115,103 @@ def adaptive_rms_normalize(
     return normalized.astype(np.float32)
 
 
+# Dual-Threshold Energy VAD & Silence Trimming Defaults
+# Retains 150ms acoustic buffer around speech to protect initial plosives (k, t, p) and word endings
+DEFAULT_VAD_START_DBFS = -32.0
+DEFAULT_VAD_STOP_DBFS = -42.0
+DEFAULT_VAD_PAD_MS = 150.0
+DEFAULT_VAD_MIN_SPEECH_MS = 200.0
+
+
+def trim_silence_vad(
+    waveform: np.ndarray,
+    sr: int = TARGET_SAMPLE_RATE,
+    frame_ms: float = 20.0,
+    hop_ms: float = 10.0,
+    vad_start_dbfs: float = DEFAULT_VAD_START_DBFS,
+    vad_stop_dbfs: float = DEFAULT_VAD_STOP_DBFS,
+    pad_ms: float = DEFAULT_VAD_PAD_MS,
+    min_speech_duration_ms: float = DEFAULT_VAD_MIN_SPEECH_MS,
+    return_indices: bool = False,
+) -> Union[np.ndarray, Tuple[np.ndarray, int, int]]:
+    """Dual-threshold energy-based Voice Activity Detection and silence trimming.
+
+    Removes dead silence before and after vocal commands while preserving
+    initial plosive consonants and trailing word endings via safety padding buffers.
+
+    Args:
+        waveform: 1D float32 numpy array.
+        sr: Sampling rate (16000 Hz).
+        frame_ms: Short-term energy frame duration in ms (default 20.0 ms).
+        hop_ms: Short-term energy hop size in ms (default 10.0 ms).
+        vad_start_dbfs: Energy activation threshold in dBFS to detect speech onset (default -32.0 dBFS).
+        vad_stop_dbfs: Lower energy continuation threshold in dBFS to track soft phonemes (default -42.0 dBFS).
+        pad_ms: Pre- and post-padding buffer duration in ms to avoid chopping plosives (default 150.0 ms).
+        min_speech_duration_ms: Minimum unpadded speech duration to filter out clicks/taps (default 200.0 ms).
+        return_indices: If True, returns (trimmed_waveform, sample_start, sample_end). Else returns trimmed_waveform.
+
+    Returns:
+        Trimmed 1D float32 numpy array (or tuple with sample bounds if return_indices=True).
+    """
+    waveform = np.ascontiguousarray(waveform, dtype=np.float32)
+    frame_len = int(round(frame_ms * 1e-3 * sr))
+    hop_len = int(round(hop_ms * 1e-3 * sr))
+    pad_samples = int(round(pad_ms * 1e-3 * sr))
+    min_speech_samples = int(round(min_speech_duration_ms * 1e-3 * sr))
+
+    if len(waveform) <= frame_len or len(waveform) <= min_speech_samples:
+        if return_indices:
+            return waveform, 0, len(waveform)
+        return waveform
+
+    num_frames = 1 + (len(waveform) - frame_len) // hop_len
+    if num_frames <= 0:
+        if return_indices:
+            return waveform, 0, len(waveform)
+        return waveform
+
+    shape = (num_frames, frame_len)
+    strides = (waveform.strides[0] * hop_len, waveform.strides[0])
+    frames = np.lib.stride_tricks.as_strided(waveform, shape=shape, strides=strides)
+    frame_rms = np.sqrt(np.mean(frames ** 2, axis=1) + 1e-12)
+    frame_dbfs = 20.0 * np.log10(frame_rms)
+
+    speech_starts = np.where(frame_dbfs >= vad_start_dbfs)[0]
+    if len(speech_starts) == 0:
+        # No speech detected above activation threshold; preserve signal safely
+        if return_indices:
+            return waveform, 0, len(waveform)
+        return waveform
+
+    first_start = speech_starts[0]
+    idx = first_start
+    while idx > 0 and frame_dbfs[idx - 1] >= vad_stop_dbfs:
+        idx -= 1
+    first_frame = idx
+
+    last_start = speech_starts[-1]
+    idx = last_start
+    while idx < len(frame_dbfs) - 1 and frame_dbfs[idx + 1] >= vad_stop_dbfs:
+        idx += 1
+    last_frame = idx
+
+    # Check unpadded active speech duration
+    unpadded_samples = (last_frame - first_frame + 1) * hop_len
+    if unpadded_samples < min_speech_samples:
+        # Transient click or tap; fallback safely to untrimmed signal
+        if return_indices:
+            return waveform, 0, len(waveform)
+        return waveform
+
+    sample_start = max(0, first_frame * hop_len - pad_samples)
+    sample_end = min(len(waveform), last_frame * hop_len + frame_len + pad_samples)
+
+    trimmed = waveform[sample_start:sample_end]
+    if return_indices:
+        return trimmed, sample_start, sample_end
+    return trimmed
+
+
 def normalize_waveform(waveform: np.ndarray, eps: float = 1e-7) -> np.ndarray:
     """Zero-mean, unit-variance per-utterance normalization.
 
@@ -134,6 +231,7 @@ def preprocess_audio(
     apply_bandpass: bool = True,
     apply_rms_norm: bool = True,
     target_rms_dbfs: float = DEFAULT_TARGET_RMS_DBFS,
+    apply_vad_trim: bool = True,
     pad: bool = False,
     is_training: bool = False,
 ) -> Tuple[np.ndarray, int, int]:
@@ -148,6 +246,7 @@ def preprocess_audio(
         apply_bandpass: Whether to apply 80Hz-7.5kHz Butterworth bandpass filter.
         apply_rms_norm: Whether to apply Adaptive RMS energy normalization (-20 dBFS).
         target_rms_dbfs: Target RMS energy level in dBFS (default -20.0 dBFS).
+        apply_vad_trim: Whether to apply Dual-Threshold Energy VAD & Silence Trimming (150ms buffer).
         pad: If True, pads short audio with zeros to max_audio_seconds * target_sample_rate.
         is_training: If True and cropping is required, perform random crop. Else deterministic crop from start.
 
@@ -196,13 +295,17 @@ def preprocess_audio(
     if apply_rms_norm:
         data = adaptive_rms_normalize(data, target_dbfs=target_rms_dbfs)
 
-    # 6. Normalization (per-utterance zero-mean unit-variance)
+    # 6. Dual-Threshold Energy VAD & Silence Trimming (150ms buffer)
+    if apply_vad_trim:
+        data = trim_silence_vad(data, sr=target_sample_rate)
+
+    # 7. Normalization (per-utterance zero-mean unit-variance)
     if normalize:
         data = normalize_waveform(data)
 
     original_length = len(data)
 
-    # 7. Crop / Pad to max_samples
+    # 8. Crop / Pad to max_samples
     if max_audio_seconds is not None:
         max_samples = int(round(max_audio_seconds * target_sample_rate))
         if len(data) > max_samples:

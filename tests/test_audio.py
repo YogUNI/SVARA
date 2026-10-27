@@ -1,6 +1,6 @@
 """Unit tests for shared audio preprocessing and dataset collation.
 
-Task: P2-05, P2-06, Sub-step 1.1, Sub-step 1.2
+Task: P2-05, P2-06, Sub-step 1.1, Sub-step 1.2, Sub-step 1.3
 Reference: AGENTS.md rule 7, docs/02 §10, docs/MASTER_ROADMAP_BERNOMOR_DEEP_LEARNING.md
 """
 
@@ -15,6 +15,7 @@ from svara.data.audio import (
     apply_butterworth_bandpass,
     normalize_waveform,
     preprocess_audio,
+    trim_silence_vad,
 )
 from svara.data.collate import collate_fn_pad
 
@@ -97,6 +98,51 @@ def test_butterworth_bandpass_attenuation():
     # 30 Hz rumble should be heavily attenuated
     corr_30 = np.mean(filtered * np.sin(2 * np.pi * 30 * t)) * 2
     assert abs(corr_30) < 0.2  # significant attenuation of <80Hz mechanical rumble
+
+
+def test_trim_silence_vad_speech_padding():
+    """Verify dual-threshold VAD trims silence and retains 150ms pre/post safety buffer."""
+    sr = 16000
+    # 3.0s total: 1.0s silence + 1.0s speech tone (440Hz, -20dBFS) + 1.0s silence
+    t = np.linspace(0, 1.0, sr, endpoint=False)
+    speech = (0.1 * np.sqrt(2) * np.sin(2 * np.pi * 440 * t)).astype(np.float32)
+    silence = np.zeros(sr, dtype=np.float32)
+    audio = np.concatenate([silence, speech, silence])
+    
+    trimmed, start_s, end_s = trim_silence_vad(audio, sr=sr, return_indices=True)
+    
+    # Expected speech bounds: start ~ 16000, end ~ 32000
+    # Expected with 150ms (2400 samples) buffer:
+    # start_s ~ 16000 - 2400 = 13600 (within 320 samples tolerance)
+    # end_s ~ 32000 + 2400 = 34400 (within 320 samples tolerance)
+    assert abs(start_s - (16000 - 2400)) <= 320
+    assert abs(end_s - (32000 + 2400)) <= 320
+    assert 19000 <= len(trimmed) <= 22000  # approximately 1.30s instead of 3.0s
+
+
+def test_trim_silence_vad_silence_and_click_fallback():
+    """Verify silence stability and noise click rejection without crashing."""
+    sr = 16000
+    # 1. Complete silence returns unmodified audio safely
+    silence = np.zeros(sr, dtype=np.float32)
+    trimmed_sil = trim_silence_vad(silence, sr=sr)
+    assert len(trimmed_sil) == len(silence)
+    assert np.all(trimmed_sil == 0.0)
+    
+    # 2. Brief transient click (10ms < 200ms minimum speech threshold) falls back to untrimmed
+    click = np.zeros(sr, dtype=np.float32)
+    click[8000:8160] = 0.5
+    trimmed_click = trim_silence_vad(click, sr=sr)
+    assert len(trimmed_click) == len(click)
+
+
+def test_trim_silence_vad_continuous():
+    """Verify that continuous tone with no silence is not truncated at all."""
+    sr = 16000
+    t = np.linspace(0, 1.0, sr, endpoint=False)
+    tone = (0.2 * np.sin(2 * np.pi * 440 * t)).astype(np.float32)
+    trimmed = trim_silence_vad(tone, sr=sr)
+    assert len(trimmed) == len(tone)
 
 
 def test_preprocess_audio_parity_file_and_array(synthetic_wav_file):

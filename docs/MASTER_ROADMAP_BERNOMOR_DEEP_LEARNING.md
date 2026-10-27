@@ -19,7 +19,7 @@ Dokumen ini adalah panduan kontrol proyek resmi untuk pematangan sistem Deep Lea
 │   └── [x] Sub-step 1.4: Unit Test & Verifikasi Paritas Sinyal Preprocessing (`tests/test_audio.py`) [SELESAI - Commit 448f146]
 │
 ├── FASE 2: REKAYASA KORPUS NLP BAHASA INDONESIA SEHARI-HARI (TARGET 4.000 - 5.000 FRASA)
-│   ├── Sub-step 2.1: Pembuatan Generator Matriks Leksikon, Slang, & Partikel Spontan (Python Script)
+│   ├── [x] Sub-step 2.1: Pembuatan Generator Matriks Leksikon, Slang, & Partikel Spontan (Python Script) [SELESAI]
 │   ├── Sub-step 2.2: Eksekusi Generasi Korpus Teks 31 Intent (130-150 Frasa per Intent, Total 4.000+ Kalimat)
 │   └── Sub-step 2.3: Audit & Validasi Integritas Linguistik (Deduplikasi, Cek Sebaran, Ekspor CSV)
 │
@@ -76,7 +76,7 @@ Dokumen ini adalah panduan kontrol proyek resmi untuk pematangan sistem Deep Lea
 * **Sub-step 1.4** [SELESAI - Commit `448f146`]: Jalankan unit test `pytest tests/test_audio.py` untuk memastikan fungsi audio preprocessing lolos 100%.
 
 ### FASE 2: REKAYASA KORPUS NLP BAHASA INDONESIA (TARGET 4.000 - 5.000 FRASA)
-* **Sub-step 2.1**: Buat script `scripts/generate_massive_indonesian_corpus.py` yang memuat kamus leksikon lengkap (sinonim aksi gaul, kata benda, nama ruangan, partikel spontan, dan 6 pola kalimat terbalik).
+* **Sub-step 2.1** [SELESAI]: Buat script `scripts/generate_massive_indonesian_corpus.py` yang memuat kamus leksikon lengkap (sinonim aksi gaul, kata benda, nama ruangan, partikel spontan, dan 6 pola kalimat terbalik).
 * **Sub-step 2.2**: Eksekusi script untuk menghasilkan 130 - 150 variasi frasa unik per intent untuk ke-31 intent ($31 \times 135 \approx 4.200\text{ frasa}$).
 * **Sub-step 2.3**: Audit duplikasi teks, pastikan semua intent memiliki jumlah sampel merata, simpan di `data/corpus/indonesian_smart_home_corpus_4k.csv`.
 

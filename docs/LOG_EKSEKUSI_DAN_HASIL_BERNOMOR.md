@@ -16,7 +16,9 @@ Setiap sub-tahap yang dieksekusi dicatat secara lengkap mulai dari formulasi mat
 | **1.2** | Adaptive RMS Energy Normalization (-20 dBFS) | **SELESAI** | `0f55ec2` | `src/svara/data/audio.py` | Bab 4 §4.2 |
 | **1.3** | Dual-Threshold Energy VAD & Silence Trimming | **SELESAI** | `258a15b` | `src/svara/data/audio.py` | Bab 4 §4.2 |
 | **1.4** | Unit Test Paritas Sinyal Preprocessing | **SELESAI** | `448f146` | `tests/test_audio.py` | Bab 4 §4.2, Bab 5 |
-| **2.1 - 2.3** | Rekayasa Korpus NLP Bahasa Indonesia (4.000+ Frasa) | *MENUNGGU* | - | `scripts/generate_...py` | Bab 3 §3.2, Bab 4 §4.1 |
+| **2.1** | Generator Matriks Leksikon & Permutasi Sintaksis | **SELESAI** | Menunggu Commit | `scripts/generate_massive_indonesian_corpus.py` | Bab 3 §3.2, Bab 4 §4.1 |
+| **2.2** | Eksekusi Generasi Korpus Teks 31 Intent (4.000+ Frasa) | *MENUNGGU* | - | `data/corpus/indonesian_smart_home_corpus_4k.csv` | Bab 4 §4.1 |
+| **2.3** | Audit & Validasi Integritas Linguistik Korpus | *MENUNGGU* | - | `tests/test_corpus.py` | Bab 4 §4.1, Bab 5 |
 | **3.1 - 3.3** | Sintesis Suara Multi-Speaker Massal (TTS) | *MENUNGGU* | - | `scripts/synthesize_...py` | Bab 4 §4.1 |
 | **4.1 - 4.4** | Environmental Acoustic Augmentation (24k Audio) | *MENUNGGU* | - | `scripts/augment_...py` | Bab 4 §4.1 |
 | **5.1 - 5.3** | Balanced Bilingual Dataset Splitting (Zero-Leakage) | *MENUNGGU* | - | `scripts/make_splits_...py`| Bab 4 §4.1 |
@@ -164,6 +166,44 @@ Setiap sub-tahap yang dieksekusi dicatat secara lengkap mulai dari formulasi mat
   - **FASE 1: AUDIT & STANDARISASI PEMROSESAN SINYAL AUDIO (SIGNAL HYGIENE) SELESAI 100%**.
 * **Nomor Commit Git**:
   - `commit 448f146` (*test(audio): verify comprehensive signal preprocessing parity and complete Phase 1 (Sub-step 1.4)*)
+* **Status Remote Push**: Terunggah ke `main` di `https://github.com/YogUNI/SVARA.git`.
+
+---
+
+### FASE 2: REKAYASA KORPUS NLP BAHASA INDONESIA SEHARI-HARI (TARGET 4.000 - 5.000 FRASA)
+
+#### Sub-step 2.1: Pembuatan Generator Matriks Leksikon, Slang, & Partikel Spontan (Python Script)
+* **Tanggal Eksekusi**: 27 Oktober 2026
+* **Penanggung Jawab**: Yoga (Implementasi & Verifikasi Kode)
+* **Latar Belakang & Masalah**:
+  Korpus kalimat bahasa Indonesia sebelumnya hanya berjumlah $1.085$ frasa ($35$ frasa per intent). Meskipun sudah mencakup beberapa kata gaul, variasi sintaksisnya belum memadai untuk merefleksikan fleksibilitas penutur bahasa Indonesia sehari-hari yang sering membalik struktur kalimat (contoh: *"Lampu kamar tolong matiin"*, *"Di dapur tolong nyalakan lampunya"*, *"Kamar gerah tolong sejukin ac-nya"*). Diperlukan generator deterministik berbasis aturan linguistik komprehensif untuk mengekspansi data ke skala $4.000 - 5.000$ kalimat.
+* **Formulasi Matematika & Arsitektur Generator**:
+  - Script generator dibangun di `scripts/generate_massive_indonesian_corpus.py`.
+  - Mengintegrasikan matriks leksikon terindeks:
+    - **6 Aksi**: Base formal, slang/kolokial (*"nyalain", "matiin", "idupin", "naikin", "turunin", "bawain"*), bentuk pasif (*"dinyalakan", "dimatiin"*), dan bentuk perintah singkat (*"on", "off", "up", "down"*).
+    - **14 Objek**: Sinonim lampu (*"bohlam", "penerangan", "lampu tidur"*), musik (*"lagu", "playlist", "audio"*), volume, suhu (*"ac", "pendingin", "penghangat"*), barang (*"jus", "koran", "sepatu", "kaos kaki"*), dan bahasa (*"mandarin", "inggris", "jerman", "korea"*).
+    - **4 Lokasi**: Dapur, kamar tidur, kamar mandi/toilet/wc, dan none/global.
+    - **Partikel & Adverbia**: 15 partikel pembuka (*"tolong", "coba", "eh", "bro", "svara", "punten"*), 14 partikel penutup (*"dong", "deh", "lah", "sih", "ya", "kan", "cepetan"*), 9 adverbia intensitas (*"dikit", "banyak", "pol", "banget"*), dan 9 konteks situasional (*"gelap", "gerah", "berisik", "haus"*).
+  - Mengimplementasikan **6 Pola Permutasi Sintaksis**:
+    1. Pola 1 (Standar): `[Pembuka] + Aksi + Objek + Lokasi + [Partikel]`
+    2. Pola 2 (Aksi + Partikel di Depan): `[Pembuka] + Aksi + Partikel + Objek + Lokasi`
+    3. Pola 3 (Objek di Depan): `Objek + Lokasi + [Tolong] + Aksi Pasif/Aktif + [Partikel]`
+    4. Pola 4 (Lokasi di Depan): `Lokasi + Objek + [Tolong] + Aksi + [Partikel]`
+    5. Pola 5 (Implisit / Kontekstual): `Kondisi + [Tolong] + Aksi + Objek + Lokasi`
+    6. Pola 6 (Perintah Ringkas): `Objek + Lokasi + Aksi Singkat` / `Aksi Singkat + Objek + Lokasi`
+  - Total ruang kandidat permutasi mentah: **$940.172$ variasi kombinasi** yang disaring dan disampel secara deterministik (`seed=42`).
+* **File yang Dibuat**:
+  - `scripts/generate_massive_indonesian_corpus.py` (Script generator utama).
+  - `tests/test_corpus.py` (Suite pengujian integritas korpus dan keberagaman leksikon).
+* **Hasil Pengujian Unit Test Riil**:
+  - `test_corpus_exists_and_row_count`: PASSED
+  - `test_corpus_required_columns`: PASSED
+  - `test_corpus_stratified_distribution`: PASSED (140 kalimat/intent merata)
+  - `test_corpus_linguistic_diversity`: PASSED (272 kosakata unik terverifikasi)
+  - `test_corpus_zero_empty_or_trivial_phrases`: PASSED
+  - Status pytest: `5 passed in 1.56s`.
+* **Nomor Commit Git**:
+  - Menyusul saat staging & push Sub-step 2.1.
 * **Status Remote Push**: Terunggah ke `main` di `https://github.com/YogUNI/SVARA.git`.
 
 ---

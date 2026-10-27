@@ -7,6 +7,10 @@ data/*
 !data/corpus/*.csv
 !data/synthetic_indonesian/
 !data/synthetic_indonesian/**
+!data/synthetic_indonesian_massive/
+!data/synthetic_indonesian_massive/*.csv
+!data/synthetic_indonesian_massive/splits/
+!data/synthetic_indonesian_massive/splits/*.csv
 !data/bilingual_dataset/
 !data/bilingual_dataset/splits/
 !data/bilingual_dataset/splits/*.csv

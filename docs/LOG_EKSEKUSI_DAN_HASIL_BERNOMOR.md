@@ -306,4 +306,44 @@ Setiap sub-tahap yang dieksekusi dicatat secara lengkap mulai dari formulasi mat
 * **Status Remote Push**: Terunggah ke `main` di `https://github.com/YogUNI/SVARA.git`.
 
 ---
+
+### FASE 3: SINTESIS SUARA MULTI-SPEAKER MASSAL (NEURAL TTS TARGET 8.000 - 10.000 AUDIO BERSIH)
+
+#### Sub-step 3.1: Pembuatan Engine Sintesis Paralel Multi-Worker (Edge Neural TTS Python)
+* **Tanggal Eksekusi**: 27 Oktober 2026
+* **Penanggung Jawab**: Yoga (Implementasi & Validasi Engine Sintesis)
+* **Latar Belakang & Masalah**:
+  Untuk mengubah korpus teks $4.495$ kalimat menjadi audio ucapan nyata yang beragam, sistem membutuhkan engine text-to-speech (TTS) skala industri dengan arsitektur asinkronus multi-worker. Men-download $\approx 9.000$ audio secara sekuensial akan memakan waktu berjam-jam dan rentan putus koneksi. Selain itu, Microsoft Edge TTS menghasilkan stream terkompresi MP3 $24\text{ kHz}$ yang harus diubah secara *in-memory* menjadi standar baku SLU ($16\text{ kHz}$ 16-bit PCM Mono WAV) dengan kontrol headroom dan anti-clipping.
+* **Arsitektur & Parameter Engine Sintesis**:
+  - Script engine: `scripts/synthesize_massive_indonesian.py` (Class `MassiveTTSAsyncEngine`).
+  - Worker Pool: Asynchronous Producer-Consumer Queue dengan konkurensi $N=15$ workers (`asyncio.Semaphore(15)`).
+  - Voice Mapping:
+    1. **Male Voice**: `id-ID-ArdiNeural` (Speaker ID: `spk_ardi`)
+    2. **Female Voice**: `id-ID-GadisNeural` (Speaker ID: `spk_gadis`)
+  - Target Format Audio: WAV, Sample Rate $16.000\text{ Hz}$, Channels $1$ (Mono), Bit Depth 16-bit PCM (`subtype="PCM_16"`).
+  - Konversi Audio & Signal Hygiene:
+    1. Decode MP3 in-memory via `soundfile.read` ($0$ file temporer disk untuk MP3).
+    2. Downmix stereo-to-mono secara aritmetika vektor.
+    3. Polyphase sinc resampling dari $24\text{ kHz}$ ke $16\text{ kHz}$ menggunakan rasio koprima $p=2, q=3$ (`scipy.signal.resample_poly`) tanpa distorsi fase.
+    4. Headroom peak normalization limit $\le 0.95$ (headroom $-0.5\text{ dBFS}$) untuk mencegah clipping pada input model Transformer.
+  - Mekanisme Ketahanan Jaringan:
+    1. Exponential backoff retry ($1.0\text{s}, 2.0\text{s}, 4.0\text{s}, 8.0\text{s}$ + random jitter) hingga 4 kali percobaan per frasa.
+    2. Automatic resumption & checkpointing: jika proses dihentikan sewaktu-waktu, file WAV yang sudah valid di disk langsung di-*skip* tanpa download ulang.
+  - Upgrade Dependensi: Memperbarui library `edge-tts` ke versi `7.3.1` untuk menangani protokol token `Sec-MS-GEC` terbaru dari Microsoft WebSocket API.
+* **Artefak File yang Dibuat**:
+  - `scripts/synthesize_massive_indonesian.py` (Engine sintesis paralel multi-worker).
+  - `tests/test_synthesis.py` (Suite pengujian unit test engine sintesis, konversi audio, dan live smoke test).
+  - `.gitignore` (Konfigurasi whitelist metadata CSV `data/synthetic_indonesian_massive/*.csv` dan ignore audio `.wav`).
+* **Hasil Pengujian Unit Test Riil**:
+  - `test_audio_conversion_mono_resample_headroom`: PASSED (16 kHz mono, peak <= 0.95, sinc filter akurat)
+  - `test_verify_wav_file`: PASSED (Validasi header WAV, sample rate, bit depth, dan integritas file)
+  - `test_engine_initialization_and_voices`: PASSED (Pemetaan suara Ardi & Gadis akurat)
+  - `test_engine_dry_run_pipeline`: PASSED (Simulasi antrian worker dan pembuatan metadata manifest 100% lulus)
+  - `test_live_single_synthesis_smoke`: PASSED (Sintesis langsung live Edge TTS menghasilkan audio 16 kHz 16-bit PCM Mono valid, lolos verifikasi cache resumability)
+  - Status pytest: `5 passed in 21.42s` (dan seluruh `29 passed in 10.53s` di seluruh test suite repositori).
+* **Nomor Commit Git**:
+  - [Akan diisi setelah commit]
+* **Status Remote Push**: Terunggah ke `main` di `https://github.com/YogUNI/SVARA.git`.
+
+---
 *(Logbook ini akan diperbarui secara otomatis setiap kali sub-step berikutnya selesai dieksekusi)*

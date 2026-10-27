@@ -1,0 +1,120 @@
+{
+  "timestamp": "2026-10-27 23:29:51",
+  "global_status": "PASS",
+  "inspection_elapsed_seconds": 12.72,
+  "bijection_audit": {
+    "manifest_count": 8990,
+    "disk_count": 8990,
+    "missing_on_disk_count": 0,
+    "orphan_on_disk_count": 0,
+    "is_bijection": true,
+    "status": "PASS"
+  },
+  "acoustic_header_audit": {
+    "target_sample_rate": 16000,
+    "expected_channels": 1,
+    "expected_subtype": "PCM_16",
+    "total_files_audited": 8990,
+    "valid_header_count": 8990,
+    "duration_matched_count": 8990,
+    "compliance_pct": 100.0,
+    "status": "PASS"
+  },
+  "signal_hygiene_audit": {
+    "nan_count": 0,
+    "inf_count": 0,
+    "peak_headroom_limit": 0.950001,
+    "peak_violations": 0,
+    "silence_threshold_rms": 0.005,
+    "silence_violations": 0,
+    "dc_bias_limit": 0.01,
+    "dc_bias_violations": 0,
+    "peak_stats": {
+      "mean": 0.5823,
+      "std": 0.0825,
+      "min": 0.3539,
+      "max": 0.818
+    },
+    "rms_stats": {
+      "mean": 0.1115,
+      "std": 0.022,
+      "min": 0.0634,
+      "max": 0.1576
+    },
+    "dbfs_stats": {
+      "mean": -19.23,
+      "std": 1.74,
+      "min": -23.95,
+      "max": -16.05
+    },
+    "status": "PASS"
+  },
+  "speaker_audit": {
+    "speaker_counts": {
+      "spk_ardi": 4495,
+      "spk_gadis": 4495
+    },
+    "gender_counts": {
+      "male": 4495,
+      "female": 4495
+    },
+    "ardi_count": 4495,
+    "gadis_count": 4495,
+    "male_ratio": 0.5,
+    "female_ratio": 0.5,
+    "gender_balance_diff": 0,
+    "status": "PASS"
+  },
+  "intent_audit": {
+    "unique_intents": 31,
+    "expected_intents": 31,
+    "min_clips_per_intent": 290,
+    "max_clips_per_intent": 290,
+    "mean_clips_per_intent": 290.0,
+    "std_clips_per_intent": 0.0,
+    "shannon_entropy_bits": 4.954196,
+    "max_entropy_bits": 4.954196,
+    "entropy_ratio": 1.0,
+    "status": "PASS"
+  },
+  "domain_audit": {
+    "domains": {
+      "Lighting (Pencahayaan)": {
+        "count": 2900,
+        "percentage": 32.26
+      },
+      "Climate (Pengatur Suhu & AC)": {
+        "count": 2320,
+        "percentage": 25.81
+      },
+      "System Language (Pengaturan Bahasa)": {
+        "count": 1450,
+        "percentage": 16.13
+      },
+      "Robot Butler (Pengantaran Barang)": {
+        "count": 1160,
+        "percentage": 12.9
+      },
+      "Media & Audio (Hiburan & Volume)": {
+        "count": 1160,
+        "percentage": 12.9
+      }
+    },
+    "status": "PASS"
+  },
+  "duration_storage_audit": {
+    "total_duration_seconds": 29918.38,
+    "total_duration_hours": 8.311,
+    "mean_duration_sec": 3.328,
+    "std_duration_sec": 0.534,
+    "min_duration_sec": 1.92,
+    "p25_duration_sec": 2.928,
+    "median_duration_sec": 3.264,
+    "p75_duration_sec": 3.696,
+    "max_duration_sec": 5.784,
+    "total_storage_bytes": 957783592,
+    "total_storage_mb": 913.41,
+    "mean_file_size_kb": 104.04,
+    "status": "PASS"
+  }
+}

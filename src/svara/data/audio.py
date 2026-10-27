@@ -1,6 +1,6 @@
 """Unified audio preprocessing module for training, evaluation, and inference.
 
-Task: P2-05, Sub-step 1.1
+Task: P2-05, Sub-step 1.1, Sub-step 1.2
 Reference: AGENTS.md rule 7, docs/01 §1, docs/02 §1, docs/05 §1, docs/MASTER_ROADMAP_BERNOMOR_DEEP_LEARNING.md
 
 RULE 7 (AGENTS.md):
@@ -63,6 +63,58 @@ def apply_butterworth_bandpass(
     return filtered.astype(np.float32)
 
 
+# Adaptive RMS Energy Normalization Target (-20 dBFS)
+# Standardizes whisper to loud vocal projection before VAD and transformer feature extraction
+DEFAULT_TARGET_RMS_DBFS = -20.0
+DEFAULT_MAX_RMS_GAIN_DB = 30.0
+
+
+def adaptive_rms_normalize(
+    waveform: np.ndarray,
+    target_dbfs: float = DEFAULT_TARGET_RMS_DBFS,
+    max_gain_db: float = DEFAULT_MAX_RMS_GAIN_DB,
+    min_rms_threshold: float = 1e-4,
+    eps: float = 1e-7,
+) -> np.ndarray:
+    """Normalizes waveform energy to a target RMS level in dBFS with gain limiting.
+
+    Ensures quiet whispers and loud close-mic utterances have consistent energy
+    before VAD segmentation and acoustic feature extraction.
+
+    Args:
+        waveform: 1D float32 numpy array.
+        target_dbfs: Target RMS energy in dBFS (default -20.0 dBFS).
+        max_gain_db: Maximum amplification gain in dB to prevent background noise explosion (default 30.0 dB).
+        min_rms_threshold: Minimum RMS threshold below which audio is treated as pure silence.
+        eps: Small epsilon to prevent division by zero.
+
+    Returns:
+        RMS-normalized 1D float32 numpy array.
+    """
+    waveform = np.asarray(waveform, dtype=np.float32)
+    if len(waveform) == 0:
+        return waveform
+
+    current_rms = float(np.sqrt(np.mean(waveform ** 2)))
+    if current_rms < min_rms_threshold:
+        return waveform
+
+    target_rms = 10.0 ** (target_dbfs / 20.0)
+    raw_gain = target_rms / (current_rms + eps)
+
+    max_gain = 10.0 ** (max_gain_db / 20.0)
+    clamped_gain = min(raw_gain, max_gain)
+
+    normalized = waveform * clamped_gain
+
+    # Peak limiting guard to prevent digital clipping above 1.0
+    peak = float(np.max(np.abs(normalized)))
+    if peak > 1.0:
+        normalized = normalized / peak
+
+    return normalized.astype(np.float32)
+
+
 def normalize_waveform(waveform: np.ndarray, eps: float = 1e-7) -> np.ndarray:
     """Zero-mean, unit-variance per-utterance normalization.
 
@@ -80,6 +132,8 @@ def preprocess_audio(
     max_audio_seconds: Optional[float] = DEFAULT_MAX_AUDIO_SECONDS,
     normalize: bool = True,
     apply_bandpass: bool = True,
+    apply_rms_norm: bool = True,
+    target_rms_dbfs: float = DEFAULT_TARGET_RMS_DBFS,
     pad: bool = False,
     is_training: bool = False,
 ) -> Tuple[np.ndarray, int, int]:
@@ -92,6 +146,8 @@ def preprocess_audio(
         max_audio_seconds: Maximum allowed duration. If None, no crop/padding.
         normalize: Whether to apply per-utterance zero-mean unit-variance.
         apply_bandpass: Whether to apply 80Hz-7.5kHz Butterworth bandpass filter.
+        apply_rms_norm: Whether to apply Adaptive RMS energy normalization (-20 dBFS).
+        target_rms_dbfs: Target RMS energy level in dBFS (default -20.0 dBFS).
         pad: If True, pads short audio with zeros to max_audio_seconds * target_sample_rate.
         is_training: If True and cropping is required, perform random crop. Else deterministic crop from start.
 
@@ -136,13 +192,17 @@ def preprocess_audio(
     if apply_bandpass:
         data = apply_butterworth_bandpass(data, sr=target_sample_rate)
 
-    # 5. Normalization (per-utterance zero-mean unit-variance)
+    # 5. Adaptive RMS Energy Normalization (Target: -20 dBFS)
+    if apply_rms_norm:
+        data = adaptive_rms_normalize(data, target_dbfs=target_rms_dbfs)
+
+    # 6. Normalization (per-utterance zero-mean unit-variance)
     if normalize:
         data = normalize_waveform(data)
 
     original_length = len(data)
 
-    # 6. Crop / Pad to max_samples
+    # 7. Crop / Pad to max_samples
     if max_audio_seconds is not None:
         max_samples = int(round(max_audio_seconds * target_sample_rate))
         if len(data) > max_samples:

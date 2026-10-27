@@ -1,6 +1,6 @@
 """Unit tests for shared audio preprocessing and dataset collation.
 
-Task: P2-05, P2-06, Sub-step 1.1
+Task: P2-05, P2-06, Sub-step 1.1, Sub-step 1.2
 Reference: AGENTS.md rule 7, docs/02 §10, docs/MASTER_ROADMAP_BERNOMOR_DEEP_LEARNING.md
 """
 
@@ -11,6 +11,7 @@ import torch
 
 from svara.data.audio import (
     TARGET_SAMPLE_RATE,
+    adaptive_rms_normalize,
     apply_butterworth_bandpass,
     normalize_waveform,
     preprocess_audio,
@@ -33,6 +34,46 @@ def test_normalize_waveform():
     norm = normalize_waveform(data)
     assert np.isclose(np.mean(norm), 0.0, atol=1e-6)
     assert np.isclose(np.std(norm), 1.0, atol=1e-5)
+
+
+def test_adaptive_rms_normalize_quiet_and_loud():
+    """Verify that quiet (-34 dBFS) and loud (-6 dBFS) inputs converge to -20 dBFS RMS."""
+    sr = 16000
+    t = np.linspace(0, 1.0, sr, endpoint=False)
+    
+    # 440 Hz tone with quiet amplitude (RMS ~ 0.02, -34 dBFS)
+    sig_quiet = (0.02 * np.sqrt(2) * np.sin(2 * np.pi * 440 * t)).astype(np.float32)
+    # 440 Hz tone with loud amplitude (RMS ~ 0.50, -6 dBFS)
+    sig_loud = (0.50 * np.sqrt(2) * np.sin(2 * np.pi * 440 * t)).astype(np.float32)
+    
+    norm_quiet = adaptive_rms_normalize(sig_quiet, target_dbfs=-20.0)
+    norm_loud = adaptive_rms_normalize(sig_loud, target_dbfs=-20.0)
+    
+    rms_quiet = float(np.sqrt(np.mean(norm_quiet ** 2)))
+    rms_loud = float(np.sqrt(np.mean(norm_loud ** 2)))
+    
+    # Target RMS: 10^(-20/20) = 0.1000
+    assert np.isclose(rms_quiet, 0.100, atol=1e-3)
+    assert np.isclose(rms_loud, 0.100, atol=1e-3)
+
+
+def test_adaptive_rms_normalize_silence_and_gain_clamp():
+    """Verify silence stability and max gain clamping at +30 dB."""
+    sr = 16000
+    # 1. Pure silence
+    silence = np.zeros(sr, dtype=np.float32)
+    norm_silence = adaptive_rms_normalize(silence, target_dbfs=-20.0)
+    assert np.all(norm_silence == 0.0)
+    assert not np.any(np.isnan(norm_silence))
+    
+    # 2. Extremely faint tone needing 40 dB gain (clamped at 30 dB)
+    t = np.linspace(0, 1.0, sr, endpoint=False)
+    sig_faint = (0.001 * np.sqrt(2) * np.sin(2 * np.pi * 440 * t)).astype(np.float32)
+    norm_faint = adaptive_rms_normalize(sig_faint, target_dbfs=-20.0, max_gain_db=30.0)
+    
+    gain_applied = float(np.sqrt(np.mean(norm_faint ** 2)) / np.sqrt(np.mean(sig_faint ** 2)))
+    expected_max_gain = 10.0 ** (30.0 / 20.0)
+    assert np.isclose(gain_applied, expected_max_gain, rtol=1e-3)
 
 
 def test_butterworth_bandpass_attenuation():

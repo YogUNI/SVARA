@@ -21,7 +21,7 @@ Dokumen ini adalah panduan kontrol proyek resmi untuk pematangan sistem Deep Lea
 ├── FASE 2: REKAYASA KORPUS NLP BAHASA INDONESIA SEHARI-HARI (TARGET 4.000 - 5.000 FRASA)
 │   ├── [x] Sub-step 2.1: Pembuatan Generator Matriks Leksikon, Slang, & Partikel Spontan (Python Script) [SELESAI - Commit 713b11b]
 │   ├── [x] Sub-step 2.2: Eksekusi Generasi Korpus Teks 31 Intent (130-150 Frasa per Intent, Total 4.000+ Kalimat) [SELESAI - Commit 9fcf68b]
-│   └── [x] Sub-step 2.3: Audit & Validasi Integritas Linguistik (Deduplikasi, Cek Sebaran, Ekspor CSV) [SELESAI]
+│   └── [x] Sub-step 2.3: Audit & Validasi Integritas Linguistik (Deduplikasi, Cek Sebaran, Ekspor CSV) [SELESAI - Commit ce620c2]
 │
 ├── FASE 3: SINTESIS SUARA MULTI-SPEAKER MASSAL (NEURAL TTS TARGET 8.000 - 10.000 AUDIO BERSIH)
 │   ├── Sub-step 3.1: Pembuatan Engine Sintesis Paralel Multi-Worker (Edge Neural TTS Python)
@@ -78,7 +78,7 @@ Dokumen ini adalah panduan kontrol proyek resmi untuk pematangan sistem Deep Lea
 ### FASE 2: REKAYASA KORPUS NLP BAHASA INDONESIA (TARGET 4.000 - 5.000 FRASA)
 * **Sub-step 2.1** [SELESAI - Commit `713b11b`]: Buat script `scripts/generate_massive_indonesian_corpus.py` yang memuat kamus leksikon lengkap (sinonim aksi gaul, kata benda, nama ruangan, partikel spontan, dan 6 pola kalimat terbalik).
 * **Sub-step 2.2** [SELESAI - Commit `9fcf68b`]: Eksekusi batch script menghasilkan 145 frasa unik per intent across 31 intent ($31 \times 145 = 4.495\text{ frasa}$) terbagi dalam 5 domain fungsional smart home seimbang (Lighting 1.450, Climate 1.160, Media 580, Robot 580, Language 725).
-* **Sub-step 2.3** [SELESAI]: Audit integritas linguistik 7 dimensi (`scripts/audit_indonesian_corpus.py`): 0 duplikasi, 0 kolisi intent, sebaran kelas seragam sempurna ($H/H_{\max}=1.000000$), ekspor `reports/corpus_linguistic_audit.json` dan `.md`. **FASE 2 SELESAI 100%**.
+* **Sub-step 2.3** [SELESAI - Commit `ce620c2`]: Audit integritas linguistik 7 dimensi (`scripts/audit_indonesian_corpus.py`): 0 duplikasi, 0 kolisi intent, sebaran kelas seragam sempurna ($H/H_{\max}=1.000000$), ekspor `reports/corpus_linguistic_audit.json` dan `.md`. **FASE 2 SELESAI 100%**.
 
 ### FASE 3: SINTESIS SUARA MULTI-SPEAKER MASSAL (NEURAL TTS 8.000 - 10.000 AUDIO)
 * **Sub-step 3.1**: Buat script `scripts/synthesize_massive_indonesian.py` dengan arsitektur async paralel (`asyncio.Semaphore(15)`).

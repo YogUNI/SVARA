@@ -246,7 +246,7 @@ Setiap sub-tahap yang dieksekusi dicatat secara lengkap mulai dari formulasi mat
   - `test_corpus_zero_empty_or_trivial_phrases`: PASSED (Zero empty phrases)
   - Status pytest: `7 passed in 2.02s` (dan seluruh `20 passed in 11.67s` bersama suite audio).
 * **Nomor Commit Git**:
-  - [Akan diisi setelah commit]
+  - `commit 9fcf68b` (*feat(corpus): execute and verify official 4,495-phrase balanced batch generation across 31 intents (Sub-step 2.2)*)
 * **Status Remote Push**: Terunggah ke `main` di `https://github.com/YogUNI/SVARA.git`.
 
 ---

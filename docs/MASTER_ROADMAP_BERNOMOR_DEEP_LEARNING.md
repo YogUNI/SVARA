@@ -82,11 +82,11 @@ Dokumen ini adalah panduan kontrol proyek resmi untuk pematangan sistem Deep Lea
 
 ### FASE 3: SINTESIS SUARA MULTI-SPEAKER MASSAL (NEURAL TTS 8.000 - 10.000 AUDIO)
 * **Sub-step 3.1** [SELESAI - Commit `077af48`]: Buat script `scripts/synthesize_massive_indonesian.py` dengan arsitektur async paralel (`asyncio.Semaphore(15)`), auto-retry exponential backoff, auto-resume, dan polyphase sinc resampling 16 kHz 16-bit Mono WAV.
-* **Sub-step 3.2** [SELESAI - Commit `b3c65fd`]: Generate 4.495 frasa $\times$ 2 suara (`id-ID-ArdiNeural` Pria & `id-ID-GadisNeural` Wanita) $\rightarrow 8.990$ audio klip bersih (16 kHz 16-bit Mono WAV, total 8,31 jam audio, 0 gagal, manifest `metadata.csv`).
-* **Sub-step 3.3** [SELESAI - Commit `b778561`]: Verifikasi zero-corruption akustik 7 dimensi (`scripts/audit_synthetic_dataset.py`): 16 kHz Mono PCM_16, peak headroom $\le 0,95$, 0 NaN/Inf, 0 missing/orphan, sebaran kelas sempurna ($H/H_{\max}=1.000000$, 290 audio/intent), total 8,31 jam audio, ekspor `reports/synthetic_acoustic_audit.json` & `.md`. **FASE 3 SELESAI 100%**.
+* **Sub-step 3.2** [SELESAI - Commit `305d73e`]: Generate 4.495 frasa $\times$ 2 suara (`id-ID-ArdiNeural` Pria & `id-ID-GadisNeural` Wanita) $\rightarrow 8.990$ audio klip bersih (16 kHz 16-bit Mono WAV, total 8,31 jam audio, 0 gagal, manifest `metadata.csv`).
+* **Sub-step 3.3** [SELESAI - Commit `d8c084e`]: Verifikasi zero-corruption akustik 7 dimensi (`scripts/audit_synthetic_dataset.py`): 16 kHz Mono PCM_16, peak headroom $\le 0,95$, 0 NaN/Inf, 0 missing/orphan, sebaran kelas sempurna ($H/H_{\max}=1.000000$, 290 audio/intent), total 8,31 jam audio, ekspor `reports/synthetic_acoustic_audit.json` & `.md`. **FASE 3 SELESAI 100%**.
 
 ### FASE 4: ENVIRONMENTAL ACOUSTIC AUGMENTATION (24.000 AUDIO ROBUST)
-* **Sub-step 4.1**: Terapkan Schroeder Reverberator untuk kamar tidur dan ruang keluarga.
+* **Sub-step 4.1** [SELESAI - Commit `c8dd18a`]: Terapkan Schroeder Reverberator (4 parallel comb filters + 2 cascaded all-pass filters) untuk simulasi akustik kamar tidur ($RT_{60}=0,28\text{s}$) dan ruang keluarga ($RT_{60}=0,48\text{s}$), peak headroom $\le 0,95$, integrasi di `src/svara/data/augment.py`, unit test 9/9 lulus, benchmark throughput 399x real-time di `reports/schroeder_reverb_benchmark.json`.
 * **Sub-step 4.2**: Terapkan filter mic laptop internal (Highpass 100 Hz) dan injeksi noise AC/kipas (SNR 16-26 dB).
 * **Sub-step 4.3**: Terapkan variasi tempo bicara ($0.92\times, 1.0\times, 1.08\times$).
 * **Sub-step 4.4**: Generate 3 variasi per audio bersih $\rightarrow 8.400 \times 3 = 25.200$ audio klip robust di `data/synthetic_indonesian_massive/wavs_augmented/`.

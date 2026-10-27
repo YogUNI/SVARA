@@ -1,0 +1,69 @@
+{
+  "sample_wav": "data/synthetic_indonesian_massive/wavs_16k/id_intent00_0000_spk_ardi.wav",
+  "sample_rate": 16000,
+  "clean_dry_stats": {
+    "duration_sec": 3.552,
+    "peak": 0.59967,
+    "rms": 0.14779,
+    "dbfs": -16.61,
+    "spectral_centroid_hz": 1607.2
+  },
+  "room_evaluations": {
+    "bedroom": {
+      "description": "Kamar Tidur (Moderate absorption, soft furnishings, short reverberation)",
+      "rt60_seconds": 0.28,
+      "wet_ratio": 0.18,
+      "stats": {
+        "duration_sec": 3.552,
+        "peak": 0.60729,
+        "rms": 0.1423,
+        "dbfs": -16.94,
+        "spectral_centroid_hz": 1586.8
+      },
+      "has_nan": false,
+      "has_inf": false,
+      "peak_headroom_pass": true,
+      "status": "PASS"
+    },
+    "living_room": {
+      "description": "Ruang Tamu / Keluarga (Larger volume, hard floor, moderate reverberation)",
+      "rt60_seconds": 0.48,
+      "wet_ratio": 0.28,
+      "stats": {
+        "duration_sec": 3.552,
+        "peak": 0.60119,
+        "rms": 0.1364,
+        "dbfs": -17.3,
+        "spectral_centroid_hz": 1588.1
+      },
+      "has_nan": false,
+      "has_inf": false,
+      "peak_headroom_pass": true,
+      "status": "PASS"
+    },
+    "kitchen": {
+      "description": "Dapur (Reflective ceramic tiles, metallic fixtures, medium reverberation)",
+      "rt60_seconds": 0.36,
+      "wet_ratio": 0.22,
+      "stats": {
+        "duration_sec": 3.552,
+        "peak": 0.59017,
+        "rms": 0.14006,
+        "dbfs": -17.07,
+        "spectral_centroid_hz": 1581.5
+      },
+      "has_nan": false,
+      "has_inf": false,
+      "peak_headroom_pass": true,
+      "status": "PASS"
+    }
+  },
+  "throughput_benchmarks": {
+    "iterations": 500,
+    "total_elapsed_sec": 4.445,
+    "mean_latency_ms": 8.889,
+    "throughput_clips_per_sec": 112.5,
+    "rt_factor": 399.6
+  },
+  "global_status": "PASS"
+}

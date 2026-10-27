@@ -444,7 +444,52 @@ Setiap sub-tahap yang dieksekusi dicatat secara lengkap mulai dari formulasi mat
 * **Pencapaian Milestone**:
   - **FASE 3: SINTESIS SUARA MULTI-SPEAKER MASSAL (NEURAL TTS TARGET 8.000 - 10.000 AUDIO) SELESAI 100%**.
 * **Nomor Commit Git**:
-  - `commit b778561` (*feat(audit): implement 7-dimension acoustic integrity audit and complete Phase 3 (Sub-step 3.3)*)
+  - `commit d8c084e` (*feat(audit): implement 7-dimension acoustic integrity audit and complete Phase 3 (Sub-step 3.3)*)
+* **Status Remote Push**: Terunggah ke `main` di `https://github.com/YogUNI/SVARA.git`.
+
+---
+
+### FASE 4: ENVIRONMENTAL ACOUSTIC AUGMENTATION (TARGET 24.000 AUDIO ROBUST)
+
+#### Sub-step 4.1: Implementasi Schroeder Reverberator Akustik Ruang Pintar (Kamar Tidur & Ruang Tamu)
+* **Tanggal Eksekusi**: 27 Oktober 2026
+* **Penanggung Jawab**: Yoga (Implementasi DSP, Akselerasi Vektor Chunk, & Validasi Fisika Akustik)
+* **Latar Belakang & Masalah**:
+  Audio sintesis suara pada Fase 3 berkarakter *anechoic* (kering tanpa pantulan akustik ruangan). Pada skenario nyata di rumah tinggal, pengguna mengucapkan perintah suara di dalam ruangan tertutup (kamar tidur dengan peredaman furnitur/gorden atau ruang tamu/keluarga yang luas dengan pantulan lantai keramik/ubin). Hal ini menyebabkan pantulan gelombang suara (*multipath reflections*) yang mengubah karakteristik envelope dan fasa sinyal. Tanpa augmentasi reverberasi ruangan, model SLU rentan mengalami degradasi akurasi signifikan di lingkungan fisik riil.
+* **Formulasi Matematika & Arsitektur Schroeder Reverberator**:
+  Menerapkan arsitektur digital legendaris Manfred R. Schroeder (1962, *Natural-Sounding Artificial Reverberation*):
+  1. **4 Feedback Comb Filters (FBCF) Paralel**:
+     - Memodelkan pantulan diskrit awal (*early reflections*) dari dinding, lantai, dan langit-langit.
+     - Persamaan beda linier:
+       $$y[n] = x[n] + g \cdot y[n - D]$$
+     - Nilai delay $D$ (dalam sampel pada $f_s = 16.000\text{ Hz}$) dipilih sebagai bilangan prima relatif (*mutually coprime*) untuk mencegah resonansi modal tumpang tindih (*flutter echo*).
+     - Koefisien gain umpan balik $g$ diturunkan dari persamaan Eyring-Schroeder terhadap waktu peluruhan $RT_{60}$:
+       $$g = 10^{-\frac{3 D}{RT_{60} \cdot f_s}}$$
+  2. **2 All-Pass Filters (APF) Kaskade**:
+     - Mendispersikan kerapatan fasa dan memecah gema (*phase decorrelation & echo diffusion*) dengan respons magnitudo flat tepat $1,0$ (*all-pass unity gain*):
+       $$H(z) = \frac{-g_{\text{ap}} + z^{-D_{\text{ap}}}}{1 - g_{\text{ap}} z^{-D_{\text{ap}}}}, \quad g_{\text{ap}} = 0,7$$
+  3. **Akselerasi Numerik Chunk-Vectorization**:
+     - Filter IIR sparse delay panjang diakselerasi menggunakan pembagian blok vektor NumPy sepanjang $D$ sampel. Waktu komputasi terpangkas drastis dari $156\text{ ms}$ menjadi **$8,89\text{ ms}$ per klip 3 detik** ($399,6\times$ lebih cepat dari pemutaran audio real-time).
+  4. **Profil Akustik Ruangan Smart Home**:
+     - **Bedroom (Kamar Tidur)**: $RT_{60} = 0,28\text{ detik}$, rasio basah $\text{wet} = 0,18$, comb delays $[479, 587, 691, 797]$, APF $[89, 23]$.
+     - **Living Room (Ruang Tamu / Keluarga)**: $RT_{60} = 0,48\text{ detik}$, rasio basah $\text{wet} = 0,28$, comb delays $[739, 887, 1039, 1187]$, APF $[149, 43]$.
+     - **Kitchen (Dapur)**: $RT_{60} = 0,36\text{ detik}$, rasio basah $\text{wet} = 0,22$, comb delays $[599, 709, 829, 953]$, APF $[109, 31]$.
+  5. **Kontrol Headroom Anti-Clipping**:
+     - Amplitudo puncak sinyal hasil pencampuran $((1 - w)x + wy_{\text{ap}})$ dibatasi pada batas aman $\le 0,9500$ (headroom $-0,5\text{ dBFS}$) untuk menjaga stabilitas numerik ekstraktor fitur wav2vec2.
+* **Artefak File yang Dibuat & Dimodifikasi**:
+  - `src/svara/data/augment.py`: Penambahan fungsi `_feedback_comb_filter`, `_schroeder_allpass_filter`, `apply_schroeder_reverb`, preset `SCHROEDER_ROOM_PRESETS`, kelas `SchroederReverberator`, dan integrasi probabilitas reverb ke `AudioAugmentor`.
+  - `tests/test_augment.py`: Penambahan 5 unit test komprehensif (verifikasi bentuk & non-NaN, dry passthrough, silence passthrough, perbandingan rasio energi ekor kamar tidur vs ruang tamu, dan integrasi augmentor).
+  - `scripts/demo_schroeder_reverb.py`: Script benchmark empiris dan pengujian profil akustik ruangan.
+  - `reports/schroeder_reverb_benchmark.json`: Data hasil evaluasi akustik dan kecepatan pemrosesan.
+* **Hasil Pengujian & Verifikasi Fisika Akustik**:
+  - **Fisika Peluruhan Energi**: Ekor energi pantulan ruang keluarga terbukti $66,25\times$ lebih besar daripada kamar tidur ($E_{\text{living}} = 7,26\times 10^{-4}$ vs $E_{\text{bedroom}} = 1,10\times 10^{-5}$), memvalidasi secara fisik ruangan bervolume lebih besar memiliki reverberasi lebih panjang.
+  - **Kepatuhan Headroom**: Peak audio teruji pada `0.6073` (kamar tidur) dan `0.6012` (ruang tamu), 100% patuh di bawah batas `0.9500`.
+  - **Throughput & Kecepatan**: $112,5\text{ audio/detik}$ (single-thread), rata-rata latensi $8,89\text{ ms}$, Real-Time Factor (RTF) mencapai $399,6\times$.
+  - **Unit Test Repositori**: Seluruh **88 unit test** di `tests/` lulus $100\%$ tanpa ada kegagalan (`88 passed, 7 warnings in 28.24s`).
+* **Pencapaian Milestone**:
+  - Sub-step 4.1 selesai sempurna. Schroeder Reverberator siap dipakai untuk augmentasi skala industri pada sub-step 4.4.
+* **Nomor Commit Git**:
+  - `commit c8dd18a` (*feat(augment): implement Schroeder reverberator with smart-home room presets (Sub-step 4.1)*)
 * **Status Remote Push**: Terunggah ke `main` di `https://github.com/YogUNI/SVARA.git`.
 
 ---

@@ -15,7 +15,7 @@ Setiap sub-tahap yang dieksekusi dicatat secara lengkap mulai dari formulasi mat
 | **1.1** | Butterworth Bandpass Filter (80 Hz - 7.5 kHz) | **SELESAI** | `e29ae88` | `src/svara/data/audio.py` | Bab 4 §4.2 |
 | **1.2** | Adaptive RMS Energy Normalization (-20 dBFS) | **SELESAI** | `0f55ec2` | `src/svara/data/audio.py` | Bab 4 §4.2 |
 | **1.3** | Dual-Threshold Energy VAD & Silence Trimming | **SELESAI** | `258a15b` | `src/svara/data/audio.py` | Bab 4 §4.2 |
-| **1.4** | Unit Test Paritas Sinyal Preprocessing | **SELESAI** | Menunggu Commit | `tests/test_audio.py` | Bab 4 §4.2, Bab 5 |
+| **1.4** | Unit Test Paritas Sinyal Preprocessing | **SELESAI** | `448f146` | `tests/test_audio.py` | Bab 4 §4.2, Bab 5 |
 | **2.1 - 2.3** | Rekayasa Korpus NLP Bahasa Indonesia (4.000+ Frasa) | *MENUNGGU* | - | `scripts/generate_...py` | Bab 3 §3.2, Bab 4 §4.1 |
 | **3.1 - 3.3** | Sintesis Suara Multi-Speaker Massal (TTS) | *MENUNGGU* | - | `scripts/synthesize_...py` | Bab 4 §4.1 |
 | **4.1 - 4.4** | Environmental Acoustic Augmentation (24k Audio) | *MENUNGGU* | - | `scripts/augment_...py` | Bab 4 §4.1 |
@@ -163,7 +163,7 @@ Setiap sub-tahap yang dieksekusi dicatat secara lengkap mulai dari formulasi mat
 * **Pencapaian Milestone**:
   - **FASE 1: AUDIT & STANDARISASI PEMROSESAN SINYAL AUDIO (SIGNAL HYGIENE) SELESAI 100%**.
 * **Nomor Commit Git**:
-  - Menyusul saat staging & push Sub-step 1.4.
+  - `commit 448f146` (*test(audio): verify comprehensive signal preprocessing parity and complete Phase 1 (Sub-step 1.4)*)
 * **Status Remote Push**: Terunggah ke `main` di `https://github.com/YogUNI/SVARA.git`.
 
 ---

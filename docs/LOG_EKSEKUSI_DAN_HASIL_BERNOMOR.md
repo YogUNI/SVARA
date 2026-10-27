@@ -208,4 +208,46 @@ Setiap sub-tahap yang dieksekusi dicatat secara lengkap mulai dari formulasi mat
 * **Status Remote Push**: Terunggah ke `main` di `https://github.com/YogUNI/SVARA.git`.
 
 ---
+
+#### Sub-step 2.2: Eksekusi Generasi Korpus Teks 31 Intent (130-150 Frasa per Intent, Total 4.000+ Kalimat)
+* **Tanggal Eksekusi**: 27 Oktober 2026
+* **Penanggung Jawab**: Yoga (Implementasi & Verifikasi Ilmiah)
+* **Latar Belakang & Masalah**:
+  Untuk mencegah bias kelas (class imbalance) pada multi-task classification head Spoken Language Understanding (SLU), setiap intent dari ke-31 intent yang didefinisikan dalam Fluent Speech Commands (FSC) harus memiliki representasi sampel data teks berbahasa Indonesia yang benar-benar seimbang dan proporsional. Target kuota per intent ditetapkan pada rentang 130 - 150 variasi frasa unik agar total korpus mencapai skala 4.000 - 5.000 kalimat yang mencakup 5 domain fungsional rumah pintar.
+* **Parameter & Formulasi Eksekusi Batch**:
+  - Script generator: `scripts/generate_massive_indonesian_corpus.py` (CLI berparameter `--intent-map`, `--output`, `--target-per-intent`, `--seed`).
+  - Target per intent: $N_{\text{target}} = 145$ frasa unik per intent ($145 \in [130, 150]$).
+  - Total intent: $K = 31$ intent (Intent ID 0 sampai 30).
+  - Total kandidat ruang permutasi yang dievaluasi: $3.127.964$ variasi kombinasi.
+  - Total frasa bersih terpilih: $N_{\text{total}} = 31 \times 145 = 4.495$ kalimat unik.
+  - Random seed: $42$ (Deterministic Sampling).
+  - Standar Deviasi Sebaran Antar-Kelas: $\sigma_{\text{intent}} = 0.00$ (Zero Class Imbalance / 100% Balanced).
+* **Distribusi Domain Fungsional Smart Home**:
+  1. **Lighting (Pencahayaan)**: $10$ intent (Intent 0-4, 15-19) $\rightarrow 1.450$ frasa ($32.3\%$)
+  2. **Climate (Pengatur Suhu & AC)**: $8$ intent (Intent 21-24, 26-29) $\rightarrow 1.160$ frasa ($25.8\%$)
+  3. **Media & Audio (Hiburan & Volume)**: $4$ intent (Intent 5, 20, 25, 30) $\rightarrow 580$ frasa ($12.9\%$)
+  4. **Robot Butler (Pengantaran Barang)**: $4$ intent (Intent 6-9) $\rightarrow 580$ frasa ($12.9\%$)
+  5. **System Language (Pengaturan Bahasa)**: $5$ intent (Intent 10-14) $\rightarrow 725$ frasa ($16.1\%$)
+  - **Total Keseluruhan**: $31$ intent $\rightarrow 4.495$ frasa ($100.0\%$).
+* **Statistik Panjang Kalimat & Karakter**:
+  - Jumlah Kosakata Unik (Lexicon Size): $331$ kata unik.
+  - Panjang Kalimat (Kata): Rata-rata $6.39 \pm 1.33$ kata (Min: $2$ kata, Max: $11$ kata).
+  - Panjang Karakter: Rata-rata $37.88$ karakter (Min: $10$ karakter, Max: $67$ karakter).
+* **Artefak File**:
+  - `data/corpus/indonesian_smart_home_corpus_4k.csv` ($4.495$ baris data teks teranotasi lengkap: `intent_id`, `action`, `object`, `location`, `domain`, `english_sample`, `indonesian_phrase`).
+  - `tests/test_corpus.py` (Pengujian sebaran domain dan metrik statistik kalimat).
+* **Hasil Pengujian Unit Test Riil**:
+  - `test_corpus_exists_and_row_count`: PASSED ($4.495$ baris $\ge 4.000$)
+  - `test_corpus_required_columns`: PASSED ($7$ kolom lengkap tanpa nilai NaN)
+  - `test_corpus_stratified_distribution`: PASSED (Tepat $145$ kalimat per intent across ke-31 intent)
+  - `test_corpus_domain_distribution`: PASSED (Pencahayaan $1.450$, Suhu $1.160$, Media $580$, Robot $580$, Bahasa $725$)
+  - `test_corpus_length_statistics`: PASSED (Mean kata $6.39$, Min $2$, Max $11$)
+  - `test_corpus_linguistic_diversity`: PASSED (Slang, kolokial, partikel daerah *atuh, bro, cuy* terverifikasi)
+  - `test_corpus_zero_empty_or_trivial_phrases`: PASSED (Zero empty phrases)
+  - Status pytest: `7 passed in 2.02s` (dan seluruh `20 passed in 11.67s` bersama suite audio).
+* **Nomor Commit Git**:
+  - [Akan diisi setelah commit]
+* **Status Remote Push**: Terunggah ke `main` di `https://github.com/YogUNI/SVARA.git`.
+
+---
 *(Logbook ini akan diperbarui secara otomatis setiap kali sub-step berikutnya selesai dieksekusi)*

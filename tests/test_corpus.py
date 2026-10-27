@@ -32,7 +32,7 @@ def test_corpus_exists_and_row_count(corpus_df):
 def test_corpus_required_columns(corpus_df):
     """Verify that all required columns are present with non-empty content."""
     required_cols = [
-        "intent_id", "action", "object", "location",
+        "intent_id", "action", "object", "location", "domain",
         "english_sample", "indonesian_phrase"
     ]
     for col in required_cols:
@@ -47,6 +47,46 @@ def test_corpus_stratified_distribution(corpus_df):
     for intent_id in range(EXPECTED_INTENT_COUNT):
         assert intent_id in intent_counts.index
         assert intent_counts[intent_id] == 145
+
+
+def test_corpus_domain_distribution(corpus_df):
+    """Verify smart home functional domain distribution across all 31 intents."""
+    expected_domain_phrases = {
+        "Lighting (Pencahayaan)": 1450,
+        "Climate (Pengatur Suhu & AC)": 1160,
+        "Media & Audio (Hiburan & Volume)": 580,
+        "Robot Butler (Pengantaran Barang)": 580,
+        "System Language (Pengaturan Bahasa)": 725,
+    }
+    expected_domain_intents = {
+        "Lighting (Pencahayaan)": 10,
+        "Climate (Pengatur Suhu & AC)": 8,
+        "Media & Audio (Hiburan & Volume)": 4,
+        "Robot Butler (Pengantaran Barang)": 4,
+        "System Language (Pengaturan Bahasa)": 5,
+    }
+
+    domain_counts = corpus_df.groupby("domain")["intent_id"].nunique().to_dict()
+    domain_phrases = corpus_df.groupby("domain").size().to_dict()
+
+    assert domain_counts == expected_domain_intents
+    assert domain_phrases == expected_domain_phrases
+
+
+def test_corpus_length_statistics(corpus_df):
+    """Verify that phrase word and character lengths fall within realistic spoken command ranges."""
+    word_counts = corpus_df["indonesian_phrase"].apply(lambda s: len(s.split()))
+    char_counts = corpus_df["indonesian_phrase"].apply(len)
+
+    # Average spoken voice command is typically 4 to 8 words
+    assert 5.0 <= word_counts.mean() <= 8.0
+    assert word_counts.min() >= 2
+    assert word_counts.max() <= 15
+
+    # Character count checks
+    assert 30.0 <= char_counts.mean() <= 50.0
+    assert char_counts.min() >= 10
+    assert char_counts.max() <= 100
 
 
 def test_corpus_linguistic_diversity(corpus_df):

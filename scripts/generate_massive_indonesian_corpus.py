@@ -11,6 +11,7 @@ vocatives, situational complaints, and 6 flexible syntactic permutations.
 import os
 import json
 import random
+import argparse
 from typing import Dict, List, Set
 import pandas as pd
 
@@ -411,13 +412,29 @@ def generate_candidates_for_intent(
 
 
 # =====================================================================
-# 3. CORPUS EXPANSION GENERATOR RUNNER
+# 3. CORPUS EXPANSION GENERATOR RUNNER & DOMAIN ANALYTICS
 # =====================================================================
+
+def categorize_domain(action: str, obj: str) -> str:
+    """Classifies an intent into one of five smart home functional domains."""
+    if obj in ["lights", "lamp"]:
+        return "Lighting (Pencahayaan)"
+    elif obj == "heat":
+        return "Climate (Pengatur Suhu & AC)"
+    elif obj in ["music", "volume"]:
+        return "Media & Audio (Hiburan & Volume)"
+    elif action == "bring":
+        return "Robot Butler (Pengantaran Barang)"
+    elif action == "change language":
+        return "System Language (Pengaturan Bahasa)"
+    return "Other / Miscellaneous"
+
 
 def generate_massive_corpus(
     intent_map_path: str = CONFIG_INTENT_MAP_PATH,
     output_csv_path: str = OUTPUT_CORPUS_CSV_PATH,
     target_per_intent: int = TARGET_PHRASES_PER_INTENT,
+    seed: int = RANDOM_SEED,
 ) -> pd.DataFrame:
     """Generates, filters, deduplicates, and exports the massive 4,000+ phrase corpus."""
     if not os.path.exists(intent_map_path):
@@ -430,7 +447,8 @@ def generate_massive_corpus(
     all_rows: List[Dict[str, str]] = []
 
     print(f"[*] Starting Indonesian Corpus Generation for {len(intent_map)} intents...")
-    print(f"[*] Target: Minimum {target_per_intent} diverse phrases per intent.")
+    print(f"[*] Target: {target_per_intent} diverse phrases per intent (Total: {len(intent_map) * target_per_intent:,}).")
+    print(f"[*] Random Seed: {seed}")
 
     total_candidates_generated = 0
     intent_stats = {}
@@ -451,7 +469,7 @@ def generate_massive_corpus(
         ]
 
         # Shuffle deterministically
-        random.seed(RANDOM_SEED + intent_id)
+        random.seed(seed + intent_id)
         random.shuffle(valid_phrases)
 
         # Select target count (stratified balance)
@@ -465,12 +483,15 @@ def generate_massive_corpus(
         eng_loc = f"in the {location}" if location != "none" else ""
         eng_sample = f"{action} the {obj} {eng_loc}".strip()
 
+        domain = categorize_domain(action, obj)
+
         for phrase in selected_phrases:
             all_rows.append({
                 "intent_id": intent_id,
                 "action": action,
                 "object": obj,
                 "location": location,
+                "domain": domain,
                 "english_sample": eng_sample,
                 "indonesian_phrase": phrase,
             })
@@ -483,25 +504,55 @@ def generate_massive_corpus(
     os.makedirs(os.path.dirname(output_csv_path), exist_ok=True)
     df.to_csv(output_csv_path, index=False, encoding="utf-8")
 
-    print("\n" + "=" * 65)
-    print("      RINGKASAN GENERASI KORPUS INDONESIA SUPER LENGKAP 4K")
-    print("=" * 65)
-    print(f"Total Intents                   : {len(intent_map)} (IDs 0 to 30)")
-    print(f"Total Raw Candidates Generated  : {total_candidates_generated:,} variasi")
-    print(f"Total Frasa Terpilih Bersih     : {len(df):,} kalimat")
-    print(f"Rata-rata Frasa per Intent      : {len(df) / len(intent_map):.1f} kalimat/intent")
-    print(f"Intent Min / Max Kalimat        : {min(intent_stats.values())} / {max(intent_stats.values())}")
-    
-    # Vocabulary statistics
+    # Domain breakdown statistics
+    domain_counts = df.groupby("domain")["intent_id"].nunique()
+    domain_phrases = df.groupby("domain").size()
+
+    # Sentence length statistics
+    word_counts = df["indonesian_phrase"].apply(lambda s: len(s.split()))
+    char_counts = df["indonesian_phrase"].apply(len)
+
     words = set()
     for phrase in df["indonesian_phrase"]:
         words.update(phrase.split())
+
+    print("\n" + "=" * 70)
+    print("      RINGKASAN GENERASI KORPUS INDONESIA SUPER LENGKAP 4K")
+    print("=" * 70)
+    print(f"Total Intents                   : {len(intent_map)} (IDs 0 to 30)")
+    print(f"Total Raw Candidates Evaluated  : {total_candidates_generated:,} variasi kombinasi")
+    print(f"Total Frasa Terpilih Bersih     : {len(df):,} kalimat")
+    print(f"Rata-rata Frasa per Intent      : {len(df) / len(intent_map):.1f} kalimat/intent")
+    print(f"Intent Min / Max Kalimat        : {min(intent_stats.values())} / {max(intent_stats.values())}")
     print(f"Total Kosakata Unik (Lexicon)   : {len(words)} kata unik")
+    print(f"Panjang Kalimat (Kata)          : Rata-rata {word_counts.mean():.2f} (Min: {word_counts.min()}, Max: {word_counts.max()}, Std: {word_counts.std():.2f})")
+    print(f"Panjang Karakter                : Rata-rata {char_counts.mean():.2f} (Min: {char_counts.min()}, Max: {char_counts.max()})")
+    print("-" * 70)
+    print("SEBARAN DOMAIN FUNGSIONAL SMART HOME:")
+    for dom in sorted(domain_counts.index):
+        print(f" - {dom:<36} : {domain_counts[dom]:2d} intents | {domain_phrases[dom]:5,d} frasa ({domain_phrases[dom]/len(df)*100:5.1f}%)")
+    print("-" * 70)
     print(f"Lokasi File Output CSV          : {output_csv_path}")
-    print("=" * 65 + "\n")
+    print("=" * 70 + "\n")
 
     return df
 
 
+def main():
+    parser = argparse.ArgumentParser(description="Indonesian Smart Home Spoken Corpus Generator")
+    parser.add_argument("--intent-map", default=CONFIG_INTENT_MAP_PATH, help="Path to intent_map.json")
+    parser.add_argument("--output", default=OUTPUT_CORPUS_CSV_PATH, help="Output CSV path")
+    parser.add_argument("--target-per-intent", type=int, default=TARGET_PHRASES_PER_INTENT, help="Phrases per intent (130-150)")
+    parser.add_argument("--seed", type=int, default=RANDOM_SEED, help="Random seed for reproducibility")
+    args = parser.parse_args()
+
+    generate_massive_corpus(
+        intent_map_path=args.intent_map,
+        output_csv_path=args.output,
+        target_per_intent=args.target_per_intent,
+        seed=args.seed,
+    )
+
+
 if __name__ == "__main__":
-    generate_massive_corpus()
+    main()

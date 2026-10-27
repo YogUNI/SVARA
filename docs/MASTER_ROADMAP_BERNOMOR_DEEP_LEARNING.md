@@ -24,7 +24,7 @@ Dokumen ini adalah panduan kontrol proyek resmi untuk pematangan sistem Deep Lea
 │   └── [x] Sub-step 2.3: Audit & Validasi Integritas Linguistik (Deduplikasi, Cek Sebaran, Ekspor CSV) [SELESAI - Commit ce620c2]
 │
 ├── FASE 3: SINTESIS SUARA MULTI-SPEAKER MASSAL (NEURAL TTS TARGET 8.000 - 10.000 AUDIO BERSIH)
-│   ├── [x] Sub-step 3.1: Pembuatan Engine Sintesis Paralel Multi-Worker (Edge Neural TTS Python) [SELESAI]
+│   ├── [x] Sub-step 3.1: Pembuatan Engine Sintesis Paralel Multi-Worker (Edge Neural TTS Python) [SELESAI - Commit 077af48]
 │   ├── Sub-step 3.2: Eksekusi Sintesis Suara Pria (id-ID-ArdiNeural) & Wanita (id-ID-GadisNeural)
 │   └── Sub-step 3.3: Verifikasi Kualitas Sinyal Audio Bersih (16 kHz 16-bit PCM Mono, Zero-Corruption Check)
 │
@@ -81,7 +81,7 @@ Dokumen ini adalah panduan kontrol proyek resmi untuk pematangan sistem Deep Lea
 * **Sub-step 2.3** [SELESAI - Commit `ce620c2`]: Audit integritas linguistik 7 dimensi (`scripts/audit_indonesian_corpus.py`): 0 duplikasi, 0 kolisi intent, sebaran kelas seragam sempurna ($H/H_{\max}=1.000000$), ekspor `reports/corpus_linguistic_audit.json` dan `.md`. **FASE 2 SELESAI 100%**.
 
 ### FASE 3: SINTESIS SUARA MULTI-SPEAKER MASSAL (NEURAL TTS 8.000 - 10.000 AUDIO)
-* **Sub-step 3.1** [SELESAI]: Buat script `scripts/synthesize_massive_indonesian.py` dengan arsitektur async paralel (`asyncio.Semaphore(15)`), auto-retry exponential backoff, auto-resume, dan polyphase sinc resampling 16 kHz 16-bit Mono WAV.
+* **Sub-step 3.1** [SELESAI - Commit `077af48`]: Buat script `scripts/synthesize_massive_indonesian.py` dengan arsitektur async paralel (`asyncio.Semaphore(15)`), auto-retry exponential backoff, auto-resume, dan polyphase sinc resampling 16 kHz 16-bit Mono WAV.
 * **Sub-step 3.2**: Generate 4.200 frasa $\times$ 2 suara (`id-ID-ArdiNeural` Pria & `id-ID-GadisNeural` Wanita) $\rightarrow 8.400$ audio klip.
 * **Sub-step 3.3**: Verifikasi seluruh audio tersimpan dalam format 16 kHz 16-bit Mono WAV di `data/synthetic_indonesian_massive/wavs_16k/`.
 

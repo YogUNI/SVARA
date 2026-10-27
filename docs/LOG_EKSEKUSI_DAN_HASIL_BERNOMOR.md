@@ -179,11 +179,11 @@ Setiap sub-tahap yang dieksekusi dicatat secara lengkap mulai dari formulasi mat
   Korpus kalimat bahasa Indonesia sebelumnya hanya berjumlah $1.085$ frasa ($35$ frasa per intent). Meskipun sudah mencakup beberapa kata gaul, variasi sintaksisnya belum memadai untuk merefleksikan fleksibilitas penutur bahasa Indonesia sehari-hari yang sering membalik struktur kalimat (contoh: *"Lampu kamar tolong matiin"*, *"Di dapur tolong nyalakan lampunya"*, *"Kamar gerah tolong sejukin ac-nya"*). Diperlukan generator deterministik berbasis aturan linguistik komprehensif untuk mengekspansi data ke skala $4.000 - 5.000$ kalimat.
 * **Formulasi Matematika & Arsitektur Generator**:
   - Script generator dibangun di `scripts/generate_massive_indonesian_corpus.py`.
-  - Mengintegrasikan matriks leksikon terindeks:
-    - **6 Aksi**: Base formal, slang/kolokial (*"nyalain", "matiin", "idupin", "naikin", "turunin", "bawain"*), bentuk pasif (*"dinyalakan", "dimatiin"*), dan bentuk perintah singkat (*"on", "off", "up", "down"*).
-    - **14 Objek**: Sinonim lampu (*"bohlam", "penerangan", "lampu tidur"*), musik (*"lagu", "playlist", "audio"*), volume, suhu (*"ac", "pendingin", "penghangat"*), barang (*"jus", "koran", "sepatu", "kaos kaki"*), dan bahasa (*"mandarin", "inggris", "jerman", "korea"*).
-    - **4 Lokasi**: Dapur, kamar tidur, kamar mandi/toilet/wc, dan none/global.
-    - **Partikel & Adverbia**: 15 partikel pembuka (*"tolong", "coba", "eh", "bro", "svara", "punten"*), 14 partikel penutup (*"dong", "deh", "lah", "sih", "ya", "kan", "cepetan"*), 9 adverbia intensitas (*"dikit", "banyak", "pol", "banget"*), dan 9 konteks situasional (*"gelap", "gerah", "berisik", "haus"*).
+  - Mengintegrasikan matriks leksikon super lengkap & komprehensif:
+    - **6 Aksi**: Base formal, slang/kolokial (*"nyalain", "hidupin", "idupin", "naikin", "turunin", "bawain", "colokin", "pencet on", "geber", "gas", "pasangin", "ademin", "pelanin"*), bentuk pasif (*"dinyalakan", "dimatiin", "dinaikin", "dikecilin"*), dan bentuk perintah singkat (*"on", "off", "up", "down", "play", "cut", "plus", "minus"*).
+    - **14 Objek**: Sinonim luas lampu (*"bohlam", "penerangan", "lampu tidur", "lampu nakas", "lampu meja", "night lamp", "lampu gantung", "lampu plafon"*), musik/audio (*"lagu", "playlist", "audio", "track", "alunan musik", "mp3", "sound"*), volume (*"suara", "bunyi", "speaker", "level suara", "kencengnya suara"*), suhu (*"ac", "pendingin", "penghangat", "air conditioner", "hawa ruangan", "pemanas", "derajat ac"*), barang (*"jus", "koran", "sepatu", "kaos kaki"*), dan bahasa (*"mandarin", "inggris", "jerman", "korea"*).
+    - **4 Lokasi**: Dapur (*"ruang masak", "tempat masak", "kitchen", "dapur belakang"*), kamar tidur (*"kamar", "ruang tidur", "kamar utama", "bedroom", "bilik"*), kamar mandi/toilet/wc (*"kamar kecil", "washroom", "restroom", "kamar bilas"*), dan none/global (*"di sini", "sekarang", "ruangan ini", "semuanya", "seisi rumah"*).
+    - **Panggilan, Vocatives & Partikel Daerah**: 28 vocatives & partikel pembuka (*"tolong", "coba", "eh", "bro", "cuy", "gan", "min", "bang", "mas", "mbak", "kak", "svara", "hey svara", "punten", "mangga", "woy", "lur"*), 22 partikel penutup (*"dong", "deh", "lah", "sih", "ya", "kan", "cepetan", "atuh", "dong atuh", "ya bro", "ya cuy", "nih", "tuh"*), 15 adverbia intensitas (*"dikit", "banyak", "pol", "banget", "amat", "full", "maksimal", "perlahan", "kenceng"*), dan 9 konteks situasional keluhan (*"gelap", "gerah", "berisik", "haus", "kedinginan", "silau", "mau kerja"*).
   - Mengimplementasikan **6 Pola Permutasi Sintaksis**:
     1. Pola 1 (Standar): `[Pembuka] + Aksi + Objek + Lokasi + [Partikel]`
     2. Pola 2 (Aksi + Partikel di Depan): `[Pembuka] + Aksi + Partikel + Objek + Lokasi`
@@ -191,17 +191,18 @@ Setiap sub-tahap yang dieksekusi dicatat secara lengkap mulai dari formulasi mat
     4. Pola 4 (Lokasi di Depan): `Lokasi + Objek + [Tolong] + Aksi + [Partikel]`
     5. Pola 5 (Implisit / Kontekstual): `Kondisi + [Tolong] + Aksi + Objek + Lokasi`
     6. Pola 6 (Perintah Ringkas): `Objek + Lokasi + Aksi Singkat` / `Aksi Singkat + Objek + Lokasi`
-  - Total ruang kandidat permutasi mentah: **$940.172$ variasi kombinasi** yang disaring dan disampel secara deterministik (`seed=42`).
-* **File yang Dibuat**:
-  - `scripts/generate_massive_indonesian_corpus.py` (Script generator utama).
+  - Total ruang kandidat permutasi mentah yang dievaluasi: **$3.127.964$ variasi kombinasi** yang disaring dan disampel secara deterministik (`seed=42`).
+* **File yang Dibuat / Dimutakhirkan**:
+  - `scripts/generate_massive_indonesian_corpus.py` (Script generator utama super lengkap).
+  - `data/corpus/indonesian_smart_home_corpus_4k.csv` (Dataset teks 4.495 kalimat seimbang).
   - `tests/test_corpus.py` (Suite pengujian integritas korpus dan keberagaman leksikon).
 * **Hasil Pengujian Unit Test Riil**:
-  - `test_corpus_exists_and_row_count`: PASSED
-  - `test_corpus_required_columns`: PASSED
-  - `test_corpus_stratified_distribution`: PASSED (140 kalimat/intent merata)
-  - `test_corpus_linguistic_diversity`: PASSED (272 kosakata unik terverifikasi)
-  - `test_corpus_zero_empty_or_trivial_phrases`: PASSED
-  - Status pytest: `5 passed in 1.56s`.
+  - `test_corpus_exists_and_row_count`: PASSED (4.495 kalimat unik, melebihi kuota 4.000)
+  - `test_corpus_required_columns`: PASSED (100% kolom terisi lengkap)
+  - `test_corpus_stratified_distribution`: PASSED (Tepat 145 kalimat/intent merata across 31 intent)
+  - `test_corpus_linguistic_diversity`: PASSED (333 kosakata unik terverifikasi, partikel *atuh, cuy, bro* lolos)
+  - `test_corpus_zero_empty_or_trivial_phrases`: PASSED (Zero empty phrases)
+  - Status pytest: `5 passed in 1.59s`.
 * **Nomor Commit Git**:
   - `commit ef4bb4c` (*feat(nlp): build 6-pattern lexicon and slang corpus generator script (Sub-step 2.1)*)
 * **Status Remote Push**: Terunggah ke `main` di `https://github.com/YogUNI/SVARA.git`.

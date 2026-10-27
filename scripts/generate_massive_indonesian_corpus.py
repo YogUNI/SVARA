@@ -1,119 +1,189 @@
 """Comprehensive Indonesian Smart Home NLP Corpus Generator (Target: 4,000 - 5,000 Phrases).
 
-Task: Sub-step 2.1
+Task: Sub-step 2.1, Sub-step 2.2
 Reference: docs/MATRIKS_NLP_DAN_SLANG_INDONESIA_4K.md, docs/MASTER_ROADMAP_BERNOMOR_DEEP_LEARNING.md, AGENTS.md
 
-Generates a rich, colloquial, diverse, and linguistically balanced Indonesian spoken command corpus
-across all 31 Fluent Speech Commands (FSC) intents using a 6-pattern syntactic permutation engine.
+Generates an exhaustive, super-complete Indonesian spoken command corpus across all 31 Fluent Speech Commands (FSC)
+intents, covering everyday conversational slang, regional loan particles (atuh, cuy, lur, bro, min), polite requests,
+vocatives, situational complaints, and 6 flexible syntactic permutations.
 """
 
 import os
 import json
-import re
 import random
-from typing import Dict, List, Set, Tuple
+from typing import Dict, List, Set
 import pandas as pd
 
-# Set fixed seed for scientific reproducibility (Rule 5 AGENTS.md)
+# Fixed seed for scientific reproducibility (Rule 5 AGENTS.md)
 RANDOM_SEED = 42
 random.seed(RANDOM_SEED)
 
 CONFIG_INTENT_MAP_PATH = "configs/intent_map.json"
 OUTPUT_CORPUS_CSV_PATH = "data/corpus/indonesian_smart_home_corpus_4k.csv"
-TARGET_PHRASES_PER_INTENT = 140  # 31 intents * 140 ~ 4,340 phrases
+TARGET_PHRASES_PER_INTENT = 145  # 31 intents * 145 = 4,495 phrases
 
 
 # =====================================================================
-# 1. COMPREHENSIVE LINGUISTIC LEXICON MATRICES (docs/MATRIKS_NLP_DAN_SLANG_INDONESIA_4K.md)
+# 1. EXHAUSTIVE LINGUISTIC LEXICON MATRICES
 # =====================================================================
 
 ACTION_LEXICON = {
     "activate": {
-        "base": ["nyalakan", "hidupkan", "putar", "setel", "pasang", "aktifkan"],
-        "colloquial": ["nyalain", "hidupin", "idupin", "play", "setelin", "puter", "on-in", "start", "buka"],
-        "passive": ["dinyalakan", "dihidupkan", "diputar", "disetel", "dinyalain", "diidupin", "di-on-in", "diaktifkan"],
-        "short": ["nyala", "on", "hidup", "play", "start", "idup"],
+        "base": [
+            "nyalakan", "hidupkan", "putar", "setel", "pasang", "aktifkan", "buka", "pasangkan"
+        ],
+        "colloquial": [
+            "nyalain", "hidupin", "idupin", "play", "setelin", "puter", "on-in", "start",
+            "colokin", "pencet on", "geber", "gas", "idupkanlah", "nyalakanlah", "pasangin"
+        ],
+        "passive": [
+            "dinyalakan", "dihidupkan", "diputar", "disetel", "dinyalain", "diidupin",
+            "di-on-in", "diaktifkan", "dipasang", "dibuka"
+        ],
+        "short": [
+            "nyala", "on", "hidup", "idup", "play", "start"
+        ],
     },
     "deactivate": {
-        "base": ["matikan", "padamkan", "hentikan", "nonaktifkan", "tutup"],
-        "colloquial": ["matiin", "padamin", "stop", "off-in", "cut", "matiin dong", "jangan nyala", "berhentiin"],
-        "passive": ["dimatikan", "dipadamkan", "dihentikan", "dimatiin", "dipadamin", "di-off-in", "dinonaktifkan"],
-        "short": ["mati", "off", "padam", "stop", "cut"],
+        "base": [
+            "matikan", "padamkan", "hentikan", "nonaktifkan", "tutup"
+        ],
+        "colloquial": [
+            "matiin", "padamin", "stop", "off-in", "cut", "cabut", "berhentiin",
+            "pencet off", "jangan nyala", "padamkanlah", "matiinlah", "bikin mati", "shutdown"
+        ],
+        "passive": [
+            "dimatikan", "dipadamkan", "dihentikan", "dimatiin", "dipadamin",
+            "di-off-in", "dinonaktifkan", "ditutup", "dicabut"
+        ],
+        "short": [
+            "mati", "off", "padam", "stop", "cut", "tutup"
+        ],
     },
     "increase": {
-        "base": ["naikkan", "perbesar", "besarkan", "tambahkan", "tinggikan"],
-        "colloquial": ["naikin", "gedein", "tambahin", "kuatin", "besarin", "tinggiin", "angkat", "pol-in", "panasin", "hangatkan", "lebihin"],
-        "passive": ["dinaikkan", "dibesarkan", "ditambahkan", "dinaikin", "digedein", "dikuatin", "ditinggikan"],
-        "short": ["naik", "up", "tambah", "gedein", "plus", "kencengin"],
+        "base": [
+            "naikkan", "perbesar", "besarkan", "tambahkan", "tinggikan", "kuatkan"
+        ],
+        "colloquial": [
+            "naikin", "gedein", "tambahin", "kuatin", "besarin", "tinggiin", "angkat",
+            "pol-in", "panasin", "hangatkan", "lebihin", "kencengin", "kencangin", "gaskan"
+        ],
+        "passive": [
+            "dinaikkan", "dibesarkan", "ditambahkan", "dinaikin", "digedein",
+            "dikuatin", "ditinggikan", "dikencengin", "dilebihkan"
+        ],
+        "short": [
+            "naik", "up", "tambah", "gedein", "kenceng", "plus"
+        ],
     },
     "decrease": {
-        "base": ["turunkan", "kecilkan", "kurangkan", "kurangi", "rendahkan"],
-        "colloquial": ["turunin", "kecilin", "redupin", "dinginin", "sejukin", "kurangin", "bikin redup", "ademin", "pelanin"],
-        "passive": ["diturunkan", "dikecilkan", "dikurangi", "diturunin", "dikecilin", "diredupin", "didinginkan"],
-        "short": ["turun", "down", "kurang", "kecilin", "minus", "pelan"],
+        "base": [
+            "turunkan", "kecilkan", "kurangkan", "kurangi", "rendahkan", "pelankan"
+        ],
+        "colloquial": [
+            "turunin", "kecilin", "redupin", "dinginin", "sejukin", "kurangin",
+            "bikin redup", "ademin", "pelanin", "rem", "buat dingin", "turunkan dikit"
+        ],
+        "passive": [
+            "diturunkan", "dikecilkan", "dikurangi", "diturunin", "dikecilin",
+            "diredupin", "didinginkan", "dipelanin", "disejukkan"
+        ],
+        "short": [
+            "turun", "down", "kurang", "kecilin", "pelan", "minus", "redup"
+        ],
     },
     "bring": {
-        "base": ["bawakan", "ambilkan", "antarkan", "jemputkan"],
-        "colloquial": ["bawain", "ambilin", "anterin", "jemput", "bawain ke sini", "tolong bawain", "ambilin dong"],
-        "passive": ["dibawakan", "diambilkan", "diantarkan", "dibawain", "diambilin", "dianterin"],
-        "short": ["bawa", "ambil", "antar", "bawain"],
+        "base": [
+            "bawakan", "ambilkan", "antarkan", "jemputkan", "berikan"
+        ],
+        "colloquial": [
+            "bawain", "ambilin", "anterin", "jemput", "bawain ke sini", "anterin ke sini",
+            "ambilin dong", "comot", "kasihin", "bawa sini", "ambil sini", "tolong bawain"
+        ],
+        "passive": [
+            "dibawakan", "diambilkan", "diantarkan", "dibawain", "diambilin",
+            "dianterin", "dikasihkan", "dijemput"
+        ],
+        "short": [
+            "bawa", "ambil", "antar", "bawain", "ambilin"
+        ],
     },
     "change language": {
-        "base": ["ganti bahasa", "ubah bahasa", "pindah bahasa", "setel bahasa"],
-        "colloquial": ["gantiin bahasa", "switch bahasa", "switch ke", "ganti ke", "ubah ke", "pindah ke", "setel ke bahasa"],
-        "passive": ["diganti bahasanya ke", "diubah ke bahasa", "diswitch ke", "diganti ke"],
-        "short": ["ganti bahasa", "switch", "ubah bahasa"],
+        "base": [
+            "ganti bahasa", "ubah bahasa", "pindah bahasa", "setel bahasa"
+        ],
+        "colloquial": [
+            "gantiin bahasa", "switch bahasa", "switch ke", "ganti ke", "ubah ke",
+            "pindah ke", "setel ke bahasa", "atur bahasa ke", "ganti bahasanya ke", "alihkan ke bahasa"
+        ],
+        "passive": [
+            "diganti bahasanya ke", "diubah ke bahasa", "diswitch ke", "diganti ke", "dialihkan ke"
+        ],
+        "short": [
+            "ganti bahasa", "switch", "ubah bahasa", "pindah bahasa"
+        ],
     },
 }
 
 OBJECT_LEXICON = {
     "lights": [
         "lampu", "lampu-lampu", "lampu ruangan", "penerangan", "lampu utama",
-        "bohlam", "cahaya", "lampu tengah", "penerangan ruangan", "lampunya",
-        "semua lampu", "lampu gantung", "penerangan utama"
+        "bohlam", "bohlamnya", "cahaya", "lampu tengah", "penerangan ruangan",
+        "lampunya", "semua lampu", "lampu gantung", "penerangan utama", "lampu atas",
+        "lampu plafon", "lampu penerangan"
     ],
     "lamp": [
         "lampu meja", "lampu tidur", "lampu belajar", "lampu baca", "lampu tidur sudut",
         "lamp meja", "night lamp", "lampu samping", "lampu kecil", "lampu nakas",
-        "lampu hias", "lampu duduk", "lampu stand", "lampu pojok", "lampu samping kasur"
+        "lampu hias", "lampu duduk", "lampu stand", "lampu pojok", "lampu samping kasur",
+        "lampu tidur samping", "lampu baca sudut"
     ],
     "music": [
         "musik", "lagu", "audio", "track", "playlist", "lagunya",
-        "musiknya", "suara lagu", "mp3", "pemutar musik", "alunan musik", "daftar lagu"
+        "musiknya", "suara lagu", "mp3", "pemutar musik", "alunan musik",
+        "daftar lagu", "setelan musik", "alunan lagu", "tembang", "sound"
     ],
     "volume": [
         "volume", "suara", "bunyi", "sound", "volumenya",
-        "suaranya", "bunyinya", "kekerasan suara", "audio volume", "level suara"
+        "suaranya", "bunyinya", "kekerasan suara", "audio volume", "level suara",
+        "sound volume", "speaker", "volume speaker", "kencengnya suara"
     ],
     "heat_increase": [
         "suhu", "temperatur", "panas", "penghangat", "hawa", "suhunya",
-        "temperaturnya", "hawa ruangan", "pemanas", "heater", "suhu ruangan", "pemanas ruangan"
+        "temperaturnya", "hawa ruangan", "pemanas", "heater", "suhu ruangan",
+        "pemanas ruangan", "temperatur kamar", "derajat panas", "tingkat panas"
     ],
     "heat_decrease": [
         "suhu", "temperatur", "ac", "pendingin", "hawa", "suhunya",
-        "temperaturnya", "ac-nya", "pendingin ruangan", "air conditioner", "hawa sejuk", "suhu ruangan"
+        "temperaturnya", "ac-nya", "pendingin ruangan", "air conditioner",
+        "hawa sejuk", "suhu ruangan", "pendingin kamar", "derajat dingin", "sejuknya kamar"
     ],
     "juice": [
         "jus", "jus jeruk", "jus buah", "minuman jus", "jus dingin",
-        "sari buah", "jus segar", "segelas jus", "jusnya", "minuman sari buah", "segelas jus jeruk"
+        "sari buah", "jus segar", "segelas jus", "jusnya", "minuman sari buah",
+        "segelas jus jeruk", "jus manis", "minuman dingin", "jus buah segar"
     ],
     "newspaper": [
         "koran", "koran pagi", "koran hari ini", "surat kabar", "koran tempo",
-        "koran kompas", "harian", "korannya", "bacaan koran", "lembaran koran"
+        "koran kompas", "harian", "korannya", "bacaan koran", "lembaran koran",
+        "koran harian", "koran terbitan hari ini", "berita koran"
     ],
     "shoes": [
         "sepatu", "sepatu kerja", "sepatu jalan", "sneakers", "alas kaki",
-        "sepatunya", "sepatu kets", "sepasang sepatu", "sepatu olahraga"
+        "sepatunya", "sepatu kets", "sepasang sepatu", "sepatu olahraga",
+        "sepatu pantofel", "sepatu kerja gue", "sepatu lari", "sneakers gue"
     ],
     "socks": [
         "kaos kaki", "kaus kaki", "kaos kaki kerja", "kaos kakinya",
-        "sepasang kaos kaki", "kaos kaki bersih", "kaos kaki putih", "kaus kakiku"
+        "sepasang kaos kaki", "kaos kaki bersih", "kaos kaki putih", "kaus kakiku",
+        "kaos kaki abu-abu", "kaos kaki tidur", "sepasang kaus kaki"
     ],
     "Chinese": [
-        "bahasa mandarin", "mandarin", "bahasa cina", "chinese", "bahasa tiongkok", "mandarinnya"
+        "bahasa mandarin", "mandarin", "bahasa cina", "chinese", "bahasa tiongkok",
+        "mandarinnya", "bahasa cina mandarin"
     ],
     "English": [
-        "bahasa inggris", "inggris", "english", "bahasa inggrisnya"
+        "bahasa inggris", "inggris", "english", "bahasa inggrisnya", "bahasa bule"
     ],
     "German": [
         "bahasa jerman", "jerman", "german", "bahasa jermannya"
@@ -122,71 +192,101 @@ OBJECT_LEXICON = {
         "bahasa korea", "korea", "korean", "hangul", "bahasa koreanya"
     ],
     "none": [
-        "bahasa", "bahasanya", "setelan bahasa", "bahasa lain", "opsi bahasa"
+        "bahasa", "bahasanya", "setelan bahasa", "bahasa lain", "opsi bahasa", "bahasa sistem"
     ],
 }
 
 LOCATION_LEXICON = {
     "kitchen": [
         "dapur", "di dapur", "ke dapur", "ruang masak", "tempat masak",
-        "area dapur", "kitchen", "di area dapur", "pada dapur", "ruangan dapur"
+        "area dapur", "kitchen", "di area dapur", "pada dapur", "ruangan dapur",
+        "di tempat masak", "ke ruang dapur", "dapur belakang", "pojok dapur", "di kitchen"
     ],
     "bedroom": [
         "kamar tidur", "di kamar tidur", "kamar", "di kamar", "ke kamar tidur",
-        "ruang tidur", "kamar utama", "bedroom", "ke kamar", "area kamar tidur"
+        "ruang tidur", "kamar utama", "bedroom", "ke kamar", "area kamar tidur",
+        "bilik", "bilik tidur", "kamar gue", "kamar saya", "ruangan tidur", "tempat tidur"
     ],
     "washroom": [
         "kamar mandi", "di kamar mandi", "toilet", "di toilet", "wc",
-        "di wc", "kamar kecil", "washroom", "restroom", "ke kamar mandi"
+        "di wc", "kamar kecil", "washroom", "restroom", "ke kamar mandi",
+        "ke toilet", "ke wc", "peturasan", "kamar bilas", "di kamar kecil", "di washroom"
     ],
     "none": [
-        "", "di sini", "sekarang", "ruangan ini", "semuanya", "di rumah"
+        "", "di sini", "sekarang", "ruangan ini", "semuanya", "di rumah",
+        "seisi rumah", "seluruhnya", "area sini", "sekitar sini", "sekarang juga"
     ],
 }
 
 OPENER_PARTICLES = [
-    "", "tolong", "coba", "minta tolong", "bisa tolong", "eh", "bro",
-    "svara", "punten", "bisa tolongin", "plis", "hei svara", "tolong dong",
-    "coba tolong", "eh tolong", "tolong ya"
+    "", "tolong", "coba", "minta tolong", "bisa tolong", "eh", "bro", "cuy",
+    "gan", "min", "bang", "mas", "mbak", "kak", "svara", "hey svara", "halo svara",
+    "punten", "bisa tolongin", "plis", "please", "mohon", "bantu dong", "tolong dong",
+    "coba dong", "eh tolong", "tolong ya", "mangga", "woy", "lur"
 ]
 
 CLOSING_PARTICLES = [
-    "", "dong", "deh", "lah", "sih", "ya", "kan", "plis", "buruan",
-    "cepetan", "ya bro", "dong tolong", "sekarang", "nih", "ya tolong"
+    "", "dong", "deh", "lah", "sih", "ya", "kan", "plis", "buruan", "cepetan",
+    "ya bro", "ya cuy", "ya gan", "ya bang", "ya kak", "dong tolong", "sekarang",
+    "nih", "tuh", "atuh", "dong atuh", "deh ya", "ya tolong", "ya svara", "sekarang ya"
 ]
 
 INTENSITY_ADVERBS = [
-    "", "dikit", "sedikit", "banyak", "agak", "rada", "pol", "banget", "perlahan"
+    "", "dikit", "sedikit", "banyak", "agak", "rada", "pol", "banget", "amat",
+    "full", "maksimal", "perlahan", "pelan-pelan", "makin", "lebih", "kenceng"
 ]
 
 SITUATIONAL_CONTEXTS = {
-    "dark": ["gelap banget nih", "terlalu gelap", "gelap di sini", "kurang terang", "remang-remang"],
-    "bright": ["terlalu terang", "silau banget nih", "silau", "terang banget"],
-    "hot": ["gerah banget nih", "panas banget", "gerah di ruangan ini", "kepanasan nih", "hawa panas"],
-    "cold": ["dingin banget", "kedinginan nih", "hawa dingin", "menggigil nih", "terlalu dingin"],
-    "noisy": ["berisik banget", "kekencengan suaranya", "terlalu kencang suaranya", "bising"],
-    "quiet": ["gak kedengeran", "kurang jelas suaranya", "terlalu pelan", "gak kedengaran lagunya"],
-    "thirsty": ["haus nih", "pengen minum", "tenggorokan kering nih", "butuh yang segar-segar"],
-    "morning": ["pagi-pagi mau baca berita", "mau baca berita", "waktunya baca kabar"],
-    "outfit": ["mau berangkat kerja", "mau keluar rumah", "siap-siap pergi", "mau jalan nih"],
+    "dark": [
+        "gelap banget nih", "gelap gulita", "terlalu gelap", "kurang terang",
+        "remang-remang", "gak keliatan apa-apa", "gelap di ruangan ini"
+    ],
+    "bright": [
+        "terlalu terang", "silau banget nih", "silau", "terang banget",
+        "sakit mata nih", "terlalu silau"
+    ],
+    "hot": [
+        "gerah banget nih", "panas banget", "gerah di ruangan ini", "kepanasan nih",
+        "hawa panas banget", "sumuk nih", "mandi keringat nih"
+    ],
+    "cold": [
+        "dingin banget nih", "kedinginan nih", "hawa dingin menusuk", "menggigil nih",
+        "terlalu dingin", "beku nih"
+    ],
+    "noisy": [
+        "berisik banget", "kekencengan suaranya", "terlalu kencang suaranya",
+        "bising amat", "budek nih", "terlalu berisik"
+    ],
+    "quiet": [
+        "gak kedengeran", "kurang jelas suaranya", "terlalu pelan",
+        "gak kedengaran lagunya", "kecil banget suaranya", "kurang kenceng nih"
+    ],
+    "thirsty": [
+        "haus nih", "pengen minum", "tenggorokan kering nih",
+        "butuh yang segar-segar", "haus banget pengen jus"
+    ],
+    "morning": [
+        "pagi-pagi mau baca berita", "mau baca berita", "waktunya baca kabar",
+        "pagi-pagi mau baca koran", "mau baca harian pagi"
+    ],
+    "outfit": [
+        "mau berangkat kerja", "mau keluar rumah", "siap-siap pergi",
+        "mau jalan nih", "mau berangkat ngantor", "mau pergi keluar"
+    ],
 }
 
 
 # =====================================================================
-# 2. SYNTACTIC PERMUTATION ENGINE (6 PATTERNS)
+# 2. FAST SYNTACTIC PERMUTATION ENGINE (6 PATTERNS)
 # =====================================================================
 
 def clean_sentence(text: str) -> str:
-    """Cleans whitespace, double spaces, and normalizes casing."""
-    text = re.sub(r"\s+", " ", text).strip()
-    # Strip unnecessary trailing commas or double particles
-    text = re.sub(r"\s+,", ",", text)
-    # Lowercase
-    return text.lower()
+    """Fast whitespace cleanup and normalization without heavy regex overhead."""
+    return " ".join(text.lower().split())
 
 
 def get_objects_for_intent(action: str, obj: str) -> List[str]:
-    """Selects appropriate object variants depending on action context (e.g. heat increase vs decrease)."""
+    """Selects appropriate object variants depending on action context."""
     if obj == "heat":
         if action == "increase":
             return OBJECT_LEXICON["heat_increase"]
@@ -209,7 +309,7 @@ def generate_candidates_for_intent(
     passive_verbs = act_dict.get("passive", [action])
     short_verbs = act_dict.get("short", [action])
 
-    all_verbs = list(set(base_verbs + colloquial_verbs))
+    all_verbs = list(dict.fromkeys(base_verbs + colloquial_verbs))
     objects = get_objects_for_intent(action, obj)
     locations = LOCATION_LEXICON.get(location, [""])
 
@@ -240,22 +340,22 @@ def generate_candidates_for_intent(
     # -------------------------------------------------------------
     # Pola 1: Standar Formal [Pembuka] + Aksi + Objek + Lokasi + [Partikel]
     # -------------------------------------------------------------
-    for opener in OPENER_PARTICLES[:8]:
+    for opener in OPENER_PARTICLES[:10]:
         for verb in base_verbs:
-            for o in objects[:6]:
-                for loc in locations[:5]:
-                    for part in CLOSING_PARTICLES[:6]:
+            for o in objects[:8]:
+                for loc in locations[:6]:
+                    for part in CLOSING_PARTICLES[:8]:
                         phrase = f"{opener} {verb} {o} {loc} {part}"
                         candidates.add(clean_sentence(phrase))
 
     # -------------------------------------------------------------
     # Pola 2: Santai dengan Partikel [Pembuka] + Aksi + Partikel + Objek + Lokasi
     # -------------------------------------------------------------
-    for opener in OPENER_PARTICLES[:6]:
+    for opener in OPENER_PARTICLES[:8]:
         for verb in colloquial_verbs:
-            for part in ["dong", "deh", "lah", "ya", "kan", "cepetan", ""]:
-                for o in objects[:7]:
-                    for loc in locations[:5]:
+            for part in ["dong", "deh", "lah", "ya", "kan", "cepetan", "atuh", "nih", "ya bro", ""]:
+                for o in objects[:8]:
+                    for loc in locations[:6]:
                         phrase = f"{opener} {verb} {part} {o} {loc}"
                         candidates.add(clean_sentence(phrase))
 
@@ -263,10 +363,10 @@ def generate_candidates_for_intent(
     # Pola 3: Objek di Depan (Objek + Lokasi + [Tolong] + Aksi Pasif/Aktif + [Partikel])
     # -------------------------------------------------------------
     for o in objects[:8]:
-        for loc in locations[:5]:
-            for req in ["tolong", "bisa tolong", "coba", "minta tolong", ""]:
-                for p_verb in passive_verbs + colloquial_verbs[:3]:
-                    for part in ["ya", "dong", "deh", "lah", ""]:
+        for loc in locations[:6]:
+            for req in ["tolong", "bisa tolong", "coba", "plis", "minta tolong", ""]:
+                for p_verb in passive_verbs + colloquial_verbs[:4]:
+                    for part in ["ya", "dong", "deh", "lah", "atuh", "ya bro", ""]:
                         phrase = f"{o} {loc} {req} {p_verb} {part}"
                         candidates.add(clean_sentence(phrase))
 
@@ -275,10 +375,10 @@ def generate_candidates_for_intent(
     # -------------------------------------------------------------
     if location != "none":
         for loc in locations[:6]:
-            for o in objects[:6]:
-                for opener in ["tolong", "coba", "eh", ""]:
-                    for verb in all_verbs[:6]:
-                        for part in ["dong", "ya", "deh", ""]:
+            for o in objects[:8]:
+                for opener in ["tolong", "coba", "eh", "bisa tolong", ""]:
+                    for verb in all_verbs[:8]:
+                        for part in ["dong", "ya", "deh", "atuh", "ya bro", ""]:
                             phrase = f"{loc} {o} {opener} {verb} {part}"
                             candidates.add(clean_sentence(phrase))
 
@@ -287,23 +387,25 @@ def generate_candidates_for_intent(
     # -------------------------------------------------------------
     if contexts:
         for ctx in contexts:
-            for opener in ["tolong", "coba", "bisa tolong", ""]:
-                for verb in all_verbs[:5]:
-                    for o in objects[:4]:
-                        for loc in locations[:3]:
+            for opener in ["tolong", "coba", "bisa tolong", "plis", ""]:
+                for verb in all_verbs[:6]:
+                    for o in objects[:6]:
+                        for loc in locations[:4]:
                             phrase = f"{ctx} {opener} {verb} {o} {loc}"
                             candidates.add(clean_sentence(phrase))
 
     # -------------------------------------------------------------
     # Pola 6: Singkat / Quick Commands (Objek + Lokasi + Aksi Singkat)
     # -------------------------------------------------------------
-    for o in objects[:5]:
-        for loc in locations[:4]:
+    for o in objects[:6]:
+        for loc in locations[:5]:
             for s_verb in short_verbs:
                 phrase1 = f"{o} {loc} {s_verb}"
                 phrase2 = f"{s_verb} {o} {loc}"
+                phrase3 = f"{o} {s_verb} {loc}"
                 candidates.add(clean_sentence(phrase1))
                 candidates.add(clean_sentence(phrase2))
+                candidates.add(clean_sentence(phrase3))
 
     return candidates
 
@@ -382,7 +484,7 @@ def generate_massive_corpus(
     df.to_csv(output_csv_path, index=False, encoding="utf-8")
 
     print("\n" + "=" * 65)
-    print("           RINGKASAN GENERASI KORPUS INDONESIA 4K")
+    print("      RINGKASAN GENERASI KORPUS INDONESIA SUPER LENGKAP 4K")
     print("=" * 65)
     print(f"Total Intents                   : {len(intent_map)} (IDs 0 to 30)")
     print(f"Total Raw Candidates Generated  : {total_candidates_generated:,} variasi")

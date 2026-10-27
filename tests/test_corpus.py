@@ -26,7 +26,7 @@ def test_corpus_exists_and_row_count(corpus_df):
     """Verify that corpus CSV exists and exceeds the 4,000 phrase minimum."""
     assert os.path.exists(CORPUS_CSV_PATH)
     assert len(corpus_df) >= EXPECTED_MIN_PHRASES
-    assert len(corpus_df) == 4340  # 31 intents * 140 phrases
+    assert len(corpus_df) == 4495  # 31 intents * 145 phrases
 
 
 def test_corpus_required_columns(corpus_df):
@@ -41,16 +41,16 @@ def test_corpus_required_columns(corpus_df):
 
 
 def test_corpus_stratified_distribution(corpus_df):
-    """Verify perfectly balanced stratified distribution (140 phrases for each of 31 intents)."""
+    """Verify perfectly balanced stratified distribution (145 phrases for each of 31 intents)."""
     intent_counts = corpus_df.groupby("intent_id").size()
     assert len(intent_counts) == EXPECTED_INTENT_COUNT
     for intent_id in range(EXPECTED_INTENT_COUNT):
         assert intent_id in intent_counts.index
-        assert intent_counts[intent_id] == 140
+        assert intent_counts[intent_id] == 145
 
 
 def test_corpus_linguistic_diversity(corpus_df):
-    """Verify the presence of everyday Indonesian slang, colloquial verbs, and particles."""
+    """Verify the presence of everyday Indonesian slang, colloquial verbs, regional loan particles, and rich vocabulary."""
     all_text = " ".join(corpus_df["indonesian_phrase"].tolist()).lower()
     
     # Check colloquial verbs
@@ -58,14 +58,14 @@ def test_corpus_linguistic_diversity(corpus_df):
     for verb in colloquial_verbs:
         assert verb in all_text, f"Colloquial verb '{verb}' not found in corpus text"
         
-    # Check particles
-    particles = ["dong", "deh", "lah", "sih", "tolong"]
+    # Check everyday and regional particles
+    particles = ["dong", "deh", "lah", "sih", "tolong", "atuh", "bro"]
     for p in particles:
         assert p in all_text, f"Particle '{p}' not found in corpus text"
 
-    # Check total unique vocabulary
+    # Check total unique vocabulary richness
     vocab = set(all_text.split())
-    assert len(vocab) >= 200, f"Vocabulary size {len(vocab)} is smaller than expected 200"
+    assert len(vocab) >= 300, f"Vocabulary size {len(vocab)} is smaller than expected 300"
 
 
 def test_corpus_zero_empty_or_trivial_phrases(corpus_df):

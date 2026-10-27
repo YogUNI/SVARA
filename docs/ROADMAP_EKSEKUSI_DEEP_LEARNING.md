@@ -33,7 +33,7 @@ Dokumen ini adalah breakdown operasional dari `docs/BLUEPRINT_DEEP_LEARNING_SLU.
    │     (Ekspor PyTorch -> ONNX + Kuantisasi INT8 360MB->90MB + Verifikasi Numerik Max Diff < 1e-5)
    ▼
 [FASE 8] Integrasi Web Serving & Live Interactive Microphone Testing
-   │     (FastAPI Port 8001 + Proxy Vite 5180 + Uji Coba Suara Fisik Nyata di 2D/3D Smart Home Visualizer)
+   │     (FastAPI Port 8000 + Proxy Vite 5180 + Uji Coba Suara Fisik Nyata di 2D/3D Smart Home Visualizer)
 ```
 
 ---
@@ -85,7 +85,7 @@ Dokumen ini adalah breakdown operasional dari `docs/BLUEPRINT_DEEP_LEARNING_SLU.
 - [ ] Verifikasi paritas matematika: $\max |\hat{\mathbf{y}}_{\text{PyTorch}} - \hat{\mathbf{y}}_{\text{ONNX}}| < 10^{-5}$ pada 10 durasi audio berbeda.
 
 ### FASE 8: Integrasi Web Serving & Live Interactive Microphone Testing (System Level)
-- [ ] Konfigurasi backend FastAPI pada port yang bebas (port `8001`) agar tidak bertabrakan dengan project lain.
-- [ ] Konfigurasi proxy Vite di `web/vite.config.ts` mengarah ke port `8001`.
+- [ ] Konfigurasi backend FastAPI resmi pada port `8000` (port 8001 dialokasikan untuk project KARMA).
+- [ ] Konfigurasi proxy Vite di `web/vite.config.ts` mengarah ke port `8000`.
 - [ ] Verifikasi live mic di 2D/3D Smart Home Visualizer: memastikan lampu, suhu, dan musik merespon instan (<800 ms) sesuai perintah suara pengguna.
 - [ ] Final commit dan push semua perubahan ke GitHub remote `main`.

@@ -60,7 +60,7 @@ Dokumen ini adalah panduan kontrol proyek resmi untuk pematangan sistem Deep Lea
 │   └── Sub-step 9.3: Verifikasi Paritas Numerik PyTorch vs ONNX (Selisih Max Diff < 1e-5)
 │
 └── FASE 10: INTEGRASI SISTEM WEB SERVING & LIVE TEST MIKROFON FISIK
-    ├── Sub-step 10.1: Konfigurasi Port Bebas Konflik (FastAPI Port 8001 & Proxy Vite Port 5180)
+    ├── Sub-step 10.1: Konfigurasi Port Resmi SVARA (FastAPI Port 8000 & Proxy Vite Port 5180)
     ├── Sub-step 10.2: Pengujian Otomatis Seluruh Intent pada Server Aktif
     └── Sub-step 10.3: Uji Coba Langsung Suara Fisik di Visualizer 2D/3D Smart Home
 ```
@@ -117,6 +117,6 @@ Dokumen ini adalah panduan kontrol proyek resmi untuk pematangan sistem Deep Lea
 * **Sub-step 9.3**: Uji paritas numerik PyTorch vs ONNX ($\max \Delta < 10^{-5}$).
 
 ### FASE 10: INTEGRASI SISTEM WEB SERVING & LIVE TEST MIKROFON FISIK
-* **Sub-step 10.1**: Setting backend FastAPI di port 8001 dan Vite proxy di port 5180 (bebas konflik port).
+* **Sub-step 10.1**: Setting backend FastAPI di port 8000 dan Vite proxy di port 5180 (port 8000 resmi SVARA).
 * **Sub-step 10.2**: Uji otomatis ke-31 intent melalui API.
 * **Sub-step 10.3**: Uji live langsung lewat mic laptop di browser pada visualizer 2D dan 3D smart home.

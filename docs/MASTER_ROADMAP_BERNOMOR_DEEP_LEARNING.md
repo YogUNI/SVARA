@@ -92,7 +92,7 @@ Dokumen ini adalah panduan kontrol proyek resmi untuk pematangan sistem Deep Lea
 * **Sub-step 4.4** [SELESAI - Commit `fdc578d`]: Generate 3 variasi akustik per audio bersih ($8.990 \times 3 = 26.970$ klip audio robust 16 kHz Mono PCM_16) di `data/synthetic_indonesian_massive/wavs_augmented/`, total 25,04 jam audio, manifest `data/synthetic_indonesian_massive/metadata_augmented.csv` (26.970 baris, 870 audio per 31 intent seimbang sempurna, rasio gender 50:50), ringkasan `reports/massive_augmented_dataset_summary.json`, 22 unit test lulus 100% (`tests/test_augment.py`, `tests/test_augmented_dataset.py`). **FASE 4 SELESAI 100%**.
 
 ### FASE 5: INTEGRASI BALANCED BILINGUAL DATASET & SPLITTING ILMIAH
-* **Sub-step 5.1**: Gabungkan 12.000 audio Indonesia robust + 12.000 audio FSC English native (Total 24.000 audio).
+* **Sub-step 5.1** [SELESAI]: Gabungkan 12.000 audio Indonesia robust + 12.000 audio FSC English native (Total 24.000 audio seimbang 50:50, zero intent skew, sebaran gender ID 50:50, 4.000 audio per profil akustik, manifest `data/bilingual_massive/bilingual_manifest_24k.csv`, ringkasan `reports/bilingual_dataset_integration_summary.json`, 7 unit test lulus 100% `tests/test_bilingual_dataset.py`).
 * **Sub-step 5.2**: Buat split stratified: Train (70% = 16.800 audio), Valid (15% = 3.600 audio), Unseen Test (15% = 3.600 audio).
 * **Sub-step 5.3**: Simpan di `data/bilingual_massive/splits/` dan verifikasi hash duplikasi (Zero-Data-Leakage Validation).
 

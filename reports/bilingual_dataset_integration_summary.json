@@ -1,0 +1,36 @@
+{
+  "timestamp": "2026-10-28 11:01:35",
+  "total_clips": 24000,
+  "target_clips": 24000,
+  "language_distribution": {
+    "id": 12000,
+    "en": 12000
+  },
+  "indonesian_gender_distribution": {
+    "male": 6000,
+    "female": 6000
+  },
+  "english_gender_distribution": {
+    "male": 6238,
+    "female": 5762
+  },
+  "acoustic_profile_distribution": {
+    "fsc_native": 12000,
+    "var1_bedroom_slow": 4001,
+    "var2_living_fast": 4000,
+    "var3_kitchen_norm": 3999
+  },
+  "domain_distribution": {
+    "Lighting (Pencahayaan)": 7746,
+    "Climate (Pengatur Suhu & AC)": 6192,
+    "System Language (Pengaturan Bahasa)": 3870,
+    "Robot Butler (Pengantaran Barang)": 3096,
+    "Media & Audio (Hiburan & Volume)": 3096
+  },
+  "intent_skew_count": 0,
+  "total_duration_hours": 18.882,
+  "mean_duration_seconds": 2.832,
+  "elapsed_seconds": 26.69,
+  "manifest_path": "data/bilingual_massive/bilingual_manifest_24k.csv",
+  "status": "PASS"
+}

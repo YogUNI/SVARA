@@ -14,6 +14,10 @@ data/*
 !data/bilingual_dataset/
 !data/bilingual_dataset/splits/
 !data/bilingual_dataset/splits/*.csv
+!data/bilingual_massive/
+!data/bilingual_massive/*.csv
+!data/bilingual_massive/splits/
+!data/bilingual_massive/splits/*.csv
 *.wav
 *.mp3
 *.flac

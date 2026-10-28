@@ -26,7 +26,8 @@ Setiap sub-tahap yang dieksekusi dicatat secara lengkap mulai dari formulasi mat
 | **4.2** | Hardware Mic Filter 100 Hz & Injeksi Noise AC/Kipas | **SELESAI** | `0c6d72d` | `src/svara/data/augment.py` | Bab 4 §4.1 |
 | **4.3** | Variasi Tempo Sinc Resampling (0.92x, 1.00x, 1.08x) | **SELESAI** | `4c4fc04` | `src/svara/data/augment.py` | Bab 4 §4.1 |
 | **4.4** | Eksekusi Batch Augmentasi Masif (26.970 Klip Robust) | **SELESAI** | `fdc578d` | `data/synthetic_indonesian_massive/metadata_augmented.csv` | Bab 4 §4.1, Bab 5 |
-| **5.1 - 5.3** | Balanced Bilingual Dataset Splitting (Zero-Leakage) | *MENUNGGU* | - | `scripts/make_splits_...py`| Bab 4 §4.1 |
+| **5.1** | Penggabungan Seimbang Bilingual (24.000 Audio 50:50) | **SELESAI** | *Dalam commit ini* | `data/bilingual_massive/bilingual_manifest_24k.csv` | Bab 4 §4.1 |
+| **5.2 - 5.3** | Balanced Bilingual Stratified Splitting & Zero-Leakage Audit | *MENUNGGU* | - | `scripts/make_splits_...py`| Bab 4 §4.1 |
 | **6.1 - 6.3** | Pembuatan Master Notebook `03_production_pipeline` | *MENUNGGU* | - | `notebooks/03_...ipynb` | Bab 4 §4.3 |
 | **7.1 - 7.3** | Training & Optimasi Terkalibrasi GPU RTX 4060 | *MENUNGGU* | - | `reports/runs/...` | Bab 5 §5.1, §5.2 |
 | **8.1 - 8.3** | Uncertainty Quantification, T-Scaling & Legal Gate | *MENUNGGU* | - | `src/svara/serve/...` | Bab 4 §4.4, Bab 5 |
@@ -644,6 +645,57 @@ Setiap sub-tahap yang dieksekusi dicatat secara lengkap mulai dari formulasi mat
 * **Pencapaian Milestone**:
   - **SUB-STEP 4.4 SELESAI SEMPURNA & FASE 4 SELESAI 100%!**
   - Dataset bahasa Indonesia kini telah mencapai skala masif $26.970$ audio klip kuat dan realistis, siap untuk digabungkan dengan FSC English native pada **Fase 5: Balanced Bilingual Dataset Integration & Splitting**.
+
+---
+
+### FASE 5: INTEGRASI BALANCED BILINGUAL DATASET & SPLITTING ILMIAH
+
+#### Sub-step 5.1: Penggabungan Seimbang 50:50 (12.000 Audio Indonesia + 12.000 Audio FSC English)
+* **Tanggal Eksekusi**: 28 Oktober 2026
+* **Penanggung Jawab**: Yoga (Pipeline Integrasi Bilingual, Alokasi Kuota Intent Identik, & Verifikasi Skema Terpadu)
+* **Latar Belakang & Masalah**:
+  Untuk membangun asisten suara rumah pintar dwibahasa (*Bilingual SLU*) yang adil (*unbiased*) terhadap perintah bahasa Indonesia maupun bahasa Inggris, model deep learning membutuhkan komposisi dataset latih yang seimbang secara matematis. Jika salah satu bahasa mendominasi (misalnya 90% Inggris dan 10% Indonesia), representasi fitur *cross-lingual* wav2vec2 akan mengalami *catastrophic forgetting* atau performa asimetris. Sub-step ini merekayasa integrasi seimbang 50:50 antara korpus robust Indonesia ($12.000\text{ audio}$) dan Fluent Speech Commands (FSC) English native ($12.000\text{ audio}$) dengan total target **$24.000\text{ audio klip}$**.
+* **Metodologi & Desain Kuota Intent Identik**:
+  1. **Zero Language-Intent Skew**:
+     - 31 intent smart home diberikan kuota eksak per bahasa:
+       $$Q_k = \begin{cases} 388, & \text{untuk } k \in \{0, 1, 2\} \\ 387, & \text{untuk } k \in \{3, \dots, 30\} \end{cases}$$
+       $$\sum_{k=0}^{30} Q_k = 3 \times 388 + 28 \times 387 = 1.164 + 10.836 = 12.000\text{ klip}$$
+     - Kuota $Q_k$ diterapkan secara **identik dan simetris** untuk bahasa Indonesia dan bahasa Inggris ($N_{\text{id}}(k) = N_{\text{en}}(k)$ untuk seluruh 31 intent).
+     - Jumlah audio per intent dalam dataset bilingual gabungan: tepat $776\text{ audio}$ (3 intent) atau $774\text{ audio}$ (28 intent). Standar deviasi sebaran kelas $\sigma = 0,495$ ($H/H_{\max} = 0,999999$).
+  2. **Stratifikasi Subset Bahasa Indonesia (12.000 dari 26.970)**:
+     - Keseimbangan gender: persis **$6.000\text{ pria}$** (`spk_ardi`) dan **$6.000\text{ wanita}$** (`spk_gadis`) melalui algoritma sampling bergiliran (*alternating intent allocation*).
+     - Keseimbangan 3 profil akustik lingkungan melalui rotasi modulo variasi:
+       - `var1_bedroom_slow` (Kamar Tidur Santai): **$4.001\text{ audio}$** ($33,34\%$).
+       - `var2_living_fast` (Ruang Tamu Cepat): **$4.000\text{ audio}$** ($33,33\%$).
+       - `var3_kitchen_norm` (Dapur/Makan Normal): **$3.999\text{ audio}$** ($33,33\%$).
+  3. **Stratifikasi Subset English FSC (12.000 dari 30.043)**:
+     - Menggabungkan data FSC asli (`train_data.csv`, `valid_data.csv`, `test_data.csv`) dan menggabungkan atribut demografi pembicara (`speaker_demographics.csv`).
+     - Sampling $Q_k$ klip per intent dengan pemetaan tuple slot `(action, object, location)` ke `intent_id` (0 unmapped intent).
+     - Distribusi gender FSC terpelihara seimbang secara natural: $6.238\text{ pria}$ ($52\%$) dan $5.762\text{ wanita}$ ($48\%$).
+     - Inspeksi durasi audio aktual dilakukan paralel via `soundfile.info` (8 worker threads).
+* **Data Empiris & Hasil Eksekusi Riil**:
+  - **Total Klip Audio Bilingual**: **$24.000\text{ file}$** (100% target tercapai).
+  - **Total Durasi Audio**: **$18,88\text{ jam}$** ($67.975,1\text{ detik}$).
+  - **Rata-rata Durasi per Klip**: $2,83\text{ detik}$ (ID: $3,34\text{s}$, EN: $2,32\text{s}$).
+  - **Rasio Bahasa**: Tepat **50,00% Indonesia ($12.000$) : 50,00% Inggris ($12.000$)**.
+  - **Kesesuaian Intent (ID vs EN)**: 31 dari 31 Intent **IDENTIK MUTLAK** (Intent Skew = 0).
+  - **Sebaran Domain Fungsional**:
+    - Lighting (Pencahayaan): $7.746\text{ audio}$ ($32,3\%$).
+    - Climate (Pengatur Suhu & AC): $6.192\text{ audio}$ ($25,8\%$).
+    - System Language (Pengaturan Bahasa): $3.870\text{ audio}$ ($16,1\%$).
+    - Robot Butler (Pengantaran Barang): $3.096\text{ audio}$ ($12,9\%$).
+    - Media & Audio (Hiburan & Volume): $3.096\text{ audio}$ ($12,9\%$).
+  - **Skema Kolom Terpadu (13 Kolom)**: `audio_path`, `speaker_id`, `gender`, `language`, `transcript`, `action`, `object`, `location`, `intent_id`, `domain`, `duration`, `acoustic_profile`, `source_split_original`.
+* **Artefak File yang Dihasilkan**:
+  - `data/bilingual_massive/bilingual_manifest_24k.csv`: File manifest dataset bilingual terpadu 24.000 baris.
+  - `reports/bilingual_dataset_integration_summary.json`: Laporan ringkasan metrik statistik integrasi dataset bilingual.
+  - `scripts/make_balanced_bilingual_dataset.py`: Script generator sampling terstratifikasi dan penggabungan dataset dwibahasa.
+  - `tests/test_bilingual_dataset.py`: Suite pengujian 7 dimensi integritas dataset bilingual.
+* **Hasil Pengujian Test Suite**:
+  - `pytest tests/test_bilingual_dataset.py`: **7 passed in 4.01s** (100% lulus).
+* **Pencapaian Milestone**:
+  - **SUB-STEP 5.1 SELESAI SEMPURNA!**
+  - Dataset dwibahasa 24.000 audio klip telah terintegrasi seimbang sempurna, siap untuk dibagi menjadi partisi Train, Valid, dan Unseen Test pada **Sub-step 5.2**.
 
 ---
 *(Logbook ini akan diperbarui secara otomatis setiap kali sub-step berikutnya selesai dieksekusi)*

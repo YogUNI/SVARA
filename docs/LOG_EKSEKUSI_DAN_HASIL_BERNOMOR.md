@@ -845,4 +845,54 @@ Setiap sub-tahap yang dieksekusi dicatat secara lengkap mulai dari formulasi mat
   - Dataset dwibahasa 24.000 audio klip kini telah terbukti secara ilmiah dan matematis bebas kebocoran data (*zero data leakage*), terpartisi seimbang 70:15:15, dan siap digunakan untuk pelatihan model deep learning pada **FASE 6: PEMBUATAN MASTER NOTEBOOK BARU & ARSITEKTUR MODEL**.
 
 ---
+
+### FASE 6: PEMBUATAN MASTER NOTEBOOK BARU & ARSITEKTUR MODEL
+
+#### Sub-step 6.1: Inisialisasi Master Notebook `notebooks/03_production_slu_deep_learning_pipeline.ipynb` dari Nol
+* **Tanggal Eksekusi**: 28 Oktober 2026
+* **Penanggung Jawab**: Yoga (Arsitektur Notebook Ilmiah, Standardisasi Jupyter nbformat 4.5, & Skema Pipeline Deep Learning)
+* **Latar Belakang & Masalah**:
+  Sesuai kebijakan repositori dan roadmap operasional, notebook lama `notebooks/02_indonesian_bilingual_training.ipynb` **tidak boleh disentuh/diubah** guna menjaga rekam jejak historis eksperimen. Untuk mendokumentasikan dan mendemonstrasikan pipeline deep learning produksi yang matang secara interaktif kepada dosen penguji dan tim riset, dibangun master notebook baru `notebooks/03_production_slu_deep_learning_pipeline.ipynb` dari nol. Notebook ini dirancang dengan struktur formal berstandar riset akademik IEEE (Lugosch et al., 2019; Baevski et al., 2020), mencakup 9 sel produksi terstruktur, dan siap dieksekusi secara lokal pada GPU NVIDIA RTX 4060 maupun di Google Colab.
+* **Arsitektur & Struktur 9 Sel Master Notebook**:
+  Dibuat generator deterministik `scripts/init_master_notebook.py` yang memproduksi struktur dokumen interaktif lengkap (19 sel: 10 Markdown akademik dan 9 Code sel eksekutabel):
+  1. **Header & Identitas Akademis**:
+     - Judul proyek, institusi (Universitas Mercu Buana), tim pengembang (Yoga & Haikal), rujukan ilmiah dosen, serta daftar isi navigasi Markdown interaktif.
+  2. **Sel 1: Konfigurasi Lingkungan, Seed & Deteksi GPU CUDA (NVIDIA RTX 4060)**:
+     - Penguncian seed acak (`SEED = 42`) pada Python, NumPy, PyTorch, dan cuDNN.
+     - Inspeksi otomatis ketersediaan GPU RTX 4060 Laptop (8GB VRAM), compute capability `sm_89`, dan dukungan PyTorch AMP FP16.
+  3. **Sel 2: Pemrosesan Sinyal Audio & Visualisasi Spektrogram**:
+     - Visualisasi komparatif waveform dan spektrogram frekuensi sebelum vs sesudah melewati rantai *Acoustic Signal Hygiene* (Butterworth Bandpass 80-7.500 Hz, RMS -20 dBFS, VAD padding buffer 150ms).
+  4. **Sel 3: Pemuatan Dataset Terstratifikasi Bilingual 24.000 Audio**:
+     - Integrasi manifes partisi ilmiah 24k (`train.csv` 16.800, `valid.csv` 3.600, `test.csv` 3.600) dan inspeksi 31 legal intent map.
+  5. **Sel 4: Definisi Arsitektur Model Transformer SLU (`Wav2VecSLU`)**:
+     - Definisi kelas model berbasis backbone `facebook/wav2vec2-base` (7 lapisan temporal conv CNN dibekukan, 12 lapisan Transformer Self-Attention, dimensi laten 768).
+     - Implementasi *Length-Aware Masked Mean Pooling* dan 3 decoupled slot classification heads (Action 6, Object 14, Location 4) + Auxiliary Joint Head (31).
+  6. **Sel 5: Engine Pelatihan & Optimasi Terkalibrasi GPU RTX 4060**:
+     - Konfigurasi parameter Multi-Task Loss dengan Label Smoothing ($\epsilon = 0.05$), optimizer AdamW dengan decoupled learning rate, dan Cosine Warmup Schedule.
+  7. **Sel 6: Visualisasi Kurva Loss & Exact-Match Accuracy Interaktif**:
+     - Modul plotting kurva konvergensi training vs validation loss dan akurasi exact-match per epoch.
+  8. **Sel 7: Evaluasi Kinerja Ilmiah Multi-Domain**:
+     - Kerangka evaluasi ilmiah pada Unseen Indonesian Test Set (Split B) dan FSC Benchmark (Split C).
+  9. **Sel 8: Pipeline Ekspor Universal ONNX & Dynamic INT8 Quantization**:
+     - Serialisasi graf ke format ONNX dan kuantisasi INT8 dengan uji deviasi numerik.
+  10. **Sel 9: Live Audio Prediction & Smart Home Intent Consistency Gate**:
+      - Widget inferensi interaktif dengan Temperature Scaling, skor keyakinan Geometric Mean, dan filter validasi konsistensi 31 intent legal.
+* **Data Empiris & Integritas Format Berkas**:
+  - Format container: Jupyter Notebook `nbformat: 4`, `nbformat_minor: 5`.
+  - Ukuran berkas: $23,9\text{ KB}$ ($23.946\text{ bytes}$).
+  - Total sel: **$19\text{ cells}$** ($10\text{ Markdown cells}$ akademik & $9\text{ Code cells}$ produksi).
+  - Kernelspec: Python 3 (`ipykernel`).
+  - Integritas notebook lama: `notebooks/02_indonesian_bilingual_training.ipynb` **100% terjaga utuh tanpa modifikasi**.
+* **Artefak File yang Dihasilkan**:
+  - `notebooks/03_production_slu_deep_learning_pipeline.ipynb`: Berkas Master Notebook resmi produksi.
+  - `scripts/init_master_notebook.py`: Script generator deterministik pembangun struktur notebook.
+  - `tests/test_master_notebook.py`: Suite unit test pengujian integritas struktur notebook dan kepatuhan kebijakan.
+* **Hasil Pengujian Test Suite Repositori**:
+  - `pytest tests/test_master_notebook.py`: **5 passed in 0.07s** (100% lulus).
+  - Regresi lengkap repositori (`tests/test_audio.py`, `tests/test_augment.py`, `tests/test_augmented_dataset.py`, `tests/test_bilingual_dataset.py`, `tests/test_bilingual_splits.py`, `tests/test_zero_leakage_audit.py`, `tests/test_master_notebook.py`): **66 passed in 14.55s** (100% lulus tanpa kegagalan).
+* **Pencapaian Milestone**:
+  - **SUB-STEP 6.1 SELESAI SEMPURNA!**
+  - Master Notebook resmi produksi `notebooks/03_production_slu_deep_learning_pipeline.ipynb` telah diinisialisasi secara utuh dan terstandarisasi, siap untuk perancangan kode mendalam pada **Sub-step 6.2: Desain Sel 1-4 (CUDA GPU 4060, Waveform Spectrogram, DataLoader, Model Head)**.
+
+---
 *(Logbook ini akan diperbarui secara otomatis setiap kali sub-step berikutnya selesai dieksekusi)*

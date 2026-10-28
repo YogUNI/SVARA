@@ -1,0 +1,160 @@
+{
+  "audit_name": "SVARA Comprehensive Zero Data Leakage Audit",
+  "sub_step": "5.3",
+  "timestamp": "2026-10-28 11:32:55",
+  "global_status": "PASS",
+  "elapsed_seconds": 32.38,
+  "audit_dimensions": {
+    "dim1_row_integrity_and_language_parity": {
+      "status": "PASS",
+      "train_rows": 16800,
+      "valid_rows": 3600,
+      "test_rows": 3600,
+      "total_rows": 24000,
+      "test_id_rows": 1800,
+      "test_en_rows": 1800,
+      "language_parity": {
+        "train": {
+          "id": 8400,
+          "en": 8400
+        },
+        "valid": {
+          "id": 1800,
+          "en": 1800
+        },
+        "test": {
+          "id": 1800,
+          "en": 1800
+        }
+      },
+      "errors": []
+    },
+    "dim2_indonesian_unseen_utterance_isolation": {
+      "status": "PASS",
+      "total_unique_indonesian_phrases": 4358,
+      "train_unique_phrases": 3065,
+      "valid_unique_phrases": 647,
+      "test_unique_phrases": 646,
+      "train_test_overlap_count": 0,
+      "train_valid_overlap_count": 0,
+      "valid_test_overlap_count": 0,
+      "is_unseen_utterance_strictly_isolated": true
+    },
+    "dim3_english_speaker_disjoint_isolation": {
+      "status": "PASS",
+      "total_unique_english_speakers": 79,
+      "train_unique_speakers": 53,
+      "valid_unique_speakers": 13,
+      "test_unique_speakers": 13,
+      "train_test_overlap_count": 0,
+      "train_valid_overlap_count": 0,
+      "valid_test_overlap_count": 0,
+      "is_speaker_disjoint_strictly_isolated": true
+    },
+    "dim4_audio_waveform_binary_uniqueness": {
+      "status": "PASS",
+      "total_audited_audio_files": 24000,
+      "train_unique_hashes": 16800,
+      "valid_unique_hashes": 3600,
+      "test_unique_hashes": 3600,
+      "internal_duplicates_in_train": 0,
+      "internal_duplicates_in_valid": 0,
+      "internal_duplicates_in_test": 0,
+      "train_test_hash_overlap": 0,
+      "train_valid_hash_overlap": 0,
+      "valid_test_hash_overlap": 0,
+      "is_binary_waveform_unique": true
+    },
+    "dim5_label_consistency_and_phrasing_diversity": {
+      "status": "PASS",
+      "label_mapping_conflicts_v01": 0,
+      "indonesian_train_phrases_per_intent": {
+        "min": 93,
+        "mean": 98.9,
+        "max": 103
+      },
+      "english_train_phrases_per_intent": {
+        "min": 4,
+        "mean": 8.0,
+        "max": 24
+      },
+      "v02_minimum_phrasing_requirement_met": true
+    },
+    "dim6_intent_class_balance_and_entropy": {
+      "status": "PASS",
+      "max_theoretical_entropy": 4.954196,
+      "split_entropy_metrics": {
+        "train": {
+          "intents_represented": 31,
+          "min_clips_per_intent": 482,
+          "max_clips_per_intent": 570,
+          "mean_clips_per_intent": 541.9,
+          "shannon_entropy": 4.953343,
+          "normalized_entropy": 0.999828,
+          "imbalance_ratio": 1.1826
+        },
+        "valid": {
+          "intents_represented": 31,
+          "min_clips_per_intent": 94,
+          "max_clips_per_intent": 145,
+          "mean_clips_per_intent": 116.1,
+          "shannon_entropy": 4.947434,
+          "normalized_entropy": 0.998635,
+          "imbalance_ratio": 1.5426
+        },
+        "test": {
+          "intents_represented": 31,
+          "min_clips_per_intent": 96,
+          "max_clips_per_intent": 154,
+          "mean_clips_per_intent": 116.1,
+          "shannon_entropy": 4.945495,
+          "normalized_entropy": 0.998244,
+          "imbalance_ratio": 1.6042
+        }
+      }
+    },
+    "dim7_acoustic_duration_and_signal_hygiene": {
+      "status": "PASS",
+      "sample_rate_hz": 16000,
+      "channels": 1,
+      "format": "PCM_16",
+      "duration_statistics": {
+        "train": {
+          "min_sec": 0.65,
+          "mean_sec": 2.81,
+          "p95_sec": 4.15,
+          "p99_sec": 4.67,
+          "max_sec": 10.22,
+          "total_hours": 13.092
+        },
+        "valid": {
+          "min_sec": 0.77,
+          "mean_sec": 2.86,
+          "p95_sec": 4.3,
+          "p99_sec": 4.83,
+          "max_sec": 5.43,
+          "total_hours": 2.863
+        },
+        "test": {
+          "min_sec": 0.68,
+          "mean_sec": 2.93,
+          "p95_sec": 4.16,
+          "p99_sec": 4.7,
+          "max_sec": 5.48,
+          "total_hours": 2.927
+        }
+      }
+    },
+    "dim8_manifest_checksum_and_disk_sync": {
+      "status": "PASS",
+      "manifest_sha256_verifications": {
+        "train_csv": true,
+        "valid_csv": true,
+        "test_csv": true,
+        "test_id_csv": true,
+        "test_en_csv": true
+      },
+      "all_checksums_match": true
+    }
+  }
+}

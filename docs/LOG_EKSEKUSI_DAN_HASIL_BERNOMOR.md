@@ -772,4 +772,77 @@ Setiap sub-tahap yang dieksekusi dicatat secara lengkap mulai dari formulasi mat
   - Dataset dwibahasa 24.000 audio klip telah terbagi secara ilmiah menjadi Train (16.800), Valid (3.600), dan Unseen Test (3.600) dengan pembuktian matematis zero utterance & speaker leakage, siap melangkah ke **Sub-step 5.3: Audit Verifikasi Bebas Kebocoran Data (Zero-Data-Leakage Validation)**.
 
 ---
+
+#### Sub-step 5.3: Audit Verifikasi Bebas Kebocoran Data (Zero-Data-Leakage Validation)
+* **Tanggal Eksekusi**: 28 Oktober 2026
+* **Penanggung Jawab**: Yoga (Audit Integritas Data, Hashing Biner Multi-thread, & Validasi Ilmiah 8 Dimensi)
+* **Latar Belakang & Masalah**:
+  Sesuai dengan **Rule 1 (Zero Fabrication)** pada `AGENTS.md` serta protokol disiplin verifikasi deep learning pada `docs/01_DATASET_AND_EVALUATION.md` §4 dan `docs/11_DL_VERIFICATION_CHECKLIST.md` (V-01 hingga V-08), seluruh klaim ketiadaan kebocoran data (*zero data leakage*) wajib diverifikasi secara empiris dan komputasional terhadap seluruh 24.000 audio klip. Tidak boleh ada satu pun asumsi tanpa bukti biner: kita harus membuktikan secara mutlak bahwa tidak ada duplikasi waveform antar-partisi, tidak ada frasa kalimat yang bocor dari train ke test pada bahasa Indonesia, tidak ada penutur yang tumpang tindih pada English FSC, tidak ada konflik triplet slot, dan seluruh berkas di disk sinkron sempurna dengan manifes.
+* **Metodologi Audit 8 Dimensi**:
+  Script audit independen `scripts/audit_zero_leakage_splits.py` menginspeksi **100% berkas audio ($24.000\text{ file}$)** secara multi-threaded (16 worker threads) dalam $32,38\text{ detik}$ ($741,2\text{ file/detik}$):
+  1. **Dimensi 1: Integritas Baris & Paritas Bahasa 50:50**:
+     - Train: $16.800$ baris ($8.400$ ID + $8.400$ EN, tepat $50:50$).
+     - Valid: $3.600$ baris ($1.800$ ID + $1.800$ EN, tepat $50:50$).
+     - Test: $3.600$ baris ($1.800$ ID + $1.800$ EN, tepat $50:50$).
+     - Slice Test ID: $1.800$ baris ($100\%$ Bahasa Indonesia).
+     - Slice Test EN: $1.800$ baris ($100\%$ Bahasa Inggris). Status: **PASS**.
+  2. **Dimensi 2: Zero Utterance Leakage (Indonesia Unseen Utterance)**:
+     - Total transkrip unik bahasa Indonesia: $4.358$ frasa.
+     - Train unique: $3.065$ frasa, Valid unique: $647$ frasa, Test unique: $646$ frasa.
+     - Irisan transkrip Train $\cap$ Test = **$0$ frasa** ($0,0\%$).
+     - Irisan transkrip Train $\cap$ Valid = **$0$ frasa** ($0,0\%$).
+     - Irisan transkrip Valid $\cap$ Test = **$0$ frasa** ($0,0\%$). Status: **PASS**.
+  3. **Dimensi 3: Zero Speaker Leakage (English FSC Speaker-Disjoint)**:
+     - Total pembicara FSC: $79$ pembicara unik.
+     - Train speakers: $53$ penutur, Valid speakers: $13$ penutur, Test speakers: $13$ penutur.
+     - Irisan pembicara Train $\cap$ Test = **$0$ pembicara** ($0,0\%$).
+     - Irisan pembicara Train $\cap$ Valid = **$0$ pembicara** ($0,0\%$).
+     - Irisan pembicara Valid $\cap$ Test = **$0$ pembicara** ($0,0\%$). Status: **PASS**.
+  4. **Dimensi 4: Zero Audio Content Duplication (Binary Waveform Hashing)**:
+     - Pemeriksaan hash MD5 dari $24.000$ audio klip riil di disk:
+       - Hash unik Train: $16.800$, duplikasi internal: $0$.
+       - Hash unik Valid: $3.600$, duplikasi internal: $0$.
+       - Hash unik Test: $3.600$, duplikasi internal: $0$.
+     - Irisan hash biner Train $\cap$ Test = **$0$** ($0,0\%$).
+     - Irisan hash biner Train $\cap$ Valid = **$0$** ($0,0\%$).
+     - Irisan hash biner Valid $\cap$ Test = **$0$** ($0,0\%$).
+     - Terbukti 100% berkas audio secara fisik unik dan tidak ada tumpang tindih sinyal. Status: **PASS**.
+  5. **Dimensi 5: Konsistensi Pemetaan Label Triplet Slot (V-01) & Keragaman Frasa Latih (V-02)**:
+     - Konflik pemetaan `transcript` ke `(action, object, location)`: **$0$ konflik** (V-01 dipenuhi sempurna).
+     - Keragaman frasa latih Indonesia per intent: Min = $93$, Rata-rata = $98,9$, Max = $103$ frasa/intent.
+     - Keragaman frasa latih English FSC per intent: Min = $4$, Rata-rata = $8,0$, Max = $24$ frasa/intent.
+     - Ambang batas V-02 ($\ge 2$ frasa per intent) terlampaui secara masif. Status: **PASS**.
+  6. **Dimensi 6: Keseimbangan Kelas 31 Intent & Entropi Shannon (V-07)**:
+     - Entropi teoretis maksimum: $H_{\max} = \log_2(31) = 4,954196\text{ bits}$.
+     - Train Split: $H = 4,953343\text{ bits}$ ($H/H_{\max} = 0,999828$, rasio imbalans $= 1,1826$).
+     - Valid Split: $H = 4,947434\text{ bits}$ ($H/H_{\max} = 0,998635$, rasio imbalans $= 1,5426$).
+     - Test Split: $H = 4,945495\text{ bits}$ ($H/H_{\max} = 0,998244$, rasio imbalans $= 1,6042$).
+     - Seluruh 31 intent hadir 100% di Train, Valid, dan Test. Status: **PASS**.
+  7. **Dimensi 7: Karakteristik Akustik & Statistik Durasi (V-06)**:
+     - Frekuensi sampling: Tepat $16.000\text{ Hz}$ (Mono, 16-bit Signed Linear PCM `PCM_16`).
+     - Rentang durasi Train: Min $0,65\text{s}$, Rata-rata $2,81\text{s}$, p95 $4,15\text{s}$, p99 $4,67\text{s}$, Max $10,22\text{s}$ (Total $13,092\text{ jam}$).
+     - Rentang durasi Valid: Min $0,77\text{s}$, Rata-rata $2,86\text{s}$, p95 $4,30\text{s}$, p99 $4,83\text{s}$, Max $5,43\text{s}$ (Total $2,863\text{ jam}$).
+     - Rentang durasi Test: Min $0,68\text{s}$, Rata-rata $2,93\text{s}$, p95 $4,16\text{s}$, p99 $4,70\text{s}$, Max $5,48\text{s}$ (Total $2,927\text{ jam}$).
+     - Total Durasi Gabungan: **$18,882\text{ jam}$**. Status: **PASS**.
+  8. **Dimensi 8: Kepatuhan Checksum Manifes & Sinkronisasi Disk**:
+     - Checksum SHA-256 dari seluruh 5 berkas partisi CSV dihitung ulang dan diverifikasi terhadap `split_manifest.json`:
+       - `train.csv`: `15b83d36da6c...` (Cocok 100%).
+       - `valid.csv`: `67142519c254...` (Cocok 100%).
+       - `test.csv`: `a5a7ea66bd76...` (Cocok 100%).
+       - `test_id.csv`: `821c2173d3a2...` (Cocok 100%).
+       - `test_en.csv`: `49211c6738c7...` (Cocok 100%).
+     - Tidak ada anomali atau modifikasi tak tercatat pada disk. Status: **PASS**.
+* **Artefak File yang Dihasilkan**:
+  - `scripts/audit_zero_leakage_splits.py`: Script audit 8 dimensi multi-threaded independen.
+  - `reports/zero_data_leakage_audit.json`: Laporan audit formal lengkap format JSON.
+  - `reports/zero_data_leakage_audit.md`: Laporan audit format Markdown terstruktur untuk lampiran skripsi.
+  - `tests/test_zero_leakage_audit.py`: Test suite CI/CD 10 fungsi pengujian otomatis.
+* **Hasil Pengujian Test Suite Repositori**:
+  - `pytest tests/test_zero_leakage_audit.py`: **10 passed in 0.15s** (100% lulus).
+  - Regresi lengkap repositori (`tests/test_audio.py`, `tests/test_augment.py`, `tests/test_augmented_dataset.py`, `tests/test_bilingual_dataset.py`, `tests/test_bilingual_splits.py`, `tests/test_zero_leakage_audit.py`): **61 passed in 15.60s** (100% lulus tanpa kegagalan).
+* **Pencapaian Milestone**:
+  - **SUB-STEP 5.3 SELESAI SEMPURNA & FASE 5 SELESAI 100%!**
+  - Dataset dwibahasa 24.000 audio klip kini telah terbukti secara ilmiah dan matematis bebas kebocoran data (*zero data leakage*), terpartisi seimbang 70:15:15, dan siap digunakan untuk pelatihan model deep learning pada **FASE 6: PEMBUATAN MASTER NOTEBOOK BARU & ARSITEKTUR MODEL**.
+
+---
 *(Logbook ini akan diperbarui secara otomatis setiap kali sub-step berikutnya selesai dieksekusi)*

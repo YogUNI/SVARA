@@ -151,3 +151,9 @@ class Wav2VecSLU(nn.Module):
             logits["joint"] = self.joint(pooled)
 
         return logits
+
+    @property
+    def wav2vec2(self):
+        """Alias property for backbone encoder model."""
+        return self.enc
+

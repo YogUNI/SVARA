@@ -323,3 +323,9 @@ def preprocess_audio(
             data = np.pad(data, (0, pad_width), mode="constant", constant_values=0.0)
 
     return data.astype(np.float32), original_length, target_sample_rate
+
+
+# Backwards compatibility and intuitive aliases
+butter_bandpass_filter = apply_butterworth_bandpass
+vad_trim = trim_silence_vad
+

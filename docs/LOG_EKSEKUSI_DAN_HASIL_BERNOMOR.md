@@ -17,10 +17,15 @@ Setiap sub-tahap yang dieksekusi dicatat secara lengkap mulai dari formulasi mat
 | **1.3** | Dual-Threshold Energy VAD & Silence Trimming | **SELESAI** | `258a15b` | `src/svara/data/audio.py` | Bab 4 §4.2 |
 | **1.4** | Unit Test Paritas Sinyal Preprocessing | **SELESAI** | `448f146` | `tests/test_audio.py` | Bab 4 §4.2, Bab 5 |
 | **2.1** | Generator Matriks Leksikon & Permutasi Sintaksis | **SELESAI** | `713b11b` | `scripts/generate_massive_indonesian_corpus.py` | Bab 3 §3.2, Bab 4 §4.1 |
-| **2.2** | Eksekusi Generasi Korpus Teks 31 Intent (4.000+ Frasa) | *MENUNGGU* | - | `data/corpus/indonesian_smart_home_corpus_4k.csv` | Bab 4 §4.1 |
-| **2.3** | Audit & Validasi Integritas Linguistik Korpus | *MENUNGGU* | - | `tests/test_corpus.py` | Bab 4 §4.1, Bab 5 |
-| **3.1 - 3.3** | Sintesis Suara Multi-Speaker Massal (TTS) | *MENUNGGU* | - | `scripts/synthesize_...py` | Bab 4 §4.1 |
-| **4.1 - 4.4** | Environmental Acoustic Augmentation (24k Audio) | *MENUNGGU* | - | `scripts/augment_...py` | Bab 4 §4.1 |
+| **2.2** | Eksekusi Generasi Korpus Teks 31 Intent (4.495 Frasa) | **SELESAI** | `9fcf68b` | `data/corpus/indonesian_smart_home_corpus_4k.csv` | Bab 4 §4.1 |
+| **2.3** | Audit Integritas Linguistik 7 Dimensi Korpus | **SELESAI** | `ce620c2` | `tests/test_corpus.py` | Bab 4 §4.1, Bab 5 |
+| **3.1** | Engine Sintesis Paralel Multi-Worker (Edge Neural TTS) | **SELESAI** | `077af48` | `scripts/synthesize_massive_indonesian.py` | Bab 4 §4.1 |
+| **3.2** | Eksekusi Sintesis Suara Pria & Wanita (8.990 Klip Bersih) | **SELESAI** | `305d73e` | `data/synthetic_indonesian_massive/metadata.csv` | Bab 4 §4.1 |
+| **3.3** | Audit Akustik 7 Dimensi Zero-Corruption (8.990 WAV) | **SELESAI** | `d8c084e` | `reports/synthetic_acoustic_audit.json` | Bab 4 §4.1, Bab 5 |
+| **4.1** | Schroeder Reverberator (Kamar Tidur & Ruang Tamu) | **SELESAI** | `1678e37` | `src/svara/data/augment.py` | Bab 4 §4.1 |
+| **4.2** | Hardware Mic Filter 100 Hz & Injeksi Noise AC/Kipas | **SELESAI** | `0c6d72d` | `src/svara/data/augment.py` | Bab 4 §4.1 |
+| **4.3** | Variasi Tempo Sinc Resampling (0.92x, 1.00x, 1.08x) | **SELESAI** | `4c4fc04` | `src/svara/data/augment.py` | Bab 4 §4.1 |
+| **4.4** | Eksekusi Batch Augmentasi Masif (26.970 Klip Robust) | **SELESAI** | *Dalam commit ini* | `data/synthetic_indonesian_massive/metadata_augmented.csv` | Bab 4 §4.1, Bab 5 |
 | **5.1 - 5.3** | Balanced Bilingual Dataset Splitting (Zero-Leakage) | *MENUNGGU* | - | `scripts/make_splits_...py`| Bab 4 §4.1 |
 | **6.1 - 6.3** | Pembuatan Master Notebook `03_production_pipeline` | *MENUNGGU* | - | `notebooks/03_...ipynb` | Bab 4 §4.3 |
 | **7.1 - 7.3** | Training & Optimasi Terkalibrasi GPU RTX 4060 | *MENUNGGU* | - | `reports/runs/...` | Bab 5 §5.1, §5.2 |
@@ -580,8 +585,62 @@ Setiap sub-tahap yang dieksekusi dicatat secara lengkap mulai dari formulasi mat
 * **Pencapaian Milestone**:
   - Sub-step 4.3 selesai sempurna. Seluruh 3 pilar augmentasi lingkungan (Reverb 4.1, Mic & Noise 4.2, Tempo 4.3) kini telah siap 100% untuk dieksekusi secara massal pada **Sub-step 4.4**.
 * **Nomor Commit Git**:
-  - `commit 1bd4061` (*feat(augment): implement 0.92x/1.08x polyphase sinc speech tempo perturbation (Sub-step 4.3)*)
+  - `commit 4c4fc04` (*feat(augment): implement 0.92x/1.08x polyphase sinc speech tempo perturbation (Sub-step 4.3)*)
 * **Status Remote Push**: Terunggah ke `main` di `https://github.com/YogUNI/SVARA.git`.
+
+---
+
+#### Sub-step 4.4: Eksekusi Batch Augmentasi Masif (26.970 Audio Robust Multi-Lingkungan)
+* **Tanggal Eksekusi**: 28 Oktober 2026
+* **Penanggung Jawab**: Yoga (Pipeline Multi-Threading DSP, Sinkronisasi Manifest Empiris, & Validasi Akustik Masif)
+* **Latar Belakang & Masalah**:
+  Untuk melatih model Transformer Spoken Language Understanding (SLU) `facebook/wav2vec2-base` yang kebal terhadap kondisi nyata rumah tinggal, dataset sintesis bersih dari Fase 3 ($8.990\text{ audio}$) harus ditransformasikan menjadi representasi akustik dunia nyata. Sub-step ini mengeksekusi integrasi 3 pilar augmentasi (Schroeder Reverb, Hardware Mic Filter + Injeksi Noise AC/Kipas, dan Variasi Tempo Sinc Resampling) secara masif untuk menghasilkan variasi realistis $8.990 \times 3 = 26.970\text{ klip audio robust}$ dengan jaminan zero-distortion, zero-clipping, dan zero class imbalance.
+* **Formulasi 3 Profil Lingkungan Akustik Kanonikal**:
+  Setiap file audio bersih ditransformasikan menjadi 3 variasi lingkungan yang saling melengkapi:
+  1. **Variasi 1: `var1_bedroom_slow` (Kamar Tidur Santai)**:
+     - Schroeder Reverb preset `bedroom`: $RT_{60} = 0,28\text{ s}$, wet ratio $= 0,18$.
+     - Laptop Mic Highpass Filter: Butterworth Ordo 2, cutoff $f_c = 100\text{ Hz}$.
+     - Ambient Noise: Derau AC kamar tidur terkalibrasi pada $\text{SNR} = 24,0\text{ dB}$.
+     - Tempo Perturbation: Sinc resampling faktor $0,92\times$ (tempo santai $+8,7\%$ durasi).
+     - Jumlah klip: $8.990\text{ file}$.
+  2. **Variasi 2: `var2_living_fast` (Ruang Tamu Cepat/Tergesa)**:
+     - Schroeder Reverb preset `living_room`: $RT_{60} = 0,48\text{ s}$, wet ratio $= 0,28$.
+     - Laptop Mic Highpass Filter: Butterworth Ordo 2, cutoff $f_c = 100\text{ Hz}$.
+     - Ambient Noise: Derau kipas angin ruang tamu terkalibrasi pada $\text{SNR} = 18,0\text{ dB}$.
+     - Tempo Perturbation: Sinc resampling faktor $1,08\times$ (tempo cepat $-7,4\%$ durasi).
+     - Jumlah klip: $8.990\text{ file}$.
+  3. **Variasi 3: `var3_kitchen_norm` (Dapur / Ruang Makan Normal)**:
+     - Schroeder Reverb preset `kitchen`: $RT_{60} = 0,36\text{ s}$, wet ratio $= 0,22$.
+     - Laptop Mic Highpass Filter: Butterworth Ordo 2, cutoff $f_c = 100\text{ Hz}$.
+     - Ambient Noise: Derau gabungan AC & kipas angin terkalibrasi pada $\text{SNR} = 21,0\text{ dB}$.
+     - Tempo Perturbation: Sinc resampling faktor $1,00\times$ (tempo natural normal).
+     - Jumlah klip: $8.990\text{ file}$.
+* **Data Empiris & Hasil Eksekusi Riil**:
+  - **Total Audio Bersih Diproses**: $8.990\text{ file}$ (100%).
+  - **Total Audio Robust Dihasilkan**: **$26.970\text{ file}$** (16 kHz 16-bit Mono WAV).
+  - **Total Durasi Audio Robust**: **$25,04\text{ jam}$** ($90.140,4\text{ detik}$).
+  - **Rata-rata Durasi per Klip**: $3,34\text{ detik}$ (Min: $1,78\text{ s}$, Max: $6,29\text{ s}$).
+  - **Format Wadah & Bit Depth**: 100% WAV PCM_16 Mono $16.000\text{ Hz}$.
+  - **Integritas Sinyal & Amplitudo Puncak**:
+    - Nilai NaN / Inf: $0$ (nol mutlak).
+    - Pelanggaran peak headroom ($> 0,9500$): $0$ (nol mutlak).
+  - **Keseimbangan Korpus Robust**:
+    - Profil variasi: Masing-masing $8.990\text{ file}$ ($33,33\%$).
+    - Sebaran pembicara: `spk_ardi` $13.485\text{ file}$ ($50,0\%$), `spk_gadis` $13.485\text{ file}$ ($50,0\%$).
+    - Sebaran gender: Pria $13.485\text{ file}$ ($50,0\%$), Wanita $13.485\text{ file}$ ($50,0\%$).
+    - Sebaran 31 intent legal: Tepat **$870\text{ file}$ per intent** ($290 \times 3$), standar deviasi $\sigma = 0,00$ (keseimbangan kelas sempurna tanpa bias).
+* **Artefak File yang Dihasilkan**:
+  - `data/synthetic_indonesian_massive/wavs_augmented/`: Direktori penyimpan $26.970$ file WAV teraugmentasi (diabaikan oleh git per aturan Rule 2).
+  - `data/synthetic_indonesian_massive/metadata_augmented.csv`: Manifest metadata lengkap berisi 26.970 baris dengan 17 atribut kolom terperinci (`path`, `clean_source_path`, `variation_id`, `room_preset`, `speed_factor`, `noise_type`, `snr_db`, `speakerId`, `gender`, `voice_name`, `transcript`, `action`, `object`, `location`, `domain`, `intent_id`, `duration`).
+  - `reports/massive_augmented_dataset_summary.json`: Ringkasan metrik statistik dataset teraugmentasi resmi.
+  - `scripts/make_massive_augmented_audio.py`: Script generator multi-thread paralel dengan checkpoint berkala dan proteksi file lock Windows.
+  - `tests/test_augmented_dataset.py`: Suite pengujian 5 dimensi integritas dataset teraugmentasi (bijeksi manifest-disk, sebaran profil, sebaran gender/speaker, keseimbangan intent, kepatuhan header audio).
+* **Hasil Pengujian Test Suite**:
+  - `pytest tests/test_augmented_dataset.py`: **5 passed in 5.01s** (100% lulus).
+  - `pytest tests/test_augment.py tests/test_augmented_dataset.py`: **22 passed in 10.81s** (100% lulus).
+* **Pencapaian Milestone**:
+  - **SUB-STEP 4.4 SELESAI SEMPURNA & FASE 4 SELESAI 100%!**
+  - Dataset bahasa Indonesia kini telah mencapai skala masif $26.970$ audio klip kuat dan realistis, siap untuk digabungkan dengan FSC English native pada **Fase 5: Balanced Bilingual Dataset Integration & Splitting**.
 
 ---
 *(Logbook ini akan diperbarui secara otomatis setiap kali sub-step berikutnya selesai dieksekusi)*

@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-10-28 09:37:45",
+  "total_clean_input_files": 8990,
+  "variations_per_file": 3,
+  "total_augmented_files": 26970,
+  "total_duration_hours": 25.039,
+  "mean_duration_seconds": 3.342,
+  "elapsed_seconds": 2.12,
+  "manifest_path": "data/synthetic_indonesian_massive/metadata_augmented.csv",
+  "status": "PASS"
+}

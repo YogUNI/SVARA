@@ -142,7 +142,19 @@ class MassiveTTSAsyncEngine:
             writer = csv.DictWriter(f, fieldnames=fieldnames)
             writer.writeheader()
             writer.writerows(self.manifest_records)
-        os.replace(tmp_path, self.metadata_csv_path)
+        for attempt in range(5):
+            try:
+                os.replace(tmp_path, self.metadata_csv_path)
+                break
+            except PermissionError:
+                time.sleep(0.15 * (attempt + 1))
+        else:
+            import shutil
+            shutil.copyfile(tmp_path, self.metadata_csv_path)
+            try:
+                os.remove(tmp_path)
+            except OSError:
+                pass
 
     async def synthesize_single(
         self,
@@ -236,6 +248,7 @@ class MassiveTTSAsyncEngine:
                 if dry_run:
                     success = True
                     duration = 2.5
+                    await asyncio.sleep(0.001)
                 else:
                     success, duration = await self.synthesize_single(phrase, voice_id, dest_wav_path)
 

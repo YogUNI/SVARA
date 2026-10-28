@@ -111,6 +111,17 @@ async def test_engine_dry_run_pipeline():
             assert df[col].notna().all()
 
 
+def _has_internet() -> bool:
+    import socket
+    try:
+        s = socket.create_connection(("8.8.8.8", 53), timeout=1.0)
+        s.close()
+        return True
+    except OSError:
+        return False
+
+
+@pytest.mark.skipif(not _has_internet(), reason="Requires live internet connection for Edge TTS")
 @pytest.mark.asyncio
 async def test_live_single_synthesis_smoke():
     """Smoke test: synthesize 1 phrase using live Edge TTS and verify 16 kHz 16-bit PCM WAV."""

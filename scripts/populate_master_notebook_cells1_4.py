@@ -371,6 +371,7 @@ def populate_cells_1_to_4():
         "",
         "train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True,  collate_fn=collate_fn_bilingual, pin_memory=torch.cuda.is_available())",
         "valid_loader = DataLoader(valid_dataset, batch_size=BATCH_SIZE, shuffle=False, collate_fn=collate_fn_bilingual, pin_memory=torch.cuda.is_available())",
+        "val_loader   = valid_loader  # Alias resmi agar kompatibel dengan val_loader maupun valid_loader",
         "test_loader  = DataLoader(test_dataset,  batch_size=BATCH_SIZE, shuffle=False, collate_fn=collate_fn_bilingual, pin_memory=torch.cuda.is_available())",
         "",
         "print(f'\\n=== REKAPITULASI PYTORCH DATALOADER ===')",

@@ -1,0 +1,35 @@
+# SVARA Production Bilingual SLU Training Configuration
+run_id: production_bilingual_w2v2
+seed: 42
+model:
+  backbone: facebook/wav2vec2-base
+  freeze_feature_encoder: true
+  dropout: 0.1
+  pooling: masked_mean
+  slot_heads:
+    action: 6
+    object: 14
+    location: 4
+    joint: 31
+training:
+  epochs: 10
+  batch_size: 16
+  learning_rate:
+    encoder: 3.0e-5
+    heads: 1.0e-3
+  weight_decay: 0.01
+  label_smoothing: 0.05
+  warmup_ratio: 0.10
+  amp_fp16: true
+data:
+  dataset_root: data/bilingual_massive/splits
+  total_clips: 24000
+  train_clips: 16800
+  val_clips: 3600
+  test_clips: 3600
+  sample_rate: 16000
+  max_audio_seconds: 5.0
+  signal_hygiene:
+    bandpass: [80, 7500]
+    target_rms_dbfs: -20.0
+    vad_buffer_ms: 150

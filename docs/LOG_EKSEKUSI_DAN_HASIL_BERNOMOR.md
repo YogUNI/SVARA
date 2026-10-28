@@ -26,7 +26,7 @@ Setiap sub-tahap yang dieksekusi dicatat secara lengkap mulai dari formulasi mat
 | **4.2** | Hardware Mic Filter 100 Hz & Injeksi Noise AC/Kipas | **SELESAI** | `0c6d72d` | `src/svara/data/augment.py` | Bab 4 §4.1 |
 | **4.3** | Variasi Tempo Sinc Resampling (0.92x, 1.00x, 1.08x) | **SELESAI** | `4c4fc04` | `src/svara/data/augment.py` | Bab 4 §4.1 |
 | **4.4** | Eksekusi Batch Augmentasi Masif (26.970 Klip Robust) | **SELESAI** | `fdc578d` | `data/synthetic_indonesian_massive/metadata_augmented.csv` | Bab 4 §4.1, Bab 5 |
-| **5.1** | Penggabungan Seimbang Bilingual (24.000 Audio 50:50) | **SELESAI** | *Dalam commit ini* | `data/bilingual_massive/bilingual_manifest_24k.csv` | Bab 4 §4.1 |
+| **5.1** | Penggabungan Seimbang Bilingual (24.000 Audio 50:50) | **SELESAI** | `be90b23` | `data/bilingual_massive/bilingual_manifest_24k.csv` | Bab 4 §4.1 |
 | **5.2 - 5.3** | Balanced Bilingual Stratified Splitting & Zero-Leakage Audit | *MENUNGGU* | - | `scripts/make_splits_...py`| Bab 4 §4.1 |
 | **6.1 - 6.3** | Pembuatan Master Notebook `03_production_pipeline` | *MENUNGGU* | - | `notebooks/03_...ipynb` | Bab 4 §4.3 |
 | **7.1 - 7.3** | Training & Optimasi Terkalibrasi GPU RTX 4060 | *MENUNGGU* | - | `reports/runs/...` | Bab 5 §5.1, §5.2 |
@@ -693,6 +693,9 @@ Setiap sub-tahap yang dieksekusi dicatat secara lengkap mulai dari formulasi mat
   - `tests/test_bilingual_dataset.py`: Suite pengujian 7 dimensi integritas dataset bilingual.
 * **Hasil Pengujian Test Suite**:
   - `pytest tests/test_bilingual_dataset.py`: **7 passed in 4.01s** (100% lulus).
+* **Nomor Commit Git**:
+  - `commit be90b23` (*feat(dataset): integrate balanced 24,000 bilingual speech dataset 50:50 (Sub-step 5.1)*)
+* **Status Remote Push**: Terunggah ke `main` di `https://github.com/YogUNI/SVARA.git`.
 * **Pencapaian Milestone**:
   - **SUB-STEP 5.1 SELESAI SEMPURNA!**
   - Dataset dwibahasa 24.000 audio klip telah terintegrasi seimbang sempurna, siap untuk dibagi menjadi partisi Train, Valid, dan Unseen Test pada **Sub-step 5.2**.

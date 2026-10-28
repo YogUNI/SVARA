@@ -25,7 +25,7 @@ Setiap sub-tahap yang dieksekusi dicatat secara lengkap mulai dari formulasi mat
 | **4.1** | Schroeder Reverberator (Kamar Tidur & Ruang Tamu) | **SELESAI** | `1678e37` | `src/svara/data/augment.py` | Bab 4 §4.1 |
 | **4.2** | Hardware Mic Filter 100 Hz & Injeksi Noise AC/Kipas | **SELESAI** | `0c6d72d` | `src/svara/data/augment.py` | Bab 4 §4.1 |
 | **4.3** | Variasi Tempo Sinc Resampling (0.92x, 1.00x, 1.08x) | **SELESAI** | `4c4fc04` | `src/svara/data/augment.py` | Bab 4 §4.1 |
-| **4.4** | Eksekusi Batch Augmentasi Masif (26.970 Klip Robust) | **SELESAI** | *Dalam commit ini* | `data/synthetic_indonesian_massive/metadata_augmented.csv` | Bab 4 §4.1, Bab 5 |
+| **4.4** | Eksekusi Batch Augmentasi Masif (26.970 Klip Robust) | **SELESAI** | `fdc578d` | `data/synthetic_indonesian_massive/metadata_augmented.csv` | Bab 4 §4.1, Bab 5 |
 | **5.1 - 5.3** | Balanced Bilingual Dataset Splitting (Zero-Leakage) | *MENUNGGU* | - | `scripts/make_splits_...py`| Bab 4 §4.1 |
 | **6.1 - 6.3** | Pembuatan Master Notebook `03_production_pipeline` | *MENUNGGU* | - | `notebooks/03_...ipynb` | Bab 4 §4.3 |
 | **7.1 - 7.3** | Training & Optimasi Terkalibrasi GPU RTX 4060 | *MENUNGGU* | - | `reports/runs/...` | Bab 5 §5.1, §5.2 |
@@ -638,6 +638,9 @@ Setiap sub-tahap yang dieksekusi dicatat secara lengkap mulai dari formulasi mat
 * **Hasil Pengujian Test Suite**:
   - `pytest tests/test_augmented_dataset.py`: **5 passed in 5.01s** (100% lulus).
   - `pytest tests/test_augment.py tests/test_augmented_dataset.py`: **22 passed in 10.81s** (100% lulus).
+* **Nomor Commit Git**:
+  - `commit fdc578d` (*feat(augment): batch-generate 26,970 massive augmented audio clips and manifest (Sub-step 4.4)*)
+* **Status Remote Push**: Terunggah ke `main` di `https://github.com/YogUNI/SVARA.git`.
 * **Pencapaian Milestone**:
   - **SUB-STEP 4.4 SELESAI SEMPURNA & FASE 4 SELESAI 100%!**
   - Dataset bahasa Indonesia kini telah mencapai skala masif $26.970$ audio klip kuat dan realistis, siap untuk digabungkan dengan FSC English native pada **Fase 5: Balanced Bilingual Dataset Integration & Splitting**.

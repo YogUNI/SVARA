@@ -84,6 +84,13 @@ class Wav2VecSLU(nn.Module):
         if freeze_feature_encoder:
             self.enc.freeze_feature_encoder()
 
+        # Disable gradient checkpointing to prevent PyTorch 2.6 CheckpointError and accelerate training on RTX 4060
+        if hasattr(self.enc, "gradient_checkpointing_disable"):
+            self.enc.gradient_checkpointing_disable()
+        if hasattr(self.enc, "encoder") and hasattr(self.enc.encoder, "gradient_checkpointing"):
+            self.enc.encoder.gradient_checkpointing = False
+        self.enc.config.gradient_checkpointing = False
+
         # 3. Layer truncation (E5 / P4-02 support)
         if keep_layers is not None and keep_layers < len(self.enc.encoder.layers):
             self.enc.encoder.layers = nn.ModuleList(self.enc.encoder.layers[:keep_layers])

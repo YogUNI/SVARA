@@ -66,11 +66,11 @@ class TestMasterNotebookInitialization:
             "Sel 2: Pemrosesan Sinyal Audio",
             "Sel 3: Pemuatan Dataset Terstratifikasi Bilingual",
             "Sel 4: Arsitektur Model Transformer SLU",
-            "Sel 5: Training Engine Skeleton & Hyperparameter Configuration",
-            "Sel 6: Visualisasi Riwayat Pelatihan & Metrik Konvergensi",
-            "Sel 7: Evaluasi Ilmiah Multi-Domain SLU",
-            "Sel 8: Pipeline Ekspor Universal ONNX & Kuantisasi INT8",
-            "Sel 9: Live Audio Prediction & Smart Home Intent Consistency Gate",
+            "Sel 5: Engine Pelatihan & Optimasi Terkalibrasi",
+            "Sel 6: Visualisasi Kurva Loss & Exact-Match Accuracy",
+            "Sel 7: Evaluasi Kinerja Ilmiah Multi-Domain",
+            "Sel 8: Serialisasi Graf Universal ONNX",
+            "Sel 9: Widget Prediksi Interaktif Audio Langsung",
         ]
 
         for sec in expected_sections:
@@ -141,3 +141,59 @@ class TestMasterNotebookCells1To4Implementation:
         assert "total_params" in cell4_code
         assert "loss_act_init" in cell4_code
         assert "V-11" in cell4_code
+
+
+class TestMasterNotebookCells5To9Implementation:
+    """Pengujian verifikasi implementasi kode produksi pada Sel 5 hingga Sel 9."""
+
+    def test_cell_5_training_engine_implementation(self, notebook_cells):
+        """Memastikan Sel 5 memuat MultiTaskSLULoss, optimizer AdamW, scheduler, dan training loop."""
+        cell5_code = "".join(notebook_cells[10].get("source", []))
+        assert "class MultiTaskSLULoss" in cell5_code
+        assert "optimizer_grouped_parameters" in cell5_code
+        assert "AdamW(" in cell5_code
+        assert "lr_lambda" in cell5_code
+        assert "train_one_epoch" in cell5_code
+        assert "validate_one_epoch" in cell5_code
+        assert "GradScaler" in cell5_code
+        assert "clip_grad_norm_" in cell5_code
+
+    def test_cell_6_convergence_curves_plotting(self, notebook_cells):
+        """Memastikan Sel 6 memuat visualisasi kurva loss dan exact-match accuracy."""
+        cell6_code = "".join(notebook_cells[12].get("source", []))
+        assert "def plot_training_convergence_curves" in cell6_code
+        assert "plt.subplots(1, 3" in cell6_code
+        assert "Exact-Match Intent Accuracy" in cell6_code
+        assert "plt.savefig" in cell6_code
+
+    def test_cell_7_multidomain_evaluation_implementation(self, notebook_cells):
+        """Memastikan Sel 7 memuat fungsi evaluasi ilmiah multi-domain dan loader test ID/EN."""
+        cell7_code = "".join(notebook_cells[14].get("source", []))
+        assert "def evaluate_slu_dataset" in cell7_code
+        assert "f1_score" in cell7_code
+        assert "test_id_loader" in cell7_code
+        assert "test_en_loader" in cell7_code
+        assert "Exact-Match Intent Accuracy" in cell7_code
+
+    def test_cell_8_onnx_export_and_int8_quantization(self, notebook_cells):
+        """Memastikan Sel 8 memuat serialisasi ONNX, Dynamic INT8 Quantization, dan parity check."""
+        cell8_code = "".join(notebook_cells[16].get("source", []))
+        assert "class ONNXExportWrapper" in cell8_code
+        assert "def export_and_quantize_slu_model" in cell8_code
+        assert "torch.onnx.export" in cell8_code
+        assert "quantize_dynamic" in cell8_code
+        assert "QuantType.QInt8" in cell8_code
+        assert "InferenceSession" in cell8_code
+        assert "max_diff" in cell8_code
+
+    def test_cell_9_live_prediction_and_consistency_gate(self, notebook_cells):
+        """Memastikan Sel 9 memuat fungsi inferensi audio langsung, Temperature Scaling, dan 31 legal intent gate."""
+        cell9_code = "".join(notebook_cells[18].get("source", []))
+        assert "LEGAL_INTENT_TRIPLETS" in cell9_code
+        assert "def predict_and_actuate_command" in cell9_code
+        assert "temperature" in cell9_code
+        assert "conf_overall" in cell9_code
+        assert "is_legal_intent" in cell9_code
+        assert "is_confident" in cell9_code
+        assert "ACCEPTED" in cell9_code
+        assert "REJECTED" in cell9_code

@@ -18,6 +18,7 @@ data/*
 !data/bilingual_massive/*.csv
 !data/bilingual_massive/splits/
 !data/bilingual_massive/splits/*.csv
+!data/bilingual_massive/splits/*.json
 *.wav
 *.mp3
 *.flac

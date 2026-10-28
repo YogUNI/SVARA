@@ -701,4 +701,75 @@ Setiap sub-tahap yang dieksekusi dicatat secara lengkap mulai dari formulasi mat
   - Dataset dwibahasa 24.000 audio klip telah terintegrasi seimbang sempurna, siap untuk dibagi menjadi partisi Train, Valid, dan Unseen Test pada **Sub-step 5.2**.
 
 ---
+
+#### Sub-step 5.2: Pembuatan Stratified Split Ilmiah (Train 70% = 16.800 Audio, Valid 15% = 3.600 Audio, Unseen Test 15% = 3.600 Audio)
+* **Tanggal Eksekusi**: 28 Oktober 2026
+* **Penanggung Jawab**: Yoga (Arsitektur Stratified Splitting, Dynamic Programming Solver, & Pembuktian Teoretis Zero-Leakage)
+* **Latar Belakang & Masalah**:
+  Dalam literatur Spoken Language Understanding (SLU) modern (Lugosch et al., 2019; Radfar et al., 2021) dan standar verifikasi deep learning (`docs/01_DATASET_AND_EVALUATION.md` §4 serta `docs/11_DL_VERIFICATION_CHECKLIST.md` V-08), **pembagian acak berbasis file audio (file-level random split) dilarang keras** karena menyebabkan ilusi akurasi semu akibat kebocoran data (*data leakage / memorization artifact*). 
+  - Pada bahasa Indonesia yang disintesis dari 4.358 variasi frasa unik dengan multi-profil akustik, model harus dievaluasi menggunakan protokol **Unseen Utterance Split (Split B)**: kalimat pada set uji tidak boleh pernah didengar oleh model selama fase pelatihan ($\text{Train} \cap \text{Test} = \emptyset$).
+  - Pada Fluent Speech Commands (FSC) English yang melibatkan 79 pembicara individual, model harus dievaluasi menggunakan protokol **Speaker-Disjoint Split (Split C)**: penutur pada set uji tidak boleh pernah ada dalam set pelatihan.
+  Sub-step ini mengeksekusi pembagian terstratifikasi ilmiah presisi bulat dengan rasio 70% : 15% : 15% ($16.800 : 3.600 : 3.600$) dengan paritas bahasa persis 50:50 di setiap partisi.
+* **Metodologi Partisi Matematis & Algoritma Dynamic Programming**:
+  1. **Partisi Bahasa Indonesia (Unseen-Utterance Generalization)**:
+     - Dikelompokkan ketat pada tingkat `transcript` (seluruh audio variasi dari satu kalimat wajib berada di satu partisi yang sama).
+     - Target alokasi per intent ($k \in \{0 \dots 30\}$):
+       - Valid target: $59\text{ audio}$ ($k \in \{0, 1\}$) dan $58\text{ audio}$ ($k \in \{2 \dots 30\}$), total tepat **$1.800\text{ audio}$**.
+       - Test target: $59\text{ audio}$ ($k \in \{2, 3\}$) dan $58\text{ audio}$ ($k \in \{0, 1, 4 \dots 30\}$), total tepat **$1.800\text{ audio}$**.
+       - Train target: sisa transkrip per intent, total tepat **$8.400\text{ audio}$**.
+     - Solusi pencarian kombinasi transkrip eksak diselesaikan dengan algoritma Dynamic Programming (*Subset Sum Problem*) deterministik.
+     - Pembagian transkrip unik: Train = $3.065\text{ frasa}$, Valid = $647\text{ frasa}$, Test = $646\text{ frasa}$ (Total = $4.358\text{ frasa}$).
+     - Irisan transkrip: $\text{Train} \cap \text{Test} = 0$, $\text{Train} \cap \text{Valid} = 0$, $\text{Valid} \cap \text{Test} = 0$ (Zero Utterance Leakage).
+  2. **Partisi FSC English (Speaker-Disjoint Generalization)**:
+     - Dikelompokkan ketat pada tingkat `speaker_id` (79 penutur unik).
+     - Preservasi partisi literatur FSC asli dengan penyeimbangan eksak:
+       - Test: 10 penutur asli ($1.654\text{ audio}$) + 3 penutur latih terstratifikasi (`5pa4DVyvN2fXpepb`, `9mYN2zmq7aTw4Blo`, `LR5vdbQgp3tlMBzB`, $146\text{ audio}$) = tepat **$1.800\text{ audio}$** ($13\text{ penutur}$).
+       - Valid: 9 penutur asli ($1.698\text{ audio}$) + 4 penutur latih terstratifikasi (`35v28XaVEns4WXOv`, `W7LeKXje7QhZlLKe`, `X4vEl3glp9urv4GN`, `YbmvamEWQ8faDPx2`, $102\text{ audio}$) = tepat **$1.800\text{ audio}$** ($13\text{ penutur}$).
+       - Train: sisa 53 penutur = tepat **$8.400\text{ audio}$**.
+     - Irisan penutur: $\text{Train} \cap \text{Test} = 0$, $\text{Train} \cap \text{Valid} = 0$, $\text{Valid} \cap \text{Test} = 0$ (Zero Speaker Leakage).
+  3. **Integrasi Bilingual Terpadu & Slice Mandiri**:
+     - Penggabungan baris ID dan EN diacak menggunakan pseudorandom generator terisolasi (`random_state=42`) untuk menjamin reproduktifitas biner identik.
+     - Dihasilkan 2 slice khusus pengujian evaluasi: `test_id.csv` ($1.800\text{ audio}$ murni Indonesia) dan `test_en.csv` ($1.800\text{ audio}$ murni Inggris FSC).
+* **Data Empiris & Statistik Partisi**:
+  - **Tabel Rekapitulasi Partisi Bilingual SVARA 24k**:
+    | Nama Partisi | Total Baris | Proporsi (%) | Bahasa ID | Bahasa EN | Intent Unik | Durasi (Jam) | SHA-256 Checksum |
+    |---|---|---|---|---|---|---|---|
+    | `train.csv` | $16.800$ | $70,0\%$ | $8.400$ | $8.400$ | 31 / 31 | $13,092\text{ jam}$ | `15b83d36da6c...` |
+    | `valid.csv` | $3.600$ | $15,0\%$ | $1.800$ | $1.800$ | 31 / 31 | $2,863\text{ jam}$ | `67142519c254...` |
+    | `test.csv` | $3.600$ | $15,0\%$ | $1.800$ | $1.800$ | 31 / 31 | $2,927\text{ jam}$ | `a5a7ea66bd76...` |
+    | `test_id.csv` | $1.800$ | Slice ID | $1.800$ | $0$ | 31 / 31 | $1,653\text{ jam}$ | `821c2173d3a2...` |
+    | `test_en.csv` | $1.800$ | Slice EN | $0$ | $1.800$ | 31 / 31 | $1,274\text{ jam}$ | `49211c6738c7...` |
+    | **TOTAL** | **$24.000$** | **$100,0\%$** | **$12.000$** | **$12.000$** | **31 / 31** | **$18,882\text{ jam}$** | Verified |
+  - **Distribusi Gender**:
+    - Train: Pria $8.917$ ($53,1\%$), Wanita $7.883$ ($46,9\%$).
+    - Valid: Wanita $2.074$ ($57,6\%$), Pria $1.526$ ($42,4\%$).
+    - Test: Wanita $1.805$ ($50,1\%$), Pria $1.795$ ($49,9\%$) — sangat seimbang.
+    - Test ID: Wanita $933$, Pria $867$ ($51,8\% : 48,2\%$).
+    - Test EN: Pria $928$, Wanita $872$ ($51,6\% : 48,4\%$).
+  - **Verifikasi Ketiadaan Kebocoran (Zero Leakage Check)**:
+    - Overlap Transkrip Indonesia Train vs Test: **0** ($0,0\%$).
+    - Overlap Transkrip Indonesia Train vs Valid: **0** ($0,0\%$).
+    - Overlap Transkrip Indonesia Valid vs Test: **0** ($0,0\%$).
+    - Overlap Speaker English Train vs Test: **0** ($0,0\%$).
+    - Overlap Speaker English Train vs Valid: **0** ($0,0\%$).
+    - Overlap Speaker English Valid vs Test: **0** ($0,0\%$).
+    - Overlap Path Audio: **0** ($0,0\%$).
+* **Artefak File yang Dihasilkan**:
+  - `data/bilingual_massive/splits/train.csv`: File partisi latih bilingual 16.800 baris.
+  - `data/bilingual_massive/splits/valid.csv`: File partisi validasi bilingual 3.600 baris.
+  - `data/bilingual_massive/splits/test.csv`: File partisi uji gabungan bilingual 3.600 baris.
+  - `data/bilingual_massive/splits/test_id.csv`: File slice uji evaluasi bahasa Indonesia 1.800 baris.
+  - `data/bilingual_massive/splits/test_en.csv`: File slice uji evaluasi bahasa Inggris FSC 1.800 baris.
+  - `data/bilingual_massive/splits/split_manifest.json`: Manifes resmi rekaman partisi, persentase, breakdown, dan hash biner.
+  - `reports/bilingual_splits_summary.json`: Ringkasan metrik statistik partisi untuk laporan akademik.
+  - `scripts/make_bilingual_splits.py`: Script generator pembagian data stratified berprinsip zero-leakage.
+  - `tests/test_bilingual_splits.py`: Suite pengujian 9 unit test integritas partisi dan verifikasi bebas kebocoran.
+* **Hasil Pengujian Test Suite**:
+  - `pytest tests/test_bilingual_splits.py`: **9 passed in 7.33s** (100% lulus).
+  - Regresi test suite lengkap (`tests/test_audio.py`, `tests/test_augment.py`, `tests/test_augmented_dataset.py`, `tests/test_bilingual_dataset.py`, `tests/test_bilingual_splits.py`): **51 passed in 23.09s** (100% lulus tanpa kegagalan).
+* **Pencapaian Milestone**:
+  - **SUB-STEP 5.2 SELESAI SEMPURNA!**
+  - Dataset dwibahasa 24.000 audio klip telah terbagi secara ilmiah menjadi Train (16.800), Valid (3.600), dan Unseen Test (3.600) dengan pembuktian matematis zero utterance & speaker leakage, siap melangkah ke **Sub-step 5.3: Audit Verifikasi Bebas Kebocoran Data (Zero-Data-Leakage Validation)**.
+
+---
 *(Logbook ini akan diperbarui secara otomatis setiap kali sub-step berikutnya selesai dieksekusi)*

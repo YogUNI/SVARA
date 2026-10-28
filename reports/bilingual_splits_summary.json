@@ -1,0 +1,98 @@
+{
+  "status": "success",
+  "sub_step": "5.2",
+  "dataset_name": "SVARA Balanced Bilingual Dataset 24k",
+  "total_clips": 24000,
+  "splits": {
+    "train": {
+      "total_rows": 16800,
+      "percentage": 70.0,
+      "language_breakdown": {
+        "id": 8400,
+        "en": 8400
+      },
+      "gender_breakdown": {
+        "male": 8917,
+        "female": 7883
+      },
+      "intents_represented": 31,
+      "total_duration_hours": 13.092,
+      "file_path": "data\\bilingual_massive\\splits\\train.csv",
+      "sha256": "15b83d36da6c05266516f139d923944311eeb0711a678a8da822ae098c207dff"
+    },
+    "valid": {
+      "total_rows": 3600,
+      "percentage": 15.0,
+      "language_breakdown": {
+        "id": 1800,
+        "en": 1800
+      },
+      "gender_breakdown": {
+        "female": 2074,
+        "male": 1526
+      },
+      "intents_represented": 31,
+      "total_duration_hours": 2.863,
+      "file_path": "data\\bilingual_massive\\splits\\valid.csv",
+      "sha256": "67142519c254c3346f8cc3eb1008b847a258cfc35d9b72b32189d81af0507924"
+    },
+    "test": {
+      "total_rows": 3600,
+      "percentage": 15.0,
+      "language_breakdown": {
+        "id": 1800,
+        "en": 1800
+      },
+      "gender_breakdown": {
+        "female": 1805,
+        "male": 1795
+      },
+      "intents_represented": 31,
+      "total_duration_hours": 2.927,
+      "file_path": "data\\bilingual_massive\\splits\\test.csv",
+      "sha256": "a5a7ea66bd764926c4b939d1866421559dc94ca0628b5b0847e20f2f33e0f793"
+    },
+    "test_id": {
+      "total_rows": 1800,
+      "language_breakdown": {
+        "id": 1800
+      },
+      "gender_breakdown": {
+        "female": 933,
+        "male": 867
+      },
+      "intents_represented": 31,
+      "total_duration_hours": 1.653,
+      "file_path": "data\\bilingual_massive\\splits\\test_id.csv",
+      "sha256": "821c2173d3a283e6faf6faf823186b10abc00a9aff5c7c03ef9f3b692b43c20d"
+    },
+    "test_en": {
+      "total_rows": 1800,
+      "language_breakdown": {
+        "en": 1800
+      },
+      "gender_breakdown": {
+        "male": 928,
+        "female": 872
+      },
+      "intents_represented": 31,
+      "total_duration_hours": 1.274,
+      "file_path": "data\\bilingual_massive\\splits\\test_en.csv",
+      "sha256": "49211c6738c7865d68999e0aadfc1a029a658207434a67cfff127e28cc706dd4"
+    }
+  },
+  "leakage_verification": {
+    "indonesian_unseen_utterance": {
+      "train_test_transcript_overlap": 0,
+      "train_valid_transcript_overlap": 0,
+      "valid_test_transcript_overlap": 0,
+      "is_zero_leakage": true
+    },
+    "english_speaker_disjoint": {
+      "train_test_speaker_overlap": 0,
+      "train_valid_speaker_overlap": 0,
+      "valid_test_speaker_overlap": 0,
+      "is_zero_leakage": true
+    }
+  }
+}

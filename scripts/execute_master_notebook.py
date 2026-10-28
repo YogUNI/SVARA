@@ -10,9 +10,12 @@ import io
 import time
 import base64
 import traceback
+import faulthandler
 from pathlib import Path
 import nbformat
 from nbformat.v4 import new_output
+
+faulthandler.enable()
 
 # Set environment for headless Matplotlib and offline HuggingFace
 os.environ['MPLBACKEND'] = 'Agg'

@@ -115,7 +115,7 @@ def populate_cells_5_to_9():
         "optimizer = AdamW(optimizer_grouped_parameters)",
         "",
         "# 3. Cosine Annealing Learning Rate Scheduler dengan 10% Warmup",
-        "NUM_EPOCHS = 5  # 5 Epochs terbukti optimal untuk konvergensi wav2vec2 (>95% exact-match)",
+        "NUM_EPOCHS = 10  # 10 Epochs pelatihan penuh untuk generalisasi maksimal",
         "total_training_steps = len(train_loader) * NUM_EPOCHS",
         "warmup_steps = int(0.10 * total_training_steps)",
         "",

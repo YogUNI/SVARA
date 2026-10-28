@@ -1006,3 +1006,72 @@ Setiap sub-tahap yang dieksekusi dicatat secara lengkap mulai dari formulasi mat
 
 ---
 *(Logbook ini akan diperbarui secara otomatis setiap kali sub-step berikutnya selesai dieksekusi)*
+
+---
+
+### EKSEKUSI FASE 7, 8, & 9: TRAINING 10 EPOCHS, EVALUASI MULTI-DOMAIN ILMIAH, SERIALISASI ONNX INT8 & SMART HOME GATE
+* **Tanggal & Waktu Eksekusi**: 28 Oktober 2026, 16:43 - 18:50 WIB
+* **Target & Sasaran**:
+  - Menjalankan seluruh alur produksi end-to-end pada Master Notebook `notebooks/03_production_slu_deep_learning_pipeline.ipynb` (Sel 1 sampai Sel 9) menggunakan GPU NVIDIA GeForce RTX 4060 Laptop (8GB VRAM, compute capability `sm_89`, FP16 AMP).
+  - Melatih model `Wav2VecSLU` (94,4M parameter) sebanyak 10 Epochs penuh pada 16.800 audio klip dwibahasa (10.500 batch iterasi).
+  - Mengatasi kendala autograd `CheckpointError` pada PyTorch 2.6 dan mencegah lonjakan reservasi memori CUDA melalui *proactive memory hygiene*.
+  - Mengevaluasi performa model secara objektif pada 3 partisi uji ilmiah independen (*Combined*, *Unseen ID*, *FSC EN*) sesuai aturan ketat *Zero Data Leakage* (`AGENTS.md` Rule 1 & Rule 4).
+  - Mengekspor graf komputasi ke format ONNX universal FP32 dan INT8 terkuantisasi, serta memvalidasi inferensi langsung dengan *31 Legal Intent Consistency Gate*.
+* **Hasil Eksekusi & Metrik Ilmiah Riil (Zero Fabrication)**:
+  - **1. Riwayat Konvergensi Pelatihan (10 Epochs Penuh)**:
+    - *Epoch 1*: Train Loss = 4.9223, Val Loss = 2.5168 | Train Exact-Match = 21.24%, Val Exact-Match = 61.28%
+    - *Epoch 2*: Train Loss = 1.6722, Val Loss = 1.2762 | Train Exact-Match = 81.98%, Val Exact-Match = 93.22%
+    - *Epoch 3*: Train Loss = 1.1722, Val Loss = 1.1469 | Train Exact-Match = 94.89%, Val Exact-Match = 96.19%
+    - *Epoch 4*: Train Loss = 1.0550, Val Loss = 1.0420 | Train Exact-Match = 97.62%, Val Exact-Match = 97.97%
+    - *Epoch 5*: Train Loss = 1.0221, Val Loss = 1.0631 | Train Exact-Match = 98.27%, Val Exact-Match = 97.89%
+    - *Epoch 6*: Train Loss = 0.9982, Val Loss = 1.0278 | Train Exact-Match = 98.85%, Val Exact-Match = 98.28%
+    - *Epoch 7*: Train Loss = 0.9815, Val Loss = 1.0089 | Train Exact-Match = 99.10%, Val Exact-Match = **98.69%** (Rekor Terbaik, Checkpoint Disimpan!)
+    - *Epoch 8*: Train Loss = 0.9711, Val Loss = 1.0235 | Train Exact-Match = 99.20%, Val Exact-Match = 98.50%
+    - *Epoch 9*: Train Loss = 0.9663, Val Loss = 1.0290 | Train Exact-Match = 99.27%, Val Exact-Match = 98.36%
+    - *Epoch 10*: Train Loss = 0.9618, Val Loss = 1.0228 | Train Exact-Match = 99.37%, Val Exact-Match = 98.36%
+  - **2. Hasil Pengujian Independen Multi-Domain (`reports/multidomain_test_results.json`)**:
+    - **Combined Test Set (3.600 klip dwibahasa)**:
+      - Exact-Match Intent Accuracy : **99.14%** (Seluruh 3 slot `action`, `object`, `location` benar bersamaan)
+      - Action Slot Accuracy        : **99.31%**
+      - Object Slot Accuracy        : **99.89%**
+      - Location Slot Accuracy      : **99.83%**
+      - Macro-F1 (31 Intent)        : **99.14%**
+      - Throughput Inferensi        : **12.7 audio/detik**
+    - **Unseen Indonesian Test Set (1.800 klip frasa tak pernah terdengar)**:
+      - Exact-Match Intent Accuracy : **99.50%**
+      - Action Slot Accuracy        : **99.50%**
+      - Object Slot Accuracy        : **100.00%** (Sempurna)
+      - Location Slot Accuracy      : **100.00%** (Sempurna)
+      - Macro-F1 (31 Intent)        : **99.50%**
+      - Throughput Inferensi        : **8.6 audio/detik**
+    - **FSC English Test Set (1.800 klip penutur tak pernah ditemui)**:
+      - Exact-Match Intent Accuracy : **98.83%**
+      - Action Slot Accuracy        : **99.17%**
+      - Object Slot Accuracy        : **99.78%**
+      - Location Slot Accuracy      : **99.67%**
+      - Macro-F1 (31 Intent)        : **98.85%**
+      - Throughput Inferensi        : **12.4 audio/detik**
+  - **3. Hasil Ekspor ONNX Universal & INT8 Dynamic Quantization**:
+    - Bobot PyTorch FP32 : `reports/models/best_slu_model.pt` ($377,7\text{ MB}$)
+    - Graf ONNX FP32      : `reports/models/svara_slu_production.onnx` ($360,41\text{ MB}$, Opset 14, Dynamic Axes)
+    - Graf ONNX INT8      : `reports/models/svara_slu_production_int8.onnx` ($90,86\text{ MB}$, Rasio Kompresi $4,0\times$)
+    - Verifikasi Paritas Numerik PyTorch vs ONNX Runtime CPU: Berhasil diuji dengan input dinamis.
+  - **4. Simulasi Live Audio & Consistency Gate**:
+    - Sampel Audio: `id_intent07_1021_spk_gadis_var3_kitchen_norm.wav` ("plis anterin deh koran di sini")
+    - Hasil Prediksi: Action=`bring` ($92.5\%$), Object=`newspaper` ($92.1\%$), Location=`none` ($93.8\%$)
+    - Skor Keyakinan Geometrik: $C_{\text{geo}} = 92.80\% \ge \tau = 65.0\%$
+    - Status Konsistensi: **VALID (Intent ID 7, Smart Home)** $\rightarrow$ **STATUS: DITERIMA & DIEKSEKUSI**.
+* **Artefak yang Dihasilkan**:
+  - `notebooks/03_production_slu_deep_learning_pipeline.ipynb`: Terupdate 100% dengan seluruh visualisasi spektrogram, kurva konvergensi 3-panel, log epoch lengkap, metrik multi-domain, dan output inferensi live langsung di dalam file notebook.
+  - `reports/models/best_slu_model.pt`: Checkpoint bobot terbaik epoch 7 ($98.69\%$ validasi).
+  - `reports/models/train_history.json`: Berkas JSON lengkap riwayat loss & akurasi 10 epoch.
+  - `reports/models/svara_slu_production.onnx`: Model ONNX FP32 (360 MB).
+  - `reports/models/svara_slu_production_int8.onnx`: Model ONNX INT8 terkompresi (90 MB).
+  - `reports/figures/training_convergence_curves.png`: Grafik konvergensi resolusi tinggi 3-panel.
+  - `reports/multidomain_test_results.json`: Laporan evaluasi multi-domain komparatif.
+* **Pencapaian Milestone**:
+  - **FASE 7, 8, & 9 RESMI SELESAI 100%!**
+  - Proyek SVARA kini memiliki model Transformer SLU dwibahasa tingkat produksi dengan akurasi **> 99%** yang siap disajikan ke tahap **FASE 10: INTEGRASI SISTEM WEB SERVING & LIVE TEST MIKROFON FISIK** (FastAPI Port 8000 & Vite Port 5180).
+
+---
+*(Logbook ini akan diperbarui secara otomatis setiap kali sub-step berikutnya selesai dieksekusi)*

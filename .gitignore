@@ -36,6 +36,8 @@ models/svara_bilingual.onnx
 !models/svara_bilingual_int8.onnx
 reports/runs/**/*.ckpt
 reports/runs/**/*.pt
+reports/models/*.pt
+reports/models/*.onnx
 
 # Node / Frontend
 node_modules/

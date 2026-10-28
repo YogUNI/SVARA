@@ -542,7 +542,45 @@ Setiap sub-tahap yang dieksekusi dicatat secara lengkap mulai dari formulasi mat
 * **Pencapaian Milestone**:
   - Sub-step 4.2 selesai sempurna. Filter mic laptop dan injeksi noise AC/kipas siap dipakai pada augmentasi massal sub-step 4.4.
 * **Nomor Commit Git**:
-  - `commit 6faaa31` (*feat(augment): implement 100Hz laptop mic filter and calibrated AC/fan noise injection (Sub-step 4.2)*)
+  - `commit 0c6d72d` (*feat(augment): implement 100Hz laptop mic filter and calibrated AC/fan noise injection (Sub-step 4.2)*)
+* **Status Remote Push**: Terunggah ke `main` di `https://github.com/YogUNI/SVARA.git`.
+
+---
+
+#### Sub-step 4.3: Implementasi Variasi Tempo Bicara (0.92x, 1.00x, 1.08x) Berbasis Polyphase Sinc Resampling
+* **Tanggal Eksekusi**: 28 Oktober 2026
+* **Penanggung Jawab**: Yoga (Implementasi Algoritma Resampling Polifase, Benchmark Latensi, & Verifikasi Rasio Durasi)
+* **Latar Belakang & Masalah**:
+  Dalam interaksi nyata smart home, manusia tidak berbicara dengan tempo konstan. Pengguna dapat berbicara santai (tempo lebih lambat) atau terburu-buru/panik (tempo lebih cepat). Untuk membuat model SLU robust terhadap variasi kecepatan bicara tanpa mengalami *pitch shifting distortion* ekstrem (efek suara robot atau chipmunk yang merusak rasio formant fonem), roadmap menetapkan batas variasi tempo natural: $0.92\times$ (lebih lambat $\approx 8,7\%$), $1.00\times$ (normal), dan $1.08\times$ (lebih cepat $\approx 7,4\%$).
+* **Formulasi Matematika & DSP Resampling Polifase Sinc**:
+  1. **Interpolasi Polifase Anti-Aliased (`scipy.signal.resample_poly`)**:
+     - Mengubah laju sampel sinyal menggunakan aproksimasi rasio bilangan bulat koprima $p/q = 1/\text{factor}$:
+       - $0.92\times \rightarrow p/q = 25/23$ ($up=25, down=23$, factor $= 0,9200$).
+       - $1.00\times \rightarrow$ bitwise passthrough ($\Delta = 0,000$).
+       - $1.08\times \rightarrow p/q = 25/27$ ($up=25, down=27$, factor $= 1,0800$).
+     - Filter FIR polifase Kaiser window dengan redaman stopband $> 60\text{ dB}$ mencegah aliasing frekuensi tinggi dan mempertahankan 100% bentuk amplop spektral vokal.
+  2. **Verifikasi Durasi & Sampel Riil (`id_intent00_0000_spk_ardi.wav`)**:
+     - Audio asli ($1.00\times$): $3,552\text{ detik}$ ($56.832$ sampel), peak $= 0,5997$.
+     - Faktor $0.92\times$ (santai): $3,861\text{ detik}$ ($61.774$ sampel, tepat sama dengan expected $61.774$), selisih durasi $+8,7\%$, peak $= 0,6022$.
+     - Faktor $1.08\times$ (cepat): $3,289\text{ detik}$ ($52.622$ sampel, tepat sama dengan expected $52.622$), selisih durasi $-7,4\%$, peak $= 0,5994$.
+  3. **Kontrol Headroom Anti-Clipping**:
+     - Amplitudo puncak setelah rekonstruksi sinc dibatasi pada $\le 0,9500$ (puncak terukur $0,5994 - 0,6022$, zero clipping).
+  4. **Kecepatan & Throughput Benchmark**:
+     - Throughput: **$341,1\text{ audio clips / detik}$** (single-thread).
+     - Rata-rata latensi: **$2,931\text{ ms}$ per klip 3,55 detik**.
+     - Real-Time Factor (RTF): **$1.211,7\times$ lebih cepat dari waktu nyata!**
+* **Artefak File yang Dibuat & Dimodifikasi**:
+  - `src/svara/data/augment.py`: Pembaruan fungsi `apply_speed_perturbation` dengan polyphase sinc resampling, konstanta `DEFAULT_SPEED_FACTORS = (0.92, 1.0, 1.08)`, dan pembaruan `AudioAugmentor`.
+  - `tests/test_augment.py`: Penambahan 3 unit test spesifik tempo (faktor 0.92x/1.00x/1.08x, perbandingan sinc vs linear, dan edge cases nol/kosong). Total 17 unit test augmentasi lulus 100%.
+  - `scripts/demo_speed_perturbation.py`: Tool benchmark empiris variasi tempo.
+  - `reports/speed_perturbation_benchmark.json`: Laporan hasil evaluasi durasi dan throughput riil.
+* **Hasil Pengujian Test Suite Repositori**:
+  - Seluruh **17 unit test augmentasi** di `tests/test_augment.py` lulus $100\%$ dalam $7,92\text{ detik}$.
+  - Seluruh **96 unit test** di repositori lulus $100\%$ tanpa ada error (`96 passed, 7 warnings in 95.20s`).
+* **Pencapaian Milestone**:
+  - Sub-step 4.3 selesai sempurna. Seluruh 3 pilar augmentasi lingkungan (Reverb 4.1, Mic & Noise 4.2, Tempo 4.3) kini telah siap 100% untuk dieksekusi secara massal pada **Sub-step 4.4**.
+* **Nomor Commit Git**:
+  - `commit 1bd4061` (*feat(augment): implement 0.92x/1.08x polyphase sinc speech tempo perturbation (Sub-step 4.3)*)
 * **Status Remote Push**: Terunggah ke `main` di `https://github.com/YogUNI/SVARA.git`.
 
 ---

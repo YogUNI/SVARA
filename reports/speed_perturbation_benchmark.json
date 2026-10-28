@@ -1,0 +1,65 @@
+{
+  "timestamp": "2026-10-28 08:59:11",
+  "global_status": "PASS",
+  "sample_wav": "data/synthetic_indonesian_massive/wavs_16k/id_intent00_0000_spk_ardi.wav",
+  "sample_rate": 16000,
+  "speed_factors_tested": [
+    0.92,
+    1.0,
+    1.08
+  ],
+  "evaluations": {
+    "0.92x": {
+      "factor": 0.92,
+      "tempo_type": "Slower Cadence (Santai)",
+      "original_duration_sec": 3.552,
+      "perturbed_duration_sec": 3.861,
+      "duration_change_pct": 8.7,
+      "output_samples": 61774,
+      "expected_samples": 61774,
+      "sample_len_error": 0,
+      "peak_amplitude": 0.6022,
+      "rms_dbfs": -16.61,
+      "peak_headroom_pass": true,
+      "has_nan": false,
+      "status": "PASS"
+    },
+    "1.00x": {
+      "factor": 1.0,
+      "tempo_type": "Normal Cadence",
+      "original_duration_sec": 3.552,
+      "perturbed_duration_sec": 3.552,
+      "duration_change_pct": 0.0,
+      "output_samples": 56832,
+      "expected_samples": 56832,
+      "sample_len_error": 0,
+      "peak_amplitude": 0.5997,
+      "rms_dbfs": -16.61,
+      "peak_headroom_pass": true,
+      "has_nan": false,
+      "status": "PASS"
+    },
+    "1.08x": {
+      "factor": 1.08,
+      "tempo_type": "Faster Cadence (Cepat)",
+      "original_duration_sec": 3.552,
+      "perturbed_duration_sec": 3.289,
+      "duration_change_pct": -7.41,
+      "output_samples": 52622,
+      "expected_samples": 52622,
+      "sample_len_error": 0,
+      "peak_amplitude": 0.5994,
+      "rms_dbfs": -16.61,
+      "peak_headroom_pass": true,
+      "has_nan": false,
+      "status": "PASS"
+    }
+  },
+  "throughput_benchmarks": {
+    "iterations": 500,
+    "total_elapsed_sec": 1.466,
+    "mean_latency_ms": 2.931,
+    "throughput_clips_per_sec": 341.1,
+    "rt_factor": 1211.7
+  }
+}

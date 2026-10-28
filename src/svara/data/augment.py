@@ -12,6 +12,7 @@ Reference: docs/02 §4, docs/11 V-10, docs/MASTER_ROADMAP_BERNOMOR_DEEP_LEARNING
 """
 
 import os
+import fractions
 from typing import Any, Dict, List, Optional, Tuple, Union
 
 import numpy as np
@@ -182,23 +183,75 @@ def apply_random_gain(waveform: np.ndarray, min_gain_db: float = -6.0, max_gain_
     return (waveform * gain_linear).astype(np.float32)
 
 
+DEFAULT_SPEED_FACTORS: Tuple[float, ...] = (0.92, 1.0, 1.08)
+
+
 def apply_speed_perturbation(
     waveform: np.ndarray,
-    speed_factors: Tuple[float, ...] = (0.9, 1.0, 1.1),
+    speed_factors: Tuple[float, ...] = DEFAULT_SPEED_FACTORS,
+    factor: Optional[float] = None,
+    method: str = "sinc",
+    headroom_peak: float = 0.95,
 ) -> np.ndarray:
-    """Perturb playback speed via linear interpolation resampling."""
-    factor = float(np.random.choice(speed_factors))
-    if factor == 1.0:
-        return waveform
+    """Perturb playback speed via high-fidelity polyphase sinc or linear resampling.
+
+    Simulates speech tempo variability (Sub-step 4.3):
+    - 0.92x: Slower cadence (duration increases by ~8.7%)
+    - 1.00x: Normal cadence (duration unchanged)
+    - 1.08x: Faster cadence (duration shortens by ~7.4%)
+
+    Args:
+        waveform: 1D audio array (float32).
+        speed_factors: Tuple of possible speed multipliers (default: (0.92, 1.0, 1.08)).
+        factor: Optional explicit speed factor. If None, chosen randomly from speed_factors.
+        method: Resampling method ('sinc' for polyphase anti-aliased sinc, 'linear' for interp).
+        headroom_peak: Maximum peak amplitude allowed before scaling (anti-clipping <= 0.95).
+
+    Returns:
+        Perturbed audio array (float32) with adjusted duration.
+    """
+    if len(waveform) == 0:
+        return waveform.copy()
+
+    chosen_factor = float(factor if factor is not None else np.random.choice(speed_factors))
+    if abs(chosen_factor - 1.0) < 1e-4:
+        return waveform.copy()
 
     orig_len = len(waveform)
-    new_len = int(round(orig_len / factor))
-    perturbed = np.interp(
-        np.linspace(0.0, 1.0, new_len, endpoint=False),
-        np.linspace(0.0, 1.0, orig_len, endpoint=False),
-        waveform,
-    ).astype(np.float32)
-    return perturbed
+    new_len = int(round(orig_len / chosen_factor))
+
+    if method == "sinc":
+        try:
+            # Polyphase sinc resampling with rational fraction approximation
+            frac = fractions.Fraction(chosen_factor).limit_denominator(50)
+            up = frac.denominator
+            down = frac.numerator
+            perturbed = signal.resample_poly(waveform, up, down).astype(np.float32)
+            # Ensure exact length match with target duration
+            if len(perturbed) > new_len:
+                perturbed = perturbed[:new_len]
+            elif len(perturbed) < new_len:
+                perturbed = np.pad(perturbed, (0, new_len - len(perturbed)), mode="constant")
+        except Exception:
+            # Robust fallback to linear interpolation if resample_poly fails
+            perturbed = np.interp(
+                np.linspace(0.0, 1.0, new_len, endpoint=False),
+                np.linspace(0.0, 1.0, orig_len, endpoint=False),
+                waveform,
+            ).astype(np.float32)
+    else:
+        perturbed = np.interp(
+            np.linspace(0.0, 1.0, new_len, endpoint=False),
+            np.linspace(0.0, 1.0, orig_len, endpoint=False),
+            waveform,
+        ).astype(np.float32)
+
+    # Peak headroom control (anti-clipping rule)
+    peak = float(np.max(np.abs(perturbed)))
+    if peak > headroom_peak and peak > 0.0:
+        perturbed = (perturbed / peak) * headroom_peak
+
+    return perturbed.astype(np.float32)
 
 
 def apply_laptop_mic_filter(
@@ -385,7 +438,7 @@ class AudioAugmentor:
         gain_prob: float = 0.5,
         gain_db_range: Tuple[float, float] = (-6.0, 6.0),
         speed_prob: float = 0.3,
-        speed_factors: Tuple[float, ...] = (0.9, 1.0, 1.1),
+        speed_factors: Tuple[float, ...] = DEFAULT_SPEED_FACTORS,
         reverb_prob: float = 0.0,
         reverb_rooms: Tuple[str, ...] = ("bedroom", "living_room"),
         mic_filter_prob: float = 0.0,

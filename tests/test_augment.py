@@ -15,6 +15,7 @@ from svara.data.augment import (
     generate_ambient_noise,
     inject_household_noise,
     apply_laptop_mic_and_noise,
+    DEFAULT_SPEED_FACTORS,
 )
 
 
@@ -215,5 +216,56 @@ def test_audio_augmentor_mic_and_noise_integration():
     assert out.shape == wav.shape
     assert not np.isnan(out).any()
     assert not np.array_equal(out, wav)
+
+
+def test_speed_perturbation_substep_4_3_factors():
+    """Verify speech tempo factors 0.92x, 1.00x, and 1.08x with polyphase sinc resampling."""
+    orig_len = 16000
+    t = np.linspace(0, 1.0, orig_len, endpoint=False)
+    waveform = (0.5 * np.sin(2 * np.pi * 300 * t)).astype(np.float32)
+
+    # 1. Slow cadence (0.92x) -> duration increases by ~8.7%
+    slow = apply_speed_perturbation(waveform, factor=0.92, method="sinc")
+    expected_slow_len = int(round(orig_len / 0.92))
+    assert abs(len(slow) - expected_slow_len) <= 1, f"Expected {expected_slow_len}, got {len(slow)}"
+    assert not np.isnan(slow).any()
+    assert np.max(np.abs(slow)) <= 0.950001
+
+    # 2. Normal cadence (1.00x) -> exact bitwise passthrough
+    normal = apply_speed_perturbation(waveform, factor=1.00, method="sinc")
+    assert len(normal) == orig_len
+    assert np.array_equal(normal, waveform)
+
+    # 3. Fast cadence (1.08x) -> duration shortens by ~7.4%
+    fast = apply_speed_perturbation(waveform, factor=1.08, method="sinc")
+    expected_fast_len = int(round(orig_len / 1.08))
+    assert abs(len(fast) - expected_fast_len) <= 1, f"Expected {expected_fast_len}, got {len(fast)}"
+    assert not np.isnan(fast).any()
+    assert np.max(np.abs(fast)) <= 0.950001
+
+
+def test_speed_perturbation_linear_vs_sinc_parity():
+    """Verify that both linear and sinc methods produce valid non-clipping waveforms."""
+    wav = np.random.randn(8000).astype(np.float32) * 0.4
+
+    y_sinc = apply_speed_perturbation(wav, factor=0.92, method="sinc")
+    y_linear = apply_speed_perturbation(wav, factor=0.92, method="linear")
+
+    assert len(y_sinc) == len(y_linear)
+    assert not np.isnan(y_sinc).any()
+    assert not np.isnan(y_linear).any()
+    assert np.max(np.abs(y_sinc)) <= 0.950001
+    assert np.max(np.abs(y_linear)) <= 0.950001
+
+
+def test_speed_perturbation_edge_cases():
+    """Verify empty array and zero-signal handling."""
+    empty = np.zeros(0, dtype=np.float32)
+    assert len(apply_speed_perturbation(empty, factor=0.92)) == 0
+
+    zeros = np.zeros(1000, dtype=np.float32)
+    out_zeros = apply_speed_perturbation(zeros, factor=1.08)
+    assert np.all(out_zeros == 0.0)
+
 
 

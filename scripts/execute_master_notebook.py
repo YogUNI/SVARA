@@ -42,6 +42,12 @@ class DualWriter:
     def clear(self):
         self.buffer = io.StringIO()
 
+    def isatty(self):
+        return getattr(self.original_stream, 'isatty', lambda: False)()
+
+    def __getattr__(self, name):
+        return getattr(self.original_stream, name)
+
 def run_notebook():
     print(f"[RUNNER] Loading notebook: {NOTEBOOK_PATH}")
     with open(NOTEBOOK_PATH, 'r', encoding='utf-8') as f:

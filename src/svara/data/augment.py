@@ -15,6 +15,7 @@ import os
 from typing import Any, Dict, List, Optional, Tuple, Union
 
 import numpy as np
+from scipy import signal
 
 
 # Acoustic presets for smart-home environments (Sub-step 4.1)
@@ -200,6 +201,144 @@ def apply_speed_perturbation(
     return perturbed
 
 
+def apply_laptop_mic_filter(
+    waveform: np.ndarray,
+    sample_rate: int = 16000,
+    cutoff_hz: float = 100.0,
+    order: int = 2,
+) -> np.ndarray:
+    """Applies highpass filter modeling internal laptop microphone chassis frequency response.
+
+    Attenuates mechanical chassis rumble, keyboard/desk vibrations, and sub-100Hz rumble.
+    Uses a 2nd-order Butterworth highpass filter implemented via Second-Order Sections (SOS).
+    """
+    if len(waveform) == 0:
+        return waveform.copy()
+    if np.max(np.abs(waveform)) < 1e-7:
+        return waveform.copy()
+
+    sos = signal.butter(order, cutoff_hz, btype="highpass", fs=sample_rate, output="sos")
+    filtered = signal.sosfilt(sos, waveform).astype(np.float32)
+    return filtered
+
+
+def generate_ambient_noise(
+    n_samples: int,
+    sample_rate: int = 16000,
+    noise_type: str = "ac_fan",
+) -> np.ndarray:
+    """Generates realistic residential ambient noise profiles (AC, fan, room hum).
+
+    Profiles:
+    - 'ac': Lowpass air circulation at 1200 Hz with 50/100 Hz compressor hum.
+    - 'fan': Broadband aerodynamic blade noise (1600 Hz LP) with 120/240 Hz motor hum.
+    - 'ac_fan': Combined residential room air conditioner and ceiling/desk fan noise.
+    - 'ambient_room': Gentle room thermal and environmental floor noise.
+    """
+    if n_samples <= 0:
+        return np.zeros(0, dtype=np.float32)
+
+    white = np.random.randn(n_samples).astype(np.float32)
+    nyquist = sample_rate / 2.0
+
+    if noise_type == "ac":
+        sos = signal.butter(2, min(1200.0, nyquist - 100.0), btype="lowpass", fs=sample_rate, output="sos")
+        noise = signal.sosfilt(sos, white)
+        t = np.arange(n_samples, dtype=np.float32) / sample_rate
+        hum = 0.12 * np.sin(2.0 * np.pi * 50.0 * t) + 0.08 * np.sin(2.0 * np.pi * 100.0 * t)
+        noise = (noise + hum).astype(np.float32)
+    elif noise_type == "fan":
+        sos = signal.butter(2, min(1600.0, nyquist - 100.0), btype="lowpass", fs=sample_rate, output="sos")
+        noise = signal.sosfilt(sos, white)
+        t = np.arange(n_samples, dtype=np.float32) / sample_rate
+        hum = 0.15 * np.sin(2.0 * np.pi * 120.0 * t) + 0.10 * np.sin(2.0 * np.pi * 240.0 * t)
+        noise = (noise + hum).astype(np.float32)
+    elif noise_type == "ambient_room":
+        sos = signal.butter(1, min(800.0, nyquist - 100.0), btype="lowpass", fs=sample_rate, output="sos")
+        noise = signal.sosfilt(sos, white).astype(np.float32)
+    else:  # default 'ac_fan'
+        sos = signal.butter(2, min(1400.0, nyquist - 100.0), btype="lowpass", fs=sample_rate, output="sos")
+        noise = signal.sosfilt(sos, white)
+        t = np.arange(n_samples, dtype=np.float32) / sample_rate
+        hum = 0.10 * np.sin(2.0 * np.pi * 100.0 * t) + 0.06 * np.sin(2.0 * np.pi * 200.0 * t)
+        noise = (noise + hum).astype(np.float32)
+
+    return noise
+
+
+def inject_household_noise(
+    waveform: np.ndarray,
+    sample_rate: int = 16000,
+    snr_db: Optional[float] = None,
+    min_snr_db: float = 16.0,
+    max_snr_db: float = 26.0,
+    noise_type: str = "ac_fan",
+    external_noise: Optional[np.ndarray] = None,
+    headroom_peak: float = 0.95,
+) -> Tuple[np.ndarray, float]:
+    """Injects calibrated household background noise at specified or randomly chosen SNR [16, 26] dB."""
+    if len(waveform) == 0:
+        return waveform.copy(), 0.0
+
+    clean_power = float(np.mean(waveform ** 2))
+    if clean_power < 1e-9:
+        return waveform.copy(), 0.0
+
+    target_snr = float(snr_db if snr_db is not None else np.random.uniform(min_snr_db, max_snr_db))
+
+    if external_noise is not None and len(external_noise) > 0:
+        noise = external_noise.copy()
+        if len(noise) < len(waveform):
+            repeat_count = int(np.ceil(len(waveform) / len(noise)))
+            noise = np.tile(noise, repeat_count)
+        if len(noise) > len(waveform):
+            start = np.random.randint(0, len(noise) - len(waveform) + 1)
+            noise = noise[start : start + len(waveform)]
+        else:
+            noise = noise[: len(waveform)]
+    else:
+        noise = generate_ambient_noise(len(waveform), sample_rate=sample_rate, noise_type=noise_type)
+
+    noise_power = float(np.mean(noise ** 2))
+    if noise_power < 1e-9:
+        return waveform.copy(), target_snr
+
+    target_noise_power = clean_power / (10.0 ** (target_snr / 10.0))
+    scale = float(np.sqrt(target_noise_power / noise_power))
+    mixed = (waveform + scale * noise).astype(np.float32)
+
+    # Headroom peak control
+    peak = float(np.max(np.abs(mixed)))
+    if peak > headroom_peak and peak > 0.0:
+        mixed = (mixed / peak) * headroom_peak
+
+    return mixed.astype(np.float32), target_snr
+
+
+def apply_laptop_mic_and_noise(
+    waveform: np.ndarray,
+    sample_rate: int = 16000,
+    cutoff_hz: float = 100.0,
+    snr_db: Optional[float] = None,
+    min_snr_db: float = 16.0,
+    max_snr_db: float = 26.0,
+    noise_type: str = "ac_fan",
+    headroom_peak: float = 0.95,
+) -> np.ndarray:
+    """End-to-end pipeline combining 100 Hz highpass laptop mic filter and household AC/fan noise injection."""
+    filtered = apply_laptop_mic_filter(waveform, sample_rate=sample_rate, cutoff_hz=cutoff_hz)
+    mixed, _ = inject_household_noise(
+        filtered,
+        sample_rate=sample_rate,
+        snr_db=snr_db,
+        min_snr_db=min_snr_db,
+        max_snr_db=max_snr_db,
+        noise_type=noise_type,
+        headroom_peak=headroom_peak,
+    )
+    return mixed
+
+
 def mix_noise_at_snr(
     clean_audio: np.ndarray,
     noise_audio: np.ndarray,
@@ -241,14 +380,16 @@ class AudioAugmentor:
         self,
         noise_files: Optional[List[str]] = None,
         noise_prob: float = 0.5,
-        min_snr_db: float = 0.0,
-        max_snr_db: float = 20.0,
+        min_snr_db: float = 16.0,
+        max_snr_db: float = 26.0,
         gain_prob: float = 0.5,
         gain_db_range: Tuple[float, float] = (-6.0, 6.0),
         speed_prob: float = 0.3,
         speed_factors: Tuple[float, ...] = (0.9, 1.0, 1.1),
         reverb_prob: float = 0.0,
         reverb_rooms: Tuple[str, ...] = ("bedroom", "living_room"),
+        mic_filter_prob: float = 0.0,
+        mic_cutoff_hz: float = 100.0,
     ):
         self.noise_files = noise_files or []
         self.noise_prob = noise_prob
@@ -260,6 +401,8 @@ class AudioAugmentor:
         self.speed_factors = speed_factors
         self.reverb_prob = reverb_prob
         self.reverb_rooms = reverb_rooms
+        self.mic_filter_prob = mic_filter_prob
+        self.mic_cutoff_hz = mic_cutoff_hz
 
         # Preloaded cache for small noise pools
         self._noise_cache = []
@@ -273,26 +416,32 @@ class AudioAugmentor:
             room = str(np.random.choice(self.reverb_rooms))
             out = apply_schroeder_reverb(out, room_preset=room)
 
-        # 2. Random Gain
+        # 2. Laptop Internal Mic Highpass Filter (Sub-step 4.2)
+        if self.mic_filter_prob > 0.0 and np.random.rand() < self.mic_filter_prob:
+            out = apply_laptop_mic_filter(out, cutoff_hz=self.mic_cutoff_hz)
+
+        # 3. Random Gain
         if np.random.rand() < self.gain_prob:
             out = apply_random_gain(out, self.gain_db_range[0], self.gain_db_range[1])
 
-        # 3. Speed perturbation
+        # 4. Speed perturbation
         if np.random.rand() < self.speed_prob:
             out = apply_speed_perturbation(out, self.speed_factors)
 
-        # 4. Additive noise (if noise sources provided)
-        if self.noise_files and np.random.rand() < self.noise_prob:
-            noise_path = np.random.choice(self.noise_files)
-            # Read noise
-            import soundfile as sf
-            try:
-                noise_wav, _ = sf.read(noise_path, dtype="float32")
-                if noise_wav.ndim > 1:
-                    noise_wav = np.mean(noise_wav, axis=1)
-                snr = np.random.uniform(self.min_snr_db, self.max_snr_db)
-                out = mix_noise_at_snr(out, noise_wav, snr)
-            except Exception:
-                pass
+        # 5. Additive noise (External noise files OR realistic household ambient noise) (Sub-step 4.2)
+        if np.random.rand() < self.noise_prob:
+            if self.noise_files:
+                noise_path = np.random.choice(self.noise_files)
+                import soundfile as sf
+                try:
+                    noise_wav, _ = sf.read(noise_path, dtype="float32")
+                    if noise_wav.ndim > 1:
+                        noise_wav = np.mean(noise_wav, axis=1)
+                    snr = np.random.uniform(self.min_snr_db, self.max_snr_db)
+                    out = mix_noise_at_snr(out, noise_wav, snr)
+                except Exception:
+                    out, _ = inject_household_noise(out, min_snr_db=self.min_snr_db, max_snr_db=self.max_snr_db)
+            else:
+                out, _ = inject_household_noise(out, min_snr_db=self.min_snr_db, max_snr_db=self.max_snr_db)
 
         return out

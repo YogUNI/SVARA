@@ -1,0 +1,80 @@
+{
+  "timestamp": "2026-10-28 08:48:05",
+  "global_status": "PASS",
+  "sample_wav": "data/synthetic_indonesian_massive/wavs_16k/id_intent00_0000_spk_ardi.wav",
+  "sample_rate": 16000,
+  "filter_cutoff_hz": 100.0,
+  "frequency_response_db": {
+    "30_hz": -20.95,
+    "50_hz": -12.31,
+    "75_hz": -6.19,
+    "100_hz": -3.01,
+    "200_hz": -0.26,
+    "500_hz": -0.01,
+    "1000_hz": -0.0,
+    "4000_hz": -0.0
+  },
+  "snr_sweep_evaluations": [
+    {
+      "target_snr_db": 16.0,
+      "measured_snr_db": 16.0,
+      "snr_error_db": 0.0,
+      "output_peak": 0.8117,
+      "peak_headroom_pass": true,
+      "has_nan": false,
+      "status": "PASS"
+    },
+    {
+      "target_snr_db": 18.0,
+      "measured_snr_db": 18.0,
+      "snr_error_db": 0.0,
+      "output_peak": 0.8153,
+      "peak_headroom_pass": true,
+      "has_nan": false,
+      "status": "PASS"
+    },
+    {
+      "target_snr_db": 20.0,
+      "measured_snr_db": 20.0,
+      "snr_error_db": 0.0,
+      "output_peak": 0.8153,
+      "peak_headroom_pass": true,
+      "has_nan": false,
+      "status": "PASS"
+    },
+    {
+      "target_snr_db": 22.0,
+      "measured_snr_db": 22.0,
+      "snr_error_db": 0.0,
+      "output_peak": 0.8129,
+      "peak_headroom_pass": true,
+      "has_nan": false,
+      "status": "PASS"
+    },
+    {
+      "target_snr_db": 24.0,
+      "measured_snr_db": 24.0,
+      "snr_error_db": 0.0,
+      "output_peak": 0.797,
+      "peak_headroom_pass": true,
+      "has_nan": false,
+      "status": "PASS"
+    },
+    {
+      "target_snr_db": 26.0,
+      "measured_snr_db": 26.0,
+      "snr_error_db": 0.0,
+      "output_peak": 0.808,
+      "peak_headroom_pass": true,
+      "has_nan": false,
+      "status": "PASS"
+    }
+  ],
+  "throughput_benchmarks": {
+    "iterations": 500,
+    "total_elapsed_sec": 15.464,
+    "mean_latency_ms": 30.929,
+    "throughput_clips_per_sec": 32.3,
+    "rt_factor": 114.8
+  }
+}

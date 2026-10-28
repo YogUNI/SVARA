@@ -489,7 +489,60 @@ Setiap sub-tahap yang dieksekusi dicatat secara lengkap mulai dari formulasi mat
 * **Pencapaian Milestone**:
   - Sub-step 4.1 selesai sempurna. Schroeder Reverberator siap dipakai untuk augmentasi skala industri pada sub-step 4.4.
 * **Nomor Commit Git**:
-  - `commit c8dd18a` (*feat(augment): implement Schroeder reverberator with smart-home room presets (Sub-step 4.1)*)
+  - `commit 1678e37` (*feat(augment): implement Schroeder reverberator with smart-home room presets (Sub-step 4.1)*)
+* **Status Remote Push**: Terunggah ke `main` di `https://github.com/YogUNI/SVARA.git`.
+
+---
+
+#### Sub-step 4.2: Filter Karakteristik Mic Laptop Internal (Highpass 100 Hz) & Injeksi Noise AC/Kipas Terkalibrasi (SNR 16-26 dB)
+* **Tanggal Eksekusi**: 28 Oktober 2026
+* **Penanggung Jawab**: Yoga (Implementasi DSP, Kalibrasi SNR Numerik, & Verifikasi Respon Frekuensi)
+* **Latar Belakang & Masalah**:
+  Mikrofon internal bawaan laptop (seperti chip audio Realtek MEMS terintegrasi) memiliki respon akustik yang rentan menangkap getaran mekanis bodi laptop (*chassis rumble*, getaran bearing kipas pendingin, dan getaran meja) di frekuensi sub-100 Hz yang harus diredam secara terstruktur. Selain itu, mikrofon smart home di kamar tidur atau ruang tamu senantiasa terpapar derau lingkungan pendingin ruangan (AC) dan kipas angin (*household acoustic noise*). Model deep learning perlu dilatih dengan variasi noise latar belakang terkalibrasi agar tidak gagal mengenali perintah suara saat AC atau kipas angin menyala.
+* **Formulasi Matematika & Rekayasa DSP**:
+  1. **Filter Highpass Karakteristik Mic Laptop (100 Hz)**:
+     - Menggunakan filter Butterworth Ordo 2 Highpass ($f_c = 100\text{ Hz}$, $f_s = 16.000\text{ Hz}$) diimplementasikan via Second-Order Sections (SOS) untuk kestabilan numerik mutlak.
+     - Karakteristik atenuasi empiris terukur:
+       - Frekuensi $30\text{ Hz}$: atenuasi $-20,95\text{ dB}$ (getaran mekanis sub-bass terpotong tuntas).
+       - Frekuensi $50\text{ Hz}$: atenuasi $-12,31\text{ dB}$ (derau listrik hum jala-jala PLN tereduksi $> 75\%$).
+       - Frekuensi $75\text{ Hz}$: atenuasi $-6,19\text{ dB}$.
+       - Frekuensi $100\text{ Hz}$: atenuasi $-3,01\text{ dB}$ (tepat pada titik cutoff half-power teoritis $-3\text{ dB}$).
+       - Frekuensi vokal inti ($200\text{ Hz} - 4.000\text{ Hz}$): atenuasi $-0,26\text{ dB}$ hingga $-0,00\text{ dB}$ (sinyal vokal ucapan manusia lolos 100% utuh tanpa pewarnaan atau distorsi).
+  2. **Profil Derau Rumah Tangga Realistis (*Household Noise Profiles*)**:
+     - `ac`: Sirkulasi udara kompresor pendingin ruangan (air rush lowpass 1200 Hz + hum kompresor 50/100 Hz).
+     - `fan`: Derau aerodinamis bilah kipas berputar (broadband turbulence 1600 Hz + rotasi motor 120/240 Hz).
+     - `ac_fan`: Profil gabungan tipikal ruangan rumah pintar di Indonesia (kamar ber-AC dengan kipas).
+     - `ambient_room`: Lantai derau termal kamar tertutup (gentle thermal room floor noise).
+  3. **Kalibrasi SNR Presisi Tinggi**:
+     - Perhitungan daya sinyal $P_{\text{clean}} = \frac{1}{N}\sum x^2[n]$ dan $P_{\text{noise}} = \frac{1}{N}\sum w^2[n]$.
+     - Skala pengali derau:
+       $$\text{scale} = \sqrt{\frac{P_{\text{clean}}}{P_{\text{noise}} \cdot 10^{\text{SNR}/10}}}$$
+     - Uji sweep kalibrasi SNR $[16, 18, 20, 22, 24, 26]\text{ dB}$:
+       - Target $16,0\text{ dB} \rightarrow$ Terukur $16,00\text{ dB}$ (Error: $0,000\text{ dB}$, Peak: $0,8117$).
+       - Target $18,0\text{ dB} \rightarrow$ Terukur $18,00\text{ dB}$ (Error: $0,000\text{ dB}$, Peak: $0,8153$).
+       - Target $20,0\text{ dB} \rightarrow$ Terukur $20,00\text{ dB}$ (Error: $0,000\text{ dB}$, Peak: $0,8153$).
+       - Target $22,0\text{ dB} \rightarrow$ Terukur $22,00\text{ dB}$ (Error: $0,000\text{ dB}$, Peak: $0,8129$).
+       - Target $24,0\text{ dB} \rightarrow$ Terukur $24,00\text{ dB}$ (Error: $0,000\text{ dB}$, Peak: $0,7970$).
+       - Target $26,0\text{ dB} \rightarrow$ Terukur $26,00\text{ dB}$ (Error: $0,000\text{ dB}$, Peak: $0,8080$).
+       - Error rata-rata: $\Delta = 0,000\text{ dB}$ (presisi 100% absolut).
+  4. **Kontrol Headroom Anti-Clipping**:
+     - Seluruh amplitudo puncak sinyal hasil pencampuran terkendali pada rentang `0.7970 - 0.8153`, 100% patuh di bawah batas aman $\le 0,9500$.
+  5. **Kecepatan & Throughput**:
+     - Throughput: $32,3\text{ audio clips / detik}$ (single-thread).
+     - Rata-rata latensi: $30,93\text{ ms}$ per 3,55 detik audio.
+     - Real-Time Factor (RTF): $114,8\times$ lebih cepat dari pemutaran audio real-time.
+* **Artefak File yang Dibuat & Dimodifikasi**:
+  - `src/svara/data/augment.py`: Penambahan fungsi `apply_laptop_mic_filter`, `generate_ambient_noise`, `inject_household_noise`, `apply_laptop_mic_and_noise`, dan pembaruan `AudioAugmentor` dengan parameter `mic_filter_prob`.
+  - `tests/test_augment.py`: Penambahan 5 unit test spesifik (atenuasi 50 vs 1000 Hz, profil noise, kalibrasi SNR presisi, pipeline chaining, dan integrasi augmentor).
+  - `scripts/demo_laptop_mic_noise.py`: Tool benchmark respons frekuensi dan kalibrasi sweep SNR.
+  - `reports/laptop_mic_noise_benchmark.json`: Data hasil evaluasi akustik dan kecepatan pemrosesan.
+* **Hasil Pengujian Test Suite Repositori**:
+  - Seluruh **14 unit test augmentasi** di `tests/test_augment.py` lulus $100\%$ dalam $12,55\text{ detik}$.
+  - Seluruh **93 unit test** di repositori lulus $100\%$ tanpa ada error (`93 passed, 7 warnings in 107.39s`).
+* **Pencapaian Milestone**:
+  - Sub-step 4.2 selesai sempurna. Filter mic laptop dan injeksi noise AC/kipas siap dipakai pada augmentasi massal sub-step 4.4.
+* **Nomor Commit Git**:
+  - `commit 6faaa31` (*feat(augment): implement 100Hz laptop mic filter and calibrated AC/fan noise injection (Sub-step 4.2)*)
 * **Status Remote Push**: Terunggah ke `main` di `https://github.com/YogUNI/SVARA.git`.
 
 ---

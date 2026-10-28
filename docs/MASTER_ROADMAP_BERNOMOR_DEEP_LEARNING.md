@@ -25,24 +25,24 @@ Dokumen ini adalah panduan kontrol proyek resmi untuk pematangan sistem Deep Lea
 │
 ├── FASE 3: SINTESIS SUARA MULTI-SPEAKER MASSAL (NEURAL TTS TARGET 8.000 - 10.000 AUDIO BERSIH)
 │   ├── [x] Sub-step 3.1: Pembuatan Engine Sintesis Paralel Multi-Worker (Edge Neural TTS Python) [SELESAI - Commit 077af48]
-│   ├── Sub-step 3.2: Eksekusi Sintesis Suara Pria (id-ID-ArdiNeural) & Wanita (id-ID-GadisNeural)
-│   └── Sub-step 3.3: Verifikasi Kualitas Sinyal Audio Bersih (16 kHz 16-bit PCM Mono, Zero-Corruption Check)
+│   ├── [x] Sub-step 3.2: Eksekusi Sintesis Suara Pria (id-ID-ArdiNeural) & Wanita (id-ID-GadisNeural) [SELESAI - Commit 305d73e]
+│   └── [x] Sub-step 3.3: Verifikasi Kualitas Sinyal Audio Bersih (16 kHz 16-bit PCM Mono, Zero-Corruption Check) [SELESAI - Commit d8c084e]
 │
 ├── FASE 4: ENVIRONMENTAL ACOUSTIC AUGMENTATION (SIMULASI DUNIA NYATA TARGET 24.000 AUDIO)
-│   ├── Sub-step 4.1: Implementasi Modul Schroeder Reverb (Akustik Kamar Tidur & Ruang Tamu)
-│   ├── Sub-step 4.2: Implementasi Modul Hardware Mic Filter & Injeksi Noise Kipas/AC (SNR 16-26 dB)
-│   ├── Sub-step 4.3: Implementasi Variasi Tempo Bicara (Speed Perturbation 0.92x - 1.08x)
-│   └── Sub-step 4.4: Eksekusi Batch Pembuatan 24.000 Audio Robust Indonesia
+│   ├── [x] Sub-step 4.1: Implementasi Modul Schroeder Reverb (Akustik Kamar Tidur & Ruang Tamu) [SELESAI - Commit 1678e37]
+│   ├── [x] Sub-step 4.2: Implementasi Modul Hardware Mic Filter & Injeksi Noise Kipas/AC (SNR 16-26 dB) [SELESAI - Commit 0c6d72d]
+│   ├── [x] Sub-step 4.3: Implementasi Variasi Tempo Bicara (Speed Perturbation 0.92x - 1.08x) [SELESAI - Commit 4c4fc04]
+│   └── [x] Sub-step 4.4: Eksekusi Batch Pembuatan 24.000 Audio Robust Indonesia [SELESAI - Commit fdc578d]
 │
 ├── FASE 5: INTEGRASI BALANCED BILINGUAL DATASET & SPLITTING ILMIAH (24.000 AUDIO SEIMBANG)
-│   ├── Sub-step 5.1: Penggabungan Seimbang 50:50 (12.000 Audio Indonesia + 12.000 Audio FSC English)
-│   ├── Sub-step 5.2: Pembuatan Stratified Split (Train 70%, Valid 15%, Unseen Test 15%)
-│   └── Sub-step 5.3: Audit Verifikasi Bebas Kebocoran Data (Zero-Data-Leakage Validation)
+│   ├── [x] Sub-step 5.1: Penggabungan Seimbang 50:50 (12.000 Audio Indonesia + 12.000 Audio FSC English) [SELESAI - Commit be90b23]
+│   ├── [x] Sub-step 5.2: Pembuatan Stratified Split (Train 70%, Valid 15%, Unseen Test 15%) [SELESAI - Commit 9ca10ec]
+│   └── [x] Sub-step 5.3: Audit Verifikasi Bebas Kebocoran Data (Zero-Data-Leakage Validation) [SELESAI - Commit 7a586a7]
 │
 ├── FASE 6: PEMBUATAN MASTER NOTEBOOK BARU & ARSITEKTUR MODEL
-│   ├── Sub-step 6.1: Inisialisasi Master Notebook `notebooks/03_production_slu_deep_learning_pipeline.ipynb`
-│   ├── Sub-step 6.2: Desain Sel 1-4 (CUDA GPU 4060, Waveform Spectrogram, DataLoader, Model Head)
-│   └── Sub-step 6.3: Desain Sel 5-9 (Interactive Training, Kurva Loss, Evaluasi Ilmiah, Widget Live Mic)
+│   ├── [x] Sub-step 6.1: Inisialisasi Master Notebook `notebooks/03_production_slu_deep_learning_pipeline.ipynb` [SELESAI - Commit f3a3174]
+│   ├── [x] Sub-step 6.2: Desain Sel 1-4 (CUDA GPU 4060, Waveform Spectrogram, DataLoader, Model Head) [SELESAI - Commit 35707d4]
+│   └── [x] Sub-step 6.3: Desain Sel 5-9 (Interactive Training, Kurva Loss, Evaluasi Ilmiah, Widget Live Mic) [SELESAI - Commit 6aed70a]
 │
 ├── FASE 7: TRAINING & OPTIMASI TERKALIBRASI PADA GPU NVIDIA RTX 4060
 │   ├── Sub-step 7.1: Konfigurasi Loss Multi-Task dengan Label Smoothing (ε = 0.05) & Optimizer AdamW
@@ -94,12 +94,12 @@ Dokumen ini adalah panduan kontrol proyek resmi untuk pematangan sistem Deep Lea
 ### FASE 5: INTEGRASI BALANCED BILINGUAL DATASET & SPLITTING ILMIAH
 * **Sub-step 5.1** [SELESAI - Commit `be90b23`]: Gabungkan 12.000 audio Indonesia robust + 12.000 audio FSC English native (Total 24.000 audio seimbang 50:50, zero intent skew, sebaran gender ID 50:50, 4.000 audio per profil akustik, manifest `data/bilingual_massive/bilingual_manifest_24k.csv`, ringkasan `reports/bilingual_dataset_integration_summary.json`, 7 unit test lulus 100% `tests/test_bilingual_dataset.py`).
 * **Sub-step 5.2** [SELESAI - Commit `9ca10ec`]: Buat split stratified: Train (70% = 16.800 audio: 8.400 ID + 8.400 EN), Valid (15% = 3.600 audio: 1.800 ID + 1.800 EN), Unseen Test (15% = 3.600 audio: 1.800 ID + 1.800 EN), serta slice evaluasi terpisah `test_id.csv` (1.800 audio) dan `test_en.csv` (1.800 audio). Menerapkan Zero Utterance Leakage pada bahasa Indonesia dan Zero Speaker Leakage pada English FSC. 9 unit test lulus 100% (`tests/test_bilingual_splits.py`), ringkasan di `reports/bilingual_splits_summary.json`.
-* **Sub-step 5.3** [SELESAI]: Audit Verifikasi Bebas Kebocoran Data 8 Dimensi (`scripts/audit_zero_leakage_splits.py`): 0 irisan transkrip ID, 0 irisan speaker EN, 0 duplikasi hash biner audio (24.000 unik), 0 konflik label V-01, keragaman frasa V-02 terpenuhi, entropi Shannon $H/H_{\max} \ge 0,998$, 100% sinkronisasi checksum SHA-256 disk vs manifes. Ekspor `reports/zero_data_leakage_audit.json` & `.md`, 10 unit test lulus 100% (`tests/test_zero_leakage_audit.py`). **FASE 5 SELESAI 100%**.
+* **Sub-step 5.3** [SELESAI - Commit `7a586a7`]: Audit Verifikasi Bebas Kebocoran Data 8 Dimensi (`scripts/audit_zero_leakage_splits.py`): 0 irisan transkrip ID, 0 irisan speaker EN, 0 duplikasi hash biner audio (24.000 unik), 0 konflik label V-01, keragaman frasa V-02 terpenuhi, entropi Shannon $H/H_{\max} \ge 0,998$, 100% sinkronisasi checksum SHA-256 disk vs manifes. Ekspor `reports/zero_data_leakage_audit.json` & `.md`, 10 unit test lulus 100% (`tests/test_zero_leakage_audit.py`). **FASE 5 SELESAI 100%**.
 
 ### FASE 6: PEMBUATAN MASTER NOTEBOOK BARU & ARSITEKTUR MODEL
 * **Sub-step 6.1** [SELESAI - Commit `f3a3174`]: Inisialisasi Master Notebook `notebooks/03_production_slu_deep_learning_pipeline.ipynb` dari nol (19 cells: 10 Markdown akademik & 9 Code produksi, nbformat 4.5, skema eksekusi komprehensif, `notebooks/02` terjaga 100% utuh, 5 unit test lulus 100% `tests/test_master_notebook.py`).
 * **Sub-step 6.2** [SELESAI - Commit `35707d4`]: Desain Sel 1-4 (CUDA GPU RTX 4060 & Seed 42, Visualisasi Waveform & Spektrogram Butterworth 80-7.500 Hz + RMS -20 dBFS + VAD 150ms, DataLoader Bilingual 24k Terstratifikasi, Arsitektur Wav2VecSLU dengan Feature Encoder Frozen & Length-Aware Masked Mean Pooling + Decoupled Slot Heads, Sanity Check Loss Awal V-11 terverifikasi). 10 unit test lulus 100% (`tests/test_master_notebook.py`).
-* **Sub-step 6.3** [SELESAI]: Desain Sel 5-9 (Mesin Pelatihan Multi-Task Loss dengan Label Smoothing $\epsilon=0.05$ & AdamW Cosine Warmup AMP FP16, Visualisasi Kurva Loss & Exact-Match Accuracy 3-Panel, Evaluasi Ilmiah Multi-Domain Unseen ID & FSC EN Benchmark, Serialisasi ONNX & Dynamic INT8 Quantization 360MB->90MB dengan Uji Paritas Numerik, Live Inference Widget dengan Temperature Scaling, Geometric Mean Confidence & Semantic Consistency Gate 31 Legal Intent). 15 unit test lulus 100% (`tests/test_master_notebook.py`). **FASE 6 SELESAI 100%**.
+* **Sub-step 6.3** [SELESAI - Commit `6aed70a`]: Desain Sel 5-9 (Mesin Pelatihan Multi-Task Loss dengan Label Smoothing $\epsilon=0.05$ & AdamW Cosine Warmup AMP FP16, Visualisasi Kurva Loss & Exact-Match Accuracy 3-Panel, Evaluasi Ilmiah Multi-Domain Unseen ID & FSC EN Benchmark, Serialisasi ONNX & Dynamic INT8 Quantization 360MB->90MB dengan Uji Paritas Numerik, Live Inference Widget dengan Temperature Scaling, Geometric Mean Confidence & Semantic Consistency Gate 31 Legal Intent). 15 unit test lulus 100% (`tests/test_master_notebook.py`). **FASE 6 SELESAI 100%**.
 
 ### FASE 7: TRAINING & OPTIMASI TERKALIBRASI PADA GPU NVIDIA RTX 4060
 * **Sub-step 7.1**: Konfigurasi loss multi-task dengan label smoothing $\epsilon=0.05$, weight decay AdamW, dan Cosine Warmup Schedule.

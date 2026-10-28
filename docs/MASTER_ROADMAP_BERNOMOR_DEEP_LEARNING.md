@@ -97,8 +97,8 @@ Dokumen ini adalah panduan kontrol proyek resmi untuk pematangan sistem Deep Lea
 * **Sub-step 5.3** [SELESAI]: Audit Verifikasi Bebas Kebocoran Data 8 Dimensi (`scripts/audit_zero_leakage_splits.py`): 0 irisan transkrip ID, 0 irisan speaker EN, 0 duplikasi hash biner audio (24.000 unik), 0 konflik label V-01, keragaman frasa V-02 terpenuhi, entropi Shannon $H/H_{\max} \ge 0,998$, 100% sinkronisasi checksum SHA-256 disk vs manifes. Ekspor `reports/zero_data_leakage_audit.json` & `.md`, 10 unit test lulus 100% (`tests/test_zero_leakage_audit.py`). **FASE 5 SELESAI 100%**.
 
 ### FASE 6: PEMBUATAN MASTER NOTEBOOK BARU & ARSITEKTUR MODEL
-* **Sub-step 6.1** [SELESAI]: Inisialisasi Master Notebook `notebooks/03_production_slu_deep_learning_pipeline.ipynb` dari nol (19 cells: 10 Markdown akademik & 9 Code produksi, nbformat 4.5, skema eksekusi komprehensif, `notebooks/02` terjaga 100% utuh, 5 unit test lulus 100% `tests/test_master_notebook.py`).
-* **Sub-step 6.2**: Lengkapi Sel 1-4 untuk inspeksi GPU RTX 4060, visualisasi spectrogram audio sebelum/sesudah filter, dan arsitektur model wav2vec2.
+* **Sub-step 6.1** [SELESAI - Commit `f3a3174`]: Inisialisasi Master Notebook `notebooks/03_production_slu_deep_learning_pipeline.ipynb` dari nol (19 cells: 10 Markdown akademik & 9 Code produksi, nbformat 4.5, skema eksekusi komprehensif, `notebooks/02` terjaga 100% utuh, 5 unit test lulus 100% `tests/test_master_notebook.py`).
+* **Sub-step 6.2** [SELESAI]: Desain Sel 1-4 (CUDA GPU RTX 4060 & Seed 42, Visualisasi Waveform & Spektrogram Butterworth 80-7.500 Hz + RMS -20 dBFS + VAD 150ms, DataLoader Bilingual 24k Terstratifikasi, Arsitektur Wav2VecSLU dengan Feature Encoder Frozen & Length-Aware Masked Mean Pooling + Decoupled Slot Heads, Sanity Check Loss Awal V-11 terverifikasi). 10 unit test lulus 100% (`tests/test_master_notebook.py`).
 * **Sub-step 6.3**: Lengkapi Sel 5-9 untuk live training progress, kurva loss interaktif, evaluasi, dan widget prediksi suara langsung.
 
 ### FASE 7: TRAINING & OPTIMASI TERKALIBRASI PADA GPU NVIDIA RTX 4060

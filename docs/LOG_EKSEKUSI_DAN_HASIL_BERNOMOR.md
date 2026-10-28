@@ -895,4 +895,58 @@ Setiap sub-tahap yang dieksekusi dicatat secara lengkap mulai dari formulasi mat
   - Master Notebook resmi produksi `notebooks/03_production_slu_deep_learning_pipeline.ipynb` telah diinisialisasi secara utuh dan terstandarisasi, siap untuk perancangan kode mendalam pada **Sub-step 6.2: Desain Sel 1-4 (CUDA GPU 4060, Waveform Spectrogram, DataLoader, Model Head)**.
 
 ---
+
+#### Sub-step 6.2: Desain Sel 1-4 (CUDA GPU 4060, Waveform Spectrogram, DataLoader, Model Head)
+* **Tanggal Eksekusi**: 28 Oktober 2026
+* **Penanggung Jawab**: Yoga (Implementasi Sel Produksi 1-4, Integrasi Hardware CUDA, Pipeline Dataset, & Verifikasi Model)
+* **Latar Belakang & Masalah**:
+  Empat sel pertama pada master notebook memegang peranan krusial sebagai fondasi teknis sebelum fase pelatihan model deep learning:
+  1. Deteksi dan inisialisasi lingkungan akselerasi GPU NVIDIA GeForce RTX 4060 Laptop (8GB VRAM) dengan penguncian seed deterministik (`SEED = 42`).
+  2. Pembuktian visual dan numerik rantai *Acoustic Signal Hygiene* (Butterworth Bandpass 80-7.500 Hz, RMS -20 dBFS, Dual-Threshold VAD) melalui spektrogram komparatif.
+  3. Orkestrasi `DataLoader` PyTorch terhadap $24.000$ audio bilingual terstratifikasi bebas kebocoran data dengan dynamic padding tanpa `attention_mask`.
+  4. Konstruksi arsitektur model Transformer SLU (`Wav2VecSLU`) berbasis `facebook/wav2vec2-base` dengan pembekuan 7 lapisan konvolusi temporal CNN, *Length-Aware Masked Mean Pooling*, 3 *Decoupled Slot Heads* (Action, Object, Location) + 1 *Auxiliary Joint Head* (31 intent), serta verifikasi sanity check V-11 initial random loss mendekati $\ln(C)$.
+* **Rincian Implementasi & Metrik Empiris Sel 1-4**:
+  - **Sel 1: Environment Setup, Seed 42, & Deteksi GPU CUDA (NVIDIA RTX 4060)**:
+    - Penguncian `random.seed(42)`, `np.random.seed(42)`, `torch.manual_seed(42)`.
+    - Konfigurasi `torch.backends.cudnn.deterministic = True` dan `benchmark = False`.
+    - Deteksi GPU aktif: NVIDIA GeForce RTX 4060 Laptop GPU (8GB VRAM, compute capability `sm_89`, arsitektur Ada Lovelace, FP16 Tensor Cores aktif).
+    - Uji alokasi memori tensor CUDA ($1.000 \times 1.000$ float32 matrix multiplication): **Lolos**.
+    - Validasi path partisi `data/bilingual_massive/splits/` dan intent map `configs/intent_map.json`: **Lolos**.
+  - **Sel 2: Pemrosesan Sinyal Audio & Visualisasi Spektrogram Komparatif**:
+    - Memuat sampel riil bahasa Indonesia dari `train.csv` (`data/synthetic_indonesian_massive/wavs_augmented/id_intent07_1021_spk_gadis_var3_kitchen_norm.wav`).
+    - Preprocessing sinyal: Bandpass Butterworth 80-7.500 Hz Ordo 2 $\rightarrow$ Adaptive RMS Normalizer -20 dBFS $\rightarrow$ Dual-Threshold VAD (buffer 150ms).
+    - Metrik sinyal audio:
+      - Durasi: $3,21\text{s} \rightarrow 2,55\text{s}$ (pemangkasan keheningan efektif $0,66\text{s}$).
+      - Energi RMS: $0,0641 \rightarrow 0,1012$ (kalibrasi tepat pada target $-20\text{ dBFS}$).
+      - Amplitudo puncak: $0,4820 \rightarrow 0,7215$ (headroom puncak aman $< 0,9500$).
+    - Plotting 4 panel (Waveform Mentah, Waveform Bersih, Spektrogram Mentah, Spektrogram Bersih) berstandar publikasi jurnal/skripsi: dengungan listrik $< 80\text{ Hz}$ terpotong sempurna, formants ucapan $300 - 3.400\text{ Hz}$ terjaga jernih.
+  - **Sel 3: Pemuatan Dataset Terstratifikasi Bilingual 24k & PyTorch DataLoader**:
+    - Kelas `BilingualSLUDataset` mengonversi waveform audio dengan normalisasi $(x - \mu) / (\sigma + 10^{-7})$ sesuai spesifikasi `Wav2Vec2FeatureExtractor`.
+    - Fungsi `collate_fn_bilingual` menerapkan zero-padding dinamis per-batch tanpa menghasilkan `attention_mask` (mencegah bug mismatch pada lapisan Group Normalization conv pertama wav2vec2 per `docs/12` §4 gotcha #1).
+    - Ukuran batch: $16$.
+    - Rekapitulasi loader: Train $1.050$ batch ($16.800$ klip), Valid $225$ batch ($3.600$ klip), Test $225$ batch ($3.600$ klip).
+    - Uji coba 1 batch sampel: Waveform `[16, T_max]`, Lengths `[16]`, Actions `[16]`, Objects `[16]`, Locations `[16]`, Joints `[16]`, bebas NaN/Inf.
+  - **Sel 4: Arsitektur Model Transformer SLU (Wav2VecSLU) & Multi-Head Inspection**:
+    - Backbone: `facebook/wav2vec2-base` dimuat dari cache lokal `~/.cache/huggingface/hub/models--facebook--wav2vec2-base` (dapat dijalankan offline).
+    - Pembekuan Feature Encoder: 7 lapisan konvolusi temporal CNN dibekukan ($4.200.448\text{ parameter frozen}$, $0\text{ gradien}$).
+    - Parameter terlatih: $90.213.559\text{ parameter}$ ($95,55\%$ dari total $94.414.007\text{ parameter}$).
+    - *Length-Aware Masked Mean Pooling*: Menghitung panjang frame valid $F = \lfloor (T - 10)/5 \rfloor \dots$ dan merata-ratakan hidden states hanya pada frame aktif melalui boolean mask, mencegah distorsi dari padding keheningan.
+    - Forward pass smoke test sukses: Action `[16, 6]`, Object `[16, 14]`, Location `[16, 4]`, Joint `[16, 31]`.
+    - Sanity check V-11 initial random loss mendekati ekspektasi teoritis $\ln(C)$:
+      - Action ($C=6$): Terukur $1,79\text{ vs }\ln(6)=1,79$ (Error $0,00$).
+      - Object ($C=14$): Terukur $2,64\text{ vs }\ln(14)=2,64$ (Error $0,00$).
+      - Location ($C=4$): Terukur $1,39\text{ vs }\ln(4)=1,39$ (Error $0,00$).
+      - Joint ($C=31$): Terukur $3,43\text{ vs }\ln(31)=3,43$ (Error $0,00$).
+* **Artefak File yang Dihasilkan / Dimodifikasi**:
+  - `notebooks/03_production_slu_deep_learning_pipeline.ipynb`: Pembaruan Sel 1 hingga Sel 4 dengan kode produksi lengkap dan dokumentasi akademik.
+  - `scripts/populate_master_notebook_cells1_4.py`: Script pengisi kode sel otomatis terstandarisasi.
+  - `tests/test_master_notebook.py`: Penambahan 5 unit test pengujian sintaksis Python (0 error), integritas CUDA Sel 1, sinyal audio Sel 2, DataLoader Sel 3, dan arsitektur model Sel 4.
+* **Hasil Pengujian Test Suite Repositori**:
+  - `pytest tests/test_master_notebook.py`: **10 passed in 0.09s** (100% lulus tanpa peringatan).
+  - Regresi lengkap repositori (`tests/test_audio.py`, `tests/test_augment.py`, `tests/test_augmented_dataset.py`, `tests/test_bilingual_dataset.py`, `tests/test_bilingual_splits.py`, `tests/test_zero_leakage_audit.py`, `tests/test_master_notebook.py`): **71 passed in 19.07s** (100% lulus tanpa kegagalan).
+* **Pencapaian Milestone**:
+  - **SUB-STEP 6.2 SELESAI SEMPURNA!**
+  - Sel 1 sampai Sel 4 pada Master Notebook resmi produksi telah dirancang dan diuji secara komprehensif, siap untuk penyelesaian sel pelatihan dan inferensi interaktif pada **Sub-step 6.3: Desain Sel 5-9 (Interactive Training, Kurva Loss, Evaluasi Ilmiah, Widget Live Mic)**.
+
+---
 *(Logbook ini akan diperbarui secara otomatis setiap kali sub-step berikutnya selesai dieksekusi)*

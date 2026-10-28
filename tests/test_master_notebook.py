@@ -62,10 +62,10 @@ class TestMasterNotebookInitialization:
         all_text = " ".join("".join(c.get("source", [])) for c in nb.get("cells", []))
 
         expected_sections = [
-            "Sel 1: Konfigurasi Lingkungan, Seed & Deteksi GPU CUDA",
-            "Sel 2: Visualisasi Sinyal Audio Sebelum vs Sesudah Filter",
-            "Sel 3: Pemuatan Manifest Partisi Bilingual 24k & DataLoader",
-            "Sel 4: Definisi Arsitektur Model Wav2VecSLU",
+            "Sel 1: Konfigurasi Lingkungan",
+            "Sel 2: Pemrosesan Sinyal Audio",
+            "Sel 3: Pemuatan Dataset Terstratifikasi Bilingual",
+            "Sel 4: Arsitektur Model Transformer SLU",
             "Sel 5: Training Engine Skeleton & Hyperparameter Configuration",
             "Sel 6: Visualisasi Riwayat Pelatihan & Metrik Konvergensi",
             "Sel 7: Evaluasi Ilmiah Multi-Domain SLU",
@@ -82,3 +82,62 @@ class TestMasterNotebookInitialization:
         with open(NOTEBOOK_02_PATH, "r", encoding="utf-8") as f:
             nb2 = json.load(f)
         assert nb2.get("nbformat") == 4
+
+
+@pytest.fixture(scope="module")
+def notebook_cells():
+    with open(NOTEBOOK_03_PATH, "r", encoding="utf-8") as f:
+        nb = json.load(f)
+    return nb["cells"]
+
+
+class TestMasterNotebookCells1To4Implementation:
+    """Pengujian verifikasi implementasi kode produksi pada Sel 1 hingga Sel 4."""
+
+    def test_all_code_cells_syntax_validity(self, notebook_cells):
+        """Memastikan seluruh sel kode dapat di-parse sebagai sintaks Python yang valid (0 syntax error)."""
+        import ast
+        for i, cell in enumerate(notebook_cells):
+            if cell["cell_type"] == "code":
+                code_text = "".join(cell.get("source", []))
+                try:
+                    ast.parse(code_text)
+                except SyntaxError as e:
+                    pytest.fail(f"SyntaxError pada Cell index {i}: {e}")
+
+    def test_cell_1_environment_and_cuda_implementation(self, notebook_cells):
+        """Memastikan Sel 1 memuat kode inisialisasi lingkungan dan deteksi CUDA RTX 4060."""
+        cell1_code = "".join(notebook_cells[2].get("source", []))
+        assert "SEED = 42" in cell1_code
+        assert "torch.cuda.is_available()" in cell1_code
+        assert "cudnn.deterministic = True" in cell1_code
+        assert "PROJECT_ROOT" in cell1_code
+        assert "intent_map.json" in cell1_code
+
+    def test_cell_2_signal_hygiene_implementation(self, notebook_cells):
+        """Memastikan Sel 2 memuat visualisasi pemrosesan sinyal audio Butterworth, RMS, dan VAD."""
+        cell2_code = "".join(notebook_cells[4].get("source", []))
+        assert "preprocess_audio" in cell2_code
+        assert "torchaudio.load" in cell2_code
+        assert "specgram" in cell2_code
+        assert "plt.subplots" in cell2_code
+
+    def test_cell_3_bilingual_dataset_and_loader_implementation(self, notebook_cells):
+        """Memastikan Sel 3 mendefinisikan BilingualSLUDataset dan collate_fn_bilingual."""
+        cell3_code = "".join(notebook_cells[6].get("source", []))
+        assert "class BilingualSLUDataset(Dataset):" in cell3_code
+        assert "def collate_fn_bilingual" in cell3_code
+        assert "DataLoader(" in cell3_code
+        assert "train_loader" in cell3_code
+        assert "valid_loader" in cell3_code
+        assert "test_loader" in cell3_code
+
+    def test_cell_4_model_architecture_and_sanity_check(self, notebook_cells):
+        """Memastikan Sel 4 memuat inisialisasi Wav2VecSLU, masked pooling, dan initial random loss check."""
+        cell4_code = "".join(notebook_cells[8].get("source", []))
+        assert "Wav2VecSLU" in cell4_code
+        assert "facebook/wav2vec2-base" in cell4_code
+        assert "freeze_feature_encoder" in cell4_code
+        assert "total_params" in cell4_code
+        assert "loss_act_init" in cell4_code
+        assert "V-11" in cell4_code

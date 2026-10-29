@@ -52,7 +52,7 @@ export const RadarMiniMap = forwardRef<RadarMiniMapHandle, RadarMiniMapProps>(({
     const toMapY = (wz: number) => center + (wz - playerZ) * mapScale;
 
     // Draw Interior Floor Plan Boundaries relative to player
-    ctx.strokeStyle = 'rgba(47, 107, 94, 0.55)';
+    ctx.strokeStyle = 'rgba(148, 163, 184, 0.42)';
     ctx.lineWidth = 1.6;
 
     // Outer Perimeter House Walls
@@ -78,9 +78,9 @@ export const RadarMiniMap = forwardRef<RadarMiniMapHandle, RadarMiniMapProps>(({
     ctx.stroke();
 
     // Front Garden Lawn Outline & Walkway
-    ctx.strokeStyle = 'rgba(62, 224, 143, 0.5)';
+    ctx.strokeStyle = 'rgba(16, 185, 129, 0.38)';
     ctx.strokeRect(toMapX(-21), toMapY(12), 42 * mapScale, 19 * mapScale);
-    ctx.fillStyle = 'rgba(78, 161, 142, 0.22)';
+    ctx.fillStyle = 'rgba(16, 185, 129, 0.16)';
     ctx.fillRect(toMapX(-1.5), toMapY(12), 3 * mapScale, 14 * mapScale);
 
     // 3. Smart Device Icons / Dots
@@ -89,13 +89,13 @@ export const RadarMiniMap = forwardRef<RadarMiniMapHandle, RadarMiniMapProps>(({
       const my = toMapY(wz);
       ctx.beginPath();
       ctx.arc(mx, my, 4, 0, Math.PI * 2);
-      ctx.fillStyle = isOn ? '#F2B33D' : '#4E6166';
+      ctx.fillStyle = isOn ? '#FBBF24' : '#475569';
       ctx.fill();
       ctx.strokeStyle = '#FFFFFF';
       ctx.lineWidth = 1;
       ctx.stroke();
 
-      ctx.fillStyle = '#C2D1CC';
+      ctx.fillStyle = '#94A3B8';
       ctx.font = '7px sans-serif';
       ctx.fillText(label, mx + 5, my + 3);
     };
@@ -106,7 +106,7 @@ export const RadarMiniMap = forwardRef<RadarMiniMapHandle, RadarMiniMapProps>(({
     drawDeviceDot(0, 0, devices.hall_music, 'Audio');
 
     // 4. Concentric Radar Rings
-    ctx.strokeStyle = 'rgba(78, 161, 142, 0.25)';
+    ctx.strokeStyle = 'rgba(99, 102, 241, 0.22)';
     ctx.lineWidth = 1;
     ctx.beginPath();
     ctx.arc(center, center, radius * 0.4, 0, Math.PI * 2);
@@ -120,8 +120,8 @@ export const RadarMiniMap = forwardRef<RadarMiniMapHandle, RadarMiniMapProps>(({
     ctx.rotate(-playerYaw); // Exact 1:1 camera yaw sync
 
     const coneGradient = ctx.createRadialGradient(0, 0, 0, 0, 0, 36);
-    coneGradient.addColorStop(0, 'rgba(62, 224, 143, 0.65)');
-    coneGradient.addColorStop(1, 'rgba(62, 224, 143, 0.0)');
+    coneGradient.addColorStop(0, 'rgba(56, 189, 248, 0.6)');
+    coneGradient.addColorStop(1, 'rgba(56, 189, 248, 0.0)');
 
     ctx.beginPath();
     ctx.moveTo(0, 0);
@@ -137,21 +137,21 @@ export const RadarMiniMap = forwardRef<RadarMiniMapHandle, RadarMiniMapProps>(({
     ctx.lineTo(0, 3);
     ctx.lineTo(-6, 6);
     ctx.closePath();
-    ctx.fillStyle = '#3EE08F';
+    ctx.fillStyle = '#38BDF8';
     ctx.fill();
     ctx.restore();
 
     ctx.restore(); // End clipping
 
     // 6. Exterior Tactical Radar Bezel
-    ctx.strokeStyle = '#2F6B5E';
+    ctx.strokeStyle = 'rgba(99, 102, 241, 0.75)';
     ctx.lineWidth = 2.5;
     ctx.beginPath();
     ctx.arc(center, center, radius, 0, Math.PI * 2);
     ctx.stroke();
 
     // Cardinal direction ticks (N, S, E, W)
-    ctx.fillStyle = '#3EE08F';
+    ctx.fillStyle = '#A5B4FC';
     ctx.font = 'bold 9px monospace';
     ctx.fillText('N', center - 3, 12);
   };
@@ -190,9 +190,9 @@ export const RadarMiniMap = forwardRef<RadarMiniMapHandle, RadarMiniMapProps>(({
       />
       <div style={{
         marginTop: 4,
-        background: 'rgba(10, 18, 22, 0.85)',
-        color: '#3EE08F',
-        border: '1px solid rgba(47, 107, 94, 0.6)',
+        background: 'rgba(11, 15, 23, 0.85)',
+        color: '#A5B4FC',
+        border: '1px solid rgba(99, 102, 241, 0.45)',
         padding: '2px 8px',
         borderRadius: '999px',
         fontSize: '0.68rem',
@@ -200,7 +200,7 @@ export const RadarMiniMap = forwardRef<RadarMiniMapHandle, RadarMiniMapProps>(({
         fontFamily: 'monospace',
         letterSpacing: '0.04em',
       }}>
-        RADAR GPS: 60FPS SYNC
+        RADAR • LIVE SYNC
       </div>
     </div>
   );

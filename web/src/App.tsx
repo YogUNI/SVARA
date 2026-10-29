@@ -1,5 +1,30 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Mic, Upload, RotateCcw, Box, Map, Gamepad2 } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import {
+  Mic,
+  Upload,
+  RotateCcw,
+  Box,
+  Map,
+  Gamepad2,
+  Home,
+  FlaskConical,
+  Info,
+  Zap,
+  Package,
+  MapPin,
+  Activity,
+  Check,
+  Minus,
+  Plus,
+  Lightbulb,
+  Music,
+  Volume2,
+  Thermometer,
+  Loader2,
+  Clock,
+  Sparkles,
+  Flame,
+} from 'lucide-react';
 import { FloorPlan, DeviceState } from './components/FloorPlan';
 import { Home3DView } from './components/Home3DView';
 import { FPPWalkthrough } from './components/FPPWalkthrough';
@@ -52,13 +77,33 @@ const INITIAL_DEVICES: DeviceState = {
 };
 
 const SAMPLE_COMMANDS = [
-  "Nyalakan lampu di dapur",
-  "Tolong matikan lampu kamar mandi",
-  "Nyalakan musiknya dong",
-  "Gedein volumenya tolong ya",
-  "Matikan lampu tidur",
-  "Turn on the lights in the kitchen",
+  'Nyalakan lampu di dapur',
+  'Tolong matikan lampu kamar mandi',
+  'Nyalakan musiknya dong',
+  'Gedein volumenya tolong ya',
+  'Matikan lampu tidur',
+  'Turn on the lights in the kitchen',
 ];
+
+const SLOT_LIST = [
+  { key: 'action', label: 'Action', Icon: Zap, color: '#818CF8' },
+  { key: 'object', label: 'Object', Icon: Package, color: '#FBBF24' },
+  { key: 'location', label: 'Location', Icon: MapPin, color: '#22D3EE' },
+] as const;
+
+const TOGGLE_TILES = [
+  { key: 'kitchen_lights', label: 'Lampu Dapur', Icon: Lightbulb, audio: false },
+  { key: 'bedroom_lights', label: 'Lampu Kamar', Icon: Lightbulb, audio: false },
+  { key: 'bedroom_lamp', label: 'Lampu Tidur', Icon: Flame, audio: false },
+  { key: 'washroom_lights', label: 'Lampu Mandi', Icon: Lightbulb, audio: false },
+  { key: 'hall_music', label: 'Musik Lorong', Icon: Music, audio: true },
+] as const;
+
+const CLIMATE_ROWS = [
+  { key: 'kitchen_heat', label: 'Suhu Dapur' },
+  { key: 'bedroom_heat', label: 'Suhu Kamar' },
+  { key: 'washroom_heat', label: 'Suhu Mandi' },
+] as const;
 
 // Helper: Resample any input sample rate (e.g. 48kHz / 44.1kHz) to exact 16kHz
 function resampleTo16k(audioBuffer: Float32Array, origSampleRate: number): Float32Array {
@@ -114,7 +159,7 @@ function encodeWAV(samples: Float32Array, inputSampleRate: number): Blob {
   let offset = 44;
   for (let i = 0; i < targetSamples.length; i++, offset += 2) {
     const s = Math.max(-1, Math.min(1, targetSamples[i]));
-    view.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7FFF, true);
+    view.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7fff, true);
   }
 
   return new Blob([view], { type: 'audio/wav' });
@@ -126,9 +171,102 @@ function writeString(view: DataView, offset: number, string: string) {
   }
 }
 
+/* -------------------------------------------------------------------------
+   Live microphone spectrum (Web Audio AnalyserNode -> canvas)
+   ------------------------------------------------------------------------- */
+
+const AudioSpectrum: React.FC<{
+  analyserRef: { current: AnalyserNode | null };
+  active: boolean;
+  processing: boolean;
+}> = ({ analyserRef, active, processing }) => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let raf = 0;
+    const binCount = 56;
+    const data = new Uint8Array(128);
+
+    const draw = () => {
+      raf = requestAnimationFrame(draw);
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const w = canvas.clientWidth;
+      const h = canvas.clientHeight;
+      if (!w || !h) return;
+      if (canvas.width !== Math.floor(w * dpr) || canvas.height !== Math.floor(h * dpr)) {
+        canvas.width = Math.floor(w * dpr);
+        canvas.height = Math.floor(h * dpr);
+      }
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, w, h);
+
+      // center reference line
+      ctx.strokeStyle = 'rgba(148, 163, 184, 0.13)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(0, h / 2);
+      ctx.lineTo(w, h / 2);
+      ctx.stroke();
+
+      const analyser = analyserRef.current;
+
+      if (analyser && active) {
+        analyser.getByteFrequencyData(data);
+        const barW = w / binCount;
+        for (let i = 0; i < binCount; i++) {
+          const v = data[Math.floor((i * data.length) / binCount)] / 255;
+          const bh = Math.max(2, v * h * 0.86);
+          const x = i * barW + barW * 0.18;
+          const y = h / 2 - bh / 2;
+          const grad = ctx.createLinearGradient(0, y, 0, y + bh);
+          grad.addColorStop(0, '#22D3EE');
+          grad.addColorStop(1, '#3B82F6');
+          ctx.fillStyle = grad;
+          ctx.globalAlpha = 0.5 + v * 0.5;
+          ctx.fillRect(x, y, barW * 0.64, bh);
+        }
+        ctx.globalAlpha = 1;
+      } else {
+        const t = performance.now() / 1000;
+        ctx.beginPath();
+        for (let x = 0; x <= w; x += 3) {
+          const y =
+            h / 2 +
+            Math.sin(x * 0.024 + t * 1.3) * 2.6 * Math.sin(x * 0.007 + t * 0.7);
+          if (x === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.strokeStyle = processing ? '#FBBF24' : '#3B82F6';
+        ctx.globalAlpha = processing ? 0.8 : 0.4;
+        ctx.lineWidth = 1.4;
+        ctx.stroke();
+        ctx.globalAlpha = 1;
+      }
+    };
+
+    draw();
+    return () => cancelAnimationFrame(raf);
+  }, [active, processing, analyserRef]);
+
+  return <canvas ref={canvasRef} className="vis-canvas" />;
+};
+
+/* -------------------------------------------------------------------------
+   App
+   ------------------------------------------------------------------------- */
+
 export default function App() {
   const [activeTab, setActiveTab] = useState<'home' | 'lab' | 'about'>('home');
-  const [viewMode, setViewMode] = useState<'fpp' | '3d' | '2d'>('fpp');
+  // Deep-linkable view mode via ?view=2d|3d|fpp (useful for demo videos and QA)
+  const [viewMode, setViewMode] = useState<'fpp' | '3d' | '2d'>(() => {
+    const param = new URLSearchParams(window.location.search).get('view');
+    return param === '2d' || param === 'fpp' ? param : '3d';
+  });
   const [devices, setDevices] = useState<DeviceState>(INITIAL_DEVICES);
   const [activeLocation, setActiveLocation] = useState<string | null>(null);
   const [isRecording, setIsRecording] = useState(false);
@@ -136,24 +274,33 @@ export default function App() {
   const [lastResult, setLastResult] = useState<PredictionResult | null>(null);
   const [events, setEvents] = useState<EventLogItem[]>([]);
   const [serverOnline, setServerOnline] = useState(true);
+  const [copied, setCopied] = useState<string | null>(null);
 
   const audioCtxRef = useRef<AudioContext | null>(null);
   const mediaStreamRef = useRef<MediaStream | null>(null);
   const audioChunksRef = useRef<Float32Array[]>([]);
   const processorRef = useRef<ScriptProcessorNode | null>(null);
+  const analyserRef = useRef<AnalyserNode | null>(null);
   const isRecordingRef = useRef(false);
   const shouldStopRef = useRef(false);
+  const activeLocationTimerRef = useRef<number | null>(null);
 
   // Check health on mount
   useEffect(() => {
     fetch('/api/health')
-      .then(res => res.json())
-      .then(data => setServerOnline(data.status === 'healthy' || data.status === 'ok'))
+      .then((res) => res.json())
+      .then((data) => setServerOnline(data.status === 'healthy' || data.status === 'ok'))
       .catch(() => setServerOnline(false));
   }, []);
 
+  useEffect(() => {
+    return () => {
+      if (activeLocationTimerRef.current) window.clearTimeout(activeLocationTimerRef.current);
+    };
+  }, []);
+
   const handleToggleDevice = (key: keyof DeviceState) => {
-    setDevices(prev => {
+    setDevices((prev) => {
       if (typeof prev[key] === 'boolean') {
         return { ...prev, [key]: !prev[key] };
       } else if (key.includes('heat')) {
@@ -165,11 +312,23 @@ export default function App() {
     });
   };
 
+  const adjustDevice = (key: keyof DeviceState, delta: number) => {
+    setDevices((prev) => {
+      const current = prev[key];
+      if (typeof current !== 'number') return prev;
+      const min = key.includes('heat') ? 16 : 0;
+      const max = key.includes('heat') ? 30 : 10;
+      const next = Math.max(min, Math.min(max, current + delta));
+      return { ...prev, [key]: next };
+    });
+  };
+
   const applyIntentToDevices = (intent: { action: string; object: string; location: string }) => {
     setActiveLocation(intent.location);
-    setTimeout(() => setActiveLocation(null), 1800);
+    if (activeLocationTimerRef.current) window.clearTimeout(activeLocationTimerRef.current);
+    activeLocationTimerRef.current = window.setTimeout(() => setActiveLocation(null), 1800);
 
-    setDevices(prev => {
+    setDevices((prev) => {
       const next = { ...prev };
       const { action, object, location } = intent;
 
@@ -191,9 +350,12 @@ export default function App() {
       // Heat
       if (object === 'heat') {
         const delta = action === 'increase' ? 2 : action === 'decrease' ? -2 : 0;
-        if (location === 'kitchen') next.kitchen_heat = Math.max(16, Math.min(30, next.kitchen_heat + delta));
-        else if (location === 'bedroom') next.bedroom_heat = Math.max(16, Math.min(30, next.bedroom_heat + delta));
-        else if (location === 'washroom') next.washroom_heat = Math.max(16, Math.min(30, next.washroom_heat + delta));
+        if (location === 'kitchen')
+          next.kitchen_heat = Math.max(16, Math.min(30, next.kitchen_heat + delta));
+        else if (location === 'bedroom')
+          next.bedroom_heat = Math.max(16, Math.min(30, next.bedroom_heat + delta));
+        else if (location === 'washroom')
+          next.washroom_heat = Math.max(16, Math.min(30, next.washroom_heat + delta));
       }
 
       // Music / volume
@@ -236,13 +398,17 @@ export default function App() {
 
       const newLog: EventLogItem = {
         id: Math.random().toString(),
-        time: new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
+        time: new Date().toLocaleTimeString('id-ID', {
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+        }),
         command: `${data.intent.action} ${data.intent.object} ${data.intent.location}`,
         accepted: data.accepted,
         message: data.effect?.message || 'Selesai',
         confidence: data.confidence?.overall || 0,
       };
-      setEvents(prev => [newLog, ...prev.slice(0, 9)]);
+      setEvents((prev) => [newLog, ...prev.slice(0, 9)]);
     } catch (err: any) {
       console.error('Error during prediction API call:', err);
       alert(`Terjadi kesalahan jaringan atau server: ${err?.message || err}`);
@@ -270,7 +436,7 @@ export default function App() {
 
       // If user released spacebar while mic permission dialog was resolving
       if (shouldStopRef.current) {
-        stream.getTracks().forEach(t => t.stop());
+        stream.getTracks().forEach((t) => t.stop());
         isRecordingRef.current = false;
         setIsRecording(false);
         return;
@@ -284,10 +450,18 @@ export default function App() {
       audioCtxRef.current = audioCtx;
 
       const source = audioCtx.createMediaStreamSource(stream);
+
+      // AnalyserNode drives the live waveform visualiser
+      const analyser = audioCtx.createAnalyser();
+      analyser.fftSize = 256;
+      analyser.smoothingTimeConstant = 0.75;
+      source.connect(analyser);
+      analyserRef.current = analyser;
+
       const processor = audioCtx.createScriptProcessor(4096, 1, 1);
       processorRef.current = processor;
 
-      processor.onaudioprocess = e => {
+      processor.onaudioprocess = (e) => {
         const inputData = e.inputBuffer.getChannelData(0);
         audioChunksRef.current.push(new Float32Array(inputData));
       };
@@ -297,7 +471,8 @@ export default function App() {
     } catch (err) {
       isRecordingRef.current = false;
       setIsRecording(false);
-      alert("Microphone permission diperlukan atau gunakan tombol Unggah Audio!");
+      analyserRef.current = null;
+      alert('Microphone permission diperlukan atau gunakan tombol Unggah Audio!');
     }
   };
 
@@ -311,6 +486,7 @@ export default function App() {
       processorRef.current.disconnect();
       processorRef.current = null;
     }
+    analyserRef.current = null;
     if (audioCtxRef.current) {
       const sr = audioCtxRef.current.sampleRate;
       try {
@@ -350,19 +526,19 @@ export default function App() {
           }
         }
 
-        // Cap maximum duration to 3.5s (more than enough for any command) to guarantee <500ms inference
+        // Cap maximum duration to 3.5s to guarantee a responsive inference path
         const maxSamples = Math.floor(sr * 3.5);
         if (endIdx - startIdx > maxSamples) {
           endIdx = startIdx + maxSamples;
         }
 
-        const trimmed = (endIdx > startIdx + 3200) ? merged.subarray(startIdx, endIdx) : merged;
+        const trimmed = endIdx > startIdx + 3200 ? merged.subarray(startIdx, endIdx) : merged;
         const wavBlob = encodeWAV(trimmed, sr);
         sendAudioBlob(wavBlob);
       }
     }
     if (mediaStreamRef.current) {
-      mediaStreamRef.current.getTracks().forEach(t => t.stop());
+      mediaStreamRef.current.getTracks().forEach((t) => t.stop());
       mediaStreamRef.current = null;
     }
   };
@@ -372,357 +548,569 @@ export default function App() {
     if (file) {
       sendAudioBlob(file);
     }
+    e.target.value = '';
   };
+
+  // Global Spacebar push-to-talk (all modes except FPP, which handles it in-scene)
+  const spaceHandlersRef = useRef({ startRecording, stopRecording });
+  spaceHandlersRef.current = { startRecording, stopRecording };
+
+  useEffect(() => {
+    if (activeTab !== 'home' || viewMode === 'fpp') return;
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.code !== 'Space' || e.repeat) return;
+      const target = e.target as HTMLElement | null;
+      if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable)) {
+        return;
+      }
+      e.preventDefault();
+      spaceHandlersRef.current.startRecording();
+    };
+    const onKeyUp = (e: KeyboardEvent) => {
+      if (e.code !== 'Space') return;
+      e.preventDefault();
+      spaceHandlersRef.current.stopRecording();
+    };
+
+    window.addEventListener('keydown', onKeyDown);
+    window.addEventListener('keyup', onKeyUp);
+    return () => {
+      window.removeEventListener('keydown', onKeyDown);
+      window.removeEventListener('keyup', onKeyUp);
+    };
+  }, [activeTab, viewMode]);
+
+  const copyPhrase = async (phrase: string) => {
+    try {
+      await navigator.clipboard.writeText(phrase);
+      setCopied(phrase);
+      window.setTimeout(() => setCopied(null), 1800);
+    } catch {
+      // Clipboard API can be unavailable outside a secure context; ignore silently.
+    }
+  };
+
+  const latencyLabel = lastResult ? `${Math.round(lastResult.timing_ms.total_ms)} ms` : '— ms';
+
+  const viewTitle =
+    viewMode === 'fpp'
+      ? 'Simulasi POV Orang Pertama'
+      : viewMode === '3d'
+        ? 'Diorama Rumah Cerdas 3D'
+        : 'Denah Arsitektur 2D';
+
+  const viewSub =
+    viewMode === 'fpp'
+      ? 'Walkthrough first-person • WASD untuk berjalan, SPASI untuk bicara'
+      : viewMode === '3d'
+        ? 'Isometrik interaktif • drag untuk orbit, scroll untuk zoom'
+        : 'Blueprint CAD interaktif • klik kontrol perangkat di setiap ruangan';
 
   return (
     <div className="app-container">
-      {/* Top Navbar */}
+      {/* ============================== HEADER ============================== */}
       <header className="navbar">
         <div className="brand">
-          <span className="brand-title">SVARA</span>
-          <span className="brand-badge">Transformer SLU (wav2vec2)</span>
+          <div className="brand-mark">S</div>
+          <div className="brand-text">
+            <span className="brand-name">SVARA</span>
+            <span className="brand-badge">
+              <span className="dot" />
+              E2E Transformer SLU • Wav2Vec 2.0 INT8
+            </span>
+          </div>
         </div>
 
-        <nav className="nav-links">
+        <nav className="nav-tabs" aria-label="Navigasi utama">
           <button
             className={`nav-btn ${activeTab === 'home' ? 'active' : ''}`}
             onClick={() => setActiveTab('home')}
           >
-            Rumah (Live Demo)
+            <Home size={14} />
+            Live Demo
           </button>
           <button
             className={`nav-btn ${activeTab === 'lab' ? 'active' : ''}`}
             onClick={() => setActiveTab('lab')}
           >
-            Lab (Evaluasi Model)
+            <FlaskConical size={14} />
+            Lab Model
           </button>
           <button
             className={`nav-btn ${activeTab === 'about' ? 'active' : ''}`}
             onClick={() => setActiveTab('about')}
           >
+            <Info size={14} />
             Tentang
           </button>
         </nav>
 
-        <div className="status-chip">
-          <span className={`status-dot ${serverOnline ? 'ready' : 'error'}`} />
-          <span>{serverOnline ? 'Model ONNX Siap' : 'Server Offline'}</span>
+        <div className="top-actions">
+          <div className="latency-pill" title="Total latency inferensi terakhir">
+            <Zap size={12} />
+            {latencyLabel}
+          </div>
+          <div className="status-chip">
+            <span className={`status-dot ${serverOnline ? 'ready' : 'error'}`} />
+            {serverOnline ? 'ONNX Ready' : 'Server Offline'}
+          </div>
         </div>
       </header>
 
-      {/* Main Content View */}
+      {/* ============================ HOME VIEW ============================ */}
       {activeTab === 'home' && (
         <main className="main-content">
-          <div className="stage-grid">
-            {/* Left Column: Interactive Floor Plan / 3D Home View */}
-            <div className="panel">
-              <div className="panel-header">
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                  <h2 className="panel-title">
-                    {viewMode === 'fpp'
-                      ? '🎮 Simulasi POV Orang Pertama (FPP Game Mode)'
-                      : viewMode === '3d'
-                      ? 'Simulasi 3D Rumah Cerdas (Isometric)'
-                      : 'Denah Rumah 2D (Floor Plan)'}
-                  </h2>
-                  <div style={{ display: 'flex', background: 'var(--mist-light)', borderRadius: '6px', padding: '2px' }}>
-                    <button
-                      className="nav-btn"
-                      style={{
-                        padding: '3px 10px',
-                        fontSize: '0.8rem',
-                        backgroundColor: viewMode === 'fpp' ? 'var(--brick)' : 'transparent',
-                        color: viewMode === 'fpp' ? '#FFF' : 'var(--ink)',
-                        fontWeight: viewMode === 'fpp' ? 700 : 500,
-                      }}
-                      onClick={() => setViewMode('fpp')}
-                    >
-                      <Gamepad2 size={13} style={{ display: 'inline', marginRight: 4 }} />
-                      Mode FPP (Game)
-                    </button>
-                    <button
-                      className="nav-btn"
-                      style={{
-                        padding: '3px 8px',
-                        fontSize: '0.8rem',
-                        backgroundColor: viewMode === '3d' ? 'var(--ink)' : 'transparent',
-                        color: viewMode === '3d' ? 'var(--paper)' : 'var(--ink)',
-                      }}
-                      onClick={() => setViewMode('3d')}
-                    >
-                      <Box size={13} style={{ display: 'inline', marginRight: 4 }} />
-                      3D Isometrik
-                    </button>
-                    <button
-                      className="nav-btn"
-                      style={{
-                        padding: '3px 8px',
-                        fontSize: '0.8rem',
-                        backgroundColor: viewMode === '2d' ? 'var(--ink)' : 'transparent',
-                        color: viewMode === '2d' ? 'var(--paper)' : 'var(--ink)',
-                      }}
-                      onClick={() => setViewMode('2d')}
-                    >
-                      <Map size={13} style={{ display: 'inline', marginRight: 4 }} />
-                      2D Blueprint
-                    </button>
-                  </div>
+          <section className="stage-grid">
+            {/* -------------------------- VIEWPORT ------------------------- */}
+            <div className="panel viewer-panel">
+              <div className="viewer-toolbar">
+                <div>
+                  <div className="panel-kicker">Live Digital Twin</div>
+                  <h2 className="panel-title">{viewTitle}</h2>
+                  <p className="panel-sub">{viewSub}</p>
                 </div>
 
-                <button
-                  className="nav-btn"
-                  style={{ fontSize: '0.85rem' }}
-                  onClick={() => setDevices(INITIAL_DEVICES)}
-                >
-                  <RotateCcw size={14} style={{ display: 'inline', marginRight: 4 }} />
-                  Reset Perangkat
-                </button>
+                <div className="viewer-actions">
+                  <div className="mode-tabs" role="tablist" aria-label="Mode visualisasi">
+                    <button
+                      role="tab"
+                      aria-selected={viewMode === '2d'}
+                      data-mode="2d"
+                      className={`mode-tab ${viewMode === '2d' ? 'active' : ''}`}
+                      onClick={() => setViewMode('2d')}
+                    >
+                      <Map size={13} />
+                      <span>2D Denah CAD</span>
+                    </button>
+                    <button
+                      role="tab"
+                      aria-selected={viewMode === '3d'}
+                      data-mode="3d"
+                      className={`mode-tab ${viewMode === '3d' ? 'active' : ''}`}
+                      onClick={() => setViewMode('3d')}
+                    >
+                      <Box size={13} />
+                      <span>3D Isometrik</span>
+                    </button>
+                    <button
+                      role="tab"
+                      aria-selected={viewMode === 'fpp'}
+                      data-mode="fpp"
+                      className={`mode-tab ${viewMode === 'fpp' ? 'active' : ''}`}
+                      onClick={() => setViewMode('fpp')}
+                    >
+                      <Gamepad2 size={13} />
+                      <span>3D First-Person</span>
+                    </button>
+                  </div>
+
+                  <button
+                    className="ghost-btn"
+                    onClick={() => setDevices(INITIAL_DEVICES)}
+                    title="Kembalikan seluruh perangkat ke kondisi awal"
+                  >
+                    <RotateCcw size={13} />
+                    Reset
+                  </button>
+                </div>
               </div>
 
-              {viewMode === 'fpp' ? (
-                <FPPWalkthrough
-                  devices={devices}
-                  onVoiceTriggerStart={startRecording}
-                  onVoiceTriggerEnd={stopRecording}
-                  isRecording={isRecording}
-                  isProcessing={isProcessing}
-                  lastCommandMessage={lastResult?.effect.message}
-                />
-              ) : viewMode === '3d' ? (
-                <Home3DView
-                  devices={devices}
-                  activeLocation={activeLocation}
-                  onToggleDevice={handleToggleDevice}
-                />
-              ) : (
-                <FloorPlan
-                  devices={devices}
-                  activeLocation={activeLocation}
-                  onToggleDevice={handleToggleDevice}
-                />
-              )}
+              <div className="view-stage">
+                {viewMode === 'fpp' ? (
+                  <FPPWalkthrough
+                    devices={devices}
+                    onVoiceTriggerStart={startRecording}
+                    onVoiceTriggerEnd={stopRecording}
+                    isRecording={isRecording}
+                    isProcessing={isProcessing}
+                    lastCommandMessage={lastResult?.effect.message}
+                  />
+                ) : viewMode === '3d' ? (
+                  <Home3DView
+                    devices={devices}
+                    activeLocation={activeLocation}
+                    onToggleDevice={handleToggleDevice}
+                  />
+                ) : (
+                  <FloorPlan
+                    devices={devices}
+                    activeLocation={activeLocation}
+                    onToggleDevice={handleToggleDevice}
+                    onAdjustDevice={adjustDevice}
+                  />
+                )}
+              </div>
             </div>
 
-            {/* Right Column: Prediction & Slot Cards */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-              <div className="panel">
+            {/* -------------------------- INSPECTOR ------------------------ */}
+            <aside className="inspector">
+              {/* SLU result */}
+              <div className="panel result-panel">
                 <div className="panel-header">
-                  <h3 className="panel-title">Hasil Prediksi Suara</h3>
+                  <div>
+                    <div className="panel-kicker">SLU Inspector</div>
+                    <h3 className="panel-title">Hasil Prediksi Suara</h3>
+                  </div>
                   {lastResult && (
-                    <span className={lastResult.accepted ? 'badge-accepted' : 'badge-rejected'}>
-                      {lastResult.accepted ? 'Diterima' : 'Ditolak (Ragu)'}
+                    <span className={`status-pill ${lastResult.accepted ? 'ok' : 'warn'}`}>
+                      {lastResult.accepted ? <Check size={11} /> : <Activity size={11} />}
+                      {lastResult.accepted ? 'ACCEPTED' : 'LOW CONF'}
                     </span>
                   )}
                 </div>
 
                 {lastResult ? (
                   <div>
-                    <div style={{ marginBottom: '1rem', fontStyle: 'italic', color: '#16303A' }}>
-                      "{lastResult.effect.message}"
+                    <div className={`status-strip ${lastResult.accepted ? 'ok' : 'warn'}`}>
+                      <span className="status-label">
+                        <span className="status-glow" />
+                        {lastResult.accepted ? 'DITERIMA' : 'DITOLAK (RAGU)'}
+                      </span>
+                      <span className="threshold-chip">Threshold {lastResult.threshold.toFixed(2)}</span>
                     </div>
 
-                    <div className="slot-row">
-                      <span className="slot-name">Action</span>
-                      <span className="slot-val">{lastResult.intent.action}</span>
-                      <div className="slot-bar-wrap">
-                        <div className="slot-bar-bg">
+                    <p className="effect-quote">“{lastResult.effect.message}”</p>
+
+                    <div className="slot-grid">
+                      {SLOT_LIST.map((slot) => {
+                        const Icon = slot.Icon;
+                        const value = lastResult.intent[slot.key];
+                        const pct = Math.round(lastResult.confidence[slot.key] * 100);
+                        return (
                           <div
-                            className="slot-bar-fill"
-                            style={{ width: `${Math.round(lastResult.confidence.action * 100)}%` }}
-                          />
-                        </div>
-                        <span className="slot-pct">
-                          {Math.round(lastResult.confidence.action * 100)}%
-                        </span>
-                      </div>
+                            key={slot.key}
+                            className="slot-card"
+                            style={
+                              {
+                                '--slot-color': slot.color,
+                                borderColor: `${slot.color}2E`,
+                              } as React.CSSProperties
+                            }
+                          >
+                            <div className="slot-card-head">
+                              <span className="slot-label">
+                                <Icon size={12} color={slot.color} />
+                                {slot.label}
+                              </span>
+                              <span className="slot-pct">{pct}%</span>
+                            </div>
+                            <div className="slot-value">{value}</div>
+                            <div className="slot-meter">
+                              <div className="slot-meter-fill" style={{ width: `${pct}%` }} />
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
 
-                    <div className="slot-row">
-                      <span className="slot-name">Object</span>
-                      <span className="slot-val">{lastResult.intent.object}</span>
-                      <div className="slot-bar-wrap">
-                        <div className="slot-bar-bg">
-                          <div
-                            className="slot-bar-fill"
-                            style={{ width: `${Math.round(lastResult.confidence.object * 100)}%` }}
-                          />
-                        </div>
-                        <span className="slot-pct">
-                          {Math.round(lastResult.confidence.object * 100)}%
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="slot-row">
-                      <span className="slot-name">Location</span>
-                      <span className="slot-val">{lastResult.intent.location}</span>
-                      <div className="slot-bar-wrap">
-                        <div className="slot-bar-bg">
-                          <div
-                            className="slot-bar-fill"
-                            style={{ width: `${Math.round(lastResult.confidence.location * 100)}%` }}
-                          />
-                        </div>
-                        <span className="slot-pct">
-                          {Math.round(lastResult.confidence.location * 100)}%
-                        </span>
-                      </div>
-                    </div>
-
-                    <div style={{ marginTop: '1rem', fontSize: '0.85rem', color: '#68827B', display: 'flex', justifyContent: 'space-between' }}>
-                      <span>Inference: {Math.round(lastResult.timing_ms.inference_ms)} ms</span>
-                      <span>Total Latency: {Math.round(lastResult.timing_ms.total_ms)} ms</span>
+                    <div className="timing-row">
+                      <span className="timing-pill">
+                        Decode <strong>{Math.round(lastResult.timing_ms.decode_ms)}ms</strong>
+                      </span>
+                      <span className="timing-pill">
+                        Preprocess <strong>{Math.round(lastResult.timing_ms.preprocess_ms)}ms</strong>
+                      </span>
+                      <span className="timing-pill">
+                        ONNX INT8 <strong>{Math.round(lastResult.timing_ms.inference_ms)}ms</strong>
+                      </span>
+                      <span className="timing-pill">
+                        Total <strong>{Math.round(lastResult.timing_ms.total_ms)}ms</strong>
+                      </span>
                     </div>
                   </div>
                 ) : (
-                  <div style={{ textAlign: 'center', padding: '2rem 1rem', color: '#A9B8B2' }}>
-                    Tahan tombol mikrofon di bawah atau unggah audio untuk melihat reaksi model.
+                  <div className="empty-state">
+                    <Sparkles size={20} />
+                    <span>
+                      Tahan tombol mikrofon atau tekan <strong>Spacebar</strong>, lalu ucapkan perintah
+                      dalam Bahasa Indonesia atau Inggris.
+                    </span>
+                    <span>Slot action / object / location dan skor keyakinan akan tampil di sini.</span>
                   </div>
                 )}
               </div>
 
-              {/* Event Log */}
-              <div className="panel" style={{ flex: 1 }}>
-                <div className="panel-header">
-                  <h3 className="panel-title">Riwayat Perintah (Log)</h3>
-                  <span style={{ fontSize: '0.8rem', color: '#A9B8B2' }}>10 Terakhir</span>
+              {/* Quick device controls */}
+              <div className="panel">
+                <div className="panel-header tight">
+                  <div>
+                    <div className="panel-kicker">Quick Controls</div>
+                    <h3 className="panel-title">Kontrol Perangkat</h3>
+                  </div>
+                  <span className="threshold-chip">MANUAL</span>
+                </div>
+
+                <div className="quick-grid">
+                  {TOGGLE_TILES.map((tile) => {
+                    const Icon = tile.Icon;
+                    const on = devices[tile.key];
+                    return (
+                      <button
+                        key={tile.key}
+                        className={`device-tile ${on ? 'on' : ''} ${tile.audio ? 'audio' : ''}`}
+                        onClick={() => handleToggleDevice(tile.key)}
+                        aria-pressed={on}
+                      >
+                        <span className="tile-icon">
+                          <Icon size={14} />
+                        </span>
+                        <span className="tile-copy">
+                          <span className="tile-name">{tile.label}</span>
+                          <span className="tile-state">{on ? 'ON' : 'OFF'}</span>
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+
+                <div className="numeric-list">
+                  {CLIMATE_ROWS.map((row) => (
+                    <div className="numeric-row" key={row.key}>
+                      <span className="numeric-label">
+                        <Thermometer size={12} />
+                        {row.label}
+                      </span>
+                      <div className="stepper">
+                        <button
+                          onClick={() => adjustDevice(row.key, -2)}
+                          aria-label={`${row.label} turunkan`}
+                        >
+                          <Minus size={10} />
+                        </button>
+                        <span className={`step-value ${devices[row.key] > 20 ? 'hot' : ''}`}>
+                          {devices[row.key]}°C
+                        </span>
+                        <button
+                          onClick={() => adjustDevice(row.key, 2)}
+                          aria-label={`${row.label} naikkan`}
+                        >
+                          <Plus size={10} />
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+
+                  <div className="numeric-row">
+                    <span className="numeric-label">
+                      <Volume2 size={12} />
+                      Volume Lorong
+                    </span>
+                    <div className="stepper">
+                      <button onClick={() => adjustDevice('hall_volume', -1)} aria-label="Volume turunkan">
+                        <Minus size={10} />
+                      </button>
+                      <span className="step-value">{devices.hall_volume * 10}%</span>
+                      <button onClick={() => adjustDevice('hall_volume', 1)} aria-label="Volume naikkan">
+                        <Plus size={10} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Event timeline */}
+              <div className="panel">
+                <div className="panel-header tight">
+                  <div>
+                    <div className="panel-kicker">Event Timeline</div>
+                    <h3 className="panel-title">Riwayat Perintah</h3>
+                  </div>
+                  <span className="threshold-chip">{events.length} / 10</span>
                 </div>
 
                 {events.length > 0 ? (
-                  events.map(ev => (
-                    <div key={ev.id} className="event-item">
-                      <div>
-                        <span style={{ fontWeight: 600 }}>{ev.command}</span>
-                        <div style={{ fontSize: '0.75rem', color: '#68827B' }}>{ev.time}</div>
+                  <div className="timeline">
+                    {events.map((ev) => (
+                      <div key={ev.id} className={`timeline-item ${ev.accepted ? 'ok' : 'reject'}`}>
+                        <span className="timeline-dot" />
+                        <div className="timeline-main">
+                          <div className="timeline-command">{ev.command}</div>
+                          <div className="timeline-message">{ev.message}</div>
+                        </div>
+                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 1 }}>
+                          <span className={ev.accepted ? 'badge-accepted' : 'badge-rejected'}>
+                            {Math.round(ev.confidence * 100)}%
+                          </span>
+                          <span className="timeline-time">{ev.time}</span>
+                        </div>
                       </div>
-                      <span className={ev.accepted ? 'badge-accepted' : 'badge-rejected'}>
-                        {Math.round(ev.confidence * 100)}%
-                      </span>
-                    </div>
-                  ))
+                    ))}
+                  </div>
                 ) : (
-                  <div style={{ color: '#A9B8B2', fontSize: '0.85rem', textAlign: 'center', padding: '1rem' }}>
-                    Belum ada riwayat aktivitas.
+                  <div className="empty-state">
+                    <Clock size={18} />
+                    <span>Belum ada riwayat aktivitas.</span>
                   </div>
                 )}
               </div>
-            </div>
-          </div>
+            </aside>
+          </section>
 
-          {/* Bottom Push-to-Talk & Controls */}
-          <div className="control-bar">
-            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-              <button
-                className={`mic-btn ${isRecording ? 'recording' : ''}`}
-                onMouseDown={startRecording}
-                onMouseUp={stopRecording}
-                onTouchStart={startRecording}
-                onTouchEnd={stopRecording}
-                disabled={isProcessing}
-              >
-                <Mic size={22} />
-                <span>
+          {/* ============================ HERO PTT ============================ */}
+          <section className="panel hero-ptt">
+            <div className="mic-cluster">
+              <div className="mic-orb-wrap">
+                {isRecording && (
+                  <>
+                    <span className="mic-ring" />
+                    <span className="mic-ring d1" />
+                    <span className="mic-ring d2" />
+                  </>
+                )}
+                <button
+                  className={`mic-orb ${isRecording ? 'recording' : ''}`}
+                  onMouseDown={startRecording}
+                  onMouseUp={stopRecording}
+                  onTouchStart={startRecording}
+                  onTouchEnd={stopRecording}
+                  onContextMenu={(e) => e.preventDefault()}
+                  disabled={isProcessing}
+                  aria-label="Tahan untuk merekam perintah suara"
+                >
+                  {isProcessing ? <Loader2 size={26} className="spin" /> : <Mic size={26} />}
+                </button>
+              </div>
+
+              <div className="mic-meta">
+                <span
+                  className={`mic-state ${isRecording ? 'live' : isProcessing ? 'busy' : ''}`}
+                >
                   {isProcessing
-                    ? 'Memproses Model...'
+                    ? 'Memproses model…'
                     : isRecording
-                    ? 'Lepas untuk Mengirim...'
-                    : 'Tahan untuk Bicara'}
+                      ? 'Merekam — lepas untuk kirim'
+                      : 'Tahan untuk bicara'}
                 </span>
-              </button>
-
-              <label className="nav-btn" style={{ cursor: 'pointer', padding: '0.9rem 1.25rem', border: '1px solid var(--mist)', borderRadius: '999px', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <Upload size={18} />
-                <span>Unggah Audio</span>
-                <input
-                  type="file"
-                  accept="audio/*"
-                  onChange={handleFileUpload}
-                  style={{ display: 'none' }}
-                />
-              </label>
+                <span className="mic-hint">SPACEBAR ATAU TAHAN · 16 kHz MONO WAV</span>
+              </div>
             </div>
 
-            {/* Suggested Commands Pills */}
-            <div className="suggested-chips">
-              <span style={{ fontSize: '0.8rem', color: '#A9B8B2', marginRight: '0.5rem', alignSelf: 'center' }}>
-                Coba ucapkan:
-              </span>
-              {SAMPLE_COMMANDS.map((phrase, idx) => (
-                <span key={idx} className="phrase-chip">
-                  "{phrase}"
-                </span>
-              ))}
+            <div className="wavezone">
+              <AudioSpectrum analyserRef={analyserRef} active={isRecording} processing={isProcessing} />
+              <div className="chips">
+                <span className="chips-label">Coba ucapkan</span>
+                {SAMPLE_COMMANDS.map((phrase) => (
+                  <button
+                    key={phrase}
+                    className={`phrase-chip ${copied === phrase ? 'copied' : ''}`}
+                    onClick={() => copyPhrase(phrase)}
+                    title="Klik untuk menyalin perintah"
+                  >
+                    {copied === phrase && <Check size={10} style={{ marginRight: 4 }} />}“{phrase}”
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
+
+            <label className="upload-btn">
+              <Upload size={16} />
+              <span>Unggah Audio</span>
+              <small>.WAV · 16 kHz</small>
+              <input type="file" accept="audio/*" onChange={handleFileUpload} style={{ display: 'none' }} />
+            </label>
+          </section>
         </main>
       )}
 
-      {/* Lab View */}
+      {/* ============================= LAB VIEW ============================= */}
       {activeTab === 'lab' && (
         <main className="main-content">
           <div className="panel">
-            <h2 className="panel-title" style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>
-              Laboratorium Evaluasi Model SVARA
-            </h2>
-            <p style={{ marginBottom: '1.5rem', color: '#68827B' }}>
-              Data terverifikasi langsung dari hasil eksperimen GPU NVIDIA RTX 4060 dan tersimpan di <code>reports/tables/table_ablation.csv</code>.
+            <div className="panel-header">
+              <div>
+                <div className="panel-kicker">Evaluation Lab</div>
+                <h2 className="panel-title" style={{ fontSize: '1.15rem' }}>
+                  Laboratorium Evaluasi Model SVARA
+                </h2>
+              </div>
+              <span className="status-pill ok">
+                <Check size={11} />
+                VERIFIED RUNS
+              </span>
+            </div>
+
+            <p className="panel-sub" style={{ marginBottom: '1.1rem' }}>
+              Data terverifikasi dari hasil eksperimen GPU NVIDIA RTX 4060 dan tersimpan di{' '}
+              <code>reports/tables/table_ablation.csv</code>.
             </p>
 
-            <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
-              <thead>
-                <tr style={{ borderBottom: '2px solid var(--mist)', padding: '0.75rem 0' }}>
-                  <th style={{ padding: '0.75rem' }}>Run ID & Model</th>
-                  <th style={{ padding: '0.75rem' }}>Split</th>
-                  <th style={{ padding: '0.75rem' }}>Exact-Match</th>
-                  <th style={{ padding: '0.75rem' }}>95% CI</th>
-                  <th style={{ padding: '0.75rem' }}>Action</th>
-                  <th style={{ padding: '0.75rem' }}>Object</th>
-                  <th style={{ padding: '0.75rem' }}>Location</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr style={{ borderBottom: '1px solid var(--mist-light)' }}>
-                  <td style={{ padding: '0.75rem', fontWeight: 600 }}>M0 (wav2vec2-base)</td>
-                  <td style={{ padding: '0.75rem' }}>Split A (Standard)</td>
-                  <td style={{ padding: '0.75rem', fontWeight: 700, color: 'var(--pine)' }}>99.60%</td>
-                  <td style={{ padding: '0.75rem' }}>[99.39%, 99.79%]</td>
-                  <td style={{ padding: '0.75rem' }}>99.76%</td>
-                  <td style={{ padding: '0.75rem' }}>99.89%</td>
-                  <td style={{ padding: '0.75rem' }}>99.89%</td>
-                </tr>
-                <tr style={{ borderBottom: '1px solid var(--mist-light)' }}>
-                  <td style={{ padding: '0.75rem', fontWeight: 600 }}>M0 (wav2vec2-base)</td>
-                  <td style={{ padding: '0.75rem' }}>Split B1 (Unseen Speaker)</td>
-                  <td style={{ padding: '0.75rem', fontWeight: 700, color: 'var(--pine)' }}>95.87%</td>
-                  <td style={{ padding: '0.75rem' }}>[95.33%, 96.38%]</td>
-                  <td style={{ padding: '0.75rem' }}>98.84%</td>
-                  <td style={{ padding: '0.75rem' }}>96.84%</td>
-                  <td style={{ padding: '0.75rem' }}>99.61%</td>
-                </tr>
-              </tbody>
-            </table>
+            <div style={{ overflowX: 'auto' }}>
+              <table className="data-table">
+                <thead>
+                  <tr>
+                    <th>Run ID &amp; Model</th>
+                    <th>Split</th>
+                    <th>Exact-Match</th>
+                    <th>95% CI</th>
+                    <th>Action</th>
+                    <th>Object</th>
+                    <th>Location</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="strong">M0 (wav2vec2-base)</td>
+                    <td>Split A (Standard)</td>
+                    <td className="metric">99.60%</td>
+                    <td>[99.39%, 99.79%]</td>
+                    <td>99.76%</td>
+                    <td>99.89%</td>
+                    <td>99.89%</td>
+                  </tr>
+                  <tr>
+                    <td className="strong">M0 (wav2vec2-base)</td>
+                    <td>Split B1 (Unseen Speaker)</td>
+                    <td className="metric">95.87%</td>
+                    <td>[95.33%, 96.38%]</td>
+                    <td>98.84%</td>
+                    <td>96.84%</td>
+                    <td>99.61%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </main>
       )}
 
-      {/* About View */}
+      {/* ============================ ABOUT VIEW ============================ */}
       {activeTab === 'about' && (
         <main className="main-content">
-          <div className="panel" style={{ maxWidth: '800px', margin: '0 auto' }}>
-            <h2 className="panel-title" style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>
-              Tentang Proyek SVARA
-            </h2>
-            <p style={{ marginBottom: '1rem', lineHeight: '1.7' }}>
-              <strong>SVARA (Smart Voice Assistant for Residential Automation)</strong> adalah proyek tugas akhir mata kuliah Deep Learning di Program Studi Teknik Informatika, Universitas Mercu Buana.
-            </p>
-            <p style={{ marginBottom: '1rem', lineHeight: '1.7' }}>
-              Model ini mengimplementasikan pendekatan <strong>End-to-End Spoken Language Understanding (SLU)</strong> berbasis Transformer (<code>facebook/wav2vec2-base</code>) tanpa perantara Automatic Speech Recognition (ASR). Audio gelombang mentah (16 kHz) langsung dipetakan menjadi kombinasi tiga slot semantik: <code>action</code>, <code>object</code>, dan <code>location</code>.
-            </p>
-            <p style={{ marginBottom: '1rem', lineHeight: '1.7' }}>
-              <strong>Tim Pengembang:</strong><br />
-              • Yoga (ML Pipeline, Training, Model Export, Backend & Web)<br />
-              • Haikal (Dataset Validation, QA, Dokumentasi & Demo Video)
-            </p>
+          <div className="panel" style={{ maxWidth: 860, margin: '0 auto' }}>
+            <div className="panel-header">
+              <div>
+                <div className="panel-kicker">About</div>
+                <h2 className="panel-title" style={{ fontSize: '1.15rem' }}>
+                  Tentang Proyek SVARA
+                </h2>
+              </div>
+              <span className="status-pill ok">
+                <Zap size={11} />
+                E2E SLU
+              </span>
+            </div>
+
+            <div className="prose">
+              <p>
+                <strong>SVARA (Smart Voice Assistant for Residential Automation)</strong> adalah proyek tugas
+                akhir mata kuliah Deep Learning di Program Studi Teknik Informatika, Universitas Mercu Buana.
+              </p>
+              <p>
+                Model ini mengimplementasikan pendekatan <strong>End-to-End Spoken Language Understanding
+                (SLU)</strong> berbasis Transformer (<code>facebook/wav2vec2-base</code>) tanpa perantara
+                Automatic Speech Recognition (ASR). Audio gelombang mentah (16 kHz) langsung dipetakan menjadi
+                kombinasi tiga slot semantik: <code>action</code>, <code>object</code>, dan{' '}
+                <code>location</code>.
+              </p>
+              <p>
+                <strong>Tim Pengembang:</strong>
+              </p>
+              <ul className="team-list">
+                <li>• Yoga — ML Pipeline, Training, Model Export, Backend &amp; Web</li>
+                <li>• Haikal — Dataset Validation, QA, Dokumentasi &amp; Demo Video</li>
+              </ul>
+            </div>
           </div>
         </main>
       )}

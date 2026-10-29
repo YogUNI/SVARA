@@ -485,11 +485,25 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
 
     // 6. Dynamic Room Light Fixtures (PointLights with Real Inverse-Square Attenuation)
     const setupRoomLight = (name: string, x: number, z: number) => {
-      const pLight = new THREE.PointLight(0xF2B33D, 0, 14, 1.5);
+      const pLight = new THREE.PointLight(0xF59E0B, 0, 15, 1.6);
       pLight.position.set(x, 3.2, z);
       pLight.castShadow = true;
       pLight.shadow.bias = -0.002;
       scene.add(pLight);
+
+      // Architectural pendant canopy + stem so the fixture reads as a real lamp
+      const fixtureMat = new THREE.MeshStandardMaterial({
+        color: 0x0F172A,
+        roughness: 0.35,
+        metalness: 0.55,
+      });
+      const canopy = new THREE.Mesh(new THREE.CylinderGeometry(0.32, 0.42, 0.12, 20), fixtureMat);
+      canopy.position.set(x, 3.54, z);
+      scene.add(canopy);
+
+      const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.025, 0.025, 0.18, 8), fixtureMat);
+      stem.position.set(x, 3.44, z);
+      scene.add(stem);
 
       // Visual bulb mesh
       const bulb = new THREE.Mesh(
@@ -708,7 +722,7 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
       if (!item) return;
       if (isOn) {
         item.pointLight.intensity = intensity;
-        (item.mesh.material as THREE.MeshBasicMaterial).color.setHex(0xF2B33D);
+        (item.mesh.material as THREE.MeshBasicMaterial).color.setHex(0xFBBF24);
       } else {
         item.pointLight.intensity = 0.0;
         (item.mesh.material as THREE.MeshBasicMaterial).color.setHex(0x333333);
@@ -748,7 +762,7 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
   }, [devices]);
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: '520px', borderRadius: '12px', overflow: 'hidden' }}>
+    <div className="fpp-shell">
       {/* 3D WebGL Canvas */}
       <div
         ref={containerRef}
@@ -756,58 +770,43 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
         style={{ width: '100%', height: '100%', cursor: isLocked ? 'none' : 'pointer' }}
       />
 
-      {/* Crosshair (Reticle) in Center Screen */}
-      <div style={{
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        pointerEvents: 'none',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}>
-        <div style={{
-          width: isRecording ? 16 : 6,
-          height: isRecording ? 16 : 6,
-          borderRadius: '50%',
-          backgroundColor: isRecording ? '#C4492F' : 'rgba(255, 255, 255, 0.75)',
-          border: isRecording ? '2px solid #FFF' : '1px solid rgba(0,0,0,0.4)',
-          transition: 'all 120ms ease',
-        }} />
+      {/* Minimal smart-glass crosshair with live audio ring */}
+      <div className={`fpp-crosshair ${isRecording ? 'live' : ''}`}>
+        <div className="fpp-ticks">
+          <span />
+          <span />
+          <span />
+          <span />
+        </div>
+        <div className="fpp-dot" />
+        {isRecording && (
+          <>
+            <span className="fpp-listen-ring" />
+            <span className="fpp-listen-ring d1" />
+          </>
+        )}
       </div>
 
-      {/* Top HUD: Current Room & Guide */}
-      <div style={{
-        position: 'absolute',
-        top: 14,
-        left: 16,
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 6,
-        pointerEvents: 'none',
-      }}>
-        <div style={{
-          background: 'rgba(22, 48, 58, 0.88)',
-          color: '#F6F8F4',
-          padding: '6px 14px',
-          borderRadius: '6px',
-          fontSize: '0.85rem',
-          fontWeight: 700,
-          borderLeft: '4px solid #2F6B5E',
-          backdropFilter: 'blur(4px)',
-        }}>
-          📍 Lokasi: {currentRoom}
+      {/* Top-center room notification card (re-animates on room change) */}
+      <div className="fpp-room-card" key={currentRoom}>
+        <span className="room-dot" />
+        <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.18 }}>
+          <span className="room-kicker">ZONA AKTIF</span>
+          <span className="room-name">{currentRoom}</span>
         </div>
-        <div style={{
-          background: 'rgba(22, 48, 58, 0.7)',
-          color: '#D5DDD9',
-          padding: '4px 10px',
-          borderRadius: '4px',
-          fontSize: '0.75rem',
-        }}>
-          🎮 Kontrol: <strong>WASD</strong> (Jalan) | <strong>Shift</strong> (Lari) | <strong>Spasi</strong> (Tahan Bicara)
-        </div>
+      </div>
+
+      {/* Minimal control legend */}
+      <div className="fpp-help">
+        <span className="fpp-key-chip">
+          <kbd>WASD</kbd> Jalan
+        </span>
+        <span className="fpp-key-chip">
+          <kbd>SHIFT</kbd> Lari
+        </span>
+        <span className="fpp-key-chip">
+          <kbd>SPASI</kbd> Tahan bicara
+        </span>
       </div>
 
       {/* Radar Mini-Map (Top Right, Direct Canvas 60 FPS Sync) */}
@@ -818,105 +817,48 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
         devices={devices}
       />
 
-      {/* Voice Status Indicator (When Spacebar pressed) */}
+      {/* Voice status chips */}
       {isRecording && (
-        <div style={{
-          position: 'absolute',
-          top: 176,
-          right: 16,
-          background: '#C4492F',
-          color: '#FFF',
-          padding: '6px 16px',
-          borderRadius: '999px',
-          fontSize: '0.85rem',
-          fontWeight: 700,
-          animation: 'pulse 1s infinite',
-          boxShadow: '0 0 16px rgba(196, 73, 47, 0.7)',
-        }}>
-          🎙️ Mendengarkan Suara Anda... (Lepas Spasi untuk Kirim)
+        <div className="fpp-recording">
+          <span className="rec-dot" />
+          MENDENGARKAN • LEPAS SPASI UNTUK KIRIM
         </div>
       )}
 
       {isProcessing && (
-        <div style={{
-          position: 'absolute',
-          top: 176,
-          right: 16,
-          background: '#2F6B5E',
-          color: '#FFF',
-          padding: '6px 16px',
-          borderRadius: '999px',
-          fontSize: '0.85rem',
-          fontWeight: 700,
-        }}>
-          ⚡ Model AI Sedang Memproses...
-        </div>
-      )}
-
-      {/* Subtitle Message Bar / AI Response Feedback */}
-      {lastCommandMessage && (
-        <div style={{
-          position: 'absolute',
-          bottom: 24,
-          left: '50%',
-          transform: 'translateX(-50%)',
-          background: 'rgba(14, 25, 29, 0.88)',
-          color: '#3EE08F',
-          border: '1px solid #2F6B5E',
-          padding: '8px 24px',
-          borderRadius: '999px',
-          fontSize: '0.92rem',
-          fontWeight: 700,
-          backdropFilter: 'blur(8px)',
-          boxShadow: '0 4px 20px rgba(0,0,0,0.5)',
-          pointerEvents: 'none',
-          display: 'flex',
-          alignItems: 'center',
-          gap: 8,
-        }}>
-          <span>🤖 SVARA:</span>
-          <span style={{ color: '#F6F8F4' }}>"{lastCommandMessage}"</span>
-        </div>
-      )}
-
-      {/* Click to Play Overlay when not locked */}
-      {!isLocked && (
         <div
-          onClick={() => controlsRef.current?.lock()}
+          className="fpp-recording"
           style={{
-            position: 'absolute',
-            inset: 0,
-            background: 'rgba(14, 25, 29, 0.75)',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: '#F6F8F4',
-            cursor: 'pointer',
-            backdropFilter: 'blur(3px)',
+            borderColor: 'rgba(245, 158, 11, 0.5)',
+            background: 'rgba(245, 158, 11, 0.14)',
+            color: '#FCD34D',
           }}
         >
-          <div style={{
-            fontSize: '1.6rem',
-            fontWeight: 800,
-            marginBottom: '0.5rem',
-            letterSpacing: '-0.02em',
-          }}>
-            KLIK UNTUK MASUK KE MODE FPP
+          <span className="rec-dot" style={{ background: '#F59E0B', boxShadow: '0 0 10px #F59E0B' }} />
+          MODEL ONNX MEMPROSES…
+        </div>
+      )}
+
+      {/* Subtitle bar / assistant response */}
+      {lastCommandMessage && (
+        <div className="fpp-subtitle" key={lastCommandMessage}>
+          <span className="who">SVARA</span>
+          <span className="msg">“{lastCommandMessage}”</span>
+        </div>
+      )}
+
+      {/* Click-to-play overlay */}
+      {!isLocked && (
+        <div className="fpp-overlay" onClick={() => controlsRef.current?.lock()}>
+          <span className="hud-glass" style={{ position: 'static', marginBottom: 10 }}>
+            FIRST-PERSON WALKTHROUGH
+          </span>
+          <div className="enter-title">Masuk ke Rumah SVARA</div>
+          <div className="enter-sub">
+            Jelajahi rumah dengan pandangan 360°, berjalan dengan WASD, dan tahan SPASI untuk memberi
+            perintah suara langsung ke model SLU.
           </div>
-          <div style={{ fontSize: '0.95rem', color: '#A9B8B2', marginBottom: '1.25rem' }}>
-            Nengok 360° dengan Mouse, Jalan dengan WASD, dan Tahan SPASI untuk Bicara
-          </div>
-          <div style={{
-            backgroundColor: '#2F6B5E',
-            color: '#FFF',
-            padding: '0.6rem 1.4rem',
-            borderRadius: '999px',
-            fontWeight: 700,
-            fontSize: '0.9rem',
-          }}>
-            ▶ Masuk ke Rumah (FPP Walkthrough)
-          </div>
+          <div className="enter-cta">▶ Mulai Walkthrough</div>
         </div>
       )}
     </div>

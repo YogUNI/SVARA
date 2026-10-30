@@ -192,16 +192,30 @@ const AudioSpectrum: React.FC<{
     const binCount = 56;
     const data = new Uint8Array(128);
 
+    let cachedW = canvas.clientWidth || 300;
+    let cachedH = canvas.clientHeight || 50;
+    let cachedDpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    const updateSize = () => {
+      cachedW = canvas.clientWidth || 300;
+      cachedH = canvas.clientHeight || 50;
+      cachedDpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.floor(cachedW * cachedDpr);
+      canvas.height = Math.floor(cachedH * cachedDpr);
+    };
+    updateSize();
+
+    const resizeObserver = new ResizeObserver(() => {
+      updateSize();
+    });
+    resizeObserver.observe(canvas);
+
     const draw = () => {
       raf = requestAnimationFrame(draw);
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const w = canvas.clientWidth;
-      const h = canvas.clientHeight;
+      const w = cachedW;
+      const h = cachedH;
+      const dpr = cachedDpr;
       if (!w || !h) return;
-      if (canvas.width !== Math.floor(w * dpr) || canvas.height !== Math.floor(h * dpr)) {
-        canvas.width = Math.floor(w * dpr);
-        canvas.height = Math.floor(h * dpr);
-      }
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, w, h);
 
@@ -250,7 +264,10 @@ const AudioSpectrum: React.FC<{
     };
 
     draw();
-    return () => cancelAnimationFrame(raf);
+    return () => {
+      cancelAnimationFrame(raf);
+      resizeObserver.disconnect();
+    };
   }, [active, processing, analyserRef]);
 
   return <canvas ref={canvasRef} className="vis-canvas" />;

@@ -32,7 +32,32 @@ function createSmartwatchScreenCanvas(): {
   texture.minFilter = THREE.LinearFilter;
   texture.magFilter = THREE.LinearFilter;
 
+  let lastSec = -1;
+  let lastSpeaking: boolean | null = null;
+  let lastRenderedRoom = '';
+  let lastWaveTime = 0;
+
   const updateScreen = (isSpeaking: boolean, timeSec: number, roomLabel: string) => {
+    const now = new Date();
+    const curSec = now.getSeconds();
+
+    // Throttle GPU canvas uploads:
+    // When idle: only redraw when second changes (1 Hz) or room changes or speak state toggles.
+    // When speaking: throttle waveform redraw to ~25 FPS (every 40ms) instead of 60 FPS.
+    if (isSpeaking) {
+      if (lastSpeaking === true && roomLabel === lastRenderedRoom && timeSec - lastWaveTime < 0.04) {
+        return;
+      }
+      lastWaveTime = timeSec;
+    } else {
+      if (curSec === lastSec && lastSpeaking === false && roomLabel === lastRenderedRoom) {
+        return;
+      }
+    }
+
+    lastSec = curSec;
+    lastSpeaking = isSpeaking;
+    lastRenderedRoom = roomLabel;
     // Matte black OLED glass background
     ctx.fillStyle = '#07090C';
     ctx.fillRect(0, 0, 256, 256);
@@ -59,7 +84,6 @@ function createSmartwatchScreenCanvas(): {
     ctx.font = '12px monospace';
     ctx.fillText(isSpeaking ? 'REC' : 'LIVE', 200, 35);
 
-    const now = new Date();
     const hrs = String(now.getHours()).padStart(2, '0');
     const mins = String(now.getMinutes()).padStart(2, '0');
     const secs = String(now.getSeconds()).padStart(2, '0');

@@ -31,6 +31,19 @@ function finalizeTexture(
   return texture;
 }
 
+/** In-memory singleton cache to prevent re-generating multi-megapixel canvases on re-mounts. */
+const textureCache = new Map<string, THREE.CanvasTexture>();
+
+function getOrCreateTexture(key: string, factory: () => THREE.CanvasTexture): THREE.CanvasTexture {
+  let cached = textureCache.get(key);
+  if (!cached) {
+    cached = factory();
+    textureCache.set(key, cached);
+  }
+  return cached.clone();
+}
+
+
 /** Per-pixel micro-roughness noise overlay. */
 function grain(ctx: CanvasRenderingContext2D, w: number, h: number, amount = 16) {
   const img = ctx.getImageData(0, 0, w, h);
@@ -63,7 +76,7 @@ function blotches(ctx: CanvasRenderingContext2D, w: number, h: number, count = 2
  * 1. LUXURY WOOD — wide-plank natural oak parquet
  *    organic grain, per-plank tone variance, chamfered seams, knots
  * ===================================================================== */
-export function createLuxuryWoodParquetTexture(): THREE.CanvasTexture {
+function _generateLuxuryWoodParquetTexture(): THREE.CanvasTexture {
   const SIZE = 1024;
   const [canvas, ctx] = makeCanvas(SIZE, SIZE);
 
@@ -150,7 +163,7 @@ export function createLuxuryWoodParquetTexture(): THREE.CanvasTexture {
 /* =====================================================================
  * 2. CALACATTA GOLD MARBLE — Italian white marble, organic grey-gold veins
  * ===================================================================== */
-export function createCalacattaMarbleTexture(): THREE.CanvasTexture {
+function _generateCalacattaMarbleTexture(): THREE.CanvasTexture {
   const SIZE = 1024;
   const [canvas, ctx] = makeCanvas(SIZE, SIZE);
 
@@ -198,7 +211,7 @@ export function createCalacattaMarbleTexture(): THREE.CanvasTexture {
 /* =====================================================================
  * 3. MICROCEMENT WALL — warm linen-taupe plaster, micro sand texture
  * ===================================================================== */
-export function createMicrocementWallTexture(): THREE.CanvasTexture {
+function _generateMicrocementWallTexture(): THREE.CanvasTexture {
   const SIZE = 1024;
   const [canvas, ctx] = makeCanvas(SIZE, SIZE);
 
@@ -246,7 +259,7 @@ export function createMicrocementWallTexture(): THREE.CanvasTexture {
 /* =====================================================================
  * 4. WOVEN FABRIC — linen slub weave for sofa, rugs, duvets
  * ===================================================================== */
-export function createWovenFabricTexture(baseColor = '#B7AC9F'): THREE.CanvasTexture {
+function _generateWovenFabricTexture(baseColor = '#B7AC9F'): THREE.CanvasTexture {
   const SIZE = 1024;
   const [canvas, ctx] = makeCanvas(SIZE, SIZE);
 
@@ -297,7 +310,7 @@ export function createWovenFabricTexture(baseColor = '#B7AC9F'): THREE.CanvasTex
 /* =====================================================================
  * 5. ACOUSTIC WALNUT SLATS — vertical wood slat wall panels
  * ===================================================================== */
-export function createAcousticSlatWoodTexture(): THREE.CanvasTexture {
+function _generateAcousticSlatWoodTexture(): THREE.CanvasTexture {
   const SIZE = 1024;
   const [canvas, ctx] = makeCanvas(SIZE, SIZE);
 
@@ -352,7 +365,7 @@ export function createAcousticSlatWoodTexture(): THREE.CanvasTexture {
 /* =====================================================================
  * 6. GOLDEN HOUR / WARM DUSK SKY — grand dusk backdrop for windows/garden
  * ===================================================================== */
-export function createGoldenHourSkyTexture(): THREE.CanvasTexture {
+function _generateGoldenHourSkyTexture(): THREE.CanvasTexture {
   const W = 1024;
   const H = 512;
   const [canvas, ctx] = makeCanvas(W, H);
@@ -413,7 +426,7 @@ export function createGoldenHourSkyTexture(): THREE.CanvasTexture {
 /* =====================================================================
  * 7. ZEN LAWN — HD manicured grass for the modern front garden
  * ===================================================================== */
-export function createZenGrassTexture(): THREE.CanvasTexture {
+function _generateZenGrassTexture(): THREE.CanvasTexture {
   const SIZE = 1024;
   const [canvas, ctx] = makeCanvas(SIZE, SIZE);
 
@@ -449,7 +462,7 @@ export function createZenGrassTexture(): THREE.CanvasTexture {
 /* =====================================================================
  * 8. GRANITE STEPPING STONES — zen garden walkway pavers
  * ===================================================================== */
-export function createGraniteSlabTexture(): THREE.CanvasTexture {
+function _generateGraniteSlabTexture(): THREE.CanvasTexture {
   const SIZE = 512;
   const [canvas, ctx] = makeCanvas(SIZE, SIZE);
 
@@ -506,7 +519,7 @@ export function createGraniteSlabTexture(): THREE.CanvasTexture {
  * PBR ROUGHNESS MAPS — grayscale micro-variation so highlights break up
  * realistically instead of reading as a single flat gloss value.
  * ===================================================================== */
-export function createWoodRoughnessMap(): THREE.CanvasTexture {
+function _generateWoodRoughnessMap(): THREE.CanvasTexture {
   const SIZE = 512;
   const [canvas, ctx] = makeCanvas(SIZE, SIZE);
   // Base: satin-varnished oak (mid grey ≈ 0.45 roughness)
@@ -538,7 +551,7 @@ export function createWoodRoughnessMap(): THREE.CanvasTexture {
   return tex;
 }
 
-export function createMarbleRoughnessMap(): THREE.CanvasTexture {
+function _generateMarbleRoughnessMap(): THREE.CanvasTexture {
   const SIZE = 512;
   const [canvas, ctx] = makeCanvas(SIZE, SIZE);
   // Polished Calacatta: mostly very smooth
@@ -568,6 +581,50 @@ export function createMarbleRoughnessMap(): THREE.CanvasTexture {
   tex.wrapT = THREE.RepeatWrapping;
   tex.repeat.set(2, 2);
   return tex;
+}
+
+
+/* =====================================================================
+ * Cached Public Texture Factories (Fast singleton + cloned descriptors)
+ * ===================================================================== */
+export function createLuxuryWoodParquetTexture(): THREE.CanvasTexture {
+  return getOrCreateTexture('luxuryWoodParquet', _generateLuxuryWoodParquetTexture);
+}
+
+export function createCalacattaMarbleTexture(): THREE.CanvasTexture {
+  return getOrCreateTexture('calacattaMarble', _generateCalacattaMarbleTexture);
+}
+
+export function createMicrocementWallTexture(): THREE.CanvasTexture {
+  return getOrCreateTexture('microcementWall', _generateMicrocementWallTexture);
+}
+
+export function createWovenFabricTexture(baseColor = '#B7AC9F'): THREE.CanvasTexture {
+  return getOrCreateTexture('wovenFabric_' + baseColor, () => _generateWovenFabricTexture(baseColor));
+}
+
+export function createAcousticSlatWoodTexture(): THREE.CanvasTexture {
+  return getOrCreateTexture('acousticSlatWood', _generateAcousticSlatWoodTexture);
+}
+
+export function createGoldenHourSkyTexture(): THREE.CanvasTexture {
+  return getOrCreateTexture('goldenHourSky', _generateGoldenHourSkyTexture);
+}
+
+export function createZenGrassTexture(): THREE.CanvasTexture {
+  return getOrCreateTexture('zenGrass', _generateZenGrassTexture);
+}
+
+export function createGraniteSlabTexture(): THREE.CanvasTexture {
+  return getOrCreateTexture('graniteSlab', _generateGraniteSlabTexture);
+}
+
+export function createWoodRoughnessMap(): THREE.CanvasTexture {
+  return getOrCreateTexture('woodRoughness', _generateWoodRoughnessMap);
+}
+
+export function createMarbleRoughnessMap(): THREE.CanvasTexture {
+  return getOrCreateTexture('marbleRoughness', _generateMarbleRoughnessMap);
 }
 
 /* =====================================================================

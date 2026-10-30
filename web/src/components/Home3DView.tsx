@@ -72,7 +72,7 @@ export const Home3DView: React.FC<Home3DViewProps> = ({ devices, activeLocation 
     camera.lookAt(0, 0.8, 0);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
     renderer.setSize(width, height);
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFShadowMap;
@@ -104,7 +104,7 @@ export const Home3DView: React.FC<Home3DViewProps> = ({ devices, activeLocation 
     const keyLight = new THREE.DirectionalLight(0xFFD2A0, 1.35);
     keyLight.position.set(18, 30, 16);
     keyLight.castShadow = true;
-    keyLight.shadow.mapSize.set(2048, 2048);
+    keyLight.shadow.mapSize.set(1024, 1024);
     keyLight.shadow.camera.left = -24;
     keyLight.shadow.camera.right = 24;
     keyLight.shadow.camera.top = 24;

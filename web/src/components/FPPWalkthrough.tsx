@@ -267,7 +267,7 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFShadowMap;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -338,7 +338,7 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
     const sun = new THREE.DirectionalLight(0xFFC98F, 2.6);
     sun.position.set(22, 16, 30);
     sun.castShadow = true;
-    sun.shadow.mapSize.set(2048, 2048);
+    sun.shadow.mapSize.set(1024, 1024);
     sun.shadow.camera.left = -32;
     sun.shadow.camera.right = 32;
     sun.shadow.camera.top = 32;
@@ -1234,6 +1234,8 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
     let lastStepPhase = 0;
     let bobSmooth = 1.65;
     let bankSmooth = 0;
+    let lastSpeakerRingTime = 0;
+    let lastMusicState: boolean | null = null;
 
     const animate = () => {
       animId = requestAnimationFrame(animate);
@@ -1338,16 +1340,25 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
       // Speaker EQ ring pulse + body micro-vibration when music plays
       const ring = speakerRingRef.current;
       const body = speakerMeshRef.current;
-      if (musicRef.current) {
-        const pulse = 0.5 + Math.sin(time * 0.004) * 0.3;
+      const isMusicPlaying = musicRef.current;
+      if (isMusicPlaying) {
+        if (time - lastSpeakerRingTime > 45) {
+          lastSpeakerRingTime = time;
+          const pulse = 0.5 + Math.sin(time * 0.004) * 0.3;
+          ring?.draw(pulse, true);
+          ring?.needsUpdate();
+        }
         const vol = volumeRef.current / 100;
-        ring?.draw(pulse, true);
         body?.scale.set(1 + 0.012 * vol, 1, 1 + 0.012 * vol);
+        lastMusicState = true;
       } else {
-        ring?.draw(0, false);
-        body?.scale.set(1, 1, 1);
+        if (lastMusicState !== false) {
+          ring?.draw(0, false);
+          ring?.needsUpdate();
+          body?.scale.set(1, 1, 1);
+          lastMusicState = false;
+        }
       }
-      ring?.needsUpdate();
 
       // AC vent particles drift (falling air plume)
       Object.values(ventParticlesRef.current).forEach((points) => {

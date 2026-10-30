@@ -247,14 +247,14 @@ export function createMicrocementWallTexture(): THREE.CanvasTexture {
  * 4. WOVEN FABRIC — linen slub weave for sofa, rugs, duvets
  * ===================================================================== */
 export function createWovenFabricTexture(baseColor = '#B7AC9F'): THREE.CanvasTexture {
-  const SIZE = 512;
+  const SIZE = 1024;
   const [canvas, ctx] = makeCanvas(SIZE, SIZE);
 
   ctx.fillStyle = baseColor;
   ctx.fillRect(0, 0, SIZE, SIZE);
 
   // fine woven thread pattern (warp + weft)
-  const step = 4;
+  const step = 8;
   for (let i = 0; i < SIZE; i += step) {
     ctx.strokeStyle = 'rgba(30, 24, 18, 0.13)';
     ctx.lineWidth = 1;
@@ -278,7 +278,7 @@ export function createWovenFabricTexture(baseColor = '#B7AC9F'): THREE.CanvasTex
   }
 
   // slub nubs (irregular thread thickenings)
-  for (let i = 0; i < 340; i++) {
+  for (let i = 0; i < 900; i++) {
     const x = Math.random() * SIZE;
     const y = Math.random() * SIZE;
     const len = 4 + Math.random() * 8;
@@ -500,6 +500,74 @@ export function createGraniteSlabTexture(): THREE.CanvasTexture {
   }
 
   return finalizeTexture(canvas, 2, 8);
+}
+
+/* =====================================================================
+ * PBR ROUGHNESS MAPS — grayscale micro-variation so highlights break up
+ * realistically instead of reading as a single flat gloss value.
+ * ===================================================================== */
+export function createWoodRoughnessMap(): THREE.CanvasTexture {
+  const SIZE = 512;
+  const [canvas, ctx] = makeCanvas(SIZE, SIZE);
+  // Base: satin-varnished oak (mid grey ≈ 0.45 roughness)
+  ctx.fillStyle = '#7A7A7A';
+  ctx.fillRect(0, 0, SIZE, SIZE);
+
+  // Plank seams are duller (dirt collects) → lighter grey
+  for (let y = 0; y < SIZE; y += SIZE / 4) {
+    ctx.fillStyle = 'rgba(214, 214, 214, 0.55)';
+    ctx.fillRect(0, y, SIZE, 3);
+  }
+  // Grain lines are slightly glossier (burnished) → darker
+  for (let i = 0; i < 900; i++) {
+    const gx = Math.random() * SIZE;
+    const gy = Math.random() * SIZE;
+    ctx.strokeStyle = Math.random() > 0.5 ? 'rgba(40, 40, 40, 0.25)' : 'rgba(220, 220, 220, 0.2)';
+    ctx.lineWidth = 0.8 + Math.random() * 1.4;
+    ctx.beginPath();
+    ctx.moveTo(gx, gy);
+    ctx.lineTo(gx + (Math.random() - 0.5) * 8, gy + 20 + Math.random() * 40);
+    ctx.stroke();
+  }
+  grain(ctx, SIZE, SIZE, 18);
+
+  const tex = new THREE.CanvasTexture(canvas);
+  tex.wrapS = THREE.RepeatWrapping;
+  tex.wrapT = THREE.RepeatWrapping;
+  tex.repeat.set(4, 2);
+  return tex;
+}
+
+export function createMarbleRoughnessMap(): THREE.CanvasTexture {
+  const SIZE = 512;
+  const [canvas, ctx] = makeCanvas(SIZE, SIZE);
+  // Polished Calacatta: mostly very smooth
+  ctx.fillStyle = '#2E2E2E';
+  ctx.fillRect(0, 0, SIZE, SIZE);
+
+  // Veins are marginally duller than the field
+  for (let c = 0; c < 26; c++) {
+    let vx = Math.random() * SIZE;
+    let vy = Math.random() * SIZE;
+    const dir = Math.random() * Math.PI * 2;
+    ctx.strokeStyle = 'rgba(150, 150, 150, 0.35)';
+    ctx.lineWidth = 1 + Math.random() * 3;
+    ctx.beginPath();
+    ctx.moveTo(vx, vy);
+    for (let s2 = 0; s2 < 8; s2++) {
+      vx += Math.cos(dir + (Math.random() - 0.5) * 0.7) * 60;
+      vy += Math.sin(dir + (Math.random() - 0.5) * 0.7) * 60;
+      ctx.lineTo(clamp(vx, 0, SIZE), clamp(vy, 0, SIZE));
+    }
+    ctx.stroke();
+  }
+  grain(ctx, SIZE, SIZE, 10);
+
+  const tex = new THREE.CanvasTexture(canvas);
+  tex.wrapS = THREE.RepeatWrapping;
+  tex.wrapT = THREE.RepeatWrapping;
+  tex.repeat.set(2, 2);
+  return tex;
 }
 
 /* =====================================================================

@@ -10,7 +10,10 @@ import {
   createGoldenHourSkyTexture,
   createZenGrassTexture,
   createGraniteSlabTexture,
+  createWoodRoughnessMap,
+  createMarbleRoughnessMap,
 } from './fpp/ProceduralTextures';
+import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
 import { createFPPArms } from './fpp/FPPArmsRig';
 import { soundSystem } from './fpp/SoundSystem';
 import { RadarMiniMap, RadarMiniMapHandle } from './fpp/RadarMiniMap';
@@ -113,13 +116,94 @@ function createSpeakerRingCanvas() {
   return { texture, draw, needsUpdate: () => { texture.needsUpdate = true; } };
 }
 
+/** Printed broadsheet page — masthead, headline column, photo block. */
+function createNewspaperTexture(): THREE.CanvasTexture {
+  const canvas = document.createElement('canvas');
+  canvas.width = 512;
+  canvas.height = 640;
+  const ctx = canvas.getContext('2d')!;
+
+  // off-white newsprint
+  ctx.fillStyle = '#EDE7DA';
+  ctx.fillRect(0, 0, 512, 640);
+  ctx.fillStyle = 'rgba(120, 108, 90, 0.05)';
+  for (let i = 0; i < 400; i++) {
+    ctx.fillRect(Math.random() * 512, Math.random() * 640, 2, 2);
+  }
+
+  // masthead
+  ctx.fillStyle = '#14110E';
+  ctx.font = 'bold 44px Georgia, serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('THE SVARA TIMES', 256, 62);
+  ctx.font = '11px Georgia, serif';
+  ctx.fillStyle = '#4A4238';
+  ctx.fillText('SMART LIVING  •  ARCHITECTURE  •  DESIGN', 256, 82);
+  ctx.strokeStyle = '#14110E';
+  ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(24, 92); ctx.lineTo(488, 92); ctx.stroke();
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(24, 97); ctx.lineTo(488, 97); ctx.stroke();
+
+  // headline
+  ctx.textAlign = 'left';
+  ctx.fillStyle = '#0E0C0B';
+  ctx.font = 'bold 30px Georgia, serif';
+  ctx.fillText('Japandi Villas Lead', 28, 138);
+  ctx.fillText('the Quiet Luxury Era', 28, 172);
+
+  // deck
+  ctx.font = 'italic 13px Georgia, serif';
+  ctx.fillStyle = '#3E362C';
+  ctx.fillText('Warm timber, microcement and hidden light reshape', 28, 196);
+  ctx.fillText('the modern Indonesian home.', 28, 212);
+
+  // photo block
+  ctx.fillStyle = '#8A8172';
+  ctx.fillRect(28, 228, 220, 150);
+  ctx.fillStyle = '#6E6656';
+  ctx.fillRect(28, 300, 220, 78);
+  ctx.fillStyle = '#EDE7DA';
+  ctx.font = '10px Georgia, serif';
+  ctx.fillText('Villa SVARA, front elevation at dusk', 32, 372);
+
+  // column text lines
+  ctx.fillStyle = 'rgba(30, 26, 22, 0.72)';
+  let ty = 236;
+  for (let col = 0; col < 2; col++) {
+    const cx = 272 + col * 118;
+    for (let line = 0; line < 22; line++) {
+      const wline = 96 - Math.random() * 34;
+      ctx.fillRect(cx, ty + line * 10, wline, 4);
+    }
+  }
+  // body lines under photo
+  for (let line = 0; line < 16; line++) {
+    ctx.fillRect(28, 400 + line * 11, 210 - Math.random() * 60, 4);
+  }
+  // footer rule
+  ctx.strokeStyle = '#3E362C';
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(24, 606); ctx.lineTo(488, 606); ctx.stroke();
+  ctx.font = '10px Georgia, serif';
+  ctx.fillStyle = '#5A5145';
+  ctx.fillText('LIFESTYLE  •  PAGE 12', 28, 626);
+  ctx.textAlign = 'left';
+
+  const tex = new THREE.CanvasTexture(canvas);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  tex.anisotropy = 8;
+  return tex;
+}
+
 /* ------------------------------------------------------------------ */
 /*  Main component                                                     */
 /* ------------------------------------------------------------------ */
 
 type Glow = { mat: THREE.MeshStandardMaterial; intensity: number };
+type FixtureLight = { light: THREE.Light; intensity: number };
 type Fixture = {
-  lights: THREE.PointLight[];
+  lights: FixtureLight[];
   glows: Glow[];
   bulbs: THREE.Mesh[];
 };
@@ -280,6 +364,9 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
     const sunsetTex = createGoldenHourSkyTexture();
     const grassTex = createZenGrassTexture();
     const graniteTex = createGraniteSlabTexture();
+    const woodRoughTex = createWoodRoughnessMap();
+    const marbleRoughTex = createMarbleRoughnessMap();
+    const coveGlows: THREE.MeshStandardMaterial[] = [];
 
     // Shared material palette
     const matWalnut = new THREE.MeshStandardMaterial({ color: 0x4A3221, roughness: 0.55, metalness: 0.06 });
@@ -327,11 +414,26 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
       return m;
     };
 
+    // Rounded/beveled box helper — softens every hard edge (Japandi look)
+    const addRounded = (
+      w: number, h: number, d: number,
+      x: number, y: number, z: number,
+      mat: THREE.Material, radius = 0.045, cast = true,
+    ) => {
+      const geo = new RoundedBoxGeometry(w, h, d, 4, Math.min(radius, Math.min(w, h, d) / 2.01));
+      const m = new THREE.Mesh(geo, mat);
+      m.position.set(x, y, z);
+      m.castShadow = cast;
+      m.receiveShadow = true;
+      scene.add(m);
+      return m;
+    };
+
     /* ---------------- 4. Villa shell: floor / ceiling / walls ---------------- */
     // Wide-plank oak parquet throughout the interior
     const floor = new THREE.Mesh(
       new THREE.PlaneGeometry(28, 24),
-      new THREE.MeshStandardMaterial({ map: woodTex, roughness: 0.38, metalness: 0.06 }),
+      new THREE.MeshStandardMaterial({ map: woodTex, roughnessMap: woodRoughTex, roughness: 1.0, metalness: 0.06 }),
     );
     floor.rotation.x = -Math.PI / 2;
     floor.receiveShadow = true;
@@ -412,8 +514,18 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
     /* ---------------- 5. KITCHEN — Japandi luxury ---------------- */
     // Monolithic charcoal base with Calacatta slab
     addBox(5.2, 0.92, 2.6, -7, 0.46, -6, matCharcoal);
-    addBox(5.35, 0.12, 2.75, -7, 0.97, -6,
-      new THREE.MeshStandardMaterial({ map: marbleTex, roughness: 0.12, metalness: 0.08 }));
+    addRounded(5.35, 0.12, 2.75, -7, 0.97, -6,
+      new THREE.MeshStandardMaterial({
+        map: marbleTex, roughnessMap: marbleRoughTex, roughness: 0.9, metalness: 0.08,
+      }), 0.05);
+
+    // Warm indirect LED cove strip under the island overhang
+    const islandCoveMat = new THREE.MeshStandardMaterial({
+      color: 0xFFD9A0, emissive: 0xFFC178, emissiveIntensity: 0, roughness: 0.5,
+    });
+    coveGlows.push(islandCoveMat);
+    addBox(5.2, 0.03, 0.04, -7, 0.9, -4.68, islandCoveMat, false);
+    addBox(5.2, 0.03, 0.04, -7, 0.9, -7.32, islandCoveMat, false);
 
     // Induction cooktop: black glass with glowing rings
     addBox(2.0, 0.02, 1.2, -8.05, 1.09, -6, matBlack, false);
@@ -465,19 +577,19 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
       new THREE.MeshStandardMaterial({ map: slatTex, roughness: 0.6, metalness: 0.04 }), false);
     slatPanel.position.set(7, 1.75, 11.82);
 
-    // Slim 75" smart TV with bias backlight LED
-    addBox(2.6, 1.5, 0.06, 7, 2.0, 11.72, matBlack);
+    // Slim 75" smart TV (1.66 x 0.93 m panel) with anodized black frame
+    addBox(1.74, 1.01, 0.055, 7, 2.0, 11.72, matBlack);
     const tvScreen = new THREE.Mesh(
-      new THREE.PlaneGeometry(2.44, 1.34),
+      new THREE.PlaneGeometry(1.66, 0.93),
       new THREE.MeshStandardMaterial({ color: 0x0A0E14, roughness: 0.12, metalness: 0.85, emissive: 0x14243A, emissiveIntensity: 0.55, side: THREE.DoubleSide }),
     );
     tvScreen.position.set(7, 2.0, 11.76);
     tvScreen.rotation.y = Math.PI; // face into the lounge
     scene.add(tvScreen);
     // Bias LED strips (warm accent above & below panel)
-    addBox(2.6, 0.05, 0.02, 7, 2.85, 11.6,
+    addBox(1.74, 0.05, 0.02, 7, 2.56, 11.6,
       new THREE.MeshStandardMaterial({ color: 0xFFB066, emissive: 0xFF9A4D, emissiveIntensity: 0.9 }), false);
-    addBox(2.6, 0.05, 0.02, 7, 1.12, 11.6,
+    addBox(1.74, 0.05, 0.02, 7, 1.44, 11.6,
       new THREE.MeshStandardMaterial({ color: 0xFFB066, emissive: 0xFF9A4D, emissiveIntensity: 0.7 }), false);
 
     // L-shape modular sofa with throw pillows & folded throw
@@ -490,12 +602,16 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
     addBox(2.6, 0.5, 0.55, 10.4, 1.15, 9.4, sofaMat);
 
     // Accent pillows
-    const pillowPositions: Array<[number, number, number, number]> = [
-      [5.3, 1.28, 8.72, 0.15], [6.3, 1.28, 8.75, -0.12], [7.4, 1.28, 8.74, 0.1],
+    const pillowPositions: Array<[number, number, number, number, number, number]> = [
+      // x, y, z, rotY, width, height  (varied sizes: lumbar, square, large)
+      [5.25, 1.3, 8.72, 0.15, 0.72, 0.26],
+      [6.35, 1.28, 8.75, -0.12, 0.56, 0.2],
+      [7.5, 1.32, 8.74, 0.1, 0.64, 0.34],
+      [4.0, 1.24, 7.95, 0.5, 0.5, 0.22],
     ];
-    pillowPositions.forEach(([px, py, pz, rot]) => {
-      const p = addBox(0.62, 0.24, 0.42, px, py, pz,
-        new THREE.MeshStandardMaterial({ map: slateTex, roughness: 0.88 }));
+    pillowPositions.forEach(([px, py, pz, rot, pw, ph]) => {
+      const p = addRounded(pw, ph, 0.42, px, py, pz,
+        new THREE.MeshStandardMaterial({ map: slateTex, roughness: 0.88 }), 0.08);
       p.rotation.y = rot;
     });
     // Folded throw blanket draped on the chaise
@@ -503,7 +619,9 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
 
     // Round marble coffee table with books, vase & monstera
     addCyl(0.55, 0.55, 0.1, 7, 0.42, 4.4,
-      new THREE.MeshStandardMaterial({ map: marbleTex, roughness: 0.1, metalness: 0.1 }), 36);
+      new THREE.MeshStandardMaterial({
+        map: marbleTex, roughnessMap: marbleRoughTex, roughness: 0.9, metalness: 0.1,
+      }), 36);
     addCyl(0.08, 0.11, 0.38, 7, 0.2, 4.4, matCharcoal, 14);
     // Design books stack
     addBox(0.5, 0.045, 0.34, 6.72, 0.5, 4.28, new THREE.MeshStandardMaterial({ color: 0x8B5E3C, roughness: 0.7 }), false);
@@ -530,6 +648,79 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
       leaf.rotation.x = -0.4;
       leaf.scale.set(0.45, 0.5, 0.45);
       scene.add(leaf);
+    });
+
+    // --- Smart objects: printed newspaper, juice glass, sneakers ---
+    const newspaperTex = createNewspaperTexture();
+    const newspaper = new THREE.Mesh(
+      new THREE.PlaneGeometry(0.46, 0.58),
+      new THREE.MeshStandardMaterial({ map: newspaperTex, roughness: 0.95, metalness: 0 }),
+    );
+    newspaper.position.set(7.62, 0.478, 4.28);
+    newspaper.rotation.x = -Math.PI / 2;
+    newspaper.rotation.z = 0.22;
+    scene.add(newspaper);
+    // second folded page underneath for thickness
+    const newspaperUnder = new THREE.Mesh(
+      new THREE.PlaneGeometry(0.44, 0.55),
+      new THREE.MeshStandardMaterial({ color: 0xE2DACA, roughness: 0.95 }),
+    );
+    newspaperUnder.position.set(7.6, 0.474, 4.27);
+    newspaperUnder.rotation.x = -Math.PI / 2;
+    newspaperUnder.rotation.z = 0.26;
+    scene.add(newspaperUnder);
+
+    // Glass of fresh juice on the marble island (specular glass + liquid)
+    const juiceGlass = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.052, 0.044, 0.15, 24, 1, true),
+      new THREE.MeshPhysicalMaterial({
+        color: 0xEAF4F6, roughness: 0.03, metalness: 0,
+        transparent: true, opacity: 0.28, clearcoat: 1,
+        side: THREE.DoubleSide,
+      }),
+    );
+    juiceGlass.position.set(-5.55, 1.115, -6.42);
+    scene.add(juiceGlass);
+    const juice = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.046, 0.04, 0.095, 22),
+      new THREE.MeshPhysicalMaterial({
+        color: 0xE8902A, roughness: 0.12, metalness: 0.05,
+        transparent: true, opacity: 0.92, clearcoat: 0.7,
+      }),
+    );
+    juice.position.set(-5.55, 1.09, -6.42);
+    scene.add(juice);
+    // juice glass base
+    const juiceBase = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.046, 0.046, 0.008, 22),
+      new THREE.MeshPhysicalMaterial({ color: 0xEAF4F6, roughness: 0.05, transparent: true, opacity: 0.35 }),
+    );
+    juiceBase.position.set(-5.55, 1.043, -6.42);
+    scene.add(juiceBase);
+
+    // Entry shoe rack with a pair of modern sneakers
+    addBox(1.9, 0.05, 0.42, 2.15, 0.26, 11.35, matWalnut, false);
+    addBox(1.9, 0.05, 0.42, 2.15, 0.46, 11.35, matWalnut, false);
+    [1.5, 2.8].forEach((rx) => {
+      addBox(0.05, 0.46, 0.05, rx, 0.23, 11.15, matBlack, false);
+      addBox(0.05, 0.46, 0.05, rx, 0.23, 11.55, matBlack, false);
+    });
+    const sneakerUpper = new THREE.MeshStandardMaterial({ color: 0xF2F2F0, roughness: 0.75 });
+    const sneakerAccent = new THREE.MeshStandardMaterial({ color: 0x2E3238, roughness: 0.6 });
+    const sneakerSole = new THREE.MeshStandardMaterial({ color: 0xE8E4DC, roughness: 0.5 });
+    [-0.22, 0.14].forEach((ox, si) => {
+      const sx = 2.15 + ox;
+      // sole
+      addRounded(0.12, 0.05, 0.3, sx, 0.53, 11.33, sneakerSole, 0.02);
+      // upper
+      const upper = addRounded(0.11, 0.09, 0.24, sx, 0.6, 11.32, sneakerUpper, 0.035);
+      upper.rotation.x = -0.04;
+      // toe cap + heel accent
+      addRounded(0.11, 0.06, 0.08, sx, 0.585, 11.2, si === 0 ? sneakerAccent : sneakerUpper, 0.025);
+      // laces
+      for (let li = 0; li < 3; li++) {
+        addBox(0.07, 0.008, 0.012, sx, 0.648, 11.28 + li * 0.035, sneakerAccent, false);
+      }
     });
 
     // Smart speaker (HomePod style) on a side credenza
@@ -564,20 +755,20 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
     });
     addBox(4.8, 0.22, 6.2, 7.5, 0.36, -7.0, new THREE.MeshStandardMaterial({ color: 0x5C402A, roughness: 0.55 }));
     // Plush mattress
-    addBox(4.6, 0.42, 6.0, 7.5, 0.62, -7.0, matPlush);
+    addRounded(4.6, 0.42, 6.0, 7.5, 0.62, -7.0, matPlush, 0.09);
     // Upholstered headboard (padded) + walnut slat accent
     addBox(4.7, 1.35, 0.22, 7.5, 1.05, -10.15, new THREE.MeshStandardMaterial({ map: slateTex, roughness: 0.85 }));
     addBox(5.3, 2.4, 0.12, 7.5, 1.6, -10.35,
       new THREE.MeshStandardMaterial({ map: slatTex, roughness: 0.6 }), false);
     // Natural duvet with organic folds
-    addBox(4.4, 0.28, 3.6, 7.5, 0.92, -5.8, matPlush);
-    addBox(4.3, 0.16, 3.7, 7.5, 1.1, -5.75, matPlush);
+    addRounded(4.4, 0.28, 3.6, 7.5, 0.92, -5.8, matPlush, 0.1);
+    addRounded(4.3, 0.16, 3.7, 7.5, 1.1, -5.75, matPlush, 0.08);
     const duvetFold = addBox(1.2, 0.12, 3.8, 5.5, 1.08, -5.7, matPlush, false);
     duvetFold.rotation.y = 0.12;
     // Pillows
     [6.2, 8.8].forEach((px) => {
-      addBox(1.35, 0.22, 0.85, px, 1.04, -9.45,
-        new THREE.MeshStandardMaterial({ map: plushTex, roughness: 0.9 }));
+      addRounded(1.35, 0.22, 0.85, px, 1.04, -9.45,
+        new THREE.MeshStandardMaterial({ map: plushTex, roughness: 0.9 }), 0.07);
     });
 
     // Floating nightstands + warm pendant lights (both mapped to bedroom_lamp)
@@ -600,7 +791,7 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
       const light = new THREE.PointLight(0xFFB454, 0, 9, 1.8);
       light.position.set(4.1, 1.4, bz);
       scene.add(light);
-      bedsideFixtures.lights.push(light);
+      bedsideFixtures.lights.push({ light, intensity: 9 });
       bedsideFixtures.glows.push({ mat: shadeMat, intensity: 1.6 });
       bedsideFixtures.bulbs.push(bulb);
     });
@@ -610,19 +801,24 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
     addBox(1.2, 2.7, 4.2, 13.35, 1.35, -5.4, new THREE.MeshStandardMaterial({ color: 0x2E231B, roughness: 0.5 }));
     addBox(0.04, 2.5, 4.0, 12.92, 1.35, -5.4, matBlack, false);
 
-    // Linear AC vent on the wall + floating particle stream (heat/cool aura)
+    // Ceiling-mounted linear AC diffuser + falling air plume (heat/cool aura)
     const createVent = (key: string, x: number, z: number) => {
-      addBox(2.2, 0.16, 0.3, x, 2.9, z, matCharcoal, false);
-      const slatMat = new THREE.MeshStandardMaterial({ color: 0x11151A, roughness: 0.4 });
-      for (let sxx = -0.9; sxx <= 0.9; sxx += 0.3) {
-        addBox(0.16, 0.05, 0.05, x + sxx, 2.882, z, slatMat, false);
+      // recessed linear slot in the ceiling
+      addBox(2.4, 0.06, 0.26, x, 3.57, z, matCharcoal, false);
+      const slatMat = new THREE.MeshStandardMaterial({ color: 0x0C1014, roughness: 0.42, metalness: 0.3 });
+      for (let sxx = -1.0; sxx <= 1.0; sxx += 0.2) {
+        addBox(0.05, 0.03, 0.22, x + sxx, 3.545, z, slatMat, false);
       }
-      const count = 34;
+      // slim louvre frame
+      addBox(2.5, 0.02, 0.02, x, 3.53, z - 0.13, matBlack, false);
+      addBox(2.5, 0.02, 0.02, x, 3.53, z + 0.13, matBlack, false);
+
+      const count = 40;
       const positions = new Float32Array(count * 3);
       for (let i = 0; i < count; i++) {
-        positions[i * 3] = x + (Math.random() - 0.5) * 1.9;
-        positions[i * 3 + 1] = 2.4 + Math.random() * 0.45;
-        positions[i * 3 + 2] = z + (Math.random() - 0.5) * 0.25;
+        positions[i * 3] = x + (Math.random() - 0.5) * 2.1;
+        positions[i * 3 + 1] = 2.9 + Math.random() * 0.6;
+        positions[i * 3 + 2] = z + (Math.random() - 0.5) * 0.3;
       }
       const geo = new THREE.BufferGeometry();
       geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
@@ -638,9 +834,9 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
       scene.add(points);
       ventParticlesRef.current[key] = points;
     };
-    createVent('kitchen', -7, -3.2);
-    createVent('bedroom', 7, -3.2);
-    createVent('washroom', -7, 3.2);
+    createVent('kitchen', -7, -8.2);
+    createVent('bedroom', 7, -8.2);
+    createVent('washroom', -7, 3.4);
 
     /* ---------------- 8. WASHROOM — luxury stone spa ---------------- */
     // Black marble feature wall + round backlit mirror
@@ -665,7 +861,9 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
     // Floating vanity with Calacatta top & basin
     addBox(3.4, 0.55, 0.95, -8, 0.65, 11.3, matWalnut);
     addBox(3.6, 0.08, 1.05, -8, 0.96, 11.3,
-      new THREE.MeshStandardMaterial({ map: marbleTex, roughness: 0.1, metalness: 0.08 }));
+      new THREE.MeshStandardMaterial({
+        map: marbleTex, roughnessMap: marbleRoughTex, roughness: 0.9, metalness: 0.08,
+      }));
     addCyl(0.24, 0.26, 0.16, -8, 1.06, 10.9, new THREE.MeshStandardMaterial({ color: 0xE9EEF0, roughness: 0.12, metalness: 0.05 }), 26);
     addCyl(0.14, 0.16, 0.1, -8, 1.12, 10.9, matBlack, 26);
     const tap = addCyl(0.02, 0.02, 0.4, -8, 1.42, 11.6, matStainless, 12);
@@ -836,7 +1034,9 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
     const kitchenLight = new THREE.PointLight(0xFFD9A0, 0, 16, 1.7);
     kitchenLight.position.set(-7, 2.9, -6);
     scene.add(kitchenLight);
-    kitchenFixture.lights.push(kitchenLight);
+    kitchenFixture.lights.push({ light: kitchenLight, intensity: 26 });
+    // Under-counter LED cove follows the kitchen lights
+    coveGlows.forEach((m) => kitchenFixture.glows.push({ mat: m, intensity: 1.6 }));
     lightsMapRef.current['kitchen'] = kitchenFixture;
 
     // Bedroom: flush ceiling pendant
@@ -845,7 +1045,7 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
     bedroomLight.position.set(7, 2.9, -6);
     scene.add(bedroomLight);
     lightsMapRef.current['bedroom'] = {
-      lights: [bedroomLight],
+      lights: [{ light: bedroomLight, intensity: 24 }],
       glows: [{ mat: bp.shade.material as THREE.MeshStandardMaterial, intensity: 2.0 }],
       bulbs: [bp.bulb],
     };
@@ -860,24 +1060,47 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
     washroomLight.position.set(-7, 2.9, 6);
     scene.add(washroomLight);
     lightsMapRef.current['washroom'] = {
-      lights: [washroomLight],
+      lights: [{ light: washroomLight, intensity: 22 }],
       glows: [{ mat: washShadeMat, intensity: 2.0 }],
       bulbs: [wp.bulb],
     };
 
-    // Recessed ceiling spotlights (hidden warm 3000K architectural accent)
-    const spotPositions: Array<[number, number]> = [
-      [-8.5, -8.5], [-5.5, -8.5],
-      [5.5, -8.5], [9.0, -8.5],
-      [-8.5, 3.5], [-5.5, 8.0],
-      [5.0, 3.0], [9.0, 8.5],
+    // Recessed warm 3000K ceiling spotlights (real SpotLights: penumbra .6, decay 2)
+    type SpotSpec = { x: number; z: number; room: 'kitchen' | 'bedroom' | 'washroom' | 'hall' };
+    const spotSpecs: SpotSpec[] = [
+      { x: -8.5, z: -8.5, room: 'kitchen' },
+      { x: -5.5, z: -8.5, room: 'kitchen' },
+      { x: -8.5, z: -3.6, room: 'kitchen' },
+      { x: 5.5, z: -8.5, room: 'bedroom' },
+      { x: 9.0, z: -8.5, room: 'bedroom' },
+      { x: 9.0, z: -3.6, room: 'bedroom' },
+      { x: -8.5, z: 3.5, room: 'washroom' },
+      { x: -5.5, z: 8.0, room: 'washroom' },
+      { x: 5.0, z: 3.0, room: 'hall' },
+      { x: 9.0, z: 8.5, room: 'hall' },
     ];
     const spotGlowMat = new THREE.MeshStandardMaterial({
       color: 0xFFE8C4, emissive: 0xFFE8C4, emissiveIntensity: 0.16, roughness: 0.4,
     });
-    spotPositions.forEach(([sx, sz]) => {
-      addCyl(0.09, 0.12, 0.04, sx, 3.59, sz, matBlack, 16);
-      addCyl(0.055, 0.055, 0.02, sx, 3.573, sz, spotGlowMat, 14);
+    spotSpecs.forEach(({ x: sx, z: sz, room }) => {
+      // recessed fixture ring + frosted lens
+      addCyl(0.1, 0.13, 0.045, sx, 3.585, sz, matBlack, 18);
+      addCyl(0.062, 0.062, 0.02, sx, 3.566, sz, spotGlowMat, 16);
+
+      const spot = new THREE.SpotLight(0xFFE8C4, 0, 11, 0.72, 0.6, 2);
+      spot.position.set(sx, 3.55, sz);
+      spot.target.position.set(sx, 0, sz);
+      spot.castShadow = false;
+      scene.add(spot);
+      scene.add(spot.target);
+
+      const zone = lightsMapRef.current[room];
+      if (zone) {
+        zone.lights.push({ light: spot, intensity: 34 });
+      } else {
+        // hall spots stay as a dim always-on architectural accent
+        spot.intensity = 6;
+      }
     });
 
     /* ---------------- 11. Wall thermostats & heaters ---------------- */
@@ -1178,20 +1401,20 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
 
   /* ---------------- Device state -> visual actuation ---------------- */
   useEffect(() => {
-    const setFixture = (key: string, on: boolean, intensity = 26) => {
+    const setFixture = (key: string, on: boolean) => {
       const item = lightsMapRef.current[key];
       if (!item) return;
-      item.lights.forEach((l) => { l.intensity = on ? intensity : 0; });
+      item.lights.forEach((e) => { e.light.intensity = on ? e.intensity : 0; });
       item.glows.forEach((g) => { g.mat.emissiveIntensity = on ? g.intensity : 0; });
       item.bulbs.forEach((b) => {
         (b.material as THREE.MeshBasicMaterial).color.setHex(on ? 0xFFD9A0 : 0x332211);
       });
     };
 
-    setFixture('kitchen', devices.kitchen_lights, 26);
-    setFixture('bedroom', devices.bedroom_lights, 24);
-    setFixture('bedroom_lamp', devices.bedroom_lamp, 9);
-    setFixture('washroom', devices.washroom_lights, 22);
+    setFixture('kitchen', devices.kitchen_lights);
+    setFixture('bedroom', devices.bedroom_lights);
+    setFixture('bedroom_lamp', devices.bedroom_lamp);
+    setFixture('washroom', devices.washroom_lights);
 
     // Backlit mirror ring follows washroom light
     const mirrorMat = mirrorRingMatRef.current;

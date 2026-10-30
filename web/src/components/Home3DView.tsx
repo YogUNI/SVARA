@@ -64,8 +64,8 @@ export const Home3DView: React.FC<Home3DViewProps> = ({ devices, activeLocation 
 
     /* ----------------------------- renderer ----------------------------- */
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x0b0f17);
-    scene.fog = new THREE.Fog(0x0b0f17, 62, 130);
+    scene.background = new THREE.Color(0x151119);
+    scene.fog = new THREE.Fog(0x151119, 62, 130);
 
     const camera = new THREE.PerspectiveCamera(31, width / height, 0.1, 250);
     camera.position.set(25, 23, 29);
@@ -75,7 +75,7 @@ export const Home3DView: React.FC<Home3DViewProps> = ({ devices, activeLocation 
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     renderer.setSize(width, height);
     renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.shadowMap.type = THREE.PCFShadowMap;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.08;
     renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -98,10 +98,10 @@ export const Home3DView: React.FC<Home3DViewProps> = ({ devices, activeLocation 
     controlsRef.current = controls;
 
     /* --------------------------- environment --------------------------- */
-    scene.add(new THREE.AmbientLight(0x8899bb, 0.55));
-    scene.add(new THREE.HemisphereLight(0x94a3b8, 0x0b0f17, 0.7));
+    scene.add(new THREE.AmbientLight(0xFFD9AE, 0.55));
+    scene.add(new THREE.HemisphereLight(0xFFE4BE, 0x2A1D18, 0.7));
 
-    const keyLight = new THREE.DirectionalLight(0xbfdbfe, 1.25);
+    const keyLight = new THREE.DirectionalLight(0xFFD2A0, 1.35);
     keyLight.position.set(18, 30, 16);
     keyLight.castShadow = true;
     keyLight.shadow.mapSize.set(2048, 2048);
@@ -114,7 +114,7 @@ export const Home3DView: React.FC<Home3DViewProps> = ({ devices, activeLocation 
     keyLight.shadow.bias = -0.0006;
     scene.add(keyLight);
 
-    const warmRim = new THREE.DirectionalLight(0xf59e0b, 0.22);
+    const warmRim = new THREE.DirectionalLight(0xFF8C5A, 0.3);
     warmRim.position.set(-22, 14, -18);
     scene.add(warmRim);
 
@@ -140,7 +140,7 @@ export const Home3DView: React.FC<Home3DViewProps> = ({ devices, activeLocation 
 
     const base = new THREE.Mesh(
       new THREE.BoxGeometry(36, 1.4, 32),
-      new THREE.MeshStandardMaterial({ color: 0x0f172a, roughness: 0.55, metalness: 0.35 }),
+      new THREE.MeshStandardMaterial({ color: 0x1E1A16, roughness: 0.5, metalness: 0.4 }),
     );
     base.position.y = -0.75;
     base.receiveShadow = true;

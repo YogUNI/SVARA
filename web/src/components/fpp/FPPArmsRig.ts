@@ -135,13 +135,13 @@ export function createFPPArms(): FPPArmsRig {
 
   // --- Materials ---
   const sleeveMat = new THREE.MeshStandardMaterial({
-    color: 0x2E2A28, // dark charcoal knit
+    color: 0x3C3733, // charcoal knit (lifted so it reads under dusk light)
     roughness: 0.92,
     metalness: 0.02,
   });
 
   const cuffMat = new THREE.MeshStandardMaterial({
-    color: 0x4A433C, // slightly lighter ribbed cuff
+    color: 0x5B524A, // lighter ribbed cuff
     roughness: 0.85,
     metalness: 0.02,
   });
@@ -173,14 +173,14 @@ export function createFPPArms(): FPPArmsRig {
 
     // Knit sleeve forearm (slightly tapered)
     const sleeve = new THREE.Mesh(new THREE.CylinderGeometry(0.052, 0.043, 0.4, 18), sleeveMat);
-    sleeve.rotation.x = Math.PI / 2.4;
+    sleeve.rotation.x = -Math.PI / 2.25;
     sleeve.rotation.z = 0.22 * side;
     sleeve.castShadow = true;
     arm.add(sleeve);
 
     // Ribbed knit cuff at the wrist
     const cuff = new THREE.Mesh(new THREE.CylinderGeometry(0.046, 0.05, 0.07, 18), cuffMat);
-    cuff.rotation.x = Math.PI / 2.4;
+    cuff.rotation.x = -Math.PI / 2.25;
     cuff.rotation.z = 0.24 * side;
     cuff.position.set(0.008, 0.085, -0.17);
     arm.add(cuff);
@@ -232,17 +232,17 @@ export function createFPPArms(): FPPArmsRig {
   watchCase.rotation.z = -0.08;
   leftArm.add(watchCase);
 
-  // OLED screen (on top of case)
+  // OLED screen (on top of case, tilted toward the eye line)
   const smartwatchScreen = new THREE.Mesh(
     new THREE.PlaneGeometry(0.05, 0.056),
     smartwatchScreenMat,
   );
-  smartwatchScreen.position.set(0.008, 0.115, -0.199);
-  smartwatchScreen.rotation.x = -Math.PI / 2 - 0.1;
+  smartwatchScreen.position.set(0.008, 0.118, -0.196);
+  smartwatchScreen.rotation.x = -Math.PI / 2 - 0.42;
   smartwatchScreen.rotation.z = -0.08;
   leftArm.add(smartwatchScreen);
 
-  leftArm.position.set(-0.3, -0.26, -0.46);
+  leftArm.position.set(-0.34, -0.3, -0.5);
   armsGroup.add(leftArm);
 
   // --- RIGHT ARM (no watch) ---
@@ -253,17 +253,17 @@ export function createFPPArms(): FPPArmsRig {
 
   // Knit cuff ring detail
   const rightCuff = new THREE.Mesh(new THREE.CylinderGeometry(0.047, 0.05, 0.06, 18), cuffMat);
-  rightCuff.rotation.x = Math.PI / 2.4;
+  rightCuff.rotation.x = -Math.PI / 2.25;
   rightCuff.rotation.z = -0.24;
   rightCuff.position.set(-0.008, 0.085, -0.17);
   rightArm.add(rightCuff);
 
-  rightArm.position.set(0.3, -0.26, -0.46);
+  rightArm.position.set(0.34, -0.3, -0.5);
   armsGroup.add(rightArm);
 
   // Base rest poses
-  const baseLeftPos = new THREE.Vector3(-0.3, -0.26, -0.46);
-  const baseRightPos = new THREE.Vector3(0.3, -0.26, -0.46);
+  const baseLeftPos = new THREE.Vector3(-0.34, -0.3, -0.5);
+  const baseRightPos = new THREE.Vector3(0.34, -0.3, -0.5);
 
   let walkSwayTimer = 0;
   let breathePhase = 0;

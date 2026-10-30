@@ -185,7 +185,7 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
     renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.shadowMap.type = THREE.PCFShadowMap;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.15;
     renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -198,24 +198,47 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
 
     // Golden-hour dusk atmosphere: gradient dome + layered warm fog
     const skyCanvas = document.createElement('canvas');
-    skyCanvas.width = 512;
+    skyCanvas.width = 1024;
     skyCanvas.height = 512;
     const skyCtx = skyCanvas.getContext('2d')!;
     const skyGrad = skyCtx.createLinearGradient(0, 0, 0, 512);
-    skyGrad.addColorStop(0, '#241D3E');
-    skyGrad.addColorStop(0.42, '#7A4858');
-    skyGrad.addColorStop(0.68, '#D97B5F');
-    skyGrad.addColorStop(0.86, '#F2B175');
-    skyGrad.addColorStop(1, '#FBE3C0');
+    skyGrad.addColorStop(0, '#1C1734');
+    skyGrad.addColorStop(0.20, '#3E2949');
+    skyGrad.addColorStop(0.36, '#8A4A57');
+    skyGrad.addColorStop(0.46, '#D4785A');
+    skyGrad.addColorStop(0.50, '#F7B972');
+    skyGrad.addColorStop(0.54, '#FFD79B');
+    skyGrad.addColorStop(0.60, '#E8A176');
+    skyGrad.addColorStop(1, '#B97F62');
     skyCtx.fillStyle = skyGrad;
-    skyCtx.fillRect(0, 0, 512, 512);
+    skyCtx.fillRect(0, 0, 1024, 512);
+
+    // Sunset glow + sun disc right on the horizon line
+    const glow = skyCtx.createRadialGradient(660, 262, 6, 660, 262, 260);
+    glow.addColorStop(0, 'rgba(255, 246, 219, 0.95)');
+    glow.addColorStop(0.2, 'rgba(255, 213, 148, 0.7)');
+    glow.addColorStop(0.55, 'rgba(255, 165, 100, 0.28)');
+    glow.addColorStop(1, 'rgba(255, 140, 90, 0)');
+    skyCtx.fillStyle = glow;
+    skyCtx.fillRect(0, 0, 1024, 512);
+
+    // Wispy cirrus streaks catching the last light
+    for (let c = 0; c < 26; c++) {
+      const cy = 60 + Math.random() * 190;
+      const cx = Math.random() * 1024;
+      const cw = 80 + Math.random() * 240;
+      skyCtx.fillStyle = `rgba(255, ${190 + Math.random() * 45 | 0}, 150, ${0.05 + Math.random() * 0.09})`;
+      skyCtx.beginPath();
+      skyCtx.ellipse(cx, cy, cw, 4 + Math.random() * 7, 0, 0, Math.PI * 2);
+      skyCtx.fill();
+    }
     const skyTex = new THREE.CanvasTexture(skyCanvas);
     skyTex.colorSpace = THREE.SRGBColorSpace;
     const skyDome = new THREE.Mesh(
       new THREE.SphereGeometry(150, 32, 24),
       new THREE.MeshBasicMaterial({ map: skyTex, side: THREE.BackSide, fog: false, depthWrite: false }),
     );
-    skyDome.position.y = -10;
+    skyDome.position.y = 0;
     scene.add(skyDome);
 
     scene.background = new THREE.Color(0xD97B5F);
@@ -621,15 +644,15 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
 
     /* ---------------- 8. WASHROOM — luxury stone spa ---------------- */
     // Black marble feature wall + round backlit mirror
-    addBox(0.12, 2.6, 4.4, -8, 1.5, 11.88,
+    addBox(4.4, 2.6, 0.1, -8, 1.5, 11.62,
       new THREE.MeshStandardMaterial({ color: 0x14161A, roughness: 0.35, metalness: 0.4 }), false);
     const mirrorRingMat = new THREE.MeshStandardMaterial({
       color: 0x1A1E24, emissive: 0xFFD9A0, emissiveIntensity: 0, roughness: 0.3, metalness: 0.6,
     });
     mirrorRingMatRef.current = mirrorRingMat;
     const mirrorRing = new THREE.Mesh(new THREE.TorusGeometry(0.62, 0.035, 14, 40), mirrorRingMat);
-    mirrorRing.position.set(-8, 2.1, 11.83);
-    mirrorRing.rotation.y = Math.PI / 2;
+    mirrorRing.position.set(-8, 2.1, 11.54);
+    mirrorRing.rotation.y = Math.PI;
     scene.add(mirrorRing);
     const mirrorDisc = new THREE.Mesh(
       new THREE.CircleGeometry(0.56, 40),
@@ -896,6 +919,12 @@ export const FPPWalkthrough: React.FC<FPPWalkthroughProps> = ({
     /* ---------------- 12. FPP arms on camera ---------------- */
     const armsRig = createFPPArms();
     camera.add(armsRig.armsGroup);
+
+    // Soft camera-mounted fill light so the arms always read against the scene
+    const armFill = new THREE.PointLight(0xFFE3C0, 1.15, 3.2, 2);
+    armFill.position.set(0, -0.05, -0.1);
+    camera.add(armFill);
+
     scene.add(camera);
 
     /* ---------------- 13. Input: WASD + Space PTT + Pointer lock ---------------- */

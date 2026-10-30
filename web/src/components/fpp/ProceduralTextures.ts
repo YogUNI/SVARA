@@ -1,291 +1,514 @@
 import * as THREE from 'three';
 
 /**
- * Procedural PBR Texture Generator for SVARA Smart Home
- * Generates dynamic high-res textures via HTML5 Canvas (Zero external asset download overhead)
+ * Procedural PBR Texture Engine — SVARA "Japandi Luxury Villa" overhaul
+ * All textures 1024px+ generated via HTML5 Canvas (zero external assets).
  */
 
-// 1. Realistic Oak Wood Flooring Texture (Plank & Grain with Roughness)
-export function createWoodFloorTexture(): THREE.CanvasTexture {
+type RGB = [number, number, number];
+
+const clamp = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v));
+
+function makeCanvas(w: number, h: number): [HTMLCanvasElement, CanvasRenderingContext2D] {
   const canvas = document.createElement('canvas');
-  canvas.width = 1024;
-  canvas.height = 1024;
+  canvas.width = w;
+  canvas.height = h;
   const ctx = canvas.getContext('2d')!;
+  return [canvas, ctx];
+}
 
-  // Base warm wood tone
-  ctx.fillStyle = '#654B38';
-  ctx.fillRect(0, 0, 1024, 1024);
-
-  // Planks configuration
-  const plankHeight = 64;
-  const plankWidth = 256;
-
-  for (let y = 0; y < 1024; y += plankHeight) {
-    const offsetX = (y / plankHeight) % 2 === 0 ? 0 : plankWidth / 2;
-    for (let x = -plankWidth; x < 1024 + plankWidth; x += plankWidth) {
-      // Wood plank subtle shade variations
-      const toneVariance = Math.floor((Math.random() - 0.5) * 36);
-      const r = Math.min(255, Math.max(0, 115 + toneVariance));
-      const g = Math.min(255, Math.max(0, 85 + toneVariance));
-      const b = Math.min(255, Math.max(0, 60 + toneVariance));
-
-      ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
-      ctx.fillRect(x + offsetX, y, plankWidth, plankHeight);
-
-      // Wood grain lines
-      ctx.strokeStyle = `rgba(50, 35, 20, 0.22)`;
-      ctx.lineWidth = 1;
-      for (let i = 0; i < 8; i++) {
-        const grainY = y + Math.random() * plankHeight;
-        ctx.beginPath();
-        ctx.moveTo(x + offsetX, grainY);
-        ctx.bezierCurveTo(
-          x + offsetX + plankWidth * 0.3, grainY + (Math.random() - 0.5) * 6,
-          x + offsetX + plankWidth * 0.7, grainY + (Math.random() - 0.5) * 6,
-          x + offsetX + plankWidth, grainY
-        );
-        ctx.stroke();
-      }
-
-      // Plank bevel borders
-      ctx.strokeStyle = 'rgba(25, 15, 10, 0.75)';
-      ctx.lineWidth = 2;
-      ctx.strokeRect(x + offsetX, y, plankWidth, plankHeight);
-    }
-  }
-
+function finalizeTexture(
+  canvas: HTMLCanvasElement,
+  repeatX = 1,
+  repeatY = 1,
+): THREE.CanvasTexture {
   const texture = new THREE.CanvasTexture(canvas);
   texture.wrapS = THREE.RepeatWrapping;
   texture.wrapT = THREE.RepeatWrapping;
-  texture.repeat.set(4, 4);
+  texture.repeat.set(repeatX, repeatY);
+  texture.anisotropy = 8;
+  texture.colorSpace = THREE.SRGBColorSpace;
   return texture;
 }
 
-// 2. High-End Black Veined Marble Texture (Kitchen Counter & Bathroom Vanity)
-export function createMarbleTexture(): THREE.CanvasTexture {
-  const canvas = document.createElement('canvas');
-  canvas.width = 1024;
-  canvas.height = 1024;
-  const ctx = canvas.getContext('2d')!;
+/** Per-pixel micro-roughness noise overlay. */
+function grain(ctx: CanvasRenderingContext2D, w: number, h: number, amount = 16) {
+  const img = ctx.getImageData(0, 0, w, h);
+  const d = img.data;
+  for (let i = 0; i < d.length; i += 4) {
+    const n = (Math.random() - 0.5) * amount;
+    d[i] = clamp(d[i] + n, 0, 255);
+    d[i + 1] = clamp(d[i + 1] + n, 0, 255);
+    d[i + 2] = clamp(d[i + 2] + n, 0, 255);
+  }
+  ctx.putImageData(img, 0, 0);
+}
 
-  // Dark charcoal base
-  ctx.fillStyle = '#1A1D20';
-  ctx.fillRect(0, 0, 1024, 1024);
+/** Soft large-scale mottling for plaster/marble depth. */
+function blotches(ctx: CanvasRenderingContext2D, w: number, h: number, count = 24) {
+  for (let i = 0; i < count; i++) {
+    const x = Math.random() * w;
+    const y = Math.random() * h;
+    const r = 60 + Math.random() * 220;
+    const dark = Math.random() > 0.5;
+    const g = ctx.createRadialGradient(x, y, 0, x, y, r);
+    g.addColorStop(0, dark ? 'rgba(60, 50, 40, 0.045)' : 'rgba(255, 250, 240, 0.05)');
+    g.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, w, h);
+  }
+}
 
-  // Marble Veins
-  const drawVein = (color: string, width: number, count: number) => {
-    ctx.strokeStyle = color;
-    ctx.lineWidth = width;
-    for (let c = 0; c < count; c++) {
+/* =====================================================================
+ * 1. LUXURY WOOD — wide-plank natural oak parquet
+ *    organic grain, per-plank tone variance, chamfered seams, knots
+ * ===================================================================== */
+export function createLuxuryWoodParquetTexture(): THREE.CanvasTexture {
+  const SIZE = 1024;
+  const [canvas, ctx] = makeCanvas(SIZE, SIZE);
+
+  const base: RGB = [168, 132, 96];
+  ctx.fillStyle = `rgb(${base[0]},${base[1]},${base[2]})`;
+  ctx.fillRect(0, 0, SIZE, SIZE);
+
+  const plankW = 146;
+  const plankH = SIZE * 2.2; // rows staggered
+
+  const drawPlank = (x: number, y: number) => {
+    // per-plank tone variation
+    const tone = Math.floor((Math.random() - 0.5) * 42);
+    const r = clamp(base[0] + tone, 0, 255);
+    const g = clamp(base[1] + tone * 0.8, 0, 255);
+    const b = clamp(base[2] + tone * 0.6, 0, 255);
+
+    // soft vertical gradient across plank
+    const grad = ctx.createLinearGradient(x, y, x + plankW, y + plankH);
+    grad.addColorStop(0, `rgb(${r * 0.92},${g * 0.92},${b * 0.92})`);
+    grad.addColorStop(0.5, `rgb(${r},${g},${b})`);
+    grad.addColorStop(1, `rgb(${r * 0.9},${g * 0.9},${b * 0.9})`);
+    ctx.fillStyle = grad;
+    ctx.fillRect(x, y, plankW + 2, plankH + 2);
+
+    // natural grain: wavy longitudinal streaks
+    ctx.lineCap = 'round';
+    for (let s = 0; s < 14; s++) {
+      const gx = x + 6 + Math.random() * (plankW - 12);
+      ctx.strokeStyle = `rgba(96, 66, 40, ${0.10 + Math.random() * 0.16})`;
+      ctx.lineWidth = 0.8 + Math.random() * 1.5;
       ctx.beginPath();
-      let cx = Math.random() * 1024;
-      let cy = Math.random() * 1024;
-      ctx.moveTo(cx, cy);
-      for (let s = 0; s < 6; s++) {
-        cx += (Math.random() - 0.45) * 260;
-        cy += (Math.random() - 0.45) * 260;
-        ctx.lineTo(cx, cy);
+      ctx.moveTo(gx, y - 4);
+      ctx.bezierCurveTo(
+        gx + (Math.random() - 0.5) * 14, y + plankH * 0.3,
+        gx + (Math.random() - 0.5) * 14, y + plankH * 0.6,
+        gx + (Math.random() - 0.5) * 10, y + plankH + 4,
+      );
+      ctx.stroke();
+    }
+
+    // occasional knot
+    if (Math.random() < 0.42) {
+      const kx = x + 26 + Math.random() * (plankW - 52);
+      const ky = y + 60 + Math.random() * (plankH - 120);
+      for (let ring = 0; ring < 3; ring++) {
+        ctx.strokeStyle = `rgba(74, 46, 24, ${0.26 - ring * 0.06})`;
+        ctx.lineWidth = 1.3;
+        ctx.beginPath();
+        ctx.ellipse(kx, ky, 4 + ring * 3.4, 6 + ring * 4.2, 0, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+      ctx.fillStyle = 'rgba(68, 44, 24, 0.85)';
+      ctx.beginPath();
+      ctx.ellipse(kx, ky, 2.6, 3.4, 0, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // chamfer bevel: dark seam + light edge
+    ctx.strokeStyle = 'rgba(24, 14, 8, 0.9)';
+    ctx.lineWidth = 2.4;
+    ctx.strokeRect(x, y, plankW, plankH);
+    ctx.strokeStyle = 'rgba(255, 240, 214, 0.22)';
+    ctx.lineWidth = 1;
+    ctx.strokeRect(x + 1.5, y + 1.5, plankW - 3, plankH - 3);
+  };
+
+  // staggered rows (brick pattern wide-plank)
+  const rowCount = 4;
+  const rowH = SIZE / rowCount;
+  for (let row = 0; row < rowCount; row++) {
+    const y = row * rowH;
+    const offset = row % 2 === 0 ? 0 : -plankW / 2;
+    for (let x = offset - plankW; x < SIZE + plankW; x += plankW) {
+      drawPlank(x, y);
+    }
+  }
+
+  grain(ctx, SIZE, SIZE, 7);
+
+  return finalizeTexture(canvas, 4, 2);
+}
+
+/* =====================================================================
+ * 2. CALACATTA GOLD MARBLE — Italian white marble, organic grey-gold veins
+ * ===================================================================== */
+export function createCalacattaMarbleTexture(): THREE.CanvasTexture {
+  const SIZE = 1024;
+  const [canvas, ctx] = makeCanvas(SIZE, SIZE);
+
+  // warm ivory base
+  const grad = ctx.createLinearGradient(0, 0, SIZE, SIZE);
+  grad.addColorStop(0, '#F2EDE3');
+  grad.addColorStop(0.5, '#FAF6EE');
+  grad.addColorStop(1, '#EFE9DD');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, SIZE, SIZE);
+
+  blotches(ctx, SIZE, SIZE, 20);
+
+  // organic vein walker
+  const drawVein = (color: string, width: number, count: number, chaos = 0.24) => {
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    for (let c = 0; c < count; c++) {
+      let vx = Math.random() * SIZE;
+      let vy = Math.random() * SIZE;
+      const dir = Math.random() * Math.PI * 2;
+      ctx.strokeStyle = color;
+      ctx.lineWidth = width + Math.random() * width;
+      ctx.beginPath();
+      ctx.moveTo(vx, vy);
+      for (let s = 0; s < 10; s++) {
+        const a = dir + (Math.random() - 0.5) * chaos * 2;
+        vx += Math.cos(a) * (90 + Math.random() * 70);
+        vy += Math.sin(a) * (90 + Math.random() * 70);
+        ctx.lineTo(clamp(vx, -20, SIZE + 20), clamp(vy, -20, SIZE + 20));
       }
       ctx.stroke();
     }
   };
 
-  // Subtle smoky background veins
-  drawVein('rgba(255, 255, 255, 0.08)', 8, 12);
-  // Crisp distinct white veins
-  drawVein('rgba(240, 245, 250, 0.55)', 2.5, 9);
-  // Gold/Amber accent micro-veins
-  drawVein('rgba(235, 185, 95, 0.35)', 1.2, 5);
+  // broad smoky grey veins, fine gold veins, hairline champagne
+  drawVein('rgba(146, 143, 138, 0.42)', 5, 7, 0.3);
+  drawVein('rgba(198, 170, 112, 0.34)', 1.6, 6, 0.42);
+  drawVein('rgba(210, 205, 196, 0.5)', 1.1, 9, 0.5);
 
-  const texture = new THREE.CanvasTexture(canvas);
-  texture.wrapS = THREE.RepeatWrapping;
-  texture.wrapT = THREE.RepeatWrapping;
-  texture.repeat.set(2, 2);
-  return texture;
+  grain(ctx, SIZE, SIZE, 5);
+  return finalizeTexture(canvas, 2, 2);
 }
 
-// 3. Contemporary Textured Wall Plaster
-export function createWallPlasterTexture(): THREE.CanvasTexture {
-  const canvas = document.createElement('canvas');
-  canvas.width = 512;
-  canvas.height = 512;
-  const ctx = canvas.getContext('2d')!;
+/* =====================================================================
+ * 3. MICROCEMENT WALL — warm linen-taupe plaster, micro sand texture
+ * ===================================================================== */
+export function createMicrocementWallTexture(): THREE.CanvasTexture {
+  const SIZE = 1024;
+  const [canvas, ctx] = makeCanvas(SIZE, SIZE);
 
-  // Modern off-white / light slate plaster base
-  ctx.fillStyle = '#2A3B42';
-  ctx.fillRect(0, 0, 512, 512);
+  const base: RGB = [205, 196, 182];
+  ctx.fillStyle = `rgb(${base[0]},${base[1]},${base[2]})`;
+  ctx.fillRect(0, 0, SIZE, SIZE);
 
-  // Micro-noise texture for authentic plaster roughness
-  const imgData = ctx.getImageData(0, 0, 512, 512);
-  const data = imgData.data;
-  for (let i = 0; i < data.length; i += 4) {
-    const noise = (Math.random() - 0.5) * 22;
-    data[i] = Math.min(255, Math.max(0, data[i] + noise));
-    data[i + 1] = Math.min(255, Math.max(0, data[i + 1] + noise));
-    data[i + 2] = Math.min(255, Math.max(0, data[i + 2] + noise));
+  blotches(ctx, SIZE, SIZE, 30);
+  grain(ctx, SIZE, SIZE, 9);
+
+  // sand speckle: thousands of tiny tonal dots
+  for (let i = 0; i < 2200; i++) {
+    const sx = Math.random() * SIZE;
+    const sy = Math.random() * SIZE;
+    const t = Math.random();
+    ctx.fillStyle = t < 0.4
+      ? 'rgba(150, 138, 120, 0.14)'
+      : t < 0.75
+        ? 'rgba(255, 250, 240, 0.12)'
+        : 'rgba(110, 98, 82, 0.14)';
+    ctx.beginPath();
+    ctx.arc(sx, sy, 0.7 + Math.random() * 1.2, 0, Math.PI * 2);
+    ctx.fill();
   }
-  ctx.putImageData(imgData, 0, 0);
 
-  const texture = new THREE.CanvasTexture(canvas);
-  texture.wrapS = THREE.RepeatWrapping;
-  texture.wrapT = THREE.RepeatWrapping;
-  texture.repeat.set(6, 3);
-  return texture;
+  // sparse hairline micro cracks
+  ctx.strokeStyle = 'rgba(150, 138, 120, 0.22)';
+  ctx.lineWidth = 0.8;
+  for (let i = 0; i < 7; i++) {
+    let cx = Math.random() * SIZE;
+    let cy = Math.random() * SIZE;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    for (let s = 0; s < 6; s++) {
+      cx += (Math.random() - 0.5) * 150;
+      cy += (Math.random() - 0.5) * 150;
+      ctx.lineTo(clamp(cx, 0, SIZE), clamp(cy, 0, SIZE));
+    }
+    ctx.stroke();
+  }
+
+  return finalizeTexture(canvas, 3, 3);
 }
 
-// 4. Woven Fabric / Carpet Texture (Cozy Bedroom & Living Area)
-export function createFabricRugTexture(): THREE.CanvasTexture {
-  const canvas = document.createElement('canvas');
-  canvas.width = 512;
-  canvas.height = 512;
-  const ctx = canvas.getContext('2d')!;
+/* =====================================================================
+ * 4. WOVEN FABRIC — linen slub weave for sofa, rugs, duvets
+ * ===================================================================== */
+export function createWovenFabricTexture(baseColor = '#B7AC9F'): THREE.CanvasTexture {
+  const SIZE = 512;
+  const [canvas, ctx] = makeCanvas(SIZE, SIZE);
 
-  // Base rug color (Pine slate)
-  ctx.fillStyle = '#264841';
-  ctx.fillRect(0, 0, 512, 512);
+  ctx.fillStyle = baseColor;
+  ctx.fillRect(0, 0, SIZE, SIZE);
 
-  // Woven thread cross-hatch pattern
-  ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
-  ctx.lineWidth = 1;
-  for (let i = 0; i < 512; i += 4) {
+  // fine woven thread pattern (warp + weft)
+  const step = 4;
+  for (let i = 0; i < SIZE; i += step) {
+    ctx.strokeStyle = 'rgba(30, 24, 18, 0.13)';
+    ctx.lineWidth = 1;
     ctx.beginPath();
     ctx.moveTo(i, 0);
-    ctx.lineTo(i, 512);
+    ctx.lineTo(i, SIZE);
     ctx.stroke();
-
     ctx.beginPath();
     ctx.moveTo(0, i);
-    ctx.lineTo(512, i);
+    ctx.lineTo(SIZE, i);
+    ctx.stroke();
+  }
+  // bright thread highlights
+  for (let i = 0; i < SIZE; i += step * 2) {
+    ctx.strokeStyle = 'rgba(255, 250, 240, 0.1)';
+    ctx.lineWidth = 0.8;
+    ctx.beginPath();
+    ctx.moveTo(i + 1, 0);
+    ctx.lineTo(i + 1, SIZE);
     ctx.stroke();
   }
 
-  // Geometric border
-  ctx.strokeStyle = '#D5DDD9';
-  ctx.lineWidth = 12;
-  ctx.strokeRect(16, 16, 480, 480);
+  // slub nubs (irregular thread thickenings)
+  for (let i = 0; i < 340; i++) {
+    const x = Math.random() * SIZE;
+    const y = Math.random() * SIZE;
+    const len = 4 + Math.random() * 8;
+    ctx.strokeStyle = `rgba(${Math.random() > 0.5 ? '255,250,240' : '40,32,24'}, ${0.08 + Math.random() * 0.08})`;
+    ctx.lineWidth = 1.6;
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x + len, y + (Math.random() - 0.5) * 2);
+    ctx.stroke();
+  }
 
-  const texture = new THREE.CanvasTexture(canvas);
-  texture.wrapS = THREE.RepeatWrapping;
-  texture.wrapT = THREE.RepeatWrapping;
-  return texture;
+  grain(ctx, SIZE, SIZE, 4);
+  return finalizeTexture(canvas, 2, 2);
 }
 
-// 5. Starry Night Outdoor Scenery for Windows
-export function createSkyboxTexture(): THREE.CanvasTexture {
-  const canvas = document.createElement('canvas');
-  canvas.width = 1024;
-  canvas.height = 512;
-  const ctx = canvas.getContext('2d')!;
+/* =====================================================================
+ * 5. ACOUSTIC WALNUT SLATS — vertical wood slat wall panels
+ * ===================================================================== */
+export function createAcousticSlatWoodTexture(): THREE.CanvasTexture {
+  const SIZE = 1024;
+  const [canvas, ctx] = makeCanvas(SIZE, SIZE);
 
-  // Deep night gradient
-  const grad = ctx.createLinearGradient(0, 0, 0, 512);
-  grad.addColorStop(0, '#04090F');
-  grad.addColorStop(0.7, '#0B1924');
-  grad.addColorStop(1, '#152C38');
-  ctx.fillStyle = grad;
-  ctx.fillRect(0, 0, 1024, 512);
+  // dark shadow gap background
+  ctx.fillStyle = '#191009';
+  ctx.fillRect(0, 0, SIZE, SIZE);
 
-  // Distant stars & garden silhouette
-  ctx.fillStyle = '#FFFFFF';
-  for (let s = 0; s < 180; s++) {
-    const sx = Math.random() * 1024;
-    const sy = Math.random() * 320;
-    const sz = Math.random() * 1.8;
-    ctx.beginPath();
-    ctx.arc(sx, sy, sz, 0, Math.PI * 2);
-    ctx.fill();
-  }
+  const slatW = 76;
+  const gapW = 14;
 
-  // Soft distant trees silhouette
-  ctx.fillStyle = '#050D12';
-  for (let t = 0; t < 1024; t += 32) {
-    const th = 60 + Math.random() * 50;
-    ctx.beginPath();
-    ctx.arc(t, 512, th, Math.PI, 0);
-    ctx.fill();
-  }
+  let x = 0;
+  while (x < SIZE) {
+    const tone = (Math.random() - 0.5) * 30;
+    const r = clamp(104 + tone, 0, 255);
+    const g = clamp(70 + tone * 0.8, 0, 255);
+    const b = clamp(48 + tone * 0.6, 0, 255);
 
-  return new THREE.CanvasTexture(canvas);
-}
+    const grad = ctx.createLinearGradient(x, 0, x + slatW, 0);
+    grad.addColorStop(0, `rgb(${r * 0.82},${g * 0.82},${b * 0.82})`);
+    grad.addColorStop(0.18, `rgb(${r},${g},${b})`);
+    grad.addColorStop(0.86, `rgb(${r * 1.04},${g * 1.04},${b * 1.04})`);
+    grad.addColorStop(1, `rgb(${r * 0.78},${g * 0.78},${b * 0.78})`);
+    ctx.fillStyle = grad;
+    ctx.fillRect(x, 0, slatW, SIZE);
 
-// 6. Lush Cartoon Stylized Grass Texture
-export function createCartoonGrassTexture(): THREE.CanvasTexture {
-  const canvas = document.createElement('canvas');
-  canvas.width = 512;
-  canvas.height = 512;
-  const ctx = canvas.getContext('2d')!;
-
-  // Fresh vibrant cartoon green base
-  ctx.fillStyle = '#489A3E';
-  ctx.fillRect(0, 0, 512, 512);
-
-  // Stylized grass blades patches
-  const bladeColors = ['#5CB84D', '#6BCB58', '#388031', '#78D663'];
-  for (let i = 0; i < 400; i++) {
-    const gx = Math.random() * 512;
-    const gy = Math.random() * 512;
-    const color = bladeColors[Math.floor(Math.random() * bladeColors.length)];
-    ctx.fillStyle = color;
-    ctx.beginPath();
-    ctx.moveTo(gx, gy);
-    ctx.lineTo(gx + 4 + Math.random() * 4, gy - 8 - Math.random() * 8);
-    ctx.lineTo(gx + 8, gy);
-    ctx.closePath();
-    ctx.fill();
-  }
-
-  // Cute tiny cartoon wildflowers (yellow, white, pink)
-  const flowerColors = ['#FFD152', '#FFFFFF', '#FF85A1'];
-  for (let f = 0; f < 35; f++) {
-    const fx = Math.random() * 512;
-    const fy = Math.random() * 512;
-    ctx.fillStyle = flowerColors[Math.floor(Math.random() * flowerColors.length)];
-    ctx.beginPath();
-    ctx.arc(fx, fy, 3.5, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = '#FFAA00';
-    ctx.beginPath();
-    ctx.arc(fx, fy, 1.2, 0, Math.PI * 2);
-    ctx.fill();
-  }
-
-  const texture = new THREE.CanvasTexture(canvas);
-  texture.wrapS = THREE.RepeatWrapping;
-  texture.wrapT = THREE.RepeatWrapping;
-  texture.repeat.set(6, 6);
-  return texture;
-}
-
-// 7. Stylized Stone Pavers / Garden Walkway Texture
-export function createStonePathTexture(): THREE.CanvasTexture {
-  const canvas = document.createElement('canvas');
-  canvas.width = 512;
-  canvas.height = 512;
-  const ctx = canvas.getContext('2d')!;
-
-  ctx.fillStyle = '#3F4E46'; // Dirt/moss mortar base
-  ctx.fillRect(0, 0, 512, 512);
-
-  // Rounded cartoon stepping stones
-  const stoneColors = ['#8A9A90', '#A3B4AA', '#76877D', '#B5C4BB'];
-  for (let y = 16; y < 512; y += 64) {
-    for (let x = 16; x < 512; x += 64) {
-      const sx = x + (Math.random() - 0.5) * 12;
-      const sy = y + (Math.random() - 0.5) * 12;
-      const color = stoneColors[Math.floor(Math.random() * stoneColors.length)];
-      ctx.fillStyle = color;
+    // vertical walnut grain
+    for (let s = 0; s < 10; s++) {
+      const gx = x + 6 + Math.random() * (slatW - 12);
+      ctx.strokeStyle = `rgba(34, 20, 10, ${0.1 + Math.random() * 0.12})`;
+      ctx.lineWidth = 1;
       ctx.beginPath();
-      ctx.roundRect(sx, sy, 52, 52, [14, 14, 14, 14]);
-      ctx.fill();
-      ctx.strokeStyle = 'rgba(0, 0, 0, 0.25)';
-      ctx.lineWidth = 3;
+      ctx.moveTo(gx, 0);
+      ctx.bezierCurveTo(
+        gx + (Math.random() - 0.5) * 6, SIZE * 0.33,
+        gx + (Math.random() - 0.5) * 6, SIZE * 0.66,
+        gx + (Math.random() - 0.5) * 5, SIZE,
+      );
       ctx.stroke();
     }
+
+    // rounded slat top & bottom shadow
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.28)';
+    ctx.fillRect(x, 0, slatW, 3);
+    ctx.fillRect(x, SIZE - 3, slatW, 3);
+
+    x += slatW + gapW;
   }
 
-  const texture = new THREE.CanvasTexture(canvas);
-  texture.wrapS = THREE.RepeatWrapping;
-  texture.wrapT = THREE.RepeatWrapping;
-  texture.repeat.set(2, 6);
-  return texture;
+  return finalizeTexture(canvas, 2, 1);
 }
+
+/* =====================================================================
+ * 6. GOLDEN HOUR / WARM DUSK SKY — grand dusk backdrop for windows/garden
+ * ===================================================================== */
+export function createGoldenHourSkyTexture(): THREE.CanvasTexture {
+  const W = 1024;
+  const H = 512;
+  const [canvas, ctx] = makeCanvas(W, H);
+
+  const grad = ctx.createLinearGradient(0, 0, 0, H);
+  grad.addColorStop(0, '#2E2645');
+  grad.addColorStop(0.32, '#7D4A5E');
+  grad.addColorStop(0.55, '#C86F54');
+  grad.addColorStop(0.78, '#EFA368');
+  grad.addColorStop(0.92, '#F8CF9A');
+  grad.addColorStop(1, '#FBE6C2');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, W, H);
+
+  // sun glow near horizon
+  const sunX = W * 0.68;
+  const sunY = H * 0.78;
+  const sun = ctx.createRadialGradient(sunX, sunY, 4, sunX, sunY, 220);
+  sun.addColorStop(0, 'rgba(255, 244, 214, 0.95)');
+  sun.addColorStop(0.25, 'rgba(255, 222, 160, 0.55)');
+  sun.addColorStop(1, 'rgba(255, 200, 130, 0)');
+  ctx.fillStyle = sun;
+  ctx.fillRect(0, 0, W, H);
+
+  // wispy sunset clouds
+  for (let c = 0; c < 16; c++) {
+    const cy = Math.random() * H * 0.5;
+    const cx = Math.random() * W;
+    const cw = 120 + Math.random() * 240;
+    ctx.fillStyle = `rgba(255, 190, 140, ${0.05 + Math.random() * 0.1})`;
+    ctx.beginPath();
+    ctx.ellipse(cx, cy, cw, 6 + Math.random() * 10, 0, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // distant hills silhouette
+  ctx.fillStyle = '#4A3847';
+  ctx.beginPath();
+  ctx.moveTo(0, H);
+  for (let x = 0; x <= W; x += 24) {
+    ctx.lineTo(x, H - 34 - Math.sin(x * 0.012 + 2) * 18 - Math.cos(x * 0.031) * 10);
+  }
+  ctx.lineTo(W, H);
+  ctx.closePath();
+  ctx.fill();
+
+  // stars in upper sky
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+  for (let s = 0; s < 60; s++) {
+    ctx.beginPath();
+    ctx.arc(Math.random() * W, Math.random() * H * 0.3, 0.6 + Math.random(), 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  return finalizeTexture(canvas, 1, 1);
+}
+
+/* =====================================================================
+ * 7. ZEN LAWN — HD manicured grass for the modern front garden
+ * ===================================================================== */
+export function createZenGrassTexture(): THREE.CanvasTexture {
+  const SIZE = 1024;
+  const [canvas, ctx] = makeCanvas(SIZE, SIZE);
+
+  // deep natural green base with subtle tonal drift
+  const base: RGB = [66, 114, 66];
+  const grad = ctx.createLinearGradient(0, 0, SIZE, SIZE);
+  grad.addColorStop(0, `rgb(${base[0]},${base[1]},${base[2]})`);
+  grad.addColorStop(1, `rgb(${base[0] * 0.9},${base[1] * 0.92},${base[2] * 0.9})`);
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, SIZE, SIZE);
+
+  // thousands of fine grass blades
+  for (let i = 0; i < 3600; i++) {
+    const gx = Math.random() * SIZE;
+    const gy = Math.random() * SIZE;
+    const len = 3 + Math.random() * 7;
+    const dir = (Math.random() - 0.5) * 0.8;
+    const bright = Math.random() > 0.5;
+    ctx.strokeStyle = bright
+      ? `rgba(120, ${160 + Math.random() * 30}, 96, ${0.25 + Math.random() * 0.2})`
+      : `rgba(28, ${58 + Math.random() * 20}, 30, ${0.25 + Math.random() * 0.2})`;
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(gx, gy);
+    ctx.lineTo(gx + len * dir, gy - len);
+    ctx.stroke();
+  }
+
+  grain(ctx, SIZE, SIZE, 6);
+  return finalizeTexture(canvas, 6, 3);
+}
+
+/* =====================================================================
+ * 8. GRANITE STEPPING STONES — zen garden walkway pavers
+ * ===================================================================== */
+export function createGraniteSlabTexture(): THREE.CanvasTexture {
+  const SIZE = 512;
+  const [canvas, ctx] = makeCanvas(SIZE, SIZE);
+
+  // pebble/gravel filler base
+  ctx.fillStyle = '#59524C';
+  ctx.fillRect(0, 0, SIZE, SIZE);
+  for (let i = 0; i < 500; i++) {
+    ctx.fillStyle = `rgba(${105 + Math.random() * 40}, ${97 + Math.random() * 40}, ${85 + Math.random() * 36}, 0.5)`;
+    ctx.beginPath();
+    ctx.arc(Math.random() * SIZE, Math.random() * SIZE, 1 + Math.random() * 2, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // irregular granite slabs
+  const slabColors: RGB[] = [[158, 152, 144], [170, 164, 156], [148, 142, 134]];
+  const slabCount = 5;
+  for (let s = 0; s < slabCount; s++) {
+    const sx = 60 + Math.random() * (SIZE - 120);
+    const sy = 60 + Math.random() * (SIZE - 120);
+    const sw = 70 + Math.random() * 40;
+    // rounded organic slab
+    ctx.fillStyle = `rgb(${slabColors[s % 3].join(',')})`;
+    ctx.beginPath();
+    const radius = 18;
+    ctx.roundRect(sx, sy, sw, sw * 0.72, radius);
+    ctx.fill();
+
+    // granite speckle
+    for (let p = 0; p < 130; p++) {
+      const dark = Math.random() > 0.55;
+      ctx.fillStyle = dark ? 'rgba(40, 38, 36, 0.35)' : 'rgba(255, 255, 255, 0.3)';
+      ctx.beginPath();
+      ctx.arc(sx + Math.random() * sw, sy + Math.random() * sw * 0.72, 0.6 + Math.random() * 1.4, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // bevel edge
+    ctx.strokeStyle = 'rgba(30, 26, 22, 0.7)';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.roundRect(sx, sy, sw, sw * 0.72, radius);
+    ctx.stroke();
+    ctx.strokeStyle = 'rgba(255, 250, 240, 0.18)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.roundRect(sx + 2, sy + 2, sw - 4, sw * 0.72 - 4, radius);
+    ctx.stroke();
+  }
+
+  return finalizeTexture(canvas, 2, 8);
+}
+
+/* =====================================================================
+ * Backwards-compatible aliases (Home3DView + older imports)
+ * ===================================================================== */
+export const createWoodFloorTexture = createLuxuryWoodParquetTexture;
+export const createMarbleTexture = createCalacattaMarbleTexture;
+export const createWallPlasterTexture = createMicrocementWallTexture;
+export const createFabricRugTexture = createWovenFabricTexture;
+export const createSkyboxTexture = createGoldenHourSkyTexture;
+export const createCartoonGrassTexture = createZenGrassTexture;
+export const createStonePathTexture = createGraniteSlabTexture;

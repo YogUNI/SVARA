@@ -7,6 +7,7 @@ import {
   createWoodFloorTexture,
   createMarbleTexture,
   createFabricRugTexture,
+  createZenGrassTexture,
 } from './fpp/ProceduralTextures';
 
 interface Home3DViewProps {
@@ -132,6 +133,11 @@ export const Home3DView: React.FC<Home3DViewProps> = ({ devices, activeLocation 
     rugTex.wrapS = THREE.RepeatWrapping;
     rugTex.wrapT = THREE.RepeatWrapping;
 
+    const zenGrassTex = createZenGrassTexture();
+    zenGrassTex.repeat.set(3, 3);
+    zenGrassTex.wrapS = THREE.RepeatWrapping;
+    zenGrassTex.wrapT = THREE.RepeatWrapping;
+
     const base = new THREE.Mesh(
       new THREE.BoxGeometry(36, 1.4, 32),
       new THREE.MeshStandardMaterial({ color: 0x0f172a, roughness: 0.55, metalness: 0.35 }),
@@ -142,7 +148,7 @@ export const Home3DView: React.FC<Home3DViewProps> = ({ devices, activeLocation 
 
     const lawn = new THREE.Mesh(
       new THREE.PlaneGeometry(35.4, 31.4),
-      new THREE.MeshStandardMaterial({ color: 0x13231d, roughness: 0.95, metalness: 0 }),
+      new THREE.MeshStandardMaterial({ map: zenGrassTex, color: 0x9ac0a0, roughness: 0.95, metalness: 0 }),
     );
     lawn.rotation.x = -Math.PI / 2;
     lawn.position.y = 0.005;

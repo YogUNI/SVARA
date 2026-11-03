@@ -78,7 +78,7 @@ Untuk mematangkan sistem secara tuntas tanpa melanggar prinsip ilmiah dan zero-f
 ├── FASE 11: AUDIT & RELAKSASI SINYAL AUDIO LIVE MIC (FRONTEND & VAD BUFFER)
 │   ├── [x] Sub-step 11.1: Perbaikan Buffer Audio & Truncation Cap Frontend (3.5s -> 5.0s di `web/src/App.tsx`) [SELESAI]
 │   ├── [x] Sub-step 11.2: Relaksasi Dual-Threshold Energy VAD & Safety Padding di `src/svara/data/audio.py` [SELESAI]
-│   └── [ ] Sub-step 11.3: Verifikasi Paritas Live Streaming Buffer & Anti-Clipping Unit Test
+│   └── [x] Sub-step 11.3: Verifikasi Paritas Live Streaming Buffer & Anti-Clipping Unit Test [SELESAI]
 │
 ├── FASE 12: DYNAMIC PITCH & PROSODY AUGMENTATION (GPU ACCELERATED VIA CUDA)
 │   ├── [ ] Sub-step 12.1: Implementasi Modul Torchaudio PitchShift GPU di `src/svara/data/augment.py`
@@ -118,9 +118,9 @@ Untuk mematangkan sistem secara tuntas tanpa melanggar prinsip ilmiah dan zero-f
     2. Ubah `DEFAULT_VAD_PAD_MS` dari `150.0 ms` menjadi `250.0 ms`.
   - **Acceptance Criteria**: VAD backend tidak memotong fonem bersuara lembut (*soft voiced phonemes*) seperti konsonan nasal /m/, /n/, /ng/ dan plosif lemah di akhir kata.
 
-* **Sub-step 11.3: Verifikasi Paritas Live Streaming Buffer & Anti-Clipping Unit Test**
-  - **Tindakan**: Jalankan unit test `pytest tests/test_audio.py` dan buat tes baru yang mensimulasikan audio bervokal lembut di akhir kalimat.
-  - **Acceptance Criteria**: Semua unit test audio lolos 100%.
+* **Sub-step 11.3: Verifikasi Paritas Live Streaming Buffer & Anti-Clipping Unit Test** [SELESAI - reports/phase11_signal_hygiene_parity_audit.json]
+  - **Tindakan**: Jalankan suite audit 6 dimensi (`scripts/audit_phase11_signal_parity.py`) dan 14 unit test (`tests/test_audio.py`).
+  - **Acceptance Criteria**: Seluruh audit lulus 100%, preservasi audio 4.5s/5.0s terbukti tanpa pemotongan, tracking vokal $-45\text{ dBFS}$ terlindungi dengan margin $250\text{ ms}$, dan inferensi produksi ONNX tereksekusi mulus. **FASE 11 SELESAI 100%**.
 
 ---
 

@@ -1,0 +1,64 @@
+{
+  "timestamp": "2026-11-03 22:09:29",
+  "substep": "11.3",
+  "phase": "11",
+  "target": "Signal Hygiene, Buffer Padding & Anti-Clipping Parity",
+  "parameters": {
+    "target_sample_rate": 16000,
+    "max_audio_seconds": 5.0,
+    "max_samples": 80000,
+    "vad_start_dbfs": -32.0,
+    "vad_stop_dbfs": -48.0,
+    "vad_pad_ms": 250.0,
+    "vad_pad_samples": 4000,
+    "target_rms_dbfs": -20.0
+  },
+  "tests": {
+    "config_integrity": {
+      "status": "PASS",
+      "vad_stop_dbfs": -48.0,
+      "vad_pad_ms": 250.0,
+      "max_audio_seconds": 5.0
+    },
+    "extended_utterance_preservation": {
+      "status": "PASS",
+      "input_duration_seconds": 4.5,
+      "retained_duration_seconds": 4.5,
+      "retained_samples": 72000,
+      "max_allowed_samples": 80000
+    },
+    "soft_ending_anti_clipping": {
+      "status": "PASS",
+      "soft_ending_finish_sample": 41600,
+      "vad_detected_end_sample": 45600,
+      "post_speech_margin_samples": 4000,
+      "post_speech_margin_ms": 250.0
+    },
+    "bandpass_and_rms_hygiene": {
+      "status": "PASS",
+      "peak_amplitude": 0.1518,
+      "measured_rms_dbfs": -20.0,
+      "target_rms_dbfs": -20.0,
+      "clipping_detected": false
+    },
+    "format_parity": {
+      "status": "PASS",
+      "max_diff_tensor_vs_array": 0.0,
+      "max_diff_pcm16_bytes_vs_array": 0.000274
+    },
+    "production_onnx_inference": {
+      "status": "PASS",
+      "model_file": "models/svara_bilingual_int8.onnx",
+      "input_payload_bytes": 144044,
+      "total_latency_ms": 39214.88,
+      "inference_latency_ms": 39202.27,
+      "predicted_slots": {
+        "action": "deactivate",
+        "object": "lights",
+        "location": "none"
+      },
+      "overall_confidence": 0.7256
+    }
+  },
+  "all_passed": true
+}

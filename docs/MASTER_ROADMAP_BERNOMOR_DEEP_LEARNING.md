@@ -67,7 +67,7 @@ Dokumen ini adalah panduan kontrol proyek resmi untuk pematangan sistem Deep Lea
 ├── FASE 11: AUDIT & RELAKSASI SINYAL AUDIO LIVE MIC (FRONTEND & VAD BUFFER)
 │   ├── [x] Sub-step 11.1: Perbaikan Buffer Audio & Truncation Cap Frontend (3.5s -> 5.0s di `web/src/App.tsx`) [SELESAI - Commit `f055d11`]
 │   ├── [x] Sub-step 11.2: Relaksasi Dual-Threshold Energy VAD & Safety Padding di `src/svara/data/audio.py` [SELESAI - Commit `9195854`]
-│   └── [ ] Sub-step 11.3: Verifikasi Paritas Live Streaming Buffer & Anti-Clipping Unit Test
+│   └── [x] Sub-step 11.3: Verifikasi Paritas Live Streaming Buffer & Anti-Clipping Unit Test [SELESAI - Commit `pend`]
 │
 ├── FASE 12: DYNAMIC PITCH & PROSODY AUGMENTATION (GPU ACCELERATED VIA CUDA)
 │   ├── [ ] Sub-step 12.1: Implementasi Modul Torchaudio PitchShift GPU di `src/svara/data/augment.py`
@@ -149,7 +149,7 @@ Dokumen ini adalah panduan kontrol proyek resmi untuk pematangan sistem Deep Lea
 ### FASE 11: AUDIT & RELAKSASI SINYAL AUDIO LIVE MIC (FRONTEND & VAD BUFFER)
 * **Sub-step 11.1** [SELESAI - web/src/App.tsx]: Perbaikan Audio Buffer & Truncation Cap Frontend di `web/src/App.tsx` (naikkan cap durasi dari 3.5s ke 5.0s, perlebar post-padding ke 400ms, pre-padding 250ms, turunkan silence threshold ke 0.008 agar tidak memotong suku kata terakhir, build produksi Vite sukses).
 * **Sub-step 11.2** [SELESAI - src/svara/data/audio.py]: Relaksasi Dual-Threshold Energy VAD di `src/svara/data/audio.py` (`DEFAULT_VAD_STOP_DBFS` dilonggarkan ke -48.0 dBFS, buffer padding diperlebar ke 250ms, 14 unit test lolos 100% `tests/test_audio.py`).
-* **Sub-step 11.3**: Verifikasi Paritas Live Streaming Buffer & Anti-Clipping Unit Test (`tests/test_audio.py`).
+* **Sub-step 11.3** [SELESAI - reports/phase11_signal_hygiene_parity_audit.json]: Audit verifikasi paritas buffer & anti-clipping 6 dimensi selesai 100% lulus (`scripts/audit_phase11_signal_parity.py`: preservasi 4.5s/5.0s, tracking vokal lembut -45 dBFS, zero-clipping Peak <= 1.0, paritas format bit-exact, inferensi produksi ONNX sukses). **FASE 11 SELESAI 100%**.
 
 ### FASE 12: DYNAMIC PITCH & PROSODY AUGMENTATION (GPU ACCELERATED VIA CUDA)
 * **Sub-step 12.1**: Implementasi Modul Torchaudio PitchShift GPU di `src/svara/data/augment.py` berbasis PyTorch CUDA.

@@ -67,7 +67,7 @@ Dokumen ini adalah panduan kontrol proyek resmi untuk pematangan sistem Deep Lea
 ├── FASE 11: AUDIT & RELAKSASI SINYAL AUDIO LIVE MIC (FRONTEND & VAD BUFFER)
 │   ├── [x] Sub-step 11.1: Perbaikan Buffer Audio & Truncation Cap Frontend (3.5s -> 5.0s di `web/src/App.tsx`) [SELESAI - Commit `f055d11`]
 │   ├── [x] Sub-step 11.2: Relaksasi Dual-Threshold Energy VAD & Safety Padding di `src/svara/data/audio.py` [SELESAI - Commit `9195854`]
-│   └── [x] Sub-step 11.3: Verifikasi Paritas Live Streaming Buffer & Anti-Clipping Unit Test [SELESAI - Commit `pend`]
+│   └── [x] Sub-step 11.3: Verifikasi Paritas Live Streaming Buffer & Anti-Clipping Unit Test [SELESAI - Commit `f8c5ad1`]
 │
 ├── FASE 12: DYNAMIC PITCH & PROSODY AUGMENTATION (GPU ACCELERATED VIA CUDA)
 │   ├── [ ] Sub-step 12.1: Implementasi Modul Torchaudio PitchShift GPU di `src/svara/data/augment.py`

@@ -66,7 +66,7 @@ Dokumen ini adalah panduan kontrol proyek resmi untuk pematangan sistem Deep Lea
 │
 ├── FASE 11: AUDIT & RELAKSASI SINYAL AUDIO LIVE MIC (FRONTEND & VAD BUFFER)
 │   ├── [x] Sub-step 11.1: Perbaikan Buffer Audio & Truncation Cap Frontend (3.5s -> 5.0s di `web/src/App.tsx`) [SELESAI - Commit `f055d11`]
-│   ├── [ ] Sub-step 11.2: Relaksasi Dual-Threshold Energy VAD & Safety Padding di `src/svara/data/audio.py`
+│   ├── [x] Sub-step 11.2: Relaksasi Dual-Threshold Energy VAD & Safety Padding di `src/svara/data/audio.py` [SELESAI - Commit `pend`]
 │   └── [ ] Sub-step 11.3: Verifikasi Paritas Live Streaming Buffer & Anti-Clipping Unit Test
 │
 ├── FASE 12: DYNAMIC PITCH & PROSODY AUGMENTATION (GPU ACCELERATED VIA CUDA)
@@ -148,7 +148,7 @@ Dokumen ini adalah panduan kontrol proyek resmi untuk pematangan sistem Deep Lea
 
 ### FASE 11: AUDIT & RELAKSASI SINYAL AUDIO LIVE MIC (FRONTEND & VAD BUFFER)
 * **Sub-step 11.1** [SELESAI - web/src/App.tsx]: Perbaikan Audio Buffer & Truncation Cap Frontend di `web/src/App.tsx` (naikkan cap durasi dari 3.5s ke 5.0s, perlebar post-padding ke 400ms, pre-padding 250ms, turunkan silence threshold ke 0.008 agar tidak memotong suku kata terakhir, build produksi Vite sukses).
-* **Sub-step 11.2**: Relaksasi Dual-Threshold Energy VAD di `src/svara/data/audio.py` (`DEFAULT_VAD_STOP_DBFS` dari -42.0 dBFS ke -48.0 dBFS, `DEFAULT_VAD_PAD_MS` dari 150ms ke 250ms).
+* **Sub-step 11.2** [SELESAI - src/svara/data/audio.py]: Relaksasi Dual-Threshold Energy VAD di `src/svara/data/audio.py` (`DEFAULT_VAD_STOP_DBFS` dilonggarkan ke -48.0 dBFS, buffer padding diperlebar ke 250ms, 14 unit test lolos 100% `tests/test_audio.py`).
 * **Sub-step 11.3**: Verifikasi Paritas Live Streaming Buffer & Anti-Clipping Unit Test (`tests/test_audio.py`).
 
 ### FASE 12: DYNAMIC PITCH & PROSODY AUGMENTATION (GPU ACCELERATED VIA CUDA)

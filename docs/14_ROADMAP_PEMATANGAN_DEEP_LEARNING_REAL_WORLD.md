@@ -77,7 +77,7 @@ Untuk mematangkan sistem secara tuntas tanpa melanggar prinsip ilmiah dan zero-f
 ```
 ├── FASE 11: AUDIT & RELAKSASI SINYAL AUDIO LIVE MIC (FRONTEND & VAD BUFFER)
 │   ├── [x] Sub-step 11.1: Perbaikan Buffer Audio & Truncation Cap Frontend (3.5s -> 5.0s di `web/src/App.tsx`) [SELESAI]
-│   ├── [ ] Sub-step 11.2: Relaksasi Dual-Threshold Energy VAD & Safety Padding di `src/svara/data/audio.py`
+│   ├── [x] Sub-step 11.2: Relaksasi Dual-Threshold Energy VAD & Safety Padding di `src/svara/data/audio.py` [SELESAI]
 │   └── [ ] Sub-step 11.3: Verifikasi Paritas Live Streaming Buffer & Anti-Clipping Unit Test
 │
 ├── FASE 12: DYNAMIC PITCH & PROSODY AUGMENTATION (GPU ACCELERATED VIA CUDA)
@@ -111,7 +111,7 @@ Untuk mematangkan sistem secara tuntas tanpa melanggar prinsip ilmiah dan zero-f
     3. Turunkan ambang keheningan (*silence threshold*): dari `0.015` ke `0.008` agar desah vokal lembut di akhir kalimat tidak terpotong.
   - **Acceptance Criteria**: Pengucapan kalimat 4.5 detik *"Halo SVARA tolong matikan semua lampu di kamar mandi"* terkirim 100% lengkap tanpa kehilangan suku kata terakhir.
 
-* **Sub-step 11.2: Relaksasi Dual-Threshold Energy VAD & Safety Padding Backend**
+* **Sub-step 11.2: Relaksasi Dual-Threshold Energy VAD & Safety Padding Backend** [SELESAI - src/svara/data/audio.py]
   - **Lokasi Kode**: `src/svara/data/audio.py`
   - **Tindakan**:
     1. Ubah `DEFAULT_VAD_STOP_DBFS` dari `-42.0 dBFS` menjadi `-48.0 dBFS`.

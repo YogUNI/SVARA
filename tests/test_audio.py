@@ -102,7 +102,7 @@ def test_butterworth_bandpass_attenuation():
 
 
 def test_trim_silence_vad_speech_padding():
-    """Verify dual-threshold VAD trims silence and retains 150ms pre/post safety buffer."""
+    """Verify dual-threshold VAD trims silence and retains 250ms pre/post safety buffer (Sub-step 11.2)."""
     sr = 16000
     # 3.0s total: 1.0s silence + 1.0s speech tone (440Hz, -20dBFS) + 1.0s silence
     t = np.linspace(0, 1.0, sr, endpoint=False)
@@ -113,12 +113,35 @@ def test_trim_silence_vad_speech_padding():
     trimmed, start_s, end_s = trim_silence_vad(audio, sr=sr, return_indices=True)
     
     # Expected speech bounds: start ~ 16000, end ~ 32000
-    # Expected with 150ms (2400 samples) buffer:
-    # start_s ~ 16000 - 2400 = 13600 (within 320 samples tolerance)
-    # end_s ~ 32000 + 2400 = 34400 (within 320 samples tolerance)
-    assert abs(start_s - (16000 - 2400)) <= 320
-    assert abs(end_s - (32000 + 2400)) <= 320
-    assert 19000 <= len(trimmed) <= 22000  # approximately 1.30s instead of 3.0s
+    # Expected with 250ms (4000 samples) buffer:
+    # start_s ~ 16000 - 4000 = 12000 (within 320 samples tolerance)
+    # end_s ~ 32000 + 4000 = 36000 (within 320 samples tolerance)
+    assert abs(start_s - (16000 - 4000)) <= 320
+    assert abs(end_s - (32000 + 4000)) <= 320
+    assert 23000 <= len(trimmed) <= 25000  # approximately 1.50s instead of 3.0s
+
+
+def test_trim_silence_vad_relaxed_soft_phonemes():
+    """Verify that soft voiced endings (-45 dBFS, between -42 and -48 dBFS) are preserved (Sub-step 11.2)."""
+    sr = 16000
+    # 2.5s total: 0.5s silence + 0.8s strong speech (-20 dBFS) + 0.5s soft trailing ending (-45 dBFS) + 0.7s silence
+    t_strong = np.linspace(0, 0.8, int(sr * 0.8), endpoint=False)
+    strong_speech = (0.10 * np.sqrt(2) * np.sin(2 * np.pi * 440 * t_strong)).astype(np.float32)  # -20 dBFS
+    
+    t_soft = np.linspace(0, 0.5, int(sr * 0.5), endpoint=False)
+    soft_ending = (10.0 ** (-45.0 / 20.0) * np.sqrt(2) * np.sin(2 * np.pi * 300 * t_soft)).astype(np.float32)  # -45 dBFS
+    
+    silence_pre = np.zeros(int(sr * 0.5), dtype=np.float32)
+    silence_post = np.zeros(int(sr * 0.7), dtype=np.float32)
+    composite = np.concatenate([silence_pre, strong_speech, soft_ending, silence_post])
+    
+    trimmed, start_s, end_s = trim_silence_vad(composite, sr=sr, return_indices=True)
+    
+    # Speech begins at 0.5s (8000), ends after soft ending at 1.8s (28800)
+    # With 250ms buffer (4000 samples): end_s should track past the soft ending (~28800 + 4000 = 32800)
+    # If soft ending was clipped (old -42 dBFS threshold), end_s would stop around 0.8s speech (~20800 + pad)
+    soft_ending_end_sample = int(sr * 1.8)
+    assert end_s >= soft_ending_end_sample  # Soft ending is fully tracked!
 
 
 def test_trim_silence_vad_silence_and_click_fallback():

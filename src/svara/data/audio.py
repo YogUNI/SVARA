@@ -116,10 +116,11 @@ def adaptive_rms_normalize(
 
 
 # Dual-Threshold Energy VAD & Silence Trimming Defaults
-# Retains 150ms acoustic buffer around speech to protect initial plosives (k, t, p) and word endings
+# Sub-step 11.2: Relaxed continuation threshold (-48 dBFS) and widened 250ms buffer
+# Protects initial plosives (k, t, p) and soft trailing consonants / room location names
 DEFAULT_VAD_START_DBFS = -32.0
-DEFAULT_VAD_STOP_DBFS = -42.0
-DEFAULT_VAD_PAD_MS = 150.0
+DEFAULT_VAD_STOP_DBFS = -48.0
+DEFAULT_VAD_PAD_MS = 250.0
 DEFAULT_VAD_MIN_SPEECH_MS = 200.0
 
 
@@ -145,8 +146,8 @@ def trim_silence_vad(
         frame_ms: Short-term energy frame duration in ms (default 20.0 ms).
         hop_ms: Short-term energy hop size in ms (default 10.0 ms).
         vad_start_dbfs: Energy activation threshold in dBFS to detect speech onset (default -32.0 dBFS).
-        vad_stop_dbfs: Lower energy continuation threshold in dBFS to track soft phonemes (default -42.0 dBFS).
-        pad_ms: Pre- and post-padding buffer duration in ms to avoid chopping plosives (default 150.0 ms).
+        vad_stop_dbfs: Lower energy continuation threshold in dBFS to track soft phonemes (default -48.0 dBFS).
+        pad_ms: Pre- and post-padding buffer duration in ms to avoid chopping plosives (default 250.0 ms).
         min_speech_duration_ms: Minimum unpadded speech duration to filter out clicks/taps (default 200.0 ms).
         return_indices: If True, returns (trimmed_waveform, sample_start, sample_end). Else returns trimmed_waveform.
 
@@ -246,7 +247,7 @@ def preprocess_audio(
         apply_bandpass: Whether to apply 80Hz-7.5kHz Butterworth bandpass filter.
         apply_rms_norm: Whether to apply Adaptive RMS energy normalization (-20 dBFS).
         target_rms_dbfs: Target RMS energy level in dBFS (default -20.0 dBFS).
-        apply_vad_trim: Whether to apply Dual-Threshold Energy VAD & Silence Trimming (150ms buffer).
+        apply_vad_trim: Whether to apply Dual-Threshold Energy VAD & Silence Trimming (250ms buffer, -48 dBFS).
         pad: If True, pads short audio with zeros to max_audio_seconds * target_sample_rate.
         is_training: If True and cropping is required, perform random crop. Else deterministic crop from start.
 
@@ -295,7 +296,7 @@ def preprocess_audio(
     if apply_rms_norm:
         data = adaptive_rms_normalize(data, target_dbfs=target_rms_dbfs)
 
-    # 6. Dual-Threshold Energy VAD & Silence Trimming (150ms buffer)
+    # 6. Dual-Threshold Energy VAD & Silence Trimming (250ms buffer, -48 dBFS)
     if apply_vad_trim:
         data = trim_silence_vad(data, sr=target_sample_rate)
 

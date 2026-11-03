@@ -65,7 +65,7 @@ Dokumen ini adalah panduan kontrol proyek resmi untuk pematangan sistem Deep Lea
 │   └── [x] Sub-step 10.3: Uji Coba Langsung Suara Fisik di Visualizer 2D/3D Smart Home [SELESAI - Temuan Prosodi Lapangan]
 │
 ├── FASE 11: AUDIT & RELAKSASI SINYAL AUDIO LIVE MIC (FRONTEND & VAD BUFFER)
-│   ├── [ ] Sub-step 11.1: Perbaikan Buffer Audio & Truncation Cap Frontend (3.5s -> 5.0s di `web/src/App.tsx`)
+│   ├── [x] Sub-step 11.1: Perbaikan Buffer Audio & Truncation Cap Frontend (3.5s -> 5.0s di `web/src/App.tsx`) [SELESAI - Commit `pend`]
 │   ├── [ ] Sub-step 11.2: Relaksasi Dual-Threshold Energy VAD & Safety Padding di `src/svara/data/audio.py`
 │   └── [ ] Sub-step 11.3: Verifikasi Paritas Live Streaming Buffer & Anti-Clipping Unit Test
 │
@@ -147,7 +147,7 @@ Dokumen ini adalah panduan kontrol proyek resmi untuk pematangan sistem Deep Lea
 *Rujukan Detail Spesifikasi Ilmiah: `docs/14_ROADMAP_PEMATANGAN_DEEP_LEARNING_REAL_WORLD.md`*
 
 ### FASE 11: AUDIT & RELAKSASI SINYAL AUDIO LIVE MIC (FRONTEND & VAD BUFFER)
-* **Sub-step 11.1**: Perbaikan Audio Buffer & Truncation Cap Frontend di `web/src/App.tsx` (naikkan cap durasi dari 3.5s ke 5.0s, perlebar post-padding ke 400ms, turunkan silence threshold ke 0.008 agar tidak memotong suku kata terakhir).
+* **Sub-step 11.1** [SELESAI - web/src/App.tsx]: Perbaikan Audio Buffer & Truncation Cap Frontend di `web/src/App.tsx` (naikkan cap durasi dari 3.5s ke 5.0s, perlebar post-padding ke 400ms, pre-padding 250ms, turunkan silence threshold ke 0.008 agar tidak memotong suku kata terakhir, build produksi Vite sukses).
 * **Sub-step 11.2**: Relaksasi Dual-Threshold Energy VAD di `src/svara/data/audio.py` (`DEFAULT_VAD_STOP_DBFS` dari -42.0 dBFS ke -48.0 dBFS, `DEFAULT_VAD_PAD_MS` dari 150ms ke 250ms).
 * **Sub-step 11.3**: Verifikasi Paritas Live Streaming Buffer & Anti-Clipping Unit Test (`tests/test_audio.py`).
 

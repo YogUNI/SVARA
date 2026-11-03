@@ -76,7 +76,7 @@ Untuk mematangkan sistem secara tuntas tanpa melanggar prinsip ilmiah dan zero-f
 
 ```
 ├── FASE 11: AUDIT & RELAKSASI SINYAL AUDIO LIVE MIC (FRONTEND & VAD BUFFER)
-│   ├── [ ] Sub-step 11.1: Perbaikan Buffer Audio & Truncation Cap Frontend (3.5s -> 5.0s di `web/src/App.tsx`)
+│   ├── [x] Sub-step 11.1: Perbaikan Buffer Audio & Truncation Cap Frontend (3.5s -> 5.0s di `web/src/App.tsx`) [SELESAI]
 │   ├── [ ] Sub-step 11.2: Relaksasi Dual-Threshold Energy VAD & Safety Padding di `src/svara/data/audio.py`
 │   └── [ ] Sub-step 11.3: Verifikasi Paritas Live Streaming Buffer & Anti-Clipping Unit Test
 │
@@ -103,7 +103,7 @@ Untuk mematangkan sistem secara tuntas tanpa melanggar prinsip ilmiah dan zero-f
 ### FASE 11: AUDIT & RELAKSASI SINYAL AUDIO LIVE MIC (FRONTEND & VAD BUFFER)
 *Penanggung Jawab: Yoga (Implementasi) & Haikal (Verifikasi Rekaman)*
 
-* **Sub-step 11.1: Perbaikan Buffer Audio & Truncation Cap Frontend**
+* **Sub-step 11.1: Perbaikan Buffer Audio & Truncation Cap Frontend** [SELESAI - web/src/App.tsx]
   - **Lokasi Kode**: `web/src/App.tsx`
   - **Tindakan**:
     1. Ubah batasan durasi sampel: dari `const maxSamples = Math.floor(sr * 3.5);` menjadi `Math.floor(sr * 5.0);` (penuh 5.0 detik).
@@ -218,3 +218,4 @@ Sesuai aturan baku proyek di `AGENTS.md`:
 1. **Eksekusi Bertahap (One Sub-step at a Time)**: Setiap sub-step diselesaikan secara tuntas dan diuji sebelum melangkah ke sub-step berikutnya.
 2. **Auto-Commit & Auto-Push**: Setiap kali menyelesaikan 1 sub-step, kode dan artefak **wajib langsung di-commit dan di-push ke branch `main` GitHub milik Yoga (`YogUNI/SVARA`)**.
 3. **Zero Fabrication**: Tidak ada rekayasa hasil atau klaim metrik palsu. Semua data pengujian mikrofon fisik harus berasal dari eksekusi nyata yang tercatat di `reports/`.
+

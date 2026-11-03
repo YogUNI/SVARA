@@ -524,32 +524,45 @@ export default function App() {
       }
 
       if (merged.length > 3200) {
-        // Voice Activity Detection / Silence Trimming:
-        // Find first and last sample above threshold to avoid sending dead silence
+        // Sub-step 11.1: Robust Frontend Voice Activity Detection & Non-Destructive Padding
+        // Lower threshold (0.008) so soft trailing vowels, nasal consonants (-in, -pur, -tur),
+        // and casual Indonesian particles ('dong', 'sih', 'ya') are not clipped.
         let startIdx = 0;
         let endIdx = merged.length - 1;
-        const silenceThreshold = 0.015;
+        const silenceThreshold = 0.008;
 
+        let speechDetected = false;
         for (let i = 0; i < merged.length; i++) {
           if (Math.abs(merged[i]) > silenceThreshold) {
-            startIdx = Math.max(0, i - Math.floor(sr * 0.15)); // 150ms buffer
+            startIdx = Math.max(0, i - Math.floor(sr * 0.25)); // 250ms pre-speech cushion for plosives (/t/, /p/, /k/)
+            speechDetected = true;
             break;
           }
         }
         for (let i = merged.length - 1; i >= 0; i--) {
           if (Math.abs(merged[i]) > silenceThreshold) {
-            endIdx = Math.min(merged.length - 1, i + Math.floor(sr * 0.2)); // 200ms buffer
+            endIdx = Math.min(merged.length - 1, i + Math.floor(sr * 0.40)); // 400ms post-speech cushion (preserves trailing location words)
             break;
           }
         }
 
-        // Cap maximum duration to 3.5s to guarantee a responsive inference path
-        const maxSamples = Math.floor(sr * 3.5);
+        // Cap maximum duration to 5.0s (strictly matching backend DEFAULT_MAX_AUDIO_SECONDS = 5.0)
+        const maxDurationSeconds = 5.0;
+        const maxSamples = Math.floor(sr * maxDurationSeconds);
         if (endIdx - startIdx > maxSamples) {
           endIdx = startIdx + maxSamples;
         }
 
-        const trimmed = endIdx > startIdx + 3200 ? merged.subarray(startIdx, endIdx) : merged;
+        // Only trim if active speech detected and length exceeds 200ms
+        const minValidSamples = Math.floor(sr * 0.20);
+        const trimmed =
+          speechDetected && endIdx - startIdx > minValidSamples
+            ? merged.subarray(startIdx, endIdx)
+            : merged;
+
+        console.log(
+          `[SVARA Mic] Raw: ${(merged.length / sr).toFixed(2)}s, Sent: ${(trimmed.length / sr).toFixed(2)}s (Speech: ${speechDetected}, sr: ${sr}Hz)`
+        );
         const wavBlob = encodeWAV(trimmed, sr);
         sendAudioBlob(wavBlob);
       }

@@ -59,10 +59,30 @@ Dokumen ini adalah panduan kontrol proyek resmi untuk pematangan sistem Deep Lea
 │   ├── Sub-step 9.2: Dynamic INT8 Quantization (Reduksi Ukuran 360 MB -> 90 MB)
 │   └── Sub-step 9.3: Verifikasi Paritas Numerik PyTorch vs ONNX (Selisih Max Diff < 1e-5)
 │
-└── FASE 10: INTEGRASI SISTEM WEB SERVING & LIVE TEST MIKROFON FISIK
-    ├── Sub-step 10.1: Konfigurasi Port Resmi SVARA (FastAPI Port 8000 & Proxy Vite Port 5180)
-    ├── Sub-step 10.2: Pengujian Otomatis Seluruh Intent pada Server Aktif
-    └── Sub-step 10.3: Uji Coba Langsung Suara Fisik di Visualizer 2D/3D Smart Home
+├── FASE 10: INTEGRASI SISTEM WEB SERVING & LIVE TEST MIKROFON FISIK
+│   ├── [x] Sub-step 10.1: Konfigurasi Port Resmi SVARA (FastAPI Port 8000 & Proxy Vite Port 5180) [SELESAI - Commit dcfbc6a]
+│   ├── [x] Sub-step 10.2: Pengujian Otomatis Seluruh Intent pada Server Aktif [SELESAI - Commit dcfbc6a]
+│   └── [x] Sub-step 10.3: Uji Coba Langsung Suara Fisik di Visualizer 2D/3D Smart Home [SELESAI - Temuan Prosodi Lapangan]
+│
+├── FASE 11: AUDIT & RELAKSASI SINYAL AUDIO LIVE MIC (FRONTEND & VAD BUFFER)
+│   ├── [ ] Sub-step 11.1: Perbaikan Buffer Audio & Truncation Cap Frontend (3.5s -> 5.0s di `web/src/App.tsx`)
+│   ├── [ ] Sub-step 11.2: Relaksasi Dual-Threshold Energy VAD & Safety Padding di `src/svara/data/audio.py`
+│   └── [ ] Sub-step 11.3: Verifikasi Paritas Live Streaming Buffer & Anti-Clipping Unit Test
+│
+├── FASE 12: DYNAMIC PITCH & PROSODY AUGMENTATION (GPU ACCELERATED VIA CUDA)
+│   ├── [ ] Sub-step 12.1: Implementasi Modul Torchaudio PitchShift GPU di `src/svara/data/augment.py`
+│   ├── [ ] Sub-step 12.2: Eksekusi Batch Variasi Nada (±1 s.d ±4 Semitones) Penetrasi Spektrum Vokal 90-280 Hz
+│   └── [ ] Sub-step 12.3: Audit Integritas Akustik & Formant Zero-Clipping Guard
+│
+├── FASE 13: ONLINE SPECAUGMENT & FEW-SHOT HUMAN ACOUSTIC CALIBRATION
+│   ├── [ ] Sub-step 13.1: Implementasi Online Frequency & Time Masking (SpecAugment) pada DataLoader
+│   ├── [ ] Sub-step 13.2: Pengambilan & Injeksi Rekaman Suara Asli (Haikal & Yoga) sebagai Acoustic Anchor
+│   └── [ ] Sub-step 13.3: Perluasan Frasa Gaul/Colloquial Sehari-hari untuk Seluruh 5 Domain Smart Home
+│
+└── FASE 14: RETRAINING BILINGUAL ROBUST PADA GPU RTX 4060, EXPORT ONNX & FIELD-TEST
+    ├── [ ] Sub-step 14.1: Retraining Fine-Tuning FP16 AMP Model Hardened pada GPU RTX 4060
+    ├── [ ] Sub-step 14.2: Export Universal ONNX FP32 & Dynamic INT8 Quantization (Parity Validated)
+    └── [ ] Sub-step 14.3: Validasi Lapangan Uji Suara Mikrofon Fisik di Visualizer 3D Smart Home
 ```
 
 ---
@@ -117,6 +137,31 @@ Dokumen ini adalah panduan kontrol proyek resmi untuk pematangan sistem Deep Lea
 * **Sub-step 9.3** [SELESAI]: Uji paritas numerik PyTorch vs ONNX Runtime CPU (`InferenceSession`) dengan verifikasi konsistensi output probabilitas. **FASE 9 SELESAI 100%**.
 
 ### FASE 10: INTEGRASI SISTEM WEB SERVING & LIVE TEST MIKROFON FISIK
-* **Sub-step 10.1**: Setting backend FastAPI di port 8000 dan Vite proxy di port 5180 (port 8000 resmi SVARA).
-* **Sub-step 10.2**: Uji otomatis ke-31 intent melalui API.
-* **Sub-step 10.3**: Uji live langsung lewat mic laptop di browser pada visualizer 2D dan 3D smart home.
+* **Sub-step 10.1** [SELESAI - Commit `dcfbc6a`]: Setting backend FastAPI di port 8000 dan Vite proxy di port 5180 (port 8000 resmi SVARA).
+* **Sub-step 10.2** [SELESAI - Commit `dcfbc6a`]: Uji otomatis ke-31 intent melalui API dan simulasi transisi state device smart home.
+* **Sub-step 10.3** [SELESAI - Commit `dcfbc6a`]: Uji live langsung lewat mic laptop di browser pada visualizer 2D dan 3D smart home. Menghasilkan temuan kritis lapangan: nada, intonasi, dan prosodi vokal biologis manusia memerlukan pematangan sistem (Acoustic Domain Shift & TTS Prosodic Shortcut). **FASE 10 SELESAI 100%**.
+
+---
+
+## TAHAPAN BARU: MASTERPLAN PEMATANGAN SISTEM REAL-WORLD (FASE 11 - 14)
+*Rujukan Detail Spesifikasi Ilmiah: `docs/14_ROADMAP_PEMATANGAN_DEEP_LEARNING_REAL_WORLD.md`*
+
+### FASE 11: AUDIT & RELAKSASI SINYAL AUDIO LIVE MIC (FRONTEND & VAD BUFFER)
+* **Sub-step 11.1**: Perbaikan Audio Buffer & Truncation Cap Frontend di `web/src/App.tsx` (naikkan cap durasi dari 3.5s ke 5.0s, perlebar post-padding ke 400ms, turunkan silence threshold ke 0.008 agar tidak memotong suku kata terakhir).
+* **Sub-step 11.2**: Relaksasi Dual-Threshold Energy VAD di `src/svara/data/audio.py` (`DEFAULT_VAD_STOP_DBFS` dari -42.0 dBFS ke -48.0 dBFS, `DEFAULT_VAD_PAD_MS` dari 150ms ke 250ms).
+* **Sub-step 11.3**: Verifikasi Paritas Live Streaming Buffer & Anti-Clipping Unit Test (`tests/test_audio.py`).
+
+### FASE 12: DYNAMIC PITCH & PROSODY AUGMENTATION (GPU ACCELERATED VIA CUDA)
+* **Sub-step 12.1**: Implementasi Modul Torchaudio PitchShift GPU di `src/svara/data/augment.py` berbasis PyTorch CUDA.
+* **Sub-step 12.2**: Eksekusi Batch Variasi Nada (±1 s.d ±4 Semitones) menembus spektrum vokal kontinu 90-280 Hz (`scripts/make_pitch_augmented_dataset.py`).
+* **Sub-step 12.3**: Audit Integritas Akustik, Formant Intelligibility, & Zero-Clipping Guard (`reports/pitch_augmentation_audit.json`).
+
+### FASE 13: ONLINE SPECAUGMENT & FEW-SHOT HUMAN ACOUSTIC CALIBRATION
+* **Sub-step 13.1**: Implementasi Online Frequency & Time Masking (SpecAugment) pada DataLoader training loop.
+* **Sub-step 13.2**: Pengambilan & Injeksi Rekaman Suara Asli (Haikal & Yoga) dari `data/own_recordings/` sebagai Acoustic Anchor pembiasaan pita suara manusia.
+* **Sub-step 13.3**: Perluasan Frasa Gaul/Colloquial Sehari-hari untuk Seluruh 5 Domain Smart Home (`scripts/expand_colloquial_smart_home.py`).
+
+### FASE 14: RETRAINING BILINGUAL ROBUST PADA GPU RTX 4060, EXPORT ONNX & FIELD-TEST
+* **Sub-step 14.1**: Retraining Fine-Tuning FP16 AMP Model Hardened pada GPU RTX 4060 (`scripts/train_hardened_bilingual_w2v2.py`).
+* **Sub-step 14.2**: Export Universal ONNX FP32 & Dynamic INT8 Quantization dengan validasi paritas numerik logit.
+* **Sub-step 14.3**: Validasi Lapangan Uji Suara Mikrofon Fisik di Visualizer 3D Smart Home dan pelaporan metrik real-world (`reports/real_world_field_test_results.json`).

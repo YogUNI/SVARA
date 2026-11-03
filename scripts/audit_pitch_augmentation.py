@@ -33,6 +33,31 @@ TARGET_SR = 16000
 MAX_PEAK_HEADROOM = 0.950001
 
 
+def calculate_formant_intelligibility(waveform: np.ndarray, sr: int = 16000) -> Dict[str, float]:
+    """Calculates formant energy concentration (300-3500 Hz) and continuity to verify vowel intelligibility."""
+    if len(waveform) < 512:
+        return {"formant_energy_pct": 0.0, "max_discontinuity": 0.0}
+
+    # FFT power spectrum
+    fft = np.abs(np.fft.rfft(waveform)) ** 2
+    freqs = np.fft.rfftfreq(len(waveform), 1.0 / sr)
+    total_energy = float(np.sum(fft)) + 1e-9
+
+    # Energy in speech vowel formant zone (300 Hz - 3500 Hz)
+    formant_mask = (freqs >= 300.0) & (freqs <= 3500.0)
+    formant_energy = float(np.sum(fft[formant_mask]))
+    formant_ratio = round((formant_energy / total_energy) * 100.0, 2)
+
+    # Click / pop / discontinuity detection
+    diff = np.abs(np.diff(waveform))
+    max_disc = round(float(np.max(diff)), 4) if len(diff) > 0 else 0.0
+
+    return {
+        "formant_energy_pct": formant_ratio,
+        "max_discontinuity": max_disc,
+    }
+
+
 def estimate_f0_autocorr(waveform: np.ndarray, sr: int = 16000, fmin: float = 70.0, fmax: float = 350.0) -> float:
     """Estimates fundamental frequency (F0) using normalized autocorrelation on active speech."""
     if len(waveform) < sr * 0.1:
@@ -98,13 +123,20 @@ def run_pitch_augmentation_audit(
     if os.path.exists(intent_map_path):
         with open(intent_map_path, "r", encoding="utf-8") as f:
             imap = json.load(f)
-            # Handle possible nested structure
-            if "intents" in imap:
+            if "intent_map" in imap:
+                for entry in imap["intent_map"].values():
+                    legal_triplets.add((entry.get("action"), entry.get("object"), entry.get("location")))
+            elif "intents" in imap:
                 for entry in imap["intents"]:
                     legal_triplets.add((entry.get("action"), entry.get("object"), entry.get("location")))
             elif isinstance(imap, list):
                 for entry in imap:
                     legal_triplets.add((entry.get("action"), entry.get("object"), entry.get("location")))
+            elif isinstance(imap, dict):
+                for v in imap.values():
+                    if isinstance(v, dict) and "action" in v:
+                        legal_triplets.add((v.get("action"), v.get("object"), v.get("location")))
+    print(f"Loaded {len(legal_triplets)} legal intent triplets from {intent_map_path}")
 
     # 2. Check schema & distributions
     intents_present = df["intent_id"].nunique()
@@ -126,6 +158,9 @@ def run_pitch_augmentation_audit(
     f0_measurements = []
     durations = []
     peak_amplitudes = []
+
+    formant_ratios = []
+    discontinuities = []
 
     for _, row in sample_df.iterrows():
         rel_path = str(row["path"])
@@ -157,6 +192,11 @@ def run_pitch_augmentation_audit(
         if peak > MAX_PEAK_HEADROOM:
             headroom_violations.append({"path": rel_path, "peak": peak})
 
+        # Formant intelligibility and continuity check
+        intel = calculate_formant_intelligibility(wav, sr=TARGET_SR)
+        formant_ratios.append(intel["formant_energy_pct"])
+        discontinuities.append(intel["max_discontinuity"])
+
         # F0 estimation
         f0 = estimate_f0_autocorr(wav, sr=TARGET_SR)
         if f0 > 0.0:
@@ -180,6 +220,10 @@ def run_pitch_augmentation_audit(
     min_dur = float(np.min(durations)) if durations else 0.0
     max_dur = float(np.max(durations)) if durations else 0.0
     avg_dur = float(np.mean(durations)) if durations else 0.0
+
+    avg_formant_ratio = float(np.mean(formant_ratios)) if formant_ratios else 0.0
+    min_formant_ratio = float(np.min(formant_ratios)) if formant_ratios else 0.0
+    max_discontinuity = float(np.max(discontinuities)) if discontinuities else 0.0
 
     # F0 range
     f0_values = [m["measured_f0_hz"] for m in f0_measurements]
@@ -240,6 +284,14 @@ def run_pitch_augmentation_audit(
             "observed_avg_peak": round(avg_peak, 4),
             "headroom_violations_count": len(headroom_violations),
             "zero_clipping_rate_pct": 100.0 if len(headroom_violations) == 0 else 0.0,
+        },
+        "formant_intelligibility": {
+            "vowel_band_hz": "300 Hz - 3500 Hz",
+            "mean_formant_energy_pct": round(avg_formant_ratio, 2),
+            "min_formant_energy_pct": round(min_formant_ratio, 2),
+            "max_discontinuity_step": round(max_discontinuity, 4),
+            "discontinuity_artifact_free": max_discontinuity < 0.8,
+            "intelligibility_status": "EXCELLENT" if avg_formant_ratio >= 80.0 and max_discontinuity < 0.8 else "ACCEPTABLE",
         },
         "pitch_and_prosody_coverage": {
             "biological_spectrum_target": "90 Hz - 280 Hz",

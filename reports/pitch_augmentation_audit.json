@@ -1,0 +1,85 @@
+{
+  "timestamp": "2026-11-04 00:27:23",
+  "substep": "12.3",
+  "phase": "12",
+  "manifest_path": "data/synthetic_indonesian_massive/metadata_pitch.csv",
+  "total_clips_in_manifest": 8990,
+  "audited_sample_size": 500,
+  "audit_duration_seconds": 5.21,
+  "dataset_structure": {
+    "unique_intents": 31,
+    "intents_expected": 31,
+    "unique_domains": 5,
+    "pitch_profiles_count": 10,
+    "unique_semitone_shifts": [
+      -4,
+      -3,
+      -2,
+      2,
+      3,
+      4
+    ],
+    "pitch_distribution": {
+      "Pria Tenor Muda (~135 Hz)": 941,
+      "Wanita Soprano Tinggi (~262 Hz)": 921,
+      "Wanita Alto Rendah / Vokal Dalam (~175 Hz)": 920,
+      "Pria Bariton (~107 Hz)": 914,
+      "Wanita Alto (~185 Hz)": 913,
+      "Pria Tenor Standard (~143 Hz)": 885,
+      "Wanita Soprano (~247 Hz)": 884,
+      "Pria Tenor Tinggi / Remaja (~151 Hz)": 878,
+      "Pria Bass / Bariton Rendah (~101 Hz)": 877,
+      "Wanita Mezzo-Soprano (~196 Hz)": 857
+    }
+  },
+  "acoustic_integrity": {
+    "sample_rate_hz": 16000,
+    "channels": 1,
+    "pcm_format": "PCM_16",
+    "format_errors_count": 0,
+    "missing_files_count": 0,
+    "duration_stats": {
+      "min_seconds": 2.16,
+      "max_seconds": 5.352,
+      "avg_seconds": 3.321
+    }
+  },
+  "headroom_and_clipping": {
+    "max_allowed_peak": 0.950001,
+    "observed_max_peak": 0.7021,
+    "observed_avg_peak": 0.4459,
+    "headroom_violations_count": 0,
+    "zero_clipping_rate_pct": 100.0
+  },
+  "formant_intelligibility": {
+    "vowel_band_hz": "300 Hz - 3500 Hz",
+    "mean_formant_energy_pct": 28.42,
+    "min_formant_energy_pct": 5.82,
+    "max_discontinuity_step": 0.5504,
+    "discontinuity_artifact_free": true,
+    "intelligibility_status": "ACCEPTABLE"
+  },
+  "pitch_and_prosody_coverage": {
+    "biological_spectrum_target": "90 Hz - 280 Hz",
+    "measured_overall_f0_range_hz": [
+      86.0,
+      355.6
+    ],
+    "measured_mean_f0_hz": 189.3,
+    "male_vocal_range_hz": [
+      86.0,
+      355.6
+    ],
+    "female_vocal_range_hz": [
+      153.8,
+      355.6
+    ],
+    "num_f0_audited": 500
+  },
+  "semantic_consistency": {
+    "triplet_violations_count": 0,
+    "legal_intent_consistency_pct": 100.0
+  },
+  "verdict": "PASSED",
+  "all_passed": true
+}

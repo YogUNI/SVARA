@@ -70,7 +70,7 @@ Dokumen ini adalah panduan kontrol proyek resmi untuk pematangan sistem Deep Lea
 │   └── [x] Sub-step 11.3: Verifikasi Paritas Live Streaming Buffer & Anti-Clipping Unit Test [SELESAI - Commit `f8c5ad1`]
 │
 ├── FASE 12: DYNAMIC PITCH & PROSODY AUGMENTATION (GPU ACCELERATED VIA CUDA)
-│   ├── [x] Sub-step 12.1: Implementasi Modul Torchaudio PitchShift GPU di `src/svara/data/augment.py` [SELESAI - Commit `pend`]
+│   ├── [x] Sub-step 12.1: Implementasi Modul Torchaudio PitchShift GPU di `src/svara/data/augment.py` [SELESAI - Commit `2dbe6c8`]
 │   ├── [ ] Sub-step 12.2: Eksekusi Batch Variasi Nada (±1 s.d ±4 Semitones) Penetrasi Spektrum Vokal 90-280 Hz
 │   └── [ ] Sub-step 12.3: Audit Integritas Akustik & Formant Zero-Clipping Guard
 │

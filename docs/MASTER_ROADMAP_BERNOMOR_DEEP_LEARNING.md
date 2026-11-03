@@ -153,7 +153,7 @@ Dokumen ini adalah panduan kontrol proyek resmi untuk pematangan sistem Deep Lea
 
 ### FASE 12: DYNAMIC PITCH & PROSODY AUGMENTATION (GPU ACCELERATED VIA CUDA)
 * **Sub-step 12.1** [SELESAI - src/svara/data/augment.py & reports/pitch_shift_gpu_benchmark.json]: Implementasi fungsi `apply_pitch_shift_cuda` berbasis Torchaudio phase vocoder pada GPU RTX 4060, pergeseran nada matematis akurat (< 0.4 Hz galat), 22 unit test augmentasi lolos 100%.
-* **Sub-step 12.2** [SELESAI - reports/pitch_augmented_dataset_summary.json]: Eksekusi Batch Variasi Nada (±1 s.d ±4 Semitones) menembus spektrum vokal kontinu 90-280 Hz pada GPU RTX 4060 (`scripts/make_pitch_augmented_dataset.py`, 1.860 klip teraugmentasi secara terstratifikasi seimbang melintasi 31 intent & 10 profil vokal biologis manusia, throughput 12,9 clips/s, zero clipping peak <= 0.95).
+* **Sub-step 12.2** [SELESAI - reports/pitch_augmented_dataset_summary.json]: Eksekusi Batch Variasi Nada (±1 s.d ±4 Semitones) menembus spektrum vokal kontinu 90-280 Hz pada GPU RTX 4060 (`scripts/make_pitch_augmented_dataset.py`, 8.990 klip penuh 100% tuntas melintasi 31 intent & 10 profil vokal biologis manusia seimbang ~900 klip/profil, 8,31 jam audio, zero-clipping peak <= 0.95).
 * **Sub-step 12.3**: Audit Integritas Akustik, Formant Intelligibility, & Zero-Clipping Guard (`reports/pitch_augmentation_audit.json`).
 
 ### FASE 13: ONLINE SPECAUGMENT & FEW-SHOT HUMAN ACOUSTIC CALIBRATION

@@ -137,7 +137,7 @@ Untuk mematangkan sistem secara tuntas tanpa melanggar prinsip ilmiah dan zero-f
   - **Skema Pergeseran Nada**:
     - Suara Pria (`spk_ardi`, asal ~120 Hz): digeser $+2, +3, +4$ semitone (menghasilkan vokal pria muda/tenor ~150-180 Hz) dan $-2, -3$ semitone (vokal bariton berat ~100 Hz).
     - Suara Wanita (`spk_gadis`, asal ~220 Hz): digeser $-2, -3, -4$ semitone (vokal wanita dewasa/alto ~170-190 Hz) dan $+2, +3$ semitone (vokal tinggi/soprano ~260 Hz).
-  - **Hasil Eksekusi**: Terstratifikasi seimbang 1.860 klip vokal melintasi 31 intent (60 klip per intent) & 10 profil vokal biologis manusia. Menghasilkan sebaran frekuensi vokal kontinu dari 90 Hz hingga 280 Hz, melenyapkan dependensi model pada flat TTS $F_0$. Throughput GPU 12,9 clips/s pada RTX 4060, zero clipping peak $\le 0.95$ (100% lolos).
+  - **Hasil Eksekusi**: Teraugmentasi tuntas 100% penuh sebanyak 8.990 klip vokal melintasi 31 intent & 10 profil vokal biologis manusia (seimbang merata ~900 klip per profil, total 8,31 jam audio). Menghasilkan sebaran frekuensi vokal kontinu dari 90 Hz hingga 280 Hz, melenyapkan dependensi model pada flat TTS $F_0$. Throughput GPU 12,3 clips/s pada RTX 4060, zero clipping peak $\le 0.95$ (100% lolos).
   - **Acceptance Criteria**: Menghasilkan sebaran frekuensi vokal kontinu dari 90 Hz hingga 280 Hz, melenyapkan dependensi model pada satu tinggi nada tertentu. Terpenuhi 100%.
 
 * **Sub-step 12.3: Audit Integritas Akustik & Formant Zero-Clipping Guard**

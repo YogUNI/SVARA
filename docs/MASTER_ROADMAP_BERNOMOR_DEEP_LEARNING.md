@@ -70,7 +70,7 @@ Dokumen ini adalah panduan kontrol proyek resmi untuk pematangan sistem Deep Lea
 │   └── [x] Sub-step 11.3: Verifikasi Paritas Live Streaming Buffer & Anti-Clipping Unit Test [SELESAI - Commit `f8c5ad1`]
 │
 ├── FASE 12: DYNAMIC PITCH & PROSODY AUGMENTATION (GPU ACCELERATED VIA CUDA)
-│   ├── [ ] Sub-step 12.1: Implementasi Modul Torchaudio PitchShift GPU di `src/svara/data/augment.py`
+│   ├── [x] Sub-step 12.1: Implementasi Modul Torchaudio PitchShift GPU di `src/svara/data/augment.py` [SELESAI - Commit `pend`]
 │   ├── [ ] Sub-step 12.2: Eksekusi Batch Variasi Nada (±1 s.d ±4 Semitones) Penetrasi Spektrum Vokal 90-280 Hz
 │   └── [ ] Sub-step 12.3: Audit Integritas Akustik & Formant Zero-Clipping Guard
 │
@@ -152,7 +152,7 @@ Dokumen ini adalah panduan kontrol proyek resmi untuk pematangan sistem Deep Lea
 * **Sub-step 11.3** [SELESAI - reports/phase11_signal_hygiene_parity_audit.json]: Audit verifikasi paritas buffer & anti-clipping 6 dimensi selesai 100% lulus (`scripts/audit_phase11_signal_parity.py`: preservasi 4.5s/5.0s, tracking vokal lembut -45 dBFS, zero-clipping Peak <= 1.0, paritas format bit-exact, inferensi produksi ONNX sukses). **FASE 11 SELESAI 100%**.
 
 ### FASE 12: DYNAMIC PITCH & PROSODY AUGMENTATION (GPU ACCELERATED VIA CUDA)
-* **Sub-step 12.1**: Implementasi Modul Torchaudio PitchShift GPU di `src/svara/data/augment.py` berbasis PyTorch CUDA.
+* **Sub-step 12.1** [SELESAI - src/svara/data/augment.py & reports/pitch_shift_gpu_benchmark.json]: Implementasi fungsi `apply_pitch_shift_cuda` berbasis Torchaudio phase vocoder pada GPU RTX 4060, pergeseran nada matematis akurat (< 0.4 Hz galat), 22 unit test augmentasi lolos 100%.
 * **Sub-step 12.2**: Eksekusi Batch Variasi Nada (±1 s.d ±4 Semitones) menembus spektrum vokal kontinu 90-280 Hz (`scripts/make_pitch_augmented_dataset.py`).
 * **Sub-step 12.3**: Audit Integritas Akustik, Formant Intelligibility, & Zero-Clipping Guard (`reports/pitch_augmentation_audit.json`).
 

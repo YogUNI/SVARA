@@ -18,6 +18,15 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 import numpy as np
 from scipy import signal
 
+try:
+    import torch
+    import torchaudio
+    HAS_TORCH_AUDIO = True
+except ImportError:
+    torch = None
+    torchaudio = None
+    HAS_TORCH_AUDIO = False
+
 
 # Acoustic presets for smart-home environments (Sub-step 4.1)
 SCHROEDER_ROOM_PRESETS: Dict[str, Dict[str, Any]] = {
@@ -426,6 +435,113 @@ def mix_noise_at_snr(
     return mixed.astype(np.float32)
 
 
+# --------------------------------------------------------------------------
+# Dynamic Pitch & Prosody Shifter (Sub-step 12.1)
+# --------------------------------------------------------------------------
+_PITCH_SHIFTER_CACHE: Dict[Tuple[int, int, str], Any] = {}
+DEFAULT_PITCH_STEPS: Tuple[int, ...] = (-4, -3, -2, 2, 3, 4)
+
+
+def apply_pitch_shift_cuda(
+    waveform: Union[np.ndarray, Any],
+    n_steps: int,
+    sr: int = 16000,
+    headroom_peak: float = 0.95,
+    device: Optional[Union[str, Any]] = None,
+) -> Union[np.ndarray, Any]:
+    """Applies high-fidelity pitch shifting accelerated by PyTorch CUDA GPU.
+
+    Task: Sub-step 12.1 (Phase 12: Real-World Speech Hardening)
+    Reference: docs/14_ROADMAP_PEMATANGAN_DEEP_LEARNING_REAL_WORLD.md, AGENTS.md
+
+    Shifts pitch by n_steps semitones (e.g. +2, +3, +4 or -2, -3, -4) using
+    Torchaudio's phase vocoder PitchShift transform. Runs natively on CUDA
+    (e.g. RTX 4060) with automatic CPU fallback.
+    Prevents digital clipping via headroom peak normalization (<= headroom_peak).
+
+    Args:
+        waveform: 1D audio array (float32 numpy array or torch Tensor).
+        n_steps: Number of semitones to shift (positive for higher pitch, negative for lower).
+                 If 0, returns a copy of waveform.
+        sr: Sampling rate in Hz (default 16000).
+        headroom_peak: Maximum peak amplitude guard (default 0.95) to prevent inter-sample clipping.
+        device: Target torch device ('cuda', 'cpu', or None for auto-detection).
+
+    Returns:
+        Pitch-shifted waveform matching input type (np.ndarray or torch.Tensor)
+        with exact original length preserved.
+    """
+    if n_steps == 0:
+        if isinstance(waveform, np.ndarray):
+            return waveform.copy()
+        return waveform.clone()
+
+    if not HAS_TORCH_AUDIO or torch is None or torchaudio is None:
+        raise RuntimeError("torch and torchaudio are required for apply_pitch_shift_cuda.")
+
+    is_numpy = isinstance(waveform, np.ndarray)
+    if is_numpy:
+        tensor = torch.from_numpy(waveform.astype(np.float32))
+    elif isinstance(waveform, torch.Tensor):
+        tensor = waveform.float()
+    else:
+        raise TypeError(f"Unsupported waveform type: {type(waveform)}. Expected np.ndarray or torch.Tensor.")
+
+    orig_dim = tensor.dim()
+    orig_len = tensor.shape[-1]
+
+    # Reshape to (1, T) if 1D
+    if orig_dim == 1:
+        tensor = tensor.unsqueeze(0)
+
+    # Device selection
+    if device is None:
+        target_device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    elif isinstance(device, str):
+        target_device = torch.device(device)
+    else:
+        target_device = device
+
+    cache_key = (sr, n_steps, str(target_device))
+    if cache_key not in _PITCH_SHIFTER_CACHE:
+        shifter = torchaudio.transforms.PitchShift(
+            sample_rate=sr,
+            n_steps=n_steps,
+            bins_per_octave=12,
+            n_fft=512,
+            win_length=512,
+            hop_length=128,
+        ).to(target_device)
+        _PITCH_SHIFTER_CACHE[cache_key] = shifter
+    else:
+        shifter = _PITCH_SHIFTER_CACHE[cache_key]
+
+    with torch.no_grad():
+        in_tensor = tensor.to(target_device)
+        shifted = shifter(in_tensor)
+
+        # Exact length alignment
+        if shifted.shape[-1] > orig_len:
+            shifted = shifted[..., :orig_len]
+        elif shifted.shape[-1] < orig_len:
+            pad_len = orig_len - shifted.shape[-1]
+            shifted = torch.nn.functional.pad(shifted, (0, pad_len))
+
+        # Headroom peak guard (<= headroom_peak)
+        peak = float(torch.max(torch.abs(shifted)).item())
+        if peak > headroom_peak and peak > 1e-6:
+            shifted = shifted * (headroom_peak / peak)
+
+    if is_numpy:
+        out = shifted.squeeze(0).detach().cpu().numpy().astype(np.float32)
+        return out
+    else:
+        out = shifted.detach()
+        if orig_dim == 1:
+            out = out.squeeze(0)
+        return out
+
+
 class AudioAugmentor:
     """Composited audio augmentation pipeline for training."""
 
@@ -439,6 +555,8 @@ class AudioAugmentor:
         gain_db_range: Tuple[float, float] = (-6.0, 6.0),
         speed_prob: float = 0.3,
         speed_factors: Tuple[float, ...] = DEFAULT_SPEED_FACTORS,
+        pitch_prob: float = 0.0,
+        pitch_steps: Tuple[int, ...] = DEFAULT_PITCH_STEPS,
         reverb_prob: float = 0.0,
         reverb_rooms: Tuple[str, ...] = ("bedroom", "living_room"),
         mic_filter_prob: float = 0.0,
@@ -452,6 +570,8 @@ class AudioAugmentor:
         self.gain_db_range = gain_db_range
         self.speed_prob = speed_prob
         self.speed_factors = speed_factors
+        self.pitch_prob = pitch_prob
+        self.pitch_steps = pitch_steps
         self.reverb_prob = reverb_prob
         self.reverb_rooms = reverb_rooms
         self.mic_filter_prob = mic_filter_prob
@@ -473,15 +593,20 @@ class AudioAugmentor:
         if self.mic_filter_prob > 0.0 and np.random.rand() < self.mic_filter_prob:
             out = apply_laptop_mic_filter(out, cutoff_hz=self.mic_cutoff_hz)
 
-        # 3. Random Gain
+        # 3. Dynamic Pitch Shifting (Sub-step 12.1)
+        if self.pitch_prob > 0.0 and np.random.rand() < self.pitch_prob:
+            step = int(np.random.choice(self.pitch_steps))
+            out = apply_pitch_shift_cuda(out, n_steps=step)
+
+        # 4. Random Gain
         if np.random.rand() < self.gain_prob:
             out = apply_random_gain(out, self.gain_db_range[0], self.gain_db_range[1])
 
-        # 4. Speed perturbation
+        # 5. Speed perturbation
         if np.random.rand() < self.speed_prob:
             out = apply_speed_perturbation(out, self.speed_factors)
 
-        # 5. Additive noise (External noise files OR realistic household ambient noise) (Sub-step 4.2)
+        # 6. Additive noise (External noise files OR realistic household ambient noise) (Sub-step 4.2)
         if np.random.rand() < self.noise_prob:
             if self.noise_files:
                 noise_path = np.random.choice(self.noise_files)

@@ -1,0 +1,71 @@
+{
+  "timestamp": "2026-11-03 22:31:25",
+  "substep": "12.1",
+  "phase": "12",
+  "device": "cuda",
+  "device_name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "sample_rate": 16000,
+  "benchmarks": {
+    "shift_+4_semitones": {
+      "n_steps": 4,
+      "expected_freq_hz": 554.37,
+      "measured_freq_hz": 554.0,
+      "freq_error_hz": 0.37,
+      "latency_ms": 104.36,
+      "peak_amplitude": 0.5136,
+      "headroom_satisfied": true,
+      "length_preserved": true
+    },
+    "shift_+3_semitones": {
+      "n_steps": 3,
+      "expected_freq_hz": 523.25,
+      "measured_freq_hz": 523.0,
+      "freq_error_hz": 0.25,
+      "latency_ms": 740.86,
+      "peak_amplitude": 0.5143,
+      "headroom_satisfied": true,
+      "length_preserved": true
+    },
+    "shift_+2_semitones": {
+      "n_steps": 2,
+      "expected_freq_hz": 493.88,
+      "measured_freq_hz": 494.0,
+      "freq_error_hz": 0.12,
+      "latency_ms": 68.96,
+      "peak_amplitude": 0.5152,
+      "headroom_satisfied": true,
+      "length_preserved": true
+    },
+    "shift_-2_semitones": {
+      "n_steps": -2,
+      "expected_freq_hz": 392.0,
+      "measured_freq_hz": 392.0,
+      "freq_error_hz": 0.0,
+      "latency_ms": 73.24,
+      "peak_amplitude": 0.503,
+      "headroom_satisfied": true,
+      "length_preserved": true
+    },
+    "shift_-3_semitones": {
+      "n_steps": -3,
+      "expected_freq_hz": 369.99,
+      "measured_freq_hz": 370.0,
+      "freq_error_hz": 0.01,
+      "latency_ms": 31.31,
+      "peak_amplitude": 0.5046,
+      "headroom_satisfied": true,
+      "length_preserved": true
+    },
+    "shift_-4_semitones": {
+      "n_steps": -4,
+      "expected_freq_hz": 349.23,
+      "measured_freq_hz": 349.0,
+      "freq_error_hz": 0.23,
+      "latency_ms": 61.94,
+      "peak_amplitude": 0.506,
+      "headroom_satisfied": true,
+      "length_preserved": true
+    }
+  },
+  "all_passed": true
+}

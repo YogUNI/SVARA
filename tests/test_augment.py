@@ -1,7 +1,8 @@
-"""Unit tests for audio augmentation module (Task P4-03)."""
+"""Unit tests for audio augmentation module (Task P4-03, Sub-step 12.1)."""
 
 import numpy as np
 import pytest
+import torch
 
 from svara.data.augment import (
     AudioAugmentor,
@@ -16,6 +17,7 @@ from svara.data.augment import (
     inject_household_noise,
     apply_laptop_mic_and_noise,
     DEFAULT_SPEED_FACTORS,
+    apply_pitch_shift_cuda,
 )
 
 
@@ -266,6 +268,89 @@ def test_speed_perturbation_edge_cases():
     zeros = np.zeros(1000, dtype=np.float32)
     out_zeros = apply_speed_perturbation(zeros, factor=1.08)
     assert np.all(out_zeros == 0.0)
+
+
+# --------------------------------------------------------------------------
+# Unit Tests for GPU Pitch Shift Module (Sub-step 12.1)
+# --------------------------------------------------------------------------
+
+def test_apply_pitch_shift_cuda_passthrough_zero_steps():
+    """Verify that n_steps=0 returns identical copy without computation."""
+    wav = np.random.randn(16000).astype(np.float32) * 0.5
+    out = apply_pitch_shift_cuda(wav, n_steps=0)
+    assert np.array_equal(out, wav)
+
+    tensor = torch.randn(16000)
+    out_tensor = apply_pitch_shift_cuda(tensor, n_steps=0)
+    assert torch.equal(out_tensor, tensor)
+
+
+def test_apply_pitch_shift_cuda_spectral_frequency_shift():
+    """Verify that a 440 Hz tone shifts to ~554 Hz (+4 semitones) and ~370 Hz (-3 semitones)."""
+    sr = 16000
+    t = np.linspace(0, 1.0, sr, endpoint=False)
+    x = (0.5 * np.sin(2 * np.pi * 440 * t)).astype(np.float32)
+
+    # Shift +4 semitones (Expected: 440 * 2^(4/12) = 554.37 Hz)
+    shifted_up = apply_pitch_shift_cuda(x, n_steps=4, sr=sr)
+    fft_up = np.abs(np.fft.rfft(shifted_up))
+    freqs_up = np.fft.rfftfreq(len(shifted_up), 1.0 / sr)
+    peak_up = freqs_up[np.argmax(fft_up)]
+    assert abs(peak_up - 554.0) < 15.0, f"Expected ~554 Hz, got {peak_up:.1f} Hz"
+
+    # Shift -3 semitones (Expected: 440 * 2^(-3/12) = 369.99 Hz)
+    shifted_down = apply_pitch_shift_cuda(x, n_steps=-3, sr=sr)
+    fft_down = np.abs(np.fft.rfft(shifted_down))
+    freqs_down = np.fft.rfftfreq(len(shifted_down), 1.0 / sr)
+    peak_down = freqs_down[np.argmax(fft_down)]
+    assert abs(peak_down - 370.0) < 15.0, f"Expected ~370 Hz, got {peak_down:.1f} Hz"
+
+
+def test_apply_pitch_shift_cuda_length_and_headroom():
+    """Verify exact length preservation and peak amplitude guard (<= 0.95)."""
+    sr = 16000
+    loud_audio = np.random.randn(sr).astype(np.float32) * 2.0  # high amplitude
+    out = apply_pitch_shift_cuda(loud_audio, n_steps=3, sr=sr, headroom_peak=0.95)
+
+    assert len(out) == len(loud_audio), f"Expected length {len(loud_audio)}, got {len(out)}"
+    assert not np.isnan(out).any()
+    assert np.max(np.abs(out)) <= 0.950001, f"Peak amplitude exceeded 0.95: {np.max(np.abs(out))}"
+
+
+def test_apply_pitch_shift_cuda_torch_tensor_inputs():
+    """Verify 1D and 2D PyTorch Tensor inputs."""
+    sr = 16000
+    # 1D Tensor
+    t1 = torch.randn(sr)
+    out1 = apply_pitch_shift_cuda(t1, n_steps=2, sr=sr)
+    assert isinstance(out1, torch.Tensor)
+    assert out1.shape == (sr,)
+    assert not torch.isnan(out1).any()
+
+    # 2D Tensor (1, T)
+    t2 = torch.randn(1, sr)
+    out2 = apply_pitch_shift_cuda(t2, n_steps=-2, sr=sr)
+    assert isinstance(out2, torch.Tensor)
+    assert out2.shape == (1, sr)
+
+
+def test_audio_augmentor_with_pitch_shift():
+    """Verify AudioAugmentor pipeline with pitch shift enabled."""
+    wav = np.random.randn(16000).astype(np.float32) * 0.3
+    augmentor = AudioAugmentor(
+        gain_prob=0.0,
+        speed_prob=0.0,
+        reverb_prob=0.0,
+        mic_filter_prob=0.0,
+        noise_prob=0.0,
+        pitch_prob=1.0,
+        pitch_steps=(3,),
+    )
+    out = augmentor(wav)
+    assert out.shape == wav.shape
+    assert not np.isnan(out).any()
+    assert not np.array_equal(out, wav)
+
 
 
 

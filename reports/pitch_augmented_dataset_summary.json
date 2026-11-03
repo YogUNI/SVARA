@@ -1,0 +1,32 @@
+{
+  "timestamp": "2026-11-03 23:01:36",
+  "substep": "12.2",
+  "phase": "12",
+  "device": "cuda",
+  "device_name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "batch_size": 32,
+  "input_dataset": "data/synthetic_indonesian_massive/metadata.csv",
+  "output_directory": "data/synthetic_indonesian_massive/wavs_pitch",
+  "manifest_path": "data/synthetic_indonesian_massive/metadata_pitch.csv",
+  "total_clips": 1860,
+  "generated_new": 1827,
+  "skipped_existing": 33,
+  "total_audio_hours": 1.794,
+  "peak_headroom_violations": 0,
+  "zero_clipping_rate_pct": 100.0,
+  "elapsed_seconds": 143.84,
+  "throughput_clips_per_second": 12.93,
+  "pitch_distribution": {
+    "p2_tenor_muda (+2st, ~134.7Hz)": 102,
+    "m3_alto (-3st, ~185.0Hz)": 277,
+    "p4_tenor_tinggi (+4st, ~151.2Hz)": 97,
+    "p2_soprano (+2st, ~246.9Hz)": 276,
+    "p3_soprano_high (+3st, ~261.6Hz)": 275,
+    "m2_mezzo (-2st, ~196.0Hz)": 270,
+    "m2_bariton (-2st, ~106.9Hz)": 96,
+    "m3_bass_rendah (-3st, ~100.9Hz)": 97,
+    "p3_tenor_std (+3st, ~142.7Hz)": 95,
+    "m4_alto_rendah (-4st, ~174.6Hz)": 275
+  },
+  "all_passed": true
+}

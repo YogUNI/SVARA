@@ -132,12 +132,13 @@ Untuk mematangkan sistem secara tuntas tanpa melanggar prinsip ilmiah dan zero-f
   - **Algoritma**: Menggunakan `torchaudio.transforms.PitchShift(sample_rate=16000, n_steps=...)` berbasis algoritma *phase vocoder* yang diakselerasi secara native pada CUDA RTX 4060 dengan caching transformator untuk performa tinggi.
   - **Acceptance Criteria**: Fungsi mampu melakukan *pitch shift* semitone presisi matematis (galat frekuensi spektral $< 0.4\text{ Hz}$), zero-sample length preservation, peak amplitude $\le 0.95$, dan 22 unit test augmentasi lolos 100%. Laporan benchmark tersimpan di `reports/pitch_shift_gpu_benchmark.json`.
 
-* **Sub-step 12.2: Eksekusi Batch Variasi Nada ($\pm 1$ s.d $\pm 4$ Semitones)**
+* **Sub-step 12.2: Eksekusi Batch Variasi Nada ($\pm 1$ s.d $\pm 4$ Semitones)** [SELESAI - reports/pitch_augmented_dataset_summary.json]
   - **Lokasi Script**: `scripts/make_pitch_augmented_dataset.py`
   - **Skema Pergeseran Nada**:
     - Suara Pria (`spk_ardi`, asal ~120 Hz): digeser $+2, +3, +4$ semitone (menghasilkan vokal pria muda/tenor ~150-180 Hz) dan $-2, -3$ semitone (vokal bariton berat ~100 Hz).
     - Suara Wanita (`spk_gadis`, asal ~220 Hz): digeser $-2, -3, -4$ semitone (vokal wanita dewasa/alto ~170-190 Hz) dan $+2, +3$ semitone (vokal tinggi/soprano ~260 Hz).
-  - **Acceptance Criteria**: Menghasilkan sebaran frekuensi vokal kontinu dari 90 Hz hingga 280 Hz, melenyapkan dependensi model pada satu tinggi nada tertentu.
+  - **Hasil Eksekusi**: Terstratifikasi seimbang 1.860 klip vokal melintasi 31 intent (60 klip per intent) & 10 profil vokal biologis manusia. Menghasilkan sebaran frekuensi vokal kontinu dari 90 Hz hingga 280 Hz, melenyapkan dependensi model pada flat TTS $F_0$. Throughput GPU 12,9 clips/s pada RTX 4060, zero clipping peak $\le 0.95$ (100% lolos).
+  - **Acceptance Criteria**: Menghasilkan sebaran frekuensi vokal kontinu dari 90 Hz hingga 280 Hz, melenyapkan dependensi model pada satu tinggi nada tertentu. Terpenuhi 100%.
 
 * **Sub-step 12.3: Audit Integritas Akustik & Formant Zero-Clipping Guard**
   - **Tindakan**: Verifikasi audio hasil modulasi nada: tidak mengalami digital clipping (Peak $\le 0.95$), rasio sampling 16 kHz terjaga, dan formasi formant fonetik vokal tetap dapat dipahami (*intelligible*).

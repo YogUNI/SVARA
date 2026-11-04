@@ -110,6 +110,42 @@ def convert_and_standardize_audio(
     return duration, peak, rms_dbfs
 
 
+# Indonesian canonical phrases per intent
+ID_PHRASES = {
+    0: "Nyalakan lampu meja",
+    1: "Nyalakan lampu kamar tidur",
+    2: "Nyalakan lampu dapur",
+    3: "Nyalakan semua lampu",
+    4: "Nyalakan lampu kamar mandi",
+    5: "Putar lagi lagunya",
+    6: "Bawakan saya jus",
+    7: "Ambilkan koran untuk saya",
+    8: "Ambilkan sepatu saya",
+    9: "Ambilkan kaus kaki",
+    10: "Ganti ke bahasa Mandarin dong",
+    11: "Ganti bahasanya ke Bahasa Inggris",
+    12: "Ganti bahasanya ke Bahasa Jerman",
+    13: "Ganti ke bahasa Korea dong",
+    14: "Ganti bahasa sistem",
+    15: "Matikan lampu meja",
+    16: "Matikan lampu kamar",
+    17: "Matikan lampu dapur",
+    18: "Matikan semua lampu",
+    19: "Matikan lampu kamar mandi",
+    20: "Matikan musiknya",
+    21: "Dinginkan kamar tidur dong",
+    22: "Dinginkan dapur dong",
+    23: "Turunkan suhunya dong",
+    24: "Dinginkan kamar mandi dong",
+    25: "Kecilkan volumenya dong",
+    26: "Naikkan suhu kamar tidur dong",
+    27: "Naikkan suhu dapur dong",
+    28: "Naikkan suhunya dong",
+    29: "Naikkan suhu kamar mandi dong",
+    30: "Besarkan suaranya dong",
+}
+
+
 def audit_own_recordings(
     raw_dir: str = DEFAULT_RAW_DIR,
     wavs_dir: str = DEFAULT_WAVS_DIR,
@@ -172,6 +208,7 @@ def audit_own_recordings(
         act = intent_info["action"]
         obj = intent_info["object"]
         loc = intent_info["location"]
+        phrase_id = ID_PHRASES.get(intent_id, f"{act} {obj} {loc}".replace(" none", ""))
 
         rel_path = f"data/own_recordings/wavs/{fname}".replace("\\", "/")
         metadata_rows.append({
@@ -179,7 +216,7 @@ def audit_own_recordings(
             "speakerId": spk,
             "device": "laptop_mic",
             "condition": cond,
-            "transcript": f"{act} {obj} {loc}".replace(" none", ""),
+            "transcript": phrase_id,
             "action": act,
             "object": obj,
             "location": loc,
@@ -254,3 +291,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

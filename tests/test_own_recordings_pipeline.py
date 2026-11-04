@@ -90,3 +90,4 @@ def test_audit_own_recordings_pipeline(tmp_path):
     assert summary["status"] == "PASSED"
     assert os.path.exists(meta_path)
     assert os.path.exists(report_path)
+

@@ -13,6 +13,7 @@ import torch
 from torch.utils.data import Dataset
 
 from svara.data.audio import preprocess_audio
+from svara.data.augment import apply_spec_augment_waveform
 
 
 class FSCDataset(Dataset):
@@ -24,6 +25,8 @@ class FSCDataset(Dataset):
         dataset_root: Optional[str] = "data/raw/fluent_speech_commands_dataset",
         max_audio_seconds: float = 5.0,
         is_training: bool = False,
+        augmentor: Optional[Any] = None,
+        specaug_prob: float = 0.0,
     ):
         if not os.path.exists(split_csv_path):
             raise FileNotFoundError(f"Split CSV not found: {split_csv_path}")
@@ -32,6 +35,8 @@ class FSCDataset(Dataset):
         self.dataset_root = os.path.abspath(dataset_root) if dataset_root else ""
         self.max_audio_seconds = max_audio_seconds
         self.is_training = is_training
+        self.augmentor = augmentor
+        self.specaug_prob = specaug_prob
 
         # Precompute vocabulary sets and mappings for slot labels
         # Use global intent_map.json if present to ensure train and val share identical IDs
@@ -75,6 +80,14 @@ class FSCDataset(Dataset):
             pad=False,  # Padding done dynamically in Collate
             is_training=self.is_training,
         )
+
+        # Dynamic online data augmentation & SpecAugment during training (Sub-step 13.1)
+        if self.is_training:
+            import numpy as np
+            if self.augmentor is not None:
+                waveform = self.augmentor(waveform)
+            elif self.specaug_prob > 0.0 and np.random.rand() < self.specaug_prob:
+                waveform = apply_spec_augment_waveform(waveform, sr=sr)
 
         action_id = self.action_to_id.get(row["action"], 0)
         object_id = self.object_to_id.get(row["object"], 0)

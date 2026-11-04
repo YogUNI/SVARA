@@ -157,7 +157,7 @@ Dokumen ini adalah panduan kontrol proyek resmi untuk pematangan sistem Deep Lea
 * **Sub-step 12.3** [SELESAI - reports/pitch_augmentation_audit.json]: Audit Integritas Akustik, Formant Intelligibility, & Zero-Clipping Guard (`scripts/audit_pitch_augmentation.py`, lulus 100%, 0 format error, 0 missing file, max peak 0.7021 <= 0.95 zero-clipping, konsistensi legal triplet 100%, sebaran F0 86,0 Hz - 355,6 Hz). **FASE 12 SELESAI 100%**.
 
 ### FASE 13: ONLINE SPECAUGMENT & FEW-SHOT HUMAN ACOUSTIC CALIBRATION
-* **Sub-step 13.1**: Implementasi Online Frequency & Time Masking (SpecAugment) pada DataLoader training loop.
+* **Sub-step 13.1** [SELESAI - reports/specaugment_audit_benchmark.json]: Implementasi Dual-Level Online Frequency & Time Masking (SpecAugment) pada PyTorch STFT Phase-Preserving Waveform Augmentor & HuggingFace `Wav2VecSLU` encoder config (`apply_spec_augment=True`, $F \in [10, 24]$, $T \in [10, 30]$). Mode switching terverifikasi bit-exact deterministik pada mode eval ($L_\infty = 0,000000$) dan aktif dinamis pada mode training (stochastic variance $0,3061$), peak amplitude terkontrol $\le 0,95$, throughput GPU RTX 4060 mencapai 3.729 klip/detik ($0,27\text{ ms/klip}$), 6 unit test lolos 100% (`tests/test_specaugment.py`).
 * **Sub-step 13.2**: Pengambilan & Injeksi Rekaman Suara Asli (Haikal & Yoga) dari `data/own_recordings/` sebagai Acoustic Anchor pembiasaan pita suara manusia.
 * **Sub-step 13.3**: Perluasan Frasa Gaul/Colloquial Sehari-hari untuk Seluruh 5 Domain Smart Home (`scripts/expand_colloquial_smart_home.py`).
 

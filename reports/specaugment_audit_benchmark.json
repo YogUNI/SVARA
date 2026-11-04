@@ -1,0 +1,61 @@
+{
+  "timestamp": "2026-11-04 06:59:17",
+  "substep": "13.1",
+  "phase": "13",
+  "device": "cuda",
+  "device_name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "audit_duration_seconds": 4.53,
+  "gpu_throughput_benchmark": {
+    "batch_1": {
+      "batch_size": 1,
+      "avg_batch_ms": 6.63,
+      "latency_per_clip_ms": 6.63,
+      "throughput_clips_per_sec": 150.8
+    },
+    "batch_8": {
+      "batch_size": 8,
+      "avg_batch_ms": 6.21,
+      "latency_per_clip_ms": 0.78,
+      "throughput_clips_per_sec": 1287.2
+    },
+    "batch_16": {
+      "batch_size": 16,
+      "avg_batch_ms": 8.36,
+      "latency_per_clip_ms": 0.52,
+      "throughput_clips_per_sec": 1913.7
+    },
+    "batch_32": {
+      "batch_size": 32,
+      "avg_batch_ms": 8.58,
+      "latency_per_clip_ms": 0.27,
+      "throughput_clips_per_sec": 3729.5
+    }
+  },
+  "waveform_specaugment_audit": {
+    "input_samples": 16000,
+    "output_samples": 16000,
+    "length_strictly_preserved": true,
+    "max_spectral_deviation": 1.0,
+    "mean_spectral_deviation": 0.1385,
+    "masking_signal_altered": true,
+    "peak_amplitude": 0.95,
+    "peak_headroom_guaranteed": true
+  },
+  "model_specaugment_mode_audit": {
+    "eval_mode_specaugment_active": false,
+    "train_mode_specaugment_active": true,
+    "eval_mode_determinism_max_diff": 0.0,
+    "eval_mode_bit_exact": true,
+    "train_mode_stochastic_variance": 0.3061,
+    "train_mode_masking_confirmed": true,
+    "config_parameters": {
+      "apply_spec_augment": true,
+      "mask_time_prob": 0.1,
+      "mask_time_length": 20,
+      "mask_feature_prob": 0.1,
+      "mask_feature_length": 20
+    }
+  },
+  "verdict": "PASSED",
+  "all_passed": true
+}

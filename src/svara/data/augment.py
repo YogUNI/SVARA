@@ -542,6 +542,122 @@ def apply_pitch_shift_cuda(
         return out
 
 
+# SpecAugment transforms cache for online training acceleration (Sub-step 13.1)
+_SPECAUG_CACHE: Dict[Tuple[int, int, str], Any] = {}
+
+
+def apply_spec_augment_waveform(
+    waveform: Union[np.ndarray, "torch.Tensor"],
+    sr: int = 16000,
+    freq_mask_param: int = 24,
+    time_mask_param: int = 30,
+    num_freq_masks: int = 2,
+    num_time_masks: int = 2,
+    headroom_peak: float = 0.95,
+    device: Optional[Union[str, "torch.device"]] = None,
+) -> Union[np.ndarray, "torch.Tensor"]:
+    """Applies phase-preserving complex STFT SpecAugment directly on raw audio waveforms.
+
+    Mekanisme Sub-step 13.1:
+    - Frequency Masking: Menutup F in [10, 30] pita kanal frekuensi acak.
+    - Time Masking: Menutup T in [10, 40] bingkai waktu acak.
+    - Preserves exact duration (length in samples) and signal phase.
+    - Guaranteed zero-clipping peak amplitude <= headroom_peak.
+
+    Args:
+        waveform: Audio array [T], [1, T], or [B, T].
+        sr: Sampling rate in Hz (default 16000).
+        freq_mask_param: Maximum frequency channels to mask.
+        time_mask_param: Maximum time frames to mask.
+        num_freq_masks: Number of frequency masks to apply.
+        num_time_masks: Number of time masks to apply.
+        headroom_peak: Maximum absolute peak allowed (anti-clipping guard).
+        device: Torch execution device ('cuda', 'cpu', or None for auto).
+
+    Returns:
+        Augmented waveform preserving original data type and shape.
+    """
+    if not HAS_TORCH_AUDIO or torch is None or torchaudio is None:
+        raise RuntimeError("torch and torchaudio are required for apply_spec_augment_waveform.")
+
+    is_numpy = isinstance(waveform, np.ndarray)
+    if is_numpy:
+        tensor = torch.from_numpy(waveform.astype(np.float32))
+    elif isinstance(waveform, torch.Tensor):
+        tensor = waveform.float()
+    else:
+        raise TypeError(f"Unsupported waveform type: {type(waveform)}. Expected np.ndarray or torch.Tensor.")
+
+    orig_dim = tensor.dim()
+    orig_len = tensor.shape[-1]
+
+    if orig_dim == 1:
+        tensor = tensor.unsqueeze(0)
+
+    # Device selection
+    if device is None:
+        target_device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    elif isinstance(device, str):
+        target_device = torch.device(device)
+    else:
+        target_device = device
+
+    n_fft = 512
+    hop_length = 128
+    cache_key = (n_fft, hop_length, freq_mask_param, time_mask_param, str(target_device))
+
+    if cache_key not in _SPECAUG_CACHE:
+        spec_fn = torchaudio.transforms.Spectrogram(
+            n_fft=n_fft,
+            win_length=n_fft,
+            hop_length=hop_length,
+            power=None,
+        ).to(target_device)
+        ispec_fn = torchaudio.transforms.InverseSpectrogram(
+            n_fft=n_fft,
+            win_length=n_fft,
+            hop_length=hop_length,
+        ).to(target_device)
+        f_mask = torchaudio.transforms.FrequencyMasking(freq_mask_param=freq_mask_param)
+        t_mask = torchaudio.transforms.TimeMasking(time_mask_param=time_mask_param)
+        _SPECAUG_CACHE[cache_key] = (spec_fn, ispec_fn, f_mask, t_mask)
+    else:
+        spec_fn, ispec_fn, f_mask, t_mask = _SPECAUG_CACHE[cache_key]
+
+    with torch.no_grad():
+        in_tensor = tensor.to(target_device)
+        spec = spec_fn(in_tensor)
+        mag = spec.abs()
+
+        # Apply sequential masks
+        masked_mag = mag
+        for _ in range(num_freq_masks):
+            masked_mag = f_mask(masked_mag)
+        for _ in range(num_time_masks):
+            masked_mag = t_mask(masked_mag)
+
+        # Ratio preservation of complex phase
+        ratio = torch.where(mag > 1e-8, masked_mag / mag, torch.zeros_like(mag))
+        masked_spec = spec * ratio
+
+        # Inverse transform to time domain with exact length
+        recon = ispec_fn(masked_spec, length=orig_len)
+
+        # Headroom peak guard (<= headroom_peak)
+        peak = float(torch.max(torch.abs(recon)).item())
+        if peak > headroom_peak and peak > 1e-6:
+            recon = recon * (headroom_peak / peak)
+
+    if is_numpy:
+        out = recon.squeeze(0).detach().cpu().numpy().astype(np.float32)
+        return out
+    else:
+        out = recon.detach()
+        if orig_dim == 1:
+            out = out.squeeze(0)
+        return out
+
+
 class AudioAugmentor:
     """Composited audio augmentation pipeline for training."""
 
@@ -557,6 +673,11 @@ class AudioAugmentor:
         speed_factors: Tuple[float, ...] = DEFAULT_SPEED_FACTORS,
         pitch_prob: float = 0.0,
         pitch_steps: Tuple[int, ...] = DEFAULT_PITCH_STEPS,
+        specaug_prob: float = 0.0,
+        specaug_freq_mask_param: int = 24,
+        specaug_time_mask_param: int = 30,
+        specaug_num_freq_masks: int = 2,
+        specaug_num_time_masks: int = 2,
         reverb_prob: float = 0.0,
         reverb_rooms: Tuple[str, ...] = ("bedroom", "living_room"),
         mic_filter_prob: float = 0.0,
@@ -572,6 +693,11 @@ class AudioAugmentor:
         self.speed_factors = speed_factors
         self.pitch_prob = pitch_prob
         self.pitch_steps = pitch_steps
+        self.specaug_prob = specaug_prob
+        self.specaug_freq_mask_param = specaug_freq_mask_param
+        self.specaug_time_mask_param = specaug_time_mask_param
+        self.specaug_num_freq_masks = specaug_num_freq_masks
+        self.specaug_num_time_masks = specaug_num_time_masks
         self.reverb_prob = reverb_prob
         self.reverb_rooms = reverb_rooms
         self.mic_filter_prob = mic_filter_prob
@@ -621,5 +747,15 @@ class AudioAugmentor:
                     out, _ = inject_household_noise(out, min_snr_db=self.min_snr_db, max_snr_db=self.max_snr_db)
             else:
                 out, _ = inject_household_noise(out, min_snr_db=self.min_snr_db, max_snr_db=self.max_snr_db)
+
+        # 7. Online SpecAugment (Sub-step 13.1)
+        if self.specaug_prob > 0.0 and np.random.rand() < self.specaug_prob:
+            out = apply_spec_augment_waveform(
+                out,
+                freq_mask_param=self.specaug_freq_mask_param,
+                time_mask_param=self.specaug_time_mask_param,
+                num_freq_masks=self.specaug_num_freq_masks,
+                num_time_masks=self.specaug_num_time_masks,
+            )
 
         return out

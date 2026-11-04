@@ -150,12 +150,18 @@ Untuk mematangkan sistem secara tuntas tanpa melanggar prinsip ilmiah dan zero-f
 ### FASE 13: ONLINE SPECAUGMENT & FEW-SHOT HUMAN ACOUSTIC CALIBRATION
 *Penanggung Jawab: Yoga (SpecAugment & Pipeline) & Haikal (Perekaman Suara Asli)*
 
-* **Sub-step 13.1: Implementasi Online Frequency & Time Masking (SpecAugment)**
-  - **Lokasi Kode**: `src/svara/models/wav2vec_slu.py` / `src/svara/data/dataset.py`
+* **Sub-step 13.1: Implementasi Online Frequency & Time Masking (SpecAugment)** [SELESAI - reports/specaugment_audit_benchmark.json]
+  - **Lokasi Kode**: `src/svara/models/wav2vec_slu.py`, `src/svara/data/augment.py`, `src/svara/data/collate.py`
   - **Mekanisme**:
-    - **Frequency Masking**: Menutup pita frekuensi acak ($F \in [10, 30]$ kanal frekuensi). Saat jalur harmonik nada tertentu hilang, model dipaksa mengidentifikasi fonem berdasarkan konteks formant lainnya.
-    - **Time Masking**: Menutup blok waktu acak ($T \in [10, 40]$ bingkai waktu), melatih ketahanan model terhadap sengauan atau jeda mikrosekon saat manusia berbicara.
-  - **Acceptance Criteria**: SpecAugment aktif secara dinamis hanya saat mode `is_training=True` dan non-aktif saat evaluasi/inference.
+    - **Dual-Level SpecAugment**:
+      1. *Waveform-level complex STFT*: `apply_spec_augment_waveform` berbasis PyTorch STFT rasio magnitude preservasi fase kompleks ($F \in [10, 24]$, $T \in [10, 30]$), peak amplitude guard $\le 0.95$ anti-clipping.
+      2. *Model-level feature masking*: Parameter `apply_spec_augment=True`, `mask_time_length=20`, `mask_feature_length=20` terinjeksi ke `Wav2Vec2Config` / `AutoConfig` di `Wav2VecSLU`.
+  - **Hasil Benchmark GPU & Audit**:
+    - Throughput CUDA RTX 4060: **3.729,5 klip/detik** ($0,27\text{ ms/klip}$ pada $B=32$).
+    - Determinisme Mode Eval: Bit-exact ($L_\infty = 0,000000$), `is_specaugment_active=False`.
+    - Aktivitas Mode Train: Aktif stokastik (variansi output $0,3061$), `is_specaugment_active=True`.
+    - Unit Tests: 6/6 lolos 100% (`tests/test_specaugment.py`). Laporan tersimpan di `reports/specaugment_audit_benchmark.json`.
+  - **Acceptance Criteria**: SpecAugment aktif secara dinamis hanya saat mode `is_training=True` dan non-aktif saat evaluasi/inference. Terpenuhi 100%.
 
 * **Sub-step 13.2: Pengambilan & Injeksi Rekaman Suara Asli (Acoustic Calibration Anchor)**
   - **Lokasi Data**: `data/own_recordings/`

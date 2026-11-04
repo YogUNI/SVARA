@@ -32,7 +32,13 @@ class Wav2VecSLU(nn.Module):
         freeze_feature_encoder: bool = True,
         freeze_encoder: bool = False,
         dropout: float = 0.1,
+        apply_spec_augment: bool = True,
         mask_time_prob: float = 0.05,
+        mask_time_length: int = 20,
+        mask_feature_prob: float = 0.05,
+        mask_feature_length: int = 20,
+        mask_time_min_masks: int = 2,
+        mask_feature_min_masks: int = 2,
         layerdrop: float = 0.0,
         config_only: bool = False,
     ):
@@ -48,7 +54,13 @@ class Wav2VecSLU(nn.Module):
             freeze_feature_encoder: If True, freeze temporal CNN feature encoder weights.
             freeze_encoder: If True, freeze the entire Transformer encoder (only heads trainable).
             dropout: Dropout probability before classification heads.
+            apply_spec_augment: Whether to apply SpecAugment time and frequency/feature masking during training.
             mask_time_prob: Probability of masking time steps during training (SpecAugment).
+            mask_time_length: Length of consecutive time frames masked (e.g. 10..40 frames).
+            mask_feature_prob: Probability of masking feature channels during training (Frequency Masking).
+            mask_feature_length: Length of consecutive channels masked (e.g. 10..30 channels).
+            mask_time_min_masks: Minimum number of time masks per sequence.
+            mask_feature_min_masks: Minimum number of feature masks per sequence.
             layerdrop: LayerDrop probability.
             config_only: If True, initialize with random weights from config (for fast offline tests).
         """
@@ -57,11 +69,22 @@ class Wav2VecSLU(nn.Module):
         self.freeze_feature_encoder_flag = freeze_feature_encoder
         self.freeze_encoder = freeze_encoder
         self.keep_layers = keep_layers
+        self.apply_spec_augment = apply_spec_augment
+        self.mask_time_prob = mask_time_prob
+        self.mask_time_length = mask_time_length
+        self.mask_feature_prob = mask_feature_prob
+        self.mask_feature_length = mask_feature_length
 
         # 1. Load config or pretrained model
         if config_only:
             config = Wav2Vec2Config(
+                apply_spec_augment=apply_spec_augment,
                 mask_time_prob=mask_time_prob,
+                mask_time_length=mask_time_length,
+                mask_feature_prob=mask_feature_prob,
+                mask_feature_length=mask_feature_length,
+                mask_time_min_masks=mask_time_min_masks,
+                mask_feature_min_masks=mask_feature_min_masks,
                 layerdrop=layerdrop,
                 hidden_size=768,
                 num_hidden_layers=keep_layers if keep_layers else 12,
@@ -72,7 +95,13 @@ class Wav2VecSLU(nn.Module):
         else:
             config = AutoConfig.from_pretrained(
                 pretrained_model_name_or_path,
+                apply_spec_augment=apply_spec_augment,
                 mask_time_prob=mask_time_prob,
+                mask_time_length=mask_time_length,
+                mask_feature_prob=mask_feature_prob,
+                mask_feature_length=mask_feature_length,
+                mask_time_min_masks=mask_time_min_masks,
+                mask_feature_min_masks=mask_feature_min_masks,
                 layerdrop=layerdrop,
             )
             self.enc = Wav2Vec2Model.from_pretrained(
@@ -121,6 +150,11 @@ class Wav2VecSLU(nn.Module):
             # Frozen encoder must not apply dropout or SpecAugment time-masking
             self.enc.eval()
         return self
+
+    @property
+    def is_specaugment_active(self) -> bool:
+        """Returns True if SpecAugment is actively masking during forward pass."""
+        return bool(self.training and self.apply_spec_augment and getattr(self.enc, "training", False))
 
     def forward(
         self,

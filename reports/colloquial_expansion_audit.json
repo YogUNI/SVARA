@@ -1,0 +1,25 @@
+{
+  "substep": "13.3",
+  "total_colloquial_phrases_generated": 1705,
+  "acceptance_criteria_target": 1500,
+  "target_met": true,
+  "unique_intents_covered": 31,
+  "min_phrases_per_intent": 55,
+  "max_phrases_per_intent": 55,
+  "avg_phrases_per_intent": 55.0,
+  "semantic_validation": {
+    "invalid_triplets_count": 0,
+    "triplets_valid": true,
+    "errors": []
+  },
+  "master_corpus_compiled": {
+    "output_path": "data/corpus/indonesian_smart_home_corpus_master.csv",
+    "total_master_phrases": 2780,
+    "sources": {
+      "colloquial_expansion_13_3": 1705,
+      "corpus_31_base": 1075
+    }
+  },
+  "verdict": "PASSED",
+  "status": "SELESAI"
+}

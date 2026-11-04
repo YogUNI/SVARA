@@ -1,0 +1,1706 @@
+intent_id,action,object,location,phrase,length_chars,num_words
+0,activate,lamp,none,Lampu baca tolong coba idupin dong ya,37,7
+0,activate,lamp,none,Gelap banget meja belajar bisa gak tolong nyalain lampu meja kerja dong tolong,78,13
+0,activate,lamp,none,Lampu meja tolong nyalain dong ya,33,6
+0,activate,lamp,none,Lampu meja kerja idupin lah,27,5
+0,activate,lamp,none,Eh svara lampu baca tolong tolong nyalain,41,7
+0,activate,lamp,none,Hidupin lampu belajar dong ya,29,5
+0,activate,lamp,none,Aktifkan lampu meja sekarang,28,4
+0,activate,lamp,none,Mau baca buku nih coba idupin lampu tidur bentar,48,9
+0,activate,lamp,none,Tolong nyalain lampu baca lah,29,5
+0,activate,lamp,none,Bisa gak tolong lampu meja tolong nyalain lah,45,8
+0,activate,lamp,none,Idupin lampu meja dong svara,28,5
+0,activate,lamp,none,Hidupin lampu belajar sekarang,30,4
+0,activate,lamp,none,Gelap banget meja belajar tolongin dong hidupin lampu meja kerja lah,68,11
+0,activate,lamp,none,Lampu belajar coba idupin ya,28,5
+0,activate,lamp,none,Eh tolong lampu meja kerja tolong coba idupin bentar,52,9
+0,activate,lamp,none,Lampu meja idupin sekarang,26,4
+0,activate,lamp,none,Idupin lampu nakas dong tolong,30,5
+0,activate,lamp,none,Lampu tidur aktifkan lah,24,4
+0,activate,lamp,none,Idupin lampu belajar dong tolong,32,5
+0,activate,lamp,none,Svara coba lampu baca tolong aktifkan dong ya,45,8
+0,activate,lamp,none,Tolong lampu meja tolong nyalain ya,35,6
+0,activate,lamp,none,Lampu tidur nyalain dong svara,30,5
+0,activate,lamp,none,Mau baca buku nih halo svara nyalain lampu meja kerja dong tolong,65,12
+0,activate,lamp,none,Lampu meja hidupin tolong ya,28,5
+0,activate,lamp,none,Nyalain lampu meja kerja dong tolong,36,6
+0,activate,lamp,none,Halo svara lampu meja kerja tolong nyalain tolong ya,52,9
+0,activate,lamp,none,Gelap banget meja belajar svara tolong idupin lampu nakas bentar,64,10
+0,activate,lamp,none,Nyalain lampu meja sekarang,27,4
+0,activate,lamp,none,Gelap banget meja belajar idupin lampu nakas dong,49,8
+0,activate,lamp,none,Lampu belajar tolong nyalain ya,31,5
+0,activate,lamp,none,Eh tolong lampu nakas tolong tolong nyalain dong svara,54,9
+0,activate,lamp,none,Hidupin lampu tidur lah,23,4
+0,activate,lamp,none,Halo svara lampu meja tolong aktifkan dong ya,45,8
+0,activate,lamp,none,Svara tolong lampu nakas tolong nyalain bentar,46,7
+0,activate,lamp,none,Gelap banget meja belajar nyalain lampu meja kerja lah,54,9
+0,activate,lamp,none,Tolong lampu baca tolong nyalain dong,37,6
+0,activate,lamp,none,Tolongin dong lampu belajar tolong aktifkan bentar,50,7
+0,activate,lamp,none,Remang-remang nih meja bisa tolong aktifkan lampu tidur dong ya,63,10
+0,activate,lamp,none,Lampu baca aktifkan dong svara,30,5
+0,activate,lamp,none,Remang-remang nih meja bisa gak tolong nyalain lampu meja kerja lah,67,11
+0,activate,lamp,none,Svara lampu baca tolong coba idupin dong,40,7
+0,activate,lamp,none,Lampu tidur tolong nyalain ya,29,5
+0,activate,lamp,none,Lampu belajar aktifkan dong,27,4
+0,activate,lamp,none,Gelap nih coba idupin lampu nakas,33,6
+0,activate,lamp,none,Coba lampu tidur tolong aktifkan cepetan,40,6
+0,activate,lamp,none,Lampu tidur idupin,18,3
+0,activate,lamp,none,Lampu tidur hidupin dong tolong,31,5
+0,activate,lamp,none,Gelap banget meja belajar bisa tolong hidupin lampu belajar,59,9
+0,activate,lamp,none,Lampu nakas tolong nyalain cepetan,34,5
+0,activate,lamp,none,Gelap nih halo svara nyalain lampu belajar dong,47,8
+0,activate,lamp,none,Gelap banget meja belajar svara nyalain lampu nakas dong ya,59,10
+0,activate,lamp,none,Coba idupin lampu nakas ya tolong,33,6
+0,activate,lamp,none,Bisa tolong lampu meja kerja tolong coba idupin sekarang,56,9
+0,activate,lamp,none,Idupin lampu meja kerja lah,27,5
+0,activate,lamp,none,Remang-remang nih meja svara tolong nyalain lampu meja cepetan,62,9
+1,activate,lights,bedroom,Halo svara semua lampu kamar tolong idupin tolong ya,52,9
+1,activate,lights,bedroom,Tolong lampu di kamar tidur tolong idupin tolong ya,51,9
+1,activate,lights,bedroom,Gelap nih di kamar halo svara nyalakan lampu di kamar tidur ya tolong,69,13
+1,activate,lights,bedroom,Mau masuk kamar tidur nih tolongin dong nyalain lampu kamar tolong ya,69,12
+1,activate,lights,bedroom,Coba idupin lampu kamar tolong ya,33,6
+1,activate,lights,bedroom,Hidupin lampu kamar lah,23,4
+1,activate,lights,bedroom,Lampu kamar tidur nyalain lah,29,5
+1,activate,lights,bedroom,Nyalain lampu di kamar tidur ya,31,6
+1,activate,lights,bedroom,Semua lampu kamar tolong nyalain dong tolong,44,7
+1,activate,lights,bedroom,Kamar gelap nih tolong nyalain lampu kamar bentar,49,8
+1,activate,lights,bedroom,Svara coba lampu kamar tolong coba idupin dong svara,52,9
+1,activate,lights,bedroom,Eh tolong lampu kamar tidur tolong hidupin sekarang,51,8
+1,activate,lights,bedroom,Lampu di kamar tidur nyalain bentar,35,6
+1,activate,lights,bedroom,Kamar tidur gelap banget bisa tolong idupin lampu kamar dong svara,66,11
+1,activate,lights,bedroom,Bisa gak tolong lampu utama kamar tidur tolong hidupin lah,58,10
+1,activate,lights,bedroom,Mau masuk kamar tidur nih coba nyalakan lampu kamar tidur dong svara,68,12
+1,activate,lights,bedroom,Idupin lampu utama kamar tidur sekarang,39,6
+1,activate,lights,bedroom,Nyalain lampu kamar dong svara,30,5
+1,activate,lights,bedroom,Lampu di kamar tidur hidupin lah,32,6
+1,activate,lights,bedroom,Coba idupin lampu utama kamar tidur sekarang,44,7
+1,activate,lights,bedroom,Svara coba lampu kamar tidur tolong coba idupin dong svara,58,10
+1,activate,lights,bedroom,Lampu utama kamar tidur tolong nyalakan,39,6
+1,activate,lights,bedroom,Nyalain lampu di kamar tidur ya tolong,38,7
+1,activate,lights,bedroom,Semua lampu kamar hidupin tolong ya,35,6
+1,activate,lights,bedroom,Svara lampu di kamar tidur tolong nyalakan bentar,49,8
+1,activate,lights,bedroom,Svara lampu utama kamar tidur tolong nyalakan lah,49,8
+1,activate,lights,bedroom,Coba idupin lampu kamar tidur tolong ya,39,7
+1,activate,lights,bedroom,Coba idupin semua lampu kamar lah,33,6
+1,activate,lights,bedroom,Lampu kamar tolong nyalain bentar,33,5
+1,activate,lights,bedroom,Nyalain lampu di kamar tidur bentar,35,6
+1,activate,lights,bedroom,Bisa tolong lampu di kamar tidur tolong nyalakan dong ya,56,10
+1,activate,lights,bedroom,Kamar tidur gelap banget nyalain lampu kamar cepetan,52,8
+1,activate,lights,bedroom,Semua lampu kamar nyalakan dong ya,34,6
+1,activate,lights,bedroom,Gelap nih di kamar svara idupin lampu kamar lah,47,9
+1,activate,lights,bedroom,Lampu kamar idupin dong tolong,30,5
+1,activate,lights,bedroom,Halo svara lampu kamar tidur tolong idupin cepetan,50,8
+1,activate,lights,bedroom,Coba idupin semua lampu kamar ya tolong,39,7
+1,activate,lights,bedroom,Semua lampu kamar nyalakan dong svara,37,6
+1,activate,lights,bedroom,Bisa gak tolong lampu utama kamar tidur tolong tolong nyalain tolong ya,71,12
+1,activate,lights,bedroom,Lampu kamar tolong nyalain tolong ya,36,6
+1,activate,lights,bedroom,Hidupin lampu kamar tolong ya,29,5
+1,activate,lights,bedroom,Halo svara lampu kamar tolong nyalain ya,40,7
+1,activate,lights,bedroom,Lampu kamar idupin dong,23,4
+1,activate,lights,bedroom,Gelap nih di kamar svara tolong coba idupin lampu utama kamar tidur dong svara,78,14
+1,activate,lights,bedroom,Kamar tidur gelap banget svara tolong nyalain semua lampu kamar dong tolong,75,12
+1,activate,lights,bedroom,Lampu di kamar tidur nyalain tolong ya,38,7
+1,activate,lights,bedroom,Halo svara semua lampu kamar tolong nyalakan ya tolong,54,9
+1,activate,lights,bedroom,Gelap nih di kamar bisa tolong hidupin lampu utama kamar tidur cepetan,70,12
+1,activate,lights,bedroom,Svara tolong lampu utama kamar tidur tolong nyalakan dong tolong,64,10
+1,activate,lights,bedroom,Semua lampu kamar coba idupin,29,5
+1,activate,lights,bedroom,Lampu utama kamar tidur nyalakan ya,35,6
+1,activate,lights,bedroom,Lampu utama kamar tidur tolong hidupin sekarang,47,7
+1,activate,lights,bedroom,Lampu utama kamar tidur hidupin tolong ya,41,7
+1,activate,lights,bedroom,Mau masuk kamar tidur nih tolong tolong nyalain lampu kamar tidur dong tolong,77,13
+1,activate,lights,bedroom,Mau masuk kamar tidur nih bisa tolong nyalakan lampu kamar tidur lah,68,12
+2,activate,lights,kitchen,Bisa tolong lampu dapur tolong idupin ya tolong,47,8
+2,activate,lights,kitchen,Coba lampu dapur tolong tolong nyalain ya tolong,48,8
+2,activate,lights,kitchen,Gelap di dapur bisa gak tolong hidupin lampu ruangan dapur ya,61,11
+2,activate,lights,kitchen,Lampu dapur nyalain tolong ya,29,5
+2,activate,lights,kitchen,Bisa gak tolong lampu dapur tolong idupin ya tolong,51,9
+2,activate,lights,kitchen,Dapur gelap nih bisa gak tolong hidupin lampu dapur ya tolong,61,11
+2,activate,lights,kitchen,Tolong nyalain lampu ruangan dapur dong,39,6
+2,activate,lights,kitchen,Tolong nyalain lampu dapur dong svara,37,6
+2,activate,lights,kitchen,Idupin semua lampu dapur ya,27,5
+2,activate,lights,kitchen,Eh svara lampu ruangan dapur tolong tolong nyalain sekarang,59,9
+2,activate,lights,kitchen,Lampu di dapur tolong nyalain cepetan,37,6
+2,activate,lights,kitchen,Lampu ruangan dapur tolong nyalain ya,37,6
+2,activate,lights,kitchen,Hidupin lampu ruangan dapur tolong ya,37,6
+2,activate,lights,kitchen,Lampu dapur idupin dong ya,26,5
+2,activate,lights,kitchen,Semua lampu dapur idupin lah,28,5
+2,activate,lights,kitchen,Lampu ruangan dapur nyalain dong ya,35,6
+2,activate,lights,kitchen,Nyalakan lampu ruangan dapur cepetan,36,5
+2,activate,lights,kitchen,Lampu ruangan dapur nyalakan sekarang,37,5
+2,activate,lights,kitchen,Eh tolong lampu di dapur tolong hidupin dong,44,8
+2,activate,lights,kitchen,Tolong lampu di dapur tolong nyalakan dong ya,45,8
+2,activate,lights,kitchen,Eh tolong lampu ruangan dapur tolong nyalakan dong,50,8
+2,activate,lights,kitchen,Mau ke dapur nih bisa tolong hidupin lampu di dapur tolong ya,61,12
+2,activate,lights,kitchen,Nyalain lampu dapur bentar,26,4
+2,activate,lights,kitchen,Tolong nyalain lampu dapur,26,4
+2,activate,lights,kitchen,Gelap di dapur eh svara tolong nyalain lampu ruangan dapur ya,61,11
+2,activate,lights,kitchen,Lampu dapur nyalain dong svara,30,5
+2,activate,lights,kitchen,Nyalain lampu di dapur ya,25,5
+2,activate,lights,kitchen,Bisa tolong semua lampu dapur tolong nyalain ya tolong,54,9
+2,activate,lights,kitchen,Lampu ruangan dapur tolong nyalain ya tolong,44,7
+2,activate,lights,kitchen,Mau ke dapur nih svara coba nyalakan lampu dapur ya tolong,58,11
+2,activate,lights,kitchen,Dapur gelap banget mau masak tolongin dong idupin lampu ruangan dapur lah,73,12
+2,activate,lights,kitchen,Dapur gelap banget mau masak bisa tolong idupin lampu dapur ya,62,11
+2,activate,lights,kitchen,Gelap di dapur eh svara nyalakan semua lampu dapur tolong ya,60,11
+2,activate,lights,kitchen,Eh tolong semua lampu dapur tolong hidupin dong,47,8
+2,activate,lights,kitchen,Mau ke dapur nih tolongin dong nyalakan lampu di dapur dong svara,65,12
+2,activate,lights,kitchen,Dapur gelap banget mau masak tolongin dong idupin lampu ruangan dapur ya,72,12
+2,activate,lights,kitchen,Dapur gelap nih coba hidupin lampu ruangan dapur cepetan,56,9
+2,activate,lights,kitchen,Semua lampu dapur hidupin tolong ya,35,6
+2,activate,lights,kitchen,Nyalakan lampu dapur dong svara,31,5
+2,activate,lights,kitchen,Mau ke dapur nih nyalain lampu di dapur lah,43,9
+2,activate,lights,kitchen,Lampu di dapur nyalain cepetan,30,5
+2,activate,lights,kitchen,Semua lampu dapur nyalakan lah,30,5
+2,activate,lights,kitchen,Hidupin semua lampu dapur sekarang,34,5
+2,activate,lights,kitchen,Semua lampu dapur hidupin dong tolong,37,6
+2,activate,lights,kitchen,Mau ke dapur nih tolongin dong tolong nyalain lampu dapur cepetan,65,11
+2,activate,lights,kitchen,Mau ke dapur nih eh tolong hidupin lampu dapur dong svara,57,11
+2,activate,lights,kitchen,Nyalain lampu di dapur bentar,29,5
+2,activate,lights,kitchen,Tolong nyalain lampu dapur dong ya,34,6
+2,activate,lights,kitchen,Dapur gelap banget mau masak eh tolong tolong nyalain semua lampu dapur dong,76,13
+2,activate,lights,kitchen,Dapur gelap banget mau masak bisa gak tolong idupin lampu ruangan dapur bentar,78,13
+2,activate,lights,kitchen,Gelap di dapur tolong idupin lampu dapur cepetan,48,8
+2,activate,lights,kitchen,Lampu ruangan dapur hidupin dong svara,38,6
+2,activate,lights,kitchen,Bisa tolong lampu di dapur tolong tolong nyalain dong svara,59,10
+2,activate,lights,kitchen,Semua lampu dapur hidupin ya,28,5
+2,activate,lights,kitchen,Hidupin semua lampu dapur cepetan,33,5
+3,activate,lights,none,Bisa gak tolong lampunya tolong idupin dong svara,49,8
+3,activate,lights,none,Lampu-lampu hidupin cepetan,27,3
+3,activate,lights,none,Tolongin dong lampu rumah tolong idupin,39,6
+3,activate,lights,none,Lampu nyalakan bentar,21,3
+3,activate,lights,none,Bisa gak tolong lampu rumah tolong idupin lah,45,8
+3,activate,lights,none,Seluruh lampu hidupin ya tolong,31,5
+3,activate,lights,none,Lampu rumah aktifkan sekarang,29,4
+3,activate,lights,none,Nyalain semua lampu lah,23,4
+3,activate,lights,none,Rumah gelap nih bisa gak tolong nyalain lampu rumah dong,56,10
+3,activate,lights,none,Hidupin lampu,13,2
+3,activate,lights,none,Eh tolong seluruh lampu tolong hidupin dong svara,49,8
+3,activate,lights,none,Halo svara lampunya tolong nyalakan lah,39,6
+3,activate,lights,none,Coba lampunya tolong nyalain dong svara,39,6
+3,activate,lights,none,Idupin semua lampu cepetan,26,4
+3,activate,lights,none,Eh tolong lampu rumah tolong nyalain tolong ya,46,8
+3,activate,lights,none,Lampunya hidupin tolong ya,26,4
+3,activate,lights,none,Semua lampu hidupin dong svara,30,5
+3,activate,lights,none,Nyalakan lampunya sekarang,26,3
+3,activate,lights,none,Gelap gulita nih nyalakan seluruh lampu,39,6
+3,activate,lights,none,Eh tolong lampunya tolong idupin sekarang,41,6
+3,activate,lights,none,Svara coba lampu-lampu tolong hidupin dong tolong,49,7
+3,activate,lights,none,Gelap banget seisi rumah nih tolongin dong nyalain seluruh lampu cepetan,72,11
+3,activate,lights,none,Idupin lampu tolong ya,22,4
+3,activate,lights,none,Idupin semua lampu bentar,25,4
+3,activate,lights,none,Hidupin lampu rumah tolong ya,29,5
+3,activate,lights,none,Semua lampu nyalain dong ya,27,5
+3,activate,lights,none,Gelap gulita nih tolong nyalakan lampu tolong ya,48,8
+3,activate,lights,none,Hidupin lampunya dong svara,27,4
+3,activate,lights,none,Idupin lampu rumah,18,3
+3,activate,lights,none,Nyalain lampu-lampu cepetan,27,3
+3,activate,lights,none,Idupin lampu,12,2
+3,activate,lights,none,Tolong semua lampu tolong nyalain bentar,40,6
+3,activate,lights,none,Lampu-lampu hidupin dong tolong,31,4
+3,activate,lights,none,Lampu rumah nyalain ya tolong,29,5
+3,activate,lights,none,Semua lampu hidupin cepetan,27,4
+3,activate,lights,none,Nyalain lampu-lampu sekarang,28,3
+3,activate,lights,none,Semua lampu hidupin dong,24,4
+3,activate,lights,none,Gelap banget seisi rumah nih tolongin dong idupin lampu-lampu lah,65,10
+3,activate,lights,none,Svara tolong semua lampu tolong idupin ya tolong,48,8
+3,activate,lights,none,Halo svara lampunya tolong idupin dong ya,41,7
+3,activate,lights,none,Coba lampu tolong aktifkan tolong ya,36,6
+3,activate,lights,none,Rumah gelap nih halo svara hidupin semua lampu dong,51,9
+3,activate,lights,none,Hidupin semua lampu ya tolong,29,5
+3,activate,lights,none,Lampu hidupin ya,16,3
+3,activate,lights,none,Nyalain lampu rumah cepetan,27,4
+3,activate,lights,none,Gelap banget seisi rumah nih eh svara aktifkan semua lampu ya tolong,68,12
+3,activate,lights,none,Lampu nyalain cepetan,21,3
+3,activate,lights,none,Lampu rumah nyalain dong tolong,31,5
+3,activate,lights,none,Gelap banget seisi rumah nih tolong hidupin lampunya ya,55,9
+3,activate,lights,none,Aktifkan lampu-lampu ya tolong,30,4
+3,activate,lights,none,Seluruh lampu aktifkan cepetan,30,4
+3,activate,lights,none,Bisa gak tolong lampu-lampu tolong nyalain lah,46,7
+3,activate,lights,none,Lampu rumah idupin sekarang,27,4
+3,activate,lights,none,Nyalain seluruh lampu dong svara,32,5
+3,activate,lights,none,Gelap gulita nih svara tolong idupin lampu-lampu cepetan,56,8
+4,activate,lights,washroom,Nyalain lampu di kamar mandi dong,33,6
+4,activate,lights,washroom,Nyalain lampu di toilet bentar,30,5
+4,activate,lights,washroom,Mau ke kamar mandi nih svara hidupin lampu di kamar mandi dong tolong,69,13
+4,activate,lights,washroom,Svara coba lampu wc tolong hidupin dong,39,7
+4,activate,lights,washroom,Tolong nyalain lampu toilet dong,32,5
+4,activate,lights,washroom,Lampu di toilet hidupin dong ya,31,6
+4,activate,lights,washroom,Hidupin lampu kamar mandi ya,28,5
+4,activate,lights,washroom,Svara tolong lampu kamar mandi tolong hidupin ya,48,8
+4,activate,lights,washroom,Tolong lampu kamar mandi tolong idupin dong,43,7
+4,activate,lights,washroom,Tolong nyalain lampu wc ya,26,5
+4,activate,lights,washroom,Kamar mandi gelap banget bisa gak tolong hidupin lampu di toilet ya tolong,74,13
+4,activate,lights,washroom,Mau ke kamar mandi nih coba idupin lampu di toilet,50,10
+4,activate,lights,washroom,Lampu di kamar mandi tolong nyalain ya tolong,45,8
+4,activate,lights,washroom,Idupin lampu di toilet dong,27,5
+4,activate,lights,washroom,Hidupin lampu di toilet cepetan,31,5
+4,activate,lights,washroom,Mau ke kamar mandi nih bisa tolong tolong nyalain lampu di toilet,65,12
+4,activate,lights,washroom,Idupin lampu toilet tolong ya,29,5
+4,activate,lights,washroom,Lampu di kamar mandi nyalain dong tolong,40,7
+4,activate,lights,washroom,Coba lampu di toilet tolong tolong nyalain dong tolong,54,9
+4,activate,lights,washroom,Kamar mandi gelap banget tolong tolong nyalain lampu kamar mandi dong svara,75,12
+4,activate,lights,washroom,Lampu di toilet hidupin dong svara,34,6
+4,activate,lights,washroom,Nyalain lampu di kamar mandi,28,5
+4,activate,lights,washroom,Lampu wc tolong nyalain dong,28,5
+4,activate,lights,washroom,Mau ke kamar mandi nih bisa tolong tolong nyalain lampu di toilet dong svara,76,14
+4,activate,lights,washroom,Eh tolong lampu toilet tolong hidupin sekarang,46,7
+4,activate,lights,washroom,Halo svara lampu di toilet tolong nyalain bentar,48,8
+4,activate,lights,washroom,Svara tolong lampu toilet tolong idupin dong,44,7
+4,activate,lights,washroom,Kamar mandi gelap banget bisa tolong idupin lampu di toilet ya,62,11
+4,activate,lights,washroom,Kamar mandi gelap banget tolongin dong hidupin lampu toilet cepetan,67,10
+4,activate,lights,washroom,Mau buang air nih eh svara hidupin lampu wc ya tolong,53,11
+4,activate,lights,washroom,Lampu wc nyalain cepetan,24,4
+4,activate,lights,washroom,Mau ke kamar mandi nih hidupin lampu wc dong,44,9
+4,activate,lights,washroom,Mau buang air nih eh svara nyalakan lampu di toilet dong tolong,63,12
+4,activate,lights,washroom,Lampu wc idupin ya tolong,25,5
+4,activate,lights,washroom,Toilet gelap nih tolong nyalain lampu kamar mandi sekarang,58,9
+4,activate,lights,washroom,Lampu di kamar mandi tolong idupin cepetan,42,7
+4,activate,lights,washroom,Hidupin lampu di kamar mandi dong svara,39,7
+4,activate,lights,washroom,Mau ke kamar mandi nih tolongin dong hidupin lampu kamar mandi sekarang,71,12
+4,activate,lights,washroom,Hidupin lampu di toilet ya,26,5
+4,activate,lights,washroom,Lampu wc idupin tolong ya,25,5
+4,activate,lights,washroom,Lampu wc nyalain bentar,23,4
+4,activate,lights,washroom,Lampu kamar mandi nyalakan lah,30,5
+4,activate,lights,washroom,Lampu wc tolong hidupin ya,26,5
+4,activate,lights,washroom,Eh svara lampu toilet tolong idupin ya,38,7
+4,activate,lights,washroom,Mau ke kamar mandi nih eh tolong nyalain lampu di toilet bentar,63,12
+4,activate,lights,washroom,Svara coba lampu di toilet tolong idupin dong svara,51,9
+4,activate,lights,washroom,Lampu toilet nyalakan dong tolong,33,5
+4,activate,lights,washroom,Hidupin lampu toilet cepetan,28,4
+4,activate,lights,washroom,Lampu toilet nyalakan tolong ya,31,5
+4,activate,lights,washroom,Nyalakan lampu di kamar mandi cepetan,37,6
+4,activate,lights,washroom,Halo svara lampu di kamar mandi tolong nyalakan ya,50,9
+4,activate,lights,washroom,Toilet gelap nih eh tolong nyalain lampu di kamar mandi sekarang,64,11
+4,activate,lights,washroom,Lampu toilet nyalain tolong ya,30,5
+4,activate,lights,washroom,Nyalain lampu toilet cepetan,28,4
+4,activate,lights,washroom,Nyalain lampu di kamar mandi bentar,35,6
+5,activate,music,none,Sepi banget nih svara puterin musiknya dong ya,46,8
+5,activate,music,none,Tolong pemutar musik tolong play ya,35,6
+5,activate,music,none,Lagu favorit nyalain lagi ya,28,5
+5,activate,music,none,Putar musik,11,2
+5,activate,music,none,Coba musik tolong mainkan tolong ya,35,6
+5,activate,music,none,Lagu putar dong svara,21,4
+5,activate,music,none,Hening banget nih ruangan tolong nyalain lagi musik yang tadi bentar,68,11
+5,activate,music,none,Sepi banget nih bisa gak tolong setel musiknya dong svara,57,10
+5,activate,music,none,Mau denger lagu lagi bisa tolong mainkan lagu lah,49,9
+5,activate,music,none,Mau denger lagu lagi tolong putar lagunya cepetan,49,8
+5,activate,music,none,Lanjutin lagu favorit,21,3
+5,activate,music,none,Hening banget nih ruangan svara tolong setelin lagu favorit lah,63,10
+5,activate,music,none,Putar musiknya bentar,21,3
+5,activate,music,none,Tolongin dong lagu favorit tolong nyalain lagi cepetan,54,8
+5,activate,music,none,Tolong musik tolong nyalain lagi tolong ya,42,7
+5,activate,music,none,Musiknya putar tolong ya,24,4
+5,activate,music,none,Eh tolong pemutar musik tolong putar lah,40,7
+5,activate,music,none,Putar pemutar musik lah,23,4
+5,activate,music,none,Lagunya play dong svara,23,4
+5,activate,music,none,Lagunya setel dong tolong,25,4
+5,activate,music,none,Pemutar musik lanjutin dong,27,4
+5,activate,music,none,Setel musik yang tadi tolong ya,31,6
+5,activate,music,none,Play lagu favorit tolong ya,27,5
+5,activate,music,none,Lagu mainkan dong tolong,24,4
+5,activate,music,none,Lagu favorit putar sekarang,27,4
+5,activate,music,none,Musik putar lah,15,3
+5,activate,music,none,Musik setel ya,14,3
+5,activate,music,none,Puterin lagu lah,16,3
+5,activate,music,none,Musik yang tadi putar ya,24,5
+5,activate,music,none,Svara tolong pemutar musik tolong nyalain lagi dong,51,8
+5,activate,music,none,Svara lagu favorit tolong play tolong ya,40,7
+5,activate,music,none,Lagunya setel bentar,20,3
+5,activate,music,none,Eh tolong lagu favorit tolong lanjutin cepetan,46,7
+5,activate,music,none,Bisa gak tolong lagu tolong nyalain lagi dong,45,8
+5,activate,music,none,Hening banget nih ruangan eh svara setel lagu favorit cepetan,61,10
+5,activate,music,none,Play lagu favorit dong,22,4
+5,activate,music,none,Coba pemutar musik tolong setel sekarang,40,6
+5,activate,music,none,Hening banget nih ruangan bisa tolong setel lagu cepetan,56,9
+5,activate,music,none,Halo svara lagunya tolong play bentar,37,6
+5,activate,music,none,Lagunya lanjutin dong tolong,28,4
+5,activate,music,none,Bosen nih svara puterin lagu sekarang,37,6
+5,activate,music,none,Eh svara lagu tolong play bentar,32,6
+5,activate,music,none,Svara pemutar musik tolong putar dong,37,6
+5,activate,music,none,Coba musiknya tolong setel dong tolong,38,6
+5,activate,music,none,Lanjutin pemutar musik dong,27,4
+5,activate,music,none,Lanjutin lagu lah,17,3
+5,activate,music,none,Halo svara musik yang tadi tolong setel ya tolong,49,9
+5,activate,music,none,Sepi banget nih tolongin dong play pemutar musik ya tolong,58,10
+5,activate,music,none,Putar lagu favorit ya tolong,28,5
+5,activate,music,none,Sepi banget nih svara coba mainkan musik yang tadi lah,54,10
+5,activate,music,none,Lagu favorit lanjutin tolong ya,31,5
+5,activate,music,none,Sepi banget nih tolongin dong mainkan musiknya cepetan,54,8
+5,activate,music,none,Lagunya nyalain lagi cepetan,28,4
+5,activate,music,none,Setel musiknya dong tolong,26,4
+5,activate,music,none,Mau denger lagu lagi svara setel pemutar musik sekarang,55,9
+6,bring,juice,none,Jus bawakan tolong ya,21,4
+6,bring,juice,none,Jus ambilin tolong ya,21,4
+6,bring,juice,none,Bawain jus dingin ya tolong,27,5
+6,bring,juice,none,Minuman jus bawakan cepetan,27,4
+6,bring,juice,none,Jus ambilin dong svara,22,4
+6,bring,juice,none,Tenggorokan kering nih bisa tolong anterin jus dingin,53,8
+6,bring,juice,none,Jus buah anterin lah,20,4
+6,bring,juice,none,Halo svara jus tolong ambilin dong svara,40,7
+6,bring,juice,none,Mau minum yang seger-seger bisa gak tolong ambillan segelas jus sekarang,72,11
+6,bring,juice,none,Anterin minuman jus dong ya,27,5
+6,bring,juice,none,Bawakan minuman jus cepetan,27,4
+6,bring,juice,none,Ambilin segelas jus sekarang,28,4
+6,bring,juice,none,Minuman jus bawain bentar,25,4
+6,bring,juice,none,Ambilin jus jeruk dong tolong,29,5
+6,bring,juice,none,Halo svara jus jeruk tolong bawakan ya tolong,45,8
+6,bring,juice,none,Ambillan jus jeruk dong svara,29,5
+6,bring,juice,none,Anterin minuman jus cepetan,27,4
+6,bring,juice,none,Ambillan jus dingin lah,23,4
+6,bring,juice,none,Svara coba ambillan jus buah dong tolong,40,7
+6,bring,juice,none,Eh tolong anterin minuman jus dong ya,37,7
+6,bring,juice,none,Jus buah anterin dong tolong,28,5
+6,bring,juice,none,Tenggorokan kering nih tolongin dong bawain jus ya tolong,57,9
+6,bring,juice,none,Jus dingin tolong bawakan dong svara,36,6
+6,bring,juice,none,Segelas jus bawain bentar,25,4
+6,bring,juice,none,Bawain minuman jus dong ya,26,5
+6,bring,juice,none,Jus dingin bawakan ya,21,4
+6,bring,juice,none,Ambillan jus buah dong tolong,29,5
+6,bring,juice,none,Bawain jus dingin bentar,24,4
+6,bring,juice,none,Jus buah ambillan dong ya,25,5
+6,bring,juice,none,Ambillan minuman jus dong tolong,32,5
+6,bring,juice,none,Jus buah anterin bentar,23,4
+6,bring,juice,none,Bawain jus dingin,17,3
+6,bring,juice,none,Jus buah bawakan tolong ya,26,5
+6,bring,juice,none,Anterin jus dingin bentar,25,4
+6,bring,juice,none,Tolong jus buah tolong anterin ya tolong,40,7
+6,bring,juice,none,Jus jeruk tolong anterin lah,28,5
+6,bring,juice,none,Jus dingin bawakan dong tolong,30,5
+6,bring,juice,none,Tolongin dong jus tolong bawain bentar,38,6
+6,bring,juice,none,Tolongin dong segelas jus tolong bawakan lah,44,7
+6,bring,juice,none,Mau minum yang seger-seger svara tolong ambillan jus buah,57,9
+6,bring,juice,none,Halo svara jus jeruk tolong ambilin dong svara,46,8
+6,bring,juice,none,Bawakan jus jeruk dong tolong,29,5
+6,bring,juice,none,Haus banget nih ambillan minuman jus ya tolong,46,8
+6,bring,juice,none,Jus buah bawakan bentar,23,4
+6,bring,juice,none,Tenggorokan kering nih halo svara bawakan jus dingin dong ya,60,10
+6,bring,juice,none,Coba jus buah tolong bawakan tolong ya,38,7
+6,bring,juice,none,Bisa gak tolong jus dingin tolong ambillan ya tolong,52,9
+6,bring,juice,none,Bawakan segelas jus bentar,26,4
+6,bring,juice,none,Jus jeruk ambilin ya,20,4
+6,bring,juice,none,Bisa tolong jus dingin tolong ambilin dong svara,48,8
+6,bring,juice,none,Eh tolong ambillan jus dingin ya tolong,39,7
+6,bring,juice,none,Mau minum yang seger-seger tolongin dong ambillan jus buah dong ya,66,11
+6,bring,juice,none,Tolongin dong jus dingin tolong ambillan ya tolong,50,8
+6,bring,juice,none,Bawakan jus jeruk cepetan,25,4
+6,bring,juice,none,Bisa gak tolong segelas jus tolong anterin bentar,49,8
+7,bring,newspaper,none,Koran anterin bentar,20,3
+7,bring,newspaper,none,Tolong koran tolong anterin,27,4
+7,bring,newspaper,none,Coba surat kabar tolong ambilkan dong,37,6
+7,bring,newspaper,none,Surat kabar anterin,19,3
+7,bring,newspaper,none,Mau liat kabar hari ini halo svara bawakan surat kabar ya tolong,64,12
+7,bring,newspaper,none,Ambilkan koran dong svara,25,4
+7,bring,newspaper,none,Koran bawain,12,2
+7,bring,newspaper,none,Koran ambilin dong,18,3
+7,bring,newspaper,none,Koran hari ini bawakan ya,25,5
+7,bring,newspaper,none,Butuh bacaan nih svara bawakan surat kabar dong svara,53,9
+7,bring,newspaper,none,Koran ambilkan ya,17,3
+7,bring,newspaper,none,Bawain koran,12,2
+7,bring,newspaper,none,Surat kabar anterin bentar,26,4
+7,bring,newspaper,none,Bawakan koran pagi ya,21,4
+7,bring,newspaper,none,Koran ambilin lah,17,3
+7,bring,newspaper,none,Mau baca berita pagi nih bisa tolong bawain koran dong,54,10
+7,bring,newspaper,none,Svara coba ambilin koran hari ini dong tolong,45,8
+7,bring,newspaper,none,Eh svara koran hari ini tolong bawain,37,7
+7,bring,newspaper,none,Anterin koran pagi ya tolong,28,5
+7,bring,newspaper,none,Bawain koran hari ini dong svara,32,6
+7,bring,newspaper,none,Koran hari ini anterin lah,26,5
+7,bring,newspaper,none,Ambilkan surat kabar bentar,27,4
+7,bring,newspaper,none,Svara koran pagi tolong bawain dong svara,41,7
+7,bring,newspaper,none,Bisa tolong koran pagi tolong bawain dong tolong,48,8
+7,bring,newspaper,none,Surat kabar tolong anterin dong svara,37,6
+7,bring,newspaper,none,Bisa tolong ambilkan koran hari ini sekarang,44,7
+7,bring,newspaper,none,Ambilin koran hari ini,22,4
+7,bring,newspaper,none,Tolongin dong koran tolong anterin dong,39,6
+7,bring,newspaper,none,Mau liat kabar hari ini eh svara bawain koran pagi tolong ya,60,12
+7,bring,newspaper,none,Bisa tolong surat kabar tolong ambilin dong ya,46,8
+7,bring,newspaper,none,Koran pagi anterin tolong ya,28,5
+7,bring,newspaper,none,Ambilkan koran pagi tolong ya,29,5
+7,bring,newspaper,none,Eh svara surat kabar tolong ambilin sekarang,44,7
+7,bring,newspaper,none,Svara tolong koran tolong bawakan ya tolong,43,7
+7,bring,newspaper,none,Surat kabar tolong ambilkan tolong ya,37,6
+7,bring,newspaper,none,Svara tolong surat kabar tolong bawain ya tolong,48,8
+7,bring,newspaper,none,Koran pagi ambilkan cepetan,27,4
+7,bring,newspaper,none,Koran hari ini ambilkan ya,26,5
+7,bring,newspaper,none,Mau liat kabar hari ini halo svara ambilin koran dong,53,10
+7,bring,newspaper,none,Svara koran hari ini tolong bawain dong,39,7
+7,bring,newspaper,none,Mau baca berita pagi nih bisa tolong anterin surat kabar sekarang,65,11
+7,bring,newspaper,none,Koran bawakan,13,2
+7,bring,newspaper,none,Anterin koran pagi bentar,25,4
+7,bring,newspaper,none,Mau baca berita pagi nih halo svara bawakan koran hari ini dong,63,12
+7,bring,newspaper,none,Bawain koran pagi sekarang,26,4
+7,bring,newspaper,none,Tolong surat kabar tolong ambilkan cepetan,42,6
+7,bring,newspaper,none,Svara anterin surat kabar,25,4
+7,bring,newspaper,none,Bawakan surat kabar lah,23,4
+7,bring,newspaper,none,Koran hari ini ambilin dong ya,30,6
+7,bring,newspaper,none,Butuh bacaan nih ambilin koran pagi bentar,42,7
+7,bring,newspaper,none,Svara tolong koran hari ini tolong ambilin ya tolong,52,9
+7,bring,newspaper,none,Tolong koran hari ini tolong ambilkan ya tolong,47,8
+7,bring,newspaper,none,Tolongin dong koran pagi tolong anterin dong svara,50,8
+7,bring,newspaper,none,Koran ambilkan dong,19,3
+7,bring,newspaper,none,Mau liat kabar hari ini tolong ambilkan surat kabar sekarang,60,10
+8,bring,shoes,none,Sepatu saya bawakan sekarang,28,4
+8,bring,shoes,none,Anterin sepatu kerja dong,25,4
+8,bring,shoes,none,Bisa gak tolong sepatu tolong ambilin tolong ya,47,8
+8,bring,shoes,none,Bawain sepatu kerja sekarang,28,4
+8,bring,shoes,none,Ambilin sepatu gua cepetan,26,4
+8,bring,shoes,none,Sepatu bawain ya,16,3
+8,bring,shoes,none,Udah siap jalan nih halo svara anterin sepatu olahraga dong svara,65,11
+8,bring,shoes,none,Ambilkan sepatu olahraga dong,29,4
+8,bring,shoes,none,Udah siap jalan nih ambilkan sepatu kerja dong svara,52,9
+8,bring,shoes,none,Sepatu saya anterin lah,23,4
+8,bring,shoes,none,Sepatu gua ambilkan tolong ya,29,5
+8,bring,shoes,none,Sepatu kerja bawain tolong ya,29,5
+8,bring,shoes,none,Eh svara sepatu gua tolong ambilin tolong ya,44,8
+8,bring,shoes,none,Udah siap jalan nih svara coba anterin sepatu saya cepetan,58,10
+8,bring,shoes,none,Sepatu kerja ambilin sekarang,29,4
+8,bring,shoes,none,Eh svara sepatu kerja tolong ambilkan lah,41,7
+8,bring,shoes,none,Anterin sepatu saya cepetan,27,4
+8,bring,shoes,none,Sepatu gua ambilkan dong tolong,31,5
+8,bring,shoes,none,Bawakan sepatu gua dong svara,29,5
+8,bring,shoes,none,Svara coba sepatu olahraga tolong bawain bentar,47,7
+8,bring,shoes,none,Bawakan sepatu saya cepetan,27,4
+8,bring,shoes,none,Bawakan sepatu saya lah,23,4
+8,bring,shoes,none,Mau keluar rumah nih eh tolong bawain sepatu kerja dong svara,61,11
+8,bring,shoes,none,Sepatu olahraga bawakan dong svara,34,5
+8,bring,shoes,none,Mau berangkat kerja nih svara tolong anterin sepatu olahraga lah,64,10
+8,bring,shoes,none,Mau berangkat kerja nih bisa tolong ambilkan sepatu saya lah,60,10
+8,bring,shoes,none,Udah siap jalan nih svara tolong bawakan sepatu,47,8
+8,bring,shoes,none,Bisa tolong sepatu olahraga tolong anterin bentar,49,7
+8,bring,shoes,none,Svara tolong sepatu kerja tolong bawakan lah,44,7
+8,bring,shoes,none,Sepatu bawakan tolong ya,24,4
+8,bring,shoes,none,Bawain sepatu gua tolong ya,27,5
+8,bring,shoes,none,Sepatu kerja anterin sekarang,29,4
+8,bring,shoes,none,Bawakan sepatu gua dong,23,4
+8,bring,shoes,none,Mau berangkat kerja nih bisa gak tolong ambilin sepatu sekarang,63,10
+8,bring,shoes,none,Bisa gak tolong sepatu olahraga tolong bawain ya,48,8
+8,bring,shoes,none,Sepatu kerja bawakan dong ya,28,5
+8,bring,shoes,none,Coba sepatu kerja tolong bawakan,32,5
+8,bring,shoes,none,Svara coba sepatu kerja tolong bawakan,38,6
+8,bring,shoes,none,Eh tolong sepatu olahraga tolong ambilin dong,45,7
+8,bring,shoes,none,Bawain sepatu kerja dong,24,4
+8,bring,shoes,none,Sepatu olahraga ambilkan dong svara,35,5
+8,bring,shoes,none,Svara tolong sepatu kerja tolong ambilkan ya tolong,51,8
+8,bring,shoes,none,Svara coba sepatu tolong anterin lah,36,6
+8,bring,shoes,none,Tolong sepatu gua tolong bawain dong,36,6
+8,bring,shoes,none,Sepatu olahraga bawain dong svara,33,5
+8,bring,shoes,none,Sepatu kerja bawakan ya,23,4
+8,bring,shoes,none,Halo svara sepatu kerja tolong bawain tolong ya,47,8
+8,bring,shoes,none,Bawakan sepatu olahraga,23,3
+8,bring,shoes,none,Sepatu saya bawain dong svara,29,5
+8,bring,shoes,none,Sepatu kerja bawakan dong tolong,32,5
+8,bring,shoes,none,Coba sepatu olahraga tolong ambilin,35,5
+8,bring,shoes,none,Ambilkan sepatu saya bentar,27,4
+8,bring,shoes,none,Mau keluar rumah nih eh svara anterin sepatu kerja bentar,57,10
+8,bring,shoes,none,Mau berangkat kerja nih eh tolong anterin sepatu gua bentar,59,10
+8,bring,shoes,none,Halo svara sepatu kerja tolong bawain dong,42,7
+9,bring,socks,none,Mau berangkat nih butuh kaus kaki bawakan kaos kaki bersih sekarang,67,11
+9,bring,socks,none,Bawain kaos kaki dong tolong,28,5
+9,bring,socks,none,Coba kaos kaki tolong cariin dong ya,36,7
+9,bring,socks,none,Svara coba sepasang kaos kaki tolong ambilkan tolong ya,55,9
+9,bring,socks,none,Ambilkan kaos kaki bersih ya tolong,35,6
+9,bring,socks,none,Coba kaus kaki tolong bawakan tolong ya,39,7
+9,bring,socks,none,Kaos kaki bersih bawain dong ya,31,6
+9,bring,socks,none,Kaos kaki bersih cariin lah,27,5
+9,bring,socks,none,Ambilin kaus kaki dong svara,28,5
+9,bring,socks,none,Mau berangkat nih butuh kaus kaki eh svara bawakan kaos kaki bersih ya tolong,77,14
+9,bring,socks,none,Kaos kaki bersih bawakan dong,29,5
+9,bring,socks,none,Bawain kaos kaki saya tolong ya,31,6
+9,bring,socks,none,Sepasang kaos kaki cariin ya,28,5
+9,bring,socks,none,Kaus kaki ambilin dong,22,4
+9,bring,socks,none,Mau pakai sepatu nih tolong bawain kaos kaki saya cepetan,57,10
+9,bring,socks,none,Bawain kaos kaki bersih ya,26,5
+9,bring,socks,none,Ambilkan kaos kaki bersih dong,30,5
+9,bring,socks,none,Kaos kaki bersih tolong bawakan dong tolong,43,7
+9,bring,socks,none,Tolongin dong kaus kaki tolong ambilin,38,6
+9,bring,socks,none,Sepasang kaos kaki bawain dong ya,33,6
+9,bring,socks,none,Kaus kaki tolong ambilkan dong svara,36,6
+9,bring,socks,none,Tolong bawain kaos kaki saya dong,33,6
+9,bring,socks,none,Kaos kaki bersih ambilkan ya,28,5
+9,bring,socks,none,Kaki dingin nih tolongin dong bawain kaus kaki bentar,53,9
+9,bring,socks,none,Eh svara kaos kaki tolong ambilkan lah,38,7
+9,bring,socks,none,Svara coba bawakan kaos kaki dong,33,6
+9,bring,socks,none,Kaos kaki saya cariin sekarang,30,5
+9,bring,socks,none,Mau berangkat nih butuh kaus kaki coba bawain kaos kaki bersih lah,66,12
+9,bring,socks,none,Cariin sepasang kaos kaki dong tolong,37,6
+9,bring,socks,none,Tolongin dong kaos kaki tolong ambilkan bentar,46,7
+9,bring,socks,none,Kaos kaki ambilin cepetan,25,4
+9,bring,socks,none,Mau pakai sepatu nih bisa tolong bawakan sepasang kaos kaki dong,64,11
+9,bring,socks,none,Kaos kaki saya bawain ya tolong,31,6
+9,bring,socks,none,Mau berangkat nih butuh kaus kaki halo svara bawain kaos kaki saya dong,71,13
+9,bring,socks,none,Mau pakai sepatu nih ambilkan kaos kaki,39,7
+9,bring,socks,none,Sepasang kaos kaki ambilkan dong svara,38,6
+9,bring,socks,none,Tolong sepasang kaos kaki tolong cariin ya tolong,49,8
+9,bring,socks,none,Tolong kaus kaki tolong ambilkan bentar,39,6
+9,bring,socks,none,Kaki dingin nih halo svara ambilkan kaos kaki saya ya tolong,60,11
+9,bring,socks,none,Bisa gak tolong kaos kaki tolong bawakan,40,7
+9,bring,socks,none,Mau pakai sepatu nih svara ambilin kaos kaki saya ya tolong,59,11
+9,bring,socks,none,Tolongin dong kaus kaki tolong bawain,37,6
+9,bring,socks,none,Bawakan kaos kaki bersih bentar,31,5
+9,bring,socks,none,Kaki dingin nih svara tolong bawain kaos kaki bersih dong tolong,64,11
+9,bring,socks,none,Mau pakai sepatu nih svara tolong bawakan kaos kaki bersih bentar,65,11
+9,bring,socks,none,Kaus kaki cariin cepetan,24,4
+9,bring,socks,none,Bawakan sepasang kaos kaki ya,29,5
+9,bring,socks,none,Kaki dingin nih eh tolong ambilin sepasang kaos kaki lah,56,10
+9,bring,socks,none,Kaki dingin nih bisa gak tolong cariin kaus kaki,48,9
+9,bring,socks,none,Kaos kaki bersih tolong bawakan dong svara,42,7
+9,bring,socks,none,Cariin kaos kaki saya dong ya,29,6
+9,bring,socks,none,Mau pakai sepatu nih halo svara ambilin kaos kaki dong ya,57,11
+9,bring,socks,none,Bawakan kaos kaki bersih tolong ya,34,6
+9,bring,socks,none,Halo svara kaus kaki tolong bawakan sekarang,44,7
+9,bring,socks,none,Sepasang kaos kaki ambilkan dong ya,35,6
+10,change language,Chinese,none,Svara coba mandarin tolong ganti bahasanya ke dong tolong,57,9
+10,change language,Chinese,none,Ganti bahasanya ke mandarin dong ya,35,6
+10,change language,Chinese,none,Bahasa mandarin ganti bahasa ke,31,5
+10,change language,Chinese,none,Bisa gak tolong mandarin tolong setel bahasa ke dong ya,55,10
+10,change language,Chinese,none,Ganti bahasa ke mandarin dong tolong,36,6
+10,change language,Chinese,none,Ubah bahasa ke chinese dong svara,33,6
+10,change language,Chinese,none,Bisa gak tolong chinese tolong ganti bahasa ke dong,51,9
+10,change language,Chinese,none,Svara ganti bahasa ke chinese ya tolong,39,7
+10,change language,Chinese,none,Ubah bahasa ke mandarin tolong ya,33,6
+10,change language,Chinese,none,Setel bahasa ke bahasa mandarin cepetan,39,6
+10,change language,Chinese,none,Mau belajar bahasa mandarin nih tolong ubah bahasa ke mandarin ya tolong,72,12
+10,change language,Chinese,none,Ubah bahasa ke bahasa mandarin cepetan,38,6
+10,change language,Chinese,none,Bahasa mandarin switch ke dong ya,33,6
+10,change language,Chinese,none,Eh svara mandarin tolong setel bahasa ke dong,45,8
+10,change language,Chinese,none,Switch ke mandarin dong ya,26,5
+10,change language,Chinese,none,Mau belajar bahasa mandarin nih tolong ubah bahasa ke bahasa mandarin dong svara,80,13
+10,change language,Chinese,none,Mandarin setel bahasa ke,24,4
+10,change language,Chinese,none,Mandarin switch ke dong,23,4
+10,change language,Chinese,none,Coba mandarin tolong ganti bahasa ke,36,6
+10,change language,Chinese,none,Mau belajar bahasa mandarin nih bisa tolong ganti bahasanya ke bahasa mandarin lah,82,13
+10,change language,Chinese,none,Svara coba setel bahasa ke mandarin,35,6
+10,change language,Chinese,none,Ganti bahasanya ke mandarin dong,32,5
+10,change language,Chinese,none,Mandarin ganti bahasanya ke ya,30,5
+10,change language,Chinese,none,Mandarin ganti bahasanya ke dong svara,38,6
+10,change language,Chinese,none,Coba chinese tolong ganti bahasa ke ya tolong,45,8
+10,change language,Chinese,none,Bahasa mandarin ganti bahasanya ke bentar,41,6
+10,change language,Chinese,none,Bahasa mandarin setel bahasa ke ya,34,6
+10,change language,Chinese,none,Mau belajar bahasa mandarin nih tolongin dong switch ke mandarin lah,68,11
+10,change language,Chinese,none,Bahasa mandarin setel bahasa ke bentar,38,6
+10,change language,Chinese,none,Switch ke bahasa mandarin dong svara,36,6
+10,change language,Chinese,none,Mau belajar bahasa mandarin nih setel bahasa ke chinese dong ya,63,11
+10,change language,Chinese,none,Chinese tolong ganti bahasanya ke sekarang,42,6
+10,change language,Chinese,none,Ubah bahasa ke chinese dong ya,30,6
+10,change language,Chinese,none,Mandarin ganti bahasa ke ya tolong,34,6
+10,change language,Chinese,none,Ubah bahasa ke mandarin ya tolong,33,6
+10,change language,Chinese,none,Setel bahasa ke chinese,23,4
+10,change language,Chinese,none,Chinese ubah bahasa ke dong ya,30,6
+10,change language,Chinese,none,Eh tolong ubah bahasa ke bahasa mandarin,40,7
+10,change language,Chinese,none,Mandarin switch ke,18,3
+10,change language,Chinese,none,Switch ke mandarin ya,21,4
+10,change language,Chinese,none,Coba mandarin tolong setel bahasa ke,36,6
+10,change language,Chinese,none,Ubah bahasa ke mandarin bentar,30,5
+10,change language,Chinese,none,Ganti bahasanya ke chinese dong,31,5
+10,change language,Chinese,none,Mandarin ubah bahasa ke dong tolong,35,6
+10,change language,Chinese,none,Setel bahasa ke mandarin dong tolong,36,6
+10,change language,Chinese,none,Switch ke mandarin dong svara,29,5
+10,change language,Chinese,none,Bisa gak tolong setel bahasa ke mandarin ya,43,8
+10,change language,Chinese,none,Svara coba chinese tolong ganti bahasanya ke,44,7
+10,change language,Chinese,none,Svara tolong switch ke mandarin lah,35,6
+10,change language,Chinese,none,Coba chinese tolong setel bahasa ke dong,40,7
+10,change language,Chinese,none,Ubah bahasa ke chinese dong,27,5
+10,change language,Chinese,none,Latihan bahasa mandarin setel bahasa ke mandarin dong ya,56,9
+10,change language,Chinese,none,Latihan bahasa mandarin eh tolong ganti bahasa ke chinese,57,9
+10,change language,Chinese,none,Bahasa mandarin switch ke dong,30,5
+10,change language,Chinese,none,Tolongin dong ubah bahasa ke mandarin cepetan,45,7
+11,change language,English,none,Practice english nih eh tolong ganti bahasa ke inggris tolong ya,64,11
+11,change language,English,none,Practice english nih svara tolong ubah bahasa ke inggris ya,59,10
+11,change language,English,none,English setel bahasa ke ya tolong,33,6
+11,change language,English,none,English ganti bahasanya ke ya,29,5
+11,change language,English,none,Inggris tolong ganti bahasa ke dong ya,38,7
+11,change language,English,none,Switch ke english dong tolong,29,5
+11,change language,English,none,Eh tolong setel bahasa ke bahasa inggris dong,45,8
+11,change language,English,none,Mau pakai bahasa inggris svara coba switch ke inggris ya,56,10
+11,change language,English,none,Bahasa inggris ganti bahasanya ke tolong ya,43,7
+11,change language,English,none,Ganti bahasa ke bahasa inggris ya,33,6
+11,change language,English,none,Inggris ganti bahasa ke dong svara,34,6
+11,change language,English,none,Bahasa inggris setel bahasa ke lah,34,6
+11,change language,English,none,Inggris ganti bahasanya ke ya,29,5
+11,change language,English,none,Eh tolong inggris tolong ganti bahasanya ke tolong ya,53,9
+11,change language,English,none,Mau pakai bahasa inggris svara coba ganti bahasa ke bahasa inggris dong tolong,78,13
+11,change language,English,none,Tolongin dong english tolong setel bahasa ke dong svara,55,9
+11,change language,English,none,English ganti bahasanya ke dong svara,37,6
+11,change language,English,none,Inggris ganti bahasanya ke dong,31,5
+11,change language,English,none,English tolong switch ke bentar,31,5
+11,change language,English,none,Eh svara bahasa inggris tolong ubah bahasa ke dong ya,53,10
+11,change language,English,none,Bahasa inggris ganti bahasanya ke lah,37,6
+11,change language,English,none,Ubah bahasa ke english tolong ya,32,6
+11,change language,English,none,Inggris ganti bahasa ke bentar,30,5
+11,change language,English,none,Svara tolong setel bahasa ke english cepetan,44,7
+11,change language,English,none,Svara coba switch ke english dong svara,39,7
+11,change language,English,none,Mau pakai bahasa inggris coba ubah bahasa ke english ya tolong,62,11
+11,change language,English,none,Ganti bahasa ke inggris bentar,30,5
+11,change language,English,none,English ganti bahasanya ke cepetan,34,5
+11,change language,English,none,Inggris setel bahasa ke ya,26,5
+11,change language,English,none,Practice english nih svara setel bahasa ke english dong ya,58,10
+11,change language,English,none,Setel bahasa ke inggris,23,4
+11,change language,English,none,Mau pakai bahasa inggris eh tolong setel bahasa ke inggris dong tolong,70,12
+11,change language,English,none,Setel bahasa ke english cepetan,31,5
+11,change language,English,none,Mau pakai bahasa inggris bisa gak tolong ganti bahasanya ke english lah,71,12
+11,change language,English,none,Inggris ubah bahasa ke dong tolong,34,6
+11,change language,English,none,Svara tolong ganti bahasa ke english ya,39,7
+11,change language,English,none,Mau pakai bahasa inggris bisa gak tolong switch ke inggris ya,61,11
+11,change language,English,none,Practice english nih bisa tolong ubah bahasa ke bahasa inggris dong ya,70,12
+11,change language,English,none,Setel bahasa ke english dong ya,31,6
+11,change language,English,none,Mau pakai bahasa inggris eh svara switch ke inggris lah,55,10
+11,change language,English,none,Inggris ubah bahasa ke cepetan,30,5
+11,change language,English,none,Switch ke english sekarang,26,4
+11,change language,English,none,Inggris ganti bahasa ke,23,4
+11,change language,English,none,Coba bahasa inggris tolong switch ke dong ya,44,8
+11,change language,English,none,Bisa tolong setel bahasa ke english dong svara,46,8
+11,change language,English,none,Bahasa inggris tolong ganti bahasanya ke lah,44,7
+11,change language,English,none,Ubah bahasa ke inggris ya tolong,32,6
+11,change language,English,none,Setel bahasa ke inggris dong svara,34,6
+11,change language,English,none,Inggris ubah bahasa ke tolong ya,32,6
+11,change language,English,none,Ganti bahasa ke english lah,27,5
+11,change language,English,none,Switch ke english tolong ya,27,5
+11,change language,English,none,Ganti bahasanya ke bahasa inggris sekarang,42,6
+11,change language,English,none,Setel bahasa ke inggris lah,27,5
+11,change language,English,none,Bahasa inggris switch ke,24,4
+11,change language,English,none,English ubah bahasa ke,22,4
+12,change language,German,none,Latihan ngomong jerman eh tolong ganti bahasanya ke jerman dong svara,69,11
+12,change language,German,none,Bisa gak tolong bahasa jerman tolong switch ke sekarang,55,9
+12,change language,German,none,Ganti bahasanya ke german sekarang,34,5
+12,change language,German,none,Mau belajar bahasa jerman nih tolongin dong switch ke bahasa jerman tolong ya,77,13
+12,change language,German,none,Coba german tolong setel bahasa ke bentar,41,7
+12,change language,German,none,Svara tolong bahasa jerman tolong ganti bahasa ke sekarang,58,9
+12,change language,German,none,Ganti bahasanya ke jerman sekarang,34,5
+12,change language,German,none,Eh tolong ganti bahasanya ke bahasa jerman cepetan,50,8
+12,change language,German,none,German switch ke dong,21,4
+12,change language,German,none,Ganti bahasa ke german dong svara,33,6
+12,change language,German,none,Ubah bahasa ke bahasa jerman dong ya,36,7
+12,change language,German,none,Svara coba bahasa jerman tolong ganti bahasanya ke sekarang,59,9
+12,change language,German,none,Setel bahasa ke german ya,25,5
+12,change language,German,none,Jerman tolong ganti bahasa ke tolong ya,39,7
+12,change language,German,none,Svara coba jerman tolong ubah bahasa ke dong,44,8
+12,change language,German,none,Jerman ganti bahasanya ke dong svara,36,6
+12,change language,German,none,Ganti bahasa ke german dong ya,30,6
+12,change language,German,none,Mau belajar bahasa jerman nih svara tolong switch ke bahasa jerman,66,11
+12,change language,German,none,Ubah bahasa ke bahasa jerman dong tolong,40,7
+12,change language,German,none,Ganti bahasa ke jerman bentar,29,5
+12,change language,German,none,Jerman ganti bahasa ke tolong ya,32,6
+12,change language,German,none,German switch ke sekarang,25,4
+12,change language,German,none,Coba jerman tolong setel bahasa ke sekarang,43,7
+12,change language,German,none,Svara bahasa jerman tolong ganti bahasa ke dong ya,50,9
+12,change language,German,none,Bisa gak tolong german tolong ganti bahasa ke bentar,52,9
+12,change language,German,none,Ganti bahasa ke jerman lah,26,5
+12,change language,German,none,Svara coba ganti bahasa ke german,33,6
+12,change language,German,none,German ganti bahasa ke dong,27,5
+12,change language,German,none,German ganti bahasa ke tolong ya,32,6
+12,change language,German,none,Coba ubah bahasa ke german lah,30,6
+12,change language,German,none,Ganti bahasa ke german bentar,29,5
+12,change language,German,none,Svara coba ubah bahasa ke jerman dong,37,7
+12,change language,German,none,Tolong jerman tolong ganti bahasa ke dong ya,44,8
+12,change language,German,none,Jerman ubah bahasa ke dong tolong,33,6
+12,change language,German,none,Coba german tolong ganti bahasa ke cepetan,42,7
+12,change language,German,none,Eh svara setel bahasa ke bahasa jerman,38,7
+12,change language,German,none,German ganti bahasa ke lah,26,5
+12,change language,German,none,Mau belajar bahasa jerman nih tolong switch ke bahasa jerman dong tolong,72,12
+12,change language,German,none,Ubah bahasa ke jerman tolong ya,31,6
+12,change language,German,none,Ganti bahasa ke bahasa jerman,29,5
+12,change language,German,none,Latihan ngomong jerman tolongin dong setel bahasa ke jerman dong tolong,71,11
+12,change language,German,none,Bahasa jerman tolong ganti bahasa ke lah,40,7
+12,change language,German,none,Latihan ngomong jerman svara tolong ganti bahasanya ke german tolong ya,71,11
+12,change language,German,none,Bahasa jerman ubah bahasa ke dong svara,39,7
+12,change language,German,none,German ganti bahasanya ke cepetan,33,5
+12,change language,German,none,Coba ganti bahasa ke bahasa jerman dong tolong,46,8
+12,change language,German,none,Mau belajar bahasa jerman nih svara coba ganti bahasanya ke jerman ya tolong,76,13
+12,change language,German,none,Bisa gak tolong ubah bahasa ke jerman cepetan,45,8
+12,change language,German,none,Ganti bahasa ke bahasa jerman tolong ya,39,7
+12,change language,German,none,Bisa gak tolong german tolong switch ke ya tolong,49,9
+12,change language,German,none,Svara tolong switch ke german dong tolong,41,7
+12,change language,German,none,Jerman ubah bahasa ke sekarang,30,5
+12,change language,German,none,Halo svara bahasa jerman tolong switch ke,41,7
+12,change language,German,none,Bahasa jerman ganti bahasanya ke dong,37,6
+12,change language,German,none,Bisa tolong jerman tolong setel bahasa ke,41,7
+13,change language,Korean,none,Tolongin dong ganti bahasanya ke korea dong ya,46,8
+13,change language,Korean,none,Korea switch ke dong,20,4
+13,change language,Korean,none,Lagi suka drakor pengen bahasa korea svara tolong ganti bahasa ke korea dong tolong,83,14
+13,change language,Korean,none,Mau belajar bahasa korea nih svara ganti bahasanya ke bahasa korea bentar,73,12
+13,change language,Korean,none,Svara coba korean tolong switch ke tolong ya,44,8
+13,change language,Korean,none,Tolongin dong ganti bahasanya ke korea sekarang,47,7
+13,change language,Korean,none,Korean setel bahasa ke ya tolong,32,6
+13,change language,Korean,none,Tolongin dong setel bahasa ke korean cepetan,44,7
+13,change language,Korean,none,Ubah bahasa ke bahasa korea sekarang,36,6
+13,change language,Korean,none,Eh tolong switch ke korean sekarang,35,6
+13,change language,Korean,none,Bahasa korea ganti bahasanya ke dong tolong,43,7
+13,change language,Korean,none,Mau belajar bahasa korea nih eh tolong switch ke bahasa korea dong ya,69,13
+13,change language,Korean,none,Ganti bahasanya ke bahasa korea dong tolong,43,7
+13,change language,Korean,none,Mau belajar bahasa korea nih svara ganti bahasa ke korean lah,61,11
+13,change language,Korean,none,Korean switch ke ya,19,4
+13,change language,Korean,none,Korean ganti bahasa ke dong svara,33,6
+13,change language,Korean,none,Coba bahasa korea tolong switch ke dong tolong,46,8
+13,change language,Korean,none,Korean switch ke sekarang,25,4
+13,change language,Korean,none,Ubah bahasa ke korea dong svara,31,6
+13,change language,Korean,none,Ubah bahasa ke bahasa korea dong svara,38,7
+13,change language,Korean,none,Halo svara korean tolong setel bahasa ke dong tolong,52,9
+13,change language,Korean,none,Switch ke korean tolong ya,26,5
+13,change language,Korean,none,Ubah bahasa ke korean bentar,28,5
+13,change language,Korean,none,Korean setel bahasa ke cepetan,30,5
+13,change language,Korean,none,Bisa gak tolong switch ke korea dong svara,42,8
+13,change language,Korean,none,Tolong ganti bahasa ke korea ya,31,6
+13,change language,Korean,none,Ubah bahasa ke korea ya,23,5
+13,change language,Korean,none,Ubah bahasa ke bahasa korea dong tolong,39,7
+13,change language,Korean,none,Mau belajar bahasa korea nih halo svara ganti bahasa ke korea cepetan,69,12
+13,change language,Korean,none,Bahasa korea switch ke dong tolong,34,6
+13,change language,Korean,none,Mau belajar bahasa korea nih halo svara setel bahasa ke korean lah,66,12
+13,change language,Korean,none,Lagi suka drakor pengen bahasa korea svara ganti bahasanya ke korean sekarang,77,12
+13,change language,Korean,none,Bahasa korea setel bahasa ke ya tolong,38,7
+13,change language,Korean,none,Tolongin dong korean tolong setel bahasa ke bentar,50,8
+13,change language,Korean,none,Bisa tolong setel bahasa ke korea ya,36,7
+13,change language,Korean,none,Mau belajar bahasa korea nih coba switch ke bahasa korea dong svara,67,12
+13,change language,Korean,none,Eh tolong korea tolong switch ke ya,35,7
+13,change language,Korean,none,Eh tolong korea tolong ganti bahasa ke cepetan,46,8
+13,change language,Korean,none,Setel bahasa ke korean,22,4
+13,change language,Korean,none,Switch ke korea dong,20,4
+13,change language,Korean,none,Bisa tolong korean tolong ubah bahasa ke dong,45,8
+13,change language,Korean,none,Setel bahasa ke korea sekarang,30,5
+13,change language,Korean,none,Mau belajar bahasa korea nih svara coba switch ke korea bentar,62,11
+13,change language,Korean,none,Tolongin dong korea tolong setel bahasa ke dong ya,50,9
+13,change language,Korean,none,Korea setel bahasa ke dong,26,5
+13,change language,Korean,none,Setel bahasa ke bahasa korea bentar,35,6
+13,change language,Korean,none,Ganti bahasanya ke korea,24,4
+13,change language,Korean,none,Bisa tolong setel bahasa ke korean dong,39,7
+13,change language,Korean,none,Mau belajar bahasa korea nih halo svara switch ke bahasa korea lah,66,12
+13,change language,Korean,none,Mau belajar bahasa korea nih tolongin dong ubah bahasa ke korean dong svara,75,13
+13,change language,Korean,none,Halo svara korean tolong ganti bahasanya ke dong,48,8
+13,change language,Korean,none,Mau belajar bahasa korea nih eh svara setel bahasa ke bahasa korea dong,71,13
+13,change language,Korean,none,Coba korean tolong setel bahasa ke dong,39,7
+13,change language,Korean,none,Korea ganti bahasanya ke lah,28,5
+13,change language,Korean,none,Lagi suka drakor pengen bahasa korea svara tolong ganti bahasa ke korea lah,75,13
+14,change language,none,none,Setel bahasa dong tolong,24,4
+14,change language,none,none,Gantiin pengaturan bahasa dong,30,4
+14,change language,none,none,Bahasa setel tolong ya,22,4
+14,change language,none,none,Svara bahasa asisten tolong ganti ya,36,6
+14,change language,none,none,Bisa gak tolong pengaturan bahasa tolong switch tolong ya,57,9
+14,change language,none,none,Tolongin dong bahasa tolong gantiin bentar,42,6
+14,change language,none,none,Pengaturan bahasa ganti ya tolong,33,5
+14,change language,none,none,Ganti bahasa sistem dong ya,27,5
+14,change language,none,none,Svara bahasanya tolong setel ya,31,5
+14,change language,none,none,Svara coba bahasanya tolong gantiin dong,40,6
+14,change language,none,none,Svara coba ganti pengaturan bahasa cepetan,42,6
+14,change language,none,none,Tolongin dong bahasa sistem tolong ganti dong,45,7
+14,change language,none,none,Svara coba bahasa sistem tolong switch sekarang,47,7
+14,change language,none,none,Tolongin dong ubah bahasa tolong ya,35,6
+14,change language,none,none,Switch bahasa asisten sekarang,30,4
+14,change language,none,none,Ubah pengaturan bahasa ya tolong,32,5
+14,change language,none,none,Svara bahasa tolong ubah sekarang,33,5
+14,change language,none,none,Bisa gak tolong bahasa sistem tolong switch sekarang,52,8
+14,change language,none,none,Bahasa asisten gantiin cepetan,30,4
+14,change language,none,none,Eh tolong pengaturan bahasa tolong switch dong,46,7
+14,change language,none,none,Svara coba bahasa sistem tolong ganti ya,40,7
+14,change language,none,none,Bahasanya kurang cocok bisa gak tolong ganti bahasa,51,8
+14,change language,none,none,Svara coba switch pengaturan bahasa dong ya,43,7
+14,change language,none,none,Eh tolong pengaturan bahasa tolong setel cepetan,48,7
+14,change language,none,none,Ubah pengaturan bahasa dong tolong,34,5
+14,change language,none,none,Pengaturan bahasa setel dong,28,4
+14,change language,none,none,Halo svara bahasanya tolong ganti ya tolong,43,7
+14,change language,none,none,Coba bahasanya tolong switch ya,31,5
+14,change language,none,none,Bisa gak tolong bahasa sistem tolong switch,43,7
+14,change language,none,none,Bisa tolong bahasa sistem tolong ganti sekarang,47,7
+14,change language,none,none,Pengaturan bahasa ubah sekarang,31,4
+14,change language,none,none,Ganti bahasa lah,16,3
+14,change language,none,none,Setel bahasa sistem dong tolong,31,5
+14,change language,none,none,Bahasanya setel dong svara,26,4
+14,change language,none,none,Pengaturan bahasa ganti tolong ya,33,5
+14,change language,none,none,Bahasa sistem switch sekarang,29,4
+14,change language,none,none,Pengaturan bahasa ganti ya,26,4
+14,change language,none,none,Ganti pengaturan bahasa lah,27,4
+14,change language,none,none,Mau ganti bahasa asisten nih coba ubah bahasanya sekarang,57,9
+14,change language,none,none,Bisa tolong switch bahasa sistem dong tolong,44,7
+14,change language,none,none,Tolongin dong bahasa asisten tolong switch dong ya,50,8
+14,change language,none,none,Svara bahasanya tolong ganti,28,4
+14,change language,none,none,Svara coba ubah bahasanya lah,29,5
+14,change language,none,none,Coba bahasanya tolong ganti tolong ya,37,6
+14,change language,none,none,Svara setel pengaturan bahasa lah,33,5
+14,change language,none,none,Bahasa gantiin dong ya,22,4
+14,change language,none,none,Bahasanya switch dong ya,24,4
+14,change language,none,none,Setel bahasanya ya tolong,25,4
+14,change language,none,none,Mau ganti bahasa asisten nih bisa gak tolong gantiin bahasa asisten ya tolong,77,13
+14,change language,none,none,Mau ganti bahasa asisten nih svara switch bahasanya dong,56,9
+14,change language,none,none,Mau ganti bahasa asisten nih halo svara setel bahasa asisten ya,63,11
+14,change language,none,none,Mau ganti bahasa asisten nih eh svara setel pengaturan bahasa,61,10
+14,change language,none,none,Mau ganti bahasa asisten nih eh svara ubah pengaturan bahasa bentar,67,11
+14,change language,none,none,Switch pengaturan bahasa dong svara,35,5
+14,change language,none,none,Bahasa asisten setel dong ya,28,5
+15,deactivate,lamp,none,Lampu nakas coba matiin dong,28,5
+15,deactivate,lamp,none,Padamkan lampu belajar dong,27,4
+15,deactivate,lamp,none,Eh tolong padamin lampu meja dong tolong,40,7
+15,deactivate,lamp,none,Halo svara lampu tidur tolong matiin lah,40,7
+15,deactivate,lamp,none,Lampu meja matikan ya,21,4
+15,deactivate,lamp,none,Coba matiin lampu tidur ya tolong,33,6
+15,deactivate,lamp,none,Lampu belajar padamkan dong svara,33,5
+15,deactivate,lamp,none,Coba matiin lampu nakas cepetan,31,5
+15,deactivate,lamp,none,Svara coba lampu tidur tolong matikan dong tolong,49,8
+15,deactivate,lamp,none,Bisa gak tolong lampu tidur tolong padamin dong tolong,54,9
+15,deactivate,lamp,none,Udah terang nih bisa tolong coba matiin lampu tidur sekarang,60,10
+15,deactivate,lamp,none,Lampu meja matiin ya,20,4
+15,deactivate,lamp,none,Matiin lampu baca dong ya,25,5
+15,deactivate,lamp,none,Matiin lampu tidur dong svara,29,5
+15,deactivate,lamp,none,Coba lampu tidur tolong padamkan,32,5
+15,deactivate,lamp,none,Bisa tolong lampu nakas tolong matiin bentar,44,7
+15,deactivate,lamp,none,Udah selesai baca nih tolongin dong matiin lampu baca dong ya,61,11
+15,deactivate,lamp,none,Lampu tidur matikan sekarang,28,4
+15,deactivate,lamp,none,Svara coba padamin lampu nakas,30,5
+15,deactivate,lamp,none,Matikan lampu nakas ya tolong,29,5
+15,deactivate,lamp,none,Lampu nakas padamin dong ya,27,5
+15,deactivate,lamp,none,Lampu baca matiin ya,20,4
+15,deactivate,lamp,none,Matiin lampu nakas tolong ya,28,5
+15,deactivate,lamp,none,Coba matiin lampu tidur dong ya,31,6
+15,deactivate,lamp,none,Lampu nakas padamkan,20,3
+15,deactivate,lamp,none,Eh tolong lampu tidur tolong matiin lah,39,7
+15,deactivate,lamp,none,Udah selesai baca nih svara tolong padamkan lampu baca bentar,61,10
+15,deactivate,lamp,none,Matikan lampu meja dong svara,29,5
+15,deactivate,lamp,none,Padamin lampu tidur sekarang,28,4
+15,deactivate,lamp,none,Svara coba lampu belajar tolong matikan dong tolong,51,8
+15,deactivate,lamp,none,Bisa gak tolong lampu belajar tolong padamin dong tolong,56,9
+15,deactivate,lamp,none,Padamin lampu belajar dong ya,29,5
+15,deactivate,lamp,none,Lampu meja matiin lah,21,4
+15,deactivate,lamp,none,Matiin lampu tidur sekarang,27,4
+15,deactivate,lamp,none,Matikan lampu tidur ya,22,4
+15,deactivate,lamp,none,Lampu belajar coba matiin,25,4
+15,deactivate,lamp,none,Lampu nakas matiin sekarang,27,4
+15,deactivate,lamp,none,Matiin lampu nakas cepetan,26,4
+15,deactivate,lamp,none,Udah terang nih padamin lampu tidur ya tolong,45,8
+15,deactivate,lamp,none,Coba matiin lampu baca ya,25,5
+15,deactivate,lamp,none,Padamkan lampu nakas sekarang,29,4
+15,deactivate,lamp,none,Padamkan lampu belajar dong svara,33,5
+15,deactivate,lamp,none,Svara lampu tidur tolong matikan ya,35,6
+15,deactivate,lamp,none,Lampu belajar matikan bentar,28,4
+15,deactivate,lamp,none,Bisa tolong padamin lampu belajar cepetan,41,6
+15,deactivate,lamp,none,Padamkan lampu belajar lah,26,4
+15,deactivate,lamp,none,Eh tolong matikan lampu nakas ya tolong,39,7
+15,deactivate,lamp,none,Padamin lampu meja dong ya,26,5
+15,deactivate,lamp,none,Matiin lampu tidur dong tolong,30,5
+15,deactivate,lamp,none,Matikan lampu nakas bentar,26,4
+15,deactivate,lamp,none,Lampu meja tolong padamkan sekarang,35,5
+15,deactivate,lamp,none,Lampu baca matikan lah,22,4
+15,deactivate,lamp,none,Lampu nakas padamkan tolong ya,30,5
+15,deactivate,lamp,none,Lampu tidur matikan lah,23,4
+15,deactivate,lamp,none,Padamin lampu baca dong ya,26,5
+16,deactivate,lights,bedroom,Lampu di kamar tidur matikan ya tolong,38,7
+16,deactivate,lights,bedroom,Eh svara semua lampu kamar tolong matikan dong svara,52,9
+16,deactivate,lights,bedroom,Padamin lampu kamar lah,23,4
+16,deactivate,lights,bedroom,Mau tidur nih bisa tolong padamin semua lampu kamar dong,56,10
+16,deactivate,lights,bedroom,Lampu kamar tidur tolong matiin,31,5
+16,deactivate,lights,bedroom,Lampu kamar matikan dong,24,4
+16,deactivate,lights,bedroom,Bisa tolong lampu di kamar tidur tolong padamin cepetan,55,9
+16,deactivate,lights,bedroom,Padamin lampu kamar tidur,25,4
+16,deactivate,lights,bedroom,Lampu di kamar tidur padamkan bentar,36,6
+16,deactivate,lights,bedroom,Lampu kamar tolong matiin ya tolong,35,6
+16,deactivate,lights,bedroom,Lampu di kamar tidur tolong matiin sekarang,43,7
+16,deactivate,lights,bedroom,Lampu di kamar tidur padamkan sekarang,38,6
+16,deactivate,lights,bedroom,Coba lampu kamar tidur tolong matikan,37,6
+16,deactivate,lights,bedroom,Lampu kamar tidur padamkan dong tolong,38,6
+16,deactivate,lights,bedroom,Eh tolong semua lampu kamar tolong matiin tolong ya,51,9
+16,deactivate,lights,bedroom,Lampu kamar matikan dong svara,30,5
+16,deactivate,lights,bedroom,Bisa tolong semua lampu kamar tolong padamin dong svara,55,9
+16,deactivate,lights,bedroom,Padamkan lampu kamar bentar,27,4
+16,deactivate,lights,bedroom,Tolongin dong lampu di kamar tidur tolong tolong matiin dong svara,66,11
+16,deactivate,lights,bedroom,Lampu di kamar tidur padamin dong,33,6
+16,deactivate,lights,bedroom,Tolong matiin semua lampu kamar dong ya,39,7
+16,deactivate,lights,bedroom,Mau tidur nih coba matiin lampu kamar tidur ya,46,9
+16,deactivate,lights,bedroom,Udah mau tidur malam eh tolong padamin semua lampu kamar dong tolong,68,12
+16,deactivate,lights,bedroom,Tolong lampu kamar tidur tolong padamin cepetan,47,7
+16,deactivate,lights,bedroom,Semua lampu kamar matikan sekarang,34,5
+16,deactivate,lights,bedroom,Matiin lampu kamar,18,3
+16,deactivate,lights,bedroom,Tolong semua lampu kamar tolong tolong matiin ya,48,8
+16,deactivate,lights,bedroom,Svara lampu kamar tidur tolong matiin dong tolong,49,8
+16,deactivate,lights,bedroom,Lampu kamar tidur padamin dong ya,33,6
+16,deactivate,lights,bedroom,Padamin semua lampu kamar dong svara,36,6
+16,deactivate,lights,bedroom,Lampu kamar tidur matiin tolong ya,34,6
+16,deactivate,lights,bedroom,Bisa tolong lampu kamar tidur tolong matikan lah,48,8
+16,deactivate,lights,bedroom,Bisa tolong lampu di kamar tidur tolong padamkan,48,8
+16,deactivate,lights,bedroom,Udah mau tidur malam svara coba matiin semua lampu kamar dong ya,64,12
+16,deactivate,lights,bedroom,Mau tidur nih svara coba padamkan lampu kamar sekarang,54,9
+16,deactivate,lights,bedroom,Padamkan lampu kamar tidur lah,30,5
+16,deactivate,lights,bedroom,Mau tidur nih matikan lampu kamar dong tolong,45,8
+16,deactivate,lights,bedroom,Padamin lampu di kamar tidur bentar,35,6
+16,deactivate,lights,bedroom,Lampu kamar tidur padamin dong tolong,37,6
+16,deactivate,lights,bedroom,Lampu di kamar tidur padamin,28,5
+16,deactivate,lights,bedroom,Halo svara semua lampu kamar tolong matikan dong ya,51,9
+16,deactivate,lights,bedroom,Svara tolong lampu di kamar tidur tolong padamkan ya tolong,59,10
+16,deactivate,lights,bedroom,Padamin semua lampu kamar tolong ya,35,6
+16,deactivate,lights,bedroom,Eh svara semua lampu kamar tolong matiin dong tolong,52,9
+16,deactivate,lights,bedroom,Mau tidur nih svara coba matikan lampu kamar sekarang,53,9
+16,deactivate,lights,bedroom,Bisa tolong semua lampu kamar tolong tolong matiin bentar,57,9
+16,deactivate,lights,bedroom,Udah mau tidur malam svara tolong padamkan lampu di kamar tidur dong,68,12
+16,deactivate,lights,bedroom,Lampu kamar tolong padamin,26,4
+16,deactivate,lights,bedroom,Lampu kamar tidur padamin,25,4
+16,deactivate,lights,bedroom,Tolong matiin lampu di kamar tidur,34,6
+16,deactivate,lights,bedroom,Lampu kamar tidur matiin dong ya,32,6
+16,deactivate,lights,bedroom,Lampu di kamar tidur matiin bentar,34,6
+16,deactivate,lights,bedroom,Udah mau tidur malam bisa gak tolong matiin lampu di kamar tidur bentar,71,13
+16,deactivate,lights,bedroom,Mau tidur nih eh tolong matiin lampu kamar bentar,49,9
+16,deactivate,lights,bedroom,Bisa gak tolong semua lampu kamar tolong padamin dong ya,56,10
+17,deactivate,lights,kitchen,Udah beres di dapur svara coba padamin semua lampu dapur dong tolong,68,12
+17,deactivate,lights,kitchen,Tolongin dong semua lampu dapur tolong padamkan dong,52,8
+17,deactivate,lights,kitchen,Halo svara lampu ruangan dapur tolong padamkan lah,50,8
+17,deactivate,lights,kitchen,Lampu ruangan dapur matikan sekarang,36,5
+17,deactivate,lights,kitchen,Bisa gak tolong lampu di dapur tolong matikan ya tolong,55,10
+17,deactivate,lights,kitchen,Lampu ruangan dapur matikan cepetan,35,5
+17,deactivate,lights,kitchen,Matiin lampu ruangan dapur ya tolong,36,6
+17,deactivate,lights,kitchen,Eh tolong lampu ruangan dapur tolong matiin dong ya,51,9
+17,deactivate,lights,kitchen,Tinggalin dapur nih matikan lampu di dapur dong,47,8
+17,deactivate,lights,kitchen,Padamin lampu di dapur tolong ya,32,6
+17,deactivate,lights,kitchen,Lampu ruangan dapur matikan dong,32,5
+17,deactivate,lights,kitchen,Bisa gak tolong lampu ruangan dapur tolong matiin cepetan,57,9
+17,deactivate,lights,kitchen,Tolong matiin lampu dapur ya tolong,35,6
+17,deactivate,lights,kitchen,Udah selesai masak nih bisa gak tolong tolong matiin semua lampu dapur dong,75,13
+17,deactivate,lights,kitchen,Svara tolong semua lampu dapur tolong padamkan dong,51,8
+17,deactivate,lights,kitchen,Udah selesai masak nih tolongin dong padamkan lampu dapur tolong ya,67,11
+17,deactivate,lights,kitchen,Halo svara lampu di dapur tolong tolong matiin sekarang,55,9
+17,deactivate,lights,kitchen,Udah beres di dapur padamkan semua lampu dapur ya tolong,56,10
+17,deactivate,lights,kitchen,Svara semua lampu dapur tolong matikan ya,41,7
+17,deactivate,lights,kitchen,Lampu dapur padamkan bentar,27,4
+17,deactivate,lights,kitchen,Tolong semua lampu dapur tolong padamkan dong tolong,52,8
+17,deactivate,lights,kitchen,Lampu di dapur tolong matiin cepetan,36,6
+17,deactivate,lights,kitchen,Udah beres di dapur halo svara tolong matiin lampu di dapur dong ya,67,13
+17,deactivate,lights,kitchen,Lampu dapur matikan dong,24,4
+17,deactivate,lights,kitchen,Matikan lampu di dapur sekarang,31,5
+17,deactivate,lights,kitchen,Lampu ruangan dapur padamin ya tolong,37,6
+17,deactivate,lights,kitchen,Matiin lampu di dapur dong ya,29,6
+17,deactivate,lights,kitchen,Udah beres di dapur bisa gak tolong matiin lampu dapur dong tolong,66,12
+17,deactivate,lights,kitchen,Padamin lampu ruangan dapur,27,4
+17,deactivate,lights,kitchen,Padamkan semua lampu dapur,26,4
+17,deactivate,lights,kitchen,Tolong matiin lampu di dapur dong ya,36,7
+17,deactivate,lights,kitchen,Svara coba padamin lampu dapur dong svara,41,7
+17,deactivate,lights,kitchen,Matiin lampu ruangan dapur dong ya,34,6
+17,deactivate,lights,kitchen,Matiin lampu dapur dong svara,29,5
+17,deactivate,lights,kitchen,Lampu ruangan dapur matiin lah,30,5
+17,deactivate,lights,kitchen,Lampu dapur tolong matiin sekarang,34,5
+17,deactivate,lights,kitchen,Udah selesai masak nih coba padamin semua lampu dapur bentar,60,10
+17,deactivate,lights,kitchen,Lampu ruangan dapur tolong matiin sekarang,42,6
+17,deactivate,lights,kitchen,Padamin lampu dapur sekarang,28,4
+17,deactivate,lights,kitchen,Matikan lampu di dapur bentar,29,5
+17,deactivate,lights,kitchen,Matikan semua lampu dapur,25,4
+17,deactivate,lights,kitchen,Coba semua lampu dapur tolong matikan lah,41,7
+17,deactivate,lights,kitchen,Bisa gak tolong lampu di dapur tolong padamkan dong svara,57,10
+17,deactivate,lights,kitchen,Svara lampu ruangan dapur tolong matikan cepetan,48,7
+17,deactivate,lights,kitchen,Padamin lampu di dapur ya,25,5
+17,deactivate,lights,kitchen,Udah beres di dapur svara padamin lampu di dapur sekarang,57,10
+17,deactivate,lights,kitchen,Udah selesai masak nih coba matikan lampu di dapur dong tolong,62,11
+17,deactivate,lights,kitchen,Padamkan lampu ruangan dapur cepetan,36,5
+17,deactivate,lights,kitchen,Udah beres di dapur bisa tolong matiin lampu di dapur ya,56,11
+17,deactivate,lights,kitchen,Svara coba lampu di dapur tolong tolong matiin ya tolong,56,10
+17,deactivate,lights,kitchen,Lampu ruangan dapur matiin dong,31,5
+17,deactivate,lights,kitchen,Tolong matiin semua lampu dapur dong tolong,43,7
+17,deactivate,lights,kitchen,Svara semua lampu dapur tolong padamkan ya,42,7
+17,deactivate,lights,kitchen,Matiin semua lampu dapur,24,4
+17,deactivate,lights,kitchen,Bisa tolong lampu di dapur tolong padamin dong,46,8
+18,deactivate,lights,none,Svara coba seluruh lampu tolong padamkan cepetan,48,7
+18,deactivate,lights,none,Lampunya matiin dong tolong,27,4
+18,deactivate,lights,none,Semua ruangan udah terang svara nonaktifkan lampunya ya tolong,62,9
+18,deactivate,lights,none,Lampu padamkan dong ya,22,4
+18,deactivate,lights,none,Mau keluar rumah nih halo svara padamkan lampunya lah,53,9
+18,deactivate,lights,none,Padamkan lampu rumah tolong ya,30,5
+18,deactivate,lights,none,Coba padamkan seluruh lampu ya tolong,37,6
+18,deactivate,lights,none,Mau tidur semua eh svara padamkan lampu dong tolong,51,9
+18,deactivate,lights,none,Semua lampu nonaktifkan dong svara,34,5
+18,deactivate,lights,none,Eh svara semua lampu tolong matiin cepetan,42,7
+18,deactivate,lights,none,Tolong seluruh lampu tolong matikan dong tolong,47,7
+18,deactivate,lights,none,Matiin lampu rumah lah,22,4
+18,deactivate,lights,none,Halo svara lampunya tolong padamkan ya tolong,45,7
+18,deactivate,lights,none,Padamkan lampu ya,17,3
+18,deactivate,lights,none,Mau tidur semua coba padamin semua lampu dong tolong,52,9
+18,deactivate,lights,none,Eh tolong lampu rumah tolong matikan tolong ya,46,8
+18,deactivate,lights,none,Padamin lampu ya tolong,23,4
+18,deactivate,lights,none,Mau keluar rumah nih eh svara padamkan lampu rumah bentar,57,10
+18,deactivate,lights,none,Lampunya padamin lah,20,3
+18,deactivate,lights,none,Svara padamkan lampu ya tolong,30,5
+18,deactivate,lights,none,Halo svara lampunya tolong matikan lah,38,6
+18,deactivate,lights,none,Padamin lampu lah,17,3
+18,deactivate,lights,none,Matiin lampunya ya tolong,25,4
+18,deactivate,lights,none,Tolong lampu tolong matiin dong svara,37,6
+18,deactivate,lights,none,Tolongin dong lampunya tolong matikan lah,41,6
+18,deactivate,lights,none,Bisa gak tolong nonaktifkan seluruh lampu,41,6
+18,deactivate,lights,none,Lampu rumah matikan dong,24,4
+18,deactivate,lights,none,Padamkan semua lampu dong,25,4
+18,deactivate,lights,none,Halo svara lampunya tolong padamkan dong ya,43,7
+18,deactivate,lights,none,Lampunya nonaktifkan dong,25,3
+18,deactivate,lights,none,Nonaktifkan seluruh lampu tolong ya,35,5
+18,deactivate,lights,none,Lampu rumah nonaktifkan bentar,30,4
+18,deactivate,lights,none,Nonaktifkan semua lampu dong tolong,35,5
+18,deactivate,lights,none,Mau tidur semua matiin lampu cepetan,36,6
+18,deactivate,lights,none,Padamkan lampu rumah,20,3
+18,deactivate,lights,none,Halo svara lampu tolong padamin lah,35,6
+18,deactivate,lights,none,Matiin seluruh lampu tolong ya,30,5
+18,deactivate,lights,none,Mau keluar rumah nih tolong matikan seluruh lampu dong svara,60,10
+18,deactivate,lights,none,Seluruh lampu matikan lah,25,4
+18,deactivate,lights,none,Lampu rumah padamin ya,22,4
+18,deactivate,lights,none,Padamkan lampu bentar,21,3
+18,deactivate,lights,none,Nonaktifkan lampu dong ya,25,4
+18,deactivate,lights,none,Padamin seluruh lampu,21,3
+18,deactivate,lights,none,Semua lampu nonaktifkan ya tolong,33,5
+18,deactivate,lights,none,Matiin seluruh lampu dong tolong,32,5
+18,deactivate,lights,none,Eh tolong lampu tolong padamkan cepetan,39,6
+18,deactivate,lights,none,Matikan semua lampu bentar,26,4
+18,deactivate,lights,none,Mau tidur semua tolong matikan lampu dong ya,44,8
+18,deactivate,lights,none,Halo svara lampu rumah tolong matiin bentar,43,7
+18,deactivate,lights,none,Padamkan lampunya tolong ya,27,4
+18,deactivate,lights,none,Mau tidur semua tolong nonaktifkan semua lampu dong ya,54,9
+18,deactivate,lights,none,Nonaktifkan lampu,17,2
+18,deactivate,lights,none,Lampu nonaktifkan sekarang,26,3
+18,deactivate,lights,none,Nonaktifkan seluruh lampu,25,3
+18,deactivate,lights,none,Padamin semua lampu tolong ya,29,5
+19,deactivate,lights,washroom,Eh svara lampu wc tolong matiin ya,34,7
+19,deactivate,lights,washroom,Matiin lampu kamar mandi dong ya,32,6
+19,deactivate,lights,washroom,Eh tolong lampu wc tolong padamin ya tolong,43,8
+19,deactivate,lights,washroom,Lampu wc matikan bentar,23,4
+19,deactivate,lights,washroom,Udah selesai pakai toilet nih coba matiin lampu di kamar mandi lah,66,12
+19,deactivate,lights,washroom,Lampu kamar mandi matiin dong svara,35,6
+19,deactivate,lights,washroom,Tolong matiin lampu di kamar mandi ya tolong,44,8
+19,deactivate,lights,washroom,Svara tolong lampu kamar mandi tolong padamin cepetan,53,8
+19,deactivate,lights,washroom,Padamkan lampu kamar mandi cepetan,34,5
+19,deactivate,lights,washroom,Padamin lampu toilet ya,23,4
+19,deactivate,lights,washroom,Lampu wc padamin sekarang,25,4
+19,deactivate,lights,washroom,Matiin lampu di kamar mandi dong,32,6
+19,deactivate,lights,washroom,Eh svara lampu wc tolong padamin sekarang,41,7
+19,deactivate,lights,washroom,Udah selesai pakai toilet nih svara matiin lampu wc bentar,58,10
+19,deactivate,lights,washroom,Lampu di kamar mandi padamkan ya tolong,39,7
+19,deactivate,lights,washroom,Lampu toilet padamin cepetan,28,4
+19,deactivate,lights,washroom,Padamin lampu di kamar mandi dong svara,39,7
+19,deactivate,lights,washroom,Lampu di kamar mandi matiin dong,32,6
+19,deactivate,lights,washroom,Matiin lampu di kamar mandi ya,30,6
+19,deactivate,lights,washroom,Lampu kamar mandi tolong matiin lah,35,6
+19,deactivate,lights,washroom,Eh svara lampu kamar mandi tolong matiin dong ya,48,9
+19,deactivate,lights,washroom,Padamin lampu di kamar mandi bentar,35,6
+19,deactivate,lights,washroom,Svara coba lampu di kamar mandi tolong tolong matiin dong ya,60,11
+19,deactivate,lights,washroom,Tolong matiin lampu wc dong svara,33,6
+19,deactivate,lights,washroom,Tolong matiin lampu kamar mandi,31,5
+19,deactivate,lights,washroom,Lampu toilet matiin dong svara,30,5
+19,deactivate,lights,washroom,Lampu di kamar mandi padamkan dong svara,40,7
+19,deactivate,lights,washroom,Tolongin dong lampu di kamar mandi tolong padamin ya,52,9
+19,deactivate,lights,washroom,Svara tolong lampu toilet tolong padamkan tolong ya,51,8
+19,deactivate,lights,washroom,Lampu kamar mandi matiin ya,27,5
+19,deactivate,lights,washroom,Lampu toilet matiin lah,23,4
+19,deactivate,lights,washroom,Bisa gak tolong lampu di kamar mandi tolong tolong matiin ya tolong,67,12
+19,deactivate,lights,washroom,Padamkan lampu di kamar mandi dong svara,40,7
+19,deactivate,lights,washroom,Lampu kamar mandi padamkan ya tolong,36,6
+19,deactivate,lights,washroom,Tolong matiin lampu di kamar mandi dong tolong,46,8
+19,deactivate,lights,washroom,Padamkan lampu kamar mandi ya,29,5
+19,deactivate,lights,washroom,Lampu kamar mandi matiin dong ya,32,6
+19,deactivate,lights,washroom,Udah selesai pakai toilet nih tolongin dong tolong matiin lampu wc ya tolong,76,13
+19,deactivate,lights,washroom,Lampu di kamar mandi matiin cepetan,35,6
+19,deactivate,lights,washroom,Svara lampu wc tolong matikan tolong ya,39,7
+19,deactivate,lights,washroom,Tolong matiin lampu wc dong tolong,34,6
+19,deactivate,lights,washroom,Udah selesai pakai toilet nih tolongin dong padamkan lampu toilet ya tolong,75,12
+19,deactivate,lights,washroom,Lampu kamar mandi tolong matiin tolong ya,41,7
+19,deactivate,lights,washroom,Tolong matiin lampu kamar mandi tolong ya,41,7
+19,deactivate,lights,washroom,Udah selesai dari kamar mandi svara coba matikan lampu wc tolong ya,67,12
+19,deactivate,lights,washroom,Lampu toilet padamin lah,24,4
+19,deactivate,lights,washroom,Coba lampu toilet tolong matikan cepetan,40,6
+19,deactivate,lights,washroom,Svara tolong lampu toilet tolong matiin ya tolong,49,8
+19,deactivate,lights,washroom,Lampu toilet padamkan lah,25,4
+19,deactivate,lights,washroom,Tolong matiin lampu wc,22,4
+19,deactivate,lights,washroom,Lampu di kamar mandi padamin dong svara,39,7
+19,deactivate,lights,washroom,Lampu toilet tolong matiin dong svara,37,6
+19,deactivate,lights,washroom,Padamin lampu di kamar mandi,28,5
+19,deactivate,lights,washroom,Matikan lampu kamar mandi dong,30,5
+19,deactivate,lights,washroom,Matikan lampu wc tolong ya,26,5
+20,deactivate,music,none,Pemutar musik matikan dong svara,32,5
+20,deactivate,music,none,Matikan pemutar musik dong ya,29,5
+20,deactivate,music,none,Mau istirahat dulu nih svara tolong pause musik lah,51,9
+20,deactivate,music,none,Berisik banget nih berhentiin musik bentar,42,6
+20,deactivate,music,none,Stop suara musik tolong ya,26,5
+20,deactivate,music,none,Mau istirahat dulu nih matiin pemutar musik dong,48,8
+20,deactivate,music,none,Mau istirahat dulu nih svara coba matikan musik dong tolong,59,10
+20,deactivate,music,none,Svara coba lagunya tolong stop lah,34,6
+20,deactivate,music,none,Musiknya stop tolong ya,23,4
+20,deactivate,music,none,Berhentiin musiknya dong svara,30,4
+20,deactivate,music,none,Pusing denger suara bising coba padamin musik tolong ya,55,9
+20,deactivate,music,none,Hentikan musik tolong ya,24,4
+20,deactivate,music,none,Lagunya matiin dong ya,22,4
+20,deactivate,music,none,Musik berhentiin ya,19,3
+20,deactivate,music,none,Matikan musik cepetan,21,3
+20,deactivate,music,none,Matiin musik ya tolong,22,4
+20,deactivate,music,none,Ada telepon masuk nih berhentiin lagu lah,41,7
+20,deactivate,music,none,Berhentiin musiknya ya,22,3
+20,deactivate,music,none,Pemutar musik matiin dong tolong,32,5
+20,deactivate,music,none,Svara suara musik tolong berhentiin dong,40,6
+20,deactivate,music,none,Matikan lagunya dong,20,3
+20,deactivate,music,none,Pusing denger suara bising tolongin dong hentikan lagunya,57,8
+20,deactivate,music,none,Musiknya padamin dong,21,3
+20,deactivate,music,none,Pusing denger suara bising tolongin dong stop lagu bentar,57,9
+20,deactivate,music,none,Musiknya stop dong tolong,25,4
+20,deactivate,music,none,Berisik banget nih tolongin dong matikan musiknya cepetan,57,8
+20,deactivate,music,none,Bisa gak tolong lagu tolong stop,32,6
+20,deactivate,music,none,Lagu pause cepetan,18,3
+20,deactivate,music,none,Musiknya matikan cepetan,24,3
+20,deactivate,music,none,Berisik banget nih hentikan musik sekarang,42,6
+20,deactivate,music,none,Suara musik stop lah,20,4
+20,deactivate,music,none,Mau istirahat dulu nih bisa gak tolong pause lagu dong,54,10
+20,deactivate,music,none,Mau istirahat dulu nih eh svara matikan musik cepetan,53,9
+20,deactivate,music,none,Bisa gak tolong lagu tolong matikan,35,6
+20,deactivate,music,none,Eh tolong musik tolong padamin cepetan,38,6
+20,deactivate,music,none,Tolong lagunya tolong matiin ya tolong,38,6
+20,deactivate,music,none,Musiknya berhentiin dong tolong,31,4
+20,deactivate,music,none,Tolong pemutar musik tolong matikan bentar,42,6
+20,deactivate,music,none,Bisa tolong musik tolong padamin ya tolong,42,7
+20,deactivate,music,none,Musiknya matiin ya,18,3
+20,deactivate,music,none,Pemutar musik hentikan ya,25,4
+20,deactivate,music,none,Lagu matiin dong,16,3
+20,deactivate,music,none,Mau istirahat dulu nih berhentiin musik,39,6
+20,deactivate,music,none,Matikan suara musik ya tolong,29,5
+20,deactivate,music,none,Bisa gak tolong lagunya tolong padamin dong tolong,50,8
+20,deactivate,music,none,Musiknya matikan bentar,23,3
+20,deactivate,music,none,Ada telepon masuk nih bisa tolong stop pemutar musik dong tolong,64,11
+20,deactivate,music,none,Berhentiin pemutar musik dong,29,4
+20,deactivate,music,none,Svara pemutar musik tolong matiin dong ya,41,7
+20,deactivate,music,none,Halo svara pemutar musik tolong matiin sekarang,47,7
+20,deactivate,music,none,Ada telepon masuk nih tolongin dong matikan lagu tolong ya,58,10
+20,deactivate,music,none,Lagu padamin lah,16,3
+20,deactivate,music,none,Ada telepon masuk nih coba stop suara musik,43,8
+20,deactivate,music,none,Stop lagunya tolong ya,22,4
+20,deactivate,music,none,Suara musik tolong matiin,25,4
+21,decrease,heat,bedroom,Kamar tidur panas nih turunkan suhu suhu kamar tidur dong,57,10
+21,decrease,heat,bedroom,Turunkan suhu suhu kamar tidur ya tolong,40,7
+21,decrease,heat,bedroom,Sejukin kamar dong,18,3
+21,decrease,heat,bedroom,Ac kamar tidur turunin suhu dong ya,35,7
+21,decrease,heat,bedroom,Kamar tidur panas nih tolong turunkan suhu suhu kamar tidur cepetan,67,11
+21,decrease,heat,bedroom,Coba suhu kamar tidur tolong turunin suhu cepetan,49,8
+21,decrease,heat,bedroom,Svara tolong ac kamar tidur tolong turunin suhu dong tolong,59,10
+21,decrease,heat,bedroom,Sumuk banget di kamar tidur eh tolong turunin suhu ruangan kamar tidur ya,73,13
+21,decrease,heat,bedroom,Kamar tidur turunin suhu cepetan,32,5
+21,decrease,heat,bedroom,Coba kamar tolong sejukin tolong ya,35,6
+21,decrease,heat,bedroom,Kamar kurangi suhu dong,23,4
+21,decrease,heat,bedroom,Kurangi suhu ac kamar tidur cepetan,35,6
+21,decrease,heat,bedroom,Turunkan suhu kamar dong ya,27,5
+21,decrease,heat,bedroom,Kamar hawanya panas svara coba turunin suhu suhu kamar tidur ya,63,11
+21,decrease,heat,bedroom,Kamar hawanya panas dinginin ac kamar tidur dong tolong,55,9
+21,decrease,heat,bedroom,Kamar hawanya panas halo svara turunkan suhu ac kamar tidur dong tolong,71,12
+21,decrease,heat,bedroom,Kamar hawanya panas eh svara turunin suhu kamar tidur bentar,60,10
+21,decrease,heat,bedroom,Bisa tolong ruangan kamar tidur tolong turunin suhu tolong ya,61,10
+21,decrease,heat,bedroom,Ruangan kamar tidur turunkan suhu ya,36,6
+21,decrease,heat,bedroom,Kamar turunkan suhu dong tolong,31,5
+21,decrease,heat,bedroom,Kamar tidur panas nih svara tolong turunkan suhu kamar tidur lah,64,11
+21,decrease,heat,bedroom,Sejukin suhu kamar tidur,24,4
+21,decrease,heat,bedroom,Eh tolong suhu kamar tidur tolong kurangi suhu ya tolong,56,10
+21,decrease,heat,bedroom,Sejukin kamar tidur bentar,26,4
+21,decrease,heat,bedroom,Kamar tidur gerah banget nih tolong turunkan suhu ruangan kamar tidur cepetan,77,12
+21,decrease,heat,bedroom,Sumuk banget di kamar tidur svara tolong turunin suhu suhu kamar tidur dong tolong,82,14
+21,decrease,heat,bedroom,Kamar tidur panas nih coba sejukin kamar bentar,47,8
+21,decrease,heat,bedroom,Bisa gak tolong kamar tolong kurangi suhu dong tolong,53,9
+21,decrease,heat,bedroom,Suhu kamar tidur sejukin lah,28,5
+21,decrease,heat,bedroom,Ruangan kamar tidur dinginin sekarang,37,5
+21,decrease,heat,bedroom,Kurangi suhu kamar tidur cepetan,32,5
+21,decrease,heat,bedroom,Kamar tidur sejukin dong ya,27,5
+21,decrease,heat,bedroom,Kamar tidur gerah banget nih tolong turunkan suhu kamar tolong ya,65,11
+21,decrease,heat,bedroom,Coba kamar tidur tolong sejukin dong tolong,43,7
+21,decrease,heat,bedroom,Kamar hawanya panas coba turunin suhu suhu kamar tidur lah,58,10
+21,decrease,heat,bedroom,Kurangi suhu kamar cepetan,26,4
+21,decrease,heat,bedroom,Kamar hawanya panas eh svara dinginin ruangan kamar tidur dong ya,65,11
+21,decrease,heat,bedroom,Kurangi suhu ruangan kamar tidur dong svara,43,7
+21,decrease,heat,bedroom,Suhu kamar tidur kurangi suhu bentar,36,6
+21,decrease,heat,bedroom,Eh tolong kamar tolong kurangi suhu tolong ya,45,8
+21,decrease,heat,bedroom,Sumuk banget di kamar tidur bisa tolong turunkan suhu ruangan kamar tidur tolong ya,83,14
+21,decrease,heat,bedroom,Svara tolong ac kamar tidur tolong sejukin ya,45,8
+21,decrease,heat,bedroom,Coba kamar tolong turunin suhu ya,33,6
+21,decrease,heat,bedroom,Suhu kamar tidur sejukin ya,27,5
+21,decrease,heat,bedroom,Sumuk banget di kamar tidur svara tolong turunin suhu kamar bentar,66,11
+21,decrease,heat,bedroom,Svara tolong ruangan kamar tidur tolong turunin suhu cepetan,60,9
+21,decrease,heat,bedroom,Tolong ac kamar tidur tolong dinginin cepetan,45,7
+21,decrease,heat,bedroom,Turunin suhu kamar tidur dong tolong,36,6
+21,decrease,heat,bedroom,Eh svara suhu kamar tidur tolong sejukin lah,44,8
+21,decrease,heat,bedroom,Svara tolong ac kamar tidur tolong dinginin,43,7
+21,decrease,heat,bedroom,Eh tolong ac kamar tidur tolong dinginin ya tolong,50,9
+21,decrease,heat,bedroom,Svara tolong ruangan kamar tidur tolong dinginin,48,7
+21,decrease,heat,bedroom,Kamar tidur turunin suhu dong,29,5
+21,decrease,heat,bedroom,Turunkan suhu kamar cepetan,27,4
+21,decrease,heat,bedroom,Ac kamar tidur sejukin ya,25,5
+22,decrease,heat,kitchen,Sejukin dapur tolong ya,23,4
+22,decrease,heat,kitchen,Dapur turunkan suhu dong ya,27,5
+22,decrease,heat,kitchen,Ruangan dapur sejukin dong tolong,33,5
+22,decrease,heat,kitchen,Dinginin ruangan dapur dong ya,30,5
+22,decrease,heat,kitchen,Dapur sejukin ya tolong,23,4
+22,decrease,heat,kitchen,Suhu dapur tolong turunkan suhu dong svara,42,7
+22,decrease,heat,kitchen,Ruangan dapur turunin suhu ya,29,5
+22,decrease,heat,kitchen,Turunkan suhu dapur tolong ya,29,5
+22,decrease,heat,kitchen,Halo svara turunkan suhu ruangan dapur,38,6
+22,decrease,heat,kitchen,Sejukin area dapur dong,23,4
+22,decrease,heat,kitchen,Coba turunkan suhu ruangan dapur,32,5
+22,decrease,heat,kitchen,Suhu dapur dinginin ya tolong,29,5
+22,decrease,heat,kitchen,Eh tolong turunkan suhu dapur sekarang,38,6
+22,decrease,heat,kitchen,Ruangan dapur dinginin sekarang,31,4
+22,decrease,heat,kitchen,Turunin suhu dapur tolong ya,28,5
+22,decrease,heat,kitchen,Halo svara ruangan dapur tolong turunin suhu dong,49,8
+22,decrease,heat,kitchen,Sejukin suhu dapur lah,22,4
+22,decrease,heat,kitchen,Halo svara ruangan dapur tolong sejukin,39,6
+22,decrease,heat,kitchen,Svara tolong area dapur tolong turunkan suhu sekarang,53,8
+22,decrease,heat,kitchen,Dapur panas banget abis masak bisa tolong turunin suhu ruangan dapur dong ya,76,13
+22,decrease,heat,kitchen,Eh svara dinginin dapur ya,26,5
+22,decrease,heat,kitchen,Suhu dapur sejukin ya,21,4
+22,decrease,heat,kitchen,Panas nih di dapur coba sejukin dapur dong tolong,49,9
+22,decrease,heat,kitchen,Coba ruangan dapur tolong turunin suhu tolong ya,48,8
+22,decrease,heat,kitchen,Dapur hawanya gerah coba dinginin area dapur dong tolong,56,9
+22,decrease,heat,kitchen,Area dapur tolong turunkan suhu,31,5
+22,decrease,heat,kitchen,Dinginin area dapur dong,24,4
+22,decrease,heat,kitchen,Dapur panas banget abis masak tolong sejukin dapur dong,55,9
+22,decrease,heat,kitchen,Turunin suhu ruangan dapur lah,30,5
+22,decrease,heat,kitchen,Turunin suhu suhu dapur ya tolong,33,6
+22,decrease,heat,kitchen,Panas nih di dapur coba turunin suhu dapur dong,47,9
+22,decrease,heat,kitchen,Dapur hawanya gerah bisa gak tolong turunin suhu suhu dapur ya,62,11
+22,decrease,heat,kitchen,Bisa tolong suhu dapur tolong turunkan suhu dong tolong,55,9
+22,decrease,heat,kitchen,Turunin suhu area dapur dong,28,5
+22,decrease,heat,kitchen,Dinginin ruangan dapur cepetan,30,4
+22,decrease,heat,kitchen,Dapur dinginin sekarang,23,3
+22,decrease,heat,kitchen,Sejukin area dapur ya tolong,28,5
+22,decrease,heat,kitchen,Bisa tolong suhu dapur tolong turunkan suhu dong svara,54,9
+22,decrease,heat,kitchen,Ruangan dapur sejukin,21,3
+22,decrease,heat,kitchen,Svara dapur tolong turunkan suhu dong,37,6
+22,decrease,heat,kitchen,Dinginin ruangan dapur dong,27,4
+22,decrease,heat,kitchen,Svara tolong area dapur tolong turunin suhu dong,48,8
+22,decrease,heat,kitchen,Turunkan suhu suhu dapur dong tolong,36,6
+22,decrease,heat,kitchen,Turunkan suhu area dapur cepetan,32,5
+22,decrease,heat,kitchen,Dapur dinginin tolong ya,24,4
+22,decrease,heat,kitchen,Bisa tolong turunin suhu dapur dong,35,6
+22,decrease,heat,kitchen,Dinginin ruangan dapur dong svara,33,5
+22,decrease,heat,kitchen,Dapur dinginin lah,18,3
+22,decrease,heat,kitchen,Sejukin area dapur cepetan,26,4
+22,decrease,heat,kitchen,Panas nih di dapur halo svara dinginin dapur dong svara,55,10
+22,decrease,heat,kitchen,Area dapur sejukin cepetan,26,4
+22,decrease,heat,kitchen,Suhu dapur tolong turunin suhu dong tolong,42,7
+22,decrease,heat,kitchen,Suhu dapur turunin suhu dong tolong,35,6
+22,decrease,heat,kitchen,Tolong area dapur tolong turunkan suhu cepetan,46,7
+22,decrease,heat,kitchen,Area dapur sejukin ya tolong,28,5
+23,decrease,heat,none,Sumuk banget udaranya eh tolong sejukin suhu,44,7
+23,decrease,heat,none,Panas banget hawanya svara tolong sejukin temperaturnya ya tolong,65,9
+23,decrease,heat,none,Turunin suhu ac sekarang,24,4
+23,decrease,heat,none,Svara tolong temperaturnya tolong turunin dong ya,49,7
+23,decrease,heat,none,Panas banget hawanya tolongin dong sejukin temperatur dong,58,8
+23,decrease,heat,none,Sejukin suhunya,15,2
+23,decrease,heat,none,Temperatur turunkan bentar,26,3
+23,decrease,heat,none,Turunkan temperatur,19,2
+23,decrease,heat,none,Keringetan nih svara coba turunkan suhu ruangan ya tolong,57,9
+23,decrease,heat,none,Dinginin suhu ruangan cepetan,29,4
+23,decrease,heat,none,Svara coba suhu ruangan tolong sejukin dong svara,49,8
+23,decrease,heat,none,Turunin temperatur dong ya,26,4
+23,decrease,heat,none,Temperatur tolong sejukin dong svara,36,5
+23,decrease,heat,none,Kurangi suhu ya tolong,22,4
+23,decrease,heat,none,Temperatur kurangi cepetan,26,3
+23,decrease,heat,none,Turunin temperaturnya tolong ya,31,4
+23,decrease,heat,none,Suhu ruangan kurangi dong ya,28,5
+23,decrease,heat,none,Eh tolong temperatur tolong kurangi cepetan,43,6
+23,decrease,heat,none,Suhunya kurangi ya tolong,25,4
+23,decrease,heat,none,Suhu ruangan turunkan lah,25,4
+23,decrease,heat,none,Halo svara suhu ruangan tolong dinginin cepetan,47,7
+23,decrease,heat,none,Sejukin suhu ac dong svara,26,5
+23,decrease,heat,none,Dinginin suhu ac tolong ya,26,5
+23,decrease,heat,none,Eh tolong suhunya tolong kurangi dong svara,43,7
+23,decrease,heat,none,Dinginin suhu dong ya,21,4
+23,decrease,heat,none,Keringetan nih eh svara kurangi suhu ac dong svara,50,9
+23,decrease,heat,none,Sumuk banget udaranya tolongin dong kurangi suhunya lah,55,8
+23,decrease,heat,none,Turunin suhu sekarang,21,3
+23,decrease,heat,none,Gerah banget nih rumah svara sejukin temperaturnya lah,54,8
+23,decrease,heat,none,Keringetan nih bisa gak tolong dinginin suhunya dong,52,8
+23,decrease,heat,none,Sumuk banget udaranya eh svara turunin suhunya ya tolong,56,9
+23,decrease,heat,none,Svara tolong temperaturnya tolong kurangi dong svara,52,7
+23,decrease,heat,none,Bisa tolong suhu tolong dinginin ya,35,6
+23,decrease,heat,none,Sumuk banget udaranya eh svara turunkan suhu ruangan ya tolong,62,10
+23,decrease,heat,none,Sejukin temperaturnya dong,26,3
+23,decrease,heat,none,Dinginin suhu ruangan ya,24,4
+23,decrease,heat,none,Keringetan nih bisa gak tolong sejukin suhu ruangan,51,8
+23,decrease,heat,none,Suhu ruangan dinginin bentar,28,4
+23,decrease,heat,none,Tolongin dong temperaturnya tolong sejukin dong,47,6
+23,decrease,heat,none,Turunin suhu ac tolong ya,25,5
+23,decrease,heat,none,Suhunya sejukin ya,18,3
+23,decrease,heat,none,Sumuk banget udaranya tolongin dong turunkan suhu tolong ya,59,9
+23,decrease,heat,none,Suhu ruangan turunkan dong tolong,33,5
+23,decrease,heat,none,Sejukin temperatur dong,23,3
+23,decrease,heat,none,Temperaturnya kurangi sekarang,30,3
+23,decrease,heat,none,Temperaturnya tolong dinginin cepetan,37,4
+23,decrease,heat,none,Dinginin temperaturnya tolong ya,32,4
+23,decrease,heat,none,Tolong suhunya tolong dinginin bentar,37,5
+23,decrease,heat,none,Svara tolong suhu ac tolong turunkan dong tolong,48,8
+23,decrease,heat,none,Coba suhu ruangan tolong kurangi tolong ya,42,7
+23,decrease,heat,none,Suhunya sejukin dong svara,26,4
+23,decrease,heat,none,Temperatur tolong turunin lah,29,4
+23,decrease,heat,none,Eh svara suhu ruangan tolong dinginin dong tolong,49,8
+23,decrease,heat,none,Kurangi suhu ac ya tolong,25,5
+23,decrease,heat,none,Panas banget hawanya tolong sejukin suhunya ya tolong,53,8
+24,decrease,heat,washroom,Ruangan kamar mandi turunkan suhu lah,37,6
+24,decrease,heat,washroom,Turunin suhu toilet tolong ya,29,5
+24,decrease,heat,washroom,Svara ruangan kamar mandi tolong turunin suhu dong ya,53,9
+24,decrease,heat,washroom,Ruangan kamar mandi turunin suhu ya,35,6
+24,decrease,heat,washroom,Wc sejukin dong ya,18,4
+24,decrease,heat,washroom,Kamar mandi turunkan suhu,25,4
+24,decrease,heat,washroom,Toilet turunkan suhu dong tolong,32,5
+24,decrease,heat,washroom,Bisa gak tolong sejukin kamar mandi dong,40,7
+24,decrease,heat,washroom,Kamar mandi pengap dan panas nih svara tolong turunin suhu ruangan kamar mandi sekarang,87,14
+24,decrease,heat,washroom,Turunkan suhu wc dong svara,27,5
+24,decrease,heat,washroom,Halo svara toilet tolong dinginin tolong ya,43,7
+24,decrease,heat,washroom,Turunkan suhu toilet dong,25,4
+24,decrease,heat,washroom,Coba sejukin kamar mandi sekarang,33,5
+24,decrease,heat,washroom,Sejukin wc dong svara,21,4
+24,decrease,heat,washroom,Svara coba wc tolong sejukin dong svara,39,7
+24,decrease,heat,washroom,Toilet turunkan suhu bentar,27,4
+24,decrease,heat,washroom,Bisa tolong kamar mandi tolong turunin suhu dong ya,51,9
+24,decrease,heat,washroom,Toilet sejukin dong tolong,26,4
+24,decrease,heat,washroom,Turunkan suhu kamar mandi cepetan,33,5
+24,decrease,heat,washroom,Eh svara kamar mandi tolong turunkan suhu dong tolong,53,9
+24,decrease,heat,washroom,Svara tolong toilet tolong dinginin tolong ya,45,7
+24,decrease,heat,washroom,Toilet hawanya panas bisa gak tolong sejukin toilet ya tolong,61,10
+24,decrease,heat,washroom,Toilet hawanya panas svara dinginin toilet cepetan,50,7
+24,decrease,heat,washroom,Sejukin kamar mandi dong svara,30,5
+24,decrease,heat,washroom,Kamar mandi turunin suhu dong,29,5
+24,decrease,heat,washroom,Eh svara sejukin kamar mandi sekarang,37,6
+24,decrease,heat,washroom,Turunin suhu toilet,19,3
+24,decrease,heat,washroom,Ruangan kamar mandi dinginin dong,33,5
+24,decrease,heat,washroom,Gerah nih di kamar mandi coba turunin suhu ruangan kamar mandi dong,67,12
+24,decrease,heat,washroom,Coba ruangan kamar mandi tolong turunkan suhu tolong ya,55,9
+24,decrease,heat,washroom,Turunkan suhu ruangan kamar mandi dong tolong,45,7
+24,decrease,heat,washroom,Svara tolong wc tolong dinginin bentar,38,6
+24,decrease,heat,washroom,Ruangan kamar mandi turunkan suhu tolong ya,43,7
+24,decrease,heat,washroom,Toilet sejukin dong svara,25,4
+24,decrease,heat,washroom,Ruangan kamar mandi tolong sejukin lah,38,6
+24,decrease,heat,washroom,Wc dinginin cepetan,19,3
+24,decrease,heat,washroom,Sejukin toilet ya,17,3
+24,decrease,heat,washroom,Toilet hawanya panas halo svara turunkan suhu wc ya tolong,58,10
+24,decrease,heat,washroom,Kamar mandi pengap dan panas nih dinginin ruangan kamar mandi dong svara,72,12
+24,decrease,heat,washroom,Tolongin dong sejukin wc tolong ya,34,6
+24,decrease,heat,washroom,Toilet turunkan suhu ya,23,4
+24,decrease,heat,washroom,Wc turunkan suhu sekarang,25,4
+24,decrease,heat,washroom,Svara coba wc tolong sejukin ya,31,6
+24,decrease,heat,washroom,Toilet hawanya panas tolong sejukin kamar mandi dong svara,58,9
+24,decrease,heat,washroom,Kamar mandi dinginin ya,23,4
+24,decrease,heat,washroom,Turunkan suhu ruangan kamar mandi tolong ya,43,7
+24,decrease,heat,washroom,Eh tolong dinginin toilet ya,28,5
+24,decrease,heat,washroom,Tolong toilet tolong dinginin,29,4
+24,decrease,heat,washroom,Tolongin dong toilet tolong turunin suhu dong svara,51,8
+24,decrease,heat,washroom,Toilet turunkan suhu cepetan,28,4
+24,decrease,heat,washroom,Toilet turunin suhu dong tolong,31,5
+24,decrease,heat,washroom,Eh svara ruangan kamar mandi tolong dinginin ya tolong,54,9
+24,decrease,heat,washroom,Toilet hawanya panas eh tolong turunkan suhu kamar mandi sekarang,65,10
+24,decrease,heat,washroom,Turunkan suhu ruangan kamar mandi cepetan,41,6
+24,decrease,heat,washroom,Ruangan kamar mandi turunkan suhu bentar,40,6
+25,decrease,volume,none,Volume speaker kecilin,22,3
+25,decrease,volume,none,Suara kecilin lah,17,3
+25,decrease,volume,none,Kecilkan volume speaker lah,27,4
+25,decrease,volume,none,Kecilkan volume ya,18,3
+25,decrease,volume,none,Eh svara suaranya tolong turunin dong ya,40,7
+25,decrease,volume,none,Svara coba suara speaker tolong rendahkan cepetan,49,7
+25,decrease,volume,none,Rendahkan suaranya dong svara,29,4
+25,decrease,volume,none,Ada orang tidur nih coba pelankan volumenya tolong ya,53,9
+25,decrease,volume,none,Volumenya pelanin ya,20,3
+25,decrease,volume,none,Svara suara tolong kecilkan dong ya,35,6
+25,decrease,volume,none,Suara tolong turunin sekarang,29,4
+25,decrease,volume,none,Volume kecilin sekarang,23,3
+25,decrease,volume,none,Svara coba volume tolong pelanin bentar,39,6
+25,decrease,volume,none,Turunin suara,13,2
+25,decrease,volume,none,Terlalu keras suaranya bisa gak tolong pelankan volume speaker lah,66,10
+25,decrease,volume,none,Suaranya kekencengan nih eh svara kecilkan volume dong,54,8
+25,decrease,volume,none,Suaranya kekencengan nih halo svara kecilin volumenya lah,57,8
+25,decrease,volume,none,Suara speaker pelanin tolong ya,31,5
+25,decrease,volume,none,Kecilin volumenya lah,21,3
+25,decrease,volume,none,Volumenya kecilin cepetan,25,3
+25,decrease,volume,none,Bisa tolong suara tolong kecilkan tolong ya,43,7
+25,decrease,volume,none,Turunin suara speaker dong svara,32,5
+25,decrease,volume,none,Coba suaranya tolong pelankan dong ya,37,6
+25,decrease,volume,none,Kecilkan suaranya bentar,24,3
+25,decrease,volume,none,Suaranya kekencengan nih eh svara pelanin volume dong tolong,60,9
+25,decrease,volume,none,Suaranya turunin ya,19,3
+25,decrease,volume,none,Svara suara speaker tolong kecilin lah,38,6
+25,decrease,volume,none,Rendahkan suara speaker bentar,30,4
+25,decrease,volume,none,Svara tolong suara tolong kecilin bentar,40,6
+25,decrease,volume,none,Volumenya rendahkan bentar,26,3
+25,decrease,volume,none,Bising banget nih tolongin dong kecilkan volumenya tolong ya,60,9
+25,decrease,volume,none,Halo svara suaranya tolong turunin dong tolong,46,7
+25,decrease,volume,none,Kecilin volume speaker bentar,29,4
+25,decrease,volume,none,Pelanin volume,14,2
+25,decrease,volume,none,Terlalu keras suaranya eh tolong rendahkan suaranya bentar,58,8
+25,decrease,volume,none,Turunin suara speaker bentar,28,4
+25,decrease,volume,none,Rendahkan volume cepetan,24,3
+25,decrease,volume,none,Eh svara volumenya tolong turunin dong tolong,45,7
+25,decrease,volume,none,Eh tolong suara speaker tolong turunin dong tolong,50,8
+25,decrease,volume,none,Rendahkan volumenya dong,24,3
+25,decrease,volume,none,Volume kecilkan ya,18,3
+25,decrease,volume,none,Tolong volume tolong kecilin dong svara,39,6
+25,decrease,volume,none,Volume kecilkan sekarang,24,3
+25,decrease,volume,none,Suaranya pelankan lah,21,3
+25,decrease,volume,none,Bisa gak tolong suara speaker tolong kecilkan dong svara,56,9
+25,decrease,volume,none,Suaranya pelanin dong tolong,28,4
+25,decrease,volume,none,Bisa gak tolong volume speaker tolong pelankan dong,51,8
+25,decrease,volume,none,Kecilin suara speaker ya,24,4
+25,decrease,volume,none,Kecilkan volume dong,20,3
+25,decrease,volume,none,Pelankan volumenya dong,23,3
+25,decrease,volume,none,Bising banget nih svara tolong turunin suara cepetan,52,8
+25,decrease,volume,none,Pelankan suaranya,17,2
+25,decrease,volume,none,Bising banget nih bisa tolong pelanin suara speaker cepetan,59,9
+25,decrease,volume,none,Volume turunin,14,2
+25,decrease,volume,none,Turunin volume speaker cepetan,30,4
+26,increase,heat,bedroom,Kamar tambah suhu ya,20,4
+26,increase,heat,bedroom,Naikkan suhu kamar dong tolong,30,5
+26,increase,heat,bedroom,Svara coba ac kamar tidur tolong tambah suhu dong svara,55,10
+26,increase,heat,bedroom,Kamar tidur tambah suhu lah,27,5
+26,increase,heat,bedroom,Menggigil nih di kamar tidur tolongin dong naikin suhu kamar dong tolong,72,12
+26,increase,heat,bedroom,Menggigil nih di kamar tidur halo svara naikin suhu kamar tidur dong ya,71,13
+26,increase,heat,bedroom,Eh svara kamar tidur tolong tambah suhu dong,44,8
+26,increase,heat,bedroom,Kamar hangatkan dong tolong,27,4
+26,increase,heat,bedroom,Kamar tidur dingin banget nih halo svara tambah suhu ruangan kamar tidur dong svara,83,14
+26,increase,heat,bedroom,Ac kamar tidur angetin ya,25,5
+26,increase,heat,bedroom,Kamar tidur dingin banget nih halo svara angetin ac kamar tidur tolong ya,73,13
+26,increase,heat,bedroom,Tolong kamar tolong tambah suhu tolong ya,41,7
+26,increase,heat,bedroom,Kamar naikin suhu tolong ya,27,5
+26,increase,heat,bedroom,Kamar tidur terlalu dingin tambah suhu ruangan kamar tidur ya,61,10
+26,increase,heat,bedroom,Eh tolong kamar tidur tolong naikkan suhu sekarang,50,8
+26,increase,heat,bedroom,Kedinginan di kamar svara tolong angetin ac kamar tidur dong,60,10
+26,increase,heat,bedroom,Kamar tambah suhu cepetan,25,4
+26,increase,heat,bedroom,Ruangan kamar tidur naikin suhu cepetan,39,6
+26,increase,heat,bedroom,Eh svara ac kamar tidur tolong naikin suhu lah,46,9
+26,increase,heat,bedroom,Eh tolong kamar tidur tolong tambah suhu dong ya,48,9
+26,increase,heat,bedroom,Svara coba ac kamar tidur tolong naikkan suhu dong,50,9
+26,increase,heat,bedroom,Kamar tambah suhu dong ya,25,5
+26,increase,heat,bedroom,Naikin suhu ac kamar tidur ya tolong,36,7
+26,increase,heat,bedroom,Naikin suhu ac kamar tidur tolong ya,36,7
+26,increase,heat,bedroom,Svara tolong ruangan kamar tidur tolong hangatkan,49,7
+26,increase,heat,bedroom,Kamar tidur dingin banget nih eh tolong naikin suhu ac kamar tidur dong tolong,78,14
+26,increase,heat,bedroom,Bisa gak tolong ruangan kamar tidur tolong tambah suhu dong svara,65,11
+26,increase,heat,bedroom,Ruangan kamar tidur angetin dong tolong,39,6
+26,increase,heat,bedroom,Ruangan kamar tidur angetin dong ya,35,6
+26,increase,heat,bedroom,Kamar tidur hangatkan ya tolong,31,5
+26,increase,heat,bedroom,Ac kamar tidur hangatkan bentar,31,5
+26,increase,heat,bedroom,Kedinginan di kamar halo svara naikin suhu kamar tidur bentar,61,10
+26,increase,heat,bedroom,Naikin suhu ruangan kamar tidur dong svara,42,7
+26,increase,heat,bedroom,Naikin suhu kamar tidur cepetan,31,5
+26,increase,heat,bedroom,Kamar tidur terlalu dingin eh svara naikin suhu kamar dong tolong,65,11
+26,increase,heat,bedroom,Angetin kamar dong,18,3
+26,increase,heat,bedroom,Naikkan suhu ruangan kamar tidur,32,5
+26,increase,heat,bedroom,Bisa gak tolong kamar tolong tambah suhu,40,7
+26,increase,heat,bedroom,Tolong ac kamar tidur tolong angetin ya,39,7
+26,increase,heat,bedroom,Kamar tidur terlalu dingin tolong tambah suhu kamar dong tolong,63,10
+26,increase,heat,bedroom,Tambah suhu kamar bentar,24,4
+26,increase,heat,bedroom,Ruangan kamar tidur naikin suhu lah,35,6
+26,increase,heat,bedroom,Ruangan kamar tidur naikin suhu dong svara,42,7
+26,increase,heat,bedroom,Tambah suhu ac kamar tidur cepetan,34,6
+26,increase,heat,bedroom,Kamar tidur hangatkan tolong ya,31,5
+26,increase,heat,bedroom,Naikin suhu ac kamar tidur dong ya,34,7
+26,increase,heat,bedroom,Kamar naikin suhu dong tolong,29,5
+26,increase,heat,bedroom,Hangatkan kamar sekarang,24,3
+26,increase,heat,bedroom,Kamar tidur naikin suhu cepetan,31,5
+26,increase,heat,bedroom,Kamar tidur dingin banget nih svara coba angetin ruangan kamar tidur dong ya,76,13
+26,increase,heat,bedroom,Bisa tolong kamar tidur tolong angetin sekarang,47,7
+26,increase,heat,bedroom,Ac kamar tidur tambah suhu dong,31,6
+26,increase,heat,bedroom,Naikin suhu kamar tidur dong svara,34,6
+26,increase,heat,bedroom,Naikin suhu ac kamar tidur,26,5
+26,increase,heat,bedroom,Kedinginan di kamar tolong naikin suhu kamar tidur bentar,57,9
+27,increase,heat,kitchen,Dapur naikkan suhu ya tolong,28,5
+27,increase,heat,kitchen,Ruangan dapur naikin suhu dong svara,36,6
+27,increase,heat,kitchen,Dapur hawanya terlalu dingin svara coba naikin suhu ruangan dapur lah,69,11
+27,increase,heat,kitchen,Dapur hawanya terlalu dingin halo svara angetin suhu dapur dong ya,66,11
+27,increase,heat,kitchen,Suhu dapur tolong naikin suhu dong ya,37,7
+27,increase,heat,kitchen,Ruangan dapur angetin dong svara,32,5
+27,increase,heat,kitchen,Svara coba dapur tolong naikkan suhu dong ya,44,8
+27,increase,heat,kitchen,Ruangan dapur hangatkan ya tolong,33,5
+27,increase,heat,kitchen,Tolongin dong ruangan dapur tolong angetin ya tolong,52,8
+27,increase,heat,kitchen,Angetin suhu dapur sekarang,27,4
+27,increase,heat,kitchen,Dapur hawanya terlalu dingin hangatkan dapur dong ya,52,8
+27,increase,heat,kitchen,Svara tolong dapur tolong hangatkan lah,39,6
+27,increase,heat,kitchen,Suhu dapur hangatkan cepetan,28,4
+27,increase,heat,kitchen,Angetin suhu dapur ya tolong,28,5
+27,increase,heat,kitchen,Eh tolong naikkan suhu ruangan dapur ya,39,7
+27,increase,heat,kitchen,Dapur tolong naikkan suhu,25,4
+27,increase,heat,kitchen,Bisa tolong suhu dapur tolong naikkan suhu dong ya,50,9
+27,increase,heat,kitchen,Bisa gak tolong suhu dapur tolong angetin dong svara,52,9
+27,increase,heat,kitchen,Dapur hawanya terlalu dingin coba naikin suhu ruangan dapur,59,9
+27,increase,heat,kitchen,Dapur naikin suhu tolong ya,27,5
+27,increase,heat,kitchen,Tolongin dong dapur tolong angetin,34,5
+27,increase,heat,kitchen,Eh tolong dapur tolong hangatkan tolong ya,42,7
+27,increase,heat,kitchen,Dapur hawanya terlalu dingin halo svara hangatkan dapur dong ya,63,10
+27,increase,heat,kitchen,Eh tolong dapur tolong naikin suhu lah,38,7
+27,increase,heat,kitchen,Naikin suhu ruangan dapur dong ya,33,6
+27,increase,heat,kitchen,Bisa tolong ruangan dapur tolong angetin lah,44,7
+27,increase,heat,kitchen,Svara coba naikkan suhu suhu dapur dong,39,7
+27,increase,heat,kitchen,Dapur hangatkan bentar,22,3
+27,increase,heat,kitchen,Svara tolong suhu dapur tolong angetin dong svara,49,8
+27,increase,heat,kitchen,Svara coba suhu dapur tolong hangatkan tolong ya,48,8
+27,increase,heat,kitchen,Bisa tolong suhu dapur tolong naikin suhu tolong ya,51,9
+27,increase,heat,kitchen,Svara coba naikkan suhu dapur dong tolong,41,7
+27,increase,heat,kitchen,Dapur naikin suhu bentar,24,4
+27,increase,heat,kitchen,Ruangan dapur angetin bentar,28,4
+27,increase,heat,kitchen,Suhu dapur angetin dong tolong,30,5
+27,increase,heat,kitchen,Ruangan dapur naikkan suhu ya tolong,36,6
+27,increase,heat,kitchen,Svara coba dapur tolong naikin suhu dong ya,43,8
+27,increase,heat,kitchen,Dapur naikkan suhu tolong ya,28,5
+27,increase,heat,kitchen,Dapur hawanya terlalu dingin svara coba hangatkan ruangan dapur tolong ya,73,11
+27,increase,heat,kitchen,Angetin ruangan dapur bentar,28,4
+27,increase,heat,kitchen,Naikin suhu ruangan dapur bentar,32,5
+27,increase,heat,kitchen,Naikkan suhu ruangan dapur dong svara,37,6
+27,increase,heat,kitchen,Svara tolong ruangan dapur tolong angetin,41,6
+27,increase,heat,kitchen,Angetin suhu dapur dong,23,4
+27,increase,heat,kitchen,Dapur dingin banget nih eh tolong naikin suhu ruangan dapur dong ya,67,12
+27,increase,heat,kitchen,Tolong dapur tolong angetin bentar,34,5
+27,increase,heat,kitchen,Angetin ruangan dapur tolong ya,31,5
+27,increase,heat,kitchen,Hangatkan suhu dapur dong tolong,32,5
+27,increase,heat,kitchen,Tolongin dong ruangan dapur tolong naikin suhu lah,50,8
+27,increase,heat,kitchen,Bisa tolong suhu dapur tolong hangatkan dong tolong,51,8
+27,increase,heat,kitchen,Naikkan suhu suhu dapur cepetan,31,5
+27,increase,heat,kitchen,Ruangan dapur hangatkan dong tolong,35,5
+27,increase,heat,kitchen,Naikkan suhu suhu dapur,23,4
+27,increase,heat,kitchen,Dapur dingin banget nih svara coba hangatkan ruangan dapur dong tolong,70,11
+27,increase,heat,kitchen,Ruangan dapur angetin dong ya,29,5
+28,increase,heat,none,Naikkan temperaturnya bentar,28,3
+28,increase,heat,none,Svara coba temperatur tolong naikin,35,5
+28,increase,heat,none,Temperaturnya tambah ya tolong,30,4
+28,increase,heat,none,Suhu naikkan bentar,19,3
+28,increase,heat,none,Suhu ruangan naikin ya tolong,29,5
+28,increase,heat,none,Tolong suhu tolong hangatkan lah,32,5
+28,increase,heat,none,Bisa gak tolong suhu ac tolong tambah,37,7
+28,increase,heat,none,Tolong suhu ruangan tolong naikkan dong ya,42,7
+28,increase,heat,none,Kedinginan banget nih tolongin dong tambah suhu cepetan,55,8
+28,increase,heat,none,Suhunya naikin sekarang,23,3
+28,increase,heat,none,Suhunya naikin bentar,21,3
+28,increase,heat,none,Bisa gak tolong suhu ac tolong naikin dong ya,45,9
+28,increase,heat,none,Temperaturnya naikkan lah,25,3
+28,increase,heat,none,Svara coba suhu ruangan tolong tambah ya tolong,47,8
+28,increase,heat,none,Suhu hangatkan ya,17,3
+28,increase,heat,none,Tambah suhunya bentar,21,3
+28,increase,heat,none,Terlalu beku nih ruangan eh svara naikkan temperatur,52,8
+28,increase,heat,none,Naikkan suhu ruangan dong tolong,32,5
+28,increase,heat,none,Svara coba suhu ac tolong hangatkan dong ya,43,8
+28,increase,heat,none,Terlalu beku nih ruangan eh svara naikkan temperaturnya ya,58,9
+28,increase,heat,none,Naikin suhunya ya,17,3
+28,increase,heat,none,Tolongin dong temperaturnya tolong naikin dong tolong,53,7
+28,increase,heat,none,Terlalu beku nih ruangan svara tambah suhu sekarang,51,8
+28,increase,heat,none,Halo svara suhu ac tolong angetin cepetan,41,7
+28,increase,heat,none,Kedinginan banget nih bisa tolong tambah suhu cepetan,53,8
+28,increase,heat,none,Suhu ac naikkan sekarang,24,4
+28,increase,heat,none,Menggigil nih udaranya svara naikin suhu tolong ya,50,8
+28,increase,heat,none,Menggigil nih udaranya svara tolong naikkan suhu ac cepetan,59,9
+28,increase,heat,none,Halo svara temperaturnya tolong hangatkan cepetan,49,6
+28,increase,heat,none,Terlalu beku nih ruangan eh tolong hangatkan suhunya,52,8
+28,increase,heat,none,Temperatur naikin dong tolong,29,4
+28,increase,heat,none,Tolong temperaturnya tolong naikin tolong ya,44,6
+28,increase,heat,none,Terlalu beku nih ruangan svara tolong hangatkan suhunya dong tolong,67,10
+28,increase,heat,none,Menggigil nih udaranya eh svara naikin temperaturnya bentar,59,8
+28,increase,heat,none,Terlalu beku nih ruangan bisa gak tolong angetin suhu ac,56,10
+28,increase,heat,none,Svara suhunya tolong hangatkan sekarang,39,5
+28,increase,heat,none,Menggigil nih udaranya tolong naikin suhu ac,44,7
+28,increase,heat,none,Bisa tolong suhunya tolong naikin dong,38,6
+28,increase,heat,none,Naikkan temperatur dong,23,3
+28,increase,heat,none,Temperatur hangatkan dong ya,28,4
+28,increase,heat,none,Hangatkan suhunya dong,22,3
+28,increase,heat,none,Naikin suhu ac lah,18,4
+28,increase,heat,none,Dingin banget nih rumah svara hangatkan suhu ac dong ya,55,10
+28,increase,heat,none,Kedinginan banget nih tolongin dong tambah suhu ruangan,55,8
+28,increase,heat,none,Menggigil nih udaranya svara angetin temperatur cepetan,55,7
+28,increase,heat,none,Temperatur naikin sekarang,26,3
+28,increase,heat,none,Hangatkan temperaturnya dong tolong,35,4
+28,increase,heat,none,Suhu angetin ya tolong,22,4
+28,increase,heat,none,Terlalu beku nih ruangan halo svara hangatkan temperatur ya tolong,66,10
+28,increase,heat,none,Suhu tolong tambah tolong ya,28,5
+28,increase,heat,none,Bisa tolong suhu tolong tambah,30,5
+28,increase,heat,none,Suhunya angetin ya,18,3
+28,increase,heat,none,Suhunya naikin dong tolong,26,4
+28,increase,heat,none,Kedinginan banget nih coba angetin suhu ruangan lah,51,8
+28,increase,heat,none,Angetin suhu dong ya,20,4
+29,increase,heat,washroom,Bisa tolong kamar mandi tolong hangatkan lah,44,7
+29,increase,heat,washroom,Wc naikkan suhu ya,18,4
+29,increase,heat,washroom,Air dan kamar mandi dingin banget tolong naikkan suhu kamar mandi dong ya,73,13
+29,increase,heat,washroom,Bisa tolong kamar mandi tolong hangatkan ya,43,7
+29,increase,heat,washroom,Ruangan kamar mandi naikin suhu dong tolong,43,7
+29,increase,heat,washroom,Coba toilet tolong hangatkan dong svara,39,6
+29,increase,heat,washroom,Eh tolong ruangan kamar mandi tolong angetin lah,48,8
+29,increase,heat,washroom,Wc naikin suhu dong svara,25,5
+29,increase,heat,washroom,Ruangan kamar mandi naikkan suhu bentar,39,6
+29,increase,heat,washroom,Toilet terlalu dingin nih eh svara naikin suhu ruangan kamar mandi dong svara,77,13
+29,increase,heat,washroom,Toilet hangatkan tolong ya,26,4
+29,increase,heat,washroom,Wc naikkan suhu dong svara,26,5
+29,increase,heat,washroom,Svara tolong ruangan kamar mandi tolong hangatkan dong ya,57,9
+29,increase,heat,washroom,Wc naikin suhu cepetan,22,4
+29,increase,heat,washroom,Angetin ruangan kamar mandi cepetan,35,5
+29,increase,heat,washroom,Svara kamar mandi tolong naikin suhu dong svara,47,8
+29,increase,heat,washroom,Wc angetin bentar,17,3
+29,increase,heat,washroom,Bisa gak tolong ruangan kamar mandi tolong naikin suhu dong svara,65,11
+29,increase,heat,washroom,Toilet terlalu dingin nih eh svara naikin suhu wc lah,53,10
+29,increase,heat,washroom,Eh tolong toilet tolong naikkan suhu tolong ya,46,8
+29,increase,heat,washroom,Kamar mandi naikin suhu lah,27,5
+29,increase,heat,washroom,Bisa gak tolong toilet tolong naikin suhu dong svara,52,9
+29,increase,heat,washroom,Angetin ruangan kamar mandi ya tolong,37,6
+29,increase,heat,washroom,Naikin suhu kamar mandi lah,27,5
+29,increase,heat,washroom,Hangatkan ruangan kamar mandi dong tolong,41,6
+29,increase,heat,washroom,Air dan kamar mandi dingin banget coba naikkan suhu kamar mandi dong,68,12
+29,increase,heat,washroom,Wc naikkan suhu dong tolong,27,5
+29,increase,heat,washroom,Coba toilet tolong angetin dong tolong,38,6
+29,increase,heat,washroom,Eh svara kamar mandi tolong hangatkan cepetan,45,7
+29,increase,heat,washroom,Naikin suhu toilet dong ya,26,5
+29,increase,heat,washroom,Naikin suhu toilet dong,23,4
+29,increase,heat,washroom,Naikin suhu wc dong,19,4
+29,increase,heat,washroom,Air dan kamar mandi dingin banget svara coba hangatkan ruangan kamar mandi cepetan,82,13
+29,increase,heat,washroom,Air dan kamar mandi dingin banget angetin kamar mandi lah,57,10
+29,increase,heat,washroom,Naikin suhu ruangan kamar mandi ya tolong,41,7
+29,increase,heat,washroom,Angetin ruangan kamar mandi sekarang,36,5
+29,increase,heat,washroom,Wc hangatkan lah,16,3
+29,increase,heat,washroom,Svara coba naikin suhu wc sekarang,34,6
+29,increase,heat,washroom,Air dan kamar mandi dingin banget eh svara naikkan suhu toilet,62,11
+29,increase,heat,washroom,Wc hangatkan cepetan,20,3
+29,increase,heat,washroom,Hangatkan kamar mandi lah,25,4
+29,increase,heat,washroom,Angetin kamar mandi dong tolong,31,5
+29,increase,heat,washroom,Bisa tolong naikkan suhu ruangan kamar mandi dong tolong,56,9
+29,increase,heat,washroom,Kamar mandi naikkan suhu dong tolong,36,6
+29,increase,heat,washroom,Menggigil di kamar mandi svara coba hangatkan toilet bentar,59,9
+29,increase,heat,washroom,Wc naikin suhu lah,18,4
+29,increase,heat,washroom,Eh svara ruangan kamar mandi tolong naikin suhu lah,51,9
+29,increase,heat,washroom,Kamar mandi hangatkan dong,26,4
+29,increase,heat,washroom,Coba ruangan kamar mandi tolong angetin tolong ya,49,8
+29,increase,heat,washroom,Tolongin dong kamar mandi tolong naikkan suhu lah,49,8
+29,increase,heat,washroom,Tolong angetin toilet ya tolong,31,5
+29,increase,heat,washroom,Svara ruangan kamar mandi tolong naikkan suhu dong ya,53,9
+29,increase,heat,washroom,Menggigil di kamar mandi tolong angetin kamar mandi dong,56,9
+29,increase,heat,washroom,Hangatkan kamar mandi ya tolong,31,5
+29,increase,heat,washroom,Toilet terlalu dingin nih svara tolong naikkan suhu kamar mandi tolong ya,73,12
+30,increase,volume,none,Svara suara tolong besarkan sekarang,36,5
+30,increase,volume,none,Volume besarkan bentar,22,3
+30,increase,volume,none,Volumenya naikin cepetan,24,3
+30,increase,volume,none,Kurang keras nih suaranya svara coba naikin volumenya dong tolong,65,10
+30,increase,volume,none,Kencangkan suara speaker dong,29,4
+30,increase,volume,none,Suaranya kencengin tolong ya,28,4
+30,increase,volume,none,Svara tolong suara speaker tolong kencengin dong ya,51,8
+30,increase,volume,none,Besarkan suara speaker dong svara,33,5
+30,increase,volume,none,Suaranya kencangkan sekarang,28,3
+30,increase,volume,none,Besarkan suaranya dong,22,3
+30,increase,volume,none,Suara speaker kencengin bentar,30,4
+30,increase,volume,none,Naikin volume speaker,21,3
+30,increase,volume,none,Volume speaker kencengin ya,27,4
+30,increase,volume,none,Eh tolong volumenya tolong kencengin dong ya,44,7
+30,increase,volume,none,Svara tolong volume speaker tolong tinggikan dong,49,7
+30,increase,volume,none,Kurang denger suaranya svara tinggikan volumenya,48,6
+30,increase,volume,none,Kencengin volume dong,21,3
+30,increase,volume,none,Coba suara speaker tolong tinggikan dong svara,46,7
+30,increase,volume,none,Kencengin suaranya cepetan,26,3
+30,increase,volume,none,Kurang keras nih suaranya tolongin dong tinggikan suaranya dong tolong,70,10
+30,increase,volume,none,Suara besarkan lah,18,3
+30,increase,volume,none,Gak kedengeran nih gedein volume dong,37,6
+30,increase,volume,none,Kurang denger suaranya tolongin dong tinggikan volume speaker dong ya,69,10
+30,increase,volume,none,Eh tolong suara speaker tolong tinggikan dong,45,7
+30,increase,volume,none,Tinggikan suara speaker dong svara,34,5
+30,increase,volume,none,Tolong volume tolong naikin dong tolong,39,6
+30,increase,volume,none,Suaranya gedein bentar,22,3
+30,increase,volume,none,Suaranya kekecilan nih halo svara kencangkan volume speaker dong tolong,71,10
+30,increase,volume,none,Tolongin dong volumenya tolong gedein ya tolong,47,7
+30,increase,volume,none,Suaranya kekecilan nih halo svara besarkan suara dong,53,8
+30,increase,volume,none,Kurang keras nih suaranya svara coba kencengin suara speaker ya,63,10
+30,increase,volume,none,Gedein volume bentar,20,3
+30,increase,volume,none,Gak kedengeran nih halo svara kencengin suaranya lah,52,8
+30,increase,volume,none,Volume speaker gedein tolong ya,31,5
+30,increase,volume,none,Besarkan suara speaker sekarang,31,4
+30,increase,volume,none,Bisa gak tolong suara speaker tolong gedein,43,7
+30,increase,volume,none,Bisa tolong suara tolong kencengin dong ya,42,7
+30,increase,volume,none,Suara naikin ya,15,3
+30,increase,volume,none,Halo svara suara tolong naikin dong svara,41,7
+30,increase,volume,none,Suara gedein lah,16,3
+30,increase,volume,none,Kencengin volume lah,20,3
+30,increase,volume,none,Bisa gak tolong volume speaker tolong naikin lah,48,8
+30,increase,volume,none,Kurang denger suaranya coba naikin suaranya dong svara,54,8
+30,increase,volume,none,Kurang keras nih suaranya tolong naikin volume bentar,53,8
+30,increase,volume,none,Naikin suara speaker dong,25,4
+30,increase,volume,none,Gak kedengeran nih eh tolong kencengin volumenya tolong ya,58,9
+30,increase,volume,none,Suaranya kekecilan nih svara kencengin suaranya dong,52,7
+30,increase,volume,none,Suara tinggikan ya tolong,25,4
+30,increase,volume,none,Naikin suara speaker ya tolong,30,5
+30,increase,volume,none,Gedein volume ya,16,3
+30,increase,volume,none,Suara speaker naikin lah,24,4
+30,increase,volume,none,Svara coba suara tolong kencengin,33,5
+30,increase,volume,none,Besarkan volume speaker dong tolong,35,5
+30,increase,volume,none,Bisa gak tolong suara tolong tinggikan dong tolong,50,8
+30,increase,volume,none,Besarkan volumenya cepetan,26,3

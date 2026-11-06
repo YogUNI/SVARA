@@ -373,6 +373,11 @@ export default function App() {
           next.bedroom_heat = Math.max(16, Math.min(30, next.bedroom_heat + delta));
         else if (location === 'washroom')
           next.washroom_heat = Math.max(16, Math.min(30, next.washroom_heat + delta));
+        else if (location === 'none') {
+          next.kitchen_heat = Math.max(16, Math.min(30, next.kitchen_heat + delta));
+          next.bedroom_heat = Math.max(16, Math.min(30, next.bedroom_heat + delta));
+          next.washroom_heat = Math.max(16, Math.min(30, next.washroom_heat + delta));
+        }
       }
 
       // Music / volume

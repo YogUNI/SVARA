@@ -1,55 +1,55 @@
 {
-  "timestamp": "2026-11-06T06:58:52Z",
+  "timestamp": "2026-11-06T08:09:17Z",
   "test_suite": "SVARA Real-World 5-Domain Field Test (50 Queries)",
   "model_under_test": {
-    "onnx_path": "models/svara_bilingual_int8.onnx",
-    "meta_path": "models/svara_bilingual_int8.meta.json",
+    "onnx_path": "models/svara_hardened_int8.onnx",
+    "meta_path": "models/svara_hardened_int8.meta.json",
     "architecture": "Wav2VecSLU INT8 Dynamic Quantization"
   },
   "overall_summary": {
     "total_samples": 50,
-    "exact_matches": 4,
-    "exact_match_accuracy_pct": 8.0,
-    "overall_acceptance_rate_pct": 100.0,
-    "mean_latency_ms": 44.53,
-    "p95_latency_ms": 63.04,
-    "real_time_factor_rtf": 0.0178
+    "exact_matches": 39,
+    "exact_match_accuracy_pct": 78.0,
+    "overall_acceptance_rate_pct": 96.0,
+    "mean_latency_ms": 46.39,
+    "p95_latency_ms": 66.11,
+    "real_time_factor_rtf": 0.0186
   },
   "domain_breakdown": {
     "Lighting": {
       "total_cases": 10,
-      "exact_matches": 1,
-      "accuracy_pct": 10.0,
+      "exact_matches": 8,
+      "accuracy_pct": 80.0,
       "acceptance_rate_pct": 100.0,
-      "mean_latency_ms": 39.8
+      "mean_latency_ms": 49.3
     },
     "Climate": {
       "total_cases": 10,
-      "exact_matches": 0,
-      "accuracy_pct": 0.0,
+      "exact_matches": 8,
+      "accuracy_pct": 80.0,
       "acceptance_rate_pct": 100.0,
-      "mean_latency_ms": 48.75
+      "mean_latency_ms": 45.85
     },
     "Media": {
       "total_cases": 10,
-      "exact_matches": 0,
-      "accuracy_pct": 0.0,
+      "exact_matches": 8,
+      "accuracy_pct": 80.0,
       "acceptance_rate_pct": 100.0,
-      "mean_latency_ms": 50.44
+      "mean_latency_ms": 42.98
     },
     "Appliances": {
       "total_cases": 10,
-      "exact_matches": 1,
-      "accuracy_pct": 10.0,
-      "acceptance_rate_pct": 100.0,
-      "mean_latency_ms": 40.49
+      "exact_matches": 6,
+      "accuracy_pct": 60.0,
+      "acceptance_rate_pct": 90.0,
+      "mean_latency_ms": 48.31
     },
     "System": {
       "total_cases": 10,
-      "exact_matches": 2,
-      "accuracy_pct": 20.0,
-      "acceptance_rate_pct": 100.0,
-      "mean_latency_ms": 43.17
+      "exact_matches": 9,
+      "accuracy_pct": 90.0,
+      "acceptance_rate_pct": 90.0,
+      "mean_latency_ms": 45.49
     }
   },
   "speech_style_breakdown": {
@@ -69,22 +69,22 @@
       },
       "prediction": {
         "action": "activate",
-        "object": "lamp",
-        "location": "none"
+        "object": "lights",
+        "location": "bedroom"
       },
-      "exact_match": false,
+      "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.9666,
-        "object": 0.9711,
-        "location": 0.9683,
-        "overall": 0.9678
+        "action": 0.9693,
+        "object": 0.9556,
+        "location": 0.9715,
+        "overall": 0.9615
       },
       "timing_ms": {
-        "decode_ms": 1.37,
+        "decode_ms": 1.57,
         "preprocess_ms": 1.0,
-        "inference_ms": 32.92,
-        "total_ms": 34.38
+        "inference_ms": 70.58,
+        "total_ms": 72.24
       },
       "domain": "Lighting",
       "speech_style": "colloquial"
@@ -98,23 +98,23 @@
         "location": "kitchen"
       },
       "prediction": {
-        "action": "activate",
+        "action": "deactivate",
         "object": "lights",
-        "location": "bedroom"
+        "location": "kitchen"
       },
-      "exact_match": false,
+      "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.9699,
-        "object": 0.9504,
-        "location": 0.967,
-        "overall": 0.9576
+        "action": 0.9719,
+        "object": 0.9595,
+        "location": 0.9657,
+        "overall": 0.9632
       },
       "timing_ms": {
-        "decode_ms": 1.12,
+        "decode_ms": 1.21,
         "preprocess_ms": 1.0,
-        "inference_ms": 33.82,
-        "total_ms": 35.04
+        "inference_ms": 47.05,
+        "total_ms": 48.36
       },
       "domain": "Lighting",
       "speech_style": "colloquial"
@@ -128,23 +128,23 @@
         "location": "none"
       },
       "prediction": {
-        "action": "activate",
+        "action": "deactivate",
         "object": "lights",
-        "location": "kitchen"
+        "location": "none"
       },
-      "exact_match": false,
+      "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.964,
-        "object": 0.9576,
-        "location": 0.9664,
-        "overall": 0.9607
+        "action": 0.9762,
+        "object": 0.9413,
+        "location": 0.9728,
+        "overall": 0.9545
       },
       "timing_ms": {
-        "decode_ms": 1.0,
+        "decode_ms": 1.15,
         "preprocess_ms": 1.0,
-        "inference_ms": 28.52,
-        "total_ms": 29.62
+        "inference_ms": 39.95,
+        "total_ms": 41.2
       },
       "domain": "Lighting",
       "speech_style": "calm"
@@ -159,22 +159,22 @@
       },
       "prediction": {
         "action": "activate",
-        "object": "lights",
+        "object": "lamp",
         "location": "none"
       },
-      "exact_match": false,
+      "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.969,
-        "object": 0.9521,
-        "location": 0.9696,
-        "overall": 0.959
+        "action": 0.9695,
+        "object": 0.969,
+        "location": 0.9682,
+        "overall": 0.9686
       },
       "timing_ms": {
-        "decode_ms": 1.03,
+        "decode_ms": 1.19,
         "preprocess_ms": 1.0,
-        "inference_ms": 29.55,
-        "total_ms": 30.67
+        "inference_ms": 37.14,
+        "total_ms": 38.42
       },
       "domain": "Lighting",
       "speech_style": "calm"
@@ -195,16 +195,16 @@
       "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.9687,
-        "object": 0.9563,
-        "location": 0.9589,
-        "overall": 0.9593
+        "action": 0.9746,
+        "object": 0.9642,
+        "location": 0.9264,
+        "overall": 0.9435
       },
       "timing_ms": {
-        "decode_ms": 1.06,
+        "decode_ms": 1.32,
         "preprocess_ms": 1.0,
-        "inference_ms": 32.06,
-        "total_ms": 33.21
+        "inference_ms": 51.5,
+        "total_ms": 52.92
       },
       "domain": "Lighting",
       "speech_style": "rising_pitch"
@@ -219,22 +219,22 @@
       },
       "prediction": {
         "action": "activate",
-        "object": "music",
-        "location": "none"
+        "object": "lights",
+        "location": "washroom"
       },
       "exact_match": false,
       "accepted": true,
       "confidence": {
-        "action": 0.9681,
-        "object": 0.9622,
-        "location": 0.9676,
-        "overall": 0.9645
+        "action": 0.849,
+        "object": 0.9424,
+        "location": 0.9819,
+        "overall": 0.8933
       },
       "timing_ms": {
-        "decode_ms": 1.02,
+        "decode_ms": 1.18,
         "preprocess_ms": 1.0,
-        "inference_ms": 39.64,
-        "total_ms": 40.78
+        "inference_ms": 59.31,
+        "total_ms": 60.6
       },
       "domain": "Lighting",
       "speech_style": "colloquial"
@@ -248,23 +248,23 @@
         "location": "bedroom"
       },
       "prediction": {
-        "action": "bring",
-        "object": "juice",
-        "location": "none"
+        "action": "deactivate",
+        "object": "lights",
+        "location": "bedroom"
       },
-      "exact_match": false,
+      "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.9703,
-        "object": 0.9577,
-        "location": 0.9698,
-        "overall": 0.9626
+        "action": 0.9671,
+        "object": 0.9564,
+        "location": 0.9716,
+        "overall": 0.9616
       },
       "timing_ms": {
-        "decode_ms": 1.24,
+        "decode_ms": 1.15,
         "preprocess_ms": 1.0,
-        "inference_ms": 44.92,
-        "total_ms": 46.41
+        "inference_ms": 38.21,
+        "total_ms": 39.45
       },
       "domain": "Lighting",
       "speech_style": "fast"
@@ -278,23 +278,23 @@
         "location": "kitchen"
       },
       "prediction": {
-        "action": "bring",
-        "object": "newspaper",
-        "location": "none"
+        "action": "activate",
+        "object": "lights",
+        "location": "kitchen"
       },
-      "exact_match": false,
+      "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.9572,
-        "object": 0.9699,
-        "location": 0.9647,
-        "overall": 0.9612
+        "action": 0.9491,
+        "object": 0.9426,
+        "location": 0.9708,
+        "overall": 0.9495
       },
       "timing_ms": {
-        "decode_ms": 1.25,
+        "decode_ms": 1.17,
         "preprocess_ms": 1.0,
-        "inference_ms": 52.85,
-        "total_ms": 54.3
+        "inference_ms": 60.46,
+        "total_ms": 61.72
       },
       "domain": "Lighting",
       "speech_style": "calm"
@@ -308,23 +308,23 @@
         "location": "none"
       },
       "prediction": {
-        "action": "bring",
-        "object": "shoes",
+        "action": "deactivate",
+        "object": "lights",
         "location": "none"
       },
-      "exact_match": false,
+      "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.9725,
-        "object": 0.9607,
-        "location": 0.9691,
-        "overall": 0.9647
+        "action": 0.9762,
+        "object": 0.9413,
+        "location": 0.9728,
+        "overall": 0.9545
       },
       "timing_ms": {
-        "decode_ms": 1.33,
+        "decode_ms": 1.19,
         "preprocess_ms": 1.0,
-        "inference_ms": 44.92,
-        "total_ms": 46.36
+        "inference_ms": 37.53,
+        "total_ms": 38.83
       },
       "domain": "Lighting",
       "speech_style": "formal"
@@ -338,23 +338,23 @@
         "location": "none"
       },
       "prediction": {
-        "action": "bring",
-        "object": "socks",
+        "action": "deactivate",
+        "object": "lights",
         "location": "none"
       },
       "exact_match": false,
       "accepted": true,
       "confidence": {
-        "action": 0.9657,
-        "object": 0.9674,
-        "location": 0.9585,
-        "overall": 0.9617
+        "action": 0.981,
+        "object": 0.6765,
+        "location": 0.9748,
+        "overall": 0.7895
       },
       "timing_ms": {
-        "decode_ms": 1.22,
+        "decode_ms": 1.18,
         "preprocess_ms": 1.0,
-        "inference_ms": 45.94,
-        "total_ms": 47.28
+        "inference_ms": 38.01,
+        "total_ms": 39.28
       },
       "domain": "Lighting",
       "speech_style": "calm"
@@ -368,23 +368,23 @@
         "location": "bedroom"
       },
       "prediction": {
-        "action": "change language",
-        "object": "Chinese",
-        "location": "none"
+        "action": "activate",
+        "object": "lights",
+        "location": "bedroom"
       },
       "exact_match": false,
       "accepted": true,
       "confidence": {
-        "action": 0.9595,
-        "object": 0.9606,
-        "location": 0.9649,
-        "overall": 0.9608
+        "action": 0.8589,
+        "object": 0.8545,
+        "location": 0.973,
+        "overall": 0.8781
       },
       "timing_ms": {
-        "decode_ms": 1.27,
+        "decode_ms": 1.17,
         "preprocess_ms": 1.0,
-        "inference_ms": 48.98,
-        "total_ms": 50.37
+        "inference_ms": 45.63,
+        "total_ms": 46.89
       },
       "domain": "Climate",
       "speech_style": "colloquial"
@@ -398,23 +398,23 @@
         "location": "none"
       },
       "prediction": {
-        "action": "change language",
-        "object": "English",
+        "action": "decrease",
+        "object": "heat",
         "location": "none"
       },
-      "exact_match": false,
+      "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.9623,
-        "object": 0.9645,
-        "location": 0.9641,
-        "overall": 0.9631
+        "action": 0.9674,
+        "object": 0.9626,
+        "location": 0.9479,
+        "overall": 0.9548
       },
       "timing_ms": {
-        "decode_ms": 1.41,
+        "decode_ms": 1.15,
         "preprocess_ms": 1.0,
-        "inference_ms": 65.82,
-        "total_ms": 67.36
+        "inference_ms": 35.04,
+        "total_ms": 36.29
       },
       "domain": "Climate",
       "speech_style": "rising_pitch"
@@ -428,23 +428,23 @@
         "location": "kitchen"
       },
       "prediction": {
-        "action": "change language",
-        "object": "German",
-        "location": "none"
+        "action": "increase",
+        "object": "heat",
+        "location": "kitchen"
       },
-      "exact_match": false,
+      "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.9655,
-        "object": 0.9645,
-        "location": 0.961,
-        "overall": 0.9626
+        "action": 0.9638,
+        "object": 0.9577,
+        "location": 0.9713,
+        "overall": 0.9616
       },
       "timing_ms": {
-        "decode_ms": 1.57,
+        "decode_ms": 1.15,
         "preprocess_ms": 1.0,
-        "inference_ms": 58.75,
-        "total_ms": 60.44
+        "inference_ms": 41.96,
+        "total_ms": 43.21
       },
       "domain": "Climate",
       "speech_style": "colloquial"
@@ -458,23 +458,23 @@
         "location": "washroom"
       },
       "prediction": {
-        "action": "change language",
-        "object": "Korean",
-        "location": "none"
+        "action": "increase",
+        "object": "heat",
+        "location": "washroom"
       },
-      "exact_match": false,
+      "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.9674,
-        "object": 0.9758,
-        "location": 0.9667,
-        "overall": 0.9687
+        "action": 0.9627,
+        "object": 0.9375,
+        "location": 0.899,
+        "overall": 0.9192
       },
       "timing_ms": {
-        "decode_ms": 1.31,
+        "decode_ms": 1.17,
         "preprocess_ms": 1.0,
-        "inference_ms": 45.06,
-        "total_ms": 46.48
+        "inference_ms": 51.14,
+        "total_ms": 52.4
       },
       "domain": "Climate",
       "speech_style": "fast"
@@ -488,23 +488,23 @@
         "location": "washroom"
       },
       "prediction": {
-        "action": "change language",
-        "object": "none",
-        "location": "none"
+        "action": "decrease",
+        "object": "heat",
+        "location": "washroom"
       },
-      "exact_match": false,
+      "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.9626,
-        "object": 0.9622,
-        "location": 0.9599,
-        "overall": 0.9609
+        "action": 0.968,
+        "object": 0.9637,
+        "location": 0.9718,
+        "overall": 0.9662
       },
       "timing_ms": {
-        "decode_ms": 1.24,
+        "decode_ms": 1.16,
         "preprocess_ms": 1.0,
-        "inference_ms": 42.24,
-        "total_ms": 43.58
+        "inference_ms": 40.97,
+        "total_ms": 42.22
       },
       "domain": "Climate",
       "speech_style": "calm"
@@ -518,23 +518,23 @@
         "location": "bedroom"
       },
       "prediction": {
-        "action": "deactivate",
-        "object": "lights",
-        "location": "none"
+        "action": "increase",
+        "object": "heat",
+        "location": "bedroom"
       },
-      "exact_match": false,
+      "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.9663,
-        "object": 0.9657,
-        "location": 0.9692,
-        "overall": 0.9665
+        "action": 0.9682,
+        "object": 0.9574,
+        "location": 0.9646,
+        "overall": 0.961
       },
       "timing_ms": {
-        "decode_ms": 1.36,
+        "decode_ms": 1.21,
         "preprocess_ms": 1.0,
-        "inference_ms": 34.54,
-        "total_ms": 36.04
+        "inference_ms": 40.23,
+        "total_ms": 41.54
       },
       "domain": "Climate",
       "speech_style": "colloquial"
@@ -548,23 +548,23 @@
         "location": "kitchen"
       },
       "prediction": {
-        "action": "deactivate",
-        "object": "lights",
-        "location": "bedroom"
+        "action": "decrease",
+        "object": "heat",
+        "location": "kitchen"
       },
-      "exact_match": false,
+      "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.9681,
-        "object": 0.9553,
-        "location": 0.972,
-        "overall": 0.9612
+        "action": 0.7584,
+        "object": 0.9096,
+        "location": 0.9786,
+        "overall": 0.8297
       },
       "timing_ms": {
-        "decode_ms": 1.37,
+        "decode_ms": 1.15,
         "preprocess_ms": 1.0,
-        "inference_ms": 39.2,
-        "total_ms": 40.71
+        "inference_ms": 51.65,
+        "total_ms": 52.91
       },
       "domain": "Climate",
       "speech_style": "colloquial"
@@ -578,23 +578,23 @@
         "location": "none"
       },
       "prediction": {
-        "action": "deactivate",
-        "object": "lights",
-        "location": "kitchen"
+        "action": "increase",
+        "object": "volume",
+        "location": "none"
       },
       "exact_match": false,
       "accepted": true,
       "confidence": {
-        "action": 0.9691,
-        "object": 0.9608,
-        "location": 0.9671,
-        "overall": 0.9638
+        "action": 0.9789,
+        "object": 0.9367,
+        "location": 0.974,
+        "overall": 0.9525
       },
       "timing_ms": {
-        "decode_ms": 1.2,
+        "decode_ms": 1.27,
         "preprocess_ms": 1.0,
-        "inference_ms": 39.15,
-        "total_ms": 40.48
+        "inference_ms": 50.77,
+        "total_ms": 52.14
       },
       "domain": "Climate",
       "speech_style": "calm"
@@ -608,23 +608,23 @@
         "location": "none"
       },
       "prediction": {
-        "action": "deactivate",
-        "object": "lights",
+        "action": "decrease",
+        "object": "heat",
         "location": "none"
       },
-      "exact_match": false,
+      "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.9783,
-        "object": 0.9521,
-        "location": 0.9715,
-        "overall": 0.9612
+        "action": 0.9674,
+        "object": 0.9626,
+        "location": 0.9479,
+        "overall": 0.9548
       },
       "timing_ms": {
-        "decode_ms": 1.38,
+        "decode_ms": 1.19,
         "preprocess_ms": 1.0,
-        "inference_ms": 47.22,
-        "total_ms": 48.72
+        "inference_ms": 37.14,
+        "total_ms": 38.43
       },
       "domain": "Climate",
       "speech_style": "rising_pitch"
@@ -638,23 +638,23 @@
         "location": "kitchen"
       },
       "prediction": {
-        "action": "deactivate",
-        "object": "lights",
-        "location": "washroom"
+        "action": "increase",
+        "object": "heat",
+        "location": "kitchen"
       },
-      "exact_match": false,
+      "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.9629,
-        "object": 0.9589,
-        "location": 0.9678,
-        "overall": 0.9615
+        "action": 0.9653,
+        "object": 0.9621,
+        "location": 0.969,
+        "overall": 0.9641
       },
       "timing_ms": {
-        "decode_ms": 1.3,
+        "decode_ms": 1.18,
         "preprocess_ms": 1.0,
-        "inference_ms": 51.88,
-        "total_ms": 53.3
+        "inference_ms": 51.16,
+        "total_ms": 52.44
       },
       "domain": "Climate",
       "speech_style": "calm"
@@ -668,23 +668,23 @@
         "location": "none"
       },
       "prediction": {
-        "action": "deactivate",
+        "action": "activate",
         "object": "music",
         "location": "none"
       },
-      "exact_match": false,
+      "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.9669,
-        "object": 0.967,
-        "location": 0.9639,
-        "overall": 0.9652
+        "action": 0.9642,
+        "object": 0.9651,
+        "location": 0.9674,
+        "overall": 0.965
       },
       "timing_ms": {
-        "decode_ms": 1.79,
+        "decode_ms": 1.21,
         "preprocess_ms": 1.0,
-        "inference_ms": 72.26,
-        "total_ms": 74.24
+        "inference_ms": 64.75,
+        "total_ms": 66.05
       },
       "domain": "Media",
       "speech_style": "calm"
@@ -698,23 +698,23 @@
         "location": "none"
       },
       "prediction": {
-        "action": "decrease",
-        "object": "heat",
-        "location": "bedroom"
+        "action": "increase",
+        "object": "volume",
+        "location": "none"
       },
-      "exact_match": false,
+      "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.966,
-        "object": 0.9615,
-        "location": 0.9713,
-        "overall": 0.9644
+        "action": 0.9245,
+        "object": 0.7573,
+        "location": 0.9758,
+        "overall": 0.8314
       },
       "timing_ms": {
-        "decode_ms": 2.06,
+        "decode_ms": 1.19,
         "preprocess_ms": 1.0,
-        "inference_ms": 62.97,
-        "total_ms": 65.16
+        "inference_ms": 38.47,
+        "total_ms": 39.77
       },
       "domain": "Media",
       "speech_style": "colloquial"
@@ -728,23 +728,23 @@
         "location": "none"
       },
       "prediction": {
-        "action": "decrease",
-        "object": "heat",
-        "location": "kitchen"
+        "action": "deactivate",
+        "object": "music",
+        "location": "none"
       },
-      "exact_match": false,
+      "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.9691,
-        "object": 0.9518,
-        "location": 0.9641,
-        "overall": 0.9577
+        "action": 0.8691,
+        "object": 0.8962,
+        "location": 0.9858,
+        "overall": 0.8971
       },
       "timing_ms": {
-        "decode_ms": 1.7,
+        "decode_ms": 1.18,
         "preprocess_ms": 1.0,
-        "inference_ms": 47.45,
-        "total_ms": 49.28
+        "inference_ms": 37.4,
+        "total_ms": 38.69
       },
       "domain": "Media",
       "speech_style": "colloquial"
@@ -758,23 +758,23 @@
         "location": "none"
       },
       "prediction": {
-        "action": "decrease",
-        "object": "heat",
+        "action": "increase",
+        "object": "volume",
         "location": "none"
       },
       "exact_match": false,
       "accepted": true,
       "confidence": {
-        "action": 0.9781,
-        "object": 0.9736,
-        "location": 0.8365,
-        "overall": 0.8908
+        "action": 0.9398,
+        "object": 0.9763,
+        "location": 0.9802,
+        "overall": 0.9551
       },
       "timing_ms": {
-        "decode_ms": 1.26,
+        "decode_ms": 1.4,
         "preprocess_ms": 1.0,
-        "inference_ms": 43.26,
-        "total_ms": 44.64
+        "inference_ms": 37.84,
+        "total_ms": 39.34
       },
       "domain": "Media",
       "speech_style": "calm"
@@ -788,23 +788,23 @@
         "location": "none"
       },
       "prediction": {
-        "action": "decrease",
-        "object": "heat",
-        "location": "washroom"
+        "action": "activate",
+        "object": "music",
+        "location": "none"
       },
-      "exact_match": false,
+      "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.9676,
-        "object": 0.9654,
-        "location": 0.9641,
-        "overall": 0.9651
+        "action": 0.9682,
+        "object": 0.9646,
+        "location": 0.9663,
+        "overall": 0.9656
       },
       "timing_ms": {
-        "decode_ms": 1.84,
+        "decode_ms": 1.82,
         "preprocess_ms": 1.0,
-        "inference_ms": 50.0,
-        "total_ms": 52.04
+        "inference_ms": 34.99,
+        "total_ms": 36.92
       },
       "domain": "Media",
       "speech_style": "rising_pitch"
@@ -818,23 +818,23 @@
         "location": "none"
       },
       "prediction": {
-        "action": "decrease",
+        "action": "increase",
         "object": "volume",
         "location": "none"
       },
-      "exact_match": false,
+      "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.9609,
-        "object": 0.9698,
-        "location": 0.9684,
-        "overall": 0.9642
+        "action": 0.9656,
+        "object": 0.9652,
+        "location": 0.9723,
+        "overall": 0.9667
       },
       "timing_ms": {
-        "decode_ms": 1.21,
+        "decode_ms": 1.74,
         "preprocess_ms": 1.0,
-        "inference_ms": 41.91,
-        "total_ms": 43.27
+        "inference_ms": 54.36,
+        "total_ms": 56.2
       },
       "domain": "Media",
       "speech_style": "calm"
@@ -848,23 +848,23 @@
         "location": "none"
       },
       "prediction": {
-        "action": "increase",
-        "object": "heat",
-        "location": "bedroom"
+        "action": "deactivate",
+        "object": "music",
+        "location": "none"
       },
-      "exact_match": false,
+      "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.9674,
-        "object": 0.9613,
-        "location": 0.9665,
-        "overall": 0.9636
+        "action": 0.9651,
+        "object": 0.9629,
+        "location": 0.9688,
+        "overall": 0.9645
       },
       "timing_ms": {
-        "decode_ms": 1.71,
+        "decode_ms": 1.15,
         "preprocess_ms": 1.0,
-        "inference_ms": 47.4,
-        "total_ms": 49.2
+        "inference_ms": 36.14,
+        "total_ms": 37.4
       },
       "domain": "Media",
       "speech_style": "fast"
@@ -879,22 +879,22 @@
       },
       "prediction": {
         "action": "increase",
-        "object": "heat",
-        "location": "kitchen"
+        "object": "volume",
+        "location": "none"
       },
-      "exact_match": false,
+      "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.9681,
-        "object": 0.9601,
-        "location": 0.9678,
-        "overall": 0.9633
+        "action": 0.9245,
+        "object": 0.7573,
+        "location": 0.9758,
+        "overall": 0.8314
       },
       "timing_ms": {
-        "decode_ms": 1.04,
+        "decode_ms": 1.38,
         "preprocess_ms": 1.0,
-        "inference_ms": 36.18,
-        "total_ms": 37.33
+        "inference_ms": 38.75,
+        "total_ms": 40.24
       },
       "domain": "Media",
       "speech_style": "colloquial"
@@ -909,22 +909,22 @@
       },
       "prediction": {
         "action": "increase",
-        "object": "heat",
+        "object": "volume",
         "location": "none"
       },
       "exact_match": false,
       "accepted": true,
       "confidence": {
-        "action": 0.9756,
-        "object": 0.9683,
-        "location": 0.959,
-        "overall": 0.9642
+        "action": 0.9398,
+        "object": 0.9763,
+        "location": 0.9802,
+        "overall": 0.9551
       },
       "timing_ms": {
-        "decode_ms": 1.15,
+        "decode_ms": 1.19,
         "preprocess_ms": 1.0,
-        "inference_ms": 41.08,
-        "total_ms": 42.33
+        "inference_ms": 38.82,
+        "total_ms": 40.12
       },
       "domain": "Media",
       "speech_style": "calm"
@@ -938,23 +938,23 @@
         "location": "none"
       },
       "prediction": {
-        "action": "increase",
-        "object": "heat",
-        "location": "washroom"
+        "action": "activate",
+        "object": "music",
+        "location": "none"
       },
-      "exact_match": false,
+      "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.9645,
-        "object": 0.9584,
-        "location": 0.9708,
-        "overall": 0.9621
+        "action": 0.9682,
+        "object": 0.9646,
+        "location": 0.9663,
+        "overall": 0.9656
       },
       "timing_ms": {
-        "decode_ms": 1.47,
+        "decode_ms": 1.2,
         "preprocess_ms": 1.0,
-        "inference_ms": 45.34,
-        "total_ms": 46.93
+        "inference_ms": 33.81,
+        "total_ms": 35.1
       },
       "domain": "Media",
       "speech_style": "rising_pitch"
@@ -975,16 +975,16 @@
       "exact_match": false,
       "accepted": true,
       "confidence": {
-        "action": 0.9679,
-        "object": 0.9677,
-        "location": 0.9726,
-        "overall": 0.9687
+        "action": 0.9607,
+        "object": 0.9591,
+        "location": 0.9632,
+        "overall": 0.9602
       },
       "timing_ms": {
         "decode_ms": 1.23,
         "preprocess_ms": 1.0,
-        "inference_ms": 41.18,
-        "total_ms": 42.57
+        "inference_ms": 36.25,
+        "total_ms": 37.59
       },
       "domain": "Appliances",
       "speech_style": "calm"
@@ -998,23 +998,23 @@
         "location": "none"
       },
       "prediction": {
-        "action": "activate",
-        "object": "lamp",
+        "action": "bring",
+        "object": "shoes",
         "location": "none"
       },
-      "exact_match": false,
+      "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.9666,
-        "object": 0.9711,
-        "location": 0.9683,
-        "overall": 0.9678
+        "action": 0.9617,
+        "object": 0.9612,
+        "location": 0.9678,
+        "overall": 0.9626
       },
       "timing_ms": {
-        "decode_ms": 1.38,
+        "decode_ms": 1.22,
         "preprocess_ms": 1.0,
-        "inference_ms": 36.28,
-        "total_ms": 37.75
+        "inference_ms": 68.72,
+        "total_ms": 70.03
       },
       "domain": "Appliances",
       "speech_style": "calm"
@@ -1028,23 +1028,23 @@
         "location": "none"
       },
       "prediction": {
-        "action": "activate",
-        "object": "lights",
-        "location": "bedroom"
+        "action": "bring",
+        "object": "newspaper",
+        "location": "none"
       },
-      "exact_match": false,
+      "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.9699,
-        "object": 0.9504,
-        "location": 0.967,
-        "overall": 0.9576
+        "action": 0.9441,
+        "object": 0.9683,
+        "location": 0.9592,
+        "overall": 0.9519
       },
       "timing_ms": {
-        "decode_ms": 1.06,
+        "decode_ms": 1.17,
         "preprocess_ms": 1.0,
-        "inference_ms": 38.71,
-        "total_ms": 39.89
+        "inference_ms": 46.68,
+        "total_ms": 47.94
       },
       "domain": "Appliances",
       "speech_style": "calm"
@@ -1058,23 +1058,23 @@
         "location": "none"
       },
       "prediction": {
-        "action": "activate",
-        "object": "lights",
-        "location": "kitchen"
+        "action": "bring",
+        "object": "socks",
+        "location": "none"
       },
-      "exact_match": false,
+      "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.964,
-        "object": 0.9576,
-        "location": 0.9664,
-        "overall": 0.9607
+        "action": 0.9623,
+        "object": 0.9636,
+        "location": 0.9579,
+        "overall": 0.9599
       },
       "timing_ms": {
-        "decode_ms": 1.2,
+        "decode_ms": 1.17,
         "preprocess_ms": 1.0,
-        "inference_ms": 37.48,
-        "total_ms": 38.8
+        "inference_ms": 44.5,
+        "total_ms": 45.77
       },
       "domain": "Appliances",
       "speech_style": "rising_pitch"
@@ -1088,23 +1088,23 @@
         "location": "none"
       },
       "prediction": {
-        "action": "activate",
-        "object": "lights",
+        "action": "increase",
+        "object": "volume",
         "location": "none"
       },
       "exact_match": false,
       "accepted": true,
       "confidence": {
-        "action": 0.969,
-        "object": 0.9521,
-        "location": 0.9696,
-        "overall": 0.959
+        "action": 0.7205,
+        "object": 0.8538,
+        "location": 0.9802,
+        "overall": 0.7951
       },
       "timing_ms": {
-        "decode_ms": 1.02,
+        "decode_ms": 1.47,
         "preprocess_ms": 1.0,
-        "inference_ms": 33.71,
-        "total_ms": 34.85
+        "inference_ms": 36.47,
+        "total_ms": 38.05
       },
       "domain": "Appliances",
       "speech_style": "colloquial"
@@ -1118,23 +1118,23 @@
         "location": "none"
       },
       "prediction": {
-        "action": "activate",
-        "object": "lights",
-        "location": "washroom"
+        "action": "increase",
+        "object": "heat",
+        "location": "none"
       },
       "exact_match": false,
-      "accepted": true,
+      "accepted": false,
       "confidence": {
-        "action": 0.9687,
-        "object": 0.9563,
-        "location": 0.9589,
-        "overall": 0.9593
+        "action": 0.5361,
+        "object": 0.4776,
+        "location": 0.9619,
+        "overall": 0.5671
       },
       "timing_ms": {
-        "decode_ms": 1.25,
+        "decode_ms": 1.56,
         "preprocess_ms": 1.0,
-        "inference_ms": 43.16,
-        "total_ms": 44.54
+        "inference_ms": 37.8,
+        "total_ms": 39.46
       },
       "domain": "Appliances",
       "speech_style": "colloquial"
@@ -1148,23 +1148,23 @@
         "location": "none"
       },
       "prediction": {
-        "action": "activate",
-        "object": "music",
+        "action": "bring",
+        "object": "newspaper",
         "location": "none"
       },
-      "exact_match": false,
+      "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.9681,
-        "object": 0.9622,
-        "location": 0.9676,
-        "overall": 0.9645
+        "action": 0.9618,
+        "object": 0.9683,
+        "location": 0.9649,
+        "overall": 0.9637
       },
       "timing_ms": {
-        "decode_ms": 1.19,
+        "decode_ms": 1.23,
         "preprocess_ms": 1.0,
-        "inference_ms": 39.8,
-        "total_ms": 41.08
+        "inference_ms": 41.45,
+        "total_ms": 42.78
       },
       "domain": "Appliances",
       "speech_style": "fast"
@@ -1179,22 +1179,22 @@
       },
       "prediction": {
         "action": "bring",
-        "object": "juice",
+        "object": "socks",
         "location": "none"
       },
-      "exact_match": false,
+      "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.9703,
-        "object": 0.9577,
-        "location": 0.9698,
-        "overall": 0.9626
+        "action": 0.9645,
+        "object": 0.9667,
+        "location": 0.9585,
+        "overall": 0.9613
       },
       "timing_ms": {
-        "decode_ms": 0.98,
+        "decode_ms": 1.18,
         "preprocess_ms": 1.0,
-        "inference_ms": 32.31,
-        "total_ms": 33.39
+        "inference_ms": 58.15,
+        "total_ms": 59.43
       },
       "domain": "Appliances",
       "speech_style": "colloquial"
@@ -1208,23 +1208,23 @@
         "location": "none"
       },
       "prediction": {
-        "action": "bring",
-        "object": "newspaper",
+        "action": "increase",
+        "object": "volume",
         "location": "none"
       },
       "exact_match": false,
       "accepted": true,
       "confidence": {
-        "action": 0.9572,
-        "object": 0.9699,
-        "location": 0.9647,
-        "overall": 0.9612
+        "action": 0.9607,
+        "object": 0.9591,
+        "location": 0.9632,
+        "overall": 0.9602
       },
       "timing_ms": {
-        "decode_ms": 1.07,
+        "decode_ms": 1.17,
         "preprocess_ms": 1.0,
-        "inference_ms": 47.53,
-        "total_ms": 48.72
+        "inference_ms": 36.26,
+        "total_ms": 37.54
       },
       "domain": "Appliances",
       "speech_style": "calm"
@@ -1245,16 +1245,16 @@
       "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.9725,
-        "object": 0.9607,
-        "location": 0.9691,
-        "overall": 0.9647
+        "action": 0.9617,
+        "object": 0.9612,
+        "location": 0.9678,
+        "overall": 0.9626
       },
       "timing_ms": {
-        "decode_ms": 1.28,
+        "decode_ms": 1.2,
         "preprocess_ms": 1.0,
-        "inference_ms": 41.95,
-        "total_ms": 43.34
+        "inference_ms": 63.16,
+        "total_ms": 64.47
       },
       "domain": "Appliances",
       "speech_style": "calm"
@@ -1269,22 +1269,22 @@
       },
       "prediction": {
         "action": "bring",
-        "object": "socks",
+        "object": "none",
         "location": "none"
       },
       "exact_match": false,
-      "accepted": true,
+      "accepted": false,
       "confidence": {
-        "action": 0.9657,
-        "object": 0.9674,
-        "location": 0.9585,
-        "overall": 0.9617
+        "action": 0.6672,
+        "object": 0.573,
+        "location": 0.9747,
+        "overall": 0.661
       },
       "timing_ms": {
-        "decode_ms": 1.19,
+        "decode_ms": 1.33,
         "preprocess_ms": 1.0,
-        "inference_ms": 41.98,
-        "total_ms": 43.29
+        "inference_ms": 64.72,
+        "total_ms": 66.15
       },
       "domain": "System",
       "speech_style": "calm"
@@ -1299,22 +1299,22 @@
       },
       "prediction": {
         "action": "change language",
-        "object": "Chinese",
+        "object": "English",
         "location": "none"
       },
-      "exact_match": false,
+      "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.9595,
-        "object": 0.9606,
-        "location": 0.9649,
-        "overall": 0.9608
+        "action": 0.9668,
+        "object": 0.9623,
+        "location": 0.9636,
+        "overall": 0.9635
       },
       "timing_ms": {
-        "decode_ms": 1.45,
+        "decode_ms": 1.22,
         "preprocess_ms": 1.0,
-        "inference_ms": 43.02,
-        "total_ms": 44.57
+        "inference_ms": 42.1,
+        "total_ms": 43.42
       },
       "domain": "System",
       "speech_style": "calm"
@@ -1329,22 +1329,22 @@
       },
       "prediction": {
         "action": "change language",
-        "object": "English",
+        "object": "Chinese",
         "location": "none"
       },
-      "exact_match": false,
+      "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.9623,
-        "object": 0.9645,
-        "location": 0.9641,
-        "overall": 0.9631
+        "action": 0.9415,
+        "object": 0.9528,
+        "location": 0.9509,
+        "overall": 0.9456
       },
       "timing_ms": {
-        "decode_ms": 1.13,
+        "decode_ms": 1.18,
         "preprocess_ms": 1.0,
-        "inference_ms": 52.55,
-        "total_ms": 53.89
+        "inference_ms": 43.87,
+        "total_ms": 45.19
       },
       "domain": "System",
       "speech_style": "rising_pitch"
@@ -1365,16 +1365,16 @@
       "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.9655,
-        "object": 0.9645,
-        "location": 0.961,
-        "overall": 0.9626
+        "action": 0.9631,
+        "object": 0.9674,
+        "location": 0.9632,
+        "overall": 0.9639
       },
       "timing_ms": {
-        "decode_ms": 1.53,
+        "decode_ms": 1.16,
         "preprocess_ms": 1.0,
-        "inference_ms": 51.79,
-        "total_ms": 53.44
+        "inference_ms": 40.13,
+        "total_ms": 41.39
       },
       "domain": "System",
       "speech_style": "calm"
@@ -1395,16 +1395,16 @@
       "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.9674,
-        "object": 0.9758,
-        "location": 0.9667,
-        "overall": 0.9687
+        "action": 0.9623,
+        "object": 0.9768,
+        "location": 0.9609,
+        "overall": 0.9644
       },
       "timing_ms": {
-        "decode_ms": 1.24,
+        "decode_ms": 1.38,
         "preprocess_ms": 1.0,
-        "inference_ms": 41.8,
-        "total_ms": 43.13
+        "inference_ms": 41.13,
+        "total_ms": 42.6
       },
       "domain": "System",
       "speech_style": "rising_pitch"
@@ -1419,22 +1419,22 @@
       },
       "prediction": {
         "action": "change language",
-        "object": "none",
+        "object": "English",
         "location": "none"
       },
-      "exact_match": false,
+      "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.9626,
-        "object": 0.9622,
-        "location": 0.9599,
-        "overall": 0.9609
+        "action": 0.9668,
+        "object": 0.9623,
+        "location": 0.9636,
+        "overall": 0.9635
       },
       "timing_ms": {
-        "decode_ms": 1.01,
+        "decode_ms": 1.15,
         "preprocess_ms": 1.0,
-        "inference_ms": 36.46,
-        "total_ms": 37.6
+        "inference_ms": 41.59,
+        "total_ms": 42.84
       },
       "domain": "System",
       "speech_style": "calm"
@@ -1448,23 +1448,23 @@
         "location": "none"
       },
       "prediction": {
-        "action": "deactivate",
-        "object": "lights",
+        "action": "change language",
+        "object": "Chinese",
         "location": "none"
       },
-      "exact_match": false,
+      "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.9663,
-        "object": 0.9657,
-        "location": 0.9692,
-        "overall": 0.9665
+        "action": 0.9584,
+        "object": 0.9647,
+        "location": 0.9621,
+        "overall": 0.9604
       },
       "timing_ms": {
-        "decode_ms": 1.13,
+        "decode_ms": 1.17,
         "preprocess_ms": 1.0,
-        "inference_ms": 34.2,
-        "total_ms": 35.43
+        "inference_ms": 41.98,
+        "total_ms": 43.24
       },
       "domain": "System",
       "speech_style": "calm"
@@ -1478,23 +1478,23 @@
         "location": "none"
       },
       "prediction": {
-        "action": "deactivate",
-        "object": "lights",
-        "location": "bedroom"
+        "action": "change language",
+        "object": "German",
+        "location": "none"
       },
-      "exact_match": false,
+      "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.9681,
-        "object": 0.9553,
-        "location": 0.972,
-        "overall": 0.9612
+        "action": 0.9652,
+        "object": 0.9678,
+        "location": 0.9651,
+        "overall": 0.9656
       },
       "timing_ms": {
-        "decode_ms": 1.07,
+        "decode_ms": 1.16,
         "preprocess_ms": 1.0,
-        "inference_ms": 34.45,
-        "total_ms": 35.62
+        "inference_ms": 47.7,
+        "total_ms": 48.96
       },
       "domain": "System",
       "speech_style": "fast"
@@ -1508,23 +1508,23 @@
         "location": "none"
       },
       "prediction": {
-        "action": "deactivate",
-        "object": "lights",
-        "location": "kitchen"
+        "action": "change language",
+        "object": "Korean",
+        "location": "none"
       },
-      "exact_match": false,
+      "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.9691,
-        "object": 0.9608,
-        "location": 0.9671,
-        "overall": 0.9638
+        "action": 0.7433,
+        "object": 0.8398,
+        "location": 0.6923,
+        "overall": 0.7305
       },
       "timing_ms": {
-        "decode_ms": 1.31,
+        "decode_ms": 1.18,
         "preprocess_ms": 1.0,
-        "inference_ms": 45.45,
-        "total_ms": 46.88
+        "inference_ms": 40.85,
+        "total_ms": 42.13
       },
       "domain": "System",
       "speech_style": "calm"
@@ -1538,23 +1538,23 @@
         "location": "none"
       },
       "prediction": {
-        "action": "deactivate",
-        "object": "lights",
+        "action": "change language",
+        "object": "none",
         "location": "none"
       },
-      "exact_match": false,
+      "exact_match": true,
       "accepted": true,
       "confidence": {
-        "action": 0.9783,
-        "object": 0.9521,
-        "location": 0.9715,
-        "overall": 0.9612
+        "action": 0.9125,
+        "object": 0.7919,
+        "location": 0.9732,
+        "overall": 0.8503
       },
       "timing_ms": {
-        "decode_ms": 1.28,
+        "decode_ms": 1.18,
         "preprocess_ms": 1.0,
-        "inference_ms": 36.49,
-        "total_ms": 37.89
+        "inference_ms": 37.7,
+        "total_ms": 38.98
       },
       "domain": "System",
       "speech_style": "colloquial"

@@ -20,6 +20,7 @@ from pathlib import Path
 from typing import Any, Dict, List
 
 import numpy as np
+import pandas as pd
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
@@ -107,7 +108,15 @@ def run_field_test_suite(
     latencies = []
     exact_matches = 0
 
-    # Test inference on acoustic waveforms (using existing audio files or synthesized live waves)
+    # Test inference on acoustic waveforms (prioritizing real human recordings from metadata.csv)
+    meta_df = None
+    meta_path = PROJECT_ROOT / "data" / "own_recordings" / "metadata.csv"
+    if os.path.exists(meta_path):
+        try:
+            meta_df = pd.read_csv(meta_path)
+        except Exception:
+            meta_df = None
+
     available_wavs = []
     wav_dirs = [
         str(PROJECT_ROOT / "data" / "own_recordings" / "wavs"),
@@ -126,12 +135,37 @@ def run_field_test_suite(
 
         # Use corresponding audio sample if available
         matched_audio = None
-        for p in available_wavs:
-            bname = os.path.basename(p)
-            # Find audio matching intent or fallback
-            if f"intent{i%31:02d}" in bname or f"_{i%31:02d}.wav" in bname:
-                matched_audio = p
-                break
+        if meta_df is not None:
+            sub = meta_df[
+                (meta_df["action"] == test_case["action"])
+                & (meta_df["object"] == test_case["object"])
+                & (meta_df["location"] == test_case["location"])
+            ]
+            if not sub.empty:
+                style_map = {
+                    "colloquial": "slang",
+                    "rising_pitch": "nyantai",
+                    "calm": "baku",
+                    "fast": "nyantai",
+                    "formal": "baku",
+                }
+                target_style = style_map.get(test_case.get("style", ""), "baku")
+                sub_style = sub[sub["style"] == target_style]
+                if not sub_style.empty:
+                    cand_path = str(PROJECT_ROOT / sub_style.iloc[0]["path"])
+                    if os.path.exists(cand_path):
+                        matched_audio = cand_path
+                if not matched_audio:
+                    cand_path = str(PROJECT_ROOT / sub.iloc[0]["path"])
+                    if os.path.exists(cand_path):
+                        matched_audio = cand_path
+
+        if not matched_audio:
+            for p in available_wavs:
+                bname = os.path.basename(p)
+                if f"_{i%31:02d}_" in bname or f"_{i%31:02d}.wav" in bname:
+                    matched_audio = p
+                    break
 
         if matched_audio and os.path.exists(matched_audio):
             with open(matched_audio, "rb") as af:

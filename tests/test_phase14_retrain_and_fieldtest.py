@@ -90,3 +90,4 @@ def test_field_test_runner_report_generation(tmp_path):
     assert "domain_breakdown" in report
     assert report["overall_summary"]["total_samples"] == 50
     assert report["overall_summary"]["mean_latency_ms"] > 0.0
+

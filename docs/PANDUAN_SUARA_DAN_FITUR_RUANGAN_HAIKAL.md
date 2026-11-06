@@ -1,12 +1,16 @@
 # PANDUAN LENGKAP REKAMAN SUARA BERDASARKAN FITUR RUANGAN WEB DEMO (SVARA)
 
 Dokumen ini adalah **contekan resmi (cheat-sheet)** untuk Haikal sebelum dan saat berbicara.
-Setiap perintah suara di bawah ini dihubungkan langsung dengan **efek visual nyata di Web Demo (2D CAD Floor Plan, 3D Diorama, dan 3D First-Person)**.
+Setiap perintah suara di bawah ini dihubungkan langsung dengan **efek visual nyata di Web Demo (2D CAD Floor Plan, 3D Diorama, dan 3D First-Person Walkthrough)**.
 
-Kamu tidak perlu bingung memilih nada naik-turun lagi. Cukup pilih salah satu gaya yang paling nyaman di lidah kamu:
-- **Baku**: Kalimat jelas dan formal.
-- **Nyantai**: Kalimat santai sehari-hari (paling direkomendasikan untuk uji smart home).
-- **Slang / Gaul**: Kalimat santai anak muda (*"idupin"*, *"matiin"*, *"kencengin"*, *"dinginin"*, dll).
+### 🎙️ Sistem Rekaman Triple-Take (3 Take Beruntun per Fitur):
+Untuk setiap fitur smart home di bawah, Haikal akan **mengucapkan 3 variasi berturut-turut** (total 31 intent × 3 take = 93 klip vokal):
+1. **Take 1 (Versi Baku)**: Kalimat formal, jelas, dan presisi.
+2. **Take 2 (Versi Nyantai)**: Kalimat santai percakapan sehari-hari.
+3. **Take 3 (Versi Slang / Gaul)**: Kalimat gaul anak muda (*"idupin"*, *"matiin"*, *"kencengin"*, *"dinginin"*, dll).
+
+> **Mengapa 3 Take Beruntun?**
+> Pengulangan 3 gaya ini bertindak sebagai **Acoustic Anchor** yang sangat kuat bagi model Wav2Vec 2.0. Model tidak akan kaku dan mampu mengenali perintah baik saat kamu berbicara formal, santai, maupun gaul saat live demo!
 
 ---
 
@@ -97,13 +101,21 @@ Kamu tidak perlu bingung memilih nada naik-turun lagi. Cukup pilih salah satu ga
 
 ---
 
-## 💡 CARA MEREKAM DI TERMINAL
+## 💡 CARA MEREKAM DI TERMINAL (ALUR TRIPLE-TAKE)
 
-1. Buka file panduan ini di samping jendela terminal kamu.
-2. Jalankan perintah perekam:
+1. Buka file panduan ini di layar kamu sebagai contekan sebelum berbicara.
+2. Jalankan script perekam di terminal:
    ```powershell
    python scripts/record_own_voice.py --speaker haikal --condition quiet
    ```
-3. Di layar terminal, kamu akan melihat pilihan kalimat **Baku, Nyantai, dan Slang**. 
-4. Pilih satu yang paling enak kamu ucapkan, tekan `[ENTER]`, lalu ucapkan kalimat tersebut secara santai!
+3. Script akan otomatis memandu kamu per ruangan dan per fitur:
+   - **Langkah 1**: Terminal menampilkan [TAKE 1 - BAKU]. Tekan `[ENTER]`, ucapkan kalimat Baku saat status `[MEREKAM 3.5s]` aktif, lalu tekan `[ENTER]` untuk konfirmasi simpan.
+   - **Langkah 2**: Terminal otomatis lanjut ke [TAKE 2 - NYANTAI]. Tekan `[ENTER]`, ucapkan kalimat Nyantai, lalu tekan `[ENTER]` untuk simpan.
+   - **Langkah 3**: Terminal otomatis lanjut ke [TAKE 3 - SLANG]. Tekan `[ENTER]`, ucapkan kalimat Slang, lalu tekan `[ENTER]` untuk simpan.
+   - Setelah 3 take selesai, script langsung berpindah ke fitur/ruangan berikutnya!
+4. Jika kamu merasa salah bicara atau batuk pada satu take, ketik `r` saat konfirmasi untuk mengulang take tersebut.
+5. Selesai 31 intent (93 rekaman, ~7-8 menit), jalankan validasi & konversi standar:
+   ```powershell
+   python scripts/validate_and_convert_own_recordings.py
+   ```
 

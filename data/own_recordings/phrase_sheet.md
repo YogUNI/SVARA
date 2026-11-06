@@ -4,8 +4,8 @@
 
 Petunjuk untuk Pembicara (Haikal, Yoga, & Responden):
 1. Setiap nomor perintah mewakili aksi nyata pada perangkat di web demo (Lampu, AC/Suhu, Musik, Volume, dll).
-2. Terdapat 3 versi pilihan kalimat: **Baku**, **Nyantai (Paling Direkomendasikan)**, dan **Slang / Gaul**.
-3. Pembicara bebas memilih versi kalimat yang paling nyaman dan natural saat diucapkan.
+2. Terdapat 3 versi kalimat beruntun per intent: **Baku**, **Nyantai**, dan **Slang / Gaul**.
+3. Sistem perekaman menggunakan **Triple-Take**: Pembicara merekam ketiga versi satu demi satu secara berurutan untuk menghasilkan 93 klip vokal asli (31 intent × 3 take) agar model memiliki ketahanan akustik maksimal.
 
 ---
 

@@ -76,6 +76,7 @@ def main():
     parser.add_argument("--gender", type=str, default="male", help="Jenis kelamin pembicara (male/female)")
     parser.add_argument("--age-range", type=str, default="20-25", help="Rentang usia pembicara")
     parser.add_argument("--duration", type=float, default=3.5, help="Durasi perekaman per klip (detik)")
+    parser.add_argument("--take", type=int, default=1, help="Nomor pengambilan / variasi rekaman (contoh: 1 untuk nada biasa, 2 untuk intonasi santai/tanya)")
     parser.add_argument("--start-index", type=int, default=0, help="Mulai dari intent ke-n (0-30)")
     parser.add_argument("--out-dir", type=str, default="data/own_recordings/wavs", help="Folder output WAV")
     parser.add_argument("--metadata-csv", type=str, default="data/own_recordings/metadata.csv", help="Lokasi metadata CSV")
@@ -119,7 +120,8 @@ def main():
         obj = item["object"]
         loc = item["location"]
 
-        filename = f"{speaker_id}_{cond_code}_{intent_id:02d}.wav"
+        take_suffix = f"_t{args.take}" if args.take > 1 else ""
+        filename = f"{speaker_id}_{cond_code}_{intent_id:02d}{take_suffix}.wav"
         file_path = os.path.join(args.out_dir, filename)
 
         while True:

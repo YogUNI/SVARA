@@ -44,24 +44,24 @@ def parse_filename(filename: str) -> Optional[Tuple[str, str, int]]:
     """
     basename = os.path.splitext(filename)[0].lower()
     
-    # Pattern 1: own_<speaker>_<condition>_<intent_id>
-    m1 = re.match(r"^own_([a-z0-9]+)_([qn]|quiet|noisy)_(\d{1,2})$", basename)
+    # Pattern 1: own_<speaker>_<condition>_<intent_id>[_<take/var>]
+    m1 = re.match(r"^own_([a-z0-9]+)_([qn]|quiet|noisy)_(\d{1,2})(?:_([a-z0-9]+))?$", basename)
     if m1:
         spk = f"own_{m1.group(1)}"
         cond = "quiet" if m1.group(2) in ("q", "quiet") else "noisy"
         intent_id = int(m1.group(3))
         return spk, cond, intent_id
 
-    # Pattern 2: <speaker>_<condition>_<intent_id>
-    m2 = re.match(r"^([a-z0-9]+)_([qn]|quiet|noisy)_(\d{1,2})$", basename)
+    # Pattern 2: <speaker>_<condition>_<intent_id>[_<take/var>]
+    m2 = re.match(r"^([a-z0-9]+)_([qn]|quiet|noisy)_(\d{1,2})(?:_([a-z0-9]+))?$", basename)
     if m2:
         spk = f"own_{m2.group(1)}"
         cond = "quiet" if m2.group(2) in ("q", "quiet") else "noisy"
         intent_id = int(m2.group(3))
         return spk, cond, intent_id
 
-    # Pattern 3: <speaker>_<intent_id> (default condition: quiet)
-    m3 = re.match(r"^([a-z0-9]+)_(\d{1,2})$", basename)
+    # Pattern 3: <speaker>_<intent_id>[_<take/var>] (default condition: quiet)
+    m3 = re.match(r"^([a-z0-9]+)_(\d{1,2})(?:_([a-z0-9]+))?$", basename)
     if m3:
         spk = f"own_{m3.group(1)}"
         cond = "quiet"

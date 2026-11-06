@@ -70,11 +70,18 @@ def startup_event():
 
     # Priority selection:
     # 1. Custom ENV if specified
-    # 2. Bilingual INT8 model (Mature Indonesian + English SLU)
-    # 3. Base INT8 model
-    # 4. FP32 model
+    # 2. Hardened Bilingual INT8 model (Phase 14 Hardened Model)
+    # 3. Bilingual INT8 model (Mature Indonesian + English SLU)
+    # 4. Base INT8 model
+    # 5. FP32 model
     if not onnx_path or not os.path.exists(onnx_path):
-        if os.path.exists("models/svara_bilingual_int8.onnx"):
+        if os.path.exists("models/svara_hardened_int8.onnx"):
+            onnx_path = "models/svara_hardened_int8.onnx"
+            meta_path = "models/svara_hardened_int8.meta.json"
+        elif os.path.exists("models/svara_bilingual_hardened_int8.onnx"):
+            onnx_path = "models/svara_bilingual_hardened_int8.onnx"
+            meta_path = "models/svara_bilingual_hardened_int8.meta.json"
+        elif os.path.exists("models/svara_bilingual_int8.onnx"):
             onnx_path = "models/svara_bilingual_int8.onnx"
             meta_path = "models/svara_bilingual_int8.meta.json"
         elif os.path.exists("models/svara_int8.onnx"):

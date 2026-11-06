@@ -106,3 +106,4 @@ Kamu tidak perlu bingung memilih nada naik-turun lagi. Cukup pilih salah satu ga
    ```
 3. Di layar terminal, kamu akan melihat pilihan kalimat **Baku, Nyantai, dan Slang**. 
 4. Pilih satu yang paling enak kamu ucapkan, tekan `[ENTER]`, lalu ucapkan kalimat tersebut secara santai!
+

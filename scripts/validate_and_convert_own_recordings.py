@@ -186,7 +186,9 @@ def audit_own_recordings(
         if parsed:
             spk, cond, intent_id = parsed
             cond_code = "q" if cond == "quiet" else "n"
-            target_fname = f"{spk}_{cond_code}_{intent_id:02d}.wav"
+            m_suf = re.search(r"_(baku|nyantai|slang|t\d+|v\d+)", fname)
+            suf_str = f"_{m_suf.group(1)}" if m_suf else ""
+            target_fname = f"{spk}_{cond_code}_{intent_id:02d}{suf_str}.wav"
             target_path = os.path.join(wavs_dir, target_fname)
             convert_and_standardize_audio(rpath, target_path)
             converted_count += 1

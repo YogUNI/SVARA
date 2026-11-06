@@ -71,6 +71,19 @@ def parse_filename(filename: str) -> Optional[Tuple[str, str, int]]:
     return None
 
 
+def load_audio_tensor(input_path: str) -> Tuple[torch.Tensor, int]:
+    """Loads audio safely with soundfile fallback when torchcodec is unavailable."""
+    try:
+        return torchaudio.load(input_path)
+    except Exception:
+        data, sr = sf.read(input_path, dtype="float32")
+        if data.ndim == 1:
+            tensor = torch.from_numpy(data).unsqueeze(0)
+        else:
+            tensor = torch.from_numpy(data.T)
+        return tensor, sr
+
+
 def convert_and_standardize_audio(
     input_path: str,
     output_path: str,
@@ -80,7 +93,7 @@ def convert_and_standardize_audio(
     """Converts audio to 16 kHz mono PCM_16 with headroom guard.
     Returns: (duration_seconds, peak_amplitude, rms_dbfs)
     """
-    waveform, sr = torchaudio.load(input_path)
+    waveform, sr = load_audio_tensor(input_path)
 
     # 1. Downmix to mono if multi-channel
     if waveform.shape[0] > 1:

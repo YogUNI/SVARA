@@ -11,10 +11,11 @@ Dokumen ini memantau progres tugas **Haikal** dalam proyek tugas akhir SVARA.
 | 1 | **Git & Branching Workflow** | ✅ **Selesai** | Branch `data/haikal-indonesia-corpus` aktif & terisolasi dari `main`. |
 | 2 | **Riset Korpus NLP Bahasa Indonesia (31 Intent)** | ✅ **Selesai** | 465 variasi tutur komprehensif (15 variasi/intent) tersusun di Markdown & CSV + analisis linguistik mendalam untuk Deep Learning/SLU. |
 | 3 | **Dataset Suara Sintetis Bahasa Indonesia (930 Audio WAV)** | ✅ **Selesai** | 930 file audio (16 kHz mono WAV, Ardi & Gadis) + `metadata.csv` sudah ter-generate & **sukses ter-push ke GitHub** di branch `data/haikal-indonesia-corpus`. |
-| 4 | **Dataset Rekaman Suara Aksen Lokal (Phase P5 Own Set)** | ⏳ **Belum Mulai** | Perekaman 12 responden (31 kalimat FSC, kondisi Tenang & Bising). |
-| 5 | **Perekaman Klip Suara Bising Rumah Tangga (Noise Clips)** | ⏳ **Belum Mulai** | 10–15 klip suara lingkungan rumah (10–15 detik) untuk uji ketahanan. |
-| 6 | **Penulisan Laporan Tugas Akhir (Bab 1, 2, dan 3)** | ⏳ **Belum Mulai** | Penulisan akademik Bahasa Indonesia standar IEEE. |
-| 7 | **QA Pengujian Web Demo & Video Demonstrasi (P8–P9)** | ⏳ **Belum Mulai** | Uji coba UI web dan pembuatan video presentasi (3–5 menit). |
+| 4 | **Dataset Rekaman Suara Asli & Acoustic Anchor (Sub-step 13.2)** | ✅ **Selesai** | Perekaman 124 klip audio biologis Haikal (31 intent Triple-Take: Baku, Nyantai, Slang) + metadata.csv terstandardisasi. |
+| 5 | **Field-Test Lapangan 5 Domain Smart Home (Sub-step 14.3)** | ✅ **Selesai** | Benchmark 50 uji lapangan menghasilkan 78.00% exact match dengan latensi kilat 46.39 ms. |
+| 6 | **Perekaman Klip Suara Bising Rumah Tangga (Noise Clips)** | ⏳ **Belum Mulai** | 10–15 klip suara lingkungan rumah (10–15 detik) untuk uji ketahanan. |
+| 7 | **Penulisan Laporan Tugas Akhir (Bab 1, 2, dan 3)** | ⏳ **Belum Mulai** | Penulisan akademik Bahasa Indonesia standar IEEE. |
+| 8 | **QA Pengujian Web Demo & Video Demonstrasi (P8–P9)** | ⏳ **Sedang Berjalan** | Uji coba UI web dan pembuatan video presentasi (3–5 menit). |
 
 ---
 
@@ -28,17 +29,12 @@ Dokumen ini memantau progres tugas **Haikal** dalam proyek tugas akhir SVARA.
 - [x] Simpan korpus ke format terstruktur (`docs/corpus_indonesia_31_intents.md` dan CSV di `data/corpus/`)
 
 ### Modul 2: Perekaman Suara (Phase P5 Own Set & Noise)
-- [ ] Siapkan lembar teks 31 kalimat perintah FSC untuk responden
-- [ ] Kumpulkan rekaman suara dari 12 responden:
-  - [ ] Kondisi Tenang (`quiet` / kamar hening)
-  - [ ] Kondisi Bising (`noisy` / TV / kipas angin / suara luar)
-- [x] Kembangkan Korpus 465 Frasa Bahasa Indonesia untuk 31 FSC Intent (`data/corpus/indonesian_smart_home_corpus_31_intents.csv`)
-- [x] Sintesis 930 Audio WAV 16 kHz Mono (`data/synthetic_indonesian/wavs_16k/`)
-- [x] Pembuatan Split Bilingual (Train 651, Valid 124, Test 155 tak terlihat)
-- [x] Fine-Tuning Bilingual Wav2Vec 2.0 SLU di GPU RTX 4060 (`reports/runs/bilingual_indonesian_w2v2/`)
-- [x] Export Engine Bilingual INT8 ONNX 90.87 MB (`models/svara_bilingual_int8.onnx`)
-- [ ] Kumpulkan 10–15 klip suara kebisingan murni rumah tangga (10–15 detik)
-- [ ] Buat file `data/own_recordings/metadata.csv` (ID anonim responden, gender, kondisi)
+- [x] Inisialisasi tooling perekam interaktif Triple-Take (`scripts/record_own_voice.py`)
+- [x] Rekam 124 klip vokal biologis Haikal (31 Intent x Baku, Nyantai, Slang) sebagai Acoustic Anchor (Sub-step 13.2)
+- [x] Validasi & Standardisasi audio ke 16 kHz Mono PCM_16 anti-clipping Peak <= 0.95 (`data/own_recordings/metadata.csv` & `reports/own_recordings_audit.json`)
+- [x] Eksekusi benchmark uji lapangan 5 domain smart home 50 skenario (`reports/real_world_field_test_results.json`)
+- [ ] Kumpulkan 10–15 klip suara kebisingan murni rumah tangga (10–15 detik) untuk modul augmentasi bising
+- [ ] Kumpulkan rekaman tambahan responden eksternal jika diperlukan untuk perluasan set evaluasi final
 
 ### Modul 3: Penulisan Laporan Akademik (Bab 1 – 3)
 - [ ] **Bab 1 (Pendahuluan)**: Latar belakang Smart Home, kelemahan Pipeline ASR+NLU vs End-to-End SLU, rumusan masalah, batasan.

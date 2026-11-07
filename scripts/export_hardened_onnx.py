@@ -18,6 +18,14 @@ import sys
 from pathlib import Path
 from typing import Dict, Tuple
 
+os.environ.setdefault("HF_HUB_OFFLINE", "1")
+os.environ.setdefault("TRANSFORMERS_OFFLINE", "1")
+try:
+    sys.stdout.reconfigure(line_buffering=True)
+    sys.stderr.reconfigure(line_buffering=True)
+except Exception:
+    pass
+
 import numpy as np
 import onnx
 import onnxruntime as ort

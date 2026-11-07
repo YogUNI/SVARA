@@ -1,0 +1,219 @@
+{
+  "schema": 1,
+  "model": {
+    "name": "SVARA Transformer SLU (Wav2VecSLU)",
+    "run_id": "production_bilingual_w2v2",
+    "backbone": "facebook/wav2vec2-base",
+    "precision": "int8",
+    "parameters": 94414007,
+    "architecture": "CNN Frozen + 12 Transformer Layers + Masked Mean Pooling + 3 Decoupled Slot Heads + Joint Head"
+  },
+  "sample_rate": 16000,
+  "max_audio_seconds": 5.0,
+  "normalize": "zero_mean_unit_var",
+  "slots": {
+    "action": [
+      "activate",
+      "bring",
+      "change language",
+      "deactivate",
+      "decrease",
+      "increase"
+    ],
+    "object": [
+      "Chinese",
+      "English",
+      "German",
+      "Korean",
+      "heat",
+      "juice",
+      "lamp",
+      "lights",
+      "music",
+      "newspaper",
+      "none",
+      "shoes",
+      "socks",
+      "volume"
+    ],
+    "location": [
+      "bedroom",
+      "kitchen",
+      "none",
+      "washroom"
+    ]
+  },
+  "intent_map": {
+    "0": {
+      "action": "activate",
+      "object": "lamp",
+      "location": "none"
+    },
+    "1": {
+      "action": "activate",
+      "object": "lights",
+      "location": "bedroom"
+    },
+    "2": {
+      "action": "activate",
+      "object": "lights",
+      "location": "kitchen"
+    },
+    "3": {
+      "action": "activate",
+      "object": "lights",
+      "location": "none"
+    },
+    "4": {
+      "action": "activate",
+      "object": "lights",
+      "location": "washroom"
+    },
+    "5": {
+      "action": "activate",
+      "object": "music",
+      "location": "none"
+    },
+    "6": {
+      "action": "bring",
+      "object": "juice",
+      "location": "none"
+    },
+    "7": {
+      "action": "bring",
+      "object": "newspaper",
+      "location": "none"
+    },
+    "8": {
+      "action": "bring",
+      "object": "shoes",
+      "location": "none"
+    },
+    "9": {
+      "action": "bring",
+      "object": "socks",
+      "location": "none"
+    },
+    "10": {
+      "action": "change language",
+      "object": "Chinese",
+      "location": "none"
+    },
+    "11": {
+      "action": "change language",
+      "object": "English",
+      "location": "none"
+    },
+    "12": {
+      "action": "change language",
+      "object": "German",
+      "location": "none"
+    },
+    "13": {
+      "action": "change language",
+      "object": "Korean",
+      "location": "none"
+    },
+    "14": {
+      "action": "change language",
+      "object": "none",
+      "location": "none"
+    },
+    "15": {
+      "action": "deactivate",
+      "object": "lamp",
+      "location": "none"
+    },
+    "16": {
+      "action": "deactivate",
+      "object": "lights",
+      "location": "bedroom"
+    },
+    "17": {
+      "action": "deactivate",
+      "object": "lights",
+      "location": "kitchen"
+    },
+    "18": {
+      "action": "deactivate",
+      "object": "lights",
+      "location": "none"
+    },
+    "19": {
+      "action": "deactivate",
+      "object": "lights",
+      "location": "washroom"
+    },
+    "20": {
+      "action": "deactivate",
+      "object": "music",
+      "location": "none"
+    },
+    "21": {
+      "action": "decrease",
+      "object": "heat",
+      "location": "bedroom"
+    },
+    "22": {
+      "action": "decrease",
+      "object": "heat",
+      "location": "kitchen"
+    },
+    "23": {
+      "action": "decrease",
+      "object": "heat",
+      "location": "none"
+    },
+    "24": {
+      "action": "decrease",
+      "object": "heat",
+      "location": "washroom"
+    },
+    "25": {
+      "action": "decrease",
+      "object": "volume",
+      "location": "none"
+    },
+    "26": {
+      "action": "increase",
+      "object": "heat",
+      "location": "bedroom"
+    },
+    "27": {
+      "action": "increase",
+      "object": "heat",
+      "location": "kitchen"
+    },
+    "28": {
+      "action": "increase",
+      "object": "heat",
+      "location": "none"
+    },
+    "29": {
+      "action": "increase",
+      "object": "heat",
+      "location": "washroom"
+    },
+    "30": {
+      "action": "increase",
+      "object": "volume",
+      "location": "none"
+    }
+  },
+  "confidence": {
+    "method": "geometric_mean",
+    "temperature": 1.2,
+    "threshold": 0.65
+  },
+  "metrics": {
+    "combined_exact_match": 99.14,
+    "unseen_id_exact_match": 99.5,
+    "fsc_en_exact_match": 98.83,
+    "action_acc": 99.31,
+    "object_acc": 99.89,
+    "location_acc": 99.83,
+    "macro_f1": 99.14
+  },
+  "dataset": "SVARA Balanced Bilingual 24k (12k Indonesian Synthetic Augmented + 12k FSC English Native)",
+  "license_note": "Fluent Speech Commands (FSC) + SVARA Academic Research."
+}

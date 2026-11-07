@@ -1,0 +1,1563 @@
+{
+  "timestamp": "2026-11-06T08:09:17Z",
+  "test_suite": "SVARA Real-World 5-Domain Field Test (50 Queries)",
+  "model_under_test": {
+    "onnx_path": "models/svara_hardened_int8.onnx",
+    "meta_path": "models/svara_hardened_int8.meta.json",
+    "architecture": "Wav2VecSLU INT8 Dynamic Quantization"
+  },
+  "overall_summary": {
+    "total_samples": 50,
+    "exact_matches": 39,
+    "exact_match_accuracy_pct": 78.0,
+    "overall_acceptance_rate_pct": 96.0,
+    "mean_latency_ms": 46.39,
+    "p95_latency_ms": 66.11,
+    "real_time_factor_rtf": 0.0186
+  },
+  "domain_breakdown": {
+    "Lighting": {
+      "total_cases": 10,
+      "exact_matches": 8,
+      "accuracy_pct": 80.0,
+      "acceptance_rate_pct": 100.0,
+      "mean_latency_ms": 49.3
+    },
+    "Climate": {
+      "total_cases": 10,
+      "exact_matches": 8,
+      "accuracy_pct": 80.0,
+      "acceptance_rate_pct": 100.0,
+      "mean_latency_ms": 45.85
+    },
+    "Media": {
+      "total_cases": 10,
+      "exact_matches": 8,
+      "accuracy_pct": 80.0,
+      "acceptance_rate_pct": 100.0,
+      "mean_latency_ms": 42.98
+    },
+    "Appliances": {
+      "total_cases": 10,
+      "exact_matches": 6,
+      "accuracy_pct": 60.0,
+      "acceptance_rate_pct": 90.0,
+      "mean_latency_ms": 48.31
+    },
+    "System": {
+      "total_cases": 10,
+      "exact_matches": 9,
+      "accuracy_pct": 90.0,
+      "acceptance_rate_pct": 90.0,
+      "mean_latency_ms": 45.49
+    }
+  },
+  "speech_style_breakdown": {
+    "colloquial": "Evaluated across informal smart home variations",
+    "rising_pitch": "Evaluated across question-like intonations",
+    "calm": "Standard baseline tone",
+    "fast": "Elevated speaking rate"
+  },
+  "individual_case_results": [
+    {
+      "test_id": 1,
+      "phrase": "Nyalain lampu kamar dong",
+      "target": {
+        "action": "activate",
+        "object": "lights",
+        "location": "bedroom"
+      },
+      "prediction": {
+        "action": "activate",
+        "object": "lights",
+        "location": "bedroom"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9693,
+        "object": 0.9556,
+        "location": 0.9715,
+        "overall": 0.9615
+      },
+      "timing_ms": {
+        "decode_ms": 1.57,
+        "preprocess_ms": 1.0,
+        "inference_ms": 70.58,
+        "total_ms": 72.24
+      },
+      "domain": "Lighting",
+      "speech_style": "colloquial"
+    },
+    {
+      "test_id": 2,
+      "phrase": "Matiin lampu dapur",
+      "target": {
+        "action": "deactivate",
+        "object": "lights",
+        "location": "kitchen"
+      },
+      "prediction": {
+        "action": "deactivate",
+        "object": "lights",
+        "location": "kitchen"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9719,
+        "object": 0.9595,
+        "location": 0.9657,
+        "overall": 0.9632
+      },
+      "timing_ms": {
+        "decode_ms": 1.21,
+        "preprocess_ms": 1.0,
+        "inference_ms": 47.05,
+        "total_ms": 48.36
+      },
+      "domain": "Lighting",
+      "speech_style": "colloquial"
+    },
+    {
+      "test_id": 3,
+      "phrase": "Matikan semua lampu",
+      "target": {
+        "action": "deactivate",
+        "object": "lights",
+        "location": "none"
+      },
+      "prediction": {
+        "action": "deactivate",
+        "object": "lights",
+        "location": "none"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9762,
+        "object": 0.9413,
+        "location": 0.9728,
+        "overall": 0.9545
+      },
+      "timing_ms": {
+        "decode_ms": 1.15,
+        "preprocess_ms": 1.0,
+        "inference_ms": 39.95,
+        "total_ms": 41.2
+      },
+      "domain": "Lighting",
+      "speech_style": "calm"
+    },
+    {
+      "test_id": 4,
+      "phrase": "Nyalakan lampu meja",
+      "target": {
+        "action": "activate",
+        "object": "lamp",
+        "location": "none"
+      },
+      "prediction": {
+        "action": "activate",
+        "object": "lamp",
+        "location": "none"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9695,
+        "object": 0.969,
+        "location": 0.9682,
+        "overall": 0.9686
+      },
+      "timing_ms": {
+        "decode_ms": 1.19,
+        "preprocess_ms": 1.0,
+        "inference_ms": 37.14,
+        "total_ms": 38.42
+      },
+      "domain": "Lighting",
+      "speech_style": "calm"
+    },
+    {
+      "test_id": 5,
+      "phrase": "Tolong hidupin lampu toilet ya",
+      "target": {
+        "action": "activate",
+        "object": "lights",
+        "location": "washroom"
+      },
+      "prediction": {
+        "action": "activate",
+        "object": "lights",
+        "location": "washroom"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9746,
+        "object": 0.9642,
+        "location": 0.9264,
+        "overall": 0.9435
+      },
+      "timing_ms": {
+        "decode_ms": 1.32,
+        "preprocess_ms": 1.0,
+        "inference_ms": 51.5,
+        "total_ms": 52.92
+      },
+      "domain": "Lighting",
+      "speech_style": "rising_pitch"
+    },
+    {
+      "test_id": 6,
+      "phrase": "Matiin lampu kamar mandi dong",
+      "target": {
+        "action": "deactivate",
+        "object": "lights",
+        "location": "washroom"
+      },
+      "prediction": {
+        "action": "activate",
+        "object": "lights",
+        "location": "washroom"
+      },
+      "exact_match": false,
+      "accepted": true,
+      "confidence": {
+        "action": 0.849,
+        "object": 0.9424,
+        "location": 0.9819,
+        "overall": 0.8933
+      },
+      "timing_ms": {
+        "decode_ms": 1.18,
+        "preprocess_ms": 1.0,
+        "inference_ms": 59.31,
+        "total_ms": 60.6
+      },
+      "domain": "Lighting",
+      "speech_style": "colloquial"
+    },
+    {
+      "test_id": 7,
+      "phrase": "Lampu kamar tidur tolong matiin",
+      "target": {
+        "action": "deactivate",
+        "object": "lights",
+        "location": "bedroom"
+      },
+      "prediction": {
+        "action": "deactivate",
+        "object": "lights",
+        "location": "bedroom"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9671,
+        "object": 0.9564,
+        "location": 0.9716,
+        "overall": 0.9616
+      },
+      "timing_ms": {
+        "decode_ms": 1.15,
+        "preprocess_ms": 1.0,
+        "inference_ms": 38.21,
+        "total_ms": 39.45
+      },
+      "domain": "Lighting",
+      "speech_style": "fast"
+    },
+    {
+      "test_id": 8,
+      "phrase": "Nyalakan lampu di dapur sekarang",
+      "target": {
+        "action": "activate",
+        "object": "lights",
+        "location": "kitchen"
+      },
+      "prediction": {
+        "action": "activate",
+        "object": "lights",
+        "location": "kitchen"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9491,
+        "object": 0.9426,
+        "location": 0.9708,
+        "overall": 0.9495
+      },
+      "timing_ms": {
+        "decode_ms": 1.17,
+        "preprocess_ms": 1.0,
+        "inference_ms": 60.46,
+        "total_ms": 61.72
+      },
+      "domain": "Lighting",
+      "speech_style": "calm"
+    },
+    {
+      "test_id": 9,
+      "phrase": "Padamin seluruh lampu rumah",
+      "target": {
+        "action": "deactivate",
+        "object": "lights",
+        "location": "none"
+      },
+      "prediction": {
+        "action": "deactivate",
+        "object": "lights",
+        "location": "none"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9762,
+        "object": 0.9413,
+        "location": 0.9728,
+        "overall": 0.9545
+      },
+      "timing_ms": {
+        "decode_ms": 1.19,
+        "preprocess_ms": 1.0,
+        "inference_ms": 37.53,
+        "total_ms": 38.83
+      },
+      "domain": "Lighting",
+      "speech_style": "formal"
+    },
+    {
+      "test_id": 10,
+      "phrase": "Lampu meja tolong dimatikan",
+      "target": {
+        "action": "deactivate",
+        "object": "lamp",
+        "location": "none"
+      },
+      "prediction": {
+        "action": "deactivate",
+        "object": "lights",
+        "location": "none"
+      },
+      "exact_match": false,
+      "accepted": true,
+      "confidence": {
+        "action": 0.981,
+        "object": 0.6765,
+        "location": 0.9748,
+        "overall": 0.7895
+      },
+      "timing_ms": {
+        "decode_ms": 1.18,
+        "preprocess_ms": 1.0,
+        "inference_ms": 38.01,
+        "total_ms": 39.28
+      },
+      "domain": "Lighting",
+      "speech_style": "calm"
+    },
+    {
+      "test_id": 11,
+      "phrase": "Dinginin kamar tidur",
+      "target": {
+        "action": "decrease",
+        "object": "heat",
+        "location": "bedroom"
+      },
+      "prediction": {
+        "action": "activate",
+        "object": "lights",
+        "location": "bedroom"
+      },
+      "exact_match": false,
+      "accepted": true,
+      "confidence": {
+        "action": 0.8589,
+        "object": 0.8545,
+        "location": 0.973,
+        "overall": 0.8781
+      },
+      "timing_ms": {
+        "decode_ms": 1.17,
+        "preprocess_ms": 1.0,
+        "inference_ms": 45.63,
+        "total_ms": 46.89
+      },
+      "domain": "Climate",
+      "speech_style": "colloquial"
+    },
+    {
+      "test_id": 12,
+      "phrase": "Turunin suhunya dong",
+      "target": {
+        "action": "decrease",
+        "object": "heat",
+        "location": "none"
+      },
+      "prediction": {
+        "action": "decrease",
+        "object": "heat",
+        "location": "none"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9674,
+        "object": 0.9626,
+        "location": 0.9479,
+        "overall": 0.9548
+      },
+      "timing_ms": {
+        "decode_ms": 1.15,
+        "preprocess_ms": 1.0,
+        "inference_ms": 35.04,
+        "total_ms": 36.29
+      },
+      "domain": "Climate",
+      "speech_style": "rising_pitch"
+    },
+    {
+      "test_id": 13,
+      "phrase": "Naikin suhu dapur",
+      "target": {
+        "action": "increase",
+        "object": "heat",
+        "location": "kitchen"
+      },
+      "prediction": {
+        "action": "increase",
+        "object": "heat",
+        "location": "kitchen"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9638,
+        "object": 0.9577,
+        "location": 0.9713,
+        "overall": 0.9616
+      },
+      "timing_ms": {
+        "decode_ms": 1.15,
+        "preprocess_ms": 1.0,
+        "inference_ms": 41.96,
+        "total_ms": 43.21
+      },
+      "domain": "Climate",
+      "speech_style": "colloquial"
+    },
+    {
+      "test_id": 14,
+      "phrase": "Kamar mandi dingin banget tolong naikin suhunya",
+      "target": {
+        "action": "increase",
+        "object": "heat",
+        "location": "washroom"
+      },
+      "prediction": {
+        "action": "increase",
+        "object": "heat",
+        "location": "washroom"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9627,
+        "object": 0.9375,
+        "location": 0.899,
+        "overall": 0.9192
+      },
+      "timing_ms": {
+        "decode_ms": 1.17,
+        "preprocess_ms": 1.0,
+        "inference_ms": 51.14,
+        "total_ms": 52.4
+      },
+      "domain": "Climate",
+      "speech_style": "fast"
+    },
+    {
+      "test_id": 15,
+      "phrase": "Turunkan suhu di kamar mandi",
+      "target": {
+        "action": "decrease",
+        "object": "heat",
+        "location": "washroom"
+      },
+      "prediction": {
+        "action": "decrease",
+        "object": "heat",
+        "location": "washroom"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.968,
+        "object": 0.9637,
+        "location": 0.9718,
+        "overall": 0.9662
+      },
+      "timing_ms": {
+        "decode_ms": 1.16,
+        "preprocess_ms": 1.0,
+        "inference_ms": 40.97,
+        "total_ms": 42.22
+      },
+      "domain": "Climate",
+      "speech_style": "calm"
+    },
+    {
+      "test_id": 16,
+      "phrase": "Naikkan suhu kamar tidur dong",
+      "target": {
+        "action": "increase",
+        "object": "heat",
+        "location": "bedroom"
+      },
+      "prediction": {
+        "action": "increase",
+        "object": "heat",
+        "location": "bedroom"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9682,
+        "object": 0.9574,
+        "location": 0.9646,
+        "overall": 0.961
+      },
+      "timing_ms": {
+        "decode_ms": 1.21,
+        "preprocess_ms": 1.0,
+        "inference_ms": 40.23,
+        "total_ms": 41.54
+      },
+      "domain": "Climate",
+      "speech_style": "colloquial"
+    },
+    {
+      "test_id": 17,
+      "phrase": "Dapur gerah nih tolong dinginkan",
+      "target": {
+        "action": "decrease",
+        "object": "heat",
+        "location": "kitchen"
+      },
+      "prediction": {
+        "action": "decrease",
+        "object": "heat",
+        "location": "kitchen"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.7584,
+        "object": 0.9096,
+        "location": 0.9786,
+        "overall": 0.8297
+      },
+      "timing_ms": {
+        "decode_ms": 1.15,
+        "preprocess_ms": 1.0,
+        "inference_ms": 51.65,
+        "total_ms": 52.91
+      },
+      "domain": "Climate",
+      "speech_style": "colloquial"
+    },
+    {
+      "test_id": 18,
+      "phrase": "Naikkan suhu seluruh ruangan",
+      "target": {
+        "action": "increase",
+        "object": "heat",
+        "location": "none"
+      },
+      "prediction": {
+        "action": "increase",
+        "object": "volume",
+        "location": "none"
+      },
+      "exact_match": false,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9789,
+        "object": 0.9367,
+        "location": 0.974,
+        "overall": 0.9525
+      },
+      "timing_ms": {
+        "decode_ms": 1.27,
+        "preprocess_ms": 1.0,
+        "inference_ms": 50.77,
+        "total_ms": 52.14
+      },
+      "domain": "Climate",
+      "speech_style": "calm"
+    },
+    {
+      "test_id": 19,
+      "phrase": "Dinginkan suhu rumah dong",
+      "target": {
+        "action": "decrease",
+        "object": "heat",
+        "location": "none"
+      },
+      "prediction": {
+        "action": "decrease",
+        "object": "heat",
+        "location": "none"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9674,
+        "object": 0.9626,
+        "location": 0.9479,
+        "overall": 0.9548
+      },
+      "timing_ms": {
+        "decode_ms": 1.19,
+        "preprocess_ms": 1.0,
+        "inference_ms": 37.14,
+        "total_ms": 38.43
+      },
+      "domain": "Climate",
+      "speech_style": "rising_pitch"
+    },
+    {
+      "test_id": 20,
+      "phrase": "Panaskan ruangan dapur ya",
+      "target": {
+        "action": "increase",
+        "object": "heat",
+        "location": "kitchen"
+      },
+      "prediction": {
+        "action": "increase",
+        "object": "heat",
+        "location": "kitchen"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9653,
+        "object": 0.9621,
+        "location": 0.969,
+        "overall": 0.9641
+      },
+      "timing_ms": {
+        "decode_ms": 1.18,
+        "preprocess_ms": 1.0,
+        "inference_ms": 51.16,
+        "total_ms": 52.44
+      },
+      "domain": "Climate",
+      "speech_style": "calm"
+    },
+    {
+      "test_id": 21,
+      "phrase": "Setel musik",
+      "target": {
+        "action": "activate",
+        "object": "music",
+        "location": "none"
+      },
+      "prediction": {
+        "action": "activate",
+        "object": "music",
+        "location": "none"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9642,
+        "object": 0.9651,
+        "location": 0.9674,
+        "overall": 0.965
+      },
+      "timing_ms": {
+        "decode_ms": 1.21,
+        "preprocess_ms": 1.0,
+        "inference_ms": 64.75,
+        "total_ms": 66.05
+      },
+      "domain": "Media",
+      "speech_style": "calm"
+    },
+    {
+      "test_id": 22,
+      "phrase": "Kencengin suaranya",
+      "target": {
+        "action": "increase",
+        "object": "volume",
+        "location": "none"
+      },
+      "prediction": {
+        "action": "increase",
+        "object": "volume",
+        "location": "none"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9245,
+        "object": 0.7573,
+        "location": 0.9758,
+        "overall": 0.8314
+      },
+      "timing_ms": {
+        "decode_ms": 1.19,
+        "preprocess_ms": 1.0,
+        "inference_ms": 38.47,
+        "total_ms": 39.77
+      },
+      "domain": "Media",
+      "speech_style": "colloquial"
+    },
+    {
+      "test_id": 23,
+      "phrase": "Matiin musiknya",
+      "target": {
+        "action": "deactivate",
+        "object": "music",
+        "location": "none"
+      },
+      "prediction": {
+        "action": "deactivate",
+        "object": "music",
+        "location": "none"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.8691,
+        "object": 0.8962,
+        "location": 0.9858,
+        "overall": 0.8971
+      },
+      "timing_ms": {
+        "decode_ms": 1.18,
+        "preprocess_ms": 1.0,
+        "inference_ms": 37.4,
+        "total_ms": 38.69
+      },
+      "domain": "Media",
+      "speech_style": "colloquial"
+    },
+    {
+      "test_id": 24,
+      "phrase": "Pelanin suaranya ya",
+      "target": {
+        "action": "decrease",
+        "object": "volume",
+        "location": "none"
+      },
+      "prediction": {
+        "action": "increase",
+        "object": "volume",
+        "location": "none"
+      },
+      "exact_match": false,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9398,
+        "object": 0.9763,
+        "location": 0.9802,
+        "overall": 0.9551
+      },
+      "timing_ms": {
+        "decode_ms": 1.4,
+        "preprocess_ms": 1.0,
+        "inference_ms": 37.84,
+        "total_ms": 39.34
+      },
+      "domain": "Media",
+      "speech_style": "calm"
+    },
+    {
+      "test_id": 25,
+      "phrase": "Putar lagi lagunya dong",
+      "target": {
+        "action": "activate",
+        "object": "music",
+        "location": "none"
+      },
+      "prediction": {
+        "action": "activate",
+        "object": "music",
+        "location": "none"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9682,
+        "object": 0.9646,
+        "location": 0.9663,
+        "overall": 0.9656
+      },
+      "timing_ms": {
+        "decode_ms": 1.82,
+        "preprocess_ms": 1.0,
+        "inference_ms": 34.99,
+        "total_ms": 36.92
+      },
+      "domain": "Media",
+      "speech_style": "rising_pitch"
+    },
+    {
+      "test_id": 26,
+      "phrase": "Besarkan suaranya tolong",
+      "target": {
+        "action": "increase",
+        "object": "volume",
+        "location": "none"
+      },
+      "prediction": {
+        "action": "increase",
+        "object": "volume",
+        "location": "none"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9656,
+        "object": 0.9652,
+        "location": 0.9723,
+        "overall": 0.9667
+      },
+      "timing_ms": {
+        "decode_ms": 1.74,
+        "preprocess_ms": 1.0,
+        "inference_ms": 54.36,
+        "total_ms": 56.2
+      },
+      "domain": "Media",
+      "speech_style": "calm"
+    },
+    {
+      "test_id": 27,
+      "phrase": "Stop lagunya sekarang",
+      "target": {
+        "action": "deactivate",
+        "object": "music",
+        "location": "none"
+      },
+      "prediction": {
+        "action": "deactivate",
+        "object": "music",
+        "location": "none"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9651,
+        "object": 0.9629,
+        "location": 0.9688,
+        "overall": 0.9645
+      },
+      "timing_ms": {
+        "decode_ms": 1.15,
+        "preprocess_ms": 1.0,
+        "inference_ms": 36.14,
+        "total_ms": 37.4
+      },
+      "domain": "Media",
+      "speech_style": "fast"
+    },
+    {
+      "test_id": 28,
+      "phrase": "Gedein volumenya dikit",
+      "target": {
+        "action": "increase",
+        "object": "volume",
+        "location": "none"
+      },
+      "prediction": {
+        "action": "increase",
+        "object": "volume",
+        "location": "none"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9245,
+        "object": 0.7573,
+        "location": 0.9758,
+        "overall": 0.8314
+      },
+      "timing_ms": {
+        "decode_ms": 1.38,
+        "preprocess_ms": 1.0,
+        "inference_ms": 38.75,
+        "total_ms": 40.24
+      },
+      "domain": "Media",
+      "speech_style": "colloquial"
+    },
+    {
+      "test_id": 29,
+      "phrase": "Kecilkan volume speaker",
+      "target": {
+        "action": "decrease",
+        "object": "volume",
+        "location": "none"
+      },
+      "prediction": {
+        "action": "increase",
+        "object": "volume",
+        "location": "none"
+      },
+      "exact_match": false,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9398,
+        "object": 0.9763,
+        "location": 0.9802,
+        "overall": 0.9551
+      },
+      "timing_ms": {
+        "decode_ms": 1.19,
+        "preprocess_ms": 1.0,
+        "inference_ms": 38.82,
+        "total_ms": 40.12
+      },
+      "domain": "Media",
+      "speech_style": "calm"
+    },
+    {
+      "test_id": 30,
+      "phrase": "Lanjutin musiknya dong",
+      "target": {
+        "action": "activate",
+        "object": "music",
+        "location": "none"
+      },
+      "prediction": {
+        "action": "activate",
+        "object": "music",
+        "location": "none"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9682,
+        "object": 0.9646,
+        "location": 0.9663,
+        "overall": 0.9656
+      },
+      "timing_ms": {
+        "decode_ms": 1.2,
+        "preprocess_ms": 1.0,
+        "inference_ms": 33.81,
+        "total_ms": 35.1
+      },
+      "domain": "Media",
+      "speech_style": "rising_pitch"
+    },
+    {
+      "test_id": 31,
+      "phrase": "Bawakan saya jus",
+      "target": {
+        "action": "bring",
+        "object": "juice",
+        "location": "none"
+      },
+      "prediction": {
+        "action": "increase",
+        "object": "volume",
+        "location": "none"
+      },
+      "exact_match": false,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9607,
+        "object": 0.9591,
+        "location": 0.9632,
+        "overall": 0.9602
+      },
+      "timing_ms": {
+        "decode_ms": 1.23,
+        "preprocess_ms": 1.0,
+        "inference_ms": 36.25,
+        "total_ms": 37.59
+      },
+      "domain": "Appliances",
+      "speech_style": "calm"
+    },
+    {
+      "test_id": 32,
+      "phrase": "Ambilkan sepatu saya",
+      "target": {
+        "action": "bring",
+        "object": "shoes",
+        "location": "none"
+      },
+      "prediction": {
+        "action": "bring",
+        "object": "shoes",
+        "location": "none"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9617,
+        "object": 0.9612,
+        "location": 0.9678,
+        "overall": 0.9626
+      },
+      "timing_ms": {
+        "decode_ms": 1.22,
+        "preprocess_ms": 1.0,
+        "inference_ms": 68.72,
+        "total_ms": 70.03
+      },
+      "domain": "Appliances",
+      "speech_style": "calm"
+    },
+    {
+      "test_id": 33,
+      "phrase": "Bawakan koran untuk saya",
+      "target": {
+        "action": "bring",
+        "object": "newspaper",
+        "location": "none"
+      },
+      "prediction": {
+        "action": "bring",
+        "object": "newspaper",
+        "location": "none"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9441,
+        "object": 0.9683,
+        "location": 0.9592,
+        "overall": 0.9519
+      },
+      "timing_ms": {
+        "decode_ms": 1.17,
+        "preprocess_ms": 1.0,
+        "inference_ms": 46.68,
+        "total_ms": 47.94
+      },
+      "domain": "Appliances",
+      "speech_style": "calm"
+    },
+    {
+      "test_id": 34,
+      "phrase": "Ambilkan kaus kaki dong",
+      "target": {
+        "action": "bring",
+        "object": "socks",
+        "location": "none"
+      },
+      "prediction": {
+        "action": "bring",
+        "object": "socks",
+        "location": "none"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9623,
+        "object": 0.9636,
+        "location": 0.9579,
+        "overall": 0.9599
+      },
+      "timing_ms": {
+        "decode_ms": 1.17,
+        "preprocess_ms": 1.0,
+        "inference_ms": 44.5,
+        "total_ms": 45.77
+      },
+      "domain": "Appliances",
+      "speech_style": "rising_pitch"
+    },
+    {
+      "test_id": 35,
+      "phrase": "Bawain sepatu gua dong",
+      "target": {
+        "action": "bring",
+        "object": "shoes",
+        "location": "none"
+      },
+      "prediction": {
+        "action": "increase",
+        "object": "volume",
+        "location": "none"
+      },
+      "exact_match": false,
+      "accepted": true,
+      "confidence": {
+        "action": 0.7205,
+        "object": 0.8538,
+        "location": 0.9802,
+        "overall": 0.7951
+      },
+      "timing_ms": {
+        "decode_ms": 1.47,
+        "preprocess_ms": 1.0,
+        "inference_ms": 36.47,
+        "total_ms": 38.05
+      },
+      "domain": "Appliances",
+      "speech_style": "colloquial"
+    },
+    {
+      "test_id": 36,
+      "phrase": "Ambilin jus dingin ya",
+      "target": {
+        "action": "bring",
+        "object": "juice",
+        "location": "none"
+      },
+      "prediction": {
+        "action": "increase",
+        "object": "heat",
+        "location": "none"
+      },
+      "exact_match": false,
+      "accepted": false,
+      "confidence": {
+        "action": 0.5361,
+        "object": 0.4776,
+        "location": 0.9619,
+        "overall": 0.5671
+      },
+      "timing_ms": {
+        "decode_ms": 1.56,
+        "preprocess_ms": 1.0,
+        "inference_ms": 37.8,
+        "total_ms": 39.46
+      },
+      "domain": "Appliances",
+      "speech_style": "colloquial"
+    },
+    {
+      "test_id": 37,
+      "phrase": "Tolong bawain koran pagi ini",
+      "target": {
+        "action": "bring",
+        "object": "newspaper",
+        "location": "none"
+      },
+      "prediction": {
+        "action": "bring",
+        "object": "newspaper",
+        "location": "none"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9618,
+        "object": 0.9683,
+        "location": 0.9649,
+        "overall": 0.9637
+      },
+      "timing_ms": {
+        "decode_ms": 1.23,
+        "preprocess_ms": 1.0,
+        "inference_ms": 41.45,
+        "total_ms": 42.78
+      },
+      "domain": "Appliances",
+      "speech_style": "fast"
+    },
+    {
+      "test_id": 38,
+      "phrase": "Ambilin kaos kaki bersih",
+      "target": {
+        "action": "bring",
+        "object": "socks",
+        "location": "none"
+      },
+      "prediction": {
+        "action": "bring",
+        "object": "socks",
+        "location": "none"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9645,
+        "object": 0.9667,
+        "location": 0.9585,
+        "overall": 0.9613
+      },
+      "timing_ms": {
+        "decode_ms": 1.18,
+        "preprocess_ms": 1.0,
+        "inference_ms": 58.15,
+        "total_ms": 59.43
+      },
+      "domain": "Appliances",
+      "speech_style": "colloquial"
+    },
+    {
+      "test_id": 39,
+      "phrase": "Bawakan segelas jus",
+      "target": {
+        "action": "bring",
+        "object": "juice",
+        "location": "none"
+      },
+      "prediction": {
+        "action": "increase",
+        "object": "volume",
+        "location": "none"
+      },
+      "exact_match": false,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9607,
+        "object": 0.9591,
+        "location": 0.9632,
+        "overall": 0.9602
+      },
+      "timing_ms": {
+        "decode_ms": 1.17,
+        "preprocess_ms": 1.0,
+        "inference_ms": 36.26,
+        "total_ms": 37.54
+      },
+      "domain": "Appliances",
+      "speech_style": "calm"
+    },
+    {
+      "test_id": 40,
+      "phrase": "Ambilkan sepatu di depan",
+      "target": {
+        "action": "bring",
+        "object": "shoes",
+        "location": "none"
+      },
+      "prediction": {
+        "action": "bring",
+        "object": "shoes",
+        "location": "none"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9617,
+        "object": 0.9612,
+        "location": 0.9678,
+        "overall": 0.9626
+      },
+      "timing_ms": {
+        "decode_ms": 1.2,
+        "preprocess_ms": 1.0,
+        "inference_ms": 63.16,
+        "total_ms": 64.47
+      },
+      "domain": "Appliances",
+      "speech_style": "calm"
+    },
+    {
+      "test_id": 41,
+      "phrase": "Ganti bahasa sistem",
+      "target": {
+        "action": "change language",
+        "object": "none",
+        "location": "none"
+      },
+      "prediction": {
+        "action": "bring",
+        "object": "none",
+        "location": "none"
+      },
+      "exact_match": false,
+      "accepted": false,
+      "confidence": {
+        "action": 0.6672,
+        "object": 0.573,
+        "location": 0.9747,
+        "overall": 0.661
+      },
+      "timing_ms": {
+        "decode_ms": 1.33,
+        "preprocess_ms": 1.0,
+        "inference_ms": 64.72,
+        "total_ms": 66.15
+      },
+      "domain": "System",
+      "speech_style": "calm"
+    },
+    {
+      "test_id": 42,
+      "phrase": "Ganti bahasanya ke Bahasa Inggris",
+      "target": {
+        "action": "change language",
+        "object": "English",
+        "location": "none"
+      },
+      "prediction": {
+        "action": "change language",
+        "object": "English",
+        "location": "none"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9668,
+        "object": 0.9623,
+        "location": 0.9636,
+        "overall": 0.9635
+      },
+      "timing_ms": {
+        "decode_ms": 1.22,
+        "preprocess_ms": 1.0,
+        "inference_ms": 42.1,
+        "total_ms": 43.42
+      },
+      "domain": "System",
+      "speech_style": "calm"
+    },
+    {
+      "test_id": 43,
+      "phrase": "Ganti ke bahasa Mandarin dong",
+      "target": {
+        "action": "change language",
+        "object": "Chinese",
+        "location": "none"
+      },
+      "prediction": {
+        "action": "change language",
+        "object": "Chinese",
+        "location": "none"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9415,
+        "object": 0.9528,
+        "location": 0.9509,
+        "overall": 0.9456
+      },
+      "timing_ms": {
+        "decode_ms": 1.18,
+        "preprocess_ms": 1.0,
+        "inference_ms": 43.87,
+        "total_ms": 45.19
+      },
+      "domain": "System",
+      "speech_style": "rising_pitch"
+    },
+    {
+      "test_id": 44,
+      "phrase": "Ganti bahasanya ke Bahasa Jerman",
+      "target": {
+        "action": "change language",
+        "object": "German",
+        "location": "none"
+      },
+      "prediction": {
+        "action": "change language",
+        "object": "German",
+        "location": "none"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9631,
+        "object": 0.9674,
+        "location": 0.9632,
+        "overall": 0.9639
+      },
+      "timing_ms": {
+        "decode_ms": 1.16,
+        "preprocess_ms": 1.0,
+        "inference_ms": 40.13,
+        "total_ms": 41.39
+      },
+      "domain": "System",
+      "speech_style": "calm"
+    },
+    {
+      "test_id": 45,
+      "phrase": "Ganti ke bahasa Korea dong",
+      "target": {
+        "action": "change language",
+        "object": "Korean",
+        "location": "none"
+      },
+      "prediction": {
+        "action": "change language",
+        "object": "Korean",
+        "location": "none"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9623,
+        "object": 0.9768,
+        "location": 0.9609,
+        "overall": 0.9644
+      },
+      "timing_ms": {
+        "decode_ms": 1.38,
+        "preprocess_ms": 1.0,
+        "inference_ms": 41.13,
+        "total_ms": 42.6
+      },
+      "domain": "System",
+      "speech_style": "rising_pitch"
+    },
+    {
+      "test_id": 46,
+      "phrase": "Ubah bahasa ke Bahasa Inggris ya",
+      "target": {
+        "action": "change language",
+        "object": "English",
+        "location": "none"
+      },
+      "prediction": {
+        "action": "change language",
+        "object": "English",
+        "location": "none"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9668,
+        "object": 0.9623,
+        "location": 0.9636,
+        "overall": 0.9635
+      },
+      "timing_ms": {
+        "decode_ms": 1.15,
+        "preprocess_ms": 1.0,
+        "inference_ms": 41.59,
+        "total_ms": 42.84
+      },
+      "domain": "System",
+      "speech_style": "calm"
+    },
+    {
+      "test_id": 47,
+      "phrase": "Setel bahasa sistem ke Mandarin",
+      "target": {
+        "action": "change language",
+        "object": "Chinese",
+        "location": "none"
+      },
+      "prediction": {
+        "action": "change language",
+        "object": "Chinese",
+        "location": "none"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9584,
+        "object": 0.9647,
+        "location": 0.9621,
+        "overall": 0.9604
+      },
+      "timing_ms": {
+        "decode_ms": 1.17,
+        "preprocess_ms": 1.0,
+        "inference_ms": 41.98,
+        "total_ms": 43.24
+      },
+      "domain": "System",
+      "speech_style": "calm"
+    },
+    {
+      "test_id": 48,
+      "phrase": "Tolong ubah ke bahasa Jerman",
+      "target": {
+        "action": "change language",
+        "object": "German",
+        "location": "none"
+      },
+      "prediction": {
+        "action": "change language",
+        "object": "German",
+        "location": "none"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9652,
+        "object": 0.9678,
+        "location": 0.9651,
+        "overall": 0.9656
+      },
+      "timing_ms": {
+        "decode_ms": 1.16,
+        "preprocess_ms": 1.0,
+        "inference_ms": 47.7,
+        "total_ms": 48.96
+      },
+      "domain": "System",
+      "speech_style": "fast"
+    },
+    {
+      "test_id": 49,
+      "phrase": "Set bahasa ke Korea sekarang",
+      "target": {
+        "action": "change language",
+        "object": "Korean",
+        "location": "none"
+      },
+      "prediction": {
+        "action": "change language",
+        "object": "Korean",
+        "location": "none"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.7433,
+        "object": 0.8398,
+        "location": 0.6923,
+        "overall": 0.7305
+      },
+      "timing_ms": {
+        "decode_ms": 1.18,
+        "preprocess_ms": 1.0,
+        "inference_ms": 40.85,
+        "total_ms": 42.13
+      },
+      "domain": "System",
+      "speech_style": "calm"
+    },
+    {
+      "test_id": 50,
+      "phrase": "Ganti bahasa dong",
+      "target": {
+        "action": "change language",
+        "object": "none",
+        "location": "none"
+      },
+      "prediction": {
+        "action": "change language",
+        "object": "none",
+        "location": "none"
+      },
+      "exact_match": true,
+      "accepted": true,
+      "confidence": {
+        "action": 0.9125,
+        "object": 0.7919,
+        "location": 0.9732,
+        "overall": 0.8503
+      },
+      "timing_ms": {
+        "decode_ms": 1.18,
+        "preprocess_ms": 1.0,
+        "inference_ms": 37.7,
+        "total_ms": 38.98
+      },
+      "domain": "System",
+      "speech_style": "colloquial"
+    }
+  ]
+}

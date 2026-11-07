@@ -1,0 +1,125 @@
+path,speakerId,device,condition,style,transcript,action,object,location,intent_id,duration_seconds,peak_amplitude,rms_dbfs,sample_rate,room,feature
+data/own_recordings/wavs/own_haikal_q_00.wav,own_haikal,laptop_mic,quiet,,Nyalakan lampu meja,activate,lamp,none,0,3.5,0.0645,-40.63,16000,,
+data/own_recordings/wavs/own_haikal_q_00_baku.wav,own_haikal,laptop_mic,quiet,baku,Nyalakan lampu meja,activate,lamp,none,0,3.5,0.1224,-33.84,16000,KAMAR TIDUR (BEDROOM),Lampu Meja / Belajar MENYALA
+data/own_recordings/wavs/own_haikal_q_00_nyantai.wav,own_haikal,laptop_mic,quiet,nyantai,Nyalain lampu meja dong,activate,lamp,none,0,3.5,0.1384,-31.44,16000,KAMAR TIDUR (BEDROOM),Lampu Meja / Belajar MENYALA
+data/own_recordings/wavs/own_haikal_q_00_slang.wav,own_haikal,laptop_mic,quiet,slang,Tolong hidupin lampu belajar ya,activate,lamp,none,0,3.5,0.1329,-31.63,16000,KAMAR TIDUR (BEDROOM),Lampu Meja / Belajar MENYALA
+data/own_recordings/wavs/own_haikal_q_01.wav,own_haikal,laptop_mic,quiet,,Nyalakan lampu kamar tidur,activate,lights,bedroom,1,3.5,0.1217,-34.15,16000,,
+data/own_recordings/wavs/own_haikal_q_01_baku.wav,own_haikal,laptop_mic,quiet,baku,Nyalakan lampu kamar tidur,activate,lights,bedroom,1,3.5,0.1067,-34.09,16000,KAMAR TIDUR (BEDROOM),Lampu Utama Plafon Kamar MENYALA
+data/own_recordings/wavs/own_haikal_q_01_nyantai.wav,own_haikal,laptop_mic,quiet,nyantai,Nyalain lampu kamar dong,activate,lights,bedroom,1,3.5,0.1605,-30.16,16000,KAMAR TIDUR (BEDROOM),Lampu Utama Plafon Kamar MENYALA
+data/own_recordings/wavs/own_haikal_q_01_slang.wav,own_haikal,laptop_mic,quiet,slang,Idupin lampu kamar tidur ya,activate,lights,bedroom,1,3.5,0.1291,-36.67,16000,KAMAR TIDUR (BEDROOM),Lampu Utama Plafon Kamar MENYALA
+data/own_recordings/wavs/own_haikal_q_02.wav,own_haikal,laptop_mic,quiet,,Nyalakan lampu dapur,activate,lights,kitchen,2,3.5,0.1111,-38.66,16000,,
+data/own_recordings/wavs/own_haikal_q_02_baku.wav,own_haikal,laptop_mic,quiet,baku,Nyalakan lampu dapur,activate,lights,kitchen,2,3.5,0.1977,-33.28,16000,DAPUR (KITCHEN),Lampu Plafon Dapur MENYALA
+data/own_recordings/wavs/own_haikal_q_02_nyantai.wav,own_haikal,laptop_mic,quiet,nyantai,Nyalain lampu di dapur ya,activate,lights,kitchen,2,3.5,0.1833,-30.06,16000,DAPUR (KITCHEN),Lampu Plafon Dapur MENYALA
+data/own_recordings/wavs/own_haikal_q_02_slang.wav,own_haikal,laptop_mic,quiet,slang,Tolong idupin lampu dapur dong,activate,lights,kitchen,2,3.5,0.1573,-32.58,16000,DAPUR (KITCHEN),Lampu Plafon Dapur MENYALA
+data/own_recordings/wavs/own_haikal_q_03.wav,own_haikal,laptop_mic,quiet,,Nyalakan semua lampu,activate,lights,none,3,3.5,0.1194,-33.53,16000,,
+data/own_recordings/wavs/own_haikal_q_03_baku.wav,own_haikal,laptop_mic,quiet,baku,Nyalakan semua lampu,activate,lights,none,3,3.5,0.1989,-30.46,16000,SELURUH RUMAH (MASTER),SEMUA Lampu Rumah MENYALA
+data/own_recordings/wavs/own_haikal_q_03_nyantai.wav,own_haikal,laptop_mic,quiet,nyantai,Nyalain semua lampu rumah dong,activate,lights,none,3,3.5,0.3323,-26.61,16000,SELURUH RUMAH (MASTER),SEMUA Lampu Rumah MENYALA
+data/own_recordings/wavs/own_haikal_q_03_slang.wav,own_haikal,laptop_mic,quiet,slang,Terangin seluruh ruangan ya,activate,lights,none,3,3.5,0.3562,-28.35,16000,SELURUH RUMAH (MASTER),SEMUA Lampu Rumah MENYALA
+data/own_recordings/wavs/own_haikal_q_04.wav,own_haikal,laptop_mic,quiet,,Nyalakan lampu kamar mandi,activate,lights,washroom,4,3.5,0.0749,-37.99,16000,,
+data/own_recordings/wavs/own_haikal_q_04_baku.wav,own_haikal,laptop_mic,quiet,baku,Nyalakan lampu kamar mandi,activate,lights,washroom,4,3.5,0.1805,-33.24,16000,KAMAR MANDI (WASHROOM),Lampu Kamar Mandi MENYALA
+data/own_recordings/wavs/own_haikal_q_04_nyantai.wav,own_haikal,laptop_mic,quiet,nyantai,Nyalain lampu kamar mandi dong,activate,lights,washroom,4,3.5,0.1822,-30.4,16000,KAMAR MANDI (WASHROOM),Lampu Kamar Mandi MENYALA
+data/own_recordings/wavs/own_haikal_q_04_slang.wav,own_haikal,laptop_mic,quiet,slang,Idupin lampu toilet ya,activate,lights,washroom,4,3.5,0.2203,-33.32,16000,KAMAR MANDI (WASHROOM),Lampu Kamar Mandi MENYALA
+data/own_recordings/wavs/own_haikal_q_05.wav,own_haikal,laptop_mic,quiet,,Putar lagi lagunya,activate,music,none,5,3.5,0.1419,-38.67,16000,,
+data/own_recordings/wavs/own_haikal_q_05_baku.wav,own_haikal,laptop_mic,quiet,baku,Nyalakan musik,activate,music,none,5,3.5,0.1129,-37.35,16000,LORONG & AUDIO (HALLWAY),Speaker Musik Lorong MENYALA
+data/own_recordings/wavs/own_haikal_q_05_nyantai.wav,own_haikal,laptop_mic,quiet,nyantai,Putar lagi lagunya dong,activate,music,none,5,3.5,0.1462,-32.11,16000,LORONG & AUDIO (HALLWAY),Speaker Musik Lorong MENYALA
+data/own_recordings/wavs/own_haikal_q_05_slang.wav,own_haikal,laptop_mic,quiet,slang,Setel musik dong bro,activate,music,none,5,3.5,0.1933,-31.98,16000,LORONG & AUDIO (HALLWAY),Speaker Musik Lorong MENYALA
+data/own_recordings/wavs/own_haikal_q_06.wav,own_haikal,laptop_mic,quiet,,Bawakan saya jus,bring,juice,none,6,3.5,0.1088,-38.75,16000,,
+data/own_recordings/wavs/own_haikal_q_06_baku.wav,own_haikal,laptop_mic,quiet,baku,Bawakan saya jus,bring,juice,none,6,3.5,0.2023,-30.91,16000,ROBOT PELAYAN / BENCHMARK FSC,Ambil Gelas Jus (Meja Tamu FPP)
+data/own_recordings/wavs/own_haikal_q_06_nyantai.wav,own_haikal,laptop_mic,quiet,nyantai,Ambilkan jus dingin dong,bring,juice,none,6,3.5,0.221,-30.36,16000,ROBOT PELAYAN / BENCHMARK FSC,Ambil Gelas Jus (Meja Tamu FPP)
+data/own_recordings/wavs/own_haikal_q_06_slang.wav,own_haikal,laptop_mic,quiet,slang,Bawain jus jeruk ya bro,bring,juice,none,6,3.5,0.2094,-30.42,16000,ROBOT PELAYAN / BENCHMARK FSC,Ambil Gelas Jus (Meja Tamu FPP)
+data/own_recordings/wavs/own_haikal_q_07.wav,own_haikal,laptop_mic,quiet,,Ambilkan koran untuk saya,bring,newspaper,none,7,3.5,0.091,-39.21,16000,,
+data/own_recordings/wavs/own_haikal_q_07_baku.wav,own_haikal,laptop_mic,quiet,baku,Bawakan koran untuk saya,bring,newspaper,none,7,3.5,0.2459,-31.3,16000,ROBOT PELAYAN / BENCHMARK FSC,Ambil Koran Cetak (Meja Kopi FPP)
+data/own_recordings/wavs/own_haikal_q_07_nyantai.wav,own_haikal,laptop_mic,quiet,nyantai,Tolong ambilkan koran dong,bring,newspaper,none,7,3.5,0.2692,-28.67,16000,ROBOT PELAYAN / BENCHMARK FSC,Ambil Koran Cetak (Meja Kopi FPP)
+data/own_recordings/wavs/own_haikal_q_07_slang.wav,own_haikal,laptop_mic,quiet,slang,Bawain koran pagi ini ya,bring,newspaper,none,7,3.5,0.2139,-30.06,16000,ROBOT PELAYAN / BENCHMARK FSC,Ambil Koran Cetak (Meja Kopi FPP)
+data/own_recordings/wavs/own_haikal_q_08.wav,own_haikal,laptop_mic,quiet,,Ambilkan sepatu saya,bring,shoes,none,8,3.5,0.129,-33.72,16000,,
+data/own_recordings/wavs/own_haikal_q_08_baku.wav,own_haikal,laptop_mic,quiet,baku,Ambilkan sepatu saya,bring,shoes,none,8,3.5,0.202,-31.85,16000,ROBOT PELAYAN / BENCHMARK FSC,Ambil Sepatu (Rak Sepatu Masuk FPP)
+data/own_recordings/wavs/own_haikal_q_08_nyantai.wav,own_haikal,laptop_mic,quiet,nyantai,Tolong bawakan sepatu dong,bring,shoes,none,8,3.5,0.2213,-31.22,16000,ROBOT PELAYAN / BENCHMARK FSC,Ambil Sepatu (Rak Sepatu Masuk FPP)
+data/own_recordings/wavs/own_haikal_q_08_slang.wav,own_haikal,laptop_mic,quiet,slang,Bawain sepatu gua ya bro,bring,shoes,none,8,3.5,0.243,-30.28,16000,ROBOT PELAYAN / BENCHMARK FSC,Ambil Sepatu (Rak Sepatu Masuk FPP)
+data/own_recordings/wavs/own_haikal_q_09.wav,own_haikal,laptop_mic,quiet,,Ambilkan kaus kaki,bring,socks,none,9,3.5,0.1118,-39.13,16000,,
+data/own_recordings/wavs/own_haikal_q_09_baku.wav,own_haikal,laptop_mic,quiet,baku,Ambilkan kaus kaki,bring,socks,none,9,3.5,0.2067,-32.35,16000,ROBOT PELAYAN / BENCHMARK FSC,Ambil Kaus Kaki (Lemari Pakaian FPP)
+data/own_recordings/wavs/own_haikal_q_09_nyantai.wav,own_haikal,laptop_mic,quiet,nyantai,Tolong bawakan kaus kaki dong,bring,socks,none,9,3.5,0.4697,-25.27,16000,ROBOT PELAYAN / BENCHMARK FSC,Ambil Kaus Kaki (Lemari Pakaian FPP)
+data/own_recordings/wavs/own_haikal_q_09_slang.wav,own_haikal,laptop_mic,quiet,slang,Ambilin kaos kaki bersih ya,bring,socks,none,9,3.5,0.2304,-30.11,16000,ROBOT PELAYAN / BENCHMARK FSC,Ambil Kaus Kaki (Lemari Pakaian FPP)
+data/own_recordings/wavs/own_haikal_q_10.wav,own_haikal,laptop_mic,quiet,,Ganti ke bahasa Mandarin dong,change language,Chinese,none,10,3.5,0.1657,-33.93,16000,,
+data/own_recordings/wavs/own_haikal_q_10_baku.wav,own_haikal,laptop_mic,quiet,baku,Ganti ke Bahasa Mandarin,change language,Chinese,none,10,3.5,0.2039,-31.05,16000,PENGATURAN SISTEM,Setel Bahasa ke MANDARIN
+data/own_recordings/wavs/own_haikal_q_10_nyantai.wav,own_haikal,laptop_mic,quiet,nyantai,Ganti ke Bahasa Mandarin dong,change language,Chinese,none,10,3.5,0.2608,-28.75,16000,PENGATURAN SISTEM,Setel Bahasa ke MANDARIN
+data/own_recordings/wavs/own_haikal_q_10_slang.wav,own_haikal,laptop_mic,quiet,slang,Set bahasa ke Mandarin ya,change language,Chinese,none,10,3.5,0.2651,-30.11,16000,PENGATURAN SISTEM,Setel Bahasa ke MANDARIN
+data/own_recordings/wavs/own_haikal_q_11.wav,own_haikal,laptop_mic,quiet,,Ganti bahasanya ke Bahasa Inggris,change language,English,none,11,3.5,0.1331,-34.13,16000,,
+data/own_recordings/wavs/own_haikal_q_11_baku.wav,own_haikal,laptop_mic,quiet,baku,Ganti ke Bahasa Inggris,change language,English,none,11,3.5,0.184,-31.64,16000,PENGATURAN SISTEM,Setel Bahasa ke INGGRIS
+data/own_recordings/wavs/own_haikal_q_11_nyantai.wav,own_haikal,laptop_mic,quiet,nyantai,Ganti bahasanya ke Bahasa Inggris,change language,English,none,11,3.5,0.2633,-28.95,16000,PENGATURAN SISTEM,Setel Bahasa ke INGGRIS
+data/own_recordings/wavs/own_haikal_q_11_slang.wav,own_haikal,laptop_mic,quiet,slang,Setel bahasa Inggris dong,change language,English,none,11,3.5,0.2617,-30.55,16000,PENGATURAN SISTEM,Setel Bahasa ke INGGRIS
+data/own_recordings/wavs/own_haikal_q_12.wav,own_haikal,laptop_mic,quiet,,Ganti bahasanya ke Bahasa Jerman,change language,German,none,12,3.5,0.1243,-37.14,16000,,
+data/own_recordings/wavs/own_haikal_q_12_baku.wav,own_haikal,laptop_mic,quiet,baku,Ganti ke Bahasa Jerman,change language,German,none,12,3.5,0.1547,-33.01,16000,PENGATURAN SISTEM,Setel Bahasa ke JERMAN
+data/own_recordings/wavs/own_haikal_q_12_nyantai.wav,own_haikal,laptop_mic,quiet,nyantai,Ganti bahasanya ke Bahasa Jerman,change language,German,none,12,3.5,0.1904,-30.91,16000,PENGATURAN SISTEM,Setel Bahasa ke JERMAN
+data/own_recordings/wavs/own_haikal_q_12_slang.wav,own_haikal,laptop_mic,quiet,slang,Ubah ke bahasa Jerman dong,change language,German,none,12,3.5,0.2097,-31.27,16000,PENGATURAN SISTEM,Setel Bahasa ke JERMAN
+data/own_recordings/wavs/own_haikal_q_13.wav,own_haikal,laptop_mic,quiet,,Ganti ke bahasa Korea dong,change language,Korean,none,13,3.5,0.1396,-33.94,16000,,
+data/own_recordings/wavs/own_haikal_q_13_baku.wav,own_haikal,laptop_mic,quiet,baku,Ganti ke Bahasa Korea,change language,Korean,none,13,3.5,0.1979,-30.24,16000,PENGATURAN SISTEM,Setel Bahasa ke KOREA
+data/own_recordings/wavs/own_haikal_q_13_nyantai.wav,own_haikal,laptop_mic,quiet,nyantai,Ganti ke Bahasa Korea dong,change language,Korean,none,13,3.5,0.2501,-30.19,16000,PENGATURAN SISTEM,Setel Bahasa ke KOREA
+data/own_recordings/wavs/own_haikal_q_13_slang.wav,own_haikal,laptop_mic,quiet,slang,Setel bahasa Korea ya,change language,Korean,none,13,3.5,0.2774,-30.56,16000,PENGATURAN SISTEM,Setel Bahasa ke KOREA
+data/own_recordings/wavs/own_haikal_q_14.wav,own_haikal,laptop_mic,quiet,,Ganti bahasa sistem,change language,none,none,14,3.5,0.1646,-34.63,16000,,
+data/own_recordings/wavs/own_haikal_q_14_baku.wav,own_haikal,laptop_mic,quiet,baku,Ganti bahasa sistem,change language,none,none,14,3.5,0.1547,-37.33,16000,PENGATURAN SISTEM,Ganti Bahasa Sistem
+data/own_recordings/wavs/own_haikal_q_14_nyantai.wav,own_haikal,laptop_mic,quiet,nyantai,Ganti bahasanya dong,change language,none,none,14,3.5,0.2179,-29.24,16000,PENGATURAN SISTEM,Ganti Bahasa Sistem
+data/own_recordings/wavs/own_haikal_q_14_slang.wav,own_haikal,laptop_mic,quiet,slang,Ubah setelan bahasa ya,change language,none,none,14,3.5,0.2554,-33.46,16000,PENGATURAN SISTEM,Ganti Bahasa Sistem
+data/own_recordings/wavs/own_haikal_q_15.wav,own_haikal,laptop_mic,quiet,,Matikan lampu meja,deactivate,lamp,none,15,3.5,0.1149,-37.05,16000,,
+data/own_recordings/wavs/own_haikal_q_15_baku.wav,own_haikal,laptop_mic,quiet,baku,Matikan lampu meja,deactivate,lamp,none,15,3.5,0.1698,-35.67,16000,KAMAR TIDUR (BEDROOM),Lampu Meja / Belajar PADAM
+data/own_recordings/wavs/own_haikal_q_15_nyantai.wav,own_haikal,laptop_mic,quiet,nyantai,Matiin lampu meja dong,deactivate,lamp,none,15,3.5,0.1262,-31.63,16000,KAMAR TIDUR (BEDROOM),Lampu Meja / Belajar PADAM
+data/own_recordings/wavs/own_haikal_q_15_slang.wav,own_haikal,laptop_mic,quiet,slang,Tolong matiin lampu belajar ya,deactivate,lamp,none,15,3.5,0.1558,-31.2,16000,KAMAR TIDUR (BEDROOM),Lampu Meja / Belajar PADAM
+data/own_recordings/wavs/own_haikal_q_16.wav,own_haikal,laptop_mic,quiet,,Matikan lampu kamar,deactivate,lights,bedroom,16,3.5,0.166,-34.52,16000,,
+data/own_recordings/wavs/own_haikal_q_16_baku.wav,own_haikal,laptop_mic,quiet,baku,Matikan lampu kamar tidur,deactivate,lights,bedroom,16,3.5,0.1262,-36.56,16000,KAMAR TIDUR (BEDROOM),Lampu Utama Plafon Kamar PADAM
+data/own_recordings/wavs/own_haikal_q_16_nyantai.wav,own_haikal,laptop_mic,quiet,nyantai,Matiin lampu kamar tidur dong,deactivate,lights,bedroom,16,3.5,0.1373,-31.27,16000,KAMAR TIDUR (BEDROOM),Lampu Utama Plafon Kamar PADAM
+data/own_recordings/wavs/own_haikal_q_16_slang.wav,own_haikal,laptop_mic,quiet,slang,Padamin lampu di kamar ya,deactivate,lights,bedroom,16,3.5,0.1457,-31.19,16000,KAMAR TIDUR (BEDROOM),Lampu Utama Plafon Kamar PADAM
+data/own_recordings/wavs/own_haikal_q_17.wav,own_haikal,laptop_mic,quiet,,Matikan lampu dapur,deactivate,lights,kitchen,17,3.5,0.1499,-35.51,16000,,
+data/own_recordings/wavs/own_haikal_q_17_baku.wav,own_haikal,laptop_mic,quiet,baku,Matikan lampu dapur,deactivate,lights,kitchen,17,3.5,0.1447,-35.58,16000,DAPUR (KITCHEN),Lampu Plafon Dapur PADAM
+data/own_recordings/wavs/own_haikal_q_17_nyantai.wav,own_haikal,laptop_mic,quiet,nyantai,Matiin lampu dapur dong,deactivate,lights,kitchen,17,3.5,0.1936,-31.97,16000,DAPUR (KITCHEN),Lampu Plafon Dapur PADAM
+data/own_recordings/wavs/own_haikal_q_17_slang.wav,own_haikal,laptop_mic,quiet,slang,Padamin lampu di dapur ya,deactivate,lights,kitchen,17,3.5,0.2032,-31.88,16000,DAPUR (KITCHEN),Lampu Plafon Dapur PADAM
+data/own_recordings/wavs/own_haikal_q_18.wav,own_haikal,laptop_mic,quiet,,Matikan semua lampu,deactivate,lights,none,18,3.5,0.1389,-35.36,16000,,
+data/own_recordings/wavs/own_haikal_q_18_baku.wav,own_haikal,laptop_mic,quiet,baku,Matikan semua lampu,deactivate,lights,none,18,3.5,0.1662,-32.91,16000,SELURUH RUMAH (MASTER),SEMUA Lampu Rumah PADAM
+data/own_recordings/wavs/own_haikal_q_18_nyantai.wav,own_haikal,laptop_mic,quiet,nyantai,Matiin semua lampu dong,deactivate,lights,none,18,3.5,0.2369,-28.74,16000,SELURUH RUMAH (MASTER),SEMUA Lampu Rumah PADAM
+data/own_recordings/wavs/own_haikal_q_18_slang.wav,own_haikal,laptop_mic,quiet,slang,Padamin seluruh lampu rumah ya,deactivate,lights,none,18,3.5,0.329,-29.99,16000,SELURUH RUMAH (MASTER),SEMUA Lampu Rumah PADAM
+data/own_recordings/wavs/own_haikal_q_19.wav,own_haikal,laptop_mic,quiet,,Matikan lampu kamar mandi,deactivate,lights,washroom,19,3.5,0.1272,-34.95,16000,,
+data/own_recordings/wavs/own_haikal_q_19_baku.wav,own_haikal,laptop_mic,quiet,baku,Matikan lampu kamar mandi,deactivate,lights,washroom,19,3.5,0.1474,-32.75,16000,KAMAR MANDI (WASHROOM),Lampu Kamar Mandi PADAM
+data/own_recordings/wavs/own_haikal_q_19_nyantai.wav,own_haikal,laptop_mic,quiet,nyantai,Matiin lampu kamar mandi dong,deactivate,lights,washroom,19,3.5,0.1534,-34.29,16000,KAMAR MANDI (WASHROOM),Lampu Kamar Mandi PADAM
+data/own_recordings/wavs/own_haikal_q_19_slang.wav,own_haikal,laptop_mic,quiet,slang,Tolong matiin lampu toilet ya,deactivate,lights,washroom,19,3.5,0.1738,-35.12,16000,KAMAR MANDI (WASHROOM),Lampu Kamar Mandi PADAM
+data/own_recordings/wavs/own_haikal_q_20.wav,own_haikal,laptop_mic,quiet,,Matikan musiknya,deactivate,music,none,20,3.5,0.1288,-38.09,16000,,
+data/own_recordings/wavs/own_haikal_q_20_baku.wav,own_haikal,laptop_mic,quiet,baku,Matikan musik,deactivate,music,none,20,3.5,0.1271,-35.07,16000,LORONG & AUDIO (HALLWAY),Speaker Musik Lorong PADAM (Stop)
+data/own_recordings/wavs/own_haikal_q_20_nyantai.wav,own_haikal,laptop_mic,quiet,nyantai,Matiin lagunya dong,deactivate,music,none,20,3.5,0.1146,-33.07,16000,LORONG & AUDIO (HALLWAY),Speaker Musik Lorong PADAM (Stop)
+data/own_recordings/wavs/own_haikal_q_20_slang.wav,own_haikal,laptop_mic,quiet,slang,Stop musiknya sekarang ya,deactivate,music,none,20,3.5,0.1906,-32.82,16000,LORONG & AUDIO (HALLWAY),Speaker Musik Lorong PADAM (Stop)
+data/own_recordings/wavs/own_haikal_q_21.wav,own_haikal,laptop_mic,quiet,,Dinginkan kamar tidur dong,decrease,heat,bedroom,21,3.5,0.1302,-32.58,16000,,
+data/own_recordings/wavs/own_haikal_q_21_baku.wav,own_haikal,laptop_mic,quiet,baku,Turunkan suhu kamar tidur,decrease,heat,bedroom,21,3.5,0.125,-33.85,16000,KAMAR TIDUR (BEDROOM),Suhu / Pendingin Kamar Tidur TURUN (-2°C)
+data/own_recordings/wavs/own_haikal_q_21_nyantai.wav,own_haikal,laptop_mic,quiet,nyantai,Dinginkan kamar tidur dong,decrease,heat,bedroom,21,3.5,0.1662,-31.6,16000,KAMAR TIDUR (BEDROOM),Suhu / Pendingin Kamar Tidur TURUN (-2°C)
+data/own_recordings/wavs/own_haikal_q_21_slang.wav,own_haikal,laptop_mic,quiet,slang,Kamar gerah banget tolong sejukin,decrease,heat,bedroom,21,3.5,0.177,-31.1,16000,KAMAR TIDUR (BEDROOM),Suhu / Pendingin Kamar Tidur TURUN (-2°C)
+data/own_recordings/wavs/own_haikal_q_22.wav,own_haikal,laptop_mic,quiet,,Dinginkan dapur dong,decrease,heat,kitchen,22,3.5,0.1455,-32.66,16000,,
+data/own_recordings/wavs/own_haikal_q_22_baku.wav,own_haikal,laptop_mic,quiet,baku,Turunkan suhu dapur,decrease,heat,kitchen,22,3.5,0.2133,-32.12,16000,DAPUR (KITCHEN),Suhu / Pendingin Dapur TURUN (-2°C)
+data/own_recordings/wavs/own_haikal_q_22_nyantai.wav,own_haikal,laptop_mic,quiet,nyantai,Dinginin dapur dong,decrease,heat,kitchen,22,3.5,0.1492,-35.22,16000,DAPUR (KITCHEN),Suhu / Pendingin Dapur TURUN (-2°C)
+data/own_recordings/wavs/own_haikal_q_22_slang.wav,own_haikal,laptop_mic,quiet,slang,Dapur gerah nih tolong sejukin,decrease,heat,kitchen,22,3.5,0.1869,-33.39,16000,DAPUR (KITCHEN),Suhu / Pendingin Dapur TURUN (-2°C)
+data/own_recordings/wavs/own_haikal_q_23.wav,own_haikal,laptop_mic,quiet,,Turunkan suhunya dong,decrease,heat,none,23,3.5,0.1491,-33.32,16000,,
+data/own_recordings/wavs/own_haikal_q_23_baku.wav,own_haikal,laptop_mic,quiet,baku,Turunkan suhu ruangan,decrease,heat,none,23,3.5,0.1461,-34.64,16000,SELURUH RUMAH (MASTER),Suhu Rumah TURUN (-2°C)
+data/own_recordings/wavs/own_haikal_q_23_nyantai.wav,own_haikal,laptop_mic,quiet,nyantai,Turunkan suhunya dong,decrease,heat,none,23,3.5,0.1845,-32.23,16000,SELURUH RUMAH (MASTER),Suhu Rumah TURUN (-2°C)
+data/own_recordings/wavs/own_haikal_q_23_slang.wav,own_haikal,laptop_mic,quiet,slang,Rumah gerah tolong sejukin ya,decrease,heat,none,23,3.5,0.1553,-33.28,16000,SELURUH RUMAH (MASTER),Suhu Rumah TURUN (-2°C)
+data/own_recordings/wavs/own_haikal_q_24.wav,own_haikal,laptop_mic,quiet,,Dinginkan kamar mandi dong,decrease,heat,washroom,24,3.5,0.134,-37.14,16000,,
+data/own_recordings/wavs/own_haikal_q_24_baku.wav,own_haikal,laptop_mic,quiet,baku,Turunkan suhu kamar mandi,decrease,heat,washroom,24,3.5,0.202,-29.93,16000,KAMAR MANDI (WASHROOM),Suhu Kamar Mandi TURUN (-2°C)
+data/own_recordings/wavs/own_haikal_q_24_nyantai.wav,own_haikal,laptop_mic,quiet,nyantai,Dinginkan kamar mandi dong,decrease,heat,washroom,24,3.5,0.1655,-31.18,16000,KAMAR MANDI (WASHROOM),Suhu Kamar Mandi TURUN (-2°C)
+data/own_recordings/wavs/own_haikal_q_24_slang.wav,own_haikal,laptop_mic,quiet,slang,Sejukin suhu di kamar mandi ya,decrease,heat,washroom,24,3.5,0.191,-30.92,16000,KAMAR MANDI (WASHROOM),Suhu Kamar Mandi TURUN (-2°C)
+data/own_recordings/wavs/own_haikal_q_25.wav,own_haikal,laptop_mic,quiet,,Kecilkan volumenya dong,decrease,volume,none,25,3.5,0.1452,-33.09,16000,,
+data/own_recordings/wavs/own_haikal_q_25_baku.wav,own_haikal,laptop_mic,quiet,baku,Kecilkan volume suara,decrease,volume,none,25,3.5,0.2086,-29.05,16000,LORONG & AUDIO (HALLWAY),Volume Speaker TURUN (-2 Bar)
+data/own_recordings/wavs/own_haikal_q_25_nyantai.wav,own_haikal,laptop_mic,quiet,nyantai,Pelanin suaranya dong,decrease,volume,none,25,3.5,0.3304,-28.32,16000,LORONG & AUDIO (HALLWAY),Volume Speaker TURUN (-2 Bar)
+data/own_recordings/wavs/own_haikal_q_25_slang.wav,own_haikal,laptop_mic,quiet,slang,Kecilin volumenya ya bro,decrease,volume,none,25,3.5,0.1837,-31.5,16000,LORONG & AUDIO (HALLWAY),Volume Speaker TURUN (-2 Bar)
+data/own_recordings/wavs/own_haikal_q_26.wav,own_haikal,laptop_mic,quiet,,Naikkan suhu kamar tidur dong,increase,heat,bedroom,26,3.5,0.1758,-31.87,16000,,
+data/own_recordings/wavs/own_haikal_q_26_baku.wav,own_haikal,laptop_mic,quiet,baku,Naikkan suhu kamar tidur,increase,heat,bedroom,26,3.5,0.1057,-36.95,16000,KAMAR TIDUR (BEDROOM),Suhu / Pemanas Kamar Tidur NAIK (+2°C)
+data/own_recordings/wavs/own_haikal_q_26_nyantai.wav,own_haikal,laptop_mic,quiet,nyantai,Kamar dingin naikin suhunya dong,increase,heat,bedroom,26,3.5,0.1284,-31.27,16000,KAMAR TIDUR (BEDROOM),Suhu / Pemanas Kamar Tidur NAIK (+2°C)
+data/own_recordings/wavs/own_haikal_q_26_slang.wav,own_haikal,laptop_mic,quiet,slang,Panasin suhu kamar tidur ya,increase,heat,bedroom,26,3.5,0.1933,-32.6,16000,KAMAR TIDUR (BEDROOM),Suhu / Pemanas Kamar Tidur NAIK (+2°C)
+data/own_recordings/wavs/own_haikal_q_27.wav,own_haikal,laptop_mic,quiet,,Naikkan suhu dapur dong,increase,heat,kitchen,27,3.5,0.1557,-32.17,16000,,
+data/own_recordings/wavs/own_haikal_q_27_baku.wav,own_haikal,laptop_mic,quiet,baku,Naikkan suhu dapur,increase,heat,kitchen,27,3.5,0.1436,-36.29,16000,DAPUR (KITCHEN),Suhu / Pemanas Dapur NAIK (+2°C)
+data/own_recordings/wavs/own_haikal_q_27_nyantai.wav,own_haikal,laptop_mic,quiet,nyantai,Panasin suhu di dapur dong,increase,heat,kitchen,27,3.5,0.1987,-31.05,16000,DAPUR (KITCHEN),Suhu / Pemanas Dapur NAIK (+2°C)
+data/own_recordings/wavs/own_haikal_q_27_slang.wav,own_haikal,laptop_mic,quiet,slang,Naikin temperatur dapur ya,increase,heat,kitchen,27,3.5,0.1599,-36.01,16000,DAPUR (KITCHEN),Suhu / Pemanas Dapur NAIK (+2°C)
+data/own_recordings/wavs/own_haikal_q_28.wav,own_haikal,laptop_mic,quiet,,Naikkan suhunya dong,increase,heat,none,28,3.5,0.1345,-33.05,16000,,
+data/own_recordings/wavs/own_haikal_q_28_baku.wav,own_haikal,laptop_mic,quiet,baku,Naikkan suhu ruangan,increase,heat,none,28,3.5,0.1593,-31.69,16000,SELURUH RUMAH (MASTER),Suhu Rumah NAIK (+2°C)
+data/own_recordings/wavs/own_haikal_q_28_nyantai.wav,own_haikal,laptop_mic,quiet,nyantai,Rumah dingin tolong naikin suhunya,increase,heat,none,28,3.5,0.1782,-28.79,16000,SELURUH RUMAH (MASTER),Suhu Rumah NAIK (+2°C)
+data/own_recordings/wavs/own_haikal_q_28_slang.wav,own_haikal,laptop_mic,quiet,slang,Hangatkan seluruh rumah ya,increase,heat,none,28,3.5,0.1507,-35.27,16000,SELURUH RUMAH (MASTER),Suhu Rumah NAIK (+2°C)
+data/own_recordings/wavs/own_haikal_q_29.wav,own_haikal,laptop_mic,quiet,,Naikkan suhu kamar mandi dong,increase,heat,washroom,29,3.5,0.1312,-34.05,16000,,
+data/own_recordings/wavs/own_haikal_q_29_baku.wav,own_haikal,laptop_mic,quiet,baku,Naikkan suhu kamar mandi,increase,heat,washroom,29,3.5,0.1667,-31.29,16000,KAMAR MANDI (WASHROOM),Suhu Kamar Mandi NAIK (+2°C)
+data/own_recordings/wavs/own_haikal_q_29_nyantai.wav,own_haikal,laptop_mic,quiet,nyantai,Kamar mandi dingin tolong hangatkan,increase,heat,washroom,29,3.5,0.166,-30.81,16000,KAMAR MANDI (WASHROOM),Suhu Kamar Mandi NAIK (+2°C)
+data/own_recordings/wavs/own_haikal_q_29_slang.wav,own_haikal,laptop_mic,quiet,slang,Panasin suhu kamar mandi ya,increase,heat,washroom,29,3.5,0.2496,-31.49,16000,KAMAR MANDI (WASHROOM),Suhu Kamar Mandi NAIK (+2°C)
+data/own_recordings/wavs/own_haikal_q_30.wav,own_haikal,laptop_mic,quiet,,Besarkan suaranya dong,increase,volume,none,30,3.5,0.1561,-33.9,16000,,
+data/own_recordings/wavs/own_haikal_q_30_baku.wav,own_haikal,laptop_mic,quiet,baku,Besarkan volume suara,increase,volume,none,30,3.5,0.1394,-33.79,16000,LORONG & AUDIO (HALLWAY),Volume Speaker NAIK (+2 Bar)
+data/own_recordings/wavs/own_haikal_q_30_nyantai.wav,own_haikal,laptop_mic,quiet,nyantai,Kencengin suaranya dong,increase,volume,none,30,3.5,0.1833,-31.68,16000,LORONG & AUDIO (HALLWAY),Volume Speaker NAIK (+2 Bar)
+data/own_recordings/wavs/own_haikal_q_30_slang.wav,own_haikal,laptop_mic,quiet,slang,Gedein volumenya dikit bro,increase,volume,none,30,3.5,0.1542,-32.5,16000,LORONG & AUDIO (HALLWAY),Volume Speaker NAIK (+2 Bar)

@@ -44,24 +44,24 @@ def parse_filename(filename: str) -> Optional[Tuple[str, str, int]]:
     """
     basename = os.path.splitext(filename)[0].lower()
     
-    # Pattern 1: own_<speaker>_<condition>_<intent_id>
-    m1 = re.match(r"^own_([a-z0-9]+)_([qn]|quiet|noisy)_(\d{1,2})$", basename)
+    # Pattern 1: own_<speaker>_<condition>_<intent_id>[_<take/var>]
+    m1 = re.match(r"^own_([a-z0-9]+)_([qn]|quiet|noisy)_(\d{1,2})(?:_([a-z0-9]+))?$", basename)
     if m1:
         spk = f"own_{m1.group(1)}"
         cond = "quiet" if m1.group(2) in ("q", "quiet") else "noisy"
         intent_id = int(m1.group(3))
         return spk, cond, intent_id
 
-    # Pattern 2: <speaker>_<condition>_<intent_id>
-    m2 = re.match(r"^([a-z0-9]+)_([qn]|quiet|noisy)_(\d{1,2})$", basename)
+    # Pattern 2: <speaker>_<condition>_<intent_id>[_<take/var>]
+    m2 = re.match(r"^([a-z0-9]+)_([qn]|quiet|noisy)_(\d{1,2})(?:_([a-z0-9]+))?$", basename)
     if m2:
         spk = f"own_{m2.group(1)}"
         cond = "quiet" if m2.group(2) in ("q", "quiet") else "noisy"
         intent_id = int(m2.group(3))
         return spk, cond, intent_id
 
-    # Pattern 3: <speaker>_<intent_id> (default condition: quiet)
-    m3 = re.match(r"^([a-z0-9]+)_(\d{1,2})$", basename)
+    # Pattern 3: <speaker>_<intent_id>[_<take/var>] (default condition: quiet)
+    m3 = re.match(r"^([a-z0-9]+)_(\d{1,2})(?:_([a-z0-9]+))?$", basename)
     if m3:
         spk = f"own_{m3.group(1)}"
         cond = "quiet"
@@ -186,10 +186,23 @@ def audit_own_recordings(
         if parsed:
             spk, cond, intent_id = parsed
             cond_code = "q" if cond == "quiet" else "n"
-            target_fname = f"{spk}_{cond_code}_{intent_id:02d}.wav"
+            m_suf = re.search(r"_(baku|nyantai|slang|t\d+|v\d+)", fname)
+            suf_str = f"_{m_suf.group(1)}" if m_suf else ""
+            target_fname = f"{spk}_{cond_code}_{intent_id:02d}{suf_str}.wav"
             target_path = os.path.join(wavs_dir, target_fname)
             convert_and_standardize_audio(rpath, target_path)
             converted_count += 1
+
+    # Load existing metadata if present to preserve rich fields (style, room, feature, actual transcript)
+    existing_meta = {}
+    if os.path.exists(metadata_path):
+        try:
+            df_old = pd.read_csv(metadata_path)
+            for _, r in df_old.iterrows():
+                p = str(r["path"]).replace("\\", "/")
+                existing_meta[p] = r.to_dict()
+        except Exception:
+            pass
 
     # 2. Inspect all files in wavs_dir
     wav_files = sorted(glob.glob(os.path.join(wavs_dir, "*.wav")))
@@ -215,21 +228,39 @@ def audit_own_recordings(
         duration = len(info) / sr
         peak = float(np.max(np.abs(info)))
         rms = float(np.sqrt(np.mean(info**2)))
-        rms_dbfs = float(20 * np.log10(rms + 1e-9))
+
+        # Standardize if needed
+        if sr != 16000 or peak > 0.95:
+            duration, peak, rms_dbfs = convert_and_standardize_audio(
+                wpath, wpath, target_sr=16000, headroom_peak=0.95
+            )
+            sr = 16000
+        else:
+            rms_dbfs = float(20 * np.log10(rms + 1e-9))
 
         intent_info = legal_map[intent_id]
         act = intent_info["action"]
         obj = intent_info["object"]
         loc = intent_info["location"]
-        phrase_id = ID_PHRASES.get(intent_id, f"{act} {obj} {loc}".replace(" none", ""))
+        phrase_default = ID_PHRASES.get(intent_id, f"{act} {obj} {loc}".replace(" none", ""))
 
         rel_path = f"data/own_recordings/wavs/{fname}".replace("\\", "/")
+        prev = existing_meta.get(rel_path, {})
+
+        m_suf = re.search(r"_(baku|nyantai|slang)", fname)
+        detected_style = m_suf.group(1) if m_suf else prev.get("style", "baku")
+
+        transcript_val = prev.get("transcript")
+        if not transcript_val or pd.isna(transcript_val):
+            transcript_val = phrase_default
+
         metadata_rows.append({
             "path": rel_path,
             "speakerId": spk,
-            "device": "laptop_mic",
+            "device": prev.get("device", "laptop_mic"),
             "condition": cond,
-            "transcript": phrase_id,
+            "style": detected_style,
+            "transcript": transcript_val,
             "action": act,
             "object": obj,
             "location": loc,
@@ -238,6 +269,8 @@ def audit_own_recordings(
             "peak_amplitude": round(peak, 4),
             "rms_dbfs": round(rms_dbfs, 2),
             "sample_rate": sr,
+            "room": prev.get("room", ""),
+            "feature": prev.get("feature", ""),
         })
         speakers_found.add(spk)
         conditions_found.add(cond)

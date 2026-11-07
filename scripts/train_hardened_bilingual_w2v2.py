@@ -21,6 +21,14 @@ import time
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
+os.environ.setdefault("HF_HUB_OFFLINE", "1")
+os.environ.setdefault("TRANSFORMERS_OFFLINE", "1")
+try:
+    sys.stdout.reconfigure(line_buffering=True)
+    sys.stderr.reconfigure(line_buffering=True)
+except Exception:
+    pass
+
 import numpy as np
 import pandas as pd
 import soundfile as sf
@@ -68,40 +76,68 @@ class HardenedBilingualDataset(Dataset):
         self.records: List[Dict] = []
         if os.path.exists(manifest_path):
             df_main = pd.read_csv(manifest_path)
-            for _, r in df_main.iterrows():
-                # Normalize path column
-                audio_p = r.get("audio_path", r.get("path", ""))
-                self.records.append({
-                    "path": str(audio_p),
-                    "action": str(r.get("action", "")),
-                    "object": str(r.get("object", "")),
-                    "location": str(r.get("location", "")),
-                    "intent_id": int(r.get("intent_id", -1)),
+            col_path = "audio_path" if "audio_path" in df_main.columns else "path"
+            col_intent = "intent_id" if "intent_id" in df_main.columns else None
+
+            paths = df_main[col_path].astype(str).tolist()
+            actions = df_main["action"].astype(str).tolist() if "action" in df_main.columns else [""] * len(paths)
+            objects = df_main["object"].astype(str).tolist() if "object" in df_main.columns else [""] * len(paths)
+            locations = df_main["location"].astype(str).tolist() if "location" in df_main.columns else [""] * len(paths)
+            intents = df_main[col_intent].fillna(-1).astype(int).tolist() if col_intent else [-1] * len(paths)
+
+            self.records = [
+                {
+                    "path": p,
+                    "action": a,
+                    "object": o,
+                    "location": l,
+                    "intent_id": i,
                     "is_anchor": False,
-                })
+                }
+                for p, a, o, l, i in zip(paths, actions, objects, locations, intents)
+            ]
 
         # Inject Real Human Voice Acoustic Anchors if present
         if own_recordings_path and os.path.exists(own_recordings_path):
             df_own = pd.read_csv(own_recordings_path)
-            print(f"[Dataset] Found {len(df_own)} real human recordings in {own_recordings_path}!")
-            anchor_records = []
-            for _, r in df_own.iterrows():
-                audio_p = r.get("audio_path", r.get("path", ""))
-                anchor_records.append({
-                    "path": str(audio_p),
-                    "action": str(r.get("action", "")),
-                    "object": str(r.get("object", "")),
-                    "location": str(r.get("location", "")),
-                    "intent_id": int(r.get("intent_id", -1)),
+            print(f"[Dataset] Found {len(df_own)} real human recordings in {own_recordings_path}!", flush=True)
+            col_path = "audio_path" if "audio_path" in df_own.columns else "path"
+            col_intent = "intent_id" if "intent_id" in df_own.columns else None
+
+            paths = df_own[col_path].astype(str).tolist()
+            actions = df_own["action"].astype(str).tolist() if "action" in df_own.columns else [""] * len(paths)
+            objects = df_own["object"].astype(str).tolist() if "object" in df_own.columns else [""] * len(paths)
+            locations = df_own["location"].astype(str).tolist() if "location" in df_own.columns else [""] * len(paths)
+            intents = df_own[col_intent].fillna(-1).astype(int).tolist() if col_intent else [-1] * len(paths)
+
+            anchor_records = [
+                {
+                    "path": p,
+                    "action": a,
+                    "object": o,
+                    "location": l,
+                    "intent_id": i,
                     "is_anchor": True,
-                })
-            # Oversample human anchors to ensure model anchors onto human vocal biology
+                }
+                for p, a, o, l, i in zip(paths, actions, objects, locations, intents)
+            ]
             for _ in range(anchor_multiplier):
                 self.records.extend(anchor_records)
-            print(f"[Dataset] Injected {len(anchor_records) * anchor_multiplier} oversampled human anchor instances.")
+            print(f"[Dataset] Injected {len(anchor_records) * anchor_multiplier} oversampled human anchor instances.", flush=True)
 
         if max_samples and max_samples < len(self.records):
-            self.records = self.records[:max_samples]
+            n_anchors = (
+                len(anchor_records) * anchor_multiplier
+                if (own_recordings_path and os.path.exists(own_recordings_path))
+                else 0
+            )
+            if n_anchors > 0:
+                main_recs = self.records[:-n_anchors]
+                anchor_recs = self.records[-n_anchors:]
+                n_main_keep = max(0, max_samples - n_anchors)
+                self.records = main_recs[:n_main_keep] + anchor_recs
+            else:
+                self.records = self.records[:max_samples]
 
     def __len__(self) -> int:
         return len(self.records)
@@ -147,8 +183,8 @@ class HardenedBilingualDataset(Dataset):
             # Waveform-level SpecAugment (Complex STFT time/freq masking)
             if np.random.rand() < 0.4:
                 wav_t = torch.from_numpy(wav).unsqueeze(0)
-                wav_aug = apply_spec_augment_waveform(wav_t, max_freq_mask=20, max_time_mask=25)
-                wav = wav_aug.squeeze(0).numpy()
+                wav_aug = apply_spec_augment_waveform(wav_t, freq_mask_param=20, time_mask_param=25)
+                wav = wav_aug.squeeze(0).cpu().numpy()
 
         act_idx = self.action_to_idx.get(rec["action"], 0)
         obj_idx = self.object_to_idx.get(rec["object"], 0)
@@ -158,10 +194,15 @@ class HardenedBilingualDataset(Dataset):
         return {
             "waveform": torch.from_numpy(wav.astype(np.float32)),
             "length": torch.tensor(len(wav), dtype=torch.long),
+            "lengths": torch.tensor(len(wav), dtype=torch.long),
             "action": torch.tensor(act_idx, dtype=torch.long),
             "object": torch.tensor(obj_idx, dtype=torch.long),
             "location": torch.tensor(loc_idx, dtype=torch.long),
             "joint": torch.tensor(joint_idx, dtype=torch.long),
+            "action_id": torch.tensor(act_idx, dtype=torch.long),
+            "object_id": torch.tensor(obj_idx, dtype=torch.long),
+            "location_id": torch.tensor(loc_idx, dtype=torch.long),
+            "intent_id": torch.tensor(joint_idx, dtype=torch.long),
         }
 
 
@@ -246,7 +287,7 @@ def train_hardened_bilingual(
     print(f"[Train] Total Training Samples: {len(train_dataset)} | Validation Samples: {len(valid_dataset)}")
 
     # 3. Model Architecture with SpecAugment
-    print("[Train] Initializing Wav2VecSLU with Dual-Level SpecAugment...")
+    print("[Train] Initializing Wav2VecSLU with Dual-Level SpecAugment...", flush=True)
     model = Wav2VecSLU(
         pretrained_model_name_or_path="facebook/wav2vec2-base",
         n_action=n_act,
@@ -261,11 +302,28 @@ def train_hardened_bilingual(
         mask_feature_prob=0.05,
         mask_feature_length=20,
     )
+
+    # Warm-start from pre-trained bilingual checkpoint if present
+    ckpt_candidates = [
+        str(PROJECT_ROOT / "reports" / "models" / "best_slu_model.pt"),
+        str(PROJECT_ROOT / "models" / "svara_hardened.pt"),
+    ]
+    for cpath in ckpt_candidates:
+        if os.path.exists(cpath):
+            try:
+                ckpt = torch.load(cpath, map_location=device)
+                state_dict = ckpt.get("model_state_dict", ckpt.get("model", ckpt))
+                model.load_state_dict(state_dict, strict=False)
+                print(f"[Train] Successfully warm-started from pre-trained weights: {cpath}", flush=True)
+                break
+            except Exception as e:
+                print(f"[Train] Could not load checkpoint {cpath}: {e}", flush=True)
+
     model.to(device)
 
     # 4. Decoupled Optimizer & Cosine Scheduler
-    encoder_params = [p for n, p in model.named_parameters() if "wav2vec2" in n and p.requires_grad]
-    head_params = [p for n, p in model.named_parameters() if "wav2vec2" not in n and p.requires_grad]
+    encoder_params = [p for n, p in model.named_parameters() if "enc" in n and p.requires_grad]
+    head_params = [p for n, p in model.named_parameters() if "enc" not in n and p.requires_grad]
 
     optimizer = torch.optim.AdamW(
         [
@@ -283,7 +341,7 @@ def train_hardened_bilingual(
     )
 
     criterion = MultiHeadSLULoss(label_smoothing=label_smoothing, joint_weight=0.2)
-    scaler = torch.cuda.amp.GradScaler() if (device.type == "cuda" and torch.cuda.is_available()) else None
+    scaler = torch.amp.GradScaler("cuda") if (device.type == "cuda" and torch.cuda.is_available()) else None
 
     # 5. Training Loop
     history = {
@@ -316,18 +374,27 @@ def train_hardened_bilingual(
         for batch in train_loader:
             optimizer.zero_grad()
             waveforms = batch["waveform"].to(device)
-            lengths = batch["length"].to(device)
+            raw_lengths = batch.get("lengths", batch.get("length"))
+            lengths = raw_lengths.to(device)
+            act_t = batch.get("action", batch.get("action_id")).to(device)
+            obj_t = batch.get("object", batch.get("object_id")).to(device)
+            loc_t = batch.get("location", batch.get("location_id")).to(device)
+            joint_t = batch.get("joint", batch.get("intent_id", torch.zeros_like(act_t))).to(device)
             targets = {
-                "action": batch["action"].to(device),
-                "object": batch["object"].to(device),
-                "location": batch["location"].to(device),
-                "joint": batch["joint"].to(device),
+                "action": act_t,
+                "object": obj_t,
+                "location": loc_t,
+                "joint": joint_t,
+                "action_id": act_t,
+                "object_id": obj_t,
+                "location_id": loc_t,
+                "intent_id": joint_t,
             }
 
             if scaler is not None:
-                with torch.cuda.amp.autocast():
+                with torch.amp.autocast("cuda"):
                     outputs = model(waveforms, lengths)
-                    loss = criterion(outputs, targets)
+                    loss, _ = criterion(outputs, targets)
                 scaler.scale(loss).backward()
                 scaler.unscale_(optimizer)
                 torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
@@ -335,7 +402,7 @@ def train_hardened_bilingual(
                 scaler.update()
             else:
                 outputs = model(waveforms, lengths)
-                loss = criterion(outputs, targets)
+                loss, _ = criterion(outputs, targets)
                 loss.backward()
                 torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
                 optimizer.step()
@@ -363,16 +430,25 @@ def train_hardened_bilingual(
         with torch.no_grad():
             for batch in valid_loader:
                 waveforms = batch["waveform"].to(device)
-                lengths = batch["length"].to(device)
+                raw_lengths = batch.get("lengths", batch.get("length"))
+                lengths = raw_lengths.to(device)
+                act_t = batch.get("action", batch.get("action_id")).to(device)
+                obj_t = batch.get("object", batch.get("object_id")).to(device)
+                loc_t = batch.get("location", batch.get("location_id")).to(device)
+                joint_t = batch.get("joint", batch.get("intent_id", torch.zeros_like(act_t))).to(device)
                 targets = {
-                    "action": batch["action"].to(device),
-                    "object": batch["object"].to(device),
-                    "location": batch["location"].to(device),
-                    "joint": batch["joint"].to(device),
+                    "action": act_t,
+                    "object": obj_t,
+                    "location": loc_t,
+                    "joint": joint_t,
+                    "action_id": act_t,
+                    "object_id": obj_t,
+                    "location_id": loc_t,
+                    "intent_id": joint_t,
                 }
 
                 outputs = model(waveforms, lengths)
-                loss = criterion(outputs, targets)
+                loss, _ = criterion(outputs, targets)
 
                 bs = waveforms.size(0)
                 total_val_loss += loss.item() * bs
@@ -401,10 +477,11 @@ def train_hardened_bilingual(
         print(
             f"Epoch {epoch:02d}/{epochs:02d} [{elapsed:.1f}s] - "
             f"Train Loss: {train_loss:.4f} Acc: {train_acc*100:.2f}% | "
-            f"Val Loss: {val_loss:.4f} Exact: {val_acc*100:.2f}% (Act: {val_act*100:.1f}%, Obj: {val_obj*100:.1f}%, Loc: {val_loc*100:.1f}%)"
+            f"Val Loss: {val_loss:.4f} Exact: {val_acc*100:.2f}% (Act: {val_act*100:.1f}%, Obj: {val_obj*100:.1f}%, Loc: {val_loc*100:.1f}%)",
+            flush=True,
         )
 
-        if val_acc >= best_val_acc:
+        if val_acc > best_val_acc or (epoch == 1 and val_acc >= best_val_acc):
             best_val_acc = val_acc
             torch.save(
                 {

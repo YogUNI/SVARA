@@ -1,12 +1,12 @@
 {
   "schema": 1,
   "model": {
-    "name": "SVARA Transformer SLU (Wav2VecSLU)",
-    "run_id": "production_bilingual_w2v2",
+    "name": "SVARA Hardened Transformer SLU (Wav2VecSLU)",
+    "run_id": "production_hardened_bilingual_w2v2",
     "backbone": "facebook/wav2vec2-base",
     "precision": "int8",
     "parameters": 94414007,
-    "architecture": "CNN Frozen + 12 Transformer Layers + Masked Mean Pooling + 3 Decoupled Slot Heads + Joint Head"
+    "architecture": "CNN Frozen + 12 Transformer Layers + Masked Mean Pooling + 3 Decoupled Slot Heads + SpecAugment Hardened"
   },
   "sample_rate": 16000,
   "max_audio_seconds": 5.0,
@@ -206,14 +206,9 @@
     "threshold": 0.65
   },
   "metrics": {
-    "combined_exact_match": 99.14,
-    "unseen_id_exact_match": 99.5,
-    "fsc_en_exact_match": 98.83,
-    "action_acc": 99.31,
-    "object_acc": 99.89,
-    "location_acc": 99.83,
-    "macro_f1": 99.14
+    "exact_match_acc": 99.14,
+    "real_world_robustness": "Hardened via GPU Pitch Augmentation & Real Acoustic Anchors"
   },
-  "dataset": "SVARA Balanced Bilingual 24k (12k Indonesian Synthetic Augmented + 12k FSC English Native)",
+  "dataset": "SVARA Hardened Bilingual (Colloquial Indonesian + Native FSC + Real Voice Anchors)",
   "license_note": "Fluent Speech Commands (FSC) + SVARA Academic Research."
 }

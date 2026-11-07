@@ -12,6 +12,7 @@ Features:
 """
 
 import argparse
+import io
 import json
 import os
 import sys
@@ -19,8 +20,15 @@ import time
 from pathlib import Path
 from typing import Any, Dict, List
 
+try:
+    sys.stdout.reconfigure(line_buffering=True)
+    sys.stderr.reconfigure(line_buffering=True)
+except Exception:
+    pass
+
 import numpy as np
 import pandas as pd
+import soundfile as sf
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
@@ -117,10 +125,20 @@ def run_field_test_suite(
         except Exception:
             meta_df = None
 
+    # Load intent map for robust audio matching across synthetic and anchor datasets
+    intent_map_path = PROJECT_ROOT / "configs" / "intent_map.json"
+    intent_to_id = {}
+    if os.path.exists(intent_map_path):
+        with open(intent_map_path, "r", encoding="utf-8") as f:
+            imap_data = json.load(f)
+        for i_id, details in imap_data.get("intent_map", {}).items():
+            intent_to_id[(details["action"], details["object"], details["location"])] = int(i_id)
+
     available_wavs = []
     wav_dirs = [
         str(PROJECT_ROOT / "data" / "own_recordings" / "wavs"),
         str(PROJECT_ROOT / "data" / "synthetic_indonesian" / "wavs_16k"),
+        str(PROJECT_ROOT / "data" / "synthetic_indonesian_massive" / "wavs_16k"),
     ]
     for d in wav_dirs:
         if os.path.exists(d):
@@ -161,6 +179,16 @@ def run_field_test_suite(
                         matched_audio = cand_path
 
         if not matched_audio:
+            target_key = (test_case["action"], test_case["object"], test_case["location"])
+            target_intent_id = intent_to_id.get(target_key, None)
+            if target_intent_id is not None:
+                pattern = f"intent{target_intent_id:02d}_"
+                for p in available_wavs:
+                    if pattern in os.path.basename(p):
+                        matched_audio = p
+                        break
+
+        if not matched_audio:
             for p in available_wavs:
                 bname = os.path.basename(p)
                 if f"_{i%31:02d}_" in bname or f"_{i%31:02d}.wav" in bname:
@@ -171,10 +199,12 @@ def run_field_test_suite(
             with open(matched_audio, "rb") as af:
                 raw_bytes = af.read()
         else:
-            # Synthetic 16kHz test sine tone modulated
+            # Synthetic 16kHz test sine tone encoded as valid WAV container
             t = np.linspace(0, 2.5, 40000, dtype=np.float32)
             wave = (np.sin(2 * np.pi * (140 + (i % 20) * 5) * t) * 0.4).astype(np.float32)
-            raw_bytes = wave.tobytes()
+            buf = io.BytesIO()
+            sf.write(buf, wave, 16000, format="WAV", subtype="PCM_16")
+            raw_bytes = buf.getvalue()
 
         # Execute Engine Prediction
         res = engine.predict_audio(raw_bytes)

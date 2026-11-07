@@ -123,13 +123,24 @@ def collate_fn_pad(batch: List[Dict[str, Any]]) -> Dict[str, torch.Tensor]:
         wav = item["waveform"]
         padded_waveforms[i, : len(wav)] = wav
 
+    lengths_tensor = torch.tensor(lengths, dtype=torch.long)
+    act_t = torch.stack([item.get("action_id", item.get("action")) for item in batch])
+    obj_t = torch.stack([item.get("object_id", item.get("object")) for item in batch])
+    loc_t = torch.stack([item.get("location_id", item.get("location")) for item in batch])
+    intent_t = torch.stack([item.get("intent_id", item.get("joint", torch.tensor(0))) for item in batch])
+
     return {
         "waveform": padded_waveforms,
-        "lengths": torch.tensor(lengths, dtype=torch.long),
-        "action_id": torch.stack([item["action_id"] for item in batch]),
-        "object_id": torch.stack([item["object_id"] for item in batch]),
-        "location_id": torch.stack([item["location_id"] for item in batch]),
-        "intent_id": torch.stack([item["intent_id"] for item in batch]),
+        "lengths": lengths_tensor,
+        "length": lengths_tensor,
+        "action_id": act_t,
+        "action": act_t,
+        "object_id": obj_t,
+        "object": obj_t,
+        "location_id": loc_t,
+        "location": loc_t,
+        "intent_id": intent_t,
+        "joint": intent_t,
         "path": [item.get("path", "") for item in batch],
         "speakerId": [item.get("speakerId", "") for item in batch],
         "transcript": [item.get("transcript", "") for item in batch],

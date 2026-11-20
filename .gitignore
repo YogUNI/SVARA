@@ -38,6 +38,7 @@ models/svara_hardened*.onnx
 models/svara_bilingual_hardened*.onnx
 !models/svara_int8.onnx
 !models/svara_bilingual_int8.onnx
+!models/svara_hardened_int8.onnx
 reports/runs/**/*.ckpt
 reports/runs/**/*.pt
 reports/models/*.pt
